@@ -1,9 +1,13 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass classicthesis
 \use_default_options true
+\begin_modules
+theorems-ams
+theorems-chap
+\end_modules
 \maintain_unincluded_children false
 \language american
 \language_package default
@@ -12,13 +16,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -29,15 +33,24 @@
 \use_hyperref false
 \papersize default
 \use_geometry false
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
-\cite_engine natbib_numerical
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 0
 \index Index
 \shortcut idx
@@ -61,7 +74,7 @@
 \begin_body
 
 \begin_layout Chapter
-Math Test Chapter
+Theoretical Contribution
 \end_layout
 
 \begin_layout Standard
@@ -71,405 +84,208 @@ name "ch:mathtest"
 
 \end_inset
 
-Ei choro aeterno antiopam mea, labitur bonorum pri no.
- His no decore nemore graecis.
- In eos meis nominavi, liber soluta vim cu.
- Sea commune suavitate interpretaris eu, vix eu libris efficiantur.
+In this chapter, we show precisely how the question of 
 \end_layout
 
 \begin_layout Section
-Some Formulas
+Brownian Bridge
 \end_layout
 
 \begin_layout Standard
-Due to the statistical nature of ionisation energy loss, large fluctuations
- can occur in the amount of energy deposited by a particle traversing an
- absorber element
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Examples taken from Walter Schmidt's great gallery: 
-\begin_inset Newline newline
+We begin by studying the time-varying density 
+\begin_inset Formula $p_{t}\left(b\right)$
 \end_inset
 
- 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://home.vrweb.de/~was/mathfonts.html
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
+ of the Brownian bridge process 
+\begin_inset Formula $B_{t}$
 \end_inset
 
 .
- Continuous processes such as multiple scattering and energy loss play a
- relevant role in the longitudinal and lateral development of electromagnetic
- and hadronic showers, and in the case of sampling calorimeters the measured
- resolution can be significantly affected by such fluctuations in their
- active layers.
- The description of ionisation fluctuations is characterised by the significance
- parameter 
-\begin_inset Formula $\kappa$
+ Recall we can represent 
+\begin_inset Formula $B_{t}$
 \end_inset
 
-, which is proportional to the ratio of mean energy loss to the maximum
- allowed energy transfer in a single collision with an atomic electron:
- 
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-You might get unexpected results using math in chapter or section heads.
- Consider the 
-\family typewriter
-pdfspacing
-\family default
- option.
-\end_layout
-
-\end_inset
-
- 
+ as an SDE of the form 
 \begin_inset Formula 
 \[
-\kappa=\frac{\xi}{E_{\textrm{max}}}
+dB_{t}=-\frac{B_{t}}{1-t}dt+dB_{t},t\in\left[0,1\right]
 \]
 
 \end_inset
 
- 
-\begin_inset Formula $E_{\textrm{max}}$
-\end_inset
-
- is the maximum transferable energy in a single collision with an atomic
- electron.
- 
-\begin_inset Formula 
-\[
-E_{\textrm{max}}=\frac{2m_{\textrm{e}}\beta^{2}\gamma^{2}}{1+2\gamma m_{\textrm{e}}/m_{\textrm{x}}+\left(m_{\textrm{e}}/m_{\textrm{x}}\right)^{2}}\ ,
-\]
-
-\end_inset
-
- where 
-\begin_inset Formula $\gamma=E/m_{\textrm{x}}$
-\end_inset
-
-, 
-\begin_inset Formula $E$
-\end_inset
-
- is energy and 
-\begin_inset Formula $m_{\textrm{x}}$
-\end_inset
-
- the mass of the incident particle, 
-\begin_inset Formula $\beta^{2}=1-1/\gamma^{2}$
-\end_inset
-
- and 
-\begin_inset Formula $m_{\textrm{e}}$
-\end_inset
-
- is the electron mass.
- 
-\begin_inset Formula $\xi$
-\end_inset
-
- comes from the Rutherford scattering cross section and is defined as: 
-\begin_inset Formula 
-\begin{eqnarray*}
-\xi=\frac{2\pi z^{2}e^{4}N_{\textrm{Av}}Z\rho\delta x}{m_{\textrm{e}}\beta^{2}c^{2}A}=153.4\frac{z^{2}}{\beta^{2}}\frac{Z}{A}\rho\delta x\quad\textrm{keV},
-\end{eqnarray*}
-
-\end_inset
-
- where
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $z$
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-charge of the incident particle 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $N_{\textrm{Av}}$
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Avogadro's number 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $Z$
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-atomic number of the material 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $A$
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-atomic weight of the material 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\rho$
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-density 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\delta x$
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-thickness of the material 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\kappa$
-\end_inset
-
- measures the contribution of the collisions with energy transfer close
- to 
-\begin_inset Formula $E_{\textrm{max}}$
-\end_inset
-
-.
- For a given absorber, 
-\begin_inset Formula $\kappa$
-\end_inset
-
- tends towards large values if 
-\begin_inset Formula $\delta x$
-\end_inset
-
- is large and/or if 
-\begin_inset Formula $\beta$
-\end_inset
-
- is small.
- Likewise, 
-\begin_inset Formula $\kappa$
-\end_inset
-
- tends towards zero if 
-\begin_inset Formula $\delta x$
-\end_inset
-
- is small and/or if 
-\begin_inset Formula $\beta$
-\end_inset
-
- approaches 
-\begin_inset Formula $1$
+We now demonstrate how we can use the Kolmogorov forward equation and the
+ SDE representation of the Brownian bridge to derive the (known) transition
+ distribution of 
+\begin_inset Formula $B_{t}$
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Standard
-The value of 
-\begin_inset Formula $\kappa$
+\begin_layout Fact
+The transition distribution of a Brownian bridge process 
+\begin_inset Formula $B_{t}$
 \end_inset
 
- distinguishes two regimes which occur in the description of ionisation
- fluctuations:
-\end_layout
-
-\begin_layout Enumerate
-A large number of collisions involving the loss of all or most of the incident
- particle energy during the traversal of an absorber.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-As the total energy transfer is composed of a multitude of small energy
- losses, we can apply the central limit theorem and describe the fluctuations
- by a Gaussian distribution.
- This case is applicable to non-relativistic particles and is described
- by the inequality 
-\begin_inset Formula $\kappa>10$
+ for 
+\begin_inset Formula $t>t'$
 \end_inset
 
- (i.
-\begin_inset space \thinspace{}
-\end_inset
-
-e., when the mean energy loss in the absorber is greater than the maximum
- energy transfer in a single collision).
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Particles traversing thin counters and incident electrons under any conditions.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-The relevant inequalities and distributions are 
-\begin_inset Formula $0.01<\kappa<10$
-\end_inset
-
-, Vavilov distribution, and 
-\begin_inset Formula $\kappa<0.01$
-\end_inset
-
-, Landau distribution.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Section
-Various Mathematical Examples
-\end_layout
-
-\begin_layout Standard
-If 
-\begin_inset Formula $n>2$
-\end_inset
-
-, the identity 
+ is 
 \begin_inset Formula 
 \[
-t[u_{1},\dots,u_{n}]=t\bigl[t[u_{1},\dots,u_{n_{1}}],t[u_{2},\dots,u_{n}]\bigr]
+B_{t}\mid B_{t'}\sim\mathcal{N}\left(b'\exp\left\{ -\frac{t-t'}{1-t}\right\} ,\left(1-t\right)t\right)
 \]
 
 \end_inset
 
- defines 
-\begin_inset Formula $t[u_{1},\dots,u_{n}]$
+
+\end_layout
+
+\begin_layout Proof
+The Kolmogorov forward equation for the transition density 
+\begin_inset Formula $p=p\left(b,t\mid b',t'\right)$
 \end_inset
 
- recursively, and it can be shown that the alternative definition 
+ of 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ is 
 \begin_inset Formula 
 \[
-t[u_{1},\dots,u_{n}]=t\bigl[t[u_{1},u_{2}],\dots,t[u_{n-1},u_{n}]\bigr]
+\frac{\partial p}{\partial t}=\frac{1}{1-t}\frac{\partial\left(xp\right)}{\partial x}+\frac{1}{2}\frac{\partial^{2}p}{\partial x^{2}}
 \]
 
 \end_inset
 
- gives the same result.
+with the initial condition 
+\begin_inset Formula $p\left(b,t'\mid b',t'\right)=\delta\left(b-b'\right)$
+\end_inset
+
+.
+ Consider the Fourier transform 
+\begin_inset Formula $\hat{p}$
+\end_inset
+
+ of 
+\begin_inset Formula $p$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $b$
+\end_inset
+
+.
+ Then, the corresponding KFE for 
+\begin_inset Formula $\hat{p}$
+\end_inset
+
+ becomes 
+\begin_inset Formula 
+\[
+\frac{\partial\hat{p}}{\partial t}=-\frac{k}{1-t}\frac{\partial\hat{p}}{\partial k}-k^{2}\hat{p}
+\]
+
+\end_inset
+
+with initial condition 
+\begin_inset Formula $\hat{p}\left(b,t'\mid b',t'\right)=e^{-ikb'}$
+\end_inset
+
+.
+ We note the new KFE is a first-order PDE which can be solved by the method
+ of characteristics, and we find for 
+\begin_inset Formula $t>t'$
+\end_inset
+
+, we have 
+\begin_inset Formula 
+\[
+\hat{p}\left(b,t\mid b',t'\right)=\exp\left\{ -ikb'e^{-\frac{t-t'}{1-t}}-x^{2}t\left(1-t\right)\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+We take the inverse Fourier transform of 
+\begin_inset Formula $\hat{p}$
+\end_inset
+
+ to recover the desired transition density for 
+\begin_inset Formula $t>t'$
+\end_inset
+
+,
+\begin_inset Formula 
+\[
+p\left(b,t\mid b',t'\right)=\frac{1}{\sqrt{4\pi\left(1-t\right)t}}\exp\left\{ -\frac{1}{2}\left(\frac{b-b'e^{-\frac{t-t'}{1-t}}}{2\left(1-t\right)t}\right)\right\} 
+\]
+
+\end_inset
+
+and the fact immediately follows.
+\end_layout
+
+\begin_layout Standard
+With the transition density in hand, we have an immediate result, merely
+ observing that the density 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ of a process 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ with transition density 
+\begin_inset Formula $p\left(x,t\mid x',t'\right)$
+\end_inset
+
+ and initial distribution 
+\begin_inset Formula $X_{0}\sim p_{0}\left(x\right)$
+\end_inset
+
+ is
+\begin_inset Formula 
+\[
+p_{t}\left(x\right)=\int p\left(x,t\mid x',t'\right)p_{0}\left(x'\right)dx'
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Corollary
+For initial distribution 
+\begin_inset Formula $B_{0}\sim\mathcal{N}\left(\mu,\sigma^{2}\right)$
+\end_inset
+
+, the density of the Brownian bridge process 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ for 
+\begin_inset Formula $t'<t<1$
+\end_inset
+
+ issdf.
+\end_layout
+
+\begin_layout Proof
+This follows immediately from the fact that the conjugate prior for a Gaussian
+ density with unknown mean and variance.
+\end_layout
+
+\begin_layout Standard
+ALSO DO RESULT FOR BRIDGE FROM A TO B
 \end_layout
 
 \end_body

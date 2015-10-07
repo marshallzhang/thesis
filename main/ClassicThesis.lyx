@@ -4,6 +4,10 @@
 \begin_header
 \textclass classicthesis
 \use_default_options true
+\begin_modules
+theorems-ams
+theorems-chap
+\end_modules
 \maintain_unincluded_children false
 \language american
 \language_package default
@@ -109,16 +113,6 @@ pagestyle{plain}
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "DirtyTitlepage.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
 filename "Titlepage.lyx"
 
 \end_inset
@@ -164,23 +158,6 @@ filename "Dedication.lyx"
 \begin_inset CommandInset include
 LatexCommand include
 filename "Abstract.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage cleardoublepage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Publication.lyx"
 
 \end_inset
 
