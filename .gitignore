@@ -1,0 +1,79 @@
+# Ignore swap files
+.*.swp
+
+# Ignore all the output  files (dvi or pdf)
+#*.pdf
+#*.dvi
+
+# Ignore standard latex's compilation files
+*.out
+*.log
+*.aux
+
+# Ignore TexMaker compilation files
+*.synctex.gz
+
+# Ignore JabRef bkup files
+*.bib.bak
+.$*.bib$
+
+# ingnore lyx VCS files and backups
+\#*.lyx\#
+*.lyx,v
+*.lyx~
+
+# LaTeX gitignore from github:
+*.aux
+*.glo
+*.idx
+*.log
+*.toc
+*.ist
+*.acn
+*.acr
+*.alg
+*.bbl
+*.blg
+*.dvi
+*.glg
+*.gls
+*.ilg
+*.ind
+*.lof
+*.lot
+*.maf
+*.mtc
+*.mtc1
+*.out
+*.synctex.gz
+
+
+# Ignore dropbox config files
+.dropbox
+
+# Default gitignore
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
