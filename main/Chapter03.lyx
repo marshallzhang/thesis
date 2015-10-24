@@ -84,61 +84,127 @@ name "ch:mathtest"
 
 \end_inset
 
-In this chapter, we show precisely how the question of 
-\end_layout
-
-\begin_layout Section
-Brownian Bridge
-\end_layout
-
-\begin_layout Standard
-We begin by studying the time-varying density 
-\begin_inset Formula $p_{t}\left(b\right)$
-\end_inset
-
- of the Brownian bridge process 
+Consider a diffusion process 
 \begin_inset Formula $B_{t}$
 \end_inset
 
-.
- Recall we can represent 
-\begin_inset Formula $B_{t}$
+ driven by a standard Wiener process 
+\begin_inset Formula $W_{t}$
 \end_inset
 
- as an SDE of the form 
+, with an SDE representation 
 \begin_inset Formula 
 \[
-dB_{t}=-\frac{B_{t}}{1-t}dt+dB_{t},t\in\left[0,1\right]
+dB_{t}=\mu\left(x\right)dt+\sigma\left(x\right)dW_{t},t\in\left[0,1\right]
 \]
 
 \end_inset
 
+and let 
+\begin_inset Formula $X_{t}$
+\end_inset
 
+ be the same process conditioned on 
+\begin_inset Formula $X_{1}=x_{1}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ is also a diffusion, and is represented by the SDE
+\begin_inset Formula 
+\[
+dX_{t}=\left(\mu\left(x\right)+\frac{x_{1}-x}{1-t}\sigma^{2}\left(x\right)\right)dt+\sigma\left(x\right)dW_{t},t\in\left[0,1\right]
+\]
+
+\end_inset
+
+A thorough exposition of the derivation of the SDE of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ can be found in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:SDE-Bridge"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
+Bridges of Diffusions with Constant Coefficients
 \end_layout
 
 \begin_layout Standard
-We now demonstrate how we can use the Kolmogorov forward equation and the
- SDE representation of the Brownian bridge to derive the (known) transition
- distribution of 
+In this section, we restrict ourselves to diffusion processes 
 \begin_inset Formula $B_{t}$
+\end_inset
+
+ where 
+\begin_inset Formula $\mu\left(x\right)=\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma\left(x\right)=\sigma$
+\end_inset
+
+.
+ We first derive the transition density for the bridge 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ of 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+, conditioned on 
+\begin_inset Formula $X_{1}=x_{1}$
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Fact
-The transition distribution of a Brownian bridge process 
-\begin_inset Formula $B_{t}$
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:trans-dens-constant"
+
 \end_inset
 
- for 
-\begin_inset Formula $t>t'$
+The transition density 
+\begin_inset Formula $p\left(x,t\mid x',t',x_{1}\right)$
+\end_inset
+
+ of 
+\begin_inset Formula $X_{t}$
 \end_inset
 
  is 
 \begin_inset Formula 
 \[
-B_{t}\mid B_{t'}\sim\mathcal{N}\left(b'\exp\left\{ -\frac{t-t'}{1-t}\right\} ,\left(1-t\right)t\right)
+p\left(x,t\mid x',t',x_{1}\right)=\frac{\gamma\left(t\right)}{\sqrt{2\pi\nu}}\exp\left\{ -\frac{\left(\gamma\left(t\right)x+\delta\left(t\right)-\gamma\left(t'\right)x'-\delta\left(t'\right)\right)^{2}}{2\nu}\right\} 
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\begin{eqnarray*}
+\nu=\sigma^{2}\int_{t'}^{t}\gamma^{2}\left(\tau\right)d\tau &  & \gamma\left(t\right)=\exp\left\{ \int_{t}^{1}\alpha\left(t\right)dt\right\} \\
+\delta\left(t\right)=\int_{t}^{1}\gamma\left(t\right)\beta\left(t\right)dt
+\end{eqnarray*}
+
+\end_inset
+
+and 
+\begin_inset Formula 
+\[
+\alpha\left(t\right)=-\frac{\sigma^{2}}{1-t},\mbox{ }\beta\left(t\right)=\mu+\frac{x_{1}\sigma^{2}}{1-t}
 \]
 
 \end_inset
@@ -147,115 +213,116 @@ B_{t}\mid B_{t'}\sim\mathcal{N}\left(b'\exp\left\{ -\frac{t-t'}{1-t}\right\} ,\l
 \end_layout
 
 \begin_layout Proof
-The Kolmogorov forward equation for the transition density 
-\begin_inset Formula $p=p\left(b,t\mid b',t'\right)$
+Note we can write the SDE of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ as 
+\begin_inset Formula 
+\[
+dX_{t}=\left(\alpha\left(t\right)X_{t}+\beta\left(t\right)\right)dt+\sigma dW_{t}
+\]
+
+\end_inset
+
+Define a linear transformation 
+\begin_inset Formula $Z_{t}$
 \end_inset
 
  of 
-\begin_inset Formula $B_{t}$
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\[
+Z_{t}=\gamma\left(t\right)X_{t}+\delta\left(t\right)
+\]
+
+\end_inset
+
+and pick 
+\begin_inset Formula $\gamma\left(t\right),\delta\left(t\right)$
+\end_inset
+
+ as above.
+ Then, the SDE of 
+\begin_inset Formula $Z_{t}$
 \end_inset
 
  is 
 \begin_inset Formula 
 \[
-\frac{\partial p}{\partial t}=\frac{1}{1-t}\frac{\partial\left(xp\right)}{\partial x}+\frac{1}{2}\frac{\partial^{2}p}{\partial x^{2}}
+dZ_{t}=\sigma\gamma\left(t\right)dW_{t}
 \]
 
 \end_inset
 
-with the initial condition 
-\begin_inset Formula $p\left(b,t'\mid b',t'\right)=\delta\left(b-b'\right)$
+The KFE for the transition density 
+\begin_inset Formula $\bar{p}=\bar{p}\left(z,t\mid z',t',x_{1}\right)$
 \end_inset
 
-.
- Consider the Fourier transform 
-\begin_inset Formula $\hat{p}$
-\end_inset
-
- of 
-\begin_inset Formula $p$
-\end_inset
-
- with respect to 
-\begin_inset Formula $b$
-\end_inset
-
-.
- Then, the corresponding KFE for 
-\begin_inset Formula $\hat{p}$
-\end_inset
-
- becomes 
+ of this SDE is 
 \begin_inset Formula 
 \[
-\frac{\partial\hat{p}}{\partial t}=-\frac{k}{1-t}\frac{\partial\hat{p}}{\partial k}-k^{2}\hat{p}
+\frac{\partial\bar{p}}{\partial t}=\frac{\sigma^{2}\gamma^{2}\left(t\right)}{2}\frac{\partial^{2}\bar{p}}{\partial z^{2}}
 \]
 
 \end_inset
 
 with initial condition 
-\begin_inset Formula $\hat{p}\left(b,t'\mid b',t'\right)=e^{-ikb'}$
+\begin_inset Formula $\bar{p}\left(z,t'\mid z',t',x_{1}\right)=\delta\left(z-z'\right)$
 \end_inset
 
-.
- We note the new KFE is a first-order PDE which can be solved by the method
- of characteristics, and we find for 
-\begin_inset Formula $t>t'$
-\end_inset
-
-, we have 
+, which has solution 
 \begin_inset Formula 
 \[
-\hat{p}\left(b,t\mid b',t'\right)=\exp\left\{ -ikb'e^{-\frac{t-t'}{1-t}}-x^{2}t\left(1-t\right)\right\} 
+\bar{p}\left(z,t\mid z',t',x_{1}\right)=\frac{1}{\sqrt{2\pi\nu}}\exp\left\{ \frac{\left(z-z'\right)^{2}}{2\nu}\right\} ,\nu=\sigma^{2}\int_{t'}^{t}\gamma^{2}\left(\tau\right)d\tau
 \]
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Proof
-We take the inverse Fourier transform of 
-\begin_inset Formula $\hat{p}$
-\end_inset
-
- to recover the desired transition density for 
-\begin_inset Formula $t>t'$
-\end_inset
-
-,
+By the transformation theorem, we have
 \begin_inset Formula 
-\[
-p\left(b,t\mid b',t'\right)=\frac{1}{\sqrt{4\pi\left(1-t\right)t}}\exp\left\{ -\frac{1}{2}\left(\frac{b-b'e^{-\frac{t-t'}{1-t}}}{2\left(1-t\right)t}\right)\right\} 
-\]
+\begin{eqnarray*}
+p\left(x,t\mid x',t',x_{1}\right) & = & \left|\frac{\partial z}{\partial x}\right|\bar{p}\left(z,t\mid z',t',x_{1}\right)\\
+ & = & \frac{\gamma\left(t\right)}{\sqrt{2\pi\nu}}\exp\left\{ -\frac{\left(\gamma\left(t\right)x+\delta\left(t\right)-\gamma\left(t'\right)x'-\delta\left(t'\right)\right)^{2}}{2\nu}\right\} 
+\end{eqnarray*}
 
 \end_inset
 
-and the fact immediately follows.
+as desired.
 \end_layout
 
 \begin_layout Standard
-With the transition density in hand, we have an immediate result, merely
- observing that the density 
-\begin_inset Formula $p_{t}\left(x\right)$
+A detailed derivation of the transition density can be found in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:full-bb-transition"
+
 \end_inset
 
- of a process 
+.
+\end_layout
+
+\begin_layout Standard
+With this transition density in hand, we can immediately show a well-known
+ result.
+\end_layout
+
+\begin_layout Fact
+The transition distribution of a Wiener process 
 \begin_inset Formula $X_{t}$
 \end_inset
 
- with transition density 
-\begin_inset Formula $p\left(x,t\mid x',t'\right)$
-\end_inset
-
- and initial distribution 
-\begin_inset Formula $X_{0}\sim p_{0}\left(x\right)$
+, conditioned on 
+\begin_inset Formula $X_{1}=x_{1}$
 \end_inset
 
  is
 \begin_inset Formula 
 \[
-p_{t}\left(x\right)=\int p\left(x,t\mid x',t'\right)p_{0}\left(x'\right)dx'
+X_{t}\mid X_{t'}\sim\mathcal{N}\left(X_{t'}+\frac{t-t'}{1-t'}\left(b-X_{t'}\right),\frac{\left(1-t\right)\left(t-t'\right)}{\left(1-t'\right)}\right)
 \]
 
 \end_inset
@@ -263,29 +330,383 @@ p_{t}\left(x\right)=\int p\left(x,t\mid x',t'\right)p_{0}\left(x'\right)dx'
 
 \end_layout
 
-\begin_layout Corollary
-For initial distribution 
-\begin_inset Formula $B_{0}\sim\mathcal{N}\left(\mu,\sigma^{2}\right)$
-\end_inset
-
-, the density of the Brownian bridge process 
-\begin_inset Formula $B_{t}$
-\end_inset
-
- for 
-\begin_inset Formula $t'<t<1$
-\end_inset
-
- issdf.
-\end_layout
-
 \begin_layout Proof
-This follows immediately from the fact that the conjugate prior for a Gaussian
- density with unknown mean and variance.
+For a Brownian bridge 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ conditioned on 
+\begin_inset Formula $X_{1}=b$
+\end_inset
+
+, we have 
+\begin_inset Formula $\mu=0,\sigma=1$
+\end_inset
+
+.
+ Then,
+\begin_inset Formula 
+\[
+\gamma\left(t\right)=\frac{1}{t-1},\mbox{ }\nu=\frac{t-t'}{\left(t-1\right)\left(1-t'\right)},\mbox{ }\lim_{\left\{ \mu,\sigma\right\} \rightarrow\left(0,0\right)}\delta\left(t\right)=\frac{x_{1}}{t-1}
+\]
+
+\end_inset
+
+which by 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:trans-dens-constant"
+
+\end_inset
+
+ gives the transition density of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ to be 
+\begin_inset Formula 
+\[
+p\left(x,t\mid x',t',x_{1}\right)=\frac{1}{\sqrt{2\pi\left(\frac{\left(1-t\right)\left(t-t'\right)}{1-t'}\right)}}\exp\left\{ -\frac{\left(x-\left(x'+\frac{t-t'}{1-t'}\left(x_{1}-x'\right)\right)\right)^{2}}{2\left(\frac{\left(1-t\right)\left(t-t'\right)}{1-t'}\right)}\right\} 
+\]
+
+\end_inset
+
+and the fact follows.
 \end_layout
 
 \begin_layout Standard
-ALSO DO RESULT FOR BRIDGE FROM A TO B
+Of course, we are interested in more than just the transition density of
+ the Brownian bridge, and want to ask what the density 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ of the bridge is, given some starting distribution 
+\begin_inset Formula $X_{0}\sim f$
+\end_inset
+
+ and some ending distribution 
+\begin_inset Formula $X_{1}\sim g$
+\end_inset
+
+.
+ A convenient choice of initial and end distributions is Gaussian.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:single-gaussian-bridge"
+
+\end_inset
+
+Let 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ be a standard Wiener process conditioned on 
+\begin_inset Formula $X_{0}\sim\mathcal{N}\left(\mu_{0},\sigma_{0}^{2}\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $X_{1}\sim\mathcal{N}\left(\mu_{1},\sigma_{1}^{2}\right)$
+\end_inset
+
+.
+ Then, the distribution of 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+B_{t}\sim\mathcal{N}\left(\left(1-t\right)\mu_{0}+t\mu_{1},V_{t}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $V_{t}==\left(1-t\right)t+\left(1-t\right)^{2}\sigma_{0}^{2}+t^{2}\sigma_{1}^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Let 
+\begin_inset Formula $X_{0}\sim\mathcal{N}\left(\mu_{0},\sigma_{0}^{2}\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $X_{1}\sim\mathcal{N}\left(\mu_{1},\sigma_{1}^{2}\right)$
+\end_inset
+
+.
+ Then,
+\begin_inset Formula 
+\[
+p_{t}\left(x\right)=\int\int p\left(x,t\mid x_{0},0,x_{1}\right)\mathcal{N}\left(x_{0};\mu_{0},\sigma_{0}^{2}\right)\mathcal{N}\left(x_{1};\mu_{1},\sigma_{1}^{2}\right)dx_{0}dx_{1}
+\]
+
+\end_inset
+
+and by some computation we recover 
+\begin_inset Formula 
+\[
+p_{t}\left(x\right)=\frac{1}{\sqrt{2\pi V_{t}}}\exp\left\{ -\frac{\left(x-\left(\left(1-t\right)\mu_{0}+t\mu_{1}\right)\right)^{2}}{2V_{t}}\right\} 
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $V_{t}$
+\end_inset
+
+ is as in the statement of the lemma.
+ .
+\end_layout
+
+\begin_layout Standard
+It is very rarely the case in practice, however, that we will encounter
+ starting and ending distributions that are Gaussian.
+ However, we have a useful fact at our disposal to help us deal with non-Gaussia
+n distributions.
+ 
+\end_layout
+
+\begin_layout Fact
+\begin_inset CommandInset label
+LatexCommand label
+name "fact:mixtures"
+
+\end_inset
+
+For any random variable 
+\begin_inset Formula $X$
+\end_inset
+
+, there exists a sequence of random variables 
+\begin_inset Formula $X_{n}$
+\end_inset
+
+ whose distributions are finite mixtures of Gaussians, such that 
+\begin_inset Formula $X_{n}\overset{\mathcal{L}}{\rightarrow}X$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Proof
+Recall a finite mixture of random variables 
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+ has density equal to 
+\begin_inset Formula $\sum_{i}\pi\left(i\right)g_{i}\left(y\right)$
+\end_inset
+
+ where 
+\begin_inset Formula $g_{i}\left(y\right)$
+\end_inset
+
+ is the density of 
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+, where 
+\begin_inset Formula $\pi$
+\end_inset
+
+ is a discrete mixing distribution with support over the 
+\begin_inset Formula $i$
+\end_inset
+
+s.
+ Let 
+\begin_inset Formula $F\left(x\right)$
+\end_inset
+
+ be the CDF of 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ For constant random variables 
+\begin_inset Formula $Y_{i}=i$
+\end_inset
+
+, we can set 
+\begin_inset Formula 
+\begin{eqnarray*}
+F_{n}\left(x\right) & = & \sum_{i=1}^{n}\pi\left(i\right)g_{i}\left(y\right)\\
+ & = & \sum_{i=1}^{n}F\left(i\right)H_{y}\left(i\right)
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $H_{y}$
+\end_inset
+
+ is the unit step function at 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ It is easy to see that as 
+\begin_inset Formula $n\rightarrow\infty$
+\end_inset
+
+, 
+\begin_inset Formula $F_{n}\left(x\right)\rightarrow F\left(x\right)$
+\end_inset
+
+.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fact:mixtures"
+
+\end_inset
+
+ follows from the fact a Gaussian random variable with mean 
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+ converges in distribution as its variance tends to 
+\begin_inset Formula $0$
+\end_inset
+
+ to the constant random variable 
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+With this fact, we can extend the result of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:single-gaussian-bridge"
+
+\end_inset
+
+ to any continuous starting and ending distributions.
+\end_layout
+
+\begin_layout Proposition
+Let 
+\begin_inset Formula $\left\{ X_{t}\right\} $
+\end_inset
+
+ be a standard Wiener process conditioned on 
+\begin_inset Formula $X_{0}\sim f$
+\end_inset
+
+ and 
+\begin_inset Formula $X_{1}\sim g$
+\end_inset
+
+, for continuous distributions 
+\begin_inset Formula $f,g$
+\end_inset
+
+.
+ Then, there exists a sequence of random variables 
+\begin_inset Formula $X_{t}^{\left(n\right)}$
+\end_inset
+
+ such that 
+\begin_inset Formula $X_{t}^{\left(n\right)}\overset{\mathcal{L}}{\rightarrow}X_{t}$
+\end_inset
+
+ for 
+\begin_inset Formula $t\in\left[0,1\right]$
+\end_inset
+
+, where 
+\begin_inset Formula 
+\[
+X_{t}^{\left(n\right)}\sim\sum_{i=1}^{n}\sum_{j=1}^{n}\pi_{0}\left(i\right)\pi_{1}\left(j\right)\mathcal{N}\left(\left(1-t\right)\mu_{i}+t\mu_{j},V_{t}^{\left(i,j\right)}\right)
+\]
+
+\end_inset
+
+for some mixing distributions 
+\begin_inset Formula $\pi_{0},\pi_{1}$
+\end_inset
+
+, where 
+\begin_inset Formula $V_{t}^{\left(i,j\right)}=\left(1-t\right)t+\left(1-t\right)^{2}\sigma_{i}^{2}+t^{2}\sigma_{j}^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We invoke 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fact:mixtures"
+
+\end_inset
+
+ to create sequences of random variables 
+\begin_inset Formula $\left\{ X_{0}^{\left(n\right)}\right\} ,\left\{ X_{1}^{\left(n\right)}\right\} $
+\end_inset
+
+ which converge to 
+\begin_inset Formula $X_{0},X_{1}$
+\end_inset
+
+ in distribution.
+ We know then that 
+\begin_inset Formula 
+\begin{eqnarray*}
+f_{0}^{\left(n\right)}\left(x_{0}\right) & = & \sum_{i=1}^{n}\pi_{0}\left(i\right)\mathcal{N}\left(x_{0};\mu_{i},\sigma_{i}^{2}\right)\\
+f_{1}^{\left(n\right)}\left(x_{1}\right) & = & \sum_{j=1}^{n}\pi_{1}\left(i\right)\mathcal{N}\left(x_{1};\mu_{j},\sigma_{j}^{2}\right)
+\end{eqnarray*}
+
+\end_inset
+
+for mixture distributions 
+\begin_inset Formula $\pi_{0},\pi_{1}$
+\end_inset
+
+.
+ Then, using 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:single-gaussian-bridge"
+
+\end_inset
+
+ and Tonelli's theorem, we can easily compute 
+\begin_inset Formula 
+\[
+p_{t}^{\left(n\right)}\left(x\right)=\sum_{i=1}^{n}\sum_{j=1}^{n}\pi_{0}\left(i\right)\pi_{1}\left(j\right)p_{t}^{\left(i,j\right)}\left(x\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $p_{t}^{\left(i,j\right)}\left(x\right)$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+p_{t}^{\left(i,j\right)}\left(x\right)=\frac{1}{\sqrt{2\pi V_{t}^{\left(i,j\right)}}}\exp\left\{ -\frac{\left(x-\left(\left(1-t\right)\mu_{i}+t\mu_{j}\right)\right)^{2}}{2V_{t}^{\left(i,j\right)}}\right\} 
+\]
+
+\end_inset
+
+and 
+\begin_inset Formula $V_{t}^{\left(i,j\right)}$
+\end_inset
+
+ is as in the statement of the proposition.
 \end_layout
 
 \end_body

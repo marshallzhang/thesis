@@ -70,24 +70,467 @@
 \begin_body
 
 \begin_layout Chapter
-Appendix Test
+Appendix
+\end_layout
+
+\begin_layout Section
+SDE Representation of Bridges of Diffusions
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:SDE-Bridge"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum at nusquam appellantur his, ut eos erant homero concludaturque.
- Albucius appellantur deterruisset id eam, vivendum partiendo dissentiet
- ei ius.
- Vis melius facilisis ea, sea id convenire referrentur, takimata adolescens
- ex duo.
- Ei harum argumentum per.
- Eam vidit exerci appetere ad, ut vel zzril intellegam interpretaris.
- 
-\begin_inset Marginal
-status open
+We broadly follow the exposition in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "karlin-taylor:1981"
 
-\begin_layout Plain Layout
-More dummy text.
+\end_inset
+
+, making adjustments as appropriate.
+ First, let 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ be a diffusion process driven by a standard Wiener process with drift coefficie
+nt 
+\begin_inset Formula $\mu\left(x\right)$
+\end_inset
+
+ and diffusion coefficient 
+\begin_inset Formula $\sigma\left(x\right)$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+ be real fixed numbers, and let 
+\begin_inset Formula $X_{t},t\in\left[0,1\right]$
+\end_inset
+
+ be the diffusion process 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ subject to 
+\begin_inset Formula 
+\begin{equation}
+\alpha<X_{1}<\beta\label{eq:wide-constraint}
+\end{equation}
+
+\end_inset
+
+We claim 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ is also a diffusion, and we proceed to derive its drift and diffusion coefficie
+nts 
+\begin_inset Formula $\mu_{t}^{*}\left(x\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{t}^{*}\left(x\right)$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\pi_{t}\left(x\right)$
+\end_inset
+
+ be the probability that from state value 
+\begin_inset Formula $x$
+\end_inset
+
+ at time 
+\begin_inset Formula $t$
+\end_inset
+
+, the sample path of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ satisfies 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:wide-constraint"
+
+\end_inset
+
+ at 
+\begin_inset Formula $t=1$
+\end_inset
+
+.
+ Furthermore, let 
+\begin_inset Formula $f\left(y,t\mid x,t'\right)$
+\end_inset
+
+ be the transition density of 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+.
+ Then, the transition density of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ is
+\begin_inset Formula 
+\begin{eqnarray*}
+p\left(y,t\mid x',t'\right) & = & \mbox{Pr}\left(y<B_{t}\leq y+dy\mid B_{t'}=x,\alpha<B_{1}<\beta\right)\\
+ & = & \frac{\mbox{Pr}\left(y<B_{t}\leq y+dy\mid B_{t'}=x\right)}{\mbox{Pr}\left(\alpha<B_{1}<\beta\mid X_{t'}=x\right)}\\
+ &  & \times\mbox{ Pr}\left(\alpha<B_{1}<\beta\mid B_{t'}=x,B_{t}=y\right)
+\end{eqnarray*}
+
+\end_inset
+
+By the Markov property, we know 
+\begin_inset Formula 
+\[
+\mbox{Pr}\left(\alpha<B_{1}<\beta\mid B_{t'}=x,B_{t}=y\right)=\mbox{Pr}\left(\alpha<B_{1}<\beta\mid B_{t}=y\right)
+\]
+
+\end_inset
+
+and we find 
+\begin_inset Formula 
+\[
+p\left(y,t\mid x,t'\right)=\frac{f\left(y,t\mid x,t'\right)\pi_{t}\left(y\right)}{\pi_{t'}\left(x\right)}
+\]
+
+\end_inset
+
+To find the new drift coefficient 
+\begin_inset Formula $\mu_{t}^{*}\left(x\right)$
+\end_inset
+
+, we know 
+\begin_inset Formula 
+\begin{eqnarray}
+\mu_{t}^{*}\left(x\right) & = & \lim_{h\rightarrow0}\frac{\mathbb{E}\left[X_{t+h}-X_{t}\mid X_{t}=x'\right]}{h}\nonumber \\
+ & = & \lim_{h\rightarrow0}\frac{1}{h}\int p\left(y,t+h\mid x,t\right)\left(y-x\right)dy\nonumber \\
+ & = & \lim_{h\rightarrow0}\frac{1}{h}\int\frac{f\left(y,t+h\mid x,t\right)\pi_{t+h}\left(y\right)}{\pi_{t}\left(x\right)}\left(y-x\right)dy\label{eq:mu_star}
+\end{eqnarray}
+
+\end_inset
+
+Assuming sufficient regularity conditions on 
+\begin_inset Formula $\pi_{t}\left(x\right)$
+\end_inset
+
+, we can write the Taylor expansion at 
+\begin_inset Formula $\left(y,t+h\right)$
+\end_inset
+
+ as
+\begin_inset Formula 
+\[
+\pi_{t+h}\left(y\right)=\pi_{t}\left(x\right)+\left(y-x\right)\frac{\partial\pi_{t}\left(x\right)}{\partial x}+h\frac{\partial\pi_{t}\left(x\right)}{\partial t}+o\left(y-x\right)+o\left(h\right)
+\]
+
+\end_inset
+
+and substitute this expression into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:mu_star"
+
+\end_inset
+
+ to find
+\begin_inset Formula 
+\begin{eqnarray*}
+\mu_{t}^{*}\left(x\right) & = & \lim_{h\rightarrow0}\frac{1}{h}\int\left(y-x\right)f\left(y,t+h\mid x,t\right)dy\\
+ &  & +\frac{1}{\pi_{t}\left(x\right)}\frac{\partial\pi_{t}\left(x\right)}{\partial x}\lim_{h\rightarrow0}\frac{1}{h}\int\left(y-x\right)^{2}f\left(y,t+h\mid x,t\right)dy\\
+ & = & \mu\left(x\right)+\frac{1}{\pi_{t}\left(x\right)}\frac{\partial\pi_{t}\left(x\right)}{\partial x}\sigma^{2}\left(x\right)
+\end{eqnarray*}
+
+\end_inset
+
+Similarly, we can find the square of the new diffusion coefficient 
+\begin_inset Formula $\left(\sigma_{t}^{*}\right)^{2}\left(x\right)$
+\end_inset
+
+ by writing 
+\begin_inset Formula 
+\begin{eqnarray*}
+\left(\sigma_{t}^{*}\right)^{2}\left(x\right) & = & \lim_{h\rightarrow0}\frac{1}{h}\int\left(y-x\right)^{2}p\left(y,t+h\mid x,t\right)dy\\
+ & = & \sigma^{2}\left(x\right)
+\end{eqnarray*}
+
+\end_inset
+
+Because our original diffusion is driven by a Wiener process, we know that
+ 
+\begin_inset Formula 
+\[
+\pi_{t}\left(x\right)=\int_{\alpha}^{\beta}\frac{1}{\sqrt{2\pi\left(1-t\right)}}\exp\left\{ -\frac{\left(y-x\right)^{2}}{2\left(1-t\right)}\right\} dy
+\]
+
+\end_inset
+
+We let 
+\begin_inset Formula $u=\frac{y-x}{\sqrt{1-t}}$
+\end_inset
+
+, so that 
+\begin_inset Formula 
+\[
+\pi_{t}\left(x\right)=\frac{1}{\sqrt{2\pi\left(1-t\right)}}\int_{\frac{\alpha-x}{\sqrt{1-t}}}^{\frac{\beta-x}{\sqrt{1-t}}}\exp\left\{ -\frac{u^{2}}{2}\right\} du
+\]
+
+\end_inset
+
+Now, let 
+\begin_inset Formula $\alpha=x_{1}-\epsilon$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta=x_{1}+\epsilon$
+\end_inset
+
+.
+ Some computation reveals
+\begin_inset Formula 
+\[
+\lim_{\epsilon\rightarrow0}\frac{1}{\pi_{t}\left(x\right)}\frac{\partial\pi_{t}\left(x\right)}{\partial x}=\frac{x_{1}-x}{1-t}
+\]
+
+\end_inset
+
+Thus, the diffusion process 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ with state-dependent drift and diffusion coefficients 
+\begin_inset Formula $\mu\left(x\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma\left(x\right)$
+\end_inset
+
+, when conditioned such that 
+\begin_inset Formula $B_{1}=x_{1}$
+\end_inset
+
+, can be represented by a diffusion 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\[
+dX_{t}=\left(\mu\left(x\right)+\frac{x_{1}-x}{1-t}\sigma^{2}\left(x\right)\right)dt+\sigma\left(x\right)dW_{t},t\in\left[0,1\right]
+\]
+
+\end_inset
+
+for a standard Wiener process 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+.
 \end_layout
+
+\begin_layout Section
+Transition Density of Bridges
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:full-bb-transition"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Constant Drift and Diffusion Coefficients
+\end_layout
+
+\begin_layout Standard
+We begin with the SDE for a bridge of a diffusion with constant drift coefficien
+t 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and diffusion coefficient 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+\begin_inset Formula 
+\[
+dX_{t}=\left(\mu+\frac{x_{1}-X_{t}}{1-t}\sigma^{2}\right)dt+\sigma dW_{t},t\in\left[0,1\right]
+\]
+
+\end_inset
+
+Note that the drift coefficient of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ can be written as 
+\begin_inset Formula $\alpha\left(t\right)X_{t}+\beta\left(t\right)$
+\end_inset
+
+, where 
+\begin_inset Formula 
+\[
+\alpha\left(t\right)=-\frac{\sigma^{2}}{1-t},\mbox{ }\beta\left(t\right)=\mu+\frac{x_{1}\sigma^{2}}{1-t}
+\]
+
+\end_inset
+
+The linear nature of the drift coefficient suggests that we may be able
+ to define a linear transformation of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ such that the associated Kolmogorov forward equation is easy to solve.
+ We define a linear transformation 
+\begin_inset Formula $Z_{t}$
+\end_inset
+
+ of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\[
+Z_{t}=\gamma\left(t\right)X_{t}+\delta\left(t\right)
+\]
+
+\end_inset
+
+for some functions 
+\begin_inset Formula $\gamma\left(t\right),\delta\left(t\right)$
+\end_inset
+
+.
+ Using Ito's lemma, we find 
+\begin_inset Formula 
+\[
+dZ_{t}=\left(\frac{\partial\gamma\left(t\right)}{\partial t}X_{t}+\frac{\partial\delta\left(t\right)}{\partial t}+\alpha\left(t\right)\gamma\left(t\right)X_{t}+\beta\left(t\right)\gamma\left(t\right)\right)dt+\sigma\gamma\left(t\right)dW_{t}
+\]
+
+\end_inset
+
+Note that if we solve
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{\partial\gamma\left(t\right)}{\partial t} & = & -\alpha\left(t\right)\gamma\left(t\right)\\
+\frac{\partial\delta\left(t\right)}{\partial t} & = & -\beta\left(t\right)\gamma\left(t\right)
+\end{eqnarray*}
+
+\end_inset
+
+for 
+\begin_inset Formula $\gamma\left(t\right),\delta\left(t\right)$
+\end_inset
+
+, we can force 
+\begin_inset Formula $Z_{t}$
+\end_inset
+
+ to be a driftless diffusion, whose Kolmogorov forward equation admits a
+ simple analytic solution.
+ The solutions to the above system of equations are 
+\begin_inset Formula 
+\begin{eqnarray*}
+\gamma\left(t\right) & = & \exp\left\{ \int_{t}^{1}\alpha\left(t\right)dt\right\} \\
+\delta\left(t\right) & = & \int_{t}^{1}\gamma\left(t\right)\beta\left(t\right)dt
+\end{eqnarray*}
+
+\end_inset
+
+This allows us to simplify the SDE of 
+\begin_inset Formula $Z_{t}$
+\end_inset
+
+ to 
+\begin_inset Formula 
+\[
+dZ_{t}=\sigma\gamma\left(t\right)dW_{t}
+\]
+
+\end_inset
+
+The Kolmogorov forward equation for the transition density 
+\begin_inset Formula $\bar{p}=\bar{p}\left(z,t\mid z',t'\right)$
+\end_inset
+
+ of this SDE is 
+\begin_inset Formula 
+\[
+\frac{\partial\bar{p}}{\partial t}=\frac{\sigma^{2}\gamma^{2}\left(t\right)}{2}\frac{\partial^{2}\bar{p}}{\partial z^{2}}
+\]
+
+\end_inset
+
+with initial condition 
+\begin_inset Formula $\bar{p}\left(z,t'\mid z',t'\right)=\delta\left(z-z'\right)$
+\end_inset
+
+.
+ We perform a Fourier transformation with respect to 
+\begin_inset Formula $z$
+\end_inset
+
+ to arrive at
+\begin_inset Formula 
+\[
+\frac{\partial\hat{\bar{p}}}{\partial t}=-k^{2}\frac{\sigma^{2}\gamma^{2}\left(t\right)}{2}\hat{\bar{p}}
+\]
+
+\end_inset
+
+with initial condition 
+\begin_inset Formula $\hat{\bar{p}}\left(k,t'\mid z',t'\right)=e^{-ikz'}$
+\end_inset
+
+.
+ We take the inverse Fourier transform of the solution to this PDE to find
+ the transition density
+\begin_inset Formula 
+\[
+\bar{p}\left(z,t\mid z',t'\right)=\frac{1}{\sqrt{2\pi\nu}}\exp\left\{ \frac{\left(z-z'\right)^{2}}{2\nu}\right\} ,\nu=\sigma^{2}\int_{t'}^{t}\gamma^{2}\left(\tau\right)d\tau
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $t>t'$
+\end_inset
+
+.
+ Finally, to find the transition density 
+\begin_inset Formula $p=p\left(x,t\mid x',t'\right)$
+\end_inset
+
+ of our original SDE 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+, we can use the transformation theorem,
+\begin_inset Formula 
+\begin{eqnarray*}
+p\left(x,t\mid x',t'\right) & = & \left|\frac{\partial z}{\partial x}\right|\bar{p}\left(z,t\mid z',t'\right)\\
+ & = & \frac{\gamma\left(t\right)}{\sqrt{2\pi\nu}}\exp\left\{ -\frac{\left(\gamma\left(t\right)x+\delta\left(t\right)-\gamma\left(t'\right)x'-\delta\left(t'\right)\right)^{2}}{2\nu}\right\} 
+\end{eqnarray*}
 
 \end_inset
 
@@ -95,322 +538,223 @@ More dummy text.
 \end_layout
 
 \begin_layout Section
-Appendix Section Test
+Derivation of Bridge Equation
 \end_layout
 
 \begin_layout Standard
-This reference 
-\begin_inset Flex CT - auto cross-reference
-status open
-
-\begin_layout Plain Layout
-
-tab:moreexample
-\end_layout
+We consider a linear SDE 
+\begin_inset Formula 
+\[
+dX_{t}=\left(a\left(t\right)X_{t}+b\left(t\right)\right)dt+c\left(t\right)dW_{t}
+\]
 
 \end_inset
 
- should have a small caps  
-\begin_inset Flex CT - Spaced Low Small Caps
-status open
+It is well-known that the solution to this SDE 
+\begin_inset Formula $X_{t}$
+\end_inset
 
-\begin_layout Plain Layout
-A
-\end_layout
+ has transition distribution 
+\begin_inset Formula 
+\[
+X_{t}\mid X_{t'}\sim\mathcal{N}\left(x_{t'}A\left(t',t\right)+\int_{t'}^{t}A\left(s,t\right)b\left(s\right)ds,\int_{t'}^{t}A\left(s,t\right)^{2}c\left(s\right)^{2}ds\right)
+\]
 
 \end_inset
 
- if the option  
-\family typewriter
-float\SpecialChar \-
-per\SpecialChar \-
-chapter
-\family default
- is activated, just as in the table caption itself.
+where 
+\begin_inset Formula $A\left(s,t\right)=\exp\left\{ \int_{s}^{t}a\left(u\right)du\right\} $
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\mu\left(t',t\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}\left(t',t\right)$
+\end_inset
+
+ be the mean and variance of 
+\begin_inset Formula $X_{t}\mid X_{t'}$
+\end_inset
+
+, respectively.
  
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float table
-placement h
-wide false
-sideways false
-status open
+Recall from 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:SDE-Bridge"
 
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="3">
-<features rotate="0" booktabs="true" tabularvalignment="middle">
-<column alignment="left" valignment="top" width="45text%">
-<column alignment="left" valignment="top" width="20col%">
-<column alignment="left" valignment="top" width="20col%">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
+\end_inset
 
-\begin_layout Plain Layout
-\begin_inset Flex CT - Table Headline
-status collapsed
+ that 
+\begin_inset Formula 
+\[
+p^{\alpha,\beta}\left(y,t\mid x,t'\right)=\frac{g\left(y,t\mid x,t'\right)\pi_{t}^{\alpha,\beta}\left(y\right)}{\pi_{t'}^{\alpha,\beta}\left(x\right)}
+\]
 
-\begin_layout Plain Layout
-labitur bonorum pri no
-\end_layout
+\end_inset
+
+is the transition density of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ conditioned on 
+\begin_inset Formula $\alpha<X_{1}<\beta$
+\end_inset
+
+, where 
+\begin_inset Formula $\pi_{t}^{\alpha,\beta}\left(x\right)$
+\end_inset
+
+ is the probability that from state value 
+\begin_inset Formula $x$
+\end_inset
+
+ at time 
+\begin_inset Formula $t$
+\end_inset
+
+, the sample path of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ is such that 
+\begin_inset Formula $\alpha<X_{1}<\beta$
+\end_inset
+
+, and 
+\begin_inset Formula $g\left(y,t\mid x,t'\right)$
+\end_inset
+
+ is the transition density of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+.
+ For the case of the linear SDE where 
+\begin_inset Formula $\alpha=x_{1}-\epsilon,\beta=x_{1}+\epsilon$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\[
+\lim_{\epsilon\rightarrow0}p^{\alpha,\beta}\left(y,t\mid x,t'\right)=g\left(y,t\mid x,t'\right)\frac{\int_{t'}^{1}A\left(s,t\right)^{2}c\left(s\right)^{2}ds}{\int_{t}^{1}A\left(s,t\right)^{2}c\left(s\right)^{2}ds}\exp\left\{ -\frac{1}{2}\left(\frac{\left(x-\left(x_{t}A\left(t,1\right)+\int_{t}^{1}A\left(s,t\right)b\left(s\right)ds\right)\right)^{2}}{\int_{t}^{1}A\left(s,t\right)^{2}c\left(s\right)^{2}ds}\right)\right\} 
+\]
 
 \end_inset
 
 
 \end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Flex CT - Table Headline
-status collapsed
-
-\begin_layout Plain Layout
-que vista
-\end_layout
+\begin_layout Standard
+So, 
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{t}^{\alpha,\beta}\left(y\right) & \sim & \int_{\alpha}^{\beta}\mathcal{N}\left(z;yA\left(t,1\right)+\int_{t}^{1}A\left(s,t\right)b\left(s\right)ds,\int_{t}^{1}A\left(s,t\right)^{2}c\left(s\right)^{2}ds\right)dz\\
+\pi_{t'}^{\alpha,\beta}\left(x\right) & \sim & \int_{\alpha}^{\beta}\mathcal{N}\left(z;xA\left(t',1\right)+\int_{t'}^{1}A\left(s,t\right)b\left(s\right)ds,\int_{t'}^{1}A\left(s,t\right)^{2}c\left(s\right)^{2}ds\right)dz
+\end{eqnarray*}
 
 \end_inset
 
 
 \end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Flex CT - Table Headline
-status collapsed
-
-\begin_layout Plain Layout
-human
-\end_layout
-
+\begin_layout Standard
+Let 
+\begin_inset Formula $f\left(x,t\right)$
 \end_inset
 
-
-\end_layout
-
+ be the density of the process 
+\begin_inset Formula $X_{t}$
 \end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
 
-\begin_layout Plain Layout
-fastidii ea ius
-\end_layout
-
+ conditioned on 
+\begin_inset Formula $\alpha<X_{1}<\beta$
 \end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
 
-\begin_layout Plain Layout
-germano
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-demonstratea
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-suscipit instructior
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-titulo
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-personas
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-quaestio philosophia
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-facto
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-demonstrated
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
+.
+ Then, by the Chapman-Kolmogorov equation,
+\begin_inset Formula 
+\begin{equation}
+f\left(y,t'+\tau\right)=\int p^{\alpha,\beta}\left(y,t'+\tau\mid x,t'\right)f\left(x,t'\right)dx\label{eq:chap-kolmogorov}
+\end{equation}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-Autem usu id
-\end_layout
+ Recall that 
+\begin_inset Formula 
+\begin{equation}
+p^{\alpha,\beta}\left(y,t'+\tau\mid x,t'\right)=\int\delta\left(y'-y\right)p^{\alpha,\beta}\left(y',t'+\tau\mid x,t'\right)dy'\label{eq:delta-expansion-of-transition}
+\end{equation}
 
 \end_inset
 
-Autem usu id.
-\end_layout
+and that we can write the Taylor expansion of 
+\begin_inset Formula $\delta$
+\end_inset
+
+ as 
+\begin_inset Formula 
+\begin{eqnarray}
+\delta\left(y'-y\right) & = & \delta\left(x-y+y'-x\right)\nonumber \\
+ & = & \sum_{n=0}^{\infty}\frac{\left(y'-x\right)^{n}}{n!}\left(-\frac{\partial}{\partial y}\right)^{n}\delta\left(x-y\right)\label{eq:taylor-expansion}
+\end{eqnarray}
 
 \end_inset
 
+Substituting 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:taylor-expansion"
 
-\end_layout
+\end_inset
 
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:moreexample"
+ into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:delta-expansion-of-transition"
+
+\end_inset
+
+, we find 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & p^{\alpha,\beta}\left(y,t'+\tau\mid x,t'\right)\nonumber \\
+ & = & \frac{\delta\left(x-y\right)}{\pi_{t'}^{\alpha,\beta}\left(x\right)}\sum_{n=0}^{\infty}\frac{1}{n!}\left(-\frac{\partial}{\partial y}\right)^{n}\int\left(y'-x\right)^{n}\pi_{t}^{\alpha,\beta}\left(y'\right)f\left(y',t'+\tau\mid x,t'\right)dy'\nonumber \\
+ & = & \frac{\delta\left(y-x\right)}{\pi_{t'}^{\alpha,\beta}\left(x\right)}\left[1+\sum_{n=1}^{\infty}\frac{1}{n!}\left(-\frac{\partial}{\partial y}\right)^{n}M_{n}^{\alpha,\beta}\left(y,t',\tau\right)\right]\label{eq:transition-eq-expanded}
+\end{eqnarray}
+
+\end_inset
+
+and inserting 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:transition-eq-expanded"
+
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:chap-kolmogorov"
+
+\end_inset
+
+, we can arrive at
+\begin_inset Formula 
+\begin{eqnarray*}
+f\left(y,t+\tau\right)-f\left(y,t\right) & = & \sum_{n=1}^{\infty}\left(-\frac{\partial}{\partial y}\right)^{n}\int\frac{M_{n}^{\alpha,\beta}\left(y,t',\tau\right)}{n!}\frac{1}{\pi_{t'}^{\alpha,\beta}\left(x\right)}\delta\left(y-x\right)f\left(x,t'\right)dx\\
+\frac{\partial f\left(y,t\right)}{\partial t}\tau+O\left(\tau^{2}\right) & = & \sum_{n=1}^{\infty}\left(-\frac{\partial}{\partial y}\right)^{n}\frac{M_{n}^{\alpha,\beta}\left(y,t',\tau\right)}{n!}\frac{f\left(y,t'\right)}{\pi_{t'}^{\alpha,\beta}\left(y\right)}
+\end{eqnarray*}
 
 \end_inset
 
  
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Another Appendix Section Test
-\end_layout
-
-\begin_layout Standard
-Equidem detraxit cu nam, vix eu delenit periculis, 
-\begin_inset Flex CT - auto cross-reference
-status open
-
-\begin_layout Plain Layout
-
-fig:example-lyx
-\end_layout
-
-\end_inset
-
-.
- Eos ut vero constituto, no vidit propriae complectitur sea.
- Diceret nonummy in has, no qui eligendi recteque consetetur.
- Mel eu dictas suscipiantur, et sed placerat oporteat.
- At ipsum electram mei, ad aeque atomorum mea.
- There's also a useless program listing below, 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-autoref{lis:pascal}
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-lstparams "language=Pascal,float=h"
-inline false
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "lis:pascal"
-
-\end_inset
-
-A floating example
-\end_layout
-
-\end_inset
-
-for i:=maxint downto 0 do
-\end_layout
-
-\begin_layout Plain Layout
-
-begin
-\end_layout
-
-\begin_layout Plain Layout
-
-{ do nothing }
-\end_layout
-
-\begin_layout Plain Layout
-
-end;
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_body
