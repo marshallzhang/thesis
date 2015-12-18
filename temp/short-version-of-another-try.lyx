@@ -1,0 +1,246 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams-bytype
+theorems-sec-bytype
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.5cm
+\topmargin 1.5cm
+\rightmargin 1.5cm
+\bottommargin 1.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+We consider the solution 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ to the stochastic differential equation 
+\begin_inset Formula 
+\[
+dX_{t}=\mu\left(x,t\right)dt+\sigma\left(x,t\right)dW_{t}
+\]
+
+\end_inset
+
+ for a standard Wiener motion 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+ subject to the constraints
+\begin_inset Formula 
+\begin{eqnarray*}
+ & A-\epsilon<X_{0}<A+\epsilon\\
+ & \Omega-\epsilon<X_{1}<\Omega+\epsilon
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\Theta=\left(A,\Omega\right)$
+\end_inset
+
+ is a discrete random variable with joint probability mass function 
+\begin_inset Formula $h\left(\theta\right)$
+\end_inset
+
+.
+ First, note the joint density of 
+\begin_inset Formula $\left(X_{t'},X_{t}\right)$
+\end_inset
+
+ conditional on a draw of 
+\begin_inset Formula $A$
+\end_inset
+
+ can be written 
+\begin_inset Formula 
+\[
+p\left(x,t;x',t'\mid\alpha\right)=p\left(x,t\mid x',t';\alpha\right)p\left(x',t'\mid\alpha\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Integrating with respect to 
+\begin_inset Formula $dx'$
+\end_inset
+
+, we recover a version of the Chapman-Kolmogorov equation for the density
+ of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+, conditional on 
+\begin_inset Formula $A$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+p\left(x,t\mid\alpha\right)=\int p\left(x,t\mid x',t';\alpha\right)p\left(x',t'\mid\alpha\right)dx'
+\]
+
+\end_inset
+
+Following the standard derivation of the Kramers-Moyal expansion, involving
+ finding 
+\begin_inset Formula $\lim_{\tau\rightarrow0}\left(p\left(x,t+\tau\mid\alpha\right)-p\left(x,t\mid\alpha\right)\right)/\tau$
+\end_inset
+
+, we arrive at
+\begin_inset Formula 
+\[
+\frac{\partial p\left(x,t\mid\alpha\right)}{\partial t}=\sum_{n=1}^{\infty}\left(-\frac{\partial}{\partial x}\right)^{n}d_{n}\left(x,t;\alpha\right)p\left(x,t\mid\alpha\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\[
+d_{n}\left(x,t;\alpha\right)=\lim_{\tau\rightarrow0}\frac{1}{\tau}\int\left(y-x\right)^{n}p\left(y,t+\tau\mid x,t;\alpha\right)dy/n!.
+\]
+
+\end_inset
+
+To calculate the Kramers-Moyals coefficients 
+\begin_inset Formula $d_{n}$
+\end_inset
+
+, we can re-write the short-time transition density: 
+\begin_inset Formula 
+\begin{eqnarray*}
+ &  & p\left(y,t+\tau\mid x,t;\alpha\right)\\
+ & = & \sum_{\omega}p\left(y,t+\tau\mid x,t;\alpha,\omega\right)p\left(\omega\mid x,t,\alpha\right)\\
+ & = & \sum_{\omega}\mbox{Pr}\left(y<X_{t+\tau}\leq y+dy\mid X_{t}=x,\Omega=\omega,\omega-\epsilon<X_{1}<\omega+\epsilon\right)\mbox{Pr}\left(\Omega=\omega\mid A=\alpha\right)\\
+ & = & \sum_{\omega}\frac{\mbox{Pr}\left(\omega-\epsilon<X_{1}<\omega+\epsilon\mid X_{t+\tau}=y,X_{t}=x,\Omega=\omega\right)}{\mbox{Pr}\left(\omega-\epsilon<X_{1}<\omega+\epsilon\mid X_{t}=x,\Omega=\omega\right)}\times\\
+ &  & \mbox{Pr}\left(y<X_{t+\tau}\leq y+dy\mid X_{t}=x,\Omega=\omega\right)\mbox{Pr}\left(\Omega=\omega\mid A=\alpha\right)\\
+ & = & \sum_{\omega}\frac{\pi_{\omega}^{\epsilon}\left(y,t+\tau\right)}{\pi_{\omega}^{\epsilon}\left(x,t\right)}P\left(y,t+\tau\mid x,t\right)h\left(\omega\mid\alpha\right)
+\end{eqnarray*}
+
+\end_inset
+
+Again, roughly following classic derivations of the Kramers-Moyal expansion,
+ we find 
+\begin_inset Formula 
+\begin{eqnarray*}
+d_{1}\left(x,t;\alpha\right) & = & \mu\left(x,t\right)+\sigma^{2}\left(x,t\right)\sum_{\omega}h\left(\omega\mid\alpha\right)\frac{1}{\pi_{\omega}^{\epsilon}\left(x,t\right)}\frac{\partial\pi_{\omega}^{\epsilon}\left(x,t\right)}{\partial x}\\
+d_{2}\left(x,t;\alpha\right) & = & \frac{1}{2}\sigma^{2}\left(x,t\right)\\
+d_{n\geq3}\left(x,t;\alpha\right) & = & 0
+\end{eqnarray*}
+
+\end_inset
+
+Substituting into the expansion above, we find
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{\partial p\left(x,t\mid\alpha\right)}{\partial t} & = & -\frac{\partial}{\partial x}\left[\mu\left(x,t\right)+\sigma^{2}\left(x,t\right)\sum_{\omega}h\left(\omega\mid\alpha\right)\frac{1}{\pi_{\omega}^{\epsilon}\left(x,t\right)}\frac{\partial\pi_{\omega}^{\epsilon}\left(x,t\right)}{\partial x}\right]p\left(x,t\mid\alpha\right)+\\
+ &  & \frac{1}{2}\frac{\partial^{2}}{\partial x^{2}}\sigma^{2}\left(x,t\right)p\left(x,t\mid\alpha\right)
+\end{eqnarray*}
+
+\end_inset
+
+Taking the limit as 
+\begin_inset Formula $\epsilon\rightarrow0$
+\end_inset
+
+, we recover
+\begin_inset Formula 
+\[
+\frac{\partial p\left(x,t\mid\alpha,\omega\right)}{\partial t}=-\frac{\partial}{\partial x}\left[\mu\left(x,t\right)+\sigma^{2}\left(x,t\right)\Pi\left(x,t;\omega\right)\right]p\left(x,t\mid\alpha,\omega\right)+\frac{1}{2}\frac{\partial^{2}}{\partial x^{2}}\sigma^{2}\left(x,t\right)p\left(x,t\mid\alpha,\omega\right)
+\]
+
+\end_inset
+
+Finally, multiplying this equation by 
+\begin_inset Formula $h\left(\alpha,\omega\right)$
+\end_inset
+
+ and summing through with respect to 
+\begin_inset Formula $\left(\alpha,\omega\right)$
+\end_inset
+
+ gives
+\begin_inset Formula 
+\[
+\frac{\partial p\left(x,t\right)}{\partial t}=-\frac{\partial}{\partial x}\mu\left(x,t\right)p\left(x,t\right)-\frac{\partial}{\partial x}\sigma^{2}\left(x,t\right)\sum_{\omega}\Pi\left(x,t;\omega\right)p\left(x,t,\omega\right)+\frac{1}{2}\frac{\partial^{2}}{\partial x^{2}}\sigma^{2}\left(x,t\right)p\left(x,t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
