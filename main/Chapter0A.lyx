@@ -74,590 +74,10 @@ Appendix
 \end_layout
 
 \begin_layout Section
-SDE Representation of Bridges of Diffusions
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:SDE-Bridge"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-We broadly follow the exposition in 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "karlin-taylor:1981"
-
-\end_inset
-
-, making adjustments as appropriate.
- First, let 
-\begin_inset Formula $B_{t}$
-\end_inset
-
- be a diffusion process driven by a standard Wiener process with drift coefficie
-nt 
-\begin_inset Formula $\mu\left(x\right)$
-\end_inset
-
- and diffusion coefficient 
-\begin_inset Formula $\sigma\left(x\right)$
-\end_inset
-
-.
- Let 
-\begin_inset Formula $\alpha$
-\end_inset
-
- and 
-\begin_inset Formula $\beta$
-\end_inset
-
- be real fixed numbers, and let 
-\begin_inset Formula $X_{t},t\in\left[0,1\right]$
-\end_inset
-
- be the diffusion process 
-\begin_inset Formula $B_{t}$
-\end_inset
-
- subject to 
-\begin_inset Formula 
-\begin{equation}
-\alpha<X_{1}<\beta\label{eq:wide-constraint}
-\end{equation}
-
-\end_inset
-
-We claim 
-\begin_inset Formula $X_{t}$
-\end_inset
-
- is also a diffusion, and we proceed to derive its drift and diffusion coefficie
-nts 
-\begin_inset Formula $\mu_{t}^{*}\left(x\right)$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma_{t}^{*}\left(x\right)$
-\end_inset
-
-.
- Let 
-\begin_inset Formula $\pi_{t}\left(x\right)$
-\end_inset
-
- be the probability that from state value 
-\begin_inset Formula $x$
-\end_inset
-
- at time 
-\begin_inset Formula $t$
-\end_inset
-
-, the sample path of 
-\begin_inset Formula $X_{t}$
-\end_inset
-
- satisfies 
+Proof of Proposition 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "eq:wide-constraint"
-
-\end_inset
-
- at 
-\begin_inset Formula $t=1$
-\end_inset
-
-.
- Furthermore, let 
-\begin_inset Formula $f\left(y,t\mid x,t'\right)$
-\end_inset
-
- be the transition density of 
-\begin_inset Formula $B_{t}$
-\end_inset
-
-.
- Then, the transition density of 
-\begin_inset Formula $X_{t}$
-\end_inset
-
- is
-\begin_inset Formula 
-\begin{eqnarray*}
-p\left(y,t\mid x',t'\right) & = & \mbox{Pr}\left(y<B_{t}\leq y+dy\mid B_{t'}=x,\alpha<B_{1}<\beta\right)\\
- & = & \frac{\mbox{Pr}\left(y<B_{t}\leq y+dy\mid B_{t'}=x\right)}{\mbox{Pr}\left(\alpha<B_{1}<\beta\mid X_{t'}=x\right)}\\
- &  & \times\mbox{ Pr}\left(\alpha<B_{1}<\beta\mid B_{t'}=x,B_{t}=y\right)
-\end{eqnarray*}
-
-\end_inset
-
-By the Markov property, we know 
-\begin_inset Formula 
-\[
-\mbox{Pr}\left(\alpha<B_{1}<\beta\mid B_{t'}=x,B_{t}=y\right)=\mbox{Pr}\left(\alpha<B_{1}<\beta\mid B_{t}=y\right)
-\]
-
-\end_inset
-
-and we find 
-\begin_inset Formula 
-\[
-p\left(y,t\mid x,t'\right)=\frac{f\left(y,t\mid x,t'\right)\pi_{t}\left(y\right)}{\pi_{t'}\left(x\right)}
-\]
-
-\end_inset
-
-To find the new drift coefficient 
-\begin_inset Formula $\mu_{t}^{*}\left(x\right)$
-\end_inset
-
-, we know 
-\begin_inset Formula 
-\begin{eqnarray}
-\mu_{t}^{*}\left(x\right) & = & \lim_{h\rightarrow0}\frac{\mathbb{E}\left[X_{t+h}-X_{t}\mid X_{t}=x'\right]}{h}\nonumber \\
- & = & \lim_{h\rightarrow0}\frac{1}{h}\int p\left(y,t+h\mid x,t\right)\left(y-x\right)dy\nonumber \\
- & = & \lim_{h\rightarrow0}\frac{1}{h}\int\frac{f\left(y,t+h\mid x,t\right)\pi_{t+h}\left(y\right)}{\pi_{t}\left(x\right)}\left(y-x\right)dy\label{eq:mu_star}
-\end{eqnarray}
-
-\end_inset
-
-Assuming sufficient regularity conditions on 
-\begin_inset Formula $\pi_{t}\left(x\right)$
-\end_inset
-
-, we can write the Taylor expansion at 
-\begin_inset Formula $\left(y,t+h\right)$
-\end_inset
-
- as
-\begin_inset Formula 
-\[
-\pi_{t+h}\left(y\right)=\pi_{t}\left(x\right)+\left(y-x\right)\frac{\partial\pi_{t}\left(x\right)}{\partial x}+h\frac{\partial\pi_{t}\left(x\right)}{\partial t}+o\left(y-x\right)+o\left(h\right)
-\]
-
-\end_inset
-
-and substitute this expression into 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:mu_star"
-
-\end_inset
-
- to find
-\begin_inset Formula 
-\begin{eqnarray*}
-\mu_{t}^{*}\left(x\right) & = & \lim_{h\rightarrow0}\frac{1}{h}\int\left(y-x\right)f\left(y,t+h\mid x,t\right)dy\\
- &  & +\frac{1}{\pi_{t}\left(x\right)}\frac{\partial\pi_{t}\left(x\right)}{\partial x}\lim_{h\rightarrow0}\frac{1}{h}\int\left(y-x\right)^{2}f\left(y,t+h\mid x,t\right)dy\\
- & = & \mu\left(x\right)+\frac{1}{\pi_{t}\left(x\right)}\frac{\partial\pi_{t}\left(x\right)}{\partial x}\sigma^{2}\left(x\right)
-\end{eqnarray*}
-
-\end_inset
-
-Similarly, we can find the square of the new diffusion coefficient 
-\begin_inset Formula $\left(\sigma_{t}^{*}\right)^{2}\left(x\right)$
-\end_inset
-
- by writing 
-\begin_inset Formula 
-\begin{eqnarray*}
-\left(\sigma_{t}^{*}\right)^{2}\left(x\right) & = & \lim_{h\rightarrow0}\frac{1}{h}\int\left(y-x\right)^{2}p\left(y,t+h\mid x,t\right)dy\\
- & = & \sigma^{2}\left(x\right)
-\end{eqnarray*}
-
-\end_inset
-
-Because our original diffusion is driven by a Wiener process, we know that
- 
-\begin_inset Formula 
-\[
-\pi_{t}\left(x\right)=\int_{\alpha}^{\beta}\frac{1}{\sqrt{2\pi\left(1-t\right)}}\exp\left\{ -\frac{\left(y-x\right)^{2}}{2\left(1-t\right)}\right\} dy
-\]
-
-\end_inset
-
-We let 
-\begin_inset Formula $u=\frac{y-x}{\sqrt{1-t}}$
-\end_inset
-
-, so that 
-\begin_inset Formula 
-\[
-\pi_{t}\left(x\right)=\frac{1}{\sqrt{2\pi\left(1-t\right)}}\int_{\frac{\alpha-x}{\sqrt{1-t}}}^{\frac{\beta-x}{\sqrt{1-t}}}\exp\left\{ -\frac{u^{2}}{2}\right\} du
-\]
-
-\end_inset
-
-Now, let 
-\begin_inset Formula $\alpha=x_{1}-\epsilon$
-\end_inset
-
- and 
-\begin_inset Formula $\beta=x_{1}+\epsilon$
-\end_inset
-
-.
- Some computation reveals
-\begin_inset Formula 
-\[
-\lim_{\epsilon\rightarrow0}\frac{1}{\pi_{t}\left(x\right)}\frac{\partial\pi_{t}\left(x\right)}{\partial x}=\frac{x_{1}-x}{1-t}
-\]
-
-\end_inset
-
-Thus, the diffusion process 
-\begin_inset Formula $B_{t}$
-\end_inset
-
- with state-dependent drift and diffusion coefficients 
-\begin_inset Formula $\mu\left(x\right)$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma\left(x\right)$
-\end_inset
-
-, when conditioned such that 
-\begin_inset Formula $B_{1}=x_{1}$
-\end_inset
-
-, can be represented by a diffusion 
-\begin_inset Formula $X_{t}$
-\end_inset
-
- such that 
-\begin_inset Formula 
-\[
-dX_{t}=\left(\mu\left(x\right)+\frac{x_{1}-x}{1-t}\sigma^{2}\left(x\right)\right)dt+\sigma\left(x\right)dW_{t},t\in\left[0,1\right]
-\]
-
-\end_inset
-
-for a standard Wiener process 
-\begin_inset Formula $W_{t}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Section
-Transition Density of Bridges
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:full-bb-transition"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Constant Drift and Diffusion Coefficients
-\end_layout
-
-\begin_layout Standard
-We begin with the SDE for a bridge of a diffusion with constant drift coefficien
-t 
-\begin_inset Formula $\mu$
-\end_inset
-
- and diffusion coefficient 
-\begin_inset Formula $\sigma$
-\end_inset
-
-.
-\begin_inset Formula 
-\[
-dX_{t}=\left(\mu+\frac{x_{1}-X_{t}}{1-t}\sigma^{2}\right)dt+\sigma dW_{t},t\in\left[0,1\right]
-\]
-
-\end_inset
-
-Note that the drift coefficient of 
-\begin_inset Formula $X_{t}$
-\end_inset
-
- can be written as 
-\begin_inset Formula $\alpha\left(t\right)X_{t}+\beta\left(t\right)$
-\end_inset
-
-, where 
-\begin_inset Formula 
-\[
-\alpha\left(t\right)=-\frac{\sigma^{2}}{1-t},\mbox{ }\beta\left(t\right)=\mu+\frac{x_{1}\sigma^{2}}{1-t}
-\]
-
-\end_inset
-
-The linear nature of the drift coefficient suggests that we may be able
- to define a linear transformation of 
-\begin_inset Formula $X_{t}$
-\end_inset
-
- such that the associated Kolmogorov forward equation is easy to solve.
- We define a linear transformation 
-\begin_inset Formula $Z_{t}$
-\end_inset
-
- of 
-\begin_inset Formula $X_{t}$
-\end_inset
-
- such that 
-\begin_inset Formula 
-\[
-Z_{t}=\gamma\left(t\right)X_{t}+\delta\left(t\right)
-\]
-
-\end_inset
-
-for some functions 
-\begin_inset Formula $\gamma\left(t\right),\delta\left(t\right)$
-\end_inset
-
-.
- Using Ito's lemma, we find 
-\begin_inset Formula 
-\[
-dZ_{t}=\left(\frac{\partial\gamma\left(t\right)}{\partial t}X_{t}+\frac{\partial\delta\left(t\right)}{\partial t}+\alpha\left(t\right)\gamma\left(t\right)X_{t}+\beta\left(t\right)\gamma\left(t\right)\right)dt+\sigma\gamma\left(t\right)dW_{t}
-\]
-
-\end_inset
-
-Note that if we solve
-\begin_inset Formula 
-\begin{eqnarray*}
-\frac{\partial\gamma\left(t\right)}{\partial t} & = & -\alpha\left(t\right)\gamma\left(t\right)\\
-\frac{\partial\delta\left(t\right)}{\partial t} & = & -\beta\left(t\right)\gamma\left(t\right)
-\end{eqnarray*}
-
-\end_inset
-
-for 
-\begin_inset Formula $\gamma\left(t\right),\delta\left(t\right)$
-\end_inset
-
-, we can force 
-\begin_inset Formula $Z_{t}$
-\end_inset
-
- to be a driftless diffusion, whose Kolmogorov forward equation admits a
- simple analytic solution.
- The solutions to the above system of equations are 
-\begin_inset Formula 
-\begin{eqnarray*}
-\gamma\left(t\right) & = & \exp\left\{ \int_{t}^{1}\alpha\left(t\right)dt\right\} \\
-\delta\left(t\right) & = & \int_{t}^{1}\gamma\left(t\right)\beta\left(t\right)dt
-\end{eqnarray*}
-
-\end_inset
-
-This allows us to simplify the SDE of 
-\begin_inset Formula $Z_{t}$
-\end_inset
-
- to 
-\begin_inset Formula 
-\[
-dZ_{t}=\sigma\gamma\left(t\right)dW_{t}
-\]
-
-\end_inset
-
-The Kolmogorov forward equation for the transition density 
-\begin_inset Formula $\bar{p}=\bar{p}\left(z,t\mid z',t'\right)$
-\end_inset
-
- of this SDE is 
-\begin_inset Formula 
-\[
-\frac{\partial\bar{p}}{\partial t}=\frac{\sigma^{2}\gamma^{2}\left(t\right)}{2}\frac{\partial^{2}\bar{p}}{\partial z^{2}}
-\]
-
-\end_inset
-
-with initial condition 
-\begin_inset Formula $\bar{p}\left(z,t'\mid z',t'\right)=\delta\left(z-z'\right)$
-\end_inset
-
-.
- We perform a Fourier transformation with respect to 
-\begin_inset Formula $z$
-\end_inset
-
- to arrive at
-\begin_inset Formula 
-\[
-\frac{\partial\hat{\bar{p}}}{\partial t}=-k^{2}\frac{\sigma^{2}\gamma^{2}\left(t\right)}{2}\hat{\bar{p}}
-\]
-
-\end_inset
-
-with initial condition 
-\begin_inset Formula $\hat{\bar{p}}\left(k,t'\mid z',t'\right)=e^{-ikz'}$
-\end_inset
-
-.
- We take the inverse Fourier transform of the solution to this PDE to find
- the transition density
-\begin_inset Formula 
-\[
-\bar{p}\left(z,t\mid z',t'\right)=\frac{1}{\sqrt{2\pi\nu}}\exp\left\{ \frac{\left(z-z'\right)^{2}}{2\nu}\right\} ,\nu=\sigma^{2}\int_{t'}^{t}\gamma^{2}\left(\tau\right)d\tau
-\]
-
-\end_inset
-
-for 
-\begin_inset Formula $t>t'$
-\end_inset
-
-.
- Finally, to find the transition density 
-\begin_inset Formula $p=p\left(x,t\mid x',t'\right)$
-\end_inset
-
- of our original SDE 
-\begin_inset Formula $X_{t}$
-\end_inset
-
-, we can use the transformation theorem,
-\begin_inset Formula 
-\begin{eqnarray*}
-p\left(x,t\mid x',t'\right) & = & \left|\frac{\partial z}{\partial x}\right|\bar{p}\left(z,t\mid z',t'\right)\\
- & = & \frac{\gamma\left(t\right)}{\sqrt{2\pi\nu}}\exp\left\{ -\frac{\left(\gamma\left(t\right)x+\delta\left(t\right)-\gamma\left(t'\right)x'-\delta\left(t'\right)\right)^{2}}{2\nu}\right\} 
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Derivation of Bridge Equation
-\end_layout
-
-\begin_layout Standard
-We consider a linear SDE 
-\begin_inset Formula 
-\[
-dX_{t}=\left(a\left(t\right)X_{t}+b\left(t\right)\right)dt+c\left(t\right)dW_{t}
-\]
-
-\end_inset
-
-It is well-known that the solution to this SDE 
-\begin_inset Formula $X_{t}$
-\end_inset
-
- has transition distribution 
-\begin_inset Formula 
-\[
-X_{t}\mid X_{t'}\sim\mathcal{N}\left(x_{t'}A\left(t',t\right)+\int_{t'}^{t}A\left(s,t\right)b\left(s\right)ds,\int_{t'}^{t}A\left(s,t\right)^{2}c\left(s\right)^{2}ds\right)
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $A\left(s,t\right)=\exp\left\{ \int_{s}^{t}a\left(u\right)du\right\} $
-\end_inset
-
-.
- Let 
-\begin_inset Formula $\mu\left(t',t\right)$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma^{2}\left(t',t\right)$
-\end_inset
-
- be the mean and variance of 
-\begin_inset Formula $X_{t}\mid X_{t'}$
-\end_inset
-
-, respectively.
- 
-\end_layout
-
-\begin_layout Standard
-Recall from 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:SDE-Bridge"
-
-\end_inset
-
- that 
-\begin_inset Formula 
-\[
-p^{\alpha,\beta}\left(y,t\mid x,t'\right)=\frac{g\left(y,t\mid x,t'\right)\pi_{t}^{\alpha,\beta}\left(y\right)}{\pi_{t'}^{\alpha,\beta}\left(x\right)}
-\]
-
-\end_inset
-
-is the transition density of 
-\begin_inset Formula $X_{t}$
-\end_inset
-
- conditioned on 
-\begin_inset Formula $\alpha<X_{1}<\beta$
-\end_inset
-
-, where 
-\begin_inset Formula $\pi_{t}^{\alpha,\beta}\left(x\right)$
-\end_inset
-
- is the probability that from state value 
-\begin_inset Formula $x$
-\end_inset
-
- at time 
-\begin_inset Formula $t$
-\end_inset
-
-, the sample path of 
-\begin_inset Formula $X_{t}$
-\end_inset
-
- is such that 
-\begin_inset Formula $\alpha<X_{1}<\beta$
-\end_inset
-
-, and 
-\begin_inset Formula $g\left(y,t\mid x,t'\right)$
-\end_inset
-
- is the transition density of 
-\begin_inset Formula $X_{t}$
-\end_inset
-
-.
- For the case of the linear SDE where 
-\begin_inset Formula $\alpha=x_{1}-\epsilon,\beta=x_{1}+\epsilon$
-\end_inset
-
-, we have
-\begin_inset Formula 
-\[
-\lim_{\epsilon\rightarrow0}p^{\alpha,\beta}\left(y,t\mid x,t'\right)=g\left(y,t\mid x,t'\right)\frac{\int_{t'}^{1}A\left(s,t\right)^{2}c\left(s\right)^{2}ds}{\int_{t}^{1}A\left(s,t\right)^{2}c\left(s\right)^{2}ds}\exp\left\{ -\frac{1}{2}\left(\frac{\left(x-\left(x_{t}A\left(t,1\right)+\int_{t}^{1}A\left(s,t\right)b\left(s\right)ds\right)\right)^{2}}{\int_{t}^{1}A\left(s,t\right)^{2}c\left(s\right)^{2}ds}\right)\right\} 
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-So, 
-\begin_inset Formula 
-\begin{eqnarray*}
-\pi_{t}^{\alpha,\beta}\left(y\right) & \sim & \int_{\alpha}^{\beta}\mathcal{N}\left(z;yA\left(t,1\right)+\int_{t}^{1}A\left(s,t\right)b\left(s\right)ds,\int_{t}^{1}A\left(s,t\right)^{2}c\left(s\right)^{2}ds\right)dz\\
-\pi_{t'}^{\alpha,\beta}\left(x\right) & \sim & \int_{\alpha}^{\beta}\mathcal{N}\left(z;xA\left(t',1\right)+\int_{t'}^{1}A\left(s,t\right)b\left(s\right)ds,\int_{t'}^{1}A\left(s,t\right)^{2}c\left(s\right)^{2}ds\right)dz
-\end{eqnarray*}
+reference "prop:main-kfe"
 
 \end_inset
 
@@ -666,43 +86,118 @@ So,
 
 \begin_layout Standard
 Let 
-\begin_inset Formula $f\left(x,t\right)$
+\begin_inset Formula $X$
 \end_inset
 
- be the density of the process 
-\begin_inset Formula $X_{t}$
+ and 
+\begin_inset Formula $Y$
 \end_inset
 
- conditioned on 
-\begin_inset Formula $\alpha<X_{1}<\beta$
+ be as in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:3"
+
 \end_inset
 
 .
- Then, by the Chapman-Kolmogorov equation,
+ Consider a one-dimensional stochastic differential equation 
 \begin_inset Formula 
 \begin{equation}
-f\left(y,t'+\tau\right)=\int p^{\alpha,\beta}\left(y,t'+\tau\mid x,t'\right)f\left(x,t'\right)dx\label{eq:chap-kolmogorov}
+dX_{t}=\mu\left(X_{t}\right)dt+\sigma\left(X_{t}\right)dW_{t}\label{eq:base_sde}
 \end{equation}
 
 \end_inset
 
- Recall that 
+where 
+\begin_inset Formula $\left\{ W_{t}\right\} _{t\geq0}$
+\end_inset
+
+ is a standard Wiener process.
+ Then, under some regularity conditions on 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ which we take as given, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:base_sde"
+
+\end_inset
+
+ admits a solution 
+\begin_inset Formula $X$
+\end_inset
+
+ unique up to an initial value 
+\begin_inset Formula $X_{0}=x$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $Y^{\left(\epsilon\right)}$
+\end_inset
+
+ for 
+\begin_inset Formula $t\in\left[0,1\right]$
+\end_inset
+
+ denote the constrained process 
+\begin_inset Formula $X$
+\end_inset
+
+ conditioned such that 
+\begin_inset Formula $X_{0}\sim A$
+\end_inset
+
+ and
 \begin_inset Formula 
 \begin{equation}
-p^{\alpha,\beta}\left(y,t'+\tau\mid x,t'\right)=\int\delta\left(y'-y\right)p^{\alpha,\beta}\left(y',t'+\tau\mid x,t'\right)dy'\label{eq:delta-expansion-of-transition}
+\Omega-\epsilon<X_{1}<\Omega+\epsilon\label{eq:end-constraint}
 \end{equation}
 
 \end_inset
 
-and that we can write the Taylor expansion of 
-\begin_inset Formula $\delta$
+for random variables 
+\begin_inset Formula $\left(A,\Omega\right)$
 \end_inset
 
- as 
+ distributed with joint probability mass function 
+\begin_inset Formula $h\left(\alpha,\omega\right)$
+\end_inset
+
+.
+ Then, the probability density of 
+\begin_inset Formula $Y_{t}^{\left(\epsilon\right)}$
+\end_inset
+
+ can be written 
+\begin_inset Formula 
+\begin{equation}
+p\left(y,t\right)=\iiint p\left(y,t\mid y',t';\alpha,\omega\right)h\left(\alpha,\omega\mid y',t'\right)p\left(y',t'\right)dy'd\alpha d\omega\label{eq:chap-kolm}
+\end{equation}
+
+\end_inset
+
+Recall now the identity
+\begin_inset Formula 
+\begin{equation}
+p\left(y,t+\tau\mid y',t;\alpha,\omega\right)=\int\delta\left(z-y\right)p\left(z,t+\tau\mid y',t;\alpha,\omega\right)dz\label{eq:delta-trick}
+\end{equation}
+
+\end_inset
+
+and write the Taylor series expansion of the Dirac delta function 
+\lang english
+
 \begin_inset Formula 
 \begin{eqnarray}
-\delta\left(y'-y\right) & = & \delta\left(x-y+y'-x\right)\nonumber \\
- & = & \sum_{n=0}^{\infty}\frac{\left(y'-x\right)^{n}}{n!}\left(-\frac{\partial}{\partial y}\right)^{n}\delta\left(x-y\right)\label{eq:taylor-expansion}
+\delta\left(z-y\right) & = & \delta\left(y'-y+z-y'\right)\nonumber \\
+ & = & \sum_{n=0}^{\infty}\frac{\left(z-y'\right)^{n}}{n!}\left(-\frac{\partial}{\partial y}\right)^{n}\delta\left(y'-y\right)\label{eq:dirac-taylor}
 \end{eqnarray}
 
 \end_inset
@@ -710,51 +205,285 @@ and that we can write the Taylor expansion of
 Substituting 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "eq:taylor-expansion"
+reference "eq:dirac-taylor"
 
 \end_inset
 
  into 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "eq:delta-expansion-of-transition"
+reference "eq:delta-trick"
 
 \end_inset
 
-, we find 
+, we find
 \begin_inset Formula 
 \begin{eqnarray}
- &  & p^{\alpha,\beta}\left(y,t'+\tau\mid x,t'\right)\nonumber \\
- & = & \frac{\delta\left(x-y\right)}{\pi_{t'}^{\alpha,\beta}\left(x\right)}\sum_{n=0}^{\infty}\frac{1}{n!}\left(-\frac{\partial}{\partial y}\right)^{n}\int\left(y'-x\right)^{n}\pi_{t}^{\alpha,\beta}\left(y'\right)f\left(y',t'+\tau\mid x,t'\right)dy'\nonumber \\
- & = & \frac{\delta\left(y-x\right)}{\pi_{t'}^{\alpha,\beta}\left(x\right)}\left[1+\sum_{n=1}^{\infty}\frac{1}{n!}\left(-\frac{\partial}{\partial y}\right)^{n}M_{n}^{\alpha,\beta}\left(y,t',\tau\right)\right]\label{eq:transition-eq-expanded}
+ &  & p\left(y,t+\tau\mid y',t;\alpha,\omega\right)\nonumber \\
+ & = & \sum_{n=0}^{\infty}\frac{1}{n!}\left(-\frac{\partial}{\partial y}\right)^{n}\int\left(z-y'\right)^{n}p\left(y,t+\tau\mid y',t;\alpha,\omega\right)dz\delta\left(y'-y\right)\nonumber \\
+ & = & \left[1+\sum_{n=1}^{\infty}\left(-\frac{\partial}{\partial y}\right)^{n}m_{n}\left(y',t,\tau;\alpha,\omega\right)\right]\delta\left(y'-y\right)\nonumber \\
+ & = & \left[1+\sum_{n=1}^{\infty}\left(-\frac{\partial}{\partial y}\right)^{n}m_{n}\left(y,t,\tau;\alpha,\omega\right)\right]\delta\left(y-y'\right)\label{eq:short-time-moments}
 \end{eqnarray}
 
 \end_inset
 
-and inserting 
+where 
+\begin_inset Formula $m_{n}\left(y,t,\tau;\alpha,\omega\right)=\int\left(z-y\right)^{n}p\left(z,t+\tau\mid y,t;\alpha,\omega\right)dz/n!$
+\end_inset
+
+.
+ Substituting 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "eq:transition-eq-expanded"
+reference "eq:short-time-moments"
 
 \end_inset
 
  into 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "eq:chap-kolmogorov"
+reference "eq:chap-kolm"
 
 \end_inset
 
-, we can arrive at
+, we write 
+\begin_inset Formula $p\left(y,t+\tau\right)-p\left(y,t\right)$
+\end_inset
+
+, divide by 
+\begin_inset Formula $\tau$
+\end_inset
+
+, and take the limit as 
+\begin_inset Formula $\tau\rightarrow0$
+\end_inset
+
+ to find the Kramers-Moyal expansion for 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{equation}
+\frac{\partial p\left(y,t\right)}{\partial t}=\iint\sum_{n=1}^{\infty}\left(-\frac{\partial}{\partial y}\right)^{n}d_{n}\left(y,t;\alpha,\omega\right)h\left(\alpha,\omega\mid y,t\right)p\left(y,t\right)d\alpha d\omega\label{eq:km-expansion}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $d_{n}\left(y,t;\alpha,\omega\right)=\lim_{\tau\rightarrow0}m_{n}\left(y,t,\tau;\alpha,\omega\right)/\tau.$
+\end_inset
+
+ To compute 
+\begin_inset Formula $d_{n}$
+\end_inset
+
+, we first re-write the short-time transition density using Bayes' Rule
+ and the Markov property,
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & p\left(z,t+\tau\mid y,t;\alpha,\omega\right)\nonumber \\
+ & = & \mbox{Pr}\left(z<X_{t+\tau}\leq z+dz\mid X_{t}=y,\left(A,\Omega\right)=\left(\alpha,\omega\right),X_{1}\in\Omega\pm\epsilon\right)\nonumber \\
+ & = & \cfrac{\mbox{Pr}\left(X_{1}\in\Omega\pm\epsilon\mid X_{t+\tau}=z,X_{t}=y,\left(A,\Omega\right)=\left(\alpha,\omega\right)\right)}{\mbox{Pr}\left(X_{1}\in\Omega\pm\epsilon\mid X_{t}=y,\left(A,\Omega\right)=\left(\alpha,\omega\right)\right)}\times\nonumber \\
+ &  & \mbox{Pr}\left(z<X_{t+\tau}\leq z+dz\mid X_{t}=y\right)\nonumber \\
+ & = & \frac{\pi_{\omega}^{\epsilon}\left(z,t+\tau\right)}{\pi_{\omega}^{\epsilon}\left(y,t\right)}P\left(z,t+\tau\mid y,t\right)\label{eq:short-time-bayes}
+\end{eqnarray}
+
+\end_inset
+
+where 
+\begin_inset Formula $X_{1}\in\Omega\pm\epsilon$
+\end_inset
+
+ is shorthand for the event that 
+\begin_inset Formula $\Omega-\epsilon<X_{1}<\Omega+\epsilon$
+\end_inset
+
+, 
+\begin_inset Formula $\pi_{\omega}^{\epsilon}\left(y,t\right)$
+\end_inset
+
+ is the probability that the sample path of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ is such that 
+\begin_inset Formula $X_{1}\in\Omega\pm\epsilon$
+\end_inset
+
+, and 
+\begin_inset Formula $P$
+\end_inset
+
+ is the transition density of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+.
+ Now, we write the Taylor expansion of 
+\begin_inset Formula $\pi_{\omega}^{\epsilon}\left(y,t\right)$
+\end_inset
+
+ at 
+\begin_inset Formula $\pi_{\omega}^{\epsilon}\left(z,t+\tau\right)$
+\end_inset
+
+ as
+\begin_inset Formula 
+\begin{equation}
+\pi_{\omega}^{\epsilon}\left(z,t+\tau\right)=\sum_{n_{1}=0}^{\infty}\sum_{n_{2}=0}^{\infty}\frac{\left(z-y\right)^{n_{1}}\tau^{n_{2}}}{n_{1}!n_{2}!}\left(\frac{\partial^{n_{1}+n_{2}}\pi_{\omega}^{\epsilon}\left(y,t\right)}{\partial x^{n_{1}}\partial t^{n_{2}}}\right)\label{eq:taylor-expand-pi}
+\end{equation}
+
+\end_inset
+
+Substituting 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:short-time-bayes"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:taylor-expand-pi"
+
+\end_inset
+
+ into 
+\begin_inset Formula $m_{n}=m_{n}\left(y,t,\tau;\alpha,\omega\right)$
+\end_inset
+
+, we find
+\begin_inset Formula 
+\begin{equation}
+m_{n}=\frac{\left(n+n_{1}\right)!}{n!\pi_{\omega}^{\epsilon}\left(y,t\right)}\sum_{n_{1}=0}^{\infty}\sum_{n_{2}=0}^{\infty}\frac{\tau^{n_{2}}}{n_{1}!n_{2}!}\left(\frac{\partial^{n_{1}+n_{2}}\pi_{\omega}^{\epsilon}\left(y,t\right)}{\partial x^{n_{1}}\partial t^{n_{2}}}\right)M_{n+n_{1}}\left(y,t,\tau\right)\label{eq:full-little-m}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $M_{n}\left(x,t,\tau\right)$
+\end_inset
+
+ are the moments of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+, which we assume we can compute.
+ To find 
+\begin_inset Formula $d_{n}\left(y,t;\alpha,\omega\right)$
+\end_inset
+
+, we first recall that the Kramers-Moyal coefficients 
+\begin_inset Formula $D_{n}\left(x,t\right)=\lim_{\tau\rightarrow0}M_{n}\left(x,t,\tau\right)/\tau$
+\end_inset
+
+ of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ are well-known to be 
 \begin_inset Formula 
 \begin{eqnarray*}
-f\left(y,t+\tau\right)-f\left(y,t\right) & = & \sum_{n=1}^{\infty}\left(-\frac{\partial}{\partial y}\right)^{n}\int\frac{M_{n}^{\alpha,\beta}\left(y,t',\tau\right)}{n!}\frac{1}{\pi_{t'}^{\alpha,\beta}\left(x\right)}\delta\left(y-x\right)f\left(x,t'\right)dx\\
-\frac{\partial f\left(y,t\right)}{\partial t}\tau+O\left(\tau^{2}\right) & = & \sum_{n=1}^{\infty}\left(-\frac{\partial}{\partial y}\right)^{n}\frac{M_{n}^{\alpha,\beta}\left(y,t',\tau\right)}{n!}\frac{f\left(y,t'\right)}{\pi_{t'}^{\alpha,\beta}\left(y\right)}
+D_{1}\left(x,t\right) & = & \mu\left(x\right)\\
+D_{2}\left(x,t\right) & = & \frac{1}{2}\sigma^{2}\left(x\right)\\
+D_{n\geq3}\left(x,t\right) & = & 0
 \end{eqnarray*}
 
 \end_inset
 
+which, using 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:full-little-m"
+
+\end_inset
+
+, gives the Kramers-Moyal coefficients 
+\begin_inset Formula $d_{n}$
+\end_inset
+
+ of 
+\begin_inset Formula $Y_{t}^{\left(\epsilon\right)}$
+\end_inset
+
+ to be 
+\begin_inset Formula 
+\begin{eqnarray*}
+d_{1}\left(y,t;\alpha,\omega\right) & = & \mu\left(y\right)+\frac{1}{\pi_{\omega}^{\epsilon}\left(y,t\right)}\frac{\partial\pi_{\omega}^{\epsilon}\left(y,t\right)}{\partial x}\sigma^{2}\left(y\right)\\
+d_{2}\left(y,t;\alpha,\omega\right) & = & \frac{1}{2}\sigma^{2}\left(y\right)\\
+d_{n\geq3}\left(y,t;\alpha,\omega\right) & = & 0
+\end{eqnarray*}
+
+\end_inset
+
+With this, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:km-expansion"
+
+\end_inset
+
+ for the density of 
+\begin_inset Formula $Y_{t}^{\left(\epsilon\right)}$
+\end_inset
+
+ reduces to 
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{\partial p\left(y,t\right)}{\partial t} & = & -\frac{\partial}{\partial y}\mu\left(y\right)p\left(y,t\right)+\frac{1}{2}\frac{\partial^{2}}{\partial y^{2}}\sigma^{2}\left(y\right)p\left(y,t\right)-\\
+ &  & \frac{\partial}{\partial y}\sigma^{2}\left(y\right)p\left(y,t\right)\iint\frac{1}{\pi_{\omega}^{\epsilon}\left(y,t\right)}\frac{\partial\pi_{\omega}^{\epsilon}\left(y,t\right)}{\partial y}h\left(\alpha,\omega\mid y,t\right)d\alpha d\omega
+\end{eqnarray*}
+
+\end_inset
+
+Taking the limit as 
+\begin_inset Formula $\epsilon\rightarrow0$
+\end_inset
+
+, we recover
+\begin_inset Formula 
+\begin{equation}
+\frac{\partial p}{\partial t}=-\frac{\partial}{\partial y}\mu p+\frac{1}{2}\frac{\partial^{2}}{\partial y^{2}}\sigma^{2}p-\frac{\partial}{\partial y}\sigma^{2}p\int\Pi\left(y,t;\omega\right)h\left(\omega\mid y,t\right)d\omega\label{eq:kfe-discrete}
+\end{equation}
+
+\end_inset
+
+where the arguments to 
+\begin_inset Formula $\mu\left(y\right),\sigma^{2}\left(y\right),p\left(y,t\right)$
+\end_inset
+
+ are suppressed for notational clarity and 
+\begin_inset Formula $\Pi\left(y,t;\omega\right)=\lim_{\epsilon\rightarrow0}\left(\partial\pi_{\omega}^{\epsilon}\left(y,t\right)/\partial y\right)/\pi_{\omega}^{\epsilon}\left(y,t\right)$
+\end_inset
+
+.
  
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:kfe-discrete"
+
+\end_inset
+
+, with initial condition 
+\begin_inset Formula $p\left(y,0\right)=\int h\left(y,\omega\right)d\omega$
+\end_inset
+
+, is the Kolmogorov forward equation with solution equal to the density
+ 
+\begin_inset Formula $p\left(x,t\right)$
+\end_inset
+
+ of the constrained process 
+\begin_inset Formula $Y$
+\end_inset
+
+ at time 
+\begin_inset Formula $t$
+\end_inset
+
+.
 \end_layout
 
 \end_body
