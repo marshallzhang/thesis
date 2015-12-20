@@ -80,6 +80,13 @@ theorems-chap
 
 \begin_layout Chapter
 The Theory of Markov Bridges
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:2"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -823,7 +830,7 @@ name "lem:endpoint-dominating-lemma"
 \end_inset
 
 The probability measure 
-\begin_inset Formula $R_{0,t}^{*}\left(\cdot,z\right)\times R_{t,1}\left(z,\cdot\right)$
+\begin_inset Formula $R_{0,t}^{*}\left(\cdot,z\right)R_{t,1}\left(z,\cdot\right)$
 \end_inset
 
  is dominated by 
@@ -839,7 +846,7 @@ The probability measure
 \end_inset
 
  Accordingly, the density of 
-\begin_inset Formula $R_{0,t}^{*}\left(\cdot,z\right)\times R_{t,1}\left(z,\cdot\right)$
+\begin_inset Formula $R_{0,t}^{*}\left(\cdot,z\right)R_{t,1}\left(z,\cdot\right)$
 \end_inset
 
  with respect to 
@@ -1272,26 +1279,6 @@ conditioned
 
  on following a given law in the next chapter.
  
-\end_layout
-
-\begin_layout Standard
-\begin_inset Branch ch02only
-status open
-
-\begin_layout Standard
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-bibfiles "Bibliography"
-options "plainnat"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_body

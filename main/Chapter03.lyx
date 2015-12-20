@@ -52,6 +52,16 @@ theorems-chap
 \suppress_date false
 \justification true
 \use_refstyle 0
+\branch ch02only
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\branch ch03only
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
 \index Index
 \shortcut idx
 \color #008000
@@ -84,19 +94,78 @@ name "chap:3"
 
 \end_layout
 
+\begin_layout Section
+Introduction
+\end_layout
+
 \begin_layout Standard
-From this point on, we restrict our attention to the class of Gauss-Markov
- measures; that is, measures which are both Gaussian and Markov.
- The canonical process associated with the probability space 
-\begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right),\mathbb{P}\right)$
+In this chapter, we study a generalized notion of a bridge measure, where
+ the reference path measure is not necessarily Markov, and the associated
+ canonical process.
+ Following the literature, we will take a slightly more informal approach
+ than in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:2"
+
 \end_inset
 
- for a Gauss-Markov measure 
-\begin_inset Formula $\mathbb{P}$
+ to the exposition of these so-called 
+\begin_inset Quotes eld
 \end_inset
 
-, which we refer to a Gauss-Markov space, will be referred to as a Gauss-Markov
- process.
+generalized bridges
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Generalized bridges have been explored in the literature in a number of
+ different directions.
+ One natural generalization of a bridge process (the process associated
+ with the bridge measure of the Wiener measure), first presented in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "alili-2002"
+
+\end_inset
+
+, comes from conditioning on a vector 
+\begin_inset Formula $\left(Z_{1}^{\left(1\right)},Z_{1}^{\left(2\right)},\dots,Z_{1}^{\left(N\right)}\right)$
+\end_inset
+
+of 
+\begin_inset Formula $\mathcal{F}_{1}-$
+\end_inset
+
+adapted functionals of 
+\begin_inset Formula $ $
+\end_inset
+
+.
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "alili-2002"
+
+\end_inset
+
+ gives Note that conditioning on the final value 
+\begin_inset Formula $X_{1}$
+\end_inset
+
+ as in the previous chapter is a special case of this notion, where 
+\begin_inset Formula $N=1$
+\end_inset
+
+ and 
+\begin_inset Formula $Z_{1}^{\left(1\right)}=\int_{0}^{1}dX_{t}$
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Section
