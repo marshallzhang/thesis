@@ -102,96 +102,116 @@ Introduction
 In this chapter, we study a generalized notion of a bridge measure, where
  the reference path measure is not necessarily Markov, and the associated
  canonical process.
- Following the literature, we will take a slightly more informal approach
- than in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:2"
-
-\end_inset
-
- to the exposition of these so-called 
-\begin_inset Quotes eld
-\end_inset
-
-generalized bridges
-\begin_inset Quotes erd
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Standard
 Generalized bridges have been explored in the literature in a number of
  different directions.
- One natural generalization of a bridge process (the process associated
- with the bridge measure of the Wiener measure), first presented in 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "alili-2002"
-
-\end_inset
-
-, comes from conditioning on a vector 
-\begin_inset Formula $\left(Z_{1}^{\left(1\right)},Z_{1}^{\left(2\right)},\dots,Z_{1}^{\left(N\right)}\right)$
+ One natural generalization of a bridge process comes from conditioning
+ on a vector 
+\begin_inset Formula $\bar{Z}=\left(Z^{\left(1\right)},Z^{\left(2\right)},\dots,Z^{\left(N\right)}\right)$
 \end_inset
 
 of 
 \begin_inset Formula $\mathcal{F}_{1}-$
 \end_inset
 
-adapted functionals of 
-\begin_inset Formula $ $
+adapted functionals of a reference process (on 
+\begin_inset Formula $\left[0,1\right]$
+\end_inset
+
+, as usual).
+ This notion was first presented by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "alili-2002"
+
+\end_inset
+
+ for the case of a Wiener process 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+ as the reference process and functionals of the form 
+\begin_inset Formula $Z^{\left(i\right)}=\int_{0}^{1}f_{i}\left(s\right)dW_{s}$
+\end_inset
+
+ for square-integrable functions 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+, giving explicit decompositions of the resulting generalized bridge as
+ semimartingales.
+ Note that choosing 
+\begin_inset Formula $N=1$
+\end_inset
+
+ and 
+\begin_inset Formula $Z^{\left(1\right)}=\int_{0}^{1}dW_{s}=W_{1}$
+\end_inset
+
+ for an integral in the sense of Itô induces a Wiener bridge measure in
+ the sense of 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:2"
+
 \end_inset
 
 .
  
 \begin_inset CommandInset citation
-LatexCommand citep
-key "alili-2002"
+LatexCommand citet
+key "sottinen-yazigi-2014"
 
 \end_inset
 
- gives Note that conditioning on the final value 
-\begin_inset Formula $X_{1}$
+ generalize the result of Alili greatly by studying a large class of non-semimar
+tingale Gaussian processes (simultaneously extending the work of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-coutin-2007"
+
 \end_inset
 
- as in the previous chapter is a special case of this notion, where 
-\begin_inset Formula $N=1$
-\end_inset
+, which focuses on standard bridges of the same class of stochastic processes,
+ known as a Gaussian Volterra process).
+ 
+\end_layout
 
- and 
-\begin_inset Formula $Z_{1}^{\left(1\right)}=\int_{0}^{1}dX_{t}$
-\end_inset
-
-.
+\begin_layout Standard
+A different way in which the notion of a bridge process has been extended
+ will be the focus of the remainder of this chapter.
  
 \end_layout
 
 \begin_layout Section
-Functionals of a Gauss-Markov Process Conditioned on a Law
+Law-Conditioned
 \end_layout
 
 \begin_layout Standard
-A natural generalization of the bridge measure 
-\begin_inset Formula $\mathbb{P}^{x,y}$
+We will proceed on the usual probability space 
+\begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right),\mathbb{P}\right)$
 \end_inset
 
- of 
+ for a general path measure 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is to consider, intuitively, the measure that results from conditioning
- some functional of the canonical process of 
+, and refer to this space as a path space.
+ Roughly following 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-2002"
+
+\end_inset
+
+, we define the concept of a conditioning on 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- on following a given law.
+.
  
-\end_layout
-
-\begin_layout Standard
-Formally, we define a conditioning as follows.
 \end_layout
 
 \begin_layout Definition
@@ -199,42 +219,53 @@ Formally, we define a conditioning as follows.
 status open
 
 \begin_layout Plain Layout
-Conditioning
+Conditioning on a path space
 \end_layout
 
 \end_inset
 
-A conditioning on a Gauss-Markov space is a triplet 
-\begin_inset Formula $\left(t,Y,\nu\right)$
+A conditioning on a path space is a tuple 
+\begin_inset Formula $\left(Y,\nu\right)$
 \end_inset
 
- where 
-\begin_inset Formula $t$
-\end_inset
+ where:
+\end_layout
 
- is the set of times on which we condition, 
+\begin_deeper
+\begin_layout Enumerate
 \begin_inset Formula $Y$
 \end_inset
 
  is a 
-\begin_inset Formula $\mathcal{F}_{t}$
+\begin_inset Formula $\mathcal{F}$
 \end_inset
 
--measurable random variable representing the functional being conditioned,
- and 
+-measurable random variable valued in 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ representing the functional being conditioned, and
+\end_layout
+
+\begin_layout Enumerate
 \begin_inset Formula $\nu$
 \end_inset
 
- is a probability measure representing the conditioning law.
+ is a probability measure on 
+\begin_inset Formula $\mathcal{B}\left(\mathbb{R}\right)$
+\end_inset
+
+ representing the conditioning.
  
 \end_layout
 
+\end_deeper
 \begin_layout Standard
-We write 
-\begin_inset Formula $\mathcal{L}_{Y}$
+Let 
+\begin_inset Formula $\mathbb{P}_{Y}:=\mathbb{P}\circ Y^{-1}$
 \end_inset
 
- as the law of 
+ be the law of 
 \begin_inset Formula $Y$
 \end_inset
 
@@ -242,42 +273,171 @@ We write
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- i.e.
- 
-\begin_inset Formula $\mathcal{L}_{Y}=\mathbb{P}\circ Y^{-1}$
-\end_inset
-
-, and for ease of notation, write 
-\begin_inset Formula $\mathbb{P}=\mathbb{P}_{I}$
-\end_inset
-
- since we only consider processes on 
-\begin_inset Formula $I$
-\end_inset
-
 .
-\end_layout
+ We will assume that for any 
+\begin_inset Formula $t\in[0,1)$
+\end_inset
 
-\begin_layout Standard
-Before we continue, we make two assumptions.
- The first is that there exists a Radon-Nikodym density 
+, there exists a process 
 \begin_inset Formula $\eta_{t}^{y}$
 \end_inset
 
- for 
-\begin_inset Formula $0\leq t<T,y\in\Omega$
+ for all 
+\begin_inset Formula $y\in\mathbb{R}$
 \end_inset
 
- such that 
-\begin_inset Formula $\mathbb{E}\left[X_{t}\mid Y=y\right]=\mathbb{E}\left[\eta_{t}^{y}X_{t}\right]$
+ such that for any 
+\begin_inset Formula $\mathcal{F}_{:t}-$
+\end_inset
+
+measurable random variable 
+\begin_inset Formula $X$
+\end_inset
+
+ and 
+\begin_inset Formula $y,\mathbb{P}_{Y}-a.e.$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbb{E}_{\mathbb{P}}\left[X\mid Y=y\right]=\mathbb{E}_{\mathbb{P}}\left[\eta_{t}^{y}X\right]$
 \end_inset
 
 .
- The second is that 
-\begin_inset Formula $\mathcal{L}$
+ In other words, we assume that 
+\begin_inset Formula $\mathbb{P}_{:t}\left(\cdot\mid Y=y\right)$
+\end_inset
+
+ is absolutely continuous with respect to 
+\begin_inset Formula $\mathbb{P}_{:t}$
+\end_inset
+
+ for any 
+\begin_inset Formula $t\in[0,1)$
+\end_inset
+
+ with Radon-Nikodym derivative 
+\begin_inset Formula $\eta_{t}^{y}$
+\end_inset
+
+.
+ Furthermore, we assume that 
+\begin_inset Formula $\nu$
+\end_inset
+
+ is absolutely continuous with respect to 
+\begin_inset Formula $\mathbb{P}_{Y}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+These assumptions immediately give the following fact, formalizing the notion
+ of the measure induced by conditioning a process on the distribution some
+ of its functionals.
+\end_layout
+
+\begin_layout Claim
+\begin_inset CommandInset label
+LatexCommand label
+name "claim:pv"
+
+\end_inset
+
+For any conditioning 
+\begin_inset Formula $\left(Y,\nu\right)$
+\end_inset
+
+ on a path space, there exists a unique probability measure 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ on 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ such that for any bounded random variable 
+\begin_inset Formula $X:\Omega\rightarrow\mathbb{R}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbb{E}_{\mathbb{P}^{\nu}}\left[X\mid Y\right]=\mathbb{E}_{\mathbb{P}}\left[X\mid Y\right]$
+\end_inset
+
+, and the law of 
+\begin_inset Formula $Y$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ is 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+ Furthermore, 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ can be disintegrated as 
+\begin_inset Formula 
+\[
+\mathbb{P}^{\nu}=\int_{\mathbb{R}}\mathbb{P}\left(\cdot\mid Y=y\right)\nu\left(dy\right)
+\]
+
 \end_inset
 
 
+\end_layout
+
+\begin_layout Proof
+asdf
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "claim:pv"
+
+\end_inset
+
+ says that for any conditioning 
+\begin_inset Formula $\left(Y,\nu\right)$
+\end_inset
+
+ on a path space, there is a unique probability 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ such that 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ coincide on all events independent of 
+\begin_inset Formula $Y$
+\end_inset
+
+ and the law of 
+\begin_inset Formula $Y$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ is 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+ 
 \end_layout
 
 \end_body

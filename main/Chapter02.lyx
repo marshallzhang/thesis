@@ -109,7 +109,7 @@ In this chapter and following chapters unless otherwise noted, we consider
 
 -algebra.
  The canonical process 
-\begin_inset Formula $X=\left\{ X_{t}\right\} _{t\in I}$
+\begin_inset Formula $X=\left\{ X_{t}\right\} _{t\in\left[0,1\right]}$
 \end_inset
 
  is defined to be such that 
@@ -124,10 +124,6 @@ where
 \begin_inset Formula $\omega\in\Omega$
 \end_inset
 
- and 
-\begin_inset Formula $t\in\left[0,1\right]$
-\end_inset
-
 .
  Let 
 \begin_inset Formula $\mathbb{P}$
@@ -135,19 +131,19 @@ where
 
  be a probability measure, which we will call a path measure.
  For any subset 
-\begin_inset Formula $S\subseteq\left[0,1\right]$
+\begin_inset Formula $\tau\subseteq\left[0,1\right]$
 \end_inset
 
 , let 
-\begin_inset Formula $X_{S}=\left\{ X_{s}\right\} _{s\in S}$
+\begin_inset Formula $X_{\tau}=\left\{ X_{t}\right\} _{t\in\tau}$
 \end_inset
 
  be the canonical process over 
-\begin_inset Formula $S$
+\begin_inset Formula $\tau$
 \end_inset
 
 , 
-\begin_inset Formula $\mathcal{F}_{S}=\sigma\left(\left\{ X_{s}\left(\omega\right):s\in S,\omega\in\Omega\right\} \right)$
+\begin_inset Formula $\mathcal{F}_{\tau}=\sigma\left(\left\{ X_{t}\left(\omega\right):t\in\tau,\omega\in\Omega\right\} \right)$
 \end_inset
 
  be the 
@@ -167,7 +163,7 @@ algebra of events observed during
 \end_inset
 
  to 
-\begin_inset Formula $\Omega_{S}:=\left\{ X_{s}\left(\omega\right):s\in S,\omega\in\Omega\right\} $
+\begin_inset Formula $\Omega_{\tau}:=\left\{ X_{t}\left(\omega\right):t\in\tau,\omega\in\Omega\right\} $
 \end_inset
 
 .
