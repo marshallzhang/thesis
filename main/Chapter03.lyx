@@ -166,8 +166,15 @@ key "sottinen-yazigi-2014"
 
 \end_inset
 
- generalize the result of Alili greatly by studying a large class of non-semimar
-tingale Gaussian processes (simultaneously extending the work of 
+ generalize the result of 
+\begin_inset CommandInset citation
+LatexCommand citeauthor
+key "alili-2002"
+
+\end_inset
+
+ greatly by studying a large class of non-semimartingale Gaussian processes
+ (simultaneously extending the work of 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "baudoin-coutin-2007"
@@ -175,7 +182,7 @@ key "baudoin-coutin-2007"
 \end_inset
 
 , which focuses on standard bridges of the same class of stochastic processes,
- known as a Gaussian Volterra process).
+ known as Gaussian Volterra processes).
  
 \end_layout
 
@@ -228,7 +235,7 @@ A conditioning on a path space is a tuple
 \begin_inset Formula $\left(Y,\nu\right)$
 \end_inset
 
- where:
+ where
 \end_layout
 
 \begin_deeper
@@ -244,7 +251,7 @@ A conditioning on a path space is a tuple
 \begin_inset Formula $\mathbb{R}$
 \end_inset
 
- representing the functional being conditioned, and
+ representing the functional being conditioned,
 \end_layout
 
 \begin_layout Enumerate
@@ -255,30 +262,32 @@ A conditioning on a path space is a tuple
 \begin_inset Formula $\mathcal{B}\left(\mathbb{R}\right)$
 \end_inset
 
- representing the conditioning.
- 
+ representing the conditioning, 
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-Let 
-\begin_inset Formula $\mathbb{P}_{Y}:=\mathbb{P}\circ Y^{-1}$
+\begin_layout Definition
+such that 
+\begin_inset Formula $\nu$
 \end_inset
 
- be the law of 
-\begin_inset Formula $Y$
+ is absolutely continuous with respect to 
+\begin_inset Formula $\mathbb{P}_{Y}$
 \end_inset
 
- under 
-\begin_inset Formula $\mathbb{P}$
+, 
+\begin_inset Formula $\mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(d\nu/d\mathbb{P}_{Y}\right)\right]$
 \end_inset
 
-.
- We will assume that for any 
+ is bounded for any convex function 
+\begin_inset Formula $\varphi:\mathbb{R}^{+}\rightarrow\mathbb{R}^{+}$
+\end_inset
+
+, and for any 
 \begin_inset Formula $t\in[0,1)$
 \end_inset
 
-, there exists a process 
+ there exists a process 
 \begin_inset Formula $\eta_{t}^{y}$
 \end_inset
 
@@ -303,58 +312,124 @@ measurable random variable
 \end_inset
 
 .
- In other words, we assume that 
-\begin_inset Formula $\mathbb{P}_{:t}\left(\cdot\mid Y=y\right)$
-\end_inset
-
- is absolutely continuous with respect to 
-\begin_inset Formula $\mathbb{P}_{:t}$
-\end_inset
-
- for any 
-\begin_inset Formula $t\in[0,1)$
-\end_inset
-
- with Radon-Nikodym derivative 
-\begin_inset Formula $\eta_{t}^{y}$
-\end_inset
-
-.
- Furthermore, we assume that 
-\begin_inset Formula $\nu$
-\end_inset
-
- is absolutely continuous with respect to 
-\begin_inset Formula $\mathbb{P}_{Y}$
-\end_inset
-
-.
- 
 \end_layout
 
 \begin_layout Standard
-These assumptions immediately give the following fact, formalizing the notion
- of the measure induced by conditioning a process on the distribution some
- of its functionals.
+Note we define 
+\begin_inset Formula $\mathbb{P}_{Y}:=\mathbb{P}\circ Y^{-1}$
+\end_inset
+
+ as the law of 
+\begin_inset Formula $Y$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+.
 \end_layout
 
-\begin_layout Claim
+\begin_layout Standard
+We now present a result characterizing a particular element in the set of
+ probability measures which are absolutely continuous and have a sufficiently
+ [FLAG: smooth?] density with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, and for which the law of 
+\begin_inset Formula $Y$
+\end_inset
+
+ with respect to any member of the set is 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
-name "claim:pv"
+name "thm:pv"
 
 \end_inset
 
-For any conditioning 
+Fix a conditioning 
 \begin_inset Formula $\left(Y,\nu\right)$
 \end_inset
 
- on a path space, there exists a unique probability measure 
+ on a path space and any convex function 
+\begin_inset Formula $\varphi:\mathbb{R}^{+}\rightarrow\mathbb{R}^{+}$
+\end_inset
+
+.
+ Consider the set of probability measures 
+\begin_inset Formula $\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
+\end_inset
+
+ such that for any 
+\begin_inset Formula $\mathbb{Q}\in\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
+\end_inset
+
+,
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ is absolutely continuous with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\mathbb{E}_{\mathbb{P}}\left[\varphi\left(d\mathbb{Q}/d\mathbb{P}\right)\right]$
+\end_inset
+
+ is bounded, and
+\end_layout
+
+\begin_layout Enumerate
+the law of 
+\begin_inset Formula $Y$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ is 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Theorem
+Then, for any 
+\begin_inset Formula $\mathbb{Q}\in\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
+\end_inset
+
+, 
+\begin_inset Formula 
+\[
+\inf_{\mathcal{Q}_{\nu,\varphi}}\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\right]=\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\right]
+\]
+
+\end_inset
+
+where 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- on 
-\begin_inset Formula $\mathcal{F}$
+ is the unique measure in 
+\begin_inset Formula $\mathcal{Q}_{\mathbb{P},\nu}=\bigcup_{\varphi}\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
 \end_inset
 
  such that for any bounded random variable 
@@ -365,27 +440,80 @@ For any conditioning
 \begin_inset Formula $\mathbb{E}_{\mathbb{P}^{\nu}}\left[X\mid Y\right]=\mathbb{E}_{\mathbb{P}}\left[X\mid Y\right]$
 \end_inset
 
-, and the law of 
-\begin_inset Formula $Y$
-\end_inset
+.
+\end_layout
 
- under 
-\begin_inset Formula $\mathbb{P}^{\nu}$
-\end_inset
-
- is 
-\begin_inset Formula $\nu$
+\begin_layout Proof
+Fix 
+\begin_inset Formula $\mathbb{Q}\in\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
 \end_inset
 
 .
- Furthermore, 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+ Then, since 
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
- can be disintegrated as 
+ is absolutely continuous with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, we know the density 
+\begin_inset Formula $d\mathbb{Q}/d\mathbb{P}$
+\end_inset
+
+ exists.
+ Since 
+\begin_inset Formula $\nu$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{P}_{Y}$
+\end_inset
+
+ are the restrictions of 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ to 
+\begin_inset Formula $\sigma\left(Y\right)$
+\end_inset
+
+, we have by the definition of conditional expectation as a Radon-Nikodym
+ derivative that
 \begin_inset Formula 
 \[
-\mathbb{P}^{\nu}=\int_{\mathbb{R}}\mathbb{P}\left(\cdot\mid Y=y\right)\nu\left(dy\right)
+\mathbb{E}_{\mathbb{Q}}\left[\frac{d\mathbb{Q}}{d\mathbb{P}}\mid Y\right]=\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)
+\]
+
+\end_inset
+
+ Then, by Jensen's inequality, we know 
+\begin_inset Formula 
+\begin{equation}
+\varphi\left(\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)\right)\leq\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\mid Y\right]\label{eq:jensens-pv}
+\end{equation}
+
+\end_inset
+
+and by taking the expectation of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:jensens-pv"
+
+\end_inset
+
+ on both sides with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, we conclude
+\begin_inset Formula 
+\[
+\mathbb{E}_{\nu}\left[\varphi\left(\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)\right)\right]\leq\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\right]
 \]
 
 \end_inset
@@ -393,43 +521,32 @@ For any conditioning
 
 \end_layout
 
-\begin_layout Proof
-asdf
-\end_layout
-
 \begin_layout Standard
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "claim:pv"
+reference "thm:pv"
 
 \end_inset
 
- says that for any conditioning 
-\begin_inset Formula $\left(Y,\nu\right)$
+ is a central result that says that the variance and entropy (among other
+ metrics) minimizing measure in 
+\begin_inset Formula $\mathcal{Q}_{\mathbb{P},\nu}$
 \end_inset
 
- on a path space, there is a unique probability 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+ is precisely the unique measure in 
+\begin_inset Formula $\mathcal{Q}_{\mathbb{P},\nu}$
 \end_inset
 
- such that 
-\begin_inset Formula $\mathbb{P}^{\nu}$
-\end_inset
-
- and 
+ which coincides with 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- coincide on all events independent of 
+ on events independent of 
 \begin_inset Formula $Y$
 \end_inset
 
- and the law of 
+ and with respect to which the law of 
 \begin_inset Formula $Y$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
  is 
@@ -438,6 +555,53 @@ reference "claim:pv"
 
 .
  
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ then, is the measure we have been looking for: a measure induced by conditionin
+g a functional of the canonical process on a reference path space to follow
+ a given law 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+ Of course, 
+\begin_inset Formula $\mathbb{P}^{\nu}=\mathbb{P}$
+\end_inset
+
+ if and only if 
+\begin_inset Formula $\nu=\mathbb{P}_{Y}$
+\end_inset
+
+, and we note that 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ can be disintegrated along the [FLAG: 
+\begin_inset Formula $\sigma-$
+\end_inset
+
+algebra] generated by 
+\begin_inset Formula $Y$
+\end_inset
+
+ as 
+\begin_inset Formula 
+\begin{equation}
+\mathbb{P}^{\nu}=\int_{\mathbb{R}}\mathbb{P}\left(\cdot\mid Y=y\right)\nu\left(dy\right)\label{eq:disintegrate-pv}
+\end{equation}
+
+\end_inset
+
+since the regular conditional probability 
+\begin_inset Formula $\mathbb{P}\left(\cdot\mid Y=y\right)$
+\end_inset
+
+ exists by the existence of 
+\begin_inset Formula $\eta_{t}^{y}$
+\end_inset
+
+.
 \end_layout
 
 \end_body
