@@ -94,10 +94,6 @@ name "chap:3"
 
 \end_layout
 
-\begin_layout Section
-Introduction
-\end_layout
-
 \begin_layout Standard
 In this chapter, we study a generalized notion of a bridge measure, where
  the reference path measure is not necessarily Markov, and the associated
@@ -183,11 +179,10 @@ key "baudoin-coutin-2007"
 
 , which focuses on standard bridges of the same class of stochastic processes,
  known as Gaussian Volterra processes).
- 
 \end_layout
 
 \begin_layout Standard
-A different way in which the notion of a bridge process has been extended
+A different axis along which the notion of a bridge process has been extended
  will be the focus of the remainder of this chapter.
  
 \end_layout
@@ -444,12 +439,25 @@ where
 \end_layout
 
 \begin_layout Proof
-Fix 
+First, note by the construction of a conditioning, there is a measure 
+\begin_inset Formula $\mathbb{P}_{\varphi}^{\nu}\in\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
+\end_inset
+
+ such that any bounded random variable 
+\begin_inset Formula $X:\Omega\rightarrow\mathbb{R}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbb{E}_{\mathbb{P}_{\varphi}^{\nu}}\left[X\mid Y\right]=\mathbb{E}_{\mathbb{P}}\left[X\mid Y\right]$
+\end_inset
+
+.
+ Now, fix 
 \begin_inset Formula $\mathbb{Q}\in\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
 \end_inset
 
 .
- Then, since 
+ Since 
 \begin_inset Formula $\mathbb{Q}$
 \end_inset
 
@@ -494,7 +502,7 @@ Fix
  Then, by Jensen's inequality, we know 
 \begin_inset Formula 
 \begin{equation}
-\varphi\left(\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)\right)\leq\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\mid Y\right]\label{eq:jensens-pv}
+\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\mid Y\right]\geq\varphi\left(\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)\right)\label{eq:jensens-pv}
 \end{equation}
 
 \end_inset
@@ -507,13 +515,67 @@ reference "eq:jensens-pv"
 \end_inset
 
  on both sides with respect to 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{P}_{Y}$
 \end_inset
 
 , we conclude
 \begin_inset Formula 
 \[
-\mathbb{E}_{\nu}\left[\varphi\left(\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)\right)\right]\leq\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\right]
+\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\right]\geq\mathbb{E}_{\mathbb{P}_{Y}}\left[\left(\varphi\circ\frac{d\nu}{d\mathbb{P}_{Y}}\right)\left(Y\right)\right]
+\]
+
+\end_inset
+
+By the definition of conditional expectation, note
+\begin_inset Formula 
+\[
+\mathbb{E}_{\mathbb{P}_{Y}}\left[\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)\right]=\mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right]
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right) & = & \mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\\
+\left(\varphi\circ\frac{d\nu}{d\mathbb{P}_{Y}}\right)\left(Y\right) & = & \varphi\left(\mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\leq\mathbb{E}_{\mathbb{P}^{\nu}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\mid Y\right]\\
+\mathbb{E}_{\mathbb{P}_{Y}}\left[\left(\varphi\circ\frac{d\nu}{d\mathbb{P}_{Y}}\right)\left(Y\right)\right] & = & \mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\right]\\
+ & = & \mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\mathbb{E}_{\mathbb{P}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\right]\\
+ & \geq & \varphi\left(\mathbb{E}_{\mathbb{P}_{Y}}\left[\mathbb{E}_{\mathbb{P}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right]\right)\\
+ & = & \varphi\left(\mathbb{E}_{\mathbb{P}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right]\right)\\
+ & \leq & \mathbb{E}_{\mathbb{P}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\right]
+\end{eqnarray*}
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\right]=\mathbb{E}_{\mathbb{Q}}\left[\mathbb{E}_{\nu}\left[\varphi\left(\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)\right)\mid Y\right]\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathbb{E}_{\mathbb{Q}}\left[\mathbb{E}_{\mathbb{P}}\left[X\mid Y\right]\right]=\mathbb{E}_{\mathbb{P}}\left[X\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathbb{E}_{\nu}\left[\left(\varphi\circ\frac{d\nu}{d\mathbb{P}_{Y}}\right)\left(Y\right)\mid\cdot\right]=\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\varphi\left(\mathbb{E}\left[X\right]\right)\leq\mathbb{E}\left[\varphi\left(X\right)\right]
 \]
 
 \end_inset
@@ -528,8 +590,12 @@ reference "thm:pv"
 
 \end_inset
 
- is a central result that says that the variance and entropy (among other
- metrics) minimizing measure in 
+ is a central result that says that the variance and entropy minimizing
+ measure (with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+) in 
 \begin_inset Formula $\mathcal{Q}_{\mathbb{P},\nu}$
 \end_inset
 
@@ -545,21 +611,13 @@ reference "thm:pv"
 \begin_inset Formula $Y$
 \end_inset
 
- and with respect to which the law of 
-\begin_inset Formula $Y$
-\end_inset
-
- is 
-\begin_inset Formula $\nu$
-\end_inset
-
 .
  
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- then, is the measure we have been looking for: a measure induced by conditionin
-g a functional of the canonical process on a reference path space to follow
+ then, is the measure we have been looking for: the measure induced by condition
+ing a functional of the canonical process on a reference path space to follow
  a given law 
 \begin_inset Formula $\nu$
 \end_inset
