@@ -70,32 +70,55 @@
 \begin_body
 
 \begin_layout Chapter
-Appendix
+Characterizing Markov 
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset label
-LatexCommand label
-name "ch:Appendix"
-
+In this chapter, we characterize the marginal density of a Markov process
+ conditioned on the law of its initial and end values.
+ From this characterization, we propose a natural simulation strategy to
+ estimate this density.
+ In this chapter, we return to the space of Markov measures 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
-
+ on the usual path space.
 \end_layout
 
 \begin_layout Section
-Brownian Bridge Transition Density
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Full-Brownian-Bridge-Transition-Derivation"
-
-\end_inset
-
-
+The Marginal Density of a Markov Law-Bridge
 \end_layout
 
 \begin_layout Standard
-asdf
+We will use the machinery developed the preceding part to characterize the
+ marginal density at 
+\begin_inset Formula $t\in\left(0,1\right)$
+\end_inset
+
+ of a Markov process conditioned on the law of its initial and end values.
+ Consider a conditioning 
+\begin_inset Formula $\left(Y,\nu\right)=\left(\left(X_{0},X_{1}\right),\nu\right)$
+\end_inset
+
+ on a Markov space.
+ We assume that 
+\begin_inset Formula $\nu$
+\end_inset
+
+ is absolutely continuous with respect to 
+\begin_inset Formula $\mathbb{P}_{Y}$
+\end_inset
+
+, and that 
+\begin_inset Formula $\mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(d\nu/d\mathbb{P}_{Y}\right)\right]$
+\end_inset
+
+ is bounded for any convex function 
+\begin_inset Formula $\varphi:\mathbb{R}^{+}\rightarrow\mathbb{R}^{+}$
+\end_inset
+
+.
+ 
 \end_layout
 
 \end_body

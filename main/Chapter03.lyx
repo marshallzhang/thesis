@@ -188,7 +188,7 @@ A different axis along which the notion of a bridge process has been extended
 \end_layout
 
 \begin_layout Section
-Law-Conditioned
+Processes Conditioned on the Law of Their Functionals
 \end_layout
 
 \begin_layout Standard
@@ -243,7 +243,7 @@ A conditioning on a path space is a tuple
 \end_inset
 
 -measurable random variable valued in 
-\begin_inset Formula $\mathbb{R}$
+\begin_inset Formula $\mathbb{R}^{n}$
 \end_inset
 
  representing the functional being conditioned,
@@ -254,7 +254,7 @@ A conditioning on a path space is a tuple
 \end_inset
 
  is a probability measure on 
-\begin_inset Formula $\mathcal{B}\left(\mathbb{R}\right)$
+\begin_inset Formula $\mathcal{B}\left(\mathbb{R}^{n}\right)$
 \end_inset
 
  representing the conditioning, 
@@ -287,7 +287,7 @@ such that
 \end_inset
 
  for all 
-\begin_inset Formula $y\in\mathbb{R}$
+\begin_inset Formula $y\in\mathbb{R}^{n}$
 \end_inset
 
  such that for any 
@@ -328,7 +328,21 @@ Note we define
 \begin_layout Standard
 We now present a result characterizing a particular element in the set of
  probability measures which are absolutely continuous and have a sufficiently
- [FLAG: smooth?] density with respect to 
+ smooth 
+\begin_inset Marginal
+status collapsed
+
+\begin_layout Plain Layout
+Is smooth the right word to describe 
+\begin_inset Formula $\mathbb{E}_{\mathbb{Q}}\left(d\mathbb{Q}/d\mathbb{P}\right)$
+\end_inset
+
+ being bounded?
+\end_layout
+
+\end_inset
+
+ density with respect to 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -383,7 +397,7 @@ Fix a conditioning
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $\mathbb{E}_{\mathbb{P}}\left[\varphi\left(d\mathbb{Q}/d\mathbb{P}\right)\right]$
+\begin_inset Formula $\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(d\mathbb{Q}/d\mathbb{P}\right)\right]$
 \end_inset
 
  is bounded, and
@@ -414,7 +428,7 @@ Then, for any
 , 
 \begin_inset Formula 
 \[
-\inf_{\mathcal{Q}_{\nu,\varphi}}\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\right]=\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\right]
+\inf_{\mathcal{Q}_{\nu,\varphi}}\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\right]=\mathbb{E}_{\mathbb{P}^{\nu}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\right]
 \]
 
 \end_inset
@@ -470,31 +484,11 @@ First, note by the construction of a conditioning, there is a measure
 \end_inset
 
  exists.
- Since 
-\begin_inset Formula $\nu$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbb{P}_{Y}$
-\end_inset
-
- are the restrictions of 
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- to 
-\begin_inset Formula $\sigma\left(Y\right)$
-\end_inset
-
-, we have by the definition of conditional expectation as a Radon-Nikodym
+ We have by the definition of conditional expectation as a Radon-Nikodym
  derivative that
 \begin_inset Formula 
 \[
-\mathbb{E}_{\mathbb{Q}}\left[\frac{d\mathbb{Q}}{d\mathbb{P}}\mid Y\right]=\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)
+\mathbb{E}_{\mathbb{Q}}\left[\frac{d\mathbb{Q}}{d\mathbb{P}}\mid Y\right]=\mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]=\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)
 \]
 
 \end_inset
@@ -518,65 +512,23 @@ reference "eq:jensens-pv"
 \begin_inset Formula $\mathbb{P}_{Y}$
 \end_inset
 
-, we conclude
-\begin_inset Formula 
-\[
-\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\right]\geq\mathbb{E}_{\mathbb{P}_{Y}}\left[\left(\varphi\circ\frac{d\nu}{d\mathbb{P}_{Y}}\right)\left(Y\right)\right]
-\]
-
-\end_inset
-
-By the definition of conditional expectation, note
-\begin_inset Formula 
-\[
-\mathbb{E}_{\mathbb{P}_{Y}}\left[\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)\right]=\mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right]
-\]
-
-\end_inset
-
- 
+, we find 
 \begin_inset Formula 
 \begin{eqnarray*}
-\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right) & = & \mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\\
-\left(\varphi\circ\frac{d\nu}{d\mathbb{P}_{Y}}\right)\left(Y\right) & = & \varphi\left(\mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\leq\mathbb{E}_{\mathbb{P}^{\nu}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\mid Y\right]\\
-\mathbb{E}_{\mathbb{P}_{Y}}\left[\left(\varphi\circ\frac{d\nu}{d\mathbb{P}_{Y}}\right)\left(Y\right)\right] & = & \mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\right]\\
- & = & \mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\mathbb{E}_{\mathbb{P}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\right]\\
- & \geq & \varphi\left(\mathbb{E}_{\mathbb{P}_{Y}}\left[\mathbb{E}_{\mathbb{P}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right]\right)\\
- & = & \varphi\left(\mathbb{E}_{\mathbb{P}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right]\right)\\
- & \leq & \mathbb{E}_{\mathbb{P}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\right]
+\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\right] & \geq & \mathbb{E}_{\mathbb{P}_{Y}}\left[\left(\varphi\circ\frac{d\nu}{d\mathbb{P}_{Y}}\right)\left(Y\right)\right]\\
+ & = & \mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\right]\\
+ & \geq & \varphi\left(\mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right]\right)
 \end{eqnarray*}
 
 \end_inset
 
- 
-\begin_inset Formula 
-\[
-\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\right]=\mathbb{E}_{\mathbb{Q}}\left[\mathbb{E}_{\nu}\left[\varphi\left(\frac{d\nu}{d\mathbb{P}_{Y}}\left(Y\right)\right)\mid Y\right]\right]
-\]
-
-\end_inset
-
 
 \begin_inset Formula 
-\[
-\mathbb{E}_{\mathbb{Q}}\left[\mathbb{E}_{\mathbb{P}}\left[X\mid Y\right]\right]=\mathbb{E}_{\mathbb{P}}\left[X\right]
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\mathbb{E}_{\nu}\left[\left(\varphi\circ\frac{d\nu}{d\mathbb{P}_{Y}}\right)\left(Y\right)\mid\cdot\right]=\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\varphi\left(\mathbb{E}\left[X\right]\right)\leq\mathbb{E}\left[\varphi\left(X\right)\right]
-\]
+\begin{eqnarray*}
+\mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\right] & = & \mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\mathbb{E}_{\mathbb{P}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\right]\\
+ & = & \mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\mathbb{E}_{\mathbb{P}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\right]\\
+ & = & \mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\frac{d\mathbb{P}_{Y}}{d\mathbb{P}}\left(Y\right)\right)\right]
+\end{eqnarray*}
 
 \end_inset
 
@@ -612,13 +564,12 @@ reference "thm:pv"
 \end_inset
 
 .
- 
+ In particular, 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- then, is the measure we have been looking for: the measure induced by condition
-ing a functional of the canonical process on a reference path space to follow
- a given law 
+ is the measure induced by conditioning a functional of the canonical process
+ on a reference path space to follow a given law 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -635,18 +586,36 @@ ing a functional of the canonical process on a reference path space to follow
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- can be disintegrated along the [FLAG: 
+ can be disintegrated along the 
 \begin_inset Formula $\sigma-$
 \end_inset
 
-algebra] generated by 
+algebra 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Is 
+\begin_inset Formula $\sigma-$
+\end_inset
+
+algebra the right word for the thing we disintegrate 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ along?
+\end_layout
+
+\end_inset
+
+generated by 
 \begin_inset Formula $Y$
 \end_inset
 
  as 
 \begin_inset Formula 
 \begin{equation}
-\mathbb{P}^{\nu}=\int_{\mathbb{R}}\mathbb{P}\left(\cdot\mid Y=y\right)\nu\left(dy\right)\label{eq:disintegrate-pv}
+\mathbb{P}^{\nu}=\int_{\mathbb{R}^{n}}\mathbb{P}\left(\cdot\mid Y=y\right)\nu\left(dy\right)\label{eq:disintegrate-pv}
 \end{equation}
 
 \end_inset
@@ -660,6 +629,117 @@ since the regular conditional probability
 \end_inset
 
 .
+ 
+\end_layout
+
+\begin_layout Standard
+Having formalized the notion of conditioning a reference measure on functionals
+ of its canonical process, the density of 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ restricted to some time 
+\begin_inset Formula $t\in\left(0,1\right)$
+\end_inset
+
+ follows easily.
+\end_layout
+
+\begin_layout Proposition
+For any 
+\begin_inset Formula $t\in\left(0,1\right)$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbb{P}_{t}^{\nu}$
+\end_inset
+
+ is absolutely continuous with respect to 
+\begin_inset Formula $\mathbb{P}_{t}$
+\end_inset
+
+, and the density of 
+\begin_inset Formula $\mathbb{P}_{t}^{\nu}$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mathbb{P}_{t}$
+\end_inset
+
+ is given by 
+\begin_inset Formula 
+\[
+\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathbb{R}^{n}}\eta_{t}^{y}\nu\left(dy\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Fix 
+\begin_inset Formula $t\in\left(0,1\right)$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $X$
+\end_inset
+
+ be any bounded and 
+\begin_inset Formula $\mathcal{F}_{t}-$
+\end_inset
+
+measurable random variable.
+ By 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:disintegrate-pv"
+
+\end_inset
+
+, we can write 
+\begin_inset Formula 
+\begin{equation}
+\mathbb{E}_{\mathbb{P}^{\nu}}\left[X\right]=\int_{\mathbb{R}^{n}}\mathbb{E}_{\mathbb{P}}\left[X\mid Y=y\right]\nu\left(dy\right)\label{eq:expectation-pv-disintegrate}
+\end{equation}
+
+\end_inset
+
+By the construction of a conditioning, we recall 
+\begin_inset Formula $\mathbb{E}_{\mathbb{P}}\left[X\mid Y=y\right]=\mathbb{E}_{\mathbb{P}}\left[\eta_{t}^{y}X\right]$
+\end_inset
+
+, and applying Fubini's theorem (which also holds by the construction of
+ a conditioning) to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:expectation-pv-disintegrate"
+
+\end_inset
+
+, we find 
+\begin_inset Formula 
+\[
+\mathbb{E}_{\mathbb{P}^{\nu}}\left[X\right]=\mathbb{E}_{\mathbb{P}}\left[X\int_{\mathbb{R}^{n}}\eta_{t}^{y}\nu\left(dy\right)\right]
+\]
+
+\end_inset
+
+The desired result follows immediately from the fact that 
+\begin_inset Formula $X$
+\end_inset
+
+ is any bounded and 
+\begin_inset Formula $\mathcal{F}_{t}-$
+\end_inset
+
+measurable random variable.
 \end_layout
 
 \end_body
