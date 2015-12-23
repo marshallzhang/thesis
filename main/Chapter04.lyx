@@ -4,6 +4,10 @@
 \begin_header
 \textclass classicthesis
 \use_default_options true
+\begin_modules
+theorems-ams
+theorems-chap
+\end_modules
 \maintain_unincluded_children false
 \language american
 \language_package default
@@ -96,12 +100,44 @@ We will use the machinery developed the preceding part to characterize the
 \end_inset
 
  of a Markov process conditioned on the law of its initial and end values.
- Consider a conditioning 
+ 
+\end_layout
+
+\begin_layout Proposition
+Consider a conditioning 
 \begin_inset Formula $\left(Y,\nu\right)=\left(\left(X_{0},X_{1}\right),\nu\right)$
 \end_inset
 
- on a Markov space.
- We assume that 
+ on the usual Markov space 
+\begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right),\mathbb{P}\right)$
+\end_inset
+
+.
+ Then, the density of the marginal generalized bridge measure 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ of 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ at 
+\begin_inset Formula $t$
+\end_inset
+
+ is given by 
+\begin_inset Formula 
+\[
+\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathbb{R}^{2}}\frac{r_{0,t}^{*}\left(x_{0},X_{t}\right)r_{t,1}\left(X_{t},x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
+\]
+
+\end_inset
+
+Furthermore, if 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -109,16 +145,55 @@ We will use the machinery developed the preceding part to characterize the
 \begin_inset Formula $\mathbb{P}_{Y}$
 \end_inset
 
-, and that 
-\begin_inset Formula $\mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(d\nu/d\mathbb{P}_{Y}\right)\right]$
+, then 
+\begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- is bounded for any convex function 
-\begin_inset Formula $\varphi:\mathbb{R}^{+}\rightarrow\mathbb{R}^{+}$
+ is a Markov measure.
+\end_layout
+
+\begin_layout Proof
+Consider any 
+\begin_inset Formula $t\in[0,1)$
 \end_inset
 
 .
- 
+ By 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "thm:density-of-bridge"
+
+\end_inset
+
+, we know that 
+\begin_inset Formula 
+\[
+\eta_{t}^{y}=\frac{r_{0,t}^{*}\left(x_{0},X_{t}\right)r_{t,1}\left(X_{t},x_{1}\right)}{c\left(x_{0},x_{1}\right)}
+\]
+
+\end_inset
+
+is the Radon-Nikodym derivative associated with the conditioning 
+\begin_inset Formula $\left(Y,\nu\right)$
+\end_inset
+
+.
+ Then, by 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prop:pv-density"
+
+\end_inset
+
+, we immediately see that 
+\begin_inset Formula 
+\[
+\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathbb{R}^{2}}\frac{r_{0,t}^{*}\left(x_{0},X_{t}\right)r_{t,1}\left(X_{t},x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
+\]
+
+\end_inset
+
+
 \end_layout
 
 \end_body

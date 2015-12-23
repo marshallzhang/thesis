@@ -473,24 +473,44 @@ name "thm:markov-construction-thm"
 \end_inset
 
 Fix 
-\begin_inset Formula $0\leq s\leq t\leq u\leq1$
+\begin_inset Formula $t\in\left[0,1\right]$
 \end_inset
 
-.
- Let 
+ and let 
 \begin_inset Formula $\mathbb{P}_{t}$
 \end_inset
 
- be a marginal probability measure and 
-\begin_inset Formula $P_{t,u}\left(x,\cdot\right)$
+ be a marginal probability measure.
+ Then, for 
+\begin_inset Formula $t\leq u\leq v\leq1$
 \end_inset
 
- and 
-\begin_inset Formula $P_{s,t}^{*}\left(\cdot,y\right)$
+, let 
+\begin_inset Formula $P_{u,v}\left(x,\cdot\right)$
 \end_inset
 
- be transition kernels for 
-\begin_inset Formula $\left(x,y\right)\in\Omega_{t}$
+ be the forward transition kernel from time 
+\begin_inset Formula $t$
+\end_inset
+
+ for 
+\begin_inset Formula $x\in\Omega_{u}$
+\end_inset
+
+, and for 
+\begin_inset Formula $0\leq r\leq s\leq t$
+\end_inset
+
+, let 
+\begin_inset Formula $P_{r,s}^{*}\left(\cdot,y\right)$
+\end_inset
+
+ be the backward transition kernel from time 
+\begin_inset Formula $t$
+\end_inset
+
+ for 
+\begin_inset Formula $y\in\Omega_{s}$
 \end_inset
 
 .
@@ -561,6 +581,25 @@ This result says that there is one and only one Markov process with a marginal
 
 , only a single transition kernel (forward or backward, respectively) is
  needed to construct a unique Markov measure.
+\end_layout
+
+\begin_layout Example
+The standard Wiener measure 
+\begin_inset Formula $\mathbb{W}$
+\end_inset
+
+ on the Wiener space is uniquely determined by the marginal measure and
+ transition kernels 
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{W}_{0}\left(A\right) & = & \delta\left(A\right)\\
+W_{u,v}\left(x,A\right) & = & \frac{1}{\sqrt{2\pi\left(v-u\right)}}\int_{A}\exp\left\{ -\frac{\left(y-x\right)^{2}}{2\left(v-u\right)^{2}}\right\} dy\\
+W_{r,s}^{*}\left(B,y\right) & = & 1
+\end{eqnarray*}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -756,11 +795,24 @@ Before continuing, we set a reference Markov measure
 \begin_inset Formula $\mathbb{R}^{x,y}$
 \end_inset
 
- that are defined everywhere, and the transition kernels of 
+ that are defined everywhere, and the transition kernels 
+\begin_inset Formula $R_{s,t}\left(x,\cdot\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{s,t}^{*}\left(\cdot,y\right)$
+\end_inset
+
+ of 
 \begin_inset Formula $\mathbb{R}$
 \end_inset
 
- are absolutely continuous with respect to the Lebesgue measure.
+ are absolutely continuous with respect to the Lebesgue measure for any
+ 
+\begin_inset Formula $0\leq s<t\leq1$
+\end_inset
+
+.
  Then, by the Radon-Nikodym theorem and the usual assumptions 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -803,7 +855,7 @@ We can also write
 \end_inset
 
 , defining 
-\begin_inset Formula $c\left(x,y\right)=r\left(y,1\mid x,0\right)r_{0}\left(x\right)=r^{*}\left(x,0\mid y,1\right)r_{1}\left(y\right)$
+\begin_inset Formula $c\left(x,y\right)=r_{0}\left(x\right)r_{0,1}\left(x,y\right)=r_{0,1}^{*}\left(x,y\right)r_{1}\left(y\right)$
 \end_inset
 
  as the density of the joint marginal measure 
@@ -1193,6 +1245,119 @@ reference "thm:density-of-bridge"
  is absolutely continuous with respect to the Lebesgue measure, we can therefore
  recover the density of the bridge measure 
 \begin_inset Formula $\mathbb{R}_{t}^{x,y}$
+\end_inset
+
+ with respect to the Lebesgue measure.
+ 
+\end_layout
+
+\begin_layout Example
+We consider again the standard Wiener measure 
+\begin_inset Formula $\mathbb{W}$
+\end_inset
+
+ on a Wiener space.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "levy-1948"
+
+\end_inset
+
+ shows that the bridge 
+\begin_inset Formula $\mathbb{W}^{x,y}$
+\end_inset
+
+ of this measure exists, and it is well-known that 
+\begin_inset Formula $\mathbb{W}$
+\end_inset
+
+ is absolutely continuous with respect to the Lebesgue measure.
+ So, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:density-of-bridge"
+
+\end_inset
+
+ applies.
+ The transition densities are given, for any 
+\begin_inset Formula $0\leq s\leq t\leq1$
+\end_inset
+
+ and 
+\begin_inset Formula $x,y\in\mathbb{R}$
+\end_inset
+
+, as 
+\begin_inset Formula 
+\begin{eqnarray*}
+w_{s,t}\left(z,y\right) & = & \frac{1}{\sqrt{2\pi\left(t-s\right)}}\exp\left\{ -\frac{\left(y-z\right)^{2}}{2\left(t-s\right)^{2}}\right\} \\
+w_{s,t}^{*}\left(z,y\right) & = & 1\\
+c\left(x,y\right) & = & \delta\left(x\right)\frac{1}{\sqrt{2\pi}}\exp\left\{ -\frac{\left(y-x\right)^{2}}{2}\right\} 
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, the density of 
+\begin_inset Formula $\mathbb{W}^{x,y}$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mathbb{W}$
+\end_inset
+
+ is given by 
+\begin_inset Formula 
+\[
+\frac{d\mathbb{W}^{x,y}}{d\mathbb{W}}=
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+r_{s,t}\left(x,y\right) & = & R_{s,t}\left(x,dy\right)/dy\\
+r_{s,t}^{*}\left(x,y\right) & = & R_{s,t}^{*}\left(dx,y\right)/dx,\mbox{ }
+\end{eqnarray*}
+
+\end_inset
+
+defined almost everywhere with respect to the appropriate measures.
+\end_layout
+
+\begin_layout Standard
+We can also write 
+\begin_inset Formula $\mathbb{R}_{0}\left(dx\right)=r_{0}\left(x\right)dx$
+\end_inset
+
+ where 
+\begin_inset Formula $r_{0}\left(x\right)=\int r_{0,1}^{*}\left(x,y\right)\mathbb{R}_{1}\left(dy\right)$
+\end_inset
+
+ is the density of the marginal measure 
+\begin_inset Formula $\mathbb{R}_{0}$
+\end_inset
+
+ with respect to the Lebesgue measure, and let the density 
+\begin_inset Formula $r_{1}\left(x\right)$
+\end_inset
+
+ be analogous using the forward transition density.
+ For convenience, we will write 
+\begin_inset Formula $\mathbb{R}_{0,1}\left(dxdy\right)=c\left(x,y\right)dxdy$
+\end_inset
+
+, defining 
+\begin_inset Formula $c\left(x,y\right)=r_{0}\left(x\right)r_{0,1}\left(x,y\right)=r_{0,1}^{*}\left(x,y\right)r_{1}\left(y\right)$
+\end_inset
+
+ as the density of the joint marginal measure 
+\begin_inset Formula $\mathbb{R}_{0,1}$
 \end_inset
 
  with respect to the Lebesgue measure.
