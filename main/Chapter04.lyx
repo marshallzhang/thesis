@@ -227,8 +227,12 @@ dX_{t}=\mu\left(X_{t}\right)dt+\sigma\left(X_{t}\right)dW_{t}
 
 \end_inset
 
-induce a probability measure 
-\begin_inset Formula $\mathbb{P}$
+where 
+\begin_inset Formula $X_{0}=x$
+\end_inset
+
+ induce a probability measure 
+\begin_inset Formula $\mathbb{P}_{x}$
 \end_inset
 
  on the space.
@@ -237,61 +241,58 @@ induce a probability measure
 
 \begin_layout Theorem
 Now, let 
-\begin_inset Formula $W^{\left(1\right)}$
+\begin_inset Formula $W^{1}$
 \end_inset
 
  and 
-\begin_inset Formula $W^{\left(2\right)}$
+\begin_inset Formula $W^{2}$
 \end_inset
 
- be independent standard Wiener processes, and for 
-\begin_inset Formula $i=1,\dots,N$
+ be independent standard Wiener processes, and draw 
+\begin_inset Formula $\left(A,B\right)\sim\nu$
 \end_inset
 
-, let 
-\begin_inset Formula $\mathbf{X}^{\left(i\right)}$
+.
+ Then, let 
+\begin_inset Formula $\mathbf{X}$
 \end_inset
 
  be the solution to 
 \begin_inset Formula 
 \[
-\begin{bmatrix}d\mathbf{X}_{t,1}^{\left(i\right)}\\
-d\mathbf{X}_{t,2}^{\left(i\right)}
-\end{bmatrix}=\begin{bmatrix}\mu\left(\mathbf{X}_{t,1}^{\left(i\right)}\right)\\
-\mu\left(\mathbf{X}_{t,2}^{\left(i\right)}\right)
-\end{bmatrix}dt+\begin{bmatrix}\sigma\left(\mathbf{X}_{t,1}^{\left(i\right)}\right) & 0\\
-0 & \sigma\left(\mathbf{X}_{t,2}^{\left(i\right)}\right)
-\end{bmatrix}\begin{bmatrix}dW_{t}^{\left(i\right)}\\
-dW_{t}^{\left(N+i\right)}
+\begin{bmatrix}d\mathbf{X}_{t}^{1}\\
+d\mathbf{X}_{t}^{2}
+\end{bmatrix}=\begin{bmatrix}\mu\left(\mathbf{X}_{t}^{1}\right)\\
+\mu\left(\mathbf{X}_{t}^{2}\right)
+\end{bmatrix}dt+\begin{bmatrix}\sigma\left(\mathbf{X}_{t}^{1}\right) & 0\\
+0 & \sigma\left(\mathbf{X}_{t}^{2}\right)
+\end{bmatrix}\begin{bmatrix}dW_{t}^{1}\\
+dW_{t}^{2}
 \end{bmatrix}
 \]
 
 \end_inset
 
 where 
-\begin_inset Formula $\bar{\mathbf{X}}_{0}^{\left(i\right)}=\left(\bar{x}^{\left(i\right)},\bar{y}^{\left(i\right)}\right)$
-\end_inset
-
- are drawn from 
-\begin_inset Formula $\nu$
+\begin_inset Formula $\mathbf{X}_{0}=\left(A,B\right)$
 \end_inset
 
 .
  Furthermore, let 
-\begin_inset Formula $\tau^{\left(i\right)}=\inf\left\{ t\in\left[0,1\right]\mid\mathbf{X}_{t,1}^{\left(i\right)}=\mathbf{X}_{t,2}^{\left(i\right)}\right\} $
+\begin_inset Formula $\tau=\inf\left\{ t\in\left[0,1\right]\mid\mathbf{X}_{t}^{1}=\mathbf{X}_{t}^{2}\right\} $
 \end_inset
 
- where 
-\begin_inset Formula $\inf\varnothing:=\infty$
+ and assume 
+\begin_inset Formula $\tau$
 \end_inset
 
-.
+ is finite.
  Define 
 \begin_inset Formula 
 \[
-Z_{t}^{\left(i\right)}:=\begin{cases}
-\mathbf{X}_{t,1}^{\left(i\right)} & \mbox{if }0\leq t\leq\tau^{\left(i\right)}\\
-\mathbf{X}_{1-t,2}^{\left(i\right)} & \mbox{if }\tau^{\left(i\right)}<t\leq1
+Z_{t}:=\begin{cases}
+\mathbf{X}_{t}^{1} & \mbox{if }0\leq t\leq\tau\\
+\mathbf{X}_{1-t}^{2} & \mbox{if }\tau<t\leq1
 \end{cases}
 \]
 
@@ -303,11 +304,11 @@ for each
 
 .
  Then, the measure 
-\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\tau^{\left(i\right)}<1\right)$
+\begin_inset Formula $\mathbb{Z}$
 \end_inset
 
-, which we assume exists and is defined everywhere, induced by 
-\begin_inset Formula $\left\{ Z^{\left(i\right)}\right\} _{i=1,\dots,N}$
+ induced by 
+\begin_inset Formula $Z$
 \end_inset
 
  is equal to 
@@ -319,73 +320,72 @@ for each
 
 \begin_layout Proof
 Let 
-\begin_inset Formula $W^{\left(i\right)*}$
+\begin_inset Formula $W^{*}$
 \end_inset
 
  be a standard Wiener process independent of 
-\begin_inset Formula $\{W^{\left(i\right)}\}_{i=1,\dots,2N}$
+\begin_inset Formula $W^{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $W^{2}$
 \end_inset
 
 , and let 
-\begin_inset Formula $X^{\left(i\right)*}$
+\begin_inset Formula $X^{*}$
 \end_inset
 
  be the solution of 
 \begin_inset Formula 
 \[
-dX_{t}^{\left(i\right)*}=\mu\left(X_{t}^{\left(i\right)*}\right)dt+\sigma\left(X_{t}^{\left(i\right)*}\right)dW_{t}^{\left(i\right)*}
+dX_{t}^{*}=\mu\left(X_{t}^{*}\right)dt+\sigma\left(X_{t}^{*}\right)dW_{t}^{*}
 \]
 
 \end_inset
 
 Let 
-\begin_inset Formula $\rho^{\left(i\right)}=\inf\left\{ t\in\left[0,1\right]\mid X_{t}^{\left(i\right)*}=\mathbf{X}_{t,1}^{\left(i\right)}\right\} $
+\begin_inset Formula $\rho=\inf\left\{ t\in\left[0,1\right]\mid X_{t}^{*}=\mathbf{X}_{t}^{1}\right\} $
 \end_inset
 
 .
  Define a process 
-\begin_inset Formula $Y^{\left(i\right)}$
+\begin_inset Formula $Y$
 \end_inset
 
- such that 
+ such that
 \begin_inset Formula 
-\begin{eqnarray*}
-Y_{t}^{\left(i\right)}\mid\rho^{\left(i\right)}<1 & = & \begin{cases}
-\mathbf{X}_{t,1}^{\left(i\right)} & \mbox{if }0\leq t\leq\rho^{\left(i\right)}\\
-X^{\left(i\right)*} & \mbox{if }\rho^{\left(i\right)}<t\leq1
-\end{cases}\\
-Y_{t}^{\left(i\right)}\mid\rho^{\left(i\right)}\geq1 & = & \mathbf{X}_{t,1}^{\left(i\right)}
-\end{eqnarray*}
+\[
+Y_{t}=\begin{cases}
+\mathbf{X}_{t}^{1} & \mbox{if }0\leq t\leq\rho\leq1\mbox{ or }\rho=\infty\\
+X_{t}^{*} & \mbox{if }\rho<t\leq1
+\end{cases}
+\]
 
 \end_inset
 
 Let 
-\begin_inset Formula $\mathbb{Q}^{\left(i\right)}$
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
  be the measure induced by 
-\begin_inset Formula $Y_{t}^{\left(i\right)}$
+\begin_inset Formula $Y_{t}$
 \end_inset
 
 .
  By the strong Markov property, we know 
-\begin_inset Formula $\mathbb{Q}^{\left(i\right)}=\mathbb{P}$
+\begin_inset Formula $\mathbb{Q}\left(\cdot\mid Y_{0}=a\right)=\mathbb{Q}\left(\cdot\mid\mathbf{X}_{0}^{1}=a\right)=\mathbb{P}_{x}$
 \end_inset
 
 .
- By definition, 
+ Furthermore, we know that 
 \begin_inset Formula 
 \[
-\mathbb{Q}^{\left(i\right)}\left(\cdot\mid Y_{1}^{\left(i\right)}=\bar{y}^{\left(i\right)},\rho^{\left(i\right)}<1\right)=\mathbb{Q}^{\left(i\right)}\left(\cdot\mid X^{\left(i\right)*}=\bar{y}^{\left(i\right)},\rho^{\left(i\right)}<1\right)
+\mathbb{Q}\left(\cdot\mid Y_{0}=a,Y_{1}=b,\rho\leq1\right)=\mathbb{Q}\left(\cdot\mid\mathbf{X}_{0}^{1}=a,X_{1}^{*}=b,\rho\leq1\right)
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Proof
-asdfasdf
 \end_layout
 
 \begin_layout Proof
