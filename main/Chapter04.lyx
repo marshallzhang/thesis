@@ -219,13 +219,29 @@ Fix a conditioning
 \begin_inset Formula $\mathbb{R}$
 \end_inset
 
- with a Markov measure 
+, and let the solution to the stochastic differential equation 
+\begin_inset Formula 
+\[
+dX_{t}=\mu\left(X_{t}\right)dt+\sigma\left(X_{t}\right)dW_{t}
+\]
+
+\end_inset
+
+induce a probability measure 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
-.
- Let 
-\begin_inset Formula $W^{\left(1\right)},\dots,W^{\left(2N\right)}$
+ on the space.
+ 
+\end_layout
+
+\begin_layout Theorem
+Now, let 
+\begin_inset Formula $W^{\left(1\right)}$
+\end_inset
+
+ and 
+\begin_inset Formula $W^{\left(2\right)}$
 \end_inset
 
  be independent standard Wiener processes, and for 
@@ -286,15 +302,19 @@ for each
 \end_inset
 
 .
- Then, the distribution of 
-\begin_inset Formula $\left\{ Z^{\left(i\right)}\mid\tau^{\left(i\right)}<1\right\} $
+ Then, the measure 
+\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\tau^{\left(i\right)}<1\right)$
 \end_inset
 
- is equal to the distribution of the canonical process under 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+, which we assume exists and is defined everywhere, induced by 
+\begin_inset Formula $\left\{ Z^{\left(i\right)}\right\} _{i=1,\dots,N}$
 \end_inset
 
-, conditional on __________________.
+ is equal to 
+\begin_inset Formula $\mathbb{P}^{\nu}\left(\cdot\mid\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Proof
@@ -318,17 +338,8 @@ dX_{t}^{\left(i\right)*}=\mu\left(X_{t}^{\left(i\right)*}\right)dt+\sigma\left(X
 
 \end_inset
 
-where __________________.
- Let 
-\begin_inset Formula $\rho^{\left(i\right)}$
-\end_inset
-
- be the first time the diffusion 
-\begin_inset Formula $X^{\left(i\right)*}$
-\end_inset
-
- hits the sample path of 
-\begin_inset Formula $\mathbf{X}_{\cdot,1}^{\left(i\right)}$
+Let 
+\begin_inset Formula $\rho^{\left(i\right)}=\inf\left\{ t\in\left[0,1\right]\mid X_{t}^{\left(i\right)*}=\mathbf{X}_{t,1}^{\left(i\right)}\right\} $
 \end_inset
 
 .
@@ -348,7 +359,37 @@ Y_{t}^{\left(i\right)}\mid\rho^{\left(i\right)}\geq1 & = & \mathbf{X}_{t,1}^{\le
 
 \end_inset
 
-By the strong Markov property, it is clear that 
+Let 
+\begin_inset Formula $\mathbb{Q}^{\left(i\right)}$
+\end_inset
+
+ be the measure induced by 
+\begin_inset Formula $Y_{t}^{\left(i\right)}$
+\end_inset
+
+.
+ By the strong Markov property, we know 
+\begin_inset Formula $\mathbb{Q}^{\left(i\right)}=\mathbb{P}$
+\end_inset
+
+.
+ By definition, 
+\begin_inset Formula 
+\[
+\mathbb{Q}^{\left(i\right)}\left(\cdot\mid Y_{1}^{\left(i\right)}=\bar{y}^{\left(i\right)},\rho^{\left(i\right)}<1\right)=\mathbb{Q}^{\left(i\right)}\left(\cdot\mid X^{\left(i\right)*}=\bar{y}^{\left(i\right)},\rho^{\left(i\right)}<1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+asdfasdf
+\end_layout
+
+\begin_layout Proof
+it is clear that 
 \begin_inset Formula $Y^{\left(i\right)}$
 \end_inset
 
@@ -404,6 +445,14 @@ Now, note that the distribution of
 \end_inset
 
 which gives the desired result.
+\begin_inset Formula 
+\[
+\mathbb{Q}^{\left(i\right)}=
+\]
+
+\end_inset
+
+
 \end_layout
 
 \end_body
