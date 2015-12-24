@@ -594,7 +594,7 @@ The standard Wiener measure
 \begin{eqnarray*}
 \mathbb{W}_{0}\left(A\right) & = & \delta\left(A\right)\\
 W_{u,v}\left(x,A\right) & = & \frac{1}{\sqrt{2\pi\left(v-u\right)}}\int_{A}\exp\left\{ -\frac{\left(y-x\right)^{2}}{2\left(v-u\right)^{2}}\right\} dy\\
-W_{r,s}^{*}\left(B,y\right) & = & 1
+W_{r,s}^{*}\left(B,y\right) & = & \delta\left(B\right)
 \end{eqnarray*}
 
 \end_inset
@@ -1275,13 +1275,12 @@ key "levy-1948"
  is absolutely continuous with respect to the Lebesgue measure.
  So, 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand formatted
 reference "thm:density-of-bridge"
 
 \end_inset
 
- applies.
- The transition densities are given, for any 
+ applies, and the requisite densities are given, for any 
 \begin_inset Formula $0\leq s\leq t\leq1$
 \end_inset
 
@@ -1293,75 +1292,51 @@ reference "thm:density-of-bridge"
 \begin_inset Formula 
 \begin{eqnarray*}
 w_{s,t}\left(z,y\right) & = & \frac{1}{\sqrt{2\pi\left(t-s\right)}}\exp\left\{ -\frac{\left(y-z\right)^{2}}{2\left(t-s\right)^{2}}\right\} \\
-w_{s,t}^{*}\left(z,y\right) & = & 1\\
+w_{s,t}^{*}\left(x,z\right) & = & \frac{w_{s,t}\left(z,x\right)w_{0,s}\left(0,x\right)}{w_{0,t}\left(0,z\right)}\\
 c\left(x,y\right) & = & \delta\left(x\right)\frac{1}{\sqrt{2\pi}}\exp\left\{ -\frac{\left(y-x\right)^{2}}{2}\right\} 
 \end{eqnarray*}
 
 \end_inset
 
-Therefore, the density of 
-\begin_inset Formula $\mathbb{W}^{x,y}$
+where the backward transition density 
+\begin_inset Formula $w_{s,t}^{*}\left(z,y\right)$
+\end_inset
+
+ is by Bayes' rule.
+ Therefore, the density of 
+\begin_inset Formula $\mathbb{W}_{t}^{x,y}$
 \end_inset
 
  with respect to 
-\begin_inset Formula $\mathbb{W}$
+\begin_inset Formula $\mathbb{W}_{t}$
 \end_inset
 
  is given by 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{W}^{x,y}}{d\mathbb{W}}=
+\frac{d\mathbb{W}_{t}^{x,y}}{d\mathbb{W}_{t}}=\frac{1}{1-t}\exp\left\{ \frac{1}{2}\left[\left(x-y\right)^{2}-\frac{\left(x-z\right)^{2}}{t^{2}}-\frac{\left(y-z\right)^{2}}{\left(1-t\right)^{2}}+\frac{z^{2}}{t^{2}}\right]\right\} 
 \]
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
+Accordingly, the density of the Brownian bridge with respect to the Lebesgue
+ measure is
 \begin_inset Formula 
-\begin{eqnarray*}
-r_{s,t}\left(x,y\right) & = & R_{s,t}\left(x,dy\right)/dy\\
-r_{s,t}^{*}\left(x,y\right) & = & R_{s,t}^{*}\left(dx,y\right)/dx,\mbox{ }
-\end{eqnarray*}
+\[
+\frac{d\mathbb{W}_{t}^{x,y}}{dz}=\frac{1}{\sqrt{2\pi\left(1-t\right)t}}\exp\left\{ \frac{1}{2}\left[\left(x-y\right)^{2}-\frac{\left(x-z\right)^{2}}{t^{2}}-\frac{\left(y-z\right)^{2}}{\left(1-t\right)^{2}}\right]\right\} 
+\]
 
 \end_inset
 
-defined almost everywhere with respect to the appropriate measures.
-\end_layout
-
-\begin_layout Standard
-We can also write 
-\begin_inset Formula $\mathbb{R}_{0}\left(dx\right)=r_{0}\left(x\right)dx$
+which is a Gaussian density with mean 
+\begin_inset Formula $0$
 \end_inset
 
- where 
-\begin_inset Formula $r_{0}\left(x\right)=\int r_{0,1}^{*}\left(x,y\right)\mathbb{R}_{1}\left(dy\right)$
+ and variance 
+\begin_inset Formula $\left(1-t\right)t$
 \end_inset
 
- is the density of the marginal measure 
-\begin_inset Formula $\mathbb{R}_{0}$
-\end_inset
-
- with respect to the Lebesgue measure, and let the density 
-\begin_inset Formula $r_{1}\left(x\right)$
-\end_inset
-
- be analogous using the forward transition density.
- For convenience, we will write 
-\begin_inset Formula $\mathbb{R}_{0,1}\left(dxdy\right)=c\left(x,y\right)dxdy$
-\end_inset
-
-, defining 
-\begin_inset Formula $c\left(x,y\right)=r_{0}\left(x\right)r_{0,1}\left(x,y\right)=r_{0,1}^{*}\left(x,y\right)r_{1}\left(y\right)$
-\end_inset
-
- as the density of the joint marginal measure 
-\begin_inset Formula $\mathbb{R}_{0,1}$
-\end_inset
-
- with respect to the Lebesgue measure.
- 
+ as is well-known.
 \end_layout
 
 \begin_layout Section

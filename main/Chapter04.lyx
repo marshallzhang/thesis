@@ -74,7 +74,7 @@ theorems-chap
 \begin_body
 
 \begin_layout Chapter
-Characterizing Markov 
+Characterizing and Simulating Law-Bridges
 \end_layout
 
 \begin_layout Standard
@@ -86,11 +86,11 @@ In this chapter, we characterize the marginal density of a Markov process
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- on the usual path space.
+ on the Wiener space.
 \end_layout
 
 \begin_layout Section
-The Marginal Density of a Markov Law-Bridge
+Approximate Simulation of Markov Law-Bridges
 \end_layout
 
 \begin_layout Standard
@@ -108,11 +108,15 @@ Consider a conditioning
 \begin_inset Formula $\left(Y,\nu\right)=\left(\left(X_{0},X_{1}\right),\nu\right)$
 \end_inset
 
- on the usual Markov space 
-\begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right),\mathbb{P}\right)$
+ on the Wiener space in 
+\begin_inset Formula $\mathbb{R}$
 \end_inset
 
-.
+ with a Markov measure 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ which is absolutely continuous with respect to the Lebesgue measure.
  Then, the density of the marginal generalized bridge measure 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
@@ -132,7 +136,7 @@ Consider a conditioning
  is given by 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathbb{R}^{2}}\frac{r_{0,t}^{*}\left(x_{0},X_{t}\right)r_{t,1}\left(X_{t},x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
+\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathbb{R}^{2}}\frac{r_{0,t}^{*}\left(x_{0},z\right)r_{t,1}\left(z,x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
 \]
 
 \end_inset
@@ -168,7 +172,7 @@ reference "thm:density-of-bridge"
 , we know that 
 \begin_inset Formula 
 \[
-\eta_{t}^{y}=\frac{r_{0,t}^{*}\left(x_{0},X_{t}\right)r_{t,1}\left(X_{t},x_{1}\right)}{c\left(x_{0},x_{1}\right)}
+\eta_{t}^{y}=\frac{r_{0,t}^{*}\left(x_{0},z\right)r_{t,1}\left(z,x_{1}\right)}{c\left(x_{0},x_{1}\right)}
 \]
 
 \end_inset
@@ -178,22 +182,228 @@ is the Radon-Nikodym derivative associated with the conditioning
 \end_inset
 
 .
- Then, by 
+ Then, 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "prop:pv-density"
 
 \end_inset
 
-, we immediately see that 
+ gives the desired result.
+\end_layout
+
+\begin_layout Standard
+This immediately suggests an intuitive way to simulate approximately from
+ 
+\begin_inset Formula $\mathbb{P}_{t}^{\nu}$
+\end_inset
+
+.
+ This method and the sense in which it is an approximation is given in the
+ following theorem, generalizing the result of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+Fix a conditioning 
+\begin_inset Formula $\left(Y,\nu\right)=\left(\left(X_{0},X_{1}\right),\nu\right)$
+\end_inset
+
+ on the Wiener space in 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ with a Markov measure 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $W^{\left(1\right)},\dots,W^{\left(2N\right)}$
+\end_inset
+
+ be independent standard Wiener processes, and for 
+\begin_inset Formula $i=1,\dots,N$
+\end_inset
+
+, let 
+\begin_inset Formula $\mathbf{X}^{\left(i\right)}$
+\end_inset
+
+ be the solution to 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathbb{R}^{2}}\frac{r_{0,t}^{*}\left(x_{0},X_{t}\right)r_{t,1}\left(X_{t},x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
+\begin{bmatrix}d\mathbf{X}_{t,1}^{\left(i\right)}\\
+d\mathbf{X}_{t,2}^{\left(i\right)}
+\end{bmatrix}=\begin{bmatrix}\mu\left(\mathbf{X}_{t,1}^{\left(i\right)}\right)\\
+\mu\left(\mathbf{X}_{t,2}^{\left(i\right)}\right)
+\end{bmatrix}dt+\begin{bmatrix}\sigma\left(\mathbf{X}_{t,1}^{\left(i\right)}\right) & 0\\
+0 & \sigma\left(\mathbf{X}_{t,2}^{\left(i\right)}\right)
+\end{bmatrix}\begin{bmatrix}dW_{t}^{\left(i\right)}\\
+dW_{t}^{\left(N+i\right)}
+\end{bmatrix}
 \]
 
 \end_inset
 
+where 
+\begin_inset Formula $\bar{\mathbf{X}}_{0}^{\left(i\right)}=\left(\bar{x}^{\left(i\right)},\bar{y}^{\left(i\right)}\right)$
+\end_inset
 
+ are drawn from 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+ Furthermore, let 
+\begin_inset Formula $\tau^{\left(i\right)}=\inf\left\{ t\in\left[0,1\right]\mid\mathbf{X}_{t,1}^{\left(i\right)}=\mathbf{X}_{t,2}^{\left(i\right)}\right\} $
+\end_inset
+
+ where 
+\begin_inset Formula $\inf\varnothing:=\infty$
+\end_inset
+
+.
+ Define 
+\begin_inset Formula 
+\[
+Z_{t}^{\left(i\right)}:=\begin{cases}
+\mathbf{X}_{t,1}^{\left(i\right)} & \mbox{if }0\leq t\leq\tau^{\left(i\right)}\\
+\mathbf{X}_{1-t,2}^{\left(i\right)} & \mbox{if }\tau^{\left(i\right)}<t\leq1
+\end{cases}
+\]
+
+\end_inset
+
+for each 
+\begin_inset Formula $i\in\left\{ 1,\dots,N\right\} $
+\end_inset
+
+.
+ Then, the distribution of 
+\begin_inset Formula $\left\{ Z^{\left(i\right)}\mid\tau^{\left(i\right)}<1\right\} $
+\end_inset
+
+ is equal to the distribution of the canonical process under 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+, conditional on __________________.
+\end_layout
+
+\begin_layout Proof
+Let 
+\begin_inset Formula $W^{\left(i\right)*}$
+\end_inset
+
+ be a standard Wiener process independent of 
+\begin_inset Formula $\{W^{\left(i\right)}\}_{i=1,\dots,2N}$
+\end_inset
+
+, and let 
+\begin_inset Formula $X^{\left(i\right)*}$
+\end_inset
+
+ be the solution of 
+\begin_inset Formula 
+\[
+dX_{t}^{\left(i\right)*}=\mu\left(X_{t}^{\left(i\right)*}\right)dt+\sigma\left(X_{t}^{\left(i\right)*}\right)dW_{t}^{\left(i\right)*}
+\]
+
+\end_inset
+
+where __________________.
+ Let 
+\begin_inset Formula $\rho^{\left(i\right)}$
+\end_inset
+
+ be the first time the diffusion 
+\begin_inset Formula $X^{\left(i\right)*}$
+\end_inset
+
+ hits the sample path of 
+\begin_inset Formula $\mathbf{X}_{\cdot,1}^{\left(i\right)}$
+\end_inset
+
+.
+ Define a process 
+\begin_inset Formula $Y^{\left(i\right)}$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\begin{eqnarray*}
+Y_{t}^{\left(i\right)}\mid\rho^{\left(i\right)}<1 & = & \begin{cases}
+\mathbf{X}_{t,1}^{\left(i\right)} & \mbox{if }0\leq t\leq\rho^{\left(i\right)}\\
+X^{\left(i\right)*} & \mbox{if }\rho^{\left(i\right)}<t\leq1
+\end{cases}\\
+Y_{t}^{\left(i\right)}\mid\rho^{\left(i\right)}\geq1 & = & \mathbf{X}_{t,1}^{\left(i\right)}
+\end{eqnarray*}
+
+\end_inset
+
+By the strong Markov property, it is clear that 
+\begin_inset Formula $Y^{\left(i\right)}$
+\end_inset
+
+ has the same distribution as 
+\begin_inset Formula $\mathbf{X}_{t,1}^{\left(i\right)}$
+\end_inset
+
+.
+ Furthermore, 
+\begin_inset Formula $Y^{\left(i\right)}$
+\end_inset
+
+ conditional on 
+\begin_inset Formula $Y_{1}^{\left(i\right)}=\bar{y}^{\left(i\right)}$
+\end_inset
+
+ and 
+\begin_inset Formula $\rho^{\left(i\right)}<1$
+\end_inset
+
+ is a diffusion bridge that is hit by 
+\begin_inset Formula $X^{\left(i\right)*}$
+\end_inset
+
+.
+ We can re-write this distribution as 
+\begin_inset Formula 
+\[
+\mathbb{P}\left(Y^{\left(i\right)}\in\cdot\mid Y_{1}^{\left(i\right)}=\bar{y}^{\left(i\right)},\rho^{\left(i\right)}<1\right)=\mathbb{P}\left(Y^{\left(i\right)}\in\cdot\mid X_{1}^{\left(i\right)*}=\bar{y}^{\left(i\right)},\rho^{\left(i\right)}<1\right)
+\]
+
+\end_inset
+
+Now, note that the distribution of 
+\begin_inset Formula $\mathbf{X}_{1-t,2}^{\left(i\right)}$
+\end_inset
+
+ is equal to the distribution of 
+\begin_inset Formula $X^{\left(i\right)*}$
+\end_inset
+
+ conditional on 
+\begin_inset Formula $X_{1}^{\left(i\right)*}=\bar{y}^{\left(i\right)}$
+\end_inset
+
+.
+ This means that
+\begin_inset Formula 
+\[
+\mathbb{P}\left(Y^{\left(i\right)}\in\cdot\mid X_{1}^{\left(i\right)*}=\bar{y}^{\left(i\right)},\rho^{\left(i\right)}<1\right)=\mathbb{P}\left(Z^{\left(i\right)}\in\cdot\mid\tau<1\right)
+\]
+
+\end_inset
+
+which gives the desired result.
 \end_layout
 
 \end_body
