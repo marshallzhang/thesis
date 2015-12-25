@@ -90,7 +90,11 @@ In this chapter, we characterize the marginal density of a Markov process
 \end_layout
 
 \begin_layout Section
-Approximate Simulation of Markov Law-Bridges
+Approximate Simulation of 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges
 \end_layout
 
 \begin_layout Standard
@@ -199,18 +203,303 @@ This immediately suggests an intuitive way to simulate approximately from
 \end_inset
 
 .
- This method and the sense in which it is an approximation is given in the
- following theorem, generalizing the result of 
+ This method and the sense in which it is an approximation is given in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:approx-sim"
+
+\end_inset
+
+, generalizing the major result of 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "bladt-sorensen-2014"
 
 \end_inset
 
+ and bring it into the measure-theoretic framework thus far presented.
+ Before proving 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:approx-sim"
+
+\end_inset
+
+, we will first show the following lemma, related to the distribution of
+ a time-reversed diffusion process, generalizing Lemma 2.2 in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
+
+\end_inset
+
+ and also bringing it into the measure-theoretic framework of this paper.
+ We assume the existence of any necesary densities (with respect to the
+ Lebesgue measure unless otherwise stated), and assume any diffusion that
+ solves [FLAG: SDE HERE] is a 
+\begin_inset Formula $\gamma-$
+\end_inset
+
+symmetric diffusion in the sense of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "silverstein-1974"
+
+\end_inset
+
 .
 \end_layout
 
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:time-reversal"
+
+\end_inset
+
+Consider the conditioning 
+\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)$
+\end_inset
+
+ on the measure 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ induced by 
+\begin_inset Formula $\mathbf{X}^{*}$
+\end_inset
+
+ when 
+\begin_inset Formula $\mathbf{X}_{0}\sim\pi$
+\end_inset
+
+, and let 
+\begin_inset Formula $\mathbb{P}^{\nu*}$
+\end_inset
+
+ be the associated 
+\begin_inset Formula $\nu-$
+\end_inset
+
+conditioned measure.
+ Define the time-reversed measure 
+\begin_inset Formula $\mathbb{P}^{\leftarrow}$
+\end_inset
+
+ as the measure induced by 
+\begin_inset Formula $\bar{\mathbf{X}}$
+\end_inset
+
+ where 
+\begin_inset Formula $\bar{\mathbf{X}}_{t}=\mathbf{X}_{1-t}$
+\end_inset
+
+.
+ Then, 
+\begin_inset Formula $\mathbb{P}^{\leftarrow}=\mathbb{P}^{\nu}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Proof
+Let 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ be the 
+\begin_inset Formula $\nu-$
+\end_inset
+
+conditioned measure associated with 
+\begin_inset Formula $\left(\mathbf{X}_{0},\nu\right)$
+\end_inset
+
+, i.e.
+ the measure induced by 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+.
+ Then, 
+\begin_inset Formula 
+\[
+\mathbb{P}^{\leftarrow}\left(\bar{\mathbf{X}}_{t}\in\cdot\mid\bar{\mathbf{X}}_{s}=\mathbf{x}\right)=\mathbb{P}^{\nu}\left(\mathbf{X}_{1-s}\in\cdot\mid\mathbf{X}_{1-t}=\mathbf{x}\right)
+\]
+
+\end_inset
+
+and we can, as seen in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:3"
+
+\end_inset
+
+, disintegrate 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ as 
+\begin_inset Formula 
+\[
+\mathbb{P}^{\nu}\left(\mathbf{X}_{1-s}\in\cdot\mid\mathbf{X}_{1-t}=\mathbf{x}\right)=\int\mathbb{P}^{\nu}\left(\mathbf{X}_{1-s}\in\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0},\mathbf{X}_{1-t}=\mathbf{x}\right)\nu\left(d\mathbf{x}_{0}\right)
+\]
+
+\end_inset
+
+ Since 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ is 
+\begin_inset Formula $\gamma-$
+\end_inset
+
+symmetric, for any 
+\begin_inset Formula $\left(t,s\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\left(t',s'\right)$
+\end_inset
+
+ such that 
+\begin_inset Formula $t-s=t'-s'$
+\end_inset
+
+, there is a unique function 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ satisfying 
+\begin_inset Formula 
+\[
+\mathbb{P}^{\nu}\left(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x}\right)\gamma\left(\mathbf{x}\right)=\mathbb{P}^{\nu}\left(\mathbf{X}_{t'}\in\cdot\mid\mathbf{X}_{s'}=\mathbf{y}\right)\gamma\left(\mathbf{y}\right)
+\]
+
+\end_inset
+
+and by the Markov property, 
+\begin_inset Formula 
+\[
+\mathbb{P}^{\nu}\left(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0}\right)\gamma\left(\mathbf{x}\right)=\mathbb{P}^{\nu}\left(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{y},\mathbf{X}_{0}=\mathbf{x}_{0}\right)\gamma\left(\mathbf{y}\right)
+\]
+
+\end_inset
+
+Since 
+\begin_inset Formula $\left(1-s\right)-\left(1-t\right)=t-s$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{P}^{\leftarrow}\left(\bar{\mathbf{X}}_{t}\in\cdot\mid\bar{\mathbf{X}}_{s}=\mathbf{x}\right) & = & \int\mathbb{P}^{\nu}\left(\mathbf{X}_{1-s}\in\cdot\mid\mathbf{X}_{1-t}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1}\right)\nu\left(d\mathbf{x}_{1}\right)\\
+ & = & \int\mathbb{P}^{\nu}\left(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1}\right)\nu\left(d\mathbf{x}_{1}\right)
+\end{eqnarray*}
+
+\end_inset
+
+Recall that under 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+, any events independent of 
+\begin_inset Formula $\mathbf{X}_{1}$
+\end_inset
+
+ have equal probability under 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, and so 
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{P}^{\leftarrow}\left(\bar{\mathbf{X}}_{t}\in\cdot\mid\bar{\mathbf{X}}_{s}=\mathbf{x}\right) & = & \int\mathbb{P}^{*}\left(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{y},\mathbf{X}_{1}=\mathbf{x}_{1}\right)\nu\left(d\mathbf{x}_{1}\right)\\
+ & = & \mathbb{P}^{\nu*}\left(\mathbf{X}_{t}^{*}\in\cdot\mid\mathbf{X}_{s}^{*}=\mathbf{x}\right)
+\end{eqnarray*}
+
+\end_inset
+
+as desired.
+ Furthermore, note that 
+\begin_inset Formula $\mathbb{P}_{0}=\mathbb{P}_{1}=\pi$
+\end_inset
+
+, and since
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{P}_{0} & = & \int\mathbb{P}^{*}\left(\mathbf{X}_{0}\in\cdot\mid\mathbf{X}_{1}=\mathbf{x}\right)\pi\left(d\mathbf{x}\right)\\
+\mathbb{P}_{1} & = & \int\mathbb{P}^{*}\left(\mathbf{X}_{1}\in\cdot\mid\mathbf{X}_{0}=\mathbf{x}\right)\pi\left(d\mathbf{x}\right)
+\end{eqnarray*}
+
+\end_inset
+
+we know 
+\begin_inset Formula $\mathbb{P}_{0}^{\nu*}=\int\mathbb{P}_{0}\left(\cdot\mid\mathbf{X}_{1}=\mathbf{x}\right)\nu\left(d\mathbf{x}\right)=\int\mathbb{P}_{1}\left(\cdot\mid\mathbf{X}_{0}=\mathbf{x}\right)\nu\left(d\mathbf{x}\right)$
+\end_inset
+
+, and 
+\begin_inset Formula $\mathbb{P}_{0}^{\leftarrow}=\mathbb{P}_{1}^{\nu}=\int\mathbb{P}_{1}^{\nu}\left(\cdot\mid\mathbf{X}_{0}=\mathbf{x}\right)\nu\left(d\mathbf{x}\right)$
+\end_inset
+
+.
+ Since the probability of any event independent of 
+\begin_inset Formula $\left\{ \mathbf{X}_{0}=\mathbf{x}\right\} $
+\end_inset
+
+ is the same under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ by definition of a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+conditioned measure, we see that 
+\begin_inset Formula $\mathbb{P}^{\nu*}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{P}^{\leftarrow}$
+\end_inset
+
+ have the same restriction to 
+\begin_inset Formula $t=0$
+\end_inset
+
+.
+ Since they also have the same transition densities, by 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "thm:markov-construction-thm"
+
+\end_inset
+
+, we have 
+\begin_inset Formula $\mathbb{P}^{\leftarrow}=\mathbb{P}^{\nu}$
+\end_inset
+
+ as desired.
+\end_layout
+
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:approx-sim"
+
+\end_inset
+
 Fix a conditioning 
 \begin_inset Formula $\left(Y,\nu\right)=\left(\left(X_{0},X_{1}\right),\nu\right)$
 \end_inset
@@ -228,15 +517,14 @@ dX_{t}=\mu\left(X_{t}\right)dt+\sigma\left(X_{t}\right)dW_{t}
 \end_inset
 
 where 
-\begin_inset Formula $X_{0}=x$
+\begin_inset Formula $X_{0}\sim\pi$
 \end_inset
 
- induce a probability measure 
-\begin_inset Formula $\mathbb{P}_{x}$
+ induces a probability measure 
+\begin_inset Formula $\mathbb{P}_{\pi}:=\int\mathbb{P}\left(\cdot\mid X_{0}=x\right)d\pi$
 \end_inset
 
  on the space.
- 
 \end_layout
 
 \begin_layout Theorem
@@ -248,19 +536,14 @@ Now, let
 \begin_inset Formula $W^{2}$
 \end_inset
 
- be independent standard Wiener processes, and draw 
-\begin_inset Formula $\left(A,B\right)\sim\nu$
-\end_inset
-
-.
- Then, let 
+ be independent standard Wiener processes, and let 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
 
- be the solution to 
+ be the unique weak solution to 
 \begin_inset Formula 
 \[
-\begin{bmatrix}d\mathbf{X}_{t}^{1}\\
+d\mathbf{X}_{t}=\begin{bmatrix}d\mathbf{X}_{t}^{1}\\
 d\mathbf{X}_{t}^{2}
 \end{bmatrix}=\begin{bmatrix}\mu\left(\mathbf{X}_{t}^{1}\right)\\
 \mu\left(\mathbf{X}_{t}^{2}\right)
@@ -274,7 +557,7 @@ dW_{t}^{2}
 \end_inset
 
 where 
-\begin_inset Formula $\mathbf{X}_{0}=\left(A,B\right)$
+\begin_inset Formula $\mathbf{X}_{0}\sim\nu$
 \end_inset
 
 .
@@ -288,9 +571,13 @@ where
 
  is finite.
  Define 
+\begin_inset Formula $Z$
+\end_inset
+
+ as 
 \begin_inset Formula 
 \[
-Z_{t}:=\begin{cases}
+Z_{t}=\begin{cases}
 \mathbf{X}_{t}^{1} & \mbox{if }0\leq t\leq\tau\\
 \mathbf{X}_{1-t}^{2} & \mbox{if }\tau<t\leq1
 \end{cases}
@@ -298,13 +585,8 @@ Z_{t}:=\begin{cases}
 
 \end_inset
 
-for each 
-\begin_inset Formula $i\in\left\{ 1,\dots,N\right\} $
-\end_inset
-
-.
- Then, the measure 
-\begin_inset Formula $\mathbb{Z}$
+Then, the measure 
+\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\tau\leq1\right)$
 \end_inset
 
  induced by 
@@ -312,18 +594,23 @@ for each
 \end_inset
 
  is equal to 
-\begin_inset Formula $\mathbb{P}^{\nu}\left(\cdot\mid\right)$
+\begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
-.
+ conditional on the bridge is 
 \end_layout
 
 \begin_layout Proof
 Let 
-\begin_inset Formula $W^{*}$
+\begin_inset Formula $W^{1*}$
 \end_inset
 
- be a standard Wiener process independent of 
+ and 
+\begin_inset Formula $W^{2*}$
+\end_inset
+
+ be independent standard Wiener processes, which are also independent of
+ 
 \begin_inset Formula $W^{1}$
 \end_inset
 
@@ -331,128 +618,145 @@ Let
 \begin_inset Formula $W^{2}$
 \end_inset
 
-, and let 
-\begin_inset Formula $X^{*}$
+.
+ Let 
+\begin_inset Formula $X^{i*}$
 \end_inset
 
  be the solution of 
 \begin_inset Formula 
 \[
-dX_{t}^{*}=\mu\left(X_{t}^{*}\right)dt+\sigma\left(X_{t}^{*}\right)dW_{t}^{*}
+dX_{t}^{i*}=\mu\left(X_{t}^{i*}\right)dt+\sigma\left(X_{t}^{i*}\right)dW_{t}^{i*},\mbox{ for }i\in\left\{ 1,2\right\} 
 \]
 
 \end_inset
 
-Let 
+where 
+\begin_inset Formula $X_{0}^{i*}$
+\end_inset
+
+ is distributed according to the invariant measure 
+\begin_inset Formula $\mathbb{P}^{*}$
+\end_inset
+
+.
+ Let 
 \begin_inset Formula $\rho=\inf\left\{ t\in\left[0,1\right]\mid X_{t}^{*}=\mathbf{X}_{t}^{1}\right\} $
 \end_inset
 
 .
  Define a process 
-\begin_inset Formula $Y$
+\begin_inset Formula $\mathbf{Y}=\left(Y_{t}^{1},Y_{t}^{2}\right)$
 \end_inset
 
  such that
 \begin_inset Formula 
 \[
-Y_{t}=\begin{cases}
-\mathbf{X}_{t}^{1} & \mbox{if }0\leq t\leq\rho\leq1\mbox{ or }\rho=\infty\\
-X_{t}^{*} & \mbox{if }\rho<t\leq1
-\end{cases}
+Y_{t}^{i}=\begin{cases}
+\mathbf{X}_{t}^{i} & \mbox{if }0\leq t\leq\rho^{i}\leq1\mbox{ or }\rho=\infty\\
+X_{t}^{i*} & \mbox{if }\rho^{i}<t\leq1
+\end{cases},\mbox{ for }i\in\left\{ 1,2\right\} 
 \]
 
 \end_inset
 
-Let 
+and let 
 \begin_inset Formula $\mathbb{Q}$
 \end_inset
 
  be the measure induced by 
-\begin_inset Formula $Y_{t}$
+\begin_inset Formula $\mathbf{Y}_{t}$
 \end_inset
 
 .
- By the strong Markov property, we know 
-\begin_inset Formula $\mathbb{Q}\left(\cdot\mid Y_{0}=a\right)=\mathbb{Q}\left(\cdot\mid\mathbf{X}_{0}^{1}=a\right)=\mathbb{P}_{x}$
-\end_inset
-
-.
- Furthermore, we know that 
+ Then, we define 
 \begin_inset Formula 
 \[
-\mathbb{Q}\left(\cdot\mid Y_{0}=a,Y_{1}=b,\rho\leq1\right)=\mathbb{Q}\left(\cdot\mid\mathbf{X}_{0}^{1}=a,X_{1}^{*}=b,\rho\leq1\right)
+\mathbb{Q}^{\nu}=\mathbb{Q}\left(\cdot\mid Y_{1}^{\left(1\right)}=Y_{0}^{\left(2\right)},Y_{1}^{\left(2\right)}=Y_{0}^{\left(1\right)}\right)=\mathbb{Q}\left(\cdot\mid\mathcal{N}\right)
 \]
 
 \end_inset
 
+where 
+\begin_inset Formula 
+\[
+\mathcal{N}=\left\{ X_{1}^{\left(1\right)*}=\mathbf{X}_{0}^{\left(2\right)},X_{1}^{\left(2\right)*}=\mathbf{X}_{0}^{\left(1\right)},\rho^{\left(1\right)}\leq1,\rho^{\left(2\right)}\leq1\right\} 
+\]
 
-\end_layout
-
-\begin_layout Proof
-it is clear that 
-\begin_inset Formula $Y^{\left(i\right)}$
 \end_inset
 
- has the same distribution as 
-\begin_inset Formula $\mathbf{X}_{t,1}^{\left(i\right)}$
-\end_inset
-
-.
- Furthermore, 
-\begin_inset Formula $Y^{\left(i\right)}$
-\end_inset
-
- conditional on 
-\begin_inset Formula $Y_{1}^{\left(i\right)}=\bar{y}^{\left(i\right)}$
+is the event 
+\begin_inset Formula $(Y_{0}^{\left(1\right)},Y_{1}^{\left(1\right)})$
 \end_inset
 
  and 
-\begin_inset Formula $\rho^{\left(i\right)}<1$
+\begin_inset Formula $(Y_{1}^{\left(2\right)},Y_{0}^{\left(2\right)})$
 \end_inset
 
- is a diffusion bridge that is hit by 
-\begin_inset Formula $X^{\left(i\right)*}$
+ are both distributed with law 
+\begin_inset Formula $\nu$
 \end_inset
 
-.
- We can re-write this distribution as 
-\begin_inset Formula 
-\[
-\mathbb{P}\left(Y^{\left(i\right)}\in\cdot\mid Y_{1}^{\left(i\right)}=\bar{y}^{\left(i\right)},\rho^{\left(i\right)}<1\right)=\mathbb{P}\left(Y^{\left(i\right)}\in\cdot\mid X_{1}^{\left(i\right)*}=\bar{y}^{\left(i\right)},\rho^{\left(i\right)}<1\right)
-\]
-
+, and the processes 
+\begin_inset Formula $Y^{\left(1\right)}$
 \end_inset
 
-Now, note that the distribution of 
-\begin_inset Formula $\mathbf{X}_{1-t,2}^{\left(i\right)}$
+ and 
+\begin_inset Formula $Y^{\left(2\right)}$
 \end_inset
 
- is equal to the distribution of 
-\begin_inset Formula $X^{\left(i\right)*}$
+ are hit by 
+\begin_inset Formula $X^{1*}$
+\end_inset
+
+ and 
+\begin_inset Formula $X^{2*}$
+\end_inset
+
+ respectively.
+ Note now that the measure induced by 
+\begin_inset Formula $\mathbf{X}_{1-t}$
+\end_inset
+
+ is equal to the measure induced by 
+\begin_inset Formula $\mathbf{X}_{t}^{*}$
 \end_inset
 
  conditional on 
-\begin_inset Formula $X_{1}^{\left(i\right)*}=\bar{y}^{\left(i\right)}$
+\begin_inset Formula $\mathbf{X}_{1}^{*}\sim\nu$
 \end_inset
 
 .
- This means that
-\begin_inset Formula 
-\[
-\mathbb{P}\left(Y^{\left(i\right)}\in\cdot\mid X_{1}^{\left(i\right)*}=\bar{y}^{\left(i\right)},\rho^{\left(i\right)}<1\right)=\mathbb{P}\left(Z^{\left(i\right)}\in\cdot\mid\tau<1\right)
-\]
-
+ This implies that 
+\begin_inset Formula $\mathbb{Q}^{\nu}=\mathbb{Z}\times\mathbb{Z}^{\leftarrow}$
 \end_inset
 
-which gives the desired result.
-\begin_inset Formula 
-\[
-\mathbb{Q}^{\left(i\right)}=
-\]
+ where 
+\begin_inset Formula $\mathbb{Z}^{\leftarrow}$
+\end_inset
 
+is the measure induced by 
+\begin_inset Formula $Z_{1-t}$
+\end_inset
+
+.
+ However, since we know the coordinates of 
+\series bold
+
+\begin_inset Formula $\mathbf{Y}$
 \end_inset
 
 
+\series default
+ are independent by construction, we have 
+\begin_inset Formula $\mathbb{Q}^{\nu}=\mathbb{Q}^{\nu,\left(1\right)}\times\mathbb{Q}^{\nu,\left(2\right)}$
+\end_inset
+
+ which implies 
+\begin_inset Formula $\mathbb{Q}^{\nu,\left(1\right)}=\mathbb{Z}\left(\cdot\mid\tau\leq1\right)$
+\end_inset
+
+ as desired.
 \end_layout
 
 \end_body

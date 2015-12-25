@@ -348,6 +348,19 @@ Is smooth the right word to describe
 \end_layout
 
 \begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\nu-$
+\end_inset
+
+conditioned measure
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "thm:pv"
@@ -440,6 +453,15 @@ where
 \end_inset
 
 .
+ Call 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ the 
+\begin_inset Formula $\nu-$
+\end_inset
+
+conditioned measure.
 \end_layout
 
 \begin_layout Proof
