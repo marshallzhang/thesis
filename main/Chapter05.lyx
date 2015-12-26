@@ -1,0 +1,265 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass classicthesis
+\begin_preamble
+\usepackage{algorithm,algpseudocode}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+theorems-chap
+\end_modules
+\maintain_unincluded_children false
+\language american
+\language_package default
+\inputencoding default
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Empirical Studies
+\end_layout
+
+\begin_layout Standard
+In this chapter, we study the simulation method proposed in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+, comparing the distribution of simulations to the distribution of 
+\end_layout
+
+\begin_layout Standard
+In all examples considered we simulate 
+\begin_inset Formula $10,000$
+\end_inset
+
+ realizations of the relevant process over the time interval 
+\begin_inset Formula $\left[0,1\right]$
+\end_inset
+
+.
+ The Exact Algorithm of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beskos-roberts-2005"
+
+\end_inset
+
+ is
+\end_layout
+
+\begin_layout Section
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges of an Ornstein-Uhlenbeck process
+\end_layout
+
+\begin_layout Standard
+First, we consider the Ornstein-Uhlenbeck process, which is a solution to
+ the stochastic differential equation 
+\begin_inset Formula 
+\begin{equation}
+dX_{t}=-\theta\left(X_{t}-\mu\right)dt+\sigma dW_{t}\label{eq:ou-sde}
+\end{equation}
+
+\end_inset
+
+with some initial condition on 
+\begin_inset Formula $X_{0}$
+\end_inset
+
+.
+ Without loss of generality, we normalize 
+\begin_inset Formula $\mu=0$
+\end_inset
+
+, and it is well-known that the Gaussian measure 
+\begin_inset Formula $\pi$
+\end_inset
+
+ with mean 
+\begin_inset Formula $0$
+\end_inset
+
+ and variance 
+\begin_inset Formula $1/2\theta$
+\end_inset
+
+ is an invariant measure for this process.
+ 
+\end_layout
+
+\begin_layout Subsection
+Simulation of 
+\begin_inset Formula $\nu$
+\end_inset
+
+ be the joint
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $X$
+\end_inset
+
+ be the solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ou-sde"
+
+\end_inset
+
+ with initial condition 
+\begin_inset Formula $X_{0}\sim\pi$
+\end_inset
+
+, and note that 
+\begin_inset Formula $X$
+\end_inset
+
+ therefore has marginal density 
+\begin_inset Formula $d\pi/dx$
+\end_inset
+
+ at every point in time.
+ Furthermore, it is well-known that the joint measure induced by 
+\begin_inset Formula $X_{0},X_{1}$
+\end_inset
+
+ is a bivariate Gaussian measure with mean 
+\begin_inset Formula $0$
+\end_inset
+
+, variance 
+\begin_inset Formula $1/2\theta$
+\end_inset
+
+, and covariance 
+\begin_inset Formula $e^{-\theta}/2\theta$
+\end_inset
+
+.
+ Then, the distribution of 
+\begin_inset Formula $X$
+\end_inset
+
+ and the 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ where 
+\begin_inset Formula $\nu$
+\end_inset
+
+ is precisely the joint measure of 
+\begin_inset Formula $X_{0},X_{1}$
+\end_inset
+
+ should be equal, and in particular by 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "prop:v-bridge-density"
+
+\end_inset
+
+, the marginal densities of 
+\begin_inset Formula $X$
+\end_inset
+
+ and the 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ should be the same at every 
+\begin_inset Formula $t\in\left[0,1\right]$
+\end_inset
+
+ and equal to 
+\begin_inset Formula $d\pi/dx$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Siulation vs numerical integratino of density
+\end_layout
+
+\begin_layout Subsection
+Demonsteraint gother simulations
+\end_layout
+
+\end_body
+\end_document

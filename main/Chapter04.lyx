@@ -82,6 +82,13 @@ Characterizing and Simulating
 \end_inset
 
 bridges
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:4"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1523,149 +1530,6 @@ reference "prop:pv-density"
 \end_inset
 
  gives the desired result.
-\end_layout
-
-\begin_layout Standard
-Though the density given in 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "prop:v-bridge-density"
-
-\end_inset
-
- are often very difficult to compute, we present below a simple example
- that nonetheless enlightening with respect to the behavior of 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges.
-\end_layout
-
-\begin_layout Example
-Let 
-\begin_inset Formula $\mu\left(x\right)=-\theta\left(x-\mu\right)$
-\end_inset
-
- for 
-\begin_inset Formula $\theta>0$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma\left(x\right)=1$
-\end_inset
-
- in 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- in one dimension, and let 
-\begin_inset Formula $X_{0}\sim\mathbb{X}$
-\end_inset
-
- where 
-\begin_inset Formula 
-\[
-\mathbb{X}\left(A\right)=\frac{1}{\sqrt{\pi\sigma^{2}/\theta}}\int_{A}\exp\left\{ -\frac{\left(x-\mu\right)^{2}}{\sigma^{2}/\theta}\right\} dx
-\]
-
-\end_inset
-
-for any 
-\begin_inset Formula $A\in\mathcal{F}_{0}$
-\end_inset
-
-.
- Then, the solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- is the Ornstein-Uhlenbeck process with invariant measure 
-\begin_inset Formula $\mathbb{X}$
-\end_inset
-
-.
- Now let 
-\begin_inset Formula $\nu$
-\end_inset
-
- be the 
-\begin_inset Formula $2-$
-\end_inset
-
-dimensional Gaussian measure with mean 
-\begin_inset Formula $\mu$
-\end_inset
-
-, variance 
-\begin_inset Formula $1/2\theta$
-\end_inset
-
-, and correlation 
-\begin_inset Formula $\rho$
-\end_inset
-
-.
- In other words, the marginal measures of 
-\begin_inset Formula $\nu$
-\end_inset
-
- are the invariant measure 
-\begin_inset Formula $\mathbb{X}$
-\end_inset
-
-.
- The transition and 
-\begin_inset Formula $0,1-$
-\end_inset
-
-joint densities of an Ornstein-Uhlenbeck process are 
-\begin_inset Formula 
-\begin{eqnarray*}
-p_{s,t}\left(z,y\right) & = & \frac{1}{\sqrt{\pi\sigma^{2}\left(1-e^{-2\theta\left(t-s\right)}\right)/\theta}}\exp\left\{ -\frac{\left(y-\mu-\left(z-\mu\right)e^{-\theta\left(t-s\right)}\right)^{2}}{\sigma^{2}\left(1-e^{-2\theta\left(t-s\right)}\right)/\theta}\right\} \\
-p_{s,t}^{*}\left(x,z\right) & = & \frac{p_{s,t}\left(z,x\right)p_{0,s}\left(0,x\right)}{p_{0,t}\left(0,z\right)}\\
-c\left(x,y\right) & = & \frac{d\mathbb{X}}{dx}\left(x\right)p_{0,1}\left(x,y\right)
-\end{eqnarray*}
-
-\end_inset
-
-Then, by 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "prop:v-bridge-density"
-
-\end_inset
-
- and recalling that 
-\begin_inset Formula $d\mathbb{X}_{t}/dx$
-\end_inset
-
- is simply the invariant density for any 
-\begin_inset Formula $t$
-\end_inset
-
-, we see that 
-\begin_inset Formula $d\mathbb{X}_{t}^{\nu}/dx$
-\end_inset
-
- is a Gaussian measure with mean equal to 
-\end_layout
-
-\begin_layout Example
-and variance 
-\begin_inset Formula 
-\[
-\left(1-e^{-2\left(1-t\right)\theta}\right)\left(1+\theta\left(\rho^{2}-1\right)\left(1-\coth\left(\theta-t\theta\right)\right)\right)
-\]
-
-\end_inset
-
-
 \end_layout
 
 \end_body
