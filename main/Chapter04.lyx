@@ -126,12 +126,28 @@ where
 \begin_inset Formula $\sigma$
 \end_inset
 
- are sufficiently regular, admitting a unique weak solution and an invariant
+ are sufficiently regular, admitting a weakly unique solution (i.e.
+ all solutions have the same finite-dimensional distribution) and an invariant
  measure 
 \begin_inset Formula $\pi$
 \end_inset
 
  for such a solution.
+ Further assume that 
+\begin_inset Formula $\pi$
+\end_inset
+
+ can be normalized to a probability density (e.g.
+ the Lebesgue measure is an invariant measure for the Wiener process, but
+ 
+\begin_inset Formula $\int_{\mathbb{R}}dx=\infty$
+\end_inset
+
+, so we will not study 
+\begin_inset Formula $\mu=0,\sigma=1$
+\end_inset
+
+).
  We will assume for the remainder of this chapter that a solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
@@ -275,7 +291,11 @@ reference "eq:basic-sde"
 
 \end_inset
 
- in one dimension and let 
+ in one dimension with initial distribution 
+\begin_inset Formula $X_{0}\sim\pi$
+\end_inset
+
+ and let 
 \begin_inset Formula $\mathbb{X}$
 \end_inset
 
@@ -548,11 +568,11 @@ Now, note that since
 
 \end_inset
 
-where the third equality is by symmetry of 
+where the third equality is the fact the time-invariance of 
 \begin_inset Formula $\pi$
 \end_inset
 
- across time.
+.
 \end_layout
 
 \begin_layout Proof
@@ -615,7 +635,7 @@ name "thm:approx-sim"
 \end_inset
 
 Let 
-\begin_inset Formula $\tau=\inf\left\{ t\in\left[0,1\right]\mid\mathbf{X}_{t}^{\nu,\left(1\right)}=\mathbf{X}_{1-t}^{\nu,\left(2\right)}\right\} $
+\begin_inset Formula $\tau=\inf\{t\in\left[0,1\right]\mid\mathbf{X}_{t}^{\nu,\left(1\right)}=\mathbf{X}_{1-t}^{\nu,\left(2\right)}\}$
 \end_inset
 
 .
@@ -660,181 +680,229 @@ on the event
 \end_inset
 
  is equal to 
-\begin_inset Formula $\mathbb{X}^{\nu}$
+\begin_inset Formula $\mathbb{X}^{\nu}\left(\cdot\mid\mathscr{R}\right)$
 \end_inset
 
-, the measure induced by a Then, the measure 
-\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\tau\leq1\right)$
+, where 
+\begin_inset Formula $\mathscr{R}$
 \end_inset
 
- induced by 
-\begin_inset Formula $Z$
-\end_inset
-
- is equal to 
-\begin_inset Formula $\mathbb{P}^{\nu}$
-\end_inset
-
- conditional on the bridge is 
-\end_layout
-
-\begin_layout Proof
-Let 
-\begin_inset Formula $W^{1*}$
-\end_inset
-
- and 
-\begin_inset Formula $W^{2*}$
-\end_inset
-
- be independent standard Wiener processes, which are also independent of
- 
-\begin_inset Formula $W^{1}$
-\end_inset
-
- and 
-\begin_inset Formula $W^{2}$
-\end_inset
-
-.
- Let 
-\begin_inset Formula $X^{i*}$
-\end_inset
-
- be the solution of 
-\begin_inset Formula 
-\[
-dX_{t}^{i*}=\mu\left(X_{t}^{i*}\right)dt+\sigma\left(X_{t}^{i*}\right)dW_{t}^{i*},\mbox{ for }i\in\left\{ 1,2\right\} 
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $X_{0}^{i*}$
-\end_inset
-
- is distributed according to the invariant measure 
-\begin_inset Formula $\mathbb{P}^{*}$
-\end_inset
-
-.
- Let 
-\begin_inset Formula $\rho=\inf\left\{ t\in\left[0,1\right]\mid X_{t}^{*}=\mathbf{X}_{t}^{1}\right\} $
-\end_inset
-
-.
- Define a process 
-\begin_inset Formula $\mathbf{Y}=\left(Y_{t}^{1},Y_{t}^{2}\right)$
-\end_inset
-
- such that
-\begin_inset Formula 
-\[
-Y_{t}^{i}=\begin{cases}
-\mathbf{X}_{t}^{i} & \mbox{if }0\leq t\leq\rho^{i}\leq1\mbox{ or }\rho=\infty\\
-X_{t}^{i*} & \mbox{if }\rho^{i}<t\leq1
-\end{cases},\mbox{ for }i\in\left\{ 1,2\right\} 
-\]
-
-\end_inset
-
-and let 
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
- be the measure induced by 
-\begin_inset Formula $\mathbf{Y}_{t}$
-\end_inset
-
-.
- Then, we define 
-\begin_inset Formula 
-\[
-\mathbb{Q}^{\nu}=\mathbb{Q}\left(\cdot\mid Y_{1}^{\left(1\right)}=Y_{0}^{\left(2\right)},Y_{1}^{\left(2\right)}=Y_{0}^{\left(1\right)}\right)=\mathbb{Q}\left(\cdot\mid\mathcal{N}\right)
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula 
-\[
-\mathcal{N}=\left\{ X_{1}^{\left(1\right)*}=\mathbf{X}_{0}^{\left(2\right)},X_{1}^{\left(2\right)*}=\mathbf{X}_{0}^{\left(1\right)},\rho^{\left(1\right)}\leq1,\rho^{\left(2\right)}\leq1\right\} 
-\]
-
-\end_inset
-
-is the event 
-\begin_inset Formula $(Y_{0}^{\left(1\right)},Y_{1}^{\left(1\right)})$
-\end_inset
-
- and 
-\begin_inset Formula $(Y_{1}^{\left(2\right)},Y_{0}^{\left(2\right)})$
-\end_inset
-
- are both distributed with law 
-\begin_inset Formula $\nu$
-\end_inset
-
-, and the processes 
-\begin_inset Formula $Y^{\left(1\right)}$
-\end_inset
-
- and 
-\begin_inset Formula $Y^{\left(2\right)}$
-\end_inset
-
- are hit by 
-\begin_inset Formula $X^{1*}$
-\end_inset
-
- and 
-\begin_inset Formula $X^{2*}$
-\end_inset
-
- respectively.
- Note now that the measure induced by 
-\begin_inset Formula $\mathbf{X}_{1-t}$
-\end_inset
-
- is equal to the measure induced by 
-\begin_inset Formula $\mathbf{X}_{t}^{*}$
+ is the event that the coordinates of 
+\begin_inset Formula $\mathbf{X}$
 \end_inset
 
  conditional on 
-\begin_inset Formula $\mathbf{X}_{1}^{*}\sim\nu$
+\begin_inset Formula $\mathbf{X}_{1}\sim\nu$
+\end_inset
+
+ hit the respective coordinates of of 
+\begin_inset Formula $\mathbf{X}^{\nu}$
+\end_inset
+
+ at some time 
+\begin_inset Formula $t\in\left[0,1\right]$
 \end_inset
 
 .
- This implies that 
-\begin_inset Formula $\mathbb{Q}^{\nu}=\mathbb{Z}\times\mathbb{Z}^{\leftarrow}$
+\end_layout
+
+\begin_layout Proof
+Recall 
+\begin_inset Formula $\mathbf{X}$
 \end_inset
 
- where 
+ is the solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in two-dimensions where 
+\begin_inset Formula $\mathbf{X}_{0}\sim\pi$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\rho^{\left(i\right)}=\inf\{t\in\left[0,1\right]\mid\mathbf{X}_{t}^{\left(i\right)}=\mathbf{X}_{t}^{\nu,\left(i\right)}\}$
+\end_inset
+
+ for 
+\begin_inset Formula $i\in\left\{ 1,2\right\} $
+\end_inset
+
+, and define a process 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\[
+\mathbf{Y}_{t}^{\left(i\right)}=\begin{cases}
+\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\rho^{\left(i\right)}\\
+\mathbf{X}_{t}^{\left(i\right)} & \mbox{if }\rho^{\left(i\right)}<t\leq1
+\end{cases}
+\]
+
+\end_inset
+
+on the event 
+\begin_inset Formula $\mathscr{R}=\{\rho^{\left(1\right)}\leq1,\rho^{\left(2\right)}\leq1\}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{Y}_{t}=\mathbf{X}_{t}^{\nu}$
+\end_inset
+
+ on 
+\begin_inset Formula $\{\rho^{\left(1\right)}=\infty\}\cup\{\rho^{\left(2\right)}=\infty\}$
+\end_inset
+
+, and let 
+\begin_inset Formula $\mathbb{Y}$
+\end_inset
+
+ be the measure induced by 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+.
+ Note that by the strong Markov property, 
+\begin_inset Formula $\mathbb{Y}=\mathbb{P}^{\nu}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Proof
+Now, define the event 
+\begin_inset Formula 
+\begin{equation}
+\mathscr{B}=\left\{ \mathbf{Y}_{1}^{\left(1\right)}=\mathbf{Y}_{0}^{\left(2\right)},\mathbf{Y}_{1}^{\left(2\right)}=\mathbf{Y}_{0}^{\left(1\right)}\right\} \label{eq:bridge-event}
+\end{equation}
+
+\end_inset
+
+as the event that 
+\begin_inset Formula $(\mathbf{Y}_{0}^{\left(1\right)},\mathbf{Y}_{1}^{\left(1\right)})$
+\end_inset
+
+ and 
+\begin_inset Formula $(\mathbf{Y}_{1}^{\left(2\right)},\mathbf{Y}_{0}^{\left(2\right)})$
+\end_inset
+
+ are distributed with law 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+ Then, the restriction of 
+\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\right)$
+\end_inset
+
+ to its first coordinate is precisely 
+\begin_inset Formula $\mathbb{X}^{\nu}$
+\end_inset
+
+, and the restriction of 
+\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\right)$
+\end_inset
+
+ to its second coordinate is similarly 
+\begin_inset Formula $\mathbb{X}^{\nu,\leftarrow}$
+\end_inset
+
+, the measure induced by the 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ in reverse time.
+ Now, by definition of 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+, we can rewrite 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:bridge-event"
+
+\end_inset
+
+ as 
+\begin_inset Formula 
+\[
+\mathscr{B}=\left\{ \mathbf{X}_{1}^{\left(1\right)}=\mathbf{X}_{0}^{\nu,\left(2\right)},\mathbf{X}_{1}^{\left(2\right)}=\mathbf{X}_{0}^{\nu,\left(1\right)}\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+By 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "lem:time-reversal"
+
+\end_inset
+
+, we know that the measure induced by 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ conditional on 
+\begin_inset Formula $\mathscr{B}$
+\end_inset
+
+ is equal to the measure induced by the time-reversed process 
+\begin_inset Formula $\mathbf{X}_{1-t}^{\nu}$
+\end_inset
+
+.
+ Then, the restriction of 
+\begin_inset Formula 
+\[
+\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)=\mathbb{Z}\left(\cdot\mid\tau\leq1\right)\times\mathbb{Z}^{\leftarrow}\left(\cdot\mid\tau\leq1\right)
+\]
+
+\end_inset
+
+where 
 \begin_inset Formula $\mathbb{Z}^{\leftarrow}$
 \end_inset
 
-is the measure induced by 
+ is the measure induced by 
 \begin_inset Formula $Z_{1-t}$
 \end_inset
 
 .
- However, since we know the coordinates of 
-\series bold
-
+ Since the coordinates of 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
+ were constructed to be independent of each other, we can decompose 
+\begin_inset Formula 
+\[
+\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)=\mathbb{X}^{\nu}\left(\cdot\mid\mathscr{R}\right)\times\mathbb{X}^{\nu,\leftarrow}\left(\cdot\mid\mathscr{R}\right)
+\]
 
-\series default
- are independent by construction, we have 
-\begin_inset Formula $\mathbb{Q}^{\nu}=\mathbb{Q}^{\nu,\left(1\right)}\times\mathbb{Q}^{\nu,\left(2\right)}$
 \end_inset
 
- which implies 
-\begin_inset Formula $\mathbb{Q}^{\nu,\left(1\right)}=\mathbb{Z}\left(\cdot\mid\tau\leq1\right)$
+which implies 
+\begin_inset Formula 
+\[
+\mathbb{X}^{\nu}\left(\cdot\mid\mathscr{R}\right)=\mathbb{Z}\left(\cdot\mid\tau\leq1\right)
+\]
+
 \end_inset
 
- as desired.
+as desired.
 \end_layout
 
 \begin_layout Standard
@@ -844,11 +912,115 @@ reference "thm:approx-sim"
 
 \end_inset
 
- suggests a natural method of simulating approximate 
+ says that 
+\begin_inset Formula $Z$
+\end_inset
+
+ is an approximation to a 
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridges, given a method for simulating regular diffusions.
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ in the sense that conditional on 
+\begin_inset Formula $\tau\leq1$
+\end_inset
+
+, 
+\begin_inset Formula $Z$
+\end_inset
+
+ is a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge conditional on the coordinates of 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ conditional on 
+\begin_inset Formula $\mathbf{X}_{1}\sim\nu$
+\end_inset
+
+ hitting the respective coordinates of 
+\begin_inset Formula $\mathbf{X}^{\nu}$
+\end_inset
+
+ at some time 
+\begin_inset Formula $t\in\left[0,1\right]$
+\end_inset
+
+.
+ Naturally, the higher the probability of this occuring, the closer 
+\begin_inset Formula $Z$
+\end_inset
+
+ is to being an exact 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "thm:approx-sim"
+
+\end_inset
+
+ also suggests a natural method in the spirit of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
+
+\end_inset
+
+ to simulate approximate 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges, given a method 
+\noun on
+diffusion(
+\series bold
+
+\begin_inset Formula $\mu,\sigma,\nu,N$
+\end_inset
+
+)
+\series default
+ 
+\noun default
+for simulating an exact solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ with initial distribution 
+\begin_inset Formula $\mathbf{X}_{0}\sim\nu$
+\end_inset
+
+ at times 
+\begin_inset Formula $i=0,1\dots,N$
+\end_inset
+
+ and step size 
+\begin_inset Formula $1/N$
+\end_inset
+
+ (see 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "kloeden-1992"
+
+\end_inset
+
+ for examples of such methods).
 \end_layout
 
 \begin_layout Standard
@@ -861,7 +1033,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Simulation of 
+Simulation of Approximate 
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -888,45 +1060,15 @@ begin{algorithmic}[1]
 
 
 \backslash
-Require{$
+Function{Approximate $
 \backslash
-rho 
+nu-$bridge}{$
 \backslash
-geq 1$} 
-\end_layout
-
-\begin_layout Plain Layout
-
-
+mu, 
 \backslash
-Ensure{$X_k$} 
-\end_layout
-
-\begin_layout Plain Layout
-
-
+sigma, 
 \backslash
-While{not converged} 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-State{Solve $X_{k+1}=
-\backslash
-min_{X} L(X,Y_k, 
-\backslash
-mu_k)$} 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-State{$Y_{k+1}=Y_k+
-\backslash
-mu_k h(X_{k+1})$} 
+nu, N$} 
 \end_layout
 
 \begin_layout Plain Layout
@@ -935,18 +1077,264 @@ mu_k h(X_{k+1})$}
 \backslash
 State{$
 \backslash
-mu_{k+1}=
+hat{
 \backslash
-rho 
+mathbf{X}}^
 \backslash
-mu_k$} 
+nu 
+\backslash
+gets$ 
+\backslash
+Call{diffusion}{$
+\backslash
+mu, 
+\backslash
+sigma, 
+\backslash
+nu, N$}}
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-EndWhile 
+While{$
+\backslash
+hat{
+\backslash
+mathbf{X}}^{
+\backslash
+nu,(1)}$ and  $
+\backslash
+hat{
+\backslash
+mathbf{X}}^{
+\backslash
+nu,(2)}$ do not cross} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$
+\backslash
+hat{
+\backslash
+mathbf{X}}^
+\backslash
+nu 
+\backslash
+gets$ 
+\backslash
+Call{diffusion}{$
+\backslash
+mu, 
+\backslash
+sigma, 
+\backslash
+nu, N$}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndWhile
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+If{$
+\backslash
+hat{
+\backslash
+mathbf{X}}^{
+\backslash
+nu,(1)}_0 
+\backslash
+geq 
+\backslash
+hat{
+\backslash
+mathbf{X}}^{
+\backslash
+nu,(2)}_1$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$
+\backslash
+tau 
+\backslash
+gets 
+\backslash
+min 
+\backslash
+{i
+\backslash
+in 1,
+\backslash
+dots,N 
+\backslash
+mid 
+\backslash
+hat{
+\backslash
+mathbf{X}}^{
+\backslash
+nu,(1)}_{
+\backslash
+delta i} 
+\backslash
+leq 
+\backslash
+hat{
+\backslash
+mathbf{X}}^{
+\backslash
+nu,(2)}_{
+\backslash
+delta (N-i)}
+\backslash
+}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Else
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$
+\backslash
+tau 
+\backslash
+gets 
+\backslash
+min 
+\backslash
+{i
+\backslash
+in 1,
+\backslash
+dots,N 
+\backslash
+mid 
+\backslash
+hat{
+\backslash
+mathbf{X}}^{
+\backslash
+nu,(1)}_{
+\backslash
+delta i} 
+\backslash
+geq 
+\backslash
+hat{
+\backslash
+mathbf{X}}^{
+\backslash
+nu,(2)}_{
+\backslash
+delta (N-i)}
+\backslash
+}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$Z_{
+\backslash
+delta i} 
+\backslash
+gets 
+\backslash
+begin{cases} 
+\backslash
+hat{
+\backslash
+mathbf{X}}^{
+\backslash
+nu,(1)}_{
+\backslash
+delta i}, 
+\backslash
+text{ for } i=0,1,
+\backslash
+dots,
+\backslash
+tau - 1 
+\backslash
+
+\backslash
+ 
+\backslash
+hat{
+\backslash
+mathbf{X}}^{
+\backslash
+nu,(2)}_{
+\backslash
+delta (N-i)}, 
+\backslash
+text{ for } i=
+\backslash
+tau,
+\backslash
+dots,N 
+\backslash
+end{cases}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State 
+\backslash
+Return $Z_{
+\backslash
+delta i}$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFunction 
 \end_layout
 
 \begin_layout Plain Layout
@@ -976,44 +1364,76 @@ name "algo:approx-sim"
 
 \end_layout
 
+\begin_layout Standard
+We define a crossing of 
+\begin_inset Formula $\hat{\mathbf{X}}^{\nu,\left(1\right)}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\mathbf{X}}^{\nu,\left(2\right)}$
+\end_inset
+
+ as when either the event 
+\begin_inset Formula 
+\[
+\left\{ \hat{\mathbf{X}}_{\delta i}^{\nu,\left(1\right)}\geq\hat{\mathbf{X}}_{\delta\left(N-i\right)}^{\nu,\left(2\right)}\right\} \cap\left\{ \hat{\mathbf{X}}_{\delta\left(i+1\right)}^{\nu,\left(1\right)}\leq\hat{\mathbf{X}}_{\delta\left(N-\left(i+1\right)\right)}^{\nu,\left(2\right)}\right\} 
+\]
+
+\end_inset
+
+or 
+\begin_inset Formula 
+\[
+\left\{ \hat{\mathbf{X}}_{\delta i}^{\nu,\left(1\right)}\leq\hat{\mathbf{X}}_{\delta\left(N-i\right)}^{\nu,\left(2\right)}\right\} \cap\left\{ \hat{\mathbf{X}}_{\delta\left(i+1\right)}^{\nu,\left(1\right)}\geq\hat{\mathbf{X}}_{\delta\left(N-\left(i+1\right)\right)}^{\nu,\left(2\right)}\right\} 
+\]
+
+\end_inset
+
+occurs.
+\end_layout
+
 \begin_layout Section
-extra stuff
+The Marginal Density of a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge
 \end_layout
 
 \begin_layout Standard
-We will use the machinery developed the preceding part to characterize the
- marginal density at 
-\begin_inset Formula $t\in\left(0,1\right)$
+In addition to simulating approximate 
+\begin_inset Formula $\nu-$
 \end_inset
 
- of a Markov process conditioned on the law of its initial and end values.
- 
+bridges, it is also possible to derive the exact marginal density of such
+ bridges given the transition densities; however, the transition densities
+ (i.e.
+ solutions to the Kolmogorov forward equation associated with 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+) to most but the simplest of proceses are intractable.
+ Regardless, characterizing the marginal density will prove useful for evaluatin
+g the performance of our approximate simulation strategy for common processes
+ admitting invariant measures, such as the Ornstein-Uhlenbeck process.
 \end_layout
 
 \begin_layout Proposition
-Consider a conditioning 
-\begin_inset Formula $\left(Y,\nu\right)=\left(\left(X_{0},X_{1}\right),\nu\right)$
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:v-bridge-density"
+
 \end_inset
 
- on the Wiener space in 
-\begin_inset Formula $\mathbb{R}$
-\end_inset
-
- with a Markov measure 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- which is absolutely continuous with respect to the Lebesgue measure.
- Then, the density of the marginal generalized bridge measure 
-\begin_inset Formula $\mathbb{P}^{\nu}$
-\end_inset
-
- of 
-\begin_inset Formula $\mathbb{P}$
+The marginal density of 
+\begin_inset Formula $\mathbb{X}^{\nu}$
 \end_inset
 
  with respect to 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{X}$
 \end_inset
 
  at 
@@ -1023,24 +1443,33 @@ Consider a conditioning
  is given by 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathbb{R}^{2}}\frac{r_{0,t}^{*}\left(x_{0},z\right)r_{t,1}\left(z,x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
+\frac{d\mathbb{X}_{t}^{\nu}}{d\mathbb{X}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{0,t}^{*}\left(x_{0},z\right)p_{t,1}\left(z,x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
 \]
 
 \end_inset
 
-Furthermore, if 
-\begin_inset Formula $\nu$
+where 
+\begin_inset Formula $p$
 \end_inset
 
- is absolutely continuous with respect to 
-\begin_inset Formula $\mathbb{P}_{Y}$
+ and 
+\begin_inset Formula $p*$
 \end_inset
 
-, then 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+ are the forward and backward transition densities associated with 
+\begin_inset Formula $\mathbb{X}$
 \end_inset
 
- is a Markov measure.
+ and 
+\begin_inset Formula $c$
+\end_inset
+
+ is the density of 
+\begin_inset Formula $\mathbb{X}_{0,1}$
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Proof
@@ -1059,13 +1488,30 @@ reference "thm:density-of-bridge"
 , we know that 
 \begin_inset Formula 
 \[
-\eta_{t}^{y}=\frac{r_{0,t}^{*}\left(x_{0},z\right)r_{t,1}\left(z,x_{1}\right)}{c\left(x_{0},x_{1}\right)}
+\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\mid X_{0}=x,X_{1}=y\right]=\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\frac{p_{0,t}^{*}\left(x,X_{t}\right)r_{t,1}\left(X_{t},y\right)}{c\left(x,y\right)}\right]
+\]
+
+\end_inset
+
+for arbitrary 
+\begin_inset Formula $A\in\mathcal{F}_{t}$
+\end_inset
+
+.
+ Therefore, 
+\begin_inset Formula 
+\[
+\eta_{t}^{x,y}=\frac{p_{0,t}^{*}\left(x,X_{t}\right)r_{t,1}\left(X_{t},y\right)}{c\left(x,y\right)}
 \]
 
 \end_inset
 
 is the Radon-Nikodym derivative associated with the conditioning 
-\begin_inset Formula $\left(Y,\nu\right)$
+\begin_inset Formula $\left(\left(X_{0},X_{1}\right),\nu\right)$
+\end_inset
+
+ on 
+\begin_inset Formula $\mathbb{X}$
 \end_inset
 
 .
@@ -1080,50 +1526,146 @@ reference "prop:pv-density"
 \end_layout
 
 \begin_layout Standard
-This immediately suggests an intuitive way to simulate approximately from
- 
-\begin_inset Formula $\mathbb{P}_{t}^{\nu}$
+Though the density given in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "prop:v-bridge-density"
+
+\end_inset
+
+ are often very difficult to compute, we present below a simple example
+ that nonetheless enlightening with respect to the behavior of 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges.
+\end_layout
+
+\begin_layout Example
+Let 
+\begin_inset Formula $\mu\left(x\right)=-\theta\left(x-\mu\right)$
+\end_inset
+
+ for 
+\begin_inset Formula $\theta>0$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma\left(x\right)=1$
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in one dimension, and let 
+\begin_inset Formula $X_{0}\sim\mathbb{X}$
+\end_inset
+
+ where 
+\begin_inset Formula 
+\[
+\mathbb{X}\left(A\right)=\frac{1}{\sqrt{\pi\sigma^{2}/\theta}}\int_{A}\exp\left\{ -\frac{\left(x-\mu\right)^{2}}{\sigma^{2}/\theta}\right\} dx
+\]
+
+\end_inset
+
+for any 
+\begin_inset Formula $A\in\mathcal{F}_{0}$
 \end_inset
 
 .
- This method and the sense in which it is an approximation is given in 
+ Then, the solution to 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:approx-sim"
+LatexCommand eqref
+reference "eq:basic-sde"
 
 \end_inset
 
-, generalizing the major result of 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bladt-sorensen-2014"
+ is the Ornstein-Uhlenbeck process with invariant measure 
+\begin_inset Formula $\mathbb{X}$
+\end_inset
+
+.
+ Now let 
+\begin_inset Formula $\nu$
+\end_inset
+
+ be the 
+\begin_inset Formula $2-$
+\end_inset
+
+dimensional Gaussian measure with mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+, variance 
+\begin_inset Formula $1/2\theta$
+\end_inset
+
+, and correlation 
+\begin_inset Formula $\rho$
+\end_inset
+
+.
+ In other words, the marginal measures of 
+\begin_inset Formula $\nu$
+\end_inset
+
+ are the invariant measure 
+\begin_inset Formula $\mathbb{X}$
+\end_inset
+
+.
+ The transition and 
+\begin_inset Formula $0,1-$
+\end_inset
+
+joint densities of an Ornstein-Uhlenbeck process are 
+\begin_inset Formula 
+\begin{eqnarray*}
+p_{s,t}\left(z,y\right) & = & \frac{1}{\sqrt{\pi\sigma^{2}\left(1-e^{-2\theta\left(t-s\right)}\right)/\theta}}\exp\left\{ -\frac{\left(y-\mu-\left(z-\mu\right)e^{-\theta\left(t-s\right)}\right)^{2}}{\sigma^{2}\left(1-e^{-2\theta\left(t-s\right)}\right)/\theta}\right\} \\
+p_{s,t}^{*}\left(x,z\right) & = & \frac{p_{s,t}\left(z,x\right)p_{0,s}\left(0,x\right)}{p_{0,t}\left(0,z\right)}\\
+c\left(x,y\right) & = & \frac{d\mathbb{X}}{dx}\left(x\right)p_{0,1}\left(x,y\right)
+\end{eqnarray*}
 
 \end_inset
 
- and bring it into the measure-theoretic framework thus far presented.
- Before proving 
+Then, by 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:approx-sim"
+LatexCommand eqref
+reference "prop:v-bridge-density"
 
 \end_inset
 
-, we will first show the following lemma, related to the distribution of
- a time-reversed diffusion process, generalizing Lemma 2.2 in 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bladt-sorensen-2014"
+ and recalling that 
+\begin_inset Formula $d\mathbb{X}_{t}/dx$
+\end_inset
+
+ is simply the invariant density for any 
+\begin_inset Formula $t$
+\end_inset
+
+, we see that 
+\begin_inset Formula $d\mathbb{X}_{t}^{\nu}/dx$
+\end_inset
+
+ is a Gaussian measure with mean equal to 
+\end_layout
+
+\begin_layout Example
+and variance 
+\begin_inset Formula 
+\[
+\left(1-e^{-2\left(1-t\right)\theta}\right)\left(1+\theta\left(\rho^{2}-1\right)\left(1-\coth\left(\theta-t\theta\right)\right)\right)
+\]
 
 \end_inset
 
- and also bringing it into the measure-theoretic framework of this paper.
- We assume the existence of any necesary densities (with respect to the
- Lebesgue measure unless otherwise stated), and assume any diffusion that
- solves [FLAG: SDE HERE] is a 
-\begin_inset Formula $\gamma-$
-\end_inset
 
-symmetric diffusion in the sense 
 \end_layout
 
 \end_body

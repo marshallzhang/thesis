@@ -1249,52 +1249,6 @@ reference "thm:density-of-bridge"
 \end_inset
 
  with respect to the Lebesgue measure.
- Furthermore, this result also gives us the transition density of a Markov
- bridge.
-\end_layout
-
-\begin_layout Corollary
-The forward and backward transition probability densities of 
-\begin_inset Formula $\mathbb{R}^{x,y}$
-\end_inset
-
- satisfy, for all 
-\begin_inset Formula $0\leq s<t\leq1$
-\end_inset
-
-,
-\begin_inset Formula 
-\[
-\mathbb{R}_{t}^{x,y}\left(dz\mid X_{s}=z'\right)=\frac{r_{0,t}^{*}\left(x,z\right)r_{t,1}\left(z,y\right)}{r_{0,1}^{*}\left(x,y\right)r_{1}\left(y\right)}r_{s,t}\left(z',dz\right)
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\frac{f\left(x,0\mid z,t\right)}{f\left(x,0,y,1\right)}?=f\left(y,1\mid s,z\right)
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\frac{r_{s,t}\left(z,z'\right)r_{t,1}\left(z',y\right)}{r_{s,1}\left(z,y\right)}=\frac{f\left(y,1\mid z',t\right)f\left(z',t\mid z,s\right)}{f\left(y,1\mid z,s\right)}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-f\left(y,t\mid x,s\right)=\frac{f\left(y,t,x,s\right)}{f\left(x,s\right)}
-\]
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Example
@@ -1369,16 +1323,16 @@ Accordingly, the density of the Brownian bridge with respect to the Lebesgue
  measure is
 \begin_inset Formula 
 \[
-\frac{d\mathbb{W}_{t}^{x,y}}{dz}=\frac{1}{\sqrt{2\pi\left(1-t\right)t}}\exp\left\{ \frac{1}{2}\left[\left(x-y\right)^{2}-\frac{\left(x-z\right)^{2}}{t^{2}}-\frac{\left(y-z\right)^{2}}{\left(1-t\right)^{2}}\right]\right\} 
+\frac{d\mathbb{W}_{t}^{x,y}}{dz}=\frac{1}{\sqrt{2\pi\left(1-t\right)t}}\exp\left\{ -\frac{1}{2}\left[\frac{\left(z-\left(1-t\right)x-ty\right)^{2}}{2\left(1-t\right)t}\right]\right\} 
 \]
 
 \end_inset
 
 which is a Gaussian density with mean 
-\begin_inset Formula $0$
+\begin_inset Formula $\left(1-t\right)x+ty$
 \end_inset
 
- [FLAG: NO ITS NOT THIS IS NOT STANDARD BROWNIAN BRIDGE] and variance 
+ and variance 
 \begin_inset Formula $\left(1-t\right)t$
 \end_inset
 
