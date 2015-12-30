@@ -77,7 +77,7 @@ theorems-chap
 \begin_body
 
 \begin_layout Chapter
-Characterizing and Simulating 
+The Theory of 
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -92,25 +92,68 @@ name "chap:4"
 \end_layout
 
 \begin_layout Standard
-In this chapter, we characterize the marginal density of a Markov process
- conditioned on the law of its initial and end values.
- From this characterization, we propose a natural simulation strategy to
- estimate this density.
- In this chapter, we return to the space of Markov measures 
-\begin_inset Formula $\mathbb{P}$
+In this chapter, we return to the original notion of a bridge process (a
+ process that 
+\begin_inset Quotes eld
 \end_inset
 
- on the Wiener space.
+bridges
+\begin_inset Quotes erd
+\end_inset
+
+ a given start and end value), but expand the concept with Baudoin's idea
+ of conditioning.
+ In particular, we will explore what it means to condition a process on
+ the joint distribution 
+\begin_inset Formula $\nu$
+\end_inset
+
+ of its initial and end values.
+ This is a generalization of traditional diffusion bridges in the sense
+ that such bridges are simply 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges where the marginal measures of 
+\begin_inset Formula $\nu$
+\end_inset
+
+ are Dirac delta functions.
+ Of course, Baudoin's general results hold in particular for these 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges, and thus we focus here on proposing an approximate simulation strategy
+ for such bridges in the spirit of 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bladt-sorensen-2014"
+
+\end_inset
+
+, as well as quantifying how 
+\begin_inset Quotes eld
+\end_inset
+
+approximate
+\begin_inset Quotes erd
+\end_inset
+
+ the bridges sampled are.
 \end_layout
 
 \begin_layout Section
-Setting the Stage
+An Introduction to 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges
 \end_layout
 
 \begin_layout Standard
 We begin by fixing the objects which we will study.
- As always, we will work on the classical Wiener space, and restrict our
- focus to time-homogenous Itô diffusions, i.e.
+ We will work on the usual probability space and restrict our focus to time-homo
+genous Itô diffusions, i.e.
  continuous and strongly Markovian diffusions.
  In particular, fixing 
 \begin_inset Formula $\mathbf{W}=(W^{\left(1\right)},\dots,W^{\left(N\right)})$
@@ -150,12 +193,9 @@ where
 \begin_inset Formula $\int_{\mathbb{R}}dx=\infty$
 \end_inset
 
-, so we will not study 
-\begin_inset Formula $\mu=0,\sigma=1$
-\end_inset
-
-).
- We will assume for the remainder of this chapter that a solution to 
+, and thus the measure does not meet this condition).
+ We will also assume for the remainder of this chapter that a solution to
+ 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
@@ -197,7 +237,7 @@ where
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is the measure that the solution induces.
+ is the measure that such a solution induces.
  
 \end_layout
 
@@ -231,23 +271,15 @@ reference "eq:basic-sde"
 \end_inset
 
  be the probability measure it induces on the Wiener space.
- Note that the 
-\begin_inset Formula $\nu-$
+ Note that the Baudoin 
+\begin_inset Formula $\left(\mathbf{X}_{0},\nu\right)-$
 \end_inset
 
-conditioned measure 
-\begin_inset Formula $\mathbb{P}^{\nu}$
-\end_inset
-
- induced by the conditioning 
-\begin_inset Formula $\left(\mathbf{X}_{0},\nu\right)$
-\end_inset
-
- on 
+conditioning of 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is equal to measure induced by the solution to 
+ is equal to the measure induced by the solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
@@ -263,7 +295,11 @@ reference "eq:basic-sde"
 \begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
-.
+ and the measure it induces be denoted 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ as usual.
 \end_layout
 
 \begin_layout Standard
@@ -306,7 +342,7 @@ reference "eq:basic-sde"
 \begin_inset Formula $\mathbb{X}$
 \end_inset
 
- be the measure it induces on the classical Wiener space.
+ be the measure it induces on the usual probability space.
  Then, the 
 \begin_inset Formula $\nu-$
 \end_inset
@@ -319,29 +355,180 @@ bridge of
 \begin_inset Formula $t\in\left[0,1\right]$
 \end_inset
 
- that induces the 
-\begin_inset Formula $\nu-$
+ that induces the Baudoin 
+\begin_inset Formula $\left(\left(X_{0},X_{1}\right),\nu\right)-$
 \end_inset
 
-conditioned measure 
+conditioning of 
+\begin_inset Formula $\mathbb{X}$
+\end_inset
+
+, denoted 
 \begin_inset Formula $\mathbb{X}^{\nu}$
 \end_inset
 
- for the conditioning 
-\begin_inset Formula $\left(\left(X_{0},X_{1}\right),\nu\right)$
-\end_inset
-
- on the same Wiener space.
- 
+, on the same space.
 \end_layout
 
 \begin_layout Standard
-In this chapter, we present a scheme to simulate approximate 
+The theory presented in the previous part gives an easy proposition regarding
+ the density of a 
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridges, and demonstrate in what sense these bridges are approximate.
+bridge.
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:v-bridge-density"
+
+\end_inset
+
+The marginal density of 
+\begin_inset Formula $\mathbb{X}^{\nu}$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mathbb{X}$
+\end_inset
+
+ at 
+\begin_inset Formula $t$
+\end_inset
+
+ is given by 
+\begin_inset Formula 
+\[
+\frac{d\mathbb{X}_{t}^{\nu}}{d\mathbb{X}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{0,t}^{*}\left(x_{0},z\right)p_{t,1}\left(z,x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula $p*$
+\end_inset
+
+ are the forward and backward transition densities associated with 
+\begin_inset Formula $\mathbb{X}$
+\end_inset
+
+ and 
+\begin_inset Formula $c$
+\end_inset
+
+ is the density of 
+\begin_inset Formula $\mathbb{X}_{0,1}$
+\end_inset
+
+.
  
+\end_layout
+
+\begin_layout Proof
+Consider any 
+\begin_inset Formula $t\in[0,1)$
+\end_inset
+
+.
+ By 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "thm:density-of-bridge"
+
+\end_inset
+
+, we know that 
+\begin_inset Formula 
+\[
+\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\mid X_{0}=x,X_{1}=y\right]=\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\frac{p_{0,t}^{*}\left(x,X_{t}\right)r_{t,1}\left(X_{t},y\right)}{c\left(x,y\right)}\right]
+\]
+
+\end_inset
+
+for arbitrary 
+\begin_inset Formula $A\in\mathcal{F}_{t}$
+\end_inset
+
+.
+ Therefore, 
+\begin_inset Formula 
+\[
+\eta_{t}^{x,y}=\frac{p_{0,t}^{*}\left(x,X_{t}\right)r_{t,1}\left(X_{t},y\right)}{c\left(x,y\right)}
+\]
+
+\end_inset
+
+is the Radon-Nikodym derivative associated with the conditioning 
+\begin_inset Formula $\left(\left(X_{0},X_{1}\right),\nu\right)$
+\end_inset
+
+ on 
+\begin_inset Formula $\mathbb{X}$
+\end_inset
+
+.
+ Then, 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prop:pv-density"
+
+\end_inset
+
+ gives the desired result.
+\end_layout
+
+\begin_layout Standard
+Of course, 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prop:v-bridge-density"
+
+\end_inset
+
+ reinforces the fact that if 
+\begin_inset Formula $\nu$
+\end_inset
+
+ is chosen to be the law of 
+\begin_inset Formula $\left(X_{0},X_{1}\right)$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{X}$
+\end_inset
+
+, we have trivially that 
+\begin_inset Formula $\mathbb{X}^{\nu}=\mathbb{X}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-2002"
+
+\end_inset
+
+ details the theoretical properties of general Baudoin 
+\begin_inset Formula $\left(Y,\nu\right)-$
+\end_inset
+
+conditionings in great detail, and his results carry over easily to this
+ specific case.
+ We therefore focus on proposing a simulation scheme for 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges, and evaluating such a scheme theoretically, for the remainder of
+ this chapter.
 \end_layout
 
 \begin_layout Section
@@ -357,7 +544,29 @@ The simulation of diffusion bridges has a substantial literature since naïve
  simulation attempts will have a unacceptably high rejection probability
  when attempting to hit the desired endpoint (which, after all, is a measure
  zero event).
- An overivew of the recent literature can be found in 
+ One can imagine that simulating a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge should also be non-trivial, since we are not only conditioning on
+ a measure zero event of 
+\begin_inset Formula $\left\{ X_{1}=x_{1}\right\} $
+\end_inset
+
+, but rather the event that 
+\begin_inset Formula $X_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $X_{1}$
+\end_inset
+
+ follow some joint distribution.
+\end_layout
+
+\begin_layout Standard
+An overview of the recent literature in simulating traditional diffusion
+ bridges can be found in 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "papa-roberts-2012"
@@ -395,12 +604,12 @@ The general idea of the following method is to simulate two diffusion processes
 \begin_inset Formula $\nu$
 \end_inset
 
-; if these two bridges intersect, they can be combined into an approximation
+; if these two diffusions intersect, they can be combined into an approximation
  of a 
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridge.
+bridge by reversing the evolution of one of the processes in time.
  The particular construction of the approximate 
 \begin_inset Formula $\nu-$
 \end_inset
@@ -424,10 +633,15 @@ reference "algo:approx-sim"
 \begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
- under time-reversal is the same as the distribution of 
+ (a bivariate diffusion process initialized with 
+\begin_inset Formula $\mathbf{X}_{0}\sim\nu$
+\end_inset
+
+) under time-reversal is the same as the distribution of 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
 
+ (a bivariate diffusion process initialized with its stationary distribution)
  under the conditioning 
 \begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)$
 \end_inset
@@ -493,7 +707,7 @@ Fix
 \begin{eqnarray}
  &  & \mathbb{P}^{\nu,\leftarrow}\left(\mathbf{X}_{t}^{\nu,\leftarrow}\in\cdot\mid\mathbf{X}_{s}^{\nu,\leftarrow}=\mathbf{x}\right)\nonumber \\
  & = & \mathbb{P}^{\nu}\left(\mathbf{X}_{1-t}^{\nu}\in\cdot\mid\mathbf{X}_{1-s}^{\nu}=\mathbf{x}\right)\nonumber \\
- & = & \int\mathbb{P}\left(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0},\mathbf{X}_{1-s}=\mathbf{x}\right)\nu\left(d\mathbf{x}_{0}\right)\label{eq:p-integral-reversal}
+ & = & \int\mathbb{P}\left(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0}\right)\nu\left(d\mathbf{x}_{0}\right)\label{eq:p-integral-reversal}
 \end{eqnarray}
 
 \end_inset
@@ -504,11 +718,11 @@ where the first equality is by definition and the second equality follows
 \end_inset
 
  along its initial value.
- By 
+ By disintegration of the 
 \begin_inset Formula $\gamma-$
 \end_inset
 
-symmetry and some disintegration, we have
+symmetry condition, we have
 \begin_inset Formula 
 \begin{eqnarray*}
  &  & \int\mathbb{P}\left(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0}\right)\nu\left(d\mathbf{x}_{0}\right)\\
@@ -575,8 +789,18 @@ Now, note that since
 
 \end_inset
 
-where the third equality is the fact the time-invariance of 
-\begin_inset Formula $\pi$
+where the third equality is by the fact that 
+\begin_inset Formula $\mathbb{P}_{t}$
+\end_inset
+
+ is time-invariant
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+I think this third equality thing is true?
+\end_layout
+
 \end_inset
 
 .
@@ -628,7 +852,7 @@ reference "lem:time-reversal"
 \end_inset
 
 bridge of 
-\begin_inset Formula $\mathbf{X}$
+\begin_inset Formula $X$
 \end_inset
 
 .
@@ -702,7 +926,7 @@ on the event
 \begin_inset Formula $\mathbf{X}_{1}\sim\nu$
 \end_inset
 
- hit the respective coordinates of of 
+ hit the respective coordinates of 
 \begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
@@ -711,6 +935,23 @@ on the event
 \end_inset
 
 .
+ 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+There's something a little strange with working in two dimensions in a lot
+ of the proof, and then restricting our attention to the single coordinate
+ measure 
+\begin_inset Formula $\mathbb{X}^{\nu}$
+\end_inset
+
+, but still conditioning on a two-dimension event.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proof
@@ -765,7 +1006,8 @@ on the event
 \begin_inset Formula $\{\rho^{\left(1\right)}=\infty\}\cup\{\rho^{\left(2\right)}=\infty\}$
 \end_inset
 
-, and let 
+.
+ Let 
 \begin_inset Formula $\mathbb{Y}$
 \end_inset
 
@@ -774,12 +1016,6 @@ on the event
 \end_inset
 
 .
- Note that by the strong Markov property, 
-\begin_inset Formula $\mathbb{Y}=\mathbb{P}^{\nu}$
-\end_inset
-
-.
- 
 \end_layout
 
 \begin_layout Proof
@@ -791,7 +1027,11 @@ Now, define the event
 
 \end_inset
 
-as the event that 
+Note that 
+\begin_inset Formula $\mathscr{B}$
+\end_inset
+
+ is the event that 
 \begin_inset Formula $(\mathbf{Y}_{0}^{\left(1\right)},\mathbf{Y}_{1}^{\left(1\right)})$
 \end_inset
 
@@ -829,7 +1069,17 @@ bridge of
 \end_inset
 
  in reverse time.
- Now, by definition of 
+ 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Now, by definition of 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
@@ -867,12 +1117,44 @@ reference "lem:time-reversal"
 \begin_inset Formula $\mathscr{B}$
 \end_inset
 
+
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+I need to be a little careful if the processes inducing these measures are
+ the same process, just time-reversed, or if they are driven by independent
+ Wiener processes.
+ I think they should be independent since the coordinates of 
+\begin_inset Formula $Y$
+\end_inset
+
+ are independent? Also, I need to be careful here because we are dealing
+ with four different processes (for each coordinate of 
+\begin_inset Formula $\mathbf{X}^{\nu}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+).
+ 
+\begin_inset Formula $\mathscr{B}$
+\end_inset
+
+ is an event involving all four but the measures I'm working with are at
+ most on two coordinates, so I'm not sure whether the conditioning is kosher..
+\end_layout
+
+\end_inset
+
  is equal to the measure induced by the time-reversed process 
 \begin_inset Formula $\mathbf{X}_{1-t}^{\nu}$
 \end_inset
 
 .
- Then, the restriction of 
+ Then, 
 \begin_inset Formula 
 \[
 \mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)=\mathbb{Z}\left(\cdot\mid\tau\leq1\right)\times\mathbb{Z}^{\leftarrow}\left(\cdot\mid\tau\leq1\right)
@@ -943,11 +1225,15 @@ bridge of
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridge conditional on the coordinates of 
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ conditional on an independent diffusion 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
 
- conditional on 
+ with 
 \begin_inset Formula $\mathbf{X}_{1}\sim\nu$
 \end_inset
 
@@ -1400,136 +1686,31 @@ occurs.
 \end_layout
 
 \begin_layout Section
-The Marginal Density of a 
-\begin_inset Formula $\nu-$
+Quantifying 
+\begin_inset Quotes eld
 \end_inset
 
-bridge
+Approximate
+\begin_inset Quotes erd
+\end_inset
+
+ and Exact Sampling
 \end_layout
 
 \begin_layout Standard
-In addition to simulating approximate 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges, it is also possible to derive the exact marginal density of such
- bridges given the transition densities; however, the transition densities
- (i.e.
- solutions to the Kolmogorov forward equation associated with 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
 
 \end_inset
 
-) to most but the simplest of proceses are intractable.
- Regardless, characterizing the marginal density will prove useful for evaluatin
-g the performance of our approximate simulation strategy for common processes
- admitting invariant measures, such as the Ornstein-Uhlenbeck process.
-\end_layout
-
-\begin_layout Proposition
-\begin_inset CommandInset label
-LatexCommand label
-name "prop:v-bridge-density"
-
-\end_inset
-
-The marginal density of 
-\begin_inset Formula $\mathbb{X}^{\nu}$
-\end_inset
-
- with respect to 
-\begin_inset Formula $\mathbb{X}$
-\end_inset
-
- at 
-\begin_inset Formula $t$
-\end_inset
-
- is given by 
-\begin_inset Formula 
-\[
-\frac{d\mathbb{X}_{t}^{\nu}}{d\mathbb{X}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{0,t}^{*}\left(x_{0},z\right)p_{t,1}\left(z,x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $p$
-\end_inset
-
- and 
-\begin_inset Formula $p*$
-\end_inset
-
- are the forward and backward transition densities associated with 
-\begin_inset Formula $\mathbb{X}$
-\end_inset
-
- and 
-\begin_inset Formula $c$
-\end_inset
-
- is the density of 
-\begin_inset Formula $\mathbb{X}_{0,1}$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Proof
-Consider any 
-\begin_inset Formula $t\in[0,1)$
-\end_inset
-
-.
- By 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "thm:density-of-bridge"
-
-\end_inset
-
-, we know that 
-\begin_inset Formula 
-\[
-\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\mid X_{0}=x,X_{1}=y\right]=\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\frac{p_{0,t}^{*}\left(x,X_{t}\right)r_{t,1}\left(X_{t},y\right)}{c\left(x,y\right)}\right]
-\]
-
-\end_inset
-
-for arbitrary 
-\begin_inset Formula $A\in\mathcal{F}_{t}$
-\end_inset
-
-.
- Therefore, 
-\begin_inset Formula 
-\[
-\eta_{t}^{x,y}=\frac{p_{0,t}^{*}\left(x,X_{t}\right)r_{t,1}\left(X_{t},y\right)}{c\left(x,y\right)}
-\]
-
-\end_inset
-
-is the Radon-Nikodym derivative associated with the conditioning 
-\begin_inset Formula $\left(\left(X_{0},X_{1}\right),\nu\right)$
-\end_inset
-
- on 
-\begin_inset Formula $\mathbb{X}$
-\end_inset
-
-.
- Then, 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "prop:pv-density"
-
-\end_inset
-
- gives the desired result.
+ show some theory relating the density of the approximate bridges in their
+ simulation scheme to the density of true diffusion bridges, and use the
+ relationship to derive an exact Metropolis-Hastings sampler, using the
+ approximate simulation scheme as a proposal distribution.
+ I hope to do something similar (otherwise it is hard to tell whether the
+ slight bias in simulations in the next chapter is due to the approximation
+ error or something else).
 \end_layout
 
 \end_body

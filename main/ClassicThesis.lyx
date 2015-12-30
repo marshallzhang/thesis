@@ -114,6 +114,10 @@ pagestyle{plain}
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Titlepage.lyx"
@@ -123,7 +127,7 @@ filename "Titlepage.lyx"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Titleback.lyx"
@@ -133,14 +137,14 @@ filename "Titleback.lyx"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Newpage cleardoublepage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Dedication.lyx"
@@ -150,14 +154,14 @@ filename "Dedication.lyx"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Newpage cleardoublepage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Abstract.lyx"
@@ -167,14 +171,14 @@ filename "Abstract.lyx"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Newpage cleardoublepage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Acknowledgments.lyx"
@@ -184,14 +188,16 @@ filename "Acknowledgments.lyx"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Newpage cleardoublepage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\end_inset
+
+
 \begin_inset ERT
 status open
 
@@ -255,26 +261,89 @@ filename "Chapter01.lyx"
 \end_layout
 
 \begin_layout Part Introduction (ClassicThesis)
-Lorem ipsum at nusquam appellantur his, ut eos erant homero concludaturque.
- Albucius appellantur deterruisset id eam, vivendum partiendo dissentiet
- ei ius.
- Vis melius facilisis ea, sea id convenire referrentur, takimata adolescens
- ex duo.
- Ei harum argumentum per eam.
+In this part, an overview of the theory of stochastic bridges is given,
+ with emphasis on Markov bridges in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:2"
+
+\end_inset
+
+ and the generalized bridges of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-2002"
+
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:3"
+
+\end_inset
+
+.
+ 
 \begin_inset Newline newline
 \end_inset
 
-Errem omnium ea per, pro congue populo ornatus cu, ex qui dicant nemore
- melius.
- No pri diam iriure euismod.
- Graecis eleifend appellantur quo.
- Id corpora inimicus nam, facer nonummy ne pro, kasd repudiandae ei mei.
- Mea menandri mediocrem dissentiet cu, ex nominati imperdiet nec, sea odio
- duis vocent ei.
- Tempor everti appareat cu ius, ridens audiam an qui.
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:2"
+
+\end_inset
+
+ follows the exposition by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "leonard-2014"
+
+\end_inset
+
+ of Markov bridges, beginning with a treatment of standard results regarding
+ Markov measures.
+ Then, the theory of bridge measures on a reference Markov measure is presented,
+ and the chapter concludes with a statement regarding the marginal density
+ of a bridge measure with respect to its reference measure.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:3"
+
+\end_inset
+
+ begins by briefly exploring the various notions of a generalized bridge
+ that have appeared in the literature, and then focuses on the generalized
+ bridges of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-2002"
+
+\end_inset
+
+.
+ Some key theorems of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-2002"
+
+\end_inset
+
+ are presented.
 \end_layout
 
 \begin_layout Part
+\begin_inset CommandInset label
+LatexCommand label
+name "part:2"
+
+\end_inset
+
 Theoretical Background
 \end_layout
 
@@ -298,8 +367,104 @@ filename "Chapter03.lyx"
 
 \end_layout
 
+\begin_layout Part Introduction (ClassicThesis)
+In this part, the central notion of this thesis, a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge, is introduced and explored, with 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+ focusing on characterizing such bridges and proposing an approximate simulation
+ scheme, and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:5"
+
+\end_inset
+
+ studying the proposed simulation scheme and demonstrating potential application
+s of 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+ defines a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge in the language of Part 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "part:2"
+
+\end_inset
+
+, and demonstrates how such a bridge might be simulated in the spirit of
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
+
+\end_inset
+
+.
+ The approximate nature of the simulation is quantified, and the density
+ of such samples is quantified alongside the exact density of true 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:5"
+
+\end_inset
+
+ takes theory to practice and begins with simulation studies of the simulation
+ scheme proposed in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+ for the Ornstein-Uhlenbeck and Cox-Ingersoll-Ross processes.
+ Then, an immediate application of 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges is explored to impute forecasts from various macroeconomic survey
+ forecasts.
+ 
+\end_layout
+
 \begin_layout Part
-The Theory of 
+\begin_inset CommandInset label
+LatexCommand label
+name "part:3"
+
+\end_inset
+
+
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -331,14 +496,22 @@ filename "Chapter05.lyx"
 \end_inset
 
 
-\end_layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "Bibliography.lyx"
+
+\end_inset
+
+
+\begin_inset Note Comment
+status open
 
 \begin_layout Part
 \start_of_appendix
 Appendix
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Chapter0A.lyx"
@@ -348,31 +521,21 @@ filename "Chapter0A.lyx"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Newpage cleardoublepage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Bibliography.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Newpage cleardoublepage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Colophon.lyx"
@@ -382,17 +545,22 @@ filename "Colophon.lyx"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Newpage cleardoublepage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Declaration.lyx"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 

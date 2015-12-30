@@ -85,9 +85,13 @@ name "chap:3"
 \end_layout
 
 \begin_layout Standard
-In this chapter, we study a generalized notion of a bridge measure, where
+In this chapter, we study generalized notions of a bridge measure, where
  the reference path measure is not necessarily Markov, and the associated
  canonical process.
+\end_layout
+
+\begin_layout Section
+Generalized Bridges
 \end_layout
 
 \begin_layout Standard
@@ -171,34 +175,30 @@ key "baudoin-coutin-2007"
  known as Gaussian Volterra processes).
 \end_layout
 
-\begin_layout Standard
-A different axis along which the notion of a bridge process has been extended
- will be the focus of the remainder of this chapter.
- 
-\end_layout
-
 \begin_layout Section
-Processes Conditioned on the Law of Their Functionals
+Baudoin Bridges
 \end_layout
 
 \begin_layout Standard
-We will proceed on the usual probability space 
-\begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right),\mathbb{P}\right)$
-\end_inset
-
- for a general path measure 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
-, and refer to this space as a path space.
- Roughly following 
+While the above notions of generalization are interesting, they continue
+ to condition a process on the value of some realization of its functionals.
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "baudoin-2002"
 
 \end_inset
 
-, we define the concept of a conditioning on 
+ introduced the notion of conditioning the functionals of a process on their
+ distribution, and this conceptual leap is precisely what we need to drive
+ the analysis to follow.
+ We present some of the major results of Baudoin below, working on the usual
+ probability space endowed with a general probability measure 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+.
+ First, we define the concept of a conditioning on 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -211,12 +211,12 @@ key "baudoin-2002"
 status open
 
 \begin_layout Plain Layout
-Conditioning on a path space
+Conditioning
 \end_layout
 
 \end_inset
 
-A conditioning on a path space is a tuple 
+A conditioning on the usual probability space is a tuple 
 \begin_inset Formula $\left(Y,\nu\right)$
 \end_inset
 
@@ -252,15 +252,26 @@ A conditioning on a path space is a tuple
 
 \end_deeper
 \begin_layout Definition
-such that 
+such that
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
 \begin_inset Formula $\nu$
 \end_inset
 
- is absolutely continuous with respect to 
-\begin_inset Formula $\mathbb{P}_{Y}$
+ is absolutely continuous with respect to the law of 
+\begin_inset Formula $Y$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
 , 
+\end_layout
+
+\begin_layout Enumerate
 \begin_inset Formula $\mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(d\nu/d\mathbb{P}_{Y}\right)\right]$
 \end_inset
 
@@ -268,7 +279,11 @@ such that
 \begin_inset Formula $\varphi:\mathbb{R}^{+}\rightarrow\mathbb{R}^{+}$
 \end_inset
 
-, and for any 
+, and 
+\end_layout
+
+\begin_layout Enumerate
+for any 
 \begin_inset Formula $t\in[0,1)$
 \end_inset
 
@@ -299,8 +314,9 @@ measurable random variable
 .
 \end_layout
 
+\end_deeper
 \begin_layout Standard
-Note we define 
+Before proceeding, we define 
 \begin_inset Formula $\mathbb{P}_{Y}:=\mathbb{P}\circ Y^{-1}$
 \end_inset
 
@@ -313,6 +329,7 @@ Note we define
 \end_inset
 
 .
+ 
 \end_layout
 
 \begin_layout Standard
@@ -324,7 +341,7 @@ status collapsed
 
 \begin_layout Plain Layout
 Is smooth the right word to describe 
-\begin_inset Formula $\mathbb{E}_{\mathbb{Q}}\left(d\mathbb{Q}/d\mathbb{P}\right)$
+\begin_inset Formula $\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(d\mathbb{Q}/d\mathbb{P}\right)\right]$
 \end_inset
 
  being bounded?
@@ -344,6 +361,10 @@ Is smooth the right word to describe
 \begin_inset Formula $\nu$
 \end_inset
 
+, for any conditioning 
+\begin_inset Formula $\left(Y,\nu\right)$
+\end_inset
+
 .
 \end_layout
 
@@ -352,10 +373,15 @@ Is smooth the right word to describe
 status open
 
 \begin_layout Plain Layout
-\begin_inset Formula $\nu-$
+Baudoin 
+\begin_inset Formula $\left(Y,\nu\right)-$
 \end_inset
 
-conditioned measure
+conditioning of 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -371,7 +397,7 @@ Fix a conditioning
 \begin_inset Formula $\left(Y,\nu\right)$
 \end_inset
 
- on a path space and any convex function 
+ on the usual probability space and any convex function 
 \begin_inset Formula $\varphi:\mathbb{R}^{+}\rightarrow\mathbb{R}^{+}$
 \end_inset
 
@@ -453,15 +479,19 @@ where
 \end_inset
 
 .
- Call 
+ We refer to 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- the 
-\begin_inset Formula $\nu-$
+ as the Baudoin 
+\begin_inset Formula $\left(Y,\nu\right)-$
 \end_inset
 
-conditioned measure.
+conditioning of 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Proof
@@ -469,7 +499,19 @@ First, note by the construction of a conditioning, there is a measure
 \begin_inset Formula $\mathbb{P}_{\varphi}^{\nu}\in\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
 \end_inset
 
- such that any bounded random variable 
+ such
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+This proof is really sketchy in Baudoin, and I'm not exactly sure how he
+ jumps from this step to the statement of the theorem.
+ I need to do a lot more here, and in this general chapter of the thesis.
+\end_layout
+
+\end_inset
+
+ that any bounded random variable 
 \begin_inset Formula $X:\Omega\rightarrow\mathbb{R}$
 \end_inset
 
@@ -535,16 +577,6 @@ reference "eq:jensens-pv"
 \end_inset
 
 
-\begin_inset Formula 
-\begin{eqnarray*}
-\mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\mathbb{E}_{\mathbb{P}^{\nu}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\right] & = & \mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\mathbb{E}_{\mathbb{P}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\right]\\
- & = & \mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\mathbb{E}_{\mathbb{P}}\left[\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\mid Y\right]\right)\right]\\
- & = & \mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi\left(\frac{d\mathbb{P}_{Y}}{d\mathbb{P}}\left(Y\right)\right)\right]
-\end{eqnarray*}
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -555,11 +587,7 @@ reference "thm:pv"
 \end_inset
 
  is a central result that says that the variance and entropy minimizing
- measure (with respect to 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
-) in 
+ measure in 
 \begin_inset Formula $\mathcal{Q}_{\mathbb{P},\nu}$
 \end_inset
 
