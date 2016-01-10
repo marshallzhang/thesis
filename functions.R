@@ -11,8 +11,61 @@ library(gridExtra)
 # GENERATE NU BRIDGE
 #
 
+gen.double.nu.bridge = function(r.diffusion, theta, start, end, steps) {
+    y.1 = r.diffusion(start, steps, theta)
+    y.2 = r.diffusion(end, steps, theta)
+  
+    y.1.1 = y.1
+    y.2.1 = rev(y.2)
+    difference.1 = y.1.1 - y.2.1
+    
+    y.1.2 = rev(y.1)
+    y.2.2 = y.2
+    difference.2 = y.2.2 - y.1.2
+    
+    counter = 0
+    
+    # If they don't intersect, re-generate.
+    while (all(difference.1 < 0) | all(difference.1 > 0) | all(difference.2 < 0) | all(difference.2 > 0)) {
+      counter = counter + 1
+      if (counter > 500) {
+        stop("Too many tries.")
+      }
+      y.1 = r.diffusion(start, steps, theta)
+      y.2 = r.diffusion(end, steps, theta)
+    
+      y.1.1 = y.1
+      y.2.1 = rev(y.2)
+      difference.1 = y.1.1 - y.2.1
+      
+      y.1.2 = rev(y.1)
+      y.2.2 = y.2
+      difference.2 = y.2.2 - y.1.2
+    }
+      
+    # Otherwise, find where they intersect and create the bridge.  
+    if (difference.1[1] > 0) {
+      iota = which(difference.1 < 0)[1] 
+      b1 = c(y.1.1[1:(iota - 1)], y.2.1[iota:length(y.2.1)])
+    } else {
+      iota = which(difference.1 > 0)[1]
+      b1 = c(y.1.1[1:(iota - 1)], y.2.1[iota:length(y.2.1)])
+      }
+    
+    if (difference.2[1] > 0) {
+      iota = which(difference.2 < 0)[1] 
+      b2 = c(y.2.2[1:(iota - 1)], y.1.2[iota:length(y.1.2)])
+    } else {
+      iota = which(difference.2 > 0)[1]
+      b2 = c(y.2.2[1:(iota - 1)], y.1.2[iota:length(y.1.2)])
+      }
+    
+    rbind(b1, b2)
+}
+
+
 # Helper to generate a bridge.
-gen.nu.helper = function(r.diffusion, theta, start, end, steps) {
+gen.nu.helper = function(r.diffusion, theta, start, end, steps, flip = F) {
     y.1 = r.diffusion(start, steps, theta)
     y.2 = rev(r.diffusion(end, steps, theta))
     difference = y.1 - y.2

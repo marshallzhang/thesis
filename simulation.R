@@ -19,6 +19,8 @@ cov(o.sims[,c(1,100)])
 
 nu.o = function(n) {rmvnorm(n, c(0,0), matrix(c(1/2, exp(-1)/2, exp(-1)/2, 1/2), nrow = 2, ncol = 2))} 
 
+nu.o.sims = gen.double.nu.bridge(ou, theta, -1, 1, 100)
+
 nu.o.sims = gen.nu.bridge(nu.o, ou, theta, 10000, 100)
 
 # CIR process.

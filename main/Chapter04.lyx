@@ -464,11 +464,11 @@ for arbitrary
 
 \end_inset
 
-is the Radon-Nikodym derivative associated with the conditioning 
-\begin_inset Formula $\left(\left(X_{0},X_{1}\right),\nu\right)$
+is the Radon-Nikodym derivative associated with the Baudoin 
+\begin_inset Formula $\left(\left(X_{0},X_{1}\right),\nu\right)-$
 \end_inset
 
- on 
+conditioning on 
 \begin_inset Formula $\mathbb{X}$
 \end_inset
 
@@ -676,11 +676,11 @@ Define the measure
 \begin_inset Formula $\mathbb{Q}$
 \end_inset
 
- be the 
+ be the Baudoin 
 \begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)-$
 \end_inset
 
-conditioned version of 
+conditioning of 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -866,31 +866,31 @@ name "thm:approx-sim"
 \end_inset
 
 Let 
-\begin_inset Formula $\tau=\inf\{t\in\left[0,1\right]\mid\mathbf{X}_{t}^{\nu,\left(1\right)}=\mathbf{X}_{1-t}^{\nu,\left(2\right)}\}$
+\begin_inset Formula $\tau^{\left(i\right)}=\inf\{t\in\left[0,1\right]\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\mathbf{X}_{1-t}^{\nu,\left(-i\right)}\}$
 \end_inset
 
 .
  Define a process 
-\begin_inset Formula $Z$
+\begin_inset Formula $\mathbf{Z}$
 \end_inset
 
  as 
 \begin_inset Formula 
 \[
-Z_{t}=\begin{cases}
-\mathbf{X}_{t}^{\nu,\left(1\right)} & \mbox{if }0\leq t\leq\tau\\
-\mathbf{X}_{1-t}^{\nu,\left(2\right)} & \mbox{if }\tau<t\leq1
-\end{cases}
+\mathbf{Z}_{t}^{\left(i\right)}=\begin{cases}
+\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\tau^{\left(i\right)}\\
+\mathbf{X}_{1-t}^{\nu,\left(-i\right)} & \mbox{if }\tau^{\left(i\right)}<t\leq1
+\end{cases},\mbox{ }i\in\left\{ 1,2\right\} 
 \]
 
 \end_inset
 
 on the event 
-\begin_inset Formula $\left\{ \tau\leq1\right\} $
+\begin_inset Formula $\mathscr{T}=\left\{ \tau^{\left(1\right)}\leq1,\tau^{\left(2\right)}\leq1\right\} $
 \end_inset
 
  and 
-\begin_inset Formula $Z_{t}=\mathbf{X}_{t}^{\nu,\left(1\right)}$
+\begin_inset Formula $\mathbf{Z}_{t}=\mathbf{X}_{t}^{\nu}$
 \end_inset
 
  on 
@@ -902,32 +902,37 @@ on the event
 \end_inset
 
  be the measure induced by 
-\begin_inset Formula $Z$
+\begin_inset Formula $\mathbf{Z}$
 \end_inset
 
  on the classical Wiener space.
  Then, 
-\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\tau\leq1\right)$
+\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
 \end_inset
 
- is equal to 
-\begin_inset Formula $\mathbb{X}^{\nu}\left(\cdot\mid\mathscr{R}\right)$
+ is equal to the measure induced by a 
+\begin_inset Formula $\nu-$
 \end_inset
 
-, where 
-\begin_inset Formula $\mathscr{R}$
+bridge of 
+\begin_inset Formula $X$
 \end_inset
 
- is the event that the coordinates of 
+ and a time-reversed 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+, conditional on, and on the two bridges being hit by independent diffusions
+ 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
 
  conditional on 
 \begin_inset Formula $\mathbf{X}_{1}\sim\nu$
-\end_inset
-
- hit the respective coordinates of 
-\begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
  at some time 
@@ -937,7 +942,7 @@ on the event
 .
  
 \begin_inset Marginal
-status open
+status collapsed
 
 \begin_layout Plain Layout
 There's something a little strange with working in two dimensions in a lot
@@ -1027,40 +1032,15 @@ Now, define the event
 
 \end_inset
 
-Note that 
-\begin_inset Formula $\mathscr{B}$
+
+\end_layout
+
+\begin_layout Proof
+We will first show that 
+\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
 \end_inset
 
- is the event that 
-\begin_inset Formula $(\mathbf{Y}_{0}^{\left(1\right)},\mathbf{Y}_{1}^{\left(1\right)})$
-\end_inset
-
- and 
-\begin_inset Formula $(\mathbf{Y}_{1}^{\left(2\right)},\mathbf{Y}_{0}^{\left(2\right)})$
-\end_inset
-
- are distributed with law 
-\begin_inset Formula $\nu$
-\end_inset
-
-.
- Then, the restriction of 
-\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\right)$
-\end_inset
-
- to its first coordinate is precisely 
-\begin_inset Formula $\mathbb{X}^{\nu}$
-\end_inset
-
-, and the restriction of 
-\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\right)$
-\end_inset
-
- to its second coordinate is similarly 
-\begin_inset Formula $\mathbb{X}^{\nu,\leftarrow}$
-\end_inset
-
-, the measure induced by the 
+ is equal to the measure induced by a 
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -1068,26 +1048,21 @@ bridge of
 \begin_inset Formula $X$
 \end_inset
 
- in reverse time.
- 
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
+ and a time-reversed 
+\begin_inset Formula $\nu-$
 \end_inset
 
-Now, by definition of 
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+, subject to some conditions.
+ By definition of 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
-, we can rewrite 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:bridge-event"
-
+, we can re-write 
+\begin_inset Formula $\mathscr{B}$
 \end_inset
 
  as 
@@ -1098,13 +1073,60 @@ reference "eq:bridge-event"
 
 \end_inset
 
+which by definition of the process 
+\begin_inset Formula $\mathbf{X}^{\nu}$
+\end_inset
 
+, represents the event that 
+\begin_inset Formula $(\mathbf{X}_{0}^{\left(1\right)},\mathbf{X}_{1}^{\left(1\right)})$
+\end_inset
+
+ and 
+\begin_inset Formula $(\mathbf{X}_{1}^{\left(2\right)},\mathbf{X}_{0}^{\left(2\right)})$
+\end_inset
+
+ are equal and distributed with law 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+ Then, 
+\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
+\end_inset
+
+ is equal to 
+\begin_inset Formula $\mathbb{X}^{\nu}\times\mathbb{X}^{\nu,\leftarrow}$
+\end_inset
+
+, conditional on 
 \end_layout
 
 \begin_layout Proof
-By 
+To complete the proof, we will show that 
+\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
+\end_inset
+
+ is also equal to 
+\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
+\end_inset
+
+.
+ Simply note that 
+\begin_inset Formula $\mathscr{B}$
+\end_inset
+
+ is the event that 
+\begin_inset Formula $(\mathbf{X}_{1}^{\left(2\right)},\mathbf{X}_{1}^{\left(1\right)})$
+\end_inset
+
+ is distributed with law 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+ By 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand formatted
 reference "lem:time-reversal"
 
 \end_inset
@@ -1117,81 +1139,11 @@ reference "lem:time-reversal"
 \begin_inset Formula $\mathscr{B}$
 \end_inset
 
-
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-I need to be a little careful if the processes inducing these measures are
- the same process, just time-reversed, or if they are driven by independent
- Wiener processes.
- I think they should be independent since the coordinates of 
-\begin_inset Formula $Y$
-\end_inset
-
- are independent? Also, I need to be careful here because we are dealing
- with four different processes (for each coordinate of 
-\begin_inset Formula $\mathbf{X}^{\nu}$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbf{X}$
-\end_inset
-
-).
- 
-\begin_inset Formula $\mathscr{B}$
-\end_inset
-
- is an event involving all four but the measures I'm working with are at
- most on two coordinates, so I'm not sure whether the conditioning is kosher..
-\end_layout
-
-\end_inset
-
  is equal to the measure induced by the time-reversed process 
-\begin_inset Formula $\mathbf{X}_{1-t}^{\nu}$
+\begin_inset Formula $(\mathbf{X}_{1-t}^{\nu,\left(2\right)},\mathbf{X}_{1-t}^{\nu,\left(1\right)})$
 \end_inset
 
-.
- Then, 
-\begin_inset Formula 
-\[
-\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)=\mathbb{Z}\left(\cdot\mid\tau\leq1\right)\times\mathbb{Z}^{\leftarrow}\left(\cdot\mid\tau\leq1\right)
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $\mathbb{Z}^{\leftarrow}$
-\end_inset
-
- is the measure induced by 
-\begin_inset Formula $Z_{1-t}$
-\end_inset
-
-.
- Since the coordinates of 
-\begin_inset Formula $\mathbf{Y}$
-\end_inset
-
- were constructed to be independent of each other, we can decompose 
-\begin_inset Formula 
-\[
-\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)=\mathbb{X}^{\nu}\left(\cdot\mid\mathscr{R}\right)\times\mathbb{X}^{\nu,\leftarrow}\left(\cdot\mid\mathscr{R}\right)
-\]
-
-\end_inset
-
-which implies 
-\begin_inset Formula 
-\[
-\mathbb{X}^{\nu}\left(\cdot\mid\mathscr{R}\right)=\mathbb{Z}\left(\cdot\mid\tau\leq1\right)
-\]
-
-\end_inset
-
-as desired.
+, which gives the desired result.
 \end_layout
 
 \begin_layout Standard
