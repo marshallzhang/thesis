@@ -977,11 +977,7 @@ reference "eq:basic-sde"
 
 .
  Let 
-\begin_inset Formula $\rho^{\left(i\right)}=\inf\{t\in\left[0,1\right]\mid\mathbf{X}_{t}^{\left(i\right)}=\mathbf{X}_{t}^{\nu,\left(i\right)}\}$
-\end_inset
-
- for 
-\begin_inset Formula $i\in\left\{ 1,2\right\} $
+\begin_inset Formula $\rho^{\left(i\right)}=\inf\{t\in\left[0,1\right]\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\mathbf{X}_{t}^{\left(i\right)}\}$
 \end_inset
 
 , and define a process 
@@ -1000,7 +996,7 @@ reference "eq:basic-sde"
 \end_inset
 
 on the event 
-\begin_inset Formula $\mathscr{R}=\{\rho^{\left(1\right)}\leq1,\rho^{\left(2\right)}\leq1\}$
+\begin_inset Formula $\mathscr{R}=\{\rho^{\left(1\right)}<1,\rho^{\left(2\right)}<1\}$
 \end_inset
 
  and 
@@ -1068,7 +1064,7 @@ bridge of
  as 
 \begin_inset Formula 
 \[
-\mathscr{B}=\left\{ \mathbf{X}_{1}^{\left(1\right)}=\mathbf{X}_{0}^{\nu,\left(2\right)},\mathbf{X}_{1}^{\left(2\right)}=\mathbf{X}_{0}^{\nu,\left(1\right)}\right\} 
+\mathscr{B}=\left\{ \mathbf{X}_{1}^{\left(1\right)}=\mathbf{X}_{0}^{\nu,\left(2\right)}\right\} 
 \]
 
 \end_inset
@@ -1081,21 +1077,17 @@ which by definition of the process
 \begin_inset Formula $(\mathbf{X}_{0}^{\left(1\right)},\mathbf{X}_{1}^{\left(1\right)})$
 \end_inset
 
- and 
-\begin_inset Formula $(\mathbf{X}_{1}^{\left(2\right)},\mathbf{X}_{0}^{\left(2\right)})$
-\end_inset
-
- are equal and distributed with law 
+ is distributed with law 
 \begin_inset Formula $\nu$
 \end_inset
 
 .
- Then, 
+ Then, the first coordinate of 
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
 \end_inset
 
  is equal to 
-\begin_inset Formula $\mathbb{X}^{\nu}\times\mathbb{X}^{\nu,\leftarrow}$
+\begin_inset Formula $\mathbb{X}^{\nu}$
 \end_inset
 
 , conditional on 

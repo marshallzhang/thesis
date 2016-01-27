@@ -46,17 +46,21 @@ gen.double.nu.bridge = function(r.diffusion, theta, start, end, steps) {
     # Otherwise, find where they intersect and create the bridge.  
     if (difference.1[1] > 0) {
       iota = which(difference.1 < 0)[1] 
+      print(iota)
       b1 = c(y.1.1[1:(iota - 1)], y.2.1[iota:length(y.2.1)])
     } else {
       iota = which(difference.1 > 0)[1]
+      print(iota)
       b1 = c(y.1.1[1:(iota - 1)], y.2.1[iota:length(y.2.1)])
       }
     
     if (difference.2[1] > 0) {
       iota = which(difference.2 < 0)[1] 
+      print(iota)
       b2 = c(y.2.2[1:(iota - 1)], y.1.2[iota:length(y.1.2)])
     } else {
       iota = which(difference.2 > 0)[1]
+      print(iota)
       b2 = c(y.2.2[1:(iota - 1)], y.1.2[iota:length(y.1.2)])
       }
     
