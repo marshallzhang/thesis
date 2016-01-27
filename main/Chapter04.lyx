@@ -1093,6 +1093,7 @@ reference "lem:time-reversal"
 , which gives the desired result.
 \end_layout
 
+\begin_deeper
 \begin_layout Proof
 We now show that 
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
@@ -1184,13 +1185,10 @@ bridge of
 \begin_inset Formula $t=1$
 \end_inset
 
-.
+, and the result follows.
 \end_layout
 
-\begin_layout Proof
-
-\end_layout
-
+\end_deeper
 \begin_layout Standard
 \begin_inset CommandInset ref
 LatexCommand formatted
