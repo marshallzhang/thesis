@@ -942,22 +942,6 @@ bridge of
 
 .
  
-\begin_inset Marginal
-status collapsed
-
-\begin_layout Plain Layout
-There's something a little strange with working in two dimensions in a lot
- of the proof, and then restricting our attention to the single coordinate
- measure 
-\begin_inset Formula $\mathbb{X}^{\nu}$
-\end_inset
-
-, but still conditioning on a two-dimension event.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Proof
@@ -1093,7 +1077,6 @@ reference "lem:time-reversal"
 , which gives the desired result.
 \end_layout
 
-\begin_deeper
 \begin_layout Proof
 We now show that 
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
@@ -1166,7 +1149,7 @@ bridge of
 \end_inset
 
 , and the coordinates of 
-\begin_inset Formula $\mathbf{X}^{\nu}$
+\begin_inset Formula $\mathbf{Y}$
 \end_inset
 
  are hit by the respective coordinates of 
@@ -1185,10 +1168,9 @@ bridge of
 \begin_inset Formula $t=1$
 \end_inset
 
-, and the result follows.
+.
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset CommandInset ref
 LatexCommand formatted
