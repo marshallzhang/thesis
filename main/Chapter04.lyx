@@ -159,7 +159,15 @@ genous Itô diffusions, i.e.
 \begin_inset Formula $\mathbf{W}=(W^{\left(1\right)},\dots,W^{\left(N\right)})$
 \end_inset
 
- to be a vector of independent Wiener processes, we will study solutions
+ for some 
+\begin_inset Formula $N$
+\end_inset
+
+ to be a vector of independent Wiener processes, we will study the solution
+ 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
  to the stochastic differential equation
 \begin_inset Formula 
 \begin{equation}
@@ -237,8 +245,11 @@ where
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is the measure that such a solution induces.
- 
+ is the measure that 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ induces.
 \end_layout
 
 \begin_layout Standard
@@ -594,13 +605,13 @@ key "bladt-sorensen-2014"
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridges and move the proofs to a measure-theoretic framework.
- 
+bridges.
 \end_layout
 
 \begin_layout Standard
 The general idea of the following method is to simulate two diffusion processes
- forward in time, with their joint initial condition distributed 
+ forward in time, with their initial conditions jointly distributed according
+ to 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -642,11 +653,11 @@ reference "algo:approx-sim"
 \end_inset
 
  (a bivariate diffusion process initialized with its stationary distribution)
- under the conditioning 
-\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)$
+ under a Baudoin 
+\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)-$
 \end_inset
 
-.
+conditioning.
 \end_layout
 
 \begin_layout Lemma
@@ -793,17 +804,7 @@ where the third equality is by the fact that
 \begin_inset Formula $\mathbb{P}_{t}$
 \end_inset
 
- is time-invariant
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-I think this third equality thing is true?
-\end_layout
-
-\end_inset
-
-.
+ is time-invariant.
 \end_layout
 
 \begin_layout Proof
@@ -971,7 +972,7 @@ reference "eq:basic-sde"
 
 \end_inset
 
- in two-dimensions where 
+ in two dimensions where 
 \begin_inset Formula $\mathbf{X}_{0}\sim\pi$
 \end_inset
 
@@ -1023,7 +1024,7 @@ on the event
 Now, define the event 
 \begin_inset Formula 
 \begin{equation}
-\mathscr{B}=\left\{ \mathbf{Y}_{1}^{\left(1\right)}=\mathbf{Y}_{0}^{\left(2\right)},\mathbf{Y}_{1}^{\left(2\right)}=\mathbf{Y}_{0}^{\left(1\right)}\right\} \label{eq:bridge-event}
+\mathscr{B}=\left\{ \mathbf{Y}_{1}^{\left(2\right)}=\mathbf{Y}_{0}^{\left(1\right)},\mathbf{Y}_{1}^{\left(1\right)}=\mathbf{Y}_{0}^{\left(2\right)}\right\} \label{eq:bridge-event}
 \end{equation}
 
 \end_inset
@@ -1036,23 +1037,11 @@ We will first show that
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
 \end_inset
 
- is equal to the measure induced by a 
-\begin_inset Formula $\nu-$
+ is equal to 
+\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
 \end_inset
 
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
- and a time-reversed 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
-, subject to some conditions.
+.
  By definition of 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
@@ -1064,46 +1053,12 @@ bridge of
  as 
 \begin_inset Formula 
 \[
-\mathscr{B}=\left\{ \mathbf{X}_{1}^{\left(1\right)}=\mathbf{X}_{0}^{\nu,\left(2\right)}\right\} 
+\mathscr{B}=\left\{ \mathbf{X}_{1}^{\left(2\right)}=\mathbf{X}_{0}^{\nu,\left(1\right)},\mathbf{X}_{1}^{\left(1\right)}=\mathbf{X}_{0}^{\nu,\left(2\right)}\right\} 
 \]
 
 \end_inset
 
-which by definition of the process 
-\begin_inset Formula $\mathbf{X}^{\nu}$
-\end_inset
-
-, represents the event that 
-\begin_inset Formula $(\mathbf{X}_{0}^{\left(1\right)},\mathbf{X}_{1}^{\left(1\right)})$
-\end_inset
-
- is distributed with law 
-\begin_inset Formula $\nu$
-\end_inset
-
-.
- Then, the first coordinate of 
-\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
-\end_inset
-
- is equal to 
-\begin_inset Formula $\mathbb{X}^{\nu}$
-\end_inset
-
-, conditional on 
-\end_layout
-
-\begin_layout Proof
-To complete the proof, we will show that 
-\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
-\end_inset
-
- is also equal to 
-\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
-\end_inset
-
-.
- Simply note that 
+which says that 
 \begin_inset Formula $\mathscr{B}$
 \end_inset
 
@@ -1123,7 +1078,7 @@ reference "lem:time-reversal"
 
 \end_inset
 
-, we know that the measure induced by 
+, we therefore know that the measure induced by 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
 
@@ -1136,6 +1091,104 @@ reference "lem:time-reversal"
 \end_inset
 
 , which gives the desired result.
+\end_layout
+
+\begin_layout Proof
+We now show that 
+\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
+\end_inset
+
+ is also equal to the measure jointly induced by a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ and an independent time-reversed 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+, subject to some conditions.
+ By definition of the process 
+\begin_inset Formula $\mathbf{X}^{\nu}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathscr{B}$
+\end_inset
+
+ represents the event that 
+\begin_inset Formula $(\mathbf{X}_{0}^{\left(1\right)},\mathbf{X}_{1}^{\left(1\right)})$
+\end_inset
+
+ and 
+\begin_inset Formula $(\mathbf{X}_{1}^{\left(2\right)},\mathbf{X}_{0}^{\left(2\right)})$
+\end_inset
+
+ are distributed with law 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+ So, the event 
+\begin_inset Formula $\left\{ \mathscr{B}\cap\mathscr{R}\right\} $
+\end_inset
+
+ is the event that 
+\begin_inset Formula $\mathbf{Y}^{\left(1\right)}$
+\end_inset
+
+ is a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbf{Y}^{\left(2\right)}$
+\end_inset
+
+ is an independent time-reversed 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+, and the coordinates of 
+\begin_inset Formula $\mathbf{X}^{\nu}$
+\end_inset
+
+ are hit by the respective coordinates of 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ conditional on 
+\begin_inset Formula $(\mathbf{X}_{1}^{\left(2\right)},\mathbf{X}_{1}^{\left(1\right)})$
+\end_inset
+
+ being distributed with law 
+\begin_inset Formula $\nu$
+\end_inset
+
+ before 
+\begin_inset Formula $t=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+
 \end_layout
 
 \begin_layout Standard
