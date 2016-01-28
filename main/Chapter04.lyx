@@ -800,11 +800,11 @@ Now, note that since
 
 \end_inset
 
-where the third equality is by the fact that 
-\begin_inset Formula $\mathbb{P}_{t}$
+where the third equality is by 
+\begin_inset Formula $\gamma-$
 \end_inset
 
- is time-invariant.
+symmetry.
 \end_layout
 
 \begin_layout Proof
@@ -833,6 +833,113 @@ reference "thm:markov-construction-thm"
 \end_inset
 
  as desired.
+\end_layout
+
+\begin_layout Standard
+A second result that will be helpful in proving the main result of this
+ section relates to a Baudoin 
+\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)-$
+\end_inset
+
+bridge.
+\end_layout
+
+\begin_layout Lemma
+The Baudoin 
+\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)-$
+\end_inset
+
+bridge of the stationary solution 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ is equal to a solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ with initial condition 
+\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\nu\left(d\mathbf{x}_{1}\right)$
+\end_inset
+
+ where 
+\begin_inset Formula $p_{1}\left(\mathbf{x}_{1},\cdot\right)$
+\end_inset
+
+ is the transition kernel of 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Since 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ is distributed with initial condition equal to its stationary distribution,
+ we may write the joint measure 
+\begin_inset Formula $\mathbb{P}_{0,1}$
+\end_inset
+
+ as
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{P}_{0,1} & = & \mathbb{P}\left(\mathbf{X}_{1}\in\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0}\right)\pi\left(\mathbf{x}_{0}\right)\\
+ & = & \mathbb{P}\left(\mathbf{X}_{0}\in\cdot\mid\mathbf{X}_{1}=\mathbf{x}_{1}\right)\pi\left(\mathbf{x}_{1}\right)
+\end{eqnarray*}
+
+\end_inset
+
+where the second equality follows by 
+\begin_inset Formula $\gamma-$
+\end_inset
+
+symmetry.
+ Then, the measure induced by 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ at time 
+\begin_inset Formula $t=0$
+\end_inset
+
+, conditional on 
+\begin_inset Formula $\mathbf{X}_{1}=\mathbf{x}_{1}$
+\end_inset
+
+, is simply the transition kernel 
+\begin_inset Formula $p_{1}\left(\mathbf{x}_{1},\cdot\right)$
+\end_inset
+
+.
+ Under a Baudoin 
+\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)-$
+\end_inset
+
+conditioning, we know that the law of 
+\begin_inset Formula $\mathbf{X}_{1}$
+\end_inset
+
+ is 
+\begin_inset Formula $\nu$
+\end_inset
+
+, and thus we can integrate this kernel with respect to 
+\begin_inset Formula $\nu$
+\end_inset
+
+ to find the result as desired.
 \end_layout
 
 \begin_layout Standard
@@ -968,7 +1075,11 @@ reference "eq:basic-sde"
 
 \end_inset
 
- with initial distribution
+ with initial distribution 
+\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\nu\left(d\mathbf{x}_{1}\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Proof
@@ -976,7 +1087,7 @@ Let
 \begin_inset Formula $\mathbf{X}^{*}$
 \end_inset
 
- a solution to 
+ be a solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
@@ -1015,11 +1126,7 @@ on the event
 \begin_inset Formula $\mathbf{Y}=\mathbf{X}^{\nu}$
 \end_inset
 
- on 
-\begin_inset Formula $\{\rho^{\left(1\right)}=\infty\}\cup\{\rho^{\left(2\right)}=\infty\}$
-\end_inset
-
-.
+ otherwise.
  We will condition on 
 \begin_inset Formula $\mathscr{R}$
 \end_inset
@@ -1106,7 +1213,11 @@ reference "lem:time-reversal"
 \begin_inset Formula $(\bar{\mathbf{X}}_{1-t}^{\nu,\left(2\right)},\bar{\mathbf{X}}_{1-t}^{\nu,\left(1\right)})$
 \end_inset
 
-, which immediately gives the intermediate result that 
+, which by construction of 
+\begin_inset Formula $\mathbf{Z}$
+\end_inset
+
+ gives that 
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)=\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
 \end_inset
 
@@ -1176,19 +1287,21 @@ bridge of
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
- are hit by the respective coordinates of an independent diffusion 
-\begin_inset Formula $\mathbf{X^{*}}$
+ are hit by the respective coordinates of an independent Baudoin 
+\begin_inset Formula $((\mathbf{X}_{1}^{*,\left(2\right)},\mathbf{X}_{1}^{*,\left(1\right)}),\nu)$
 \end_inset
 
- with 
-\begin_inset Formula $(\mathbf{X}_{1}^{*,\left(2\right)},\mathbf{X}_{1}^{*,\left(1\right)})$
-\end_inset
-
- distributed according to law 
-\begin_inset Formula $\nu$
+-bridge of 
+\begin_inset Formula $\mathbf{X}^{*}$
 \end_inset
 
 .
+ 
+\end_layout
+
+\begin_layout Proof
+SO WHATS THE INITLA DISTRIBUTION? AND THINK ABOUT WHAT HAPPENS WHEN YOU
+ TIME REVERSE, NOW THAT YOURE CONSTRUCTING NICE INDPEENENT PROCESSES
 \end_layout
 
 \begin_layout Standard
