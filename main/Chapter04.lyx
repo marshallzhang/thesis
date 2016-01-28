@@ -867,7 +867,27 @@ name "thm:approx-sim"
 \end_inset
 
 Let 
-\begin_inset Formula $\tau^{\left(i\right)}=\inf\{t\in\left[0,1\right]\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\mathbf{X}_{1-t}^{\nu,\left(-i\right)}\}$
+\begin_inset Formula $\mathbf{X}^{\nu}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{\mathbf{X}}^{\nu}$
+\end_inset
+
+ be solutions to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in two dimensions, where 
+\begin_inset Formula $\mathbf{X}_{0}^{\nu},\bar{\mathbf{X}}_{0}^{\nu}\sim\nu$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\tau^{\left(i\right)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\bar{\mathbf{X}}_{1-t}^{\nu,\left(\setminus i\right)}\}$
 \end_inset
 
 .
@@ -880,25 +900,26 @@ Let
 \[
 \mathbf{Z}_{t}^{\left(i\right)}=\begin{cases}
 \mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\tau^{\left(i\right)}\\
-\mathbf{X}_{1-t}^{\nu,\left(-i\right)} & \mbox{if }\tau^{\left(i\right)}<t\leq1
-\end{cases},\mbox{ }i\in\left\{ 1,2\right\} 
+\bar{\mathbf{X}}_{1-t}^{\nu,\left(\setminus i\right)} & \mbox{if }\tau^{\left(i\right)}<t\leq1
+\end{cases}
 \]
 
 \end_inset
 
-on the event 
-\begin_inset Formula $\mathscr{T}=\left\{ \tau^{\left(1\right)}\leq1,\tau^{\left(2\right)}\leq1\right\} $
+for 
+\begin_inset Formula $i\in\left\{ 1,2\right\} $
+\end_inset
+
+ on the event 
+\begin_inset Formula $\mathscr{T}=\{\tau^{\left(1\right)}<1,\tau^{\left(2\right)}<1\}$
 \end_inset
 
  and 
-\begin_inset Formula $\mathbf{Z}_{t}=\mathbf{X}_{t}^{\nu}$
+\begin_inset Formula $\mathbf{Z}=\mathbf{X}^{\nu}$
 \end_inset
 
- on 
-\begin_inset Formula $\left\{ \tau=\infty\right\} $
-\end_inset
-
-, and let 
+ otherwise.
+ Let 
 \begin_inset Formula $\mathbb{Z}$
 \end_inset
 
@@ -907,62 +928,68 @@ on the event
 \end_inset
 
  on the classical Wiener space.
- Then, 
-\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
-\end_inset
-
- is equal to the measure induced by a 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
- and a time-reversed 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
-, conditional on, and on the two bridges being hit by independent diffusions
- 
-\begin_inset Formula $\mathbf{X}$
-\end_inset
-
- conditional on 
-\begin_inset Formula $\mathbf{X}_{1}\sim\nu$
-\end_inset
-
- at some time 
-\begin_inset Formula $t\in\left[0,1\right]$
-\end_inset
-
-.
  
 \end_layout
 
-\begin_layout Proof
-Recall 
-\begin_inset Formula $\mathbf{X}$
+\begin_layout Theorem
+Then, 
+\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
 \end_inset
 
- is the solution to 
+ is equal to the measure induced by a process 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+ with a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ in its first coordinate and an independent, time-reversed 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ in its second coordinate, conditioned on the coordinates of 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+ being hit by the respective coordinates of an independent stationary solution
+ to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
 
 \end_inset
 
- in two dimensions where 
-\begin_inset Formula $\mathbf{X}_{0}\sim\pi$
+ with initial distribution
+\end_layout
+
+\begin_layout Proof
+Let 
+\begin_inset Formula $\mathbf{X}^{*}$
+\end_inset
+
+ a solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in one dimension where 
+\begin_inset Formula $\mathbf{X}_{0}^{*}\sim\pi$
 \end_inset
 
 .
  Let 
-\begin_inset Formula $\rho^{\left(i\right)}=\inf\{t\in\left[0,1\right]\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\mathbf{X}_{t}^{\left(i\right)}\}$
+\begin_inset Formula $\rho^{\left(i\right)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\mathbf{X}_{t}^{*,\left(i\right)}\}$
 \end_inset
 
 , and define a process 
@@ -973,8 +1000,8 @@ reference "eq:basic-sde"
 \begin_inset Formula 
 \[
 \mathbf{Y}_{t}^{\left(i\right)}=\begin{cases}
-\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\rho^{\left(i\right)}\\
-\mathbf{X}_{t}^{\left(i\right)} & \mbox{if }\rho^{\left(i\right)}<t\leq1
+\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\rho\\
+\mathbf{X}_{t}^{*,\left(i\right)} & \mbox{if }\rho<t\leq1
 \end{cases}
 \]
 
@@ -985,7 +1012,7 @@ on the event
 \end_inset
 
  and 
-\begin_inset Formula $\mathbf{Y}_{t}=\mathbf{X}_{t}^{\nu}$
+\begin_inset Formula $\mathbf{Y}=\mathbf{X}^{\nu}$
 \end_inset
 
  on 
@@ -993,6 +1020,11 @@ on the event
 \end_inset
 
 .
+ We will condition on 
+\begin_inset Formula $\mathscr{R}$
+\end_inset
+
+ for the remainder of this proof.
  Let 
 \begin_inset Formula $\mathbb{Y}$
 \end_inset
@@ -1008,7 +1040,7 @@ on the event
 Now, define the event 
 \begin_inset Formula 
 \begin{equation}
-\mathscr{B}=\left\{ \mathbf{Y}_{1}^{\left(2\right)}=\mathbf{Y}_{0}^{\left(1\right)},\mathbf{Y}_{1}^{\left(1\right)}=\mathbf{Y}_{0}^{\left(2\right)}\right\} \label{eq:bridge-event}
+\mathscr{B}=\left\{ \mathbf{Y}_{1}^{\left(1\right)}=\mathbf{Y}_{0}^{\left(2\right)},\mathbf{Y}_{1}^{\left(2\right)}=\mathbf{Y}_{0}^{\left(1\right)}\right\} \label{eq:bridge-event}
 \end{equation}
 
 \end_inset
@@ -1030,14 +1062,14 @@ We will first show that
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
-, we can re-write 
+, we can write 
 \begin_inset Formula $\mathscr{B}$
 \end_inset
 
  as 
 \begin_inset Formula 
 \[
-\mathscr{B}=\left\{ \mathbf{X}_{1}^{\left(2\right)}=\mathbf{X}_{0}^{\nu,\left(1\right)},\mathbf{X}_{1}^{\left(1\right)}=\mathbf{X}_{0}^{\nu,\left(2\right)}\right\} 
+\mathscr{B}=\left\{ \mathbf{X}_{1}^{*,\left(1\right)}=\mathbf{X}_{0}^{\nu,\left(2\right)},\mathbf{X}_{1}^{*,\left(2\right)}=\mathbf{X}_{0}^{\nu,\left(1\right)}\right\} 
 \]
 
 \end_inset
@@ -1047,7 +1079,7 @@ which says that
 \end_inset
 
  is the event that 
-\begin_inset Formula $(\mathbf{X}_{1}^{\left(2\right)},\mathbf{X}_{1}^{\left(1\right)})$
+\begin_inset Formula $(\mathbf{X}_{1}^{*,\left(2\right)},\mathbf{X}_{1}^{*,\left(1\right)})$
 \end_inset
 
  is distributed with law 
@@ -1063,7 +1095,7 @@ reference "lem:time-reversal"
 \end_inset
 
 , we therefore know that the measure induced by 
-\begin_inset Formula $\mathbf{X}$
+\begin_inset Formula $\mathbf{X}^{*}$
 \end_inset
 
  conditional on 
@@ -1071,10 +1103,14 @@ reference "lem:time-reversal"
 \end_inset
 
  is equal to the measure induced by the time-reversed process 
-\begin_inset Formula $(\mathbf{X}_{1-t}^{\nu,\left(2\right)},\mathbf{X}_{1-t}^{\nu,\left(1\right)})$
+\begin_inset Formula $(\bar{\mathbf{X}}_{1-t}^{\nu,\left(2\right)},\bar{\mathbf{X}}_{1-t}^{\nu,\left(1\right)})$
 \end_inset
 
-, which gives the desired result.
+, which immediately gives the intermediate result that 
+\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)=\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Proof
@@ -1082,23 +1118,15 @@ We now show that
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
 \end_inset
 
- is also equal to the measure jointly induced by a 
+ is also equal to the measure induced by two independent
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridge of 
+bridges of 
 \begin_inset Formula $X$
 \end_inset
 
- and an independent time-reversed 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
-, subject to some conditions.
+ subject to some conditions.
  By definition of the process 
 \begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
@@ -1108,14 +1136,14 @@ bridge of
 \end_inset
 
  represents the event that 
-\begin_inset Formula $(\mathbf{X}_{0}^{\left(1\right)},\mathbf{X}_{1}^{\left(1\right)})$
+\begin_inset Formula $(\mathbf{X}_{0}^{\nu,\left(1\right)},\mathbf{X}_{1}^{*,\left(1\right)})$
 \end_inset
 
  and 
-\begin_inset Formula $(\mathbf{X}_{1}^{\left(2\right)},\mathbf{X}_{0}^{\left(2\right)})$
+\begin_inset Formula $(\mathbf{X}_{1}^{\nu,\left(2\right)},\mathbf{X}_{0}^{*,\left(2\right)}$
 \end_inset
 
- are distributed with law 
+) are distributed with law 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -1125,7 +1153,7 @@ bridge of
 \end_inset
 
  is the event that 
-\begin_inset Formula $\mathbf{Y}^{\left(1\right)}$
+\begin_inset Formula $\mathbf{Y}$
 \end_inset
 
  is a 
@@ -1136,11 +1164,7 @@ bridge of
 \begin_inset Formula $X$
 \end_inset
 
-, 
-\begin_inset Formula $\mathbf{Y}^{\left(2\right)}$
-\end_inset
-
- is an independent time-reversed 
+ in its first coordinate and an independent, time-reversed 
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -1148,24 +1172,20 @@ bridge of
 \begin_inset Formula $X$
 \end_inset
 
-, and the coordinates of 
+ in its second coordinate, where the coordinates of 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
- are hit by the respective coordinates of 
-\begin_inset Formula $\mathbf{X}$
+ are hit by the respective coordinates of an independent diffusion 
+\begin_inset Formula $\mathbf{X^{*}}$
 \end_inset
 
- conditional on 
-\begin_inset Formula $(\mathbf{X}_{1}^{\left(2\right)},\mathbf{X}_{1}^{\left(1\right)})$
+ with 
+\begin_inset Formula $(\mathbf{X}_{1}^{*,\left(2\right)},\mathbf{X}_{1}^{*,\left(1\right)})$
 \end_inset
 
- being distributed with law 
+ distributed according to law 
 \begin_inset Formula $\nu$
-\end_inset
-
- before 
-\begin_inset Formula $t=1$
 \end_inset
 
 .
