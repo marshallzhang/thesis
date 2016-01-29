@@ -250,6 +250,11 @@ where
 \end_inset
 
  induces.
+ Note this implies that 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ is reversible.
 \end_layout
 
 \begin_layout Standard
@@ -367,7 +372,7 @@ bridge of
 \end_inset
 
  that induces the Baudoin 
-\begin_inset Formula $\left(\left(X_{0},X_{1}\right),\nu\right)-$
+\begin_inset Formula $\left(X_{0,1},\nu\right)-$
 \end_inset
 
 conditioning of 
@@ -476,10 +481,10 @@ for arbitrary
 \end_inset
 
 is the Radon-Nikodym derivative associated with the Baudoin 
-\begin_inset Formula $\left(\left(X_{0},X_{1}\right),\nu\right)-$
+\begin_inset Formula $\left(X_{0,1},\nu\right)$
 \end_inset
 
-conditioning on 
+-conditioning on 
 \begin_inset Formula $\mathbb{X}$
 \end_inset
 
@@ -529,10 +534,10 @@ key "baudoin-2002"
 \end_inset
 
  details the theoretical properties of general Baudoin 
-\begin_inset Formula $\left(Y,\nu\right)-$
+\begin_inset Formula $\left(Y,\nu\right)$
 \end_inset
 
-conditionings in great detail, and his results carry over easily to this
+-conditionings in great detail, and his results carry over easily to this
  specific case.
  We therefore focus on proposing a simulation scheme for 
 \begin_inset Formula $\nu-$
@@ -658,6 +663,15 @@ reference "algo:approx-sim"
 \end_inset
 
 conditioning.
+ This lemma also says that these distributions are also equal to the distributio
+n of a solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ with a particular initial distribution.
 \end_layout
 
 \begin_layout Lemma
@@ -667,11 +681,15 @@ name "lem:time-reversal"
 
 \end_inset
 
-Define the measure 
+The following measures are equal:
+\end_layout
+
+\begin_deeper
+\begin_layout aEnumerate (ClassicThesis)
 \begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
 \end_inset
 
- as the measure induced by 
+, the measure induced by 
 \begin_inset Formula $\mathbf{X}^{\nu,\leftarrow}$
 \end_inset
 
@@ -679,15 +697,14 @@ Define the measure
 \begin_inset Formula $\mathbf{X}_{t}^{\nu,\leftarrow}=\mathbf{X}_{1-t}^{\nu}$
 \end_inset
 
- for 
-\begin_inset Formula $0\leq t\leq1$
-\end_inset
+ ,
+\end_layout
 
-, and let 
+\begin_layout aEnumerate (ClassicThesis)
 \begin_inset Formula $\mathbb{Q}$
 \end_inset
 
- be the Baudoin 
+, the Baudoin 
 \begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)-$
 \end_inset
 
@@ -695,16 +712,43 @@ conditioning of
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
-.
- Then, 
-\begin_inset Formula $\mathbb{Q}=\mathbb{P}^{\nu,\leftarrow}$
+, and
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+\begin_inset Formula $\mathbb{P}^{0}$
+\end_inset
+
+, the measure induced by a solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ with initial distribution 
+\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\nu\left(d\mathbf{x}_{1}\right)$
 \end_inset
 
 .
 \end_layout
 
+\end_deeper
 \begin_layout Proof
-Fix 
+We first show that 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+\end_inset
+
+ have the same marginal distribution at 
+\begin_inset Formula $t=0$
+\end_inset
+
+ and the same transition kernels.
+ Fix 
 \begin_inset Formula $0\leq s<t\leq1$
 \end_inset
 
@@ -835,21 +879,21 @@ reference "thm:markov-construction-thm"
  as desired.
 \end_layout
 
-\begin_layout Standard
-A second result that will be helpful in proving the main result of this
- section relates to a Baudoin 
-\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)-$
+\begin_layout Proof
+Now, we show that 
+\begin_inset Formula $\mathbb{P}^{0}$
 \end_inset
 
-bridge.
-\end_layout
-
-\begin_layout Lemma
-The Baudoin 
-\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)-$
+ has the same restriction to 
+\begin_inset Formula $t=0$
 \end_inset
 
-bridge of the stationary solution 
+ as 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+.
+ First, consider the stationary solution 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
 
@@ -860,43 +904,24 @@ reference "eq:basic-sde"
 
 \end_inset
 
- is equal to a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- with initial condition 
-\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\nu\left(d\mathbf{x}_{1}\right)$
-\end_inset
-
- where 
-\begin_inset Formula $p_{1}\left(\mathbf{x}_{1},\cdot\right)$
-\end_inset
-
- is the transition kernel of 
-\begin_inset Formula $\mathbf{X}$
+, which induces a measure 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Proof
-Since 
-\begin_inset Formula $\mathbf{X}$
+ Then, we may write the restriction of 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is distributed with initial condition equal to its stationary distribution,
- we may write the joint measure 
-\begin_inset Formula $\mathbb{P}_{0,1}$
+ to 
+\begin_inset Formula $t=0,1$
 \end_inset
 
  as
 \begin_inset Formula 
 \begin{eqnarray*}
-\mathbb{P}_{0,1} & = & \mathbb{P}\left(\mathbf{X}_{1}\in\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0}\right)\pi\left(\mathbf{x}_{0}\right)\\
- & = & \mathbb{P}\left(\mathbf{X}_{0}\in\cdot\mid\mathbf{X}_{1}=\mathbf{x}_{1}\right)\pi\left(\mathbf{x}_{1}\right)
+\mathbb{P}_{0,1} & = & p_{1}\left(\mathbf{x}_{0},\cdot\right)\pi\left(\mathbf{x}_{0}\right)\\
+ & = & p_{1}\left(\mathbf{x}_{1},\cdot\right)\pi\left(\mathbf{x}_{1}\right)
 \end{eqnarray*}
 
 \end_inset
@@ -935,11 +960,69 @@ conditioning, we know that the law of
 \begin_inset Formula $\nu$
 \end_inset
 
-, and thus we can integrate this kernel with respect to 
-\begin_inset Formula $\nu$
+, and thus 
+\begin_inset Formula $\mathbb{Q}_{0}$
 \end_inset
 
- to find the result as desired.
+ may also be written as 
+\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\nu\left(d\mathbf{x}_{1}\right)$
+\end_inset
+
+.
+ By construction, we see that 
+\begin_inset Formula $\mathbb{P}_{0}^{0}=\mathbb{Q}_{0}$
+\end_inset
+
+ as desired.
+\end_layout
+
+\begin_layout Proof
+Finally, we note that 
+\begin_inset Formula $\mathbb{P}^{0}$
+\end_inset
+
+ has the same transition kernel as 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ since both measures are induced by solutions to the same stochastic differentia
+l equation, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+.
+ By 
+\begin_inset Formula $\gamma-$
+\end_inset
+
+symmetry, it follows that 
+\begin_inset Formula $\mathbb{P}^{0}$
+\end_inset
+
+ has the same transition kernel as 
+\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+\end_inset
+
+.
+ Finally, by another application of 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "thm:markov-construction-thm"
+
+\end_inset
+
+, and the equality of 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+\end_inset
+
+, the desired result follows.
 \end_layout
 
 \begin_layout Standard
@@ -988,8 +1071,8 @@ reference "eq:basic-sde"
 
 \end_inset
 
- in two dimensions, where 
-\begin_inset Formula $\mathbf{X}_{0}^{\nu},\bar{\mathbf{X}}_{0}^{\nu}\sim\nu$
+ in two dimensions with initial condition 
+\begin_inset Formula $\nu$
 \end_inset
 
 .
@@ -1034,8 +1117,11 @@ for
 \begin_inset Formula $\mathbf{Z}$
 \end_inset
 
- on the classical Wiener space.
- 
+ on the classical Wiener space, and let 
+\begin_inset Formula $\tilde{\nu}\left(dxdy\right):=\nu\left(dydx\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Theorem
@@ -1075,16 +1161,21 @@ reference "eq:basic-sde"
 
 \end_inset
 
- with initial distribution 
-\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\nu\left(d\mathbf{x}_{1}\right)$
+ in two dimensions with initial distribution 
+\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\tilde{\nu}\left(d\mathbf{x}_{1}\right)$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Proof
-Let 
-\begin_inset Formula $\mathbf{X}^{*}$
+We first define a stochastic process 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
  be a solution to 
@@ -1094,20 +1185,24 @@ reference "eq:basic-sde"
 
 \end_inset
 
- in one dimension where 
-\begin_inset Formula $\mathbf{X}_{0}^{*}\sim\pi$
+ in two dimensions with 
+\begin_inset Formula $\mathbf{X}_{0}^{\nu}\sim\nu$
 \end_inset
 
-.
+, and let 
+\begin_inset Formula $\mathbf{X}^{*}$
+\end_inset
+
+ be an independent stationary solution to the same.
  Let 
 \begin_inset Formula $\rho^{\left(i\right)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\mathbf{X}_{t}^{*,\left(i\right)}\}$
 \end_inset
 
-, and define a process 
+, and let 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
- such that 
+ be such that 
 \begin_inset Formula 
 \[
 \mathbf{Y}_{t}^{\left(i\right)}=\begin{cases}
@@ -1127,20 +1222,41 @@ on the event
 \end_inset
 
  otherwise.
+ Denoting the measure induced by 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+ as 
+\begin_inset Formula $\mathbb{Y}$
+\end_inset
+
+, and noting that the coordinates of 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+ are independent by construction, we can write 
+\begin_inset Formula $\mathbb{Y}=\mathbb{Y}^{\left(1\right)}\times\mathbb{Y}^{\left(2\right)}$
+\end_inset
+
+ where 
+\begin_inset Formula $\mathbb{Y}^{\left(i\right)}$
+\end_inset
+
+ is the measure induced by the 
+\begin_inset Formula $i$
+\end_inset
+
+th coordinate of 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+.
  We will condition on 
 \begin_inset Formula $\mathscr{R}$
 \end_inset
 
  for the remainder of this proof.
- Let 
-\begin_inset Formula $\mathbb{Y}$
-\end_inset
-
- be the measure induced by 
-\begin_inset Formula $\mathbf{Y}$
-\end_inset
-
-.
+ 
 \end_layout
 
 \begin_layout Proof
@@ -1186,11 +1302,11 @@ which says that
 \end_inset
 
  is the event that 
-\begin_inset Formula $(\mathbf{X}_{1}^{*,\left(2\right)},\mathbf{X}_{1}^{*,\left(1\right)})$
+\begin_inset Formula $\mathbf{X}_{1}^{*}$
 \end_inset
 
  is distributed with law 
-\begin_inset Formula $\nu$
+\begin_inset Formula $\tilde{\nu}$
 \end_inset
 
 .
@@ -1209,7 +1325,16 @@ reference "lem:time-reversal"
 \begin_inset Formula $\mathscr{B}$
 \end_inset
 
- is equal to the measure induced by the time-reversed process 
+ (i.e.
+ the Baudoin 
+\begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
+\end_inset
+
+-bridge of 
+\begin_inset Formula $\mathbf{X}^{*}$
+\end_inset
+
+) is equal to the measure induced by the time-reversed process 
 \begin_inset Formula $(\bar{\mathbf{X}}_{1-t}^{\nu,\left(2\right)},\bar{\mathbf{X}}_{1-t}^{\nu,\left(1\right)})$
 \end_inset
 
@@ -1251,14 +1376,18 @@ bridges of
 \end_inset
 
  and 
-\begin_inset Formula $(\mathbf{X}_{1}^{\nu,\left(2\right)},\mathbf{X}_{0}^{*,\left(2\right)}$
+\begin_inset Formula $(\mathbf{X}_{0}^{*,\left(2\right)},\mathbf{X}_{1}^{\nu,\left(2\right)}$
 \end_inset
 
-) are distributed with law 
+) are distributed with laws 
 \begin_inset Formula $\nu$
 \end_inset
 
-.
+ and 
+\begin_inset Formula $\tilde{\nu}$
+\end_inset
+
+ respectively.
  So, the event 
 \begin_inset Formula $\left\{ \mathscr{B}\cap\mathscr{R}\right\} $
 \end_inset
@@ -1288,7 +1417,7 @@ bridge of
 \end_inset
 
  are hit by the respective coordinates of an independent Baudoin 
-\begin_inset Formula $((\mathbf{X}_{1}^{*,\left(2\right)},\mathbf{X}_{1}^{*,\left(1\right)}),\nu)$
+\begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
 \end_inset
 
 -bridge of 
@@ -1296,12 +1425,101 @@ bridge of
 \end_inset
 
 .
- 
+ Recall by 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "lem:time-reversal"
+
+\end_inset
+
+, a Baudoin 
+\begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
+\end_inset
+
+-bridge of 
+\begin_inset Formula $\mathbf{X}^{*}$
+\end_inset
+
+ is equal in distribution to the stationary solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in two dimensions with initial distribution 
+\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\tilde{\nu}\left(d\mathbf{x}_{1}\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Proof
-SO WHATS THE INITLA DISTRIBUTION? AND THINK ABOUT WHAT HAPPENS WHEN YOU
- TIME REVERSE, NOW THAT YOURE CONSTRUCTING NICE INDPEENENT PROCESSES
+Finally, we note that the coordinates of a Baudoin 
+\begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
+\end_inset
+
+-bridge of 
+\begin_inset Formula $\mathbf{X}^{*}$
+\end_inset
+
+ are mutually independent, and the coordinates of 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+ are also mutually independent.
+ Furthermore, 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+ and the Baudoin 
+\begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
+\end_inset
+
+-bridge of 
+\begin_inset Formula $\mathbf{X}^{*}$
+\end_inset
+
+ here are also independent.
+ Hence, we may marginalize out the second coordinate of the measures of
+ interest, 
+\end_layout
+
+\begin_layout Proof
+So, we have that the first coordinate of 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+ is equal in distribution to 
+\begin_inset Formula $\mathbf{X}_{t}^{\nu,\left(1\right)}$
+\end_inset
+
+ for 
+\begin_inset Formula $t\leq$
+\end_inset
+
+
+\begin_inset Formula $\rho$
+\end_inset
+
+ and equal in distribution to 
+\begin_inset Formula $\bar{\mathbf{X}}_{1-t}^{\nu,\left(2\right)}$
+\end_inset
+
+ for 
+\begin_inset Formula $t<\rho$
+\end_inset
+
+.
+ It follows that the first coordinate of 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+ is equal in distribution to 
+\begin_inset Formula $Z$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
