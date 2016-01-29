@@ -156,11 +156,11 @@ We begin by fixing the objects which we will study.
 genous Itô diffusions, i.e.
  continuous and strongly Markovian diffusions.
  In particular, fixing 
-\begin_inset Formula $\mathbf{W}=(W^{\left(1\right)},\dots,W^{\left(N\right)})$
+\begin_inset Formula $\mathbf{W}=(W^{\left(1\right)},\dots,W^{\left(n\right)})$
 \end_inset
 
  for some 
-\begin_inset Formula $N$
+\begin_inset Formula $n$
 \end_inset
 
  to be a vector of independent Wiener processes, we will study the solution
@@ -417,7 +417,7 @@ The marginal density of
  is given by 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{X}_{t}^{\nu}}{d\mathbb{X}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{0,t}^{*}\left(x_{0},z\right)p_{t,1}\left(z,x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
+\frac{d\mathbb{X}_{t}^{\nu}}{d\mathbb{X}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{0,t}^{*}\left(x_{0},\cdot\right)p_{t,1}\left(\cdot,x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
 \]
 
 \end_inset
@@ -1060,11 +1060,7 @@ Let
 \begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
- and 
-\begin_inset Formula $\bar{\mathbf{X}}^{\nu}$
-\end_inset
-
- be solutions to 
+ be a solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
@@ -1077,63 +1073,46 @@ reference "eq:basic-sde"
 
 .
  Let 
-\begin_inset Formula $\tau^{\left(i\right)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\bar{\mathbf{X}}_{1-t}^{\nu,\left(\setminus i\right)}\}$
+\begin_inset Formula $\tau=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(1\right)}=\bar{\mathbf{X}}_{1-t}^{\nu,\left(2\right)}\}$
 \end_inset
 
 .
  Define a process 
-\begin_inset Formula $\mathbf{Z}$
+\begin_inset Formula $Z$
 \end_inset
 
  as 
 \begin_inset Formula 
 \[
-\mathbf{Z}_{t}^{\left(i\right)}=\begin{cases}
-\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\tau^{\left(i\right)}\\
-\bar{\mathbf{X}}_{1-t}^{\nu,\left(\setminus i\right)} & \mbox{if }\tau^{\left(i\right)}<t\leq1
+Z_{t}=\begin{cases}
+\mathbf{X}_{t}^{\nu,\left(1\right)} & \mbox{if }0\leq t\leq\tau\\
+\mathbf{X}_{1-t}^{\nu,\left(2\right)} & \mbox{if }\tau<t\leq1
 \end{cases}
 \]
 
 \end_inset
 
-for 
-\begin_inset Formula $i\in\left\{ 1,2\right\} $
-\end_inset
-
- on the event 
-\begin_inset Formula $\mathscr{T}=\{\tau^{\left(1\right)}<1,\tau^{\left(2\right)}<1\}$
+on the event 
+\begin_inset Formula $\{\tau<1\}$
 \end_inset
 
  and 
-\begin_inset Formula $\mathbf{Z}=\mathbf{X}^{\nu}$
+\begin_inset Formula $Z=\mathbf{X}^{\nu,\left(1\right)}$
 \end_inset
 
  otherwise.
- Let 
-\begin_inset Formula $\mathbb{Z}$
-\end_inset
-
- be the measure induced by 
-\begin_inset Formula $\mathbf{Z}$
-\end_inset
-
- on the classical Wiener space, and let 
-\begin_inset Formula $\tilde{\nu}\left(dxdy\right):=\nu\left(dydx\right)$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Theorem
-Then, 
-\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
+Then, the measure induced by 
+\begin_inset Formula $Z$
 \end_inset
 
- is equal to the measure induced by a process 
-\begin_inset Formula $\mathbf{Y}$
+ conditional on 
+\begin_inset Formula $\{\tau<1\}$
 \end_inset
 
- with a 
+ is equal to the measure induced by a 
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -1141,19 +1120,7 @@ bridge of
 \begin_inset Formula $X$
 \end_inset
 
- in its first coordinate and an independent, time-reversed 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
- in its second coordinate, conditioned on the coordinates of 
-\begin_inset Formula $\mathbf{Y}$
-\end_inset
-
- being hit by the respective coordinates of an independent stationary solution
+, conditional on such a bridge being hit by an independent stationary solution
  to 
 \begin_inset CommandInset ref
 LatexCommand eqref
@@ -1161,24 +1128,27 @@ reference "eq:basic-sde"
 
 \end_inset
 
- in two dimensions with initial distribution 
-\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\tilde{\nu}\left(d\mathbf{x}_{1}\right)$
+ in one dimension with initial distribution 
+\begin_inset Formula $\int p_{1}(\mathbf{x}_{1}^{\left(1\right)},\cdot)\tilde{\nu}(d\mathbf{x}_{1})$
+\end_inset
+
+, where 
+\begin_inset Formula $\tilde{\nu}\left(dxdy\right):=\nu\left(dydx\right)$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Proof
-We first define a stochastic process 
-\begin_inset Formula $\mathbf{Y}$
-\end_inset
-
-.
- Let 
+Let 
 \begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
- be a solution to 
+ and 
+\begin_inset Formula $\bar{\mathbf{X}}^{\nu}$
+\end_inset
+
+ be independent solutions to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
@@ -1194,20 +1164,24 @@ reference "eq:basic-sde"
 \end_inset
 
  be an independent stationary solution to the same.
- Let 
+ 
+\end_layout
+
+\begin_layout Proof
+Set the stopping times 
 \begin_inset Formula $\rho^{\left(i\right)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\mathbf{X}_{t}^{*,\left(i\right)}\}$
 \end_inset
 
-, and let 
+, and define a stochastic process 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
- be such that 
+ such that 
 \begin_inset Formula 
 \[
 \mathbf{Y}_{t}^{\left(i\right)}=\begin{cases}
-\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\rho\\
-\mathbf{X}_{t}^{*,\left(i\right)} & \mbox{if }\rho<t\leq1
+\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\rho^{\left(i\right)}\\
+\mathbf{X}_{t}^{*,\left(i\right)} & \mbox{if }\rho^{\left(i\right)}<t\leq1
 \end{cases}
 \]
 
@@ -1222,19 +1196,20 @@ on the event
 \end_inset
 
  otherwise.
- Denoting the measure induced by 
+ Denote the measure induced by 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
- as 
+ by 
 \begin_inset Formula $\mathbb{Y}$
 \end_inset
 
-, and noting that the coordinates of 
+, note that the coordinates of 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
- are independent by construction, we can write 
+ are independent by construction.
+ We may therefore write 
 \begin_inset Formula $\mathbb{Y}=\mathbb{Y}^{\left(1\right)}\times\mathbb{Y}^{\left(2\right)}$
 \end_inset
 
@@ -1251,12 +1226,47 @@ th coordinate of
 \end_inset
 
 .
- We will condition on 
-\begin_inset Formula $\mathscr{R}$
+ 
+\end_layout
+
+\begin_layout Proof
+Similarly, set the stopping times 
+\begin_inset Formula $\tau^{\left(i\right)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\bar{\mathbf{X}}_{1-t}^{\nu,\left(\setminus i\right)}\}$
 \end_inset
 
- for the remainder of this proof.
- 
+, and define a stochastic process 
+\begin_inset Formula $\mathbf{Z}$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+\mathbf{Z}_{t}^{\left(i\right)}=\begin{cases}
+\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\tau^{\left(i\right)}\\
+\bar{\mathbf{X}}_{1-t}^{\nu,\left(\setminus i\right)} & \mbox{if }\tau^{\left(i\right)}<t\leq1
+\end{cases}
+\]
+
+\end_inset
+
+on the event 
+\begin_inset Formula $\mathscr{T}=\{\tau^{\left(1\right)}<1,\tau^{\left(2\right)}<1\}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{Z}=\mathbf{X}^{\nu}$
+\end_inset
+
+ otherwise.
+ Denote the measure induced by 
+\begin_inset Formula $\mathbf{Z}$
+\end_inset
+
+ as 
+\begin_inset Formula $\mathbb{Z}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Proof
@@ -1289,7 +1299,11 @@ We will first show that
 \begin_inset Formula $\mathscr{B}$
 \end_inset
 
- as 
+, conditional on 
+\begin_inset Formula $\mathscr{R}$
+\end_inset
+
+, as 
 \begin_inset Formula 
 \[
 \mathscr{B}=\left\{ \mathbf{X}_{1}^{*,\left(1\right)}=\mathbf{X}_{0}^{\nu,\left(2\right)},\mathbf{X}_{1}^{*,\left(2\right)}=\mathbf{X}_{0}^{\nu,\left(1\right)}\right\} 
@@ -1451,11 +1465,47 @@ reference "eq:basic-sde"
 \begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\tilde{\nu}\left(d\mathbf{x}_{1}\right)$
 \end_inset
 
+ where 
+\begin_inset Formula $p_{t}\left(\mathbf{x},\cdot\right)$
+\end_inset
+
+ is the transition kernel associated with 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in two dimensions.
+\end_layout
+
+\begin_layout Proof
+To complete the proof, it suffices to demonstrate that the restriction of
+ 
+\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
+\end_inset
+
+ to its first coordinate is a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ subject to some conditions, and the restriction of 
+\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
+\end_inset
+
+ to its first coordinate is the measure induced by 
+\begin_inset Formula $Z$
+\end_inset
+
 .
 \end_layout
 
 \begin_layout Proof
-Finally, we note that the coordinates of a Baudoin 
+Since the coordinates of a Baudoin 
 \begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
 \end_inset
 
@@ -1467,59 +1517,63 @@ Finally, we note that the coordinates of a Baudoin
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
- are also mutually independent.
- Furthermore, 
-\begin_inset Formula $\mathbf{Y}$
+ are also mutually independent, we may marginalize over the second coordinate
+ to find that 
+\begin_inset Formula $\mathbb{Y}^{\left(1\right)}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
 \end_inset
 
- and the Baudoin 
-\begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
+ is the measure induced by a 
+\begin_inset Formula $\nu-$
 \end_inset
 
--bridge of 
-\begin_inset Formula $\mathbf{X}^{*}$
+bridge of 
+\begin_inset Formula $X$
 \end_inset
 
- here are also independent.
- Hence, we may marginalize out the second coordinate of the measures of
- interest, 
+, conditional on this bridge being hit by an independent solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in one dimension with initial distribution 
+\begin_inset Formula $\int p_{1}(\mathbf{x}_{1}^{\left(1\right)},\cdot)\tilde{\nu}(d\mathbf{x}_{1})$
+\end_inset
+
+ where 
+\begin_inset Formula $p_{t}\left(x,\cdot\right)$
+\end_inset
+
+ is the transition kernel associated with 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in one dimension.
+ 
 \end_layout
 
 \begin_layout Proof
-So, we have that the first coordinate of 
-\begin_inset Formula $\mathbf{Y}$
+Finally, we simply note that 
+\begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
- is equal in distribution to 
-\begin_inset Formula $\mathbf{X}_{t}^{\nu,\left(1\right)}$
+ and 
+\begin_inset Formula $\bar{\mathbf{X}}^{\nu}$
 \end_inset
 
- for 
-\begin_inset Formula $t\leq$
-\end_inset
-
-
-\begin_inset Formula $\rho$
-\end_inset
-
- and equal in distribution to 
-\begin_inset Formula $\bar{\mathbf{X}}_{1-t}^{\nu,\left(2\right)}$
-\end_inset
-
- for 
-\begin_inset Formula $t<\rho$
-\end_inset
-
-.
- It follows that the first coordinate of 
-\begin_inset Formula $\mathbf{Y}$
+ are equal in distribution, and therefore the first coordinate of 
+\begin_inset Formula $\mathbf{Z}$
 \end_inset
 
  is equal in distribution to 
 \begin_inset Formula $Z$
 \end_inset
 
-.
+ and the theorem follows.
 \end_layout
 
 \begin_layout Standard
@@ -1542,7 +1596,7 @@ bridge of
 \end_inset
 
  in the sense that conditional on 
-\begin_inset Formula $\tau\leq1$
+\begin_inset Formula $\tau<1$
 \end_inset
 
 , 
@@ -1557,28 +1611,20 @@ bridge of
 \begin_inset Formula $X$
 \end_inset
 
- conditional on an independent diffusion 
-\begin_inset Formula $\mathbf{X}$
+ conditional on the bridge being hit by an independent solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
 \end_inset
 
- with 
-\begin_inset Formula $\mathbf{X}_{1}\sim\nu$
-\end_inset
-
- hitting the respective coordinates of 
-\begin_inset Formula $\mathbf{X}^{\nu}$
-\end_inset
-
- at some time 
-\begin_inset Formula $t\in\left[0,1\right]$
-\end_inset
-
-.
- Naturally, the higher the probability of this occuring, the closer 
+ with a particular initial distribution.
+ Naturally, the higher the probability of the bridge and the independent
+ solution hitting each other, the closer 
 \begin_inset Formula $Z$
 \end_inset
 
- is to being an exact 
+ will be to being an exact 
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -1586,6 +1632,11 @@ bridge.
 \end_layout
 
 \begin_layout Standard
+By the construction of 
+\begin_inset Formula $Z$
+\end_inset
+
+, 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:approx-sim"
@@ -1642,6 +1693,31 @@ key "kloeden-1992"
 \end_inset
 
  for examples of such methods).
+ We define a crossing of the discrete stochastic processes 
+\begin_inset Formula $\hat{\mathbf{X}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\mathbf{Y}}$
+\end_inset
+
+ as when either the event 
+\begin_inset Formula 
+\[
+\left\{ \hat{\mathbf{X}}_{\delta i}\geq\hat{\mathbf{Y}}_{\delta\left(N-i\right)}\right\} \cap\left\{ \hat{\mathbf{X}}_{\delta\left(i+1\right)}\leq\hat{\mathbf{Y}}_{\delta\left(N-\left(i+1\right)\right)}\right\} 
+\]
+
+\end_inset
+
+or 
+\begin_inset Formula 
+\[
+\left\{ \hat{\mathbf{X}}_{\delta i}^{\nu,\left(1\right)}\leq\hat{\mathbf{Y}}_{\delta\left(N-i\right)}\right\} \cap\left\{ \hat{\mathbf{X}}_{\delta\left(i+1\right)}\geq\hat{\mathbf{Y}}_{\delta\left(N-\left(i+1\right)\right)}\right\} 
+\]
+
+\end_inset
+
+occurs.
 \end_layout
 
 \begin_layout Standard
@@ -1985,60 +2061,249 @@ name "algo:approx-sim"
 
 \end_layout
 
-\begin_layout Standard
-We define a crossing of 
-\begin_inset Formula $\hat{\mathbf{X}}^{\nu,\left(1\right)}$
-\end_inset
-
- and 
-\begin_inset Formula $\hat{\mathbf{X}}^{\nu,\left(2\right)}$
-\end_inset
-
- as when either the event 
-\begin_inset Formula 
-\[
-\left\{ \hat{\mathbf{X}}_{\delta i}^{\nu,\left(1\right)}\geq\hat{\mathbf{X}}_{\delta\left(N-i\right)}^{\nu,\left(2\right)}\right\} \cap\left\{ \hat{\mathbf{X}}_{\delta\left(i+1\right)}^{\nu,\left(1\right)}\leq\hat{\mathbf{X}}_{\delta\left(N-\left(i+1\right)\right)}^{\nu,\left(2\right)}\right\} 
-\]
-
-\end_inset
-
-or 
-\begin_inset Formula 
-\[
-\left\{ \hat{\mathbf{X}}_{\delta i}^{\nu,\left(1\right)}\leq\hat{\mathbf{X}}_{\delta\left(N-i\right)}^{\nu,\left(2\right)}\right\} \cap\left\{ \hat{\mathbf{X}}_{\delta\left(i+1\right)}^{\nu,\left(1\right)}\geq\hat{\mathbf{X}}_{\delta\left(N-\left(i+1\right)\right)}^{\nu,\left(2\right)}\right\} 
-\]
-
-\end_inset
-
-occurs.
-\end_layout
-
 \begin_layout Section
-Quantifying 
-\begin_inset Quotes eld
+Exact Simulation of 
+\begin_inset Formula $\nu-$
 \end_inset
 
-Approximate
-\begin_inset Quotes erd
-\end_inset
-
- and Exact Sampling
+bridges
 \end_layout
 
 \begin_layout Standard
+In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:5"
+
+\end_inset
+
+, we present some evidence that the quality of the approximate simulation
+ scheme proposed above is quite high in many common situations.
+ However, an exact simulation scheme is desirable for completeness, and
+ the derivation of such a scheme can also hint at a quantification of precisely
+ how approximate the simulation strategy presented above is.
+ As in 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "bladt-sorensen-2014"
 
 \end_inset
 
- show some theory relating the density of the approximate bridges in their
- simulation scheme to the density of true diffusion bridges, and use the
- relationship to derive an exact Metropolis-Hastings sampler, using the
- approximate simulation scheme as a proposal distribution.
- I hope to do something similar (otherwise it is hard to tell whether the
- slight bias in simulations in the next chapter is due to the approximation
- error or something else).
+, we will use the approximate simulation scheme as a proposal in a Metropolis-Ha
+stings sampler, setting the target distribution as the distribution of an
+ exact 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Before proceeding, we fix some notation, working on the usual probability
+ space.
+ Let 
+\begin_inset Formula $\mathbb{X}^{\nu}$
+\end_inset
+
+ be the measure induced by a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+, and 
+\begin_inset Formula $\tilde{\mathbb{X}}^{\nu}:=\mathbb{Z}^{\left(1\right)}\left(\cdot\mid\mathscr{T}\right)$
+\end_inset
+
+ be the measure induced by the approximate 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ as described in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "thm:approx-sim"
+
+\end_inset
+
+.
+ We will refer to the solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ with initial distribution 
+\begin_inset Formula $\int p_{1}(\mathbf{x}_{1}^{\left(1\right)},\cdot)\tilde{\nu}(d\mathbf{x}_{1})$
+\end_inset
+
+ as the hitting diffusion, and let 
+\begin_inset Formula $\mathbb{H}$
+\end_inset
+
+ be the measure induced by the hitting diffusion.
+ We will assume that each of 
+\begin_inset Formula $\mathbb{X}^{\nu},\tilde{\mathbb{X}}^{\nu},\mathbb{H}$
+\end_inset
+
+ are absolutely continuous with respect to a fixed measure 
+\begin_inset Formula $m$
+\end_inset
+
+, and write their densities with respect to 
+\begin_inset Formula $m$
+\end_inset
+
+ as 
+\begin_inset Formula $f,\tilde{f}$
+\end_inset
+
+, and 
+\begin_inset Formula $h$
+\end_inset
+
+ respectively.
+\end_layout
+
+\begin_layout Standard
+First, we show a result relating 
+\begin_inset Formula $f$
+\end_inset
+
+ to 
+\begin_inset Formula $\tilde{f}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:density-rel"
+
+\end_inset
+
+The density of the approximate 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ given by 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "thm:approx-sim"
+
+\end_inset
+
+ can be expressed in terms of the density of a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ as
+\begin_inset Formula 
+\begin{equation}
+\tilde{f}\left(x\right)=f\left(x\right)\frac{\mbox{Pr}\left(I_{x,Y}\right)}{\mbox{Pr}\left(I_{X,Y}\right)}\label{eq:approx-exact-rel}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $I_{x,y}$
+\end_inset
+
+ for 
+\begin_inset Formula $x,y\in\Omega$
+\end_inset
+
+ is the event that 
+\begin_inset Formula $x_{t}=y_{t}$
+\end_inset
+
+ for some 
+\begin_inset Formula $t\in\left[0,1\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+First, note that the joint density of an exact 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ and an independent hitting diffusion is simply 
+\begin_inset Formula $f\left(x\right)h\left(y\right)$
+\end_inset
+
+.
+ Define the set of all intersecting diffusions as 
+\begin_inset Formula $A:=\left\{ \left(x,y\right)\in\Omega^{2}\mid I_{x,y}\right\} $
+\end_inset
+
+.
+ Then, the joint density of an exact 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge and an independent hitting diffusion, given that they intersect,
+ is 
+\begin_inset Formula 
+\[
+\mbox{Pr}\left(x,y\mid I_{x,y}\right)=\frac{f\left(x\right)h\left(y\right)\mathbf{1}_{A}\left(x,y\right)}{\mbox{Pr}\left(I_{X,Y}\right)}
+\]
+
+\end_inset
+
+Integrating over 
+\begin_inset Formula $y$
+\end_inset
+
+, we find 
+\begin_inset Formula 
+\begin{eqnarray*}
+\mbox{Pr}\left(x\mid I_{x,Y}\right) & = & \frac{f\left(x\right)}{\mbox{Pr}\left(\left(X,Y\right)\in A\right)}\int h\left(y\right)\mathbf{1}_{A}\left(x,y\right)dy\\
+ & = & f\left(x\right)\frac{\mbox{Pr}\left(I_{x,Y}\right)}{\mbox{Pr}\left(I_{X,Y}\right)}
+\end{eqnarray*}
+
+\end_inset
+
+as desired.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prop:density-rel"
+
+\end_inset
+
+ is important both because it offers a quantification of the approximate
+ nature of our simulation strategy, but also because it gives an expression
+ for how the proposal and target distributions in our putative exact Metropolis-
+Hastings sampler.
 \end_layout
 
 \end_body
