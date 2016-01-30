@@ -1,0 +1,617 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{url}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams-bytype
+theorems-sec-bytype
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Thesis Proposal.
+\end_layout
+
+\begin_layout Author
+Marshall Zhang, advised by Neil Shephard
+\end_layout
+
+\begin_layout Section*
+Introduction
+\end_layout
+
+\begin_layout Standard
+A natural question that arises in a diverse set of disciplines is how, given
+ an initial distribution 
+\begin_inset Formula $f_{t_{0}}\left(x\right)$
+\end_inset
+
+, the probability density 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ of a given diffusion process 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ evolves for 
+\begin_inset Formula $t>t_{0}$
+\end_inset
+
+.
+ For example, the price of a stock is often modeled as a geometric Brownian
+ motion, and financial market participants may be interested in the distribution
+ of the stock price at some point in the future, given its price today.
+\end_layout
+
+\begin_layout Standard
+The Fokker-Planck partial differential equation associated with a given
+ diffusion process is a key result in answering this question because its
+ solution is the transition density of the diffusion.
+ In particular, for a diffusion process represented by the stochastic differenti
+al equation 
+\begin_inset Formula $dX_{t}=\mu\left(X_{t},t\right)dt+\sigma\left(X_{t},t\right)dW_{t}$
+\end_inset
+
+, where 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+ is a Wiener process, the transition density 
+\begin_inset Formula $p=p\left(x,t\mid x',t_{0}\right)$
+\end_inset
+
+ for 
+\begin_inset Formula $t>t_{0}$
+\end_inset
+
+ of the process 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ is the solution to 
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial t}p=-\frac{\partial}{\partial x}\left[\mu\left(x,t\right)p\right]+\frac{1}{2}\frac{\partial^{2}}{\partial x^{2}}\left[\sigma^{2}\left(X_{t},t\right)p\right]
+\]
+
+\end_inset
+
+with initial condition 
+\begin_inset Formula $p\left(x,t_{0}\mid x',t_{0}\right)=\delta\left(x-x'\right)$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fpe"
+
+\end_inset
+
+.
+ With the transition density 
+\begin_inset Formula $p$
+\end_inset
+
+, we can recover the probability density 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ by computing
+\begin_inset Formula 
+\[
+p_{t}\left(x\right)=\int p\left(x,t\mid x',t_{0}\right)f_{t_{0}}\left(x'\right)dx'
+\]
+
+\end_inset
+
+Note that for initial distribution 
+\begin_inset Formula $f_{t_{0}}\left(x\right)=\delta\left(x-x_{0}\right)$
+\end_inset
+
+, we trivially have that the density 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ is equal to the transition density 
+\begin_inset Formula $p\left(x,t\mid x_{0},t_{0}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+Motivation
+\end_layout
+
+\begin_layout Standard
+An extension to the motivating question of the Fokker-Planck equation above
+ is to ask how, given an initial distribution 
+\begin_inset Formula $f_{t_{0}}\left(x\right)$
+\end_inset
+
+ and final distribution 
+\begin_inset Formula $g_{T}\left(x\right)$
+\end_inset
+
+, the probability density 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ of a given diffusion process 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ evolves for 
+\begin_inset Formula $t_{0}<t<T$
+\end_inset
+
+.
+ Answering this question is of significant interest in a variety of fields.
+\end_layout
+
+\begin_layout Standard
+For example, in macroeconomics, the European Central Bank releases a discretized
+ distribution of survey responses from professional forecasters for the
+ values of various macroeconomic variables such as inflation and unemployment,
+ at the end of the current year 
+\begin_inset Formula $t$
+\end_inset
+
+, and the end of years 
+\begin_inset Formula $t+1,t+2,$
+\end_inset
+
+ and 
+\begin_inset Formula $t+4$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ecb"
+
+\end_inset
+
+.
+ Given a diffusion model for inflation, a distribution of interest may be
+ the implied inflation distribution at the end of year 
+\begin_inset Formula $t+3$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section*
+Lines of Research
+\end_layout
+
+\begin_layout Paragraph
+Deriving Densities for Diffusion Bridges
+\end_layout
+
+\begin_layout Standard
+The line of research proposed can be seen as a generalization of the study
+ of the Brownian bridge.
+ Recall a Brownian bridge 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ is defined as 
+\begin_inset Formula $B_{t}:=W_{t}\mid W_{1}=0,t\in\left[0,1\right]$
+\end_inset
+
+ for a standard Wiener process 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+; in other words, a Brownian bridge is simply a Wiener process conditioned
+ on starting and ending values 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bridges"
+
+\end_inset
+
+.
+ The motivating question above can be seen as asking how we can study the
+ densities of general diffusion processes, conditioned on starting and ending
+ distributions - in intuitive terms, we are interested in 
+\begin_inset Quotes eld
+\end_inset
+
+density bridges
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The simplest case begins with studying the density of a Brownian bridge.
+ It turns out that a Brownian bridge can be represented as an unconditional
+ SDE 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bridges"
+
+\end_inset
+
+, allowing its transition density to be analytically determined through
+ traditional Fokker-Planck solution methods.
+ While this transition density is already known, my derivation using the
+ Fokker-Planck equation seems to be an unorthodox way of arriving at its
+ form 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bridge_deriv,shreve"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+I hope in my thesis to explore the possible following directions (not necessaril
+y listed in order, and not necessarily with the intention of completing
+ every single item):
+\end_layout
+
+\begin_layout Enumerate
+Find a class of initial and final distributions for which an analytical
+ solution to the density 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ of a Brownian bridge 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ exists.
+\end_layout
+
+\begin_layout Enumerate
+Find the transition density 
+\begin_inset Formula $p\left(x,t\mid x',t_{0}\right)$
+\end_inset
+
+ of an Ornstein-Uhlenbeck bridge 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Then, find a class of initial and final distributions for which an analytical
+ solution to the density 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ of an Ornstein-Uhlenbeck bridge 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ exists.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find a class of diffusion bridges 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ which admit an analytical solution for their transition densities 
+\begin_inset Formula $p\left(x,t\mid x',t_{0}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Then, find a class of initial and final distributions for which an analytical
+ solution to the density 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ of the diffusion bridge 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ exists.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The Ornstein-Uhlenbeck process is of particular interest, since its bridge,
+ like the Brownian bridge, admits an unconditional diffusion representation
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bridges"
+
+\end_inset
+
+ (and therefore whose density can be approached using the Fokker-Planck
+ equation), and the Ornstein-Uhlenbeck process is commonly used to model
+ inflation, unemployment, interest rates, and other variables of interest.
+ The third direction is uniquely challenging, because without an unconditional
+ diffusion representation, I will need to develop technology that gives
+ something like a 
+\begin_inset Quotes eld
+\end_inset
+
+forward and backward transition
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+bridge
+\begin_inset Quotes erd
+\end_inset
+
+ density 
+\begin_inset Formula $p\left(x,t\mid x_{t_{0}},t_{0},x_{T},T\right)$
+\end_inset
+
+ where 
+\begin_inset Formula $t_{0}<t<T$
+\end_inset
+
+.
+ I have not completed enough research to assess whether this direction is
+ feasible, but I think the first and second points will be fruitful.
+\end_layout
+
+\begin_layout Paragraph
+Developing a Sampler
+\end_layout
+
+\begin_layout Standard
+A somewhat more computational direction I could take this research is towards
+ devising a scheme to sample from 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ for some diffusion 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+, given initial distribution 
+\begin_inset Formula $f_{t_{0}}\left(x\right)$
+\end_inset
+
+, final distribution 
+\begin_inset Formula $g_{T}\left(x\right)$
+\end_inset
+
+, and 
+\begin_inset Formula $t<t_{0}<T$
+\end_inset
+
+.
+ I propose a simulation scheme in Algorithm 1, and hope to prove methodologicall
+y that it correctly samples from the marginal distribution of interest 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sampler for 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ for a diffusion 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+, conditional on initial and final distributions 
+\begin_inset Formula $f_{t_{0}}$
+\end_inset
+
+ and 
+\begin_inset Formula $g_{T}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+For 
+\begin_inset Formula $n=1,\dots,N$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Sample 
+\begin_inset Formula $\left(x,y\right)$
+\end_inset
+
+ such that 
+\begin_inset Formula $x\sim f_{t_{0}}$
+\end_inset
+
+ and 
+\begin_inset Formula $y\sim g_{T}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Simulate a bridge 
+\begin_inset Formula $X_{t}^{\left(n\right)}$
+\end_inset
+
+ from 
+\begin_inset Formula $x$
+\end_inset
+
+ to 
+\begin_inset Formula $y$
+\end_inset
+
+, following the diffusion dynamics specified, for 
+\begin_inset Formula $t_{0}<t<T$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Store 
+\begin_inset Formula $X_{t_{0}}^{\left(n\right)}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Return 
+\begin_inset Formula $X_{t_{0}}^{\left(1\right)},\dots,X_{t_{0}}^{\left(N\right)}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Timeline
+\end_layout
+
+\begin_layout Standard
+As outlined in the Statistics thesis handbook, I plan to have a literature
+ review completed by November 10.
+ I hope to have outlined solutions to points 1.
+ and 2.
+ by the new year, and have an understanding whether goal 3.
+ is feasible.
+ If it is, I will spend the new year developing technology to achieve goal
+ 3.
+ Otherwise, I will attempt to develop a sampler of 
+\begin_inset Formula $p_{t}\left(x\right)$
+\end_inset
+
+ as described above and prove its correctness.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "proposal_bibs"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

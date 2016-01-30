@@ -1,0 +1,943 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass classicthesis
+\use_default_options true
+\maintain_unincluded_children false
+\language american
+\language_package default
+\inputencoding default
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Appendix
+\end_layout
+
+\begin_layout Section
+SDE Representation of Bridges of Diffusions
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:SDE-Bridge"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We broadly follow the exposition in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "karlin-taylor:1981"
+
+\end_inset
+
+, making adjustments as appropriate.
+ First, let 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ be a diffusion process driven by a standard Wiener process with drift coefficie
+nt 
+\begin_inset Formula $\mu\left(x\right)$
+\end_inset
+
+ and diffusion coefficient 
+\begin_inset Formula $\sigma\left(x\right)$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+ be real fixed numbers, and let 
+\begin_inset Formula $X_{t},t\in\left[0,1\right]$
+\end_inset
+
+ be the diffusion process 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ subject to 
+\begin_inset Formula 
+\begin{equation}
+\alpha<X_{1}<\beta\label{eq:wide-constraint}
+\end{equation}
+
+\end_inset
+
+We claim 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ is also a diffusion, and we proceed to derive its drift and diffusion coefficie
+nts 
+\begin_inset Formula $\mu_{t}^{*}\left(x\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{t}^{*}\left(x\right)$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\pi_{t}\left(x\right)$
+\end_inset
+
+ be the probability that from state value 
+\begin_inset Formula $x$
+\end_inset
+
+ at time 
+\begin_inset Formula $t$
+\end_inset
+
+, the sample path of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ satisfies 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:wide-constraint"
+
+\end_inset
+
+ at 
+\begin_inset Formula $t=1$
+\end_inset
+
+.
+ Furthermore, let 
+\begin_inset Formula $f\left(y,t\mid x,t'\right)$
+\end_inset
+
+ be the transition density of 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+.
+ Then, the transition density of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ is
+\begin_inset Formula 
+\begin{eqnarray*}
+p\left(y,t\mid x',t'\right) & = & \mbox{Pr}\left(y<B_{t}\leq y+dy\mid B_{t'}=x,\alpha<B_{1}<\beta\right)\\
+ & = & \frac{\mbox{Pr}\left(y<B_{t}\leq y+dy\mid B_{t'}=x\right)}{\mbox{Pr}\left(\alpha<B_{1}<\beta\mid X_{t'}=x\right)}\\
+ &  & \times\mbox{ Pr}\left(\alpha<B_{1}<\beta\mid B_{t'}=x,B_{t}=y\right)
+\end{eqnarray*}
+
+\end_inset
+
+By the Markov property, we know 
+\begin_inset Formula 
+\[
+\mbox{Pr}\left(\alpha<B_{1}<\beta\mid B_{t'}=x,B_{t}=y\right)=\mbox{Pr}\left(\alpha<B_{1}<\beta\mid B_{t}=y\right)
+\]
+
+\end_inset
+
+and we find 
+\begin_inset Formula 
+\[
+p\left(y,t\mid x,t'\right)=\frac{f\left(y,t\mid x,t'\right)\pi_{t}\left(y\right)}{\pi_{t'}\left(x\right)}
+\]
+
+\end_inset
+
+To find the new drift coefficient 
+\begin_inset Formula $\mu_{t}^{*}\left(x\right)$
+\end_inset
+
+, we know 
+\begin_inset Formula 
+\begin{eqnarray}
+\mu_{t}^{*}\left(x\right) & = & \lim_{h\rightarrow0}\frac{\mathbb{E}\left[X_{t+h}-X_{t}\mid X_{t}=x'\right]}{h}\nonumber \\
+ & = & \lim_{h\rightarrow0}\frac{1}{h}\int p\left(y,t+h\mid x,t\right)\left(y-x\right)dy\nonumber \\
+ & = & \lim_{h\rightarrow0}\frac{1}{h}\int\frac{f\left(y,t+h\mid x,t\right)\pi_{t+h}\left(y\right)}{\pi_{t}\left(x\right)}\left(y-x\right)dy\label{eq:mu_star}
+\end{eqnarray}
+
+\end_inset
+
+Assuming sufficient regularity conditions on 
+\begin_inset Formula $\pi_{t}\left(x\right)$
+\end_inset
+
+, we can write the Taylor expansion at 
+\begin_inset Formula $\left(y,t+h\right)$
+\end_inset
+
+ as
+\begin_inset Formula 
+\[
+\pi_{t+h}\left(y\right)=\pi_{t}\left(x\right)+\left(y-x\right)\frac{\partial\pi_{t}\left(x\right)}{\partial x}+h\frac{\partial\pi_{t}\left(x\right)}{\partial t}+o\left(y-x\right)+o\left(h\right)
+\]
+
+\end_inset
+
+and substitute this expression into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:mu_star"
+
+\end_inset
+
+ to find
+\begin_inset Formula 
+\begin{eqnarray*}
+\mu_{t}^{*}\left(x\right) & = & \lim_{h\rightarrow0}\frac{1}{h}\int\left(y-x\right)f\left(y,t+h\mid x,t\right)dy\\
+ &  & +\frac{1}{\pi_{t}\left(x\right)}\frac{\partial\pi_{t}\left(x\right)}{\partial x}\lim_{h\rightarrow0}\frac{1}{h}\int\left(y-x\right)^{2}f\left(y,t+h\mid x,t\right)dy\\
+ & = & \mu\left(x\right)+\frac{1}{\pi_{t}\left(x\right)}\frac{\partial\pi_{t}\left(x\right)}{\partial x}\sigma^{2}\left(x\right)
+\end{eqnarray*}
+
+\end_inset
+
+Similarly, we can find the square of the new diffusion coefficient 
+\begin_inset Formula $\left(\sigma_{t}^{*}\right)^{2}\left(x\right)$
+\end_inset
+
+ by writing 
+\begin_inset Formula 
+\begin{eqnarray*}
+\left(\sigma_{t}^{*}\right)^{2}\left(x\right) & = & \lim_{h\rightarrow0}\frac{1}{h}\int\left(y-x\right)^{2}p\left(y,t+h\mid x,t\right)dy\\
+ & = & \sigma^{2}\left(x\right)
+\end{eqnarray*}
+
+\end_inset
+
+Because our original diffusion is driven by a Wiener process, we know that
+ 
+\begin_inset Formula 
+\[
+\pi_{t}\left(x\right)=\int_{\alpha}^{\beta}\frac{1}{\sqrt{2\pi\left(1-t\right)}}\exp\left\{ -\frac{\left(y-x\right)^{2}}{2\left(1-t\right)}\right\} dy
+\]
+
+\end_inset
+
+We let 
+\begin_inset Formula $u=\frac{y-x}{\sqrt{1-t}}$
+\end_inset
+
+, so that 
+\begin_inset Formula 
+\[
+\pi_{t}\left(x\right)=\frac{1}{\sqrt{2\pi\left(1-t\right)}}\int_{\frac{\alpha-x}{\sqrt{1-t}}}^{\frac{\beta-x}{\sqrt{1-t}}}\exp\left\{ -\frac{u^{2}}{2}\right\} du
+\]
+
+\end_inset
+
+Now, let 
+\begin_inset Formula $\alpha=x_{1}-\epsilon$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta=x_{1}+\epsilon$
+\end_inset
+
+.
+ Some computation reveals
+\begin_inset Formula 
+\[
+\lim_{\epsilon\rightarrow0}\frac{1}{\pi_{t}\left(x\right)}\frac{\partial\pi_{t}\left(x\right)}{\partial x}=\frac{x_{1}-x}{1-t}
+\]
+
+\end_inset
+
+Thus, the diffusion process 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ with state-dependent drift and diffusion coefficients 
+\begin_inset Formula $\mu\left(x\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma\left(x\right)$
+\end_inset
+
+, when conditioned such that 
+\begin_inset Formula $B_{1}=x_{1}$
+\end_inset
+
+, can be represented by a diffusion 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\[
+dX_{t}=\left(\mu\left(x\right)+\frac{x_{1}-x}{1-t}\sigma^{2}\left(x\right)\right)dt+\sigma\left(x\right)dW_{t},t\in\left[0,1\right]
+\]
+
+\end_inset
+
+for a standard Wiener process 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Transition Density of Bridges
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:full-bb-transition"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Constant Drift and Diffusion Coefficients
+\end_layout
+
+\begin_layout Standard
+We begin with the SDE for a bridge of a diffusion with constant drift coefficien
+t 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and diffusion coefficient 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+\begin_inset Formula 
+\[
+dX_{t}=\left(\mu+\frac{x_{1}-X_{t}}{1-t}\sigma^{2}\right)dt+\sigma dW_{t},t\in\left[0,1\right]
+\]
+
+\end_inset
+
+Note that the drift coefficient of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ can be written as 
+\begin_inset Formula $\alpha\left(t\right)X_{t}+\beta\left(t\right)$
+\end_inset
+
+, where 
+\begin_inset Formula 
+\[
+\alpha\left(t\right)=-\frac{\sigma^{2}}{1-t},\mbox{ }\beta\left(t\right)=\mu+\frac{x_{1}\sigma^{2}}{1-t}
+\]
+
+\end_inset
+
+The linear nature of the drift coefficient suggests that we may be able
+ to define a linear transformation of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ such that the associated Kolmogorov forward equation is easy to solve.
+ We define a linear transformation 
+\begin_inset Formula $Z_{t}$
+\end_inset
+
+ of 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\[
+Z_{t}=\gamma\left(t\right)X_{t}+\delta\left(t\right)
+\]
+
+\end_inset
+
+for some functions 
+\begin_inset Formula $\gamma\left(t\right),\delta\left(t\right)$
+\end_inset
+
+.
+ Using Ito's lemma, we find 
+\begin_inset Formula 
+\[
+dZ_{t}=\left(\frac{\partial\gamma\left(t\right)}{\partial t}X_{t}+\frac{\partial\delta\left(t\right)}{\partial t}+\alpha\left(t\right)\gamma\left(t\right)X_{t}+\beta\left(t\right)\gamma\left(t\right)\right)dt+\sigma\gamma\left(t\right)dW_{t}
+\]
+
+\end_inset
+
+Note that if we solve
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{\partial\gamma\left(t\right)}{\partial t} & = & -\alpha\left(t\right)\gamma\left(t\right)\\
+\frac{\partial\delta\left(t\right)}{\partial t} & = & -\beta\left(t\right)\gamma\left(t\right)
+\end{eqnarray*}
+
+\end_inset
+
+for 
+\begin_inset Formula $\gamma\left(t\right),\delta\left(t\right)$
+\end_inset
+
+, we can force 
+\begin_inset Formula $Z_{t}$
+\end_inset
+
+ to be a driftless diffusion, whose Kolmogorov forward equation admits a
+ simple analytic solution.
+ The solutions to the above system of equations are 
+\begin_inset Formula 
+\begin{eqnarray*}
+\gamma\left(t\right) & = & \exp\left\{ \int_{t}^{1}\alpha\left(t\right)dt\right\} \\
+\delta\left(t\right) & = & \int_{t}^{1}\gamma\left(t\right)\beta\left(t\right)dt
+\end{eqnarray*}
+
+\end_inset
+
+This allows us to simplify the SDE of 
+\begin_inset Formula $Z_{t}$
+\end_inset
+
+ to 
+\begin_inset Formula 
+\[
+dZ_{t}=\sigma\gamma\left(t\right)dW_{t}
+\]
+
+\end_inset
+
+The Kolmogorov forward equation for the transition density 
+\begin_inset Formula $\bar{p}=\bar{p}\left(z,t\mid z',t'\right)$
+\end_inset
+
+ of this SDE is 
+\begin_inset Formula 
+\[
+\frac{\partial\bar{p}}{\partial t}=\frac{\sigma^{2}\gamma^{2}\left(t\right)}{2}\frac{\partial^{2}\bar{p}}{\partial z^{2}}
+\]
+
+\end_inset
+
+with initial condition 
+\begin_inset Formula $\bar{p}\left(z,t'\mid z',t'\right)=\delta\left(z-z'\right)$
+\end_inset
+
+.
+ We perform a Fourier transformation with respect to 
+\begin_inset Formula $z$
+\end_inset
+
+ to arrive at
+\begin_inset Formula 
+\[
+\frac{\partial\hat{\bar{p}}}{\partial t}=-k^{2}\frac{\sigma^{2}\gamma^{2}\left(t\right)}{2}\hat{\bar{p}}
+\]
+
+\end_inset
+
+with initial condition 
+\begin_inset Formula $\hat{\bar{p}}\left(k,t'\mid z',t'\right)=e^{-ikz'}$
+\end_inset
+
+.
+ We take the inverse Fourier transform of the solution to this PDE to find
+ the transition density
+\begin_inset Formula 
+\[
+\bar{p}\left(z,t\mid z',t'\right)=\frac{1}{\sqrt{2\pi\nu}}\exp\left\{ \frac{\left(z-z'\right)^{2}}{2\nu}\right\} ,\nu=\sigma^{2}\int_{t'}^{t}\gamma^{2}\left(\tau\right)d\tau
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $t>t'$
+\end_inset
+
+.
+ Finally, to find the transition density 
+\begin_inset Formula $p=p\left(x,t\mid x',t'\right)$
+\end_inset
+
+ of our original SDE 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+, we can use the transformation theorem,
+\begin_inset Formula 
+\begin{eqnarray*}
+p\left(x,t\mid x',t'\right) & = & \left|\frac{\partial z}{\partial x}\right|\bar{p}\left(z,t\mid z',t'\right)\\
+ & = & \frac{\gamma\left(t\right)}{\sqrt{2\pi\nu}}\exp\left\{ -\frac{\left(\gamma\left(t\right)x+\delta\left(t\right)-\gamma\left(t'\right)x'-\delta\left(t'\right)\right)^{2}}{2\nu}\right\} 
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+A First-Order End-Conditioned KFE
+\end_layout
+
+\begin_layout Subsection
+End-Conditioned KFE
+\end_layout
+
+\begin_layout Standard
+We consider a diffusion process 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ which is the solution to the stochastic differential equaiton 
+\begin_inset Formula 
+\begin{equation}
+dX_{t}=\mu\left(x,t\right)dt+\sigma\left(x,t\right)dW_{t}\label{eq:kramers-moyal-sde}
+\end{equation}
+
+\end_inset
+
+subject to some distribution on 
+\begin_inset Formula $X_{1}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $P\left(x,t\mid x',t'\right)$
+\end_inset
+
+ be the transition density of the unconditional solution to the stochastic
+ differential equation, and suppose we can compute all the moments 
+\begin_inset Formula 
+\begin{equation}
+M_{n}\left(x,t,\tau\right)=\frac{1}{n!}\int\left(x-x'\right)^{n}P\left(x,t+\tau\mid x',t\right)dx\label{eq:moments-of-unconditional-density}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First, consider the joint density 
+\begin_inset Formula $p\left(x,t;x',t';x_{1}\right)$
+\end_inset
+
+ of the conditioned process for 
+\begin_inset Formula $t\geq t'$
+\end_inset
+
+.
+ This can be written 
+\begin_inset Formula 
+\[
+p\left(x,t;x',t';x_{1}\right)=p\left(x,t\mid x',t',x_{1}\right)p\left(x',t';x_{1}\right)
+\]
+
+\end_inset
+
+which, under a variant of the Chapman-Kolmogorov equation, gives the probability
+ density 
+\begin_inset Formula $p\left(x,t\right)$
+\end_inset
+
+ as 
+\begin_inset Formula 
+\begin{equation}
+p\left(x,t\right)=\iint p\left(x,t\mid x',t',x_{1}\right)p\left(x',t';x_{1}\right)dx'dx_{1}\label{eq:variant-of-chapman-kolmogorov}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We now recall the identity 
+\begin_inset Formula 
+\begin{equation}
+p\left(x,t'+\Delta t'\mid x',t',x_{1}\right)=\int\delta\left(y-x\right)p\left(y,t'+\Delta t'\mid x',t',x_{1}\right)dy\label{eq:delta-function-trick}
+\end{equation}
+
+\end_inset
+
+and write the Taylor series expansion of the Dirac delta function,
+\begin_inset Formula 
+\begin{eqnarray}
+\delta\left(y-x\right) & = & \delta\left(x'-x+y-x'\right)\nonumber \\
+ & = & \sum_{n=0}^{\infty}\frac{\left(y-x'\right)^{n}}{n!}\left(-\frac{\partial}{\partial x}\right)^{n}\delta\left(x'-x\right)\label{eq:taylor-expand-delta-function}
+\end{eqnarray}
+
+\end_inset
+
+Substituting 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:taylor-expand-delta-function"
+
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:delta-function-trick"
+
+\end_inset
+
+, we find 
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & p\left(x,t'+\Delta t'\mid x',t',x_{1}\right)\nonumber \\
+ & = & \sum_{n=0}^{\infty}\frac{1}{n!}\left(-\frac{\partial}{\partial x}\right)^{n}\int\left(y-x'\right)^{n}p\left(y,t'+\Delta t'\mid x',t',x_{1}\right)dy\delta\left(x'-x\right)\nonumber \\
+ & = & \left[1+\sum_{n=1}^{\infty}\left(-\frac{\partial}{\partial x}\right)^{n}M_{n}^{x_{1}}\left(x',t',\Delta t'\right)\right]\delta\left(x'-x\right)\nonumber \\
+ & = & \left[1+\sum_{n=1}^{\infty}\left(-\frac{\partial}{\partial x}\right)^{n}M_{n}^{x_{1}}\left(x,t',\Delta t'\right)\right]\delta\left(x-x'\right)\label{eq:short-transition-density}
+\end{eqnarray}
+
+\end_inset
+
+where 
+\begin_inset Formula $M_{n}^{x_{1}}\left(x',t',\Delta t'\right)=\frac{1}{n!}\int\left(y-x'\right)^{n}p\left(y,t'+\Delta t'\mid x',t',x_{1}\right)dy$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Inserting 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:short-transition-density"
+
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:variant-of-chapman-kolmogorov"
+
+\end_inset
+
+, dividing by 
+\begin_inset Formula $\Delta t'$
+\end_inset
+
+, and taking the limit as 
+\begin_inset Formula $\Delta t'\rightarrow0$
+\end_inset
+
+, we find that 
+\begin_inset Formula 
+\begin{equation}
+\frac{\partial p\left(x,t\right)}{\partial t}=\sum_{n=1}^{\infty}\left(-\frac{\partial}{\partial x}\right)^{n}\int D_{n}^{x_{1}}\left(x',t',\Delta t'\right)p\left(x,t;x_{1}\right)dx_{1}\label{eq:kramers-moyal-expansion}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $D_{n}^{x_{1}}\left(x',t',\Delta t'\right)=\lim_{\Delta t'\rightarrow0}\frac{1}{\Delta t'}M_{n}^{x_{1}}\left(x,t',\Delta t'\right)$
+\end_inset
+
+.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:kramers-moyal-expansion"
+
+\end_inset
+
+ is the Kramers-Moyal expansion for the conditioned process 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:kramers-moyal-sde"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We now attempt to compute the Kramers-Moyal coefficients 
+\begin_inset Formula $D_{n}^{x_{1}}$
+\end_inset
+
+ for the conditioned process 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:kramers-moyal-sde"
+
+\end_inset
+
+.
+ First, we note the short-time transition density 
+\begin_inset Formula $p\left(y,t+\Delta t\mid x,t,x_{1}\right)$
+\end_inset
+
+ can be re-written `
+\begin_inset Formula 
+\begin{eqnarray}
+ &  & p\left(y,t+\Delta t\mid x,t,x_{1}\right)\nonumber \\
+ & = & \mbox{Pr}\left(y<X_{t+\Delta t}\leq y+dy\mid X_{t}=x,x_{1}<X_{1}\leq x_{1}+dx_{1}\right)\nonumber \\
+ & = & \frac{\mbox{Pr}\left(y<X_{t+\Delta t}\leq y+dy\mid X_{t}=x\right)}{\mbox{Pr}\left(x_{1}<X_{1}\leq x_{1}+dx_{1}\mid X_{t}=x\right)}\times\nonumber \\
+ &  & \mbox{Pr}\left(x_{1}<X_{1}\leq x_{1}+dx_{1}\mid X_{t}=x,X_{t+\Delta t}=y\right)\nonumber \\
+ & = & p\left(y,t+\Delta t\mid x,t\right)\frac{p\left(x_{1}\mid y,t+\Delta t\right)}{p\left(x_{1}\mid x,t\right)}\label{eq:bayes-rule-short-density}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Writing the Taylor expansion of 
+\begin_inset Formula $p=p\left(x_{1}\mid x,t\right)$
+\end_inset
+
+ at 
+\begin_inset Formula $\left(y,t+\Delta t\right)$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\[
+p\left(x_{1}\mid y,t+\Delta t\right)=\sum_{n_{1}=0}^{\infty}\sum_{n_{2}=0}^{\infty}\frac{\left(y-x\right)^{n_{1}}\left(\Delta t\right)^{n_{2}}}{n_{1}!n_{2}!}\left(\frac{\partial^{n_{1}+n_{2}}p}{\partial x^{n_{1}}\partial t^{n_{2}}}\right)
+\]
+
+\end_inset
+
+Substituting
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bayes-rule-short-density"
+
+\end_inset
+
+ into the definition of 
+\begin_inset Formula $M_{n}^{x_{1}}=M_{n}^{x_{1}}\left(x,t,\Delta t\right)$
+\end_inset
+
+, using ___________, gives
+\begin_inset Formula 
+\begin{eqnarray*}
+M_{n}^{x_{1}} & = & \frac{1}{n!}\int\left(y-x\right)^{n}p\left(y,t+\Delta t\mid x,t\right)\frac{1}{p}\left[\sum_{n_{1}=0}^{\infty}\sum_{n_{2}=0}^{\infty}\frac{\left(y-x\right)^{n_{1}}\left(\Delta t\right)^{n_{2}}}{n_{1}!n_{2}!}\left(\frac{\partial^{n_{1}+n_{2}}}{\partial x^{n_{1}}\partial t^{n_{2}}}\right)p\right]dy\\
+ & = & \frac{1}{p}\sum_{n_{1}=0}^{\infty}\sum_{n_{2}=0}^{\infty}\frac{\left(\Delta t\right)^{n_{2}}}{n_{1}!n_{2}!}\left(\frac{\partial^{n_{1}+n_{2}}p}{\partial x^{n_{1}}\partial t^{n_{2}}}\right)\frac{\left(n+n_{1}\right)!}{n!}M_{n+n_{1}}
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $M_{n}=M_{n}\left(x,t,\Delta t\right)$
+\end_inset
+
+ are the moments of the unconditioned process 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:kramers-moyal-sde"
+
+\end_inset
+
+.
+ To find the Kramers-Moyal coefficients 
+\begin_inset Formula $D_{n}^{x_{1}}=D_{n}^{x_{1}}\left(x,t,\Delta t\right)$
+\end_inset
+
+ of the conditioned process 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:kramers-moyal-sde"
+
+\end_inset
+
+, we compute, using 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:conditioned-moments"
+
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray}
+D_{n}^{x_{1}} & = & \lim_{\Delta t'\rightarrow0}\frac{1}{\Delta t'}M_{n}^{x_{1}}\left(x,t,\Delta t\right)\nonumber \\
+ & = & \frac{1}{p}\sum_{n_{1}=0}^{\infty}\sum_{n_{2}=0}^{\infty}\frac{1}{n_{1}!n_{2}!}\left(\frac{\partial^{n_{1}+n_{2}}p}{\partial x^{n_{1}}\partial t^{n_{2}}}\right)\frac{\left(n+n_{1}\right)!}{n!}\left[\lim_{\Delta t\rightarrow0}\left(\Delta t\right)^{n_{2}-1}M_{n+n_{1}}\right]\label{eq:conditioned-km-coefficients}
+\end{eqnarray}
+
+\end_inset
+
+where the Kramers-Moyal coefficients 
+\begin_inset Formula $D_{n}=D_{n}\left(x,t,\Delta t\right)$
+\end_inset
+
+ of the unconditional process are well-known to be
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+D_{1}\left(x,t,\Delta t\right) & = & \mu\left(x,t\right)\Delta t\\
+D_{2}\left(x,t,\Delta t\right) & = & \frac{1}{2}\sigma^{2}\left(x,t\right)\Delta t\\
+D_{n\geq3}\left(x,t,\Delta t\right) & = & 0
+\end{eqnarray*}
+
+\end_inset
+
+Substituting 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:conditioned-km-coefficients"
+
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:kramers-moyal-expansion"
+
+\end_inset
+
+, then, we find the Kolmogorov forward equation for a diffusion process
+ 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ conditioned on an end distribution
+\begin_inset Formula 
+\begin{equation}
+\frac{\partial p\left(x,t\right)}{\partial t}=\int dx_{1}\left(-\frac{\partial}{\partial x}D_{1}^{x_{1}}\left(x,t\right)+\frac{\partial^{2}}{\partial x^{2}}D_{2}\left(x,t\right)\right)p\left(x,t;x_{1}\right)\label{eq:KFE-end-distribution}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $D_{1}^{x_{1}}\left(x,t\right)=\mu\left(x,t\right)+\Pi\left(x_{1};x,t\right)\sigma^{2}\left(x,t\right)$
+\end_inset
+
+, where 
+\begin_inset Formula $\Pi\left(x_{1};x,t\right)=\left(\partial p\left(x_{1}\mid x,t\right)/\partial x\right)/p\left(x_{1}\mid x,t\right)$
+\end_inset
+
+.
+ We can write this as in operator notation as 
+\begin_inset Formula 
+\begin{equation}
+\frac{\partial p\left(x,t\right)}{\partial t}=\left(\mathbb{L}_{x,t}+\mathbb{F}_{x,t}^{x_{1}}\right)p\left(x,t\right)\label{eq:KFE-operator-end-distribution}
+\end{equation}
+
+\end_inset
+
+where the operator 
+\begin_inset Formula $\mathbb{L}_{x,t}$
+\end_inset
+
+ is the standard forward Kolmogorov operator 
+\begin_inset Formula 
+\[
+\mathbb{L}_{x,t}=-\frac{\partial}{\partial x}\mu\left(x,t\right)+\frac{1}{2}\frac{\partial^{2}}{\partial x^{2}}\sigma^{2}\left(x,t\right)
+\]
+
+\end_inset
+
+and the operator 
+\begin_inset Formula $\mathbb{F}_{x,t}^{x_{1}}$
+\end_inset
+
+ is defined
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{F}_{x,t}^{x_{1}} & = & -\frac{\partial}{\partial x}\int dx_{1}\Pi\left(x_{1};x,t\right)\sigma^{2}\left(x,t\right)p\left(x_{1}\mid x,t\right)\\
+ & = & -\frac{\partial^{2}}{\partial x^{2}}\sigma^{2}\left(x,t\right)
+\end{eqnarray*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial p\left(x,t\right)}{\partial t}=\left[-\frac{\partial}{\partial x}\mu\left(x,t\right)p\left(x,t\right)-\frac{\partial}{\partial x}\int\frac{\partial p\left(x_{1}\mid x,t\right)}{\partial x}dx_{1}\sigma^{2}\left(x,t\right)p\left(x,t\right)\right]+\frac{1}{2}\frac{\partial^{2}}{\partial x^{2}}\sigma^{2}\left(x,t\right)p\left(x,t\right)
+\]
+
+\end_inset
+
+We will refer to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:KFE-end-distribution"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:KFE-operator-end-distribution"
+
+\end_inset
+
+ as the end-conditioned Kolmogorov forward equation.
+\end_layout
+
+\begin_layout Subsection
+
+\end_layout
+
+\end_body
+\end_document
