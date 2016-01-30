@@ -64,7 +64,7 @@ gen.cov = function(t) {
   t(G) %*% diag(c(l1,l2,l3)) %*% G
 }
 
-# Likelihood of multivariate OU.
+# Get parameters of inf/gdp/une process.
 lik.ou = function(theta, dat) {
   mu = theta[1:3]
   lambda = rep(theta[4], 3)
@@ -86,14 +86,13 @@ lik.ou = function(theta, dat) {
   -ll
 } 
 
-optim(c(1, 1.5, 9.5, -0.2, 0.05, 0, 0.05, 0,0,0.05),
+theta = optim(c(2, 2, 10, -0.2, -1, 0.6, 1, 0.1, 0.1, 0.1),
       method = "L-BFGS-B",
       fn = function(theta) lik.ou(theta, forecasts),
       lower = c(-Inf, -Inf, 1e-6, -Inf, -Inf, -Inf, -Inf, 1e-6, 1e-6, 1e-6),
       upper = c(Inf,  Inf,  Inf,  -1e-6, Inf,  Inf,  Inf,   Inf,  Inf, Inf),
-      control = list(trace = 6))
+      control = list(trace = 6))$par
 
-lik.ou(c(0, 0, 9.5, -0.2, 0.05, 0, 0.05, 0,0,0.05), forecasts)
+res = theta
 
-theta = c(1.91364, 1.85883, 9.10795, -0.0844359, -0.0672126, -0.658418, 1.3999, 0.101771, 1e-06, 0.128031)
-gen.cov(theta[5:10])
+# Compare economist distributions to mine.
