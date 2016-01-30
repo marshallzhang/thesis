@@ -77,7 +77,7 @@ theorems-chap
 \begin_body
 
 \begin_layout Chapter
-The Theory of 
+Simulation of 
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -126,7 +126,7 @@ bridges where the marginal measures of
 bridges, and thus we focus here on proposing an approximate simulation strategy
  for such bridges in the spirit of 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "bladt-sorensen-2014"
 
 \end_inset
@@ -1073,7 +1073,7 @@ reference "eq:basic-sde"
 
 .
  Let 
-\begin_inset Formula $\tau=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(1\right)}=\bar{\mathbf{X}}_{1-t}^{\nu,\left(2\right)}\}$
+\begin_inset Formula $\tau=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(1\right)}=\mathbf{X}_{1-t}^{\nu,\left(2\right)}\}$
 \end_inset
 
 .
@@ -1618,9 +1618,9 @@ reference "eq:basic-sde"
 
 \end_inset
 
- with a particular initial distribution.
- Naturally, the higher the probability of the bridge and the independent
- solution hitting each other, the closer 
+ with a particular initial distribution, which we call the hitting diffusion.
+ Naturally, the higher the probability of the bridge and a hitting diffusion
+ intersecting, the closer 
 \begin_inset Formula $Z$
 \end_inset
 
@@ -1629,6 +1629,66 @@ reference "eq:basic-sde"
 \end_inset
 
 bridge.
+ In particular, the density 
+\begin_inset Formula $\tilde{f}$
+\end_inset
+
+ of an approximate 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge can be written in terms of the density 
+\begin_inset Formula $f$
+\end_inset
+
+ of an exact 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge as
+\begin_inset Formula 
+\begin{equation}
+\tilde{f}\left(x\right)=f\left(y\right)\frac{\mbox{Pr}\left(I_{x,Y}\right)}{\mbox{Pr}\left(I_{X,Y}\right)}\label{eq:approx-exact-rel}
+\end{equation}
+
+\end_inset
+
+where, for 
+\begin_inset Formula $x,y\in\Omega$
+\end_inset
+
+, 
+\begin_inset Formula $I_{x,y}$
+\end_inset
+
+ is the event that 
+\begin_inset Formula $x_{t}=y_{t}$
+\end_inset
+
+ for some 
+\begin_inset Formula $t\in\left[0,1\right]$
+\end_inset
+
+ i.e.
+ 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ intersect (we assume the densities exist with respect to the same dominating
+ measure).
+ The proof of this fact can be found 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "below Theorem 2.1. in"
+key "bladt-sorensen-2014"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2061,6 +2121,146 @@ name "algo:approx-sim"
 
 \end_layout
 
+\begin_layout Standard
+We note for completeness that the proof and results of 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "thm:approx-sim"
+
+\end_inset
+
+ extend immediately to approximate simulation of a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ where 
+\begin_inset Formula $X$
+\end_inset
+
+ is a multivariate diffusion.
+ In this case, the statement of the theorem is as follows.
+\end_layout
+
+\begin_layout Theorem
+Let 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ be the stationary solution to 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:basic-sde"
+
+\end_inset
+
+ in 
+\begin_inset Formula $n$
+\end_inset
+
+ dimensions.
+ Let 
+\begin_inset Formula $\mathbf{X}^{\nu}$
+\end_inset
+
+ be a solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in 
+\begin_inset Formula $2n$
+\end_inset
+
+ dimensions with initial condition 
+\begin_inset Formula $\nu\left(d\mathbf{x}_{0}d\mathbf{x}_{1}\right)$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\tau^{\left(i\right)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\mathbf{X}_{1-t}^{\nu,\left(i+n\right)}\}$
+\end_inset
+
+.
+ Define a process 
+\begin_inset Formula $\mathbf{Z}$
+\end_inset
+
+ as 
+\begin_inset Formula 
+\[
+\mathbf{Z}_{t}^{\left(i\right)}=\begin{cases}
+\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\tau^{\left(i\right)}\\
+\mathbf{X}_{1-t}^{\nu,\left(i+n\right)} & \mbox{if }\tau^{\left(i\right)}<t\leq1
+\end{cases}
+\]
+
+\end_inset
+
+on the event 
+\begin_inset Formula $\mathscr{T}=\{\tau^{\left(1\right)}<1,\dots,\tau^{\left(n\right)}<1\}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{Z}=\mathbf{X}^{\nu,\left(1:n\right)}$
+\end_inset
+
+ otherwise.
+\end_layout
+
+\begin_layout Theorem
+Then, the measure induced by 
+\begin_inset Formula $\mathbf{Z}$
+\end_inset
+
+ conditional on 
+\begin_inset Formula $\mathscr{T}$
+\end_inset
+
+ is equal to the measure induced by a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+, conditional on the coordinates of such a bridge being hit by the respective
+ coordinates of an independent stationary solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in 
+\begin_inset Formula $n$
+\end_inset
+
+ dimensions with initial distribution 
+\begin_inset Formula $\int p_{1}(\mathbf{x}_{1}^{\left(1:n\right)},\cdot)\tilde{\nu}(d\mathbf{x}_{1})$
+\end_inset
+
+, where 
+\begin_inset Formula $\tilde{\nu}(d\mathbf{x}^{\left(1:n\right)}d\mathbf{x}^{\left(n+1:2n\right)}):=\nu(d\mathbf{x}^{\left(n+1:2n\right)}d\mathbf{x}^{\left(1:n\right)})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The simulation strategy for a multi-dimensional 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge follows accordingly.
+\end_layout
+
 \begin_layout Section
 Exact Simulation of 
 \begin_inset Formula $\nu-$
@@ -2082,228 +2282,480 @@ reference "chap:5"
  However, an exact simulation scheme is desirable for completeness, and
  the derivation of such a scheme can also hint at a quantification of precisely
  how approximate the simulation strategy presented above is.
- As in 
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand citet
 key "bladt-sorensen-2014"
 
 \end_inset
 
-, we will use the approximate simulation scheme as a proposal in a Metropolis-Ha
-stings sampler, setting the target distribution as the distribution of an
- exact 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Before proceeding, we fix some notation, working on the usual probability
- space.
- Let 
-\begin_inset Formula $\mathbb{X}^{\nu}$
-\end_inset
-
- be the measure induced by a 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
-, and 
-\begin_inset Formula $\tilde{\mathbb{X}}^{\nu}:=\mathbb{Z}^{\left(1\right)}\left(\cdot\mid\mathscr{T}\right)$
-\end_inset
-
- be the measure induced by the approximate 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
- as described in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "thm:approx-sim"
-
-\end_inset
-
-.
- We will refer to the solution to 
+ extend their approximate sampler to an exact sampler by leveraging the
+ relationship between the densities of an approximate and exact diffusion
+ bridge, given by 
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "eq:basic-sde"
+reference "eq:approx-exact-rel"
 
 \end_inset
 
- with initial distribution 
-\begin_inset Formula $\int p_{1}(\mathbf{x}_{1}^{\left(1\right)},\cdot)\tilde{\nu}(d\mathbf{x}_{1})$
-\end_inset
-
- as the hitting diffusion, and let 
-\begin_inset Formula $\mathbb{H}$
-\end_inset
-
- be the measure induced by the hitting diffusion.
- We will assume that each of 
-\begin_inset Formula $\mathbb{X}^{\nu},\tilde{\mathbb{X}}^{\nu},\mathbb{H}$
-\end_inset
-
- are absolutely continuous with respect to a fixed measure 
-\begin_inset Formula $m$
-\end_inset
-
-, and write their densities with respect to 
-\begin_inset Formula $m$
-\end_inset
-
- as 
-\begin_inset Formula $f,\tilde{f}$
-\end_inset
-
-, and 
-\begin_inset Formula $h$
-\end_inset
-
- respectively.
+, in a pseudo-marginal Metropolis-Hastings sampler.
 \end_layout
 
 \begin_layout Standard
-First, we show a result relating 
-\begin_inset Formula $f$
+Fortunately, the extension of our approximate 
+\begin_inset Formula $\nu-$
 \end_inset
 
- to 
-\begin_inset Formula $\tilde{f}$
+bridge sampler to an exact sampler is precisely the same as the extension
+ for a regular diffusion bridge, and thus we refer the reader to 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Section 2.3 in"
+key "bladt-sorensen-2014"
+
 \end_inset
 
-.
+ for the derivation of such an extension.
+ Following the algorithm presented there, Algorithm 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "algo:exact-sim"
+
+\end_inset
+
+ presents a pseudo-marginal Metropolis-Hastings sampler for exact 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges, given
 \end_layout
 
-\begin_layout Proposition
+\begin_layout Enumerate
+
+\noun on
+approximate 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge
+\noun default
+(
+\series bold
+\noun on
+
+\begin_inset Formula $\mu,\sigma,\nu,N$
+\end_inset
+
+
+\series default
+\noun default
+), defined in Algorithm 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "algo:approx-sim"
+
+\end_inset
+
+, and
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+hitting
+\noun default
+(), a method of drawing a sample path of the hitting diffusion (the initial
+ distribution may need to be sampled through MCMC methods).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Simulation of Exact 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Function{$
+\backslash
+hat{
+\backslash
+rho}$}{$x,M$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{$i=1,
+\backslash
+dots,M$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$T_{i} 
+\backslash
+gets 1$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+While{
+\backslash
+Call{hitting}{ } and $x$ do not cross}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$T_{i} 
+\backslash
+gets T_{i}+1$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndWhile
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State 
+\backslash
+Return{$
+\backslash
+frac{1}{M} 
+\backslash
+sum^{M}_{i=1} T_{i}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFunction 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Function{exact $
+\backslash
+nu$-bridge}{$
+\backslash
+mu, 
+\backslash
+sigma, 
+\backslash
+nu, N, M$, samples}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$
+\backslash
+mathbf{X} 
+\backslash
+gets $ 
+\backslash
+Call{list}{samples}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$
+\backslash
+mathbf{X}^{(1)} 
+\backslash
+gets$ 
+\backslash
+Call{approximate $
+\backslash
+nu$-bridge}{$
+\backslash
+mu, 
+\backslash
+sigma, 
+\backslash
+nu, N$}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{$i=2,
+\backslash
+dots,$ samples}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$X^{'} 
+\backslash
+gets$ 
+\backslash
+Call{approximate $
+\backslash
+nu$-bridge}{$
+\backslash
+mu, 
+\backslash
+sigma, 
+\backslash
+nu, N$}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$
+\backslash
+alpha 
+\backslash
+gets 
+\backslash
+min{
+\backslash
+left
+\backslash
+{1,
+\backslash
+cfrac{
+\backslash
+hat{
+\backslash
+rho}(X^{'},M)}{
+\backslash
+hat{
+\backslash
+rho}(
+\backslash
+mathbf{X}^{(i-1)},M)}
+\backslash
+right
+\backslash
+}}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+If{
+\backslash
+Call{unif}{0,1} $> 
+\backslash
+alpha$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$
+\backslash
+mathbf{X}^{(i)} 
+\backslash
+gets X^{'}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Else
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$
+\backslash
+mathbf{X}^{(i)} 
+\backslash
+gets 
+\backslash
+mathbf{X}^{(i-1)}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State 
+\backslash
+Return $
+\backslash
+mathbf{X}$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFunction 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "prop:density-rel"
+name "algo:exact-sim"
 
 \end_inset
 
-The density of the approximate 
-\begin_inset Formula $\nu-$
-\end_inset
 
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
- given by 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "thm:approx-sim"
-
-\end_inset
-
- can be expressed in terms of the density of a 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
- as
-\begin_inset Formula 
-\begin{equation}
-\tilde{f}\left(x\right)=f\left(x\right)\frac{\mbox{Pr}\left(I_{x,Y}\right)}{\mbox{Pr}\left(I_{X,Y}\right)}\label{eq:approx-exact-rel}
-\end{equation}
-
-\end_inset
-
-where 
-\begin_inset Formula $I_{x,y}$
-\end_inset
-
- for 
-\begin_inset Formula $x,y\in\Omega$
-\end_inset
-
- is the event that 
-\begin_inset Formula $x_{t}=y_{t}$
-\end_inset
-
- for some 
-\begin_inset Formula $t\in\left[0,1\right]$
-\end_inset
-
-.
 \end_layout
 
-\begin_layout Proof
-First, note that the joint density of an exact 
-\begin_inset Formula $\nu-$
 \end_inset
 
-bridge of 
-\begin_inset Formula $X$
-\end_inset
 
- and an independent hitting diffusion is simply 
-\begin_inset Formula $f\left(x\right)h\left(y\right)$
-\end_inset
-
-.
- Define the set of all intersecting diffusions as 
-\begin_inset Formula $A:=\left\{ \left(x,y\right)\in\Omega^{2}\mid I_{x,y}\right\} $
-\end_inset
-
-.
- Then, the joint density of an exact 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge and an independent hitting diffusion, given that they intersect,
- is 
-\begin_inset Formula 
-\[
-\mbox{Pr}\left(x,y\mid I_{x,y}\right)=\frac{f\left(x\right)h\left(y\right)\mathbf{1}_{A}\left(x,y\right)}{\mbox{Pr}\left(I_{X,Y}\right)}
-\]
-
-\end_inset
-
-Integrating over 
-\begin_inset Formula $y$
-\end_inset
-
-, we find 
-\begin_inset Formula 
-\begin{eqnarray*}
-\mbox{Pr}\left(x\mid I_{x,Y}\right) & = & \frac{f\left(x\right)}{\mbox{Pr}\left(\left(X,Y\right)\in A\right)}\int h\left(y\right)\mathbf{1}_{A}\left(x,y\right)dy\\
- & = & f\left(x\right)\frac{\mbox{Pr}\left(I_{x,Y}\right)}{\mbox{Pr}\left(I_{X,Y}\right)}
-\end{eqnarray*}
-
-\end_inset
-
-as desired.
 \end_layout
 
 \begin_layout Standard
+Note that in a standard Metropolis-Hastings setting, the acceptance ratio
+ by 
 \begin_inset CommandInset ref
-LatexCommand formatted
-reference "prop:density-rel"
+LatexCommand eqref
+reference "eq:approx-exact-rel"
 
 \end_inset
 
- is important both because it offers a quantification of the approximate
- nature of our simulation strategy, but also because it gives an expression
- for how the proposal and target distributions in our putative exact Metropolis-
-Hastings sampler.
+ should be 
+\begin_inset Formula $\mbox{Pr}(I_{\mathbf{X}^{\left(i-1\right)},Y})/\mbox{Pr}(I_{x',Y})$
+\end_inset
+
+.
+ However, this ratio is difficult to compute analytically, and by the result
+ of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "andrieu-roberts"
+
+\end_inset
+
+, we may instead use unbiased estimates of the factors in the acceptance
+ ratio to carry out our MCMC.
+ The helper function 
+\begin_inset Formula $\hat{\rho}\left(x,M\right)$
+\end_inset
+
+ in Algorithm 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "algo:exact-sim"
+
+\end_inset
+
+ offers precisely such an estimate, since it returns an unbiased Monte Carlo
+ estimate for the expectation of a geometric distribution with probability
+ of success 
+\begin_inset Formula $\mbox{Pr}(I_{x,Y})$
+\end_inset
+
+ i.e.
+ for 
+\begin_inset Formula $1/\mbox{Pr}(I_{x,Y})$
+\end_inset
+
+.
+ 
 \end_layout
 
 \end_body
