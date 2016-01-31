@@ -1,4 +1,4 @@
-source("/Users/marshall/Documents/senior/thesis/functions.R")
+source("/Users/marshall/Documents/senior/thesis/simulation_functions.R")
 
 #
 # Mimicking unconstrained.

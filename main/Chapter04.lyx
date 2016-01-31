@@ -263,30 +263,19 @@ Now, fix a probability measure
 \end_inset
 
 .
- Let 
-\begin_inset Formula $\mathbf{X}$
-\end_inset
-
- be the solution to the 
-\begin_inset Formula $2$
-\end_inset
-
--dimensional 
+ We will denote the probability measure induced by the stationary solution
+ to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
 
 \end_inset
 
- when 
-\begin_inset Formula $\mathbf{X}_{0}\sim\pi$
-\end_inset
-
-, and let 
+ in two dimensions as 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- be the probability measure it induces on the Wiener space.
+.
  Note that the Baudoin 
 \begin_inset Formula $\left(\mathbf{X}_{0},\nu\right)-$
 \end_inset
@@ -302,16 +291,12 @@ reference "eq:basic-sde"
 
 \end_inset
 
- in two dimensions when 
+ in two dimensions for the initial condition 
 \begin_inset Formula $\mathbf{X}_{0}\sim\nu$
 \end_inset
 
 .
- Let such a solution be denoted 
-\begin_inset Formula $\mathbf{X}^{\nu}$
-\end_inset
-
- and the measure it induces be denoted 
+ Let this measure be denoted by 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
@@ -343,18 +328,14 @@ Let
 \begin_inset Formula $X$
 \end_inset
 
- be the solution to 
+ be the stationary solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
 
 \end_inset
 
- in one dimension with initial distribution 
-\begin_inset Formula $X_{0}\sim\pi$
-\end_inset
-
- and let 
+ in one dimension and let 
 \begin_inset Formula $\mathbb{X}$
 \end_inset
 
@@ -645,24 +626,19 @@ reference "algo:approx-sim"
 \end_inset
 
 .
- First, we prove a lemma which says that the distribution of 
-\begin_inset Formula $\mathbf{X}^{\nu}$
+ First, we prove a lemma which says that the canonical process on 
+\begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- (a bivariate diffusion process initialized with 
-\begin_inset Formula $\mathbf{X}_{0}\sim\nu$
+ under time-reversal is the same as canonical process of a Baudoin 
+\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)$
 \end_inset
 
-) under time-reversal is the same as the distribution of 
-\begin_inset Formula $\mathbf{X}$
+-conditioning of 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
- (a bivariate diffusion process initialized with its stationary distribution)
- under a Baudoin 
-\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)-$
-\end_inset
-
-conditioning.
+.
  This lemma also says that these distributions are also equal to the distributio
 n of a solution to 
 \begin_inset CommandInset ref
@@ -689,15 +665,11 @@ The following measures are equal:
 \begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
 \end_inset
 
-, the measure induced by 
-\begin_inset Formula $\mathbf{X}^{\nu,\leftarrow}$
+, the measure induced by the time-reversed canonical process on 
+\begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- where 
-\begin_inset Formula $\mathbf{X}_{t}^{\nu,\leftarrow}=\mathbf{X}_{1-t}^{\nu}$
-\end_inset
-
- ,
+,
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
@@ -735,7 +707,32 @@ reference "eq:basic-sde"
 
 \end_deeper
 \begin_layout Proof
-We first show that 
+Let 
+\begin_inset Formula $\mathbf{X}^{\nu}$
+\end_inset
+
+ be the canonical process on 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ and define 
+\begin_inset Formula $\mathbf{X}^{\nu,\leftarrow}$
+\end_inset
+
+ where 
+\begin_inset Formula $\mathbf{X}_{t}^{\nu,\leftarrow}=\mathbf{X}_{1-t}^{\nu}$
+\end_inset
+
+ , noting that 
+\begin_inset Formula $\mathbf{X}^{\nu,\leftarrow}$
+\end_inset
+
+ is the canonical process on 
+\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+\end_inset
+
+.
+ We first show that 
 \begin_inset Formula $\mathbb{Q}$
 \end_inset
 
@@ -1034,8 +1031,8 @@ reference "lem:time-reversal"
 \end_inset
 
  in hand, we can now prove a theorem relating a particular functional of
- 
-\begin_inset Formula $\mathbf{X}^{\nu}$
+ the canonical process on 
+\begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
  to the 
@@ -1060,15 +1057,8 @@ Let
 \begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
- be a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- in two dimensions with initial condition 
-\begin_inset Formula $\nu$
+ be the canonical process on 
+\begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
 .
@@ -2718,7 +2708,7 @@ reference "eq:approx-exact-rel"
 \end_inset
 
  should be 
-\begin_inset Formula $\mbox{Pr}(I_{\mathbf{X}^{\left(i-1\right)},Y})/\mbox{Pr}(I_{x',Y})$
+\begin_inset Formula $\mbox{Pr}(I_{\mathbf{X}^{\left(i-1\right)},Y})/\mbox{Pr}(I_{X',Y})$
 \end_inset
 
 .
@@ -2750,7 +2740,7 @@ reference "algo:exact-sim"
 \end_inset
 
  i.e.
- for 
+ an unbiased estimate for 
 \begin_inset Formula $1/\mbox{Pr}(I_{x,Y})$
 \end_inset
 
