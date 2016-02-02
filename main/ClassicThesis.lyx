@@ -383,7 +383,7 @@ reference "chap:4"
  scheme, and 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "chap:5"
+reference "chap:EM"
 
 \end_inset
 
@@ -435,7 +435,7 @@ bridges.
 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "chap:5"
+reference "chap:EM"
 
 \end_inset
 
@@ -464,11 +464,7 @@ name "part:3"
 
 \end_inset
 
-
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges
+Theoretical Contribution
 \end_layout
 
 \begin_layout Standard
@@ -479,6 +475,20 @@ filename "Chapter04.lyx"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "ChapterEM.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Empirical Contribution
 \end_layout
 
 \begin_layout Standard

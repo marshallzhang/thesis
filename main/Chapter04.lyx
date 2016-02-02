@@ -77,11 +77,10 @@ theorems-chap
 \begin_body
 
 \begin_layout Chapter
-Simulation of 
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridges
+bridges and Simulation
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:4"
@@ -305,6 +304,8 @@ reference "eq:basic-sde"
 
 \begin_layout Standard
 We now present a definition of the main topic of study of this thesis.
+ We will focus on the one-dimensional case, though multivariate extensions
+ are possible.
 \end_layout
 
 \begin_layout Definition
@@ -1619,7 +1620,33 @@ reference "eq:basic-sde"
 \end_inset
 
 bridge.
- In particular, the density 
+ In particular, define 
+\begin_inset Formula $I_{X,Y}$
+\end_inset
+
+ as the event that a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge 
+\begin_inset Formula $X$
+\end_inset
+
+ and an independent hitting diffusion 
+\begin_inset Formula $Y$
+\end_inset
+
+ intersect, i.e.
+ for some 
+\begin_inset Formula $t\in\left[0,1\right]$
+\end_inset
+
+, 
+\begin_inset Formula $X_{t}=Y_{t}$
+\end_inset
+
+.
+ Then, the density 
 \begin_inset Formula $\tilde{f}$
 \end_inset
 
@@ -1638,7 +1665,7 @@ bridge can be written in terms of the density
 bridge as
 \begin_inset Formula 
 \begin{equation}
-\tilde{f}\left(x\right)=f\left(y\right)\frac{\mbox{Pr}\left(I_{x,Y}\right)}{\mbox{Pr}\left(I_{X,Y}\right)}\label{eq:approx-exact-rel}
+\tilde{f}\left(x\right)=f\left(y\right)\frac{\mbox{Pr}(I_{x,Y})}{\mbox{Pr}(I_{X,Y})}\label{eq:approx-exact-rel}
 \end{equation}
 
 \end_inset
@@ -1647,29 +1674,7 @@ where, for
 \begin_inset Formula $x,y\in\Omega$
 \end_inset
 
-, 
-\begin_inset Formula $I_{x,y}$
-\end_inset
-
- is the event that 
-\begin_inset Formula $x_{t}=y_{t}$
-\end_inset
-
- for some 
-\begin_inset Formula $t\in\left[0,1\right]$
-\end_inset
-
- i.e.
- 
-\begin_inset Formula $x$
-\end_inset
-
- and 
-\begin_inset Formula $y$
-\end_inset
-
- intersect (we assume the densities exist with respect to the same dominating
- measure).
+, assuming the densities exist.
  The proof of this fact can be found 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -2136,6 +2141,12 @@ bridge of
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:mv-approx"
+
+\end_inset
+
 Let 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
@@ -2249,6 +2260,65 @@ The simulation strategy for a multi-dimensional
 \end_inset
 
 bridge follows accordingly.
+ However, note that as long as 
+\begin_inset Formula $\mbox{Pr}(I_{X,Y})$
+\end_inset
+
+ for a 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge of the one-dimensional solution to 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:basic-sde"
+
+\end_inset
+
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ and an independent hitting diffusion 
+\begin_inset Formula $Y$
+\end_inset
+
+ is less than one, the probability of 
+\begin_inset Formula $\mathcal{\mathscr{T}}$
+\end_inset
+
+ approaches 
+\begin_inset Formula $0$
+\end_inset
+
+ as 
+\begin_inset Formula $n\rightarrow\infty$
+\end_inset
+
+.
+ As such, the approximation to multivariate bridges of high dimension using
+ the naïve algorithm implied by 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "thm:mv-approx"
+
+\end_inset
+
+ becomes increasingly poor.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-finch-sorenson-2015"
+
+\end_inset
+
+ address this curse of dimensionality by proposing a modified algorithm
+ relying on coupling methods in which the backward diffusion is driven jointly
+ by an orthogonal projection of the Weiner process driving the forward diffusion
+ onto a particular linear subspace and an independent Wiener process.
+ Hence, the backward diffusion's innovations are independent from the forward
+ diffusion's innovations, but the probability that they intersect can be
+ made sufficiently large.
 \end_layout
 
 \begin_layout Section
@@ -2263,7 +2333,7 @@ bridges
 In 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "chap:5"
+reference "chap:EM"
 
 \end_inset
 

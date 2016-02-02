@@ -54,7 +54,7 @@ lik.ou = function(theta, dat, horizons, responders) {
   -ll
 } 
 
-analyze.predictions = function(raw, current.indics) {
+analyze.predictions = function(raw, current.indics, samples) {
   indicators = c("inf", "gdp", "une")
   
   # Break down by indicator and horizon.
@@ -105,26 +105,21 @@ analyze.predictions = function(raw, current.indics) {
         upper = c(Inf,  Inf,  Inf,  -1e-6, Inf,  Inf,  Inf,   Inf,  Inf, Inf),
         control = list(trace = 6, factr = 5e11))$par
   
-  implied = gen.mv.nu.bridge(function(n) r.economists(forecasts, responders, n, 1, 5), theta, 100, horizons[4] + 1)
+  implied = gen.mv.nu.bridge(function(n) r.economists(forecasts, responders, n, 1, 5), theta, samples, horizons[4] + 1)
   
-  
+  interpolated = vector("list", 3)
+  names(interpolated) = indicators
+  for (i in 1:length(indicators)) {
+    interpolated[[i]] = matrix(0, nrow = samples, ncol = length(horizons) + 1)
+    for (j in 1:samples) {
+      interpolated[[i]][j, ] = implied[[j]][i, c(1, horizons + 1)]
+    }
+  }
 
-  list(nu.bridges = implied, forecasts = forecasts, theta = theta)
+  list(nu.bridges = implied, forecasts = forecasts, theta = theta, interpolated = interpolated, forecast.years = year + horizons / 4)
 }
 
 raw = read.csv("/Users/marshall/Documents/senior/thesis/empirics/data/2016-1.csv")
 current.indics = c(0.4, 1.2, 10.5)
 
-res = analyze.predictions(raw, current.indics)
-
-# for (i in 1:4){
-#   inf16 = sapply(implied, function(x) x[1,c(4,8,12,20)[i]])
-#   hist(forecasts$inf[,i+1], freq = F, xlim = c(0, 2.5), ylim = c(0,3))
-#   hist(inf16,freq=F, add=T, xlim = c(0,2),col = rgb(1,0,0,0.4))
-# }
-# 
-# infs = sapply(implied, function(x) x[1,])
-# plot(infs[,1], type = "l", col = rgb(0,0,0,0.1))
-# for (i in 2:100)  {
-#   lines(infs[,i], col = rgb(0,0,0,0.1))
-# }
+res = analyze.predictions(raw, current.indics, 100, 2016)
