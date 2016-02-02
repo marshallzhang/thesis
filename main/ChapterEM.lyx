@@ -1,0 +1,583 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass classicthesis
+\begin_preamble
+\usepackage{algorithm,algpseudocode}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+theorems-chap
+\end_modules
+\maintain_unincluded_children false
+\language american
+\language_package default
+\inputencoding default
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Maximum-Likelihood Estimation on Random and Discretely Observed Data 
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:EM"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+An Oracle Under the Weather
+\end_layout
+
+\begin_layout Standard
+To date, the development of the theory of diffusion bridge simulation has
+ been driven by the applications of such theory to simulation-based likelihood
+ inference for diffusion processes.
+ The canonical example of such an application is maximum likelihood estimation
+ for discretely observed diffusion processes.
+ For example, consider the solution to the stochastic differential equation
+\begin_inset Formula 
+\begin{equation}
+dX_{t}=\mu(X_{t};\theta)dt+\sigma(X_{t};\theta)dW_{t},\label{eq:sde-with-theta}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is a parameter vector to be estimated, 
+\begin_inset Formula $W$
+\end_inset
+
+ is a standard Wiener process, and 
+\begin_inset Formula $\mu,\sigma$
+\end_inset
+
+ have known parametric forms up to 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Assume that the solution to this SDE satisfies the assumptions outlined
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+, and suppose that the process is observed at a collection of times 
+\begin_inset Formula $\mathcal{T}=\{0=t_{0}<t_{1}<\cdots<t_{n}\}$
+\end_inset
+
+.
+ Then, the log-likelihood of the data 
+\begin_inset Formula $\mathbf{x}_{obs}=\{X_{t_{0}},X_{t_{1}},\dots,X_{t_{n}}\}$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+\ell(\theta\mid\mathbf{x}_{obs})=\sum_{i=1}^{n}\ell_{i}(\theta),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\ell_{i}(\theta)=\log p_{t_{i}-t_{i-1}}(X_{t_{i-1}},X_{t};\theta)$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{t}(x,y)$
+\end_inset
+
+ is the transition density associated with 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:sde-with-theta"
+
+\end_inset
+
+ as usual.
+ For many specifications of 
+\begin_inset Formula $\mu,\sigma$
+\end_inset
+
+, 
+\begin_inset Formula $p_{t}(x,y)$
+\end_inset
+
+ is not analytically tractable, and thus likelihood-based inference on discretel
+y observed data has historically been understood to be quite difficult.
+\end_layout
+
+\begin_layout Standard
+A method relevant to this thesis that has been developed to address the
+ issue of likelihood-based inference for discretely observed diffusions
+ was proposed by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beskos-2006"
+
+\end_inset
+
+, which leverages the fact that under an appropriate transformation normalizing
+ its diffusion coefficient to 
+\begin_inset Formula $1$
+\end_inset
+
+, the likelihood of continuously observed data from 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ is given by Girsanov's theorem.
+ This reduces the problem to one of missing data, and as such, the expectation-m
+aximization (EM) algorithm of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "dempster-1977"
+
+\end_inset
+
+ can offer efficient computation of maximum likelihood estimates, so long
+ as we have a way of generating diffusion bridges between the discretely
+ observed data.
+\end_layout
+
+\begin_layout Standard
+In this section, we will consider a generalized version of the discretely
+ observed data problem, stated informally as follows.
+\end_layout
+
+\begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:problem-oracle"
+
+\end_inset
+
+Consider the solution 
+\begin_inset Formula $X$
+\end_inset
+
+ to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:sde-with-theta"
+
+\end_inset
+
+ with the usual assumptions.
+ We live at time 
+\begin_inset Formula $t=-\epsilon$
+\end_inset
+
+, with an omniscient Oracle as our neighbour.
+ We are interested in carrying out likelihood-based inference on 
+\begin_inset Formula $X,$
+\end_inset
+
+ and normally rely on the Oracle to tell us precisely what values 
+\begin_inset Formula $X$
+\end_inset
+
+ will take on at times 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+; in particular, the EM algorithm developed by our other neighbours 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beskos-2006"
+
+\end_inset
+
+ handles our maximum likelihood estimate.
+\end_layout
+
+\begin_layout Problem
+However, recently the Oracle has been feeling a little under the weather,
+ and her vision into the future has become clouded.
+ Instead of being able to tell us the exact values of 
+\begin_inset Formula $X$
+\end_inset
+
+ at times 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+, she can only offer us a probability distribution over the values of 
+\begin_inset Formula $X$
+\end_inset
+
+ at times 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+ .
+ Likelihood-based inference on 
+\begin_inset Formula $X$
+\end_inset
+
+ waits for no one, not even a sick Oracle, but whatever will we do?
+\end_layout
+
+\begin_layout Standard
+To approach this question, we define the functional 
+\begin_inset Formula 
+\[
+\mathbf{L}^{\nu}(\cdot,L)\coloneqq\log\int L(\cdot\mid\mathbf{x}_{obs})\nu(d\mathbf{x}_{obs})
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $L$
+\end_inset
+
+ is the likelihood of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ given the data 
+\begin_inset Formula $\mathbf{x}_{obs}$
+\end_inset
+
+ as usual.
+ We claim that this functional, which is the expected value of the likelihood
+ over the true distribution of observations, is the appropriate metric to
+ maximize when attempting to conduct the analog of maximum likelihood estimation
+ in the scenario presented in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prob:problem-oracle"
+
+\end_inset
+
+.
+ In particular, it will become apparent that when 
+\begin_inset Formula $\nu=\delta_{\bar{\mathbf{x}}_{obs}}$
+\end_inset
+
+ for some fixed 
+\begin_inset Formula $\bar{\mathbf{x}}_{obs}$
+\end_inset
+
+, the EM algorithm we derive in the next section reduces to the EM algorithm
+ of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beskos-2006"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+An Expectation-Maximization Algorithm
+\end_layout
+
+\begin_layout Standard
+We generalize the results of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "roberts-stramer-2001,beskos-2006,bladt-sorensen-2014"
+
+\end_inset
+
+ to propose a simulation-based method to compute maximum likelihood estimates
+ based on 
+\begin_inset Formula $\ell^{\nu,\mathcal{T}}$
+\end_inset
+
+.
+ We will assume all requisite densities exist from this point forward.
+ We begin by fixing a solution 
+\begin_inset Formula $X$
+\end_inset
+
+ to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:sde-with-theta"
+
+\end_inset
+
+.
+ Then, define 
+\begin_inset Formula $Y$
+\end_inset
+
+ such that 
+\begin_inset Formula $Y_{t}=\eta(X_{t};\theta)$
+\end_inset
+
+ where 
+\begin_inset Formula 
+\[
+\eta(x;\theta)=\int_{x^{*}}^{x}\frac{1}{\sigma(y;\theta)}dy
+\]
+
+\end_inset
+
+for appropriate but otherwise arbitrary 
+\begin_inset Formula $x^{*}$
+\end_inset
+
+.
+ By Ito's lemma, 
+\begin_inset Formula $Y$
+\end_inset
+
+ is the solution to the stochastic differential equation
+\begin_inset Formula 
+\[
+dY_{t}=\alpha(Y_{t};\theta)dt+dW_{t}
+\]
+
+\end_inset
+
+with initial condition 
+\begin_inset Formula $Y_{0}=\eta\left(X_{0};\theta\right)$
+\end_inset
+
+, where 
+\begin_inset Formula 
+\[
+\alpha(y;\theta)=\frac{\mu(\eta^{-1}(y;\theta);\theta)}{\sigma(\eta^{-1}(y;\theta);\theta)}-\frac{1}{2}\sigma^{'}(\eta^{-1}(y;\theta);\theta).
+\]
+
+\end_inset
+
+Let 
+\begin_inset Formula $\mathbb{Y}\left(\cdot\mid\theta\right)$
+\end_inset
+
+ denote the measure induced by 
+\begin_inset Formula $Y$
+\end_inset
+
+ conditional on 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Theorem
+The expected value of 
+\begin_inset Formula $\ell^{\nu,\mathcal{T}}$
+\end_inset
+
+ with respect to 
+\end_layout
+
+\begin_layout Proof
+Without loss of generality, we set 
+\begin_inset Formula $\mathcal{T}=\left\{ 0,1\right\} $
+\end_inset
+
+ so that 
+\begin_inset Formula $\mathbf{X}_{obs}=(X_{0},X_{1})$
+\end_inset
+
+ follows law 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+ We therefore know that 
+\begin_inset Formula $\mathbf{Y}_{obs}=(Y_{0},Y_{1})$
+\end_inset
+
+ follows law 
+\begin_inset Formula $\xi$
+\end_inset
+
+ where 
+\begin_inset Formula 
+\[
+\xi\left(\mathbf{Y}_{obs}\right)=\int_{-\infty}^{\mathbf{Y}_{obs}}\frac{d\nu}{d\mathbf{y}}\left(\eta^{-1}\left(\mathbf{y}\right)\right)\left|\det\left(\frac{d\eta^{-1}\left(\mathbf{y}\right)}{d\mathbf{y}}\right)\right|
+\]
+
+\end_inset
+
+by the change of variables formula.
+ Let 
+\begin_inset Formula $\mathbb{Y}(\cdot\mid\theta)$
+\end_inset
+
+ be the measure induced by 
+\begin_inset Formula $Y$
+\end_inset
+
+, and let 
+\begin_inset Formula $f(y\mid\theta)$
+\end_inset
+
+ be the Lebesgue density 
+\begin_inset Formula $\mathbb{Y}(\cdot\mid\theta)$
+\end_inset
+
+, which we assume to exist.
+ We claim that we wish to maximize 
+\begin_inset Formula $\mathbf{L}^{\nu}(\cdot,p)$
+\end_inset
+
+, i.e.
+ maximize the difference 
+\begin_inset Formula 
+\[
+\mathbf{L}^{\nu}(\theta,f)-\mathbf{L}^{\nu}(\theta_{n},f)=\log\int f(\mathbf{y}_{obs}\mid\theta)\nu(d\mathbf{y}_{obs})-\log\int f(\mathbf{y}_{obs}\mid\theta_{n})\nu(d\mathbf{y}_{obs})
+\]
+
+\end_inset
+
+Now, consider the missing path 
+\begin_inset Formula $\mathbf{Z}$
+\end_inset
+
+, and assuming the densities are sufficiently regular,
+\begin_inset Formula 
+\[
+\mathbf{L}^{\nu}(\theta,f)-\mathbf{L}^{\nu}(\theta_{n},f)=\log\iint f(\mathbf{y}_{obs}\mid\mathbf{z},\theta)f(\mathbf{z}\mid\theta)\nu(d\mathbf{y}_{obs})d\mathbf{z}-\mathbf{L}^{\nu}(\theta_{n},f)
+\]
+
+\end_inset
+
+Now, we multiply by one on the first term on the left-hand side,
+\begin_inset Formula 
+\begin{eqnarray*}
+ &  & \log\iint f(\mathbf{y}_{obs}\mid\mathbf{z},\theta)f(\mathbf{z}\mid\theta)\frac{f(\mathbf{z}\mid\mathbf{y}_{obs},\theta_{n})}{f(\mathbf{z}\mid\mathbf{y}_{obs},\theta_{n})}\nu(d\mathbf{y}_{obs})d\mathbf{z}-\mathbf{L}^{\nu}(\theta_{n},f)\\
+ & = & \log\iint f(\mathbf{z}\mid\mathbf{y}_{obs},\theta_{n})\frac{f(\mathbf{y}_{obs}\mid\mathbf{z},\theta)f(\mathbf{z}\mid\theta)}{f(\mathbf{z}\mid\mathbf{y}_{obs},\theta_{n})}\nu(d\mathbf{y}_{obs})d\mathbf{z}-\mathbf{L}^{\nu}(\theta_{n},f)\\
+ & \geq & \iint\log\left[\frac{f(\mathbf{y}_{obs}\mid\mathbf{z},\theta)f(\mathbf{z}\mid\theta)}{f(\mathbf{z}\mid\mathbf{y}_{obs},\theta_{n})}\right]\nu(d\mathbf{y}_{obs})f(\mathbf{z}\mid\mathbf{y}_{obs},\theta_{n})d\mathbf{z}-\mathbf{L}^{\nu}(\theta_{n},f)\\
+ & = & \iint\log\left[\frac{f(\mathbf{y}_{obs}\mid\mathbf{z},\theta)f(\mathbf{z}\mid\theta)}{f(\mathbf{z}\mid\mathbf{y}_{obs},\theta_{n})\exp\left\{ \mathbf{L}^{\nu}(\theta_{n},f)\right\} }\right]\nu(d\mathbf{y}_{obs})f(\mathbf{z}\mid\mathbf{y}_{obs},\theta_{n})d\mathbf{z}\\
+ & \coloneqq & \Delta(\theta\mid\theta_{n})
+\end{eqnarray*}
+
+\end_inset
+
+Now, we define 
+\begin_inset Formula $Q(\theta\mid\theta_{n})\coloneqq\mathbf{L}^{\nu}(\theta_{n},f)+\Delta(\theta\mid\theta_{n})\leq\mathbf{L}^{\nu}(\theta,f)$
+\end_inset
+
+.
+ Thus, 
+\begin_inset Formula $Q(\theta\mid\theta_{n})$
+\end_inset
+
+ is bounded above by the expected likelihood with respect to 
+\begin_inset Formula $f$
+\end_inset
+
+, and it can be verified that 
+\begin_inset Formula $Q(\theta_{n}\mid\theta_{n})=\mathbf{L}^{\nu}(\theta_{n},f)$
+\end_inset
+
+.
+ Then, any 
+\begin_inset Formula $\theta$
+\end_inset
+
+ that increases 
+\begin_inset Formula $Q(\theta\mid\theta_{n})$
+\end_inset
+
+ must also increase 
+\begin_inset Formula $\mathbf{L}^{\nu}(\theta,f)$
+\end_inset
+
+.
+ To maximize this increase, we set
+\begin_inset Formula 
+\begin{eqnarray*}
+\theta_{n+1} & = & \arg\max_{\theta}Q(\theta\mid\theta_{n})\\
+ & = & \arg\max_{\theta}\iint\log\left[f(\mathbf{y}_{obs},\mathbf{z}\mid\theta)f(\mathbf{z}\mid\theta)\right]\nu(d\mathbf{y}_{obs})f(\mathbf{z}\mid\mathbf{y}_{obs},\theta_{n})d\mathbf{z}\\
+ & = & \arg\max_{\theta}\mathbb{E}_{\mathbb{Y}^{\xi}(\cdot\mid\theta_{n})}\left[\log f(\mathbf{y}_{com}\mid\theta)\right]
+\end{eqnarray*}
+
+\end_inset
+
+ where 
+\begin_inset Formula $\mathbf{Y}_{com}=(\mathbf{Y}_{obs},\mathbf{Z})$
+\end_inset
+
+ is a complete path and the expectation is taken with Baudoin 
+\begin_inset Formula $(\mathbf{Y}_{obs},\xi)$
+\end_inset
+
+-bridges of 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document
