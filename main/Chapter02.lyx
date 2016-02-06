@@ -79,7 +79,7 @@ theorems-chap
 \begin_body
 
 \begin_layout Chapter
-The Theory of Markov Bridges
+Bridges of Stochastic Processes
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:2"
@@ -89,18 +89,27 @@ name "chap:2"
 
 \end_layout
 
+\begin_layout Section
+Objects and Notation
+\end_layout
+
 \begin_layout Standard
-In this chapter and following chapters unless otherwise noted, we always
- consider the probability space 
+We fix the objects of study and notation at the outset.
+ 
+\end_layout
+
+\begin_layout Standard
+From this point on, unless otherwise noted, we always consider the probability
+ space 
 \begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right),\mathbb{P}\right)$
 \end_inset
 
-, where the sample space 
-\begin_inset Formula $\Omega=\mathcal{C}\left(\left[0,1\right],\mathbb{R}^{n}\right)$
+, where the sample space will be 
+\begin_inset Formula $\Omega=\mathcal{C}\left(\left[0,1\right],\mathcal{R}^{n}\right)$
 \end_inset
 
- is the space of real-valued continuous functions 
-\begin_inset Formula $\omega:\left[0,1\right]\rightarrow\mathbb{R}^{n}$
+, the space of real-valued continuous functions 
+\begin_inset Formula $\omega:\left[0,1\right]\rightarrow\mathcal{R}^{n}$
 \end_inset
 
 , which is equipped with its Borel 
@@ -108,6 +117,15 @@ In this chapter and following chapters unless otherwise noted, we always
 \end_inset
 
 -algebra.
+ 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ will be a probability measure on 
+\begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right)\right)$
+\end_inset
+
+.
  The canonical process 
 \begin_inset Formula $X=\left\{ X_{t}\right\} _{t\in\left[0,1\right]}$
 \end_inset
@@ -115,7 +133,7 @@ In this chapter and following chapters unless otherwise noted, we always
  is defined to be such that 
 \begin_inset Formula 
 \[
-X_{t}\left(\omega\right):=\omega\left(t\right)
+X_{t}\left(\omega\right)\coloneqq\omega\left(t\right)
 \]
 
 \end_inset
@@ -125,29 +143,21 @@ where
 \end_inset
 
 .
- Let 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- be a probability measure on 
-\begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right)\right)$
-\end_inset
-
-.
+ .
  For any subset 
-\begin_inset Formula $\tau\subseteq\left[0,1\right]$
+\begin_inset Formula $\mathcal{T}\subseteq\left[0,1\right]$
 \end_inset
 
 , let 
-\begin_inset Formula $X_{\tau}=\left\{ X_{t}\right\} _{t\in\tau}$
+\begin_inset Formula $X_{\mathcal{T}}=\left\{ X_{t}\right\} _{t\in\mathcal{T}}$
 \end_inset
 
  be the canonical process over 
-\begin_inset Formula $\tau$
+\begin_inset Formula $\mathcal{T}$
 \end_inset
 
 , 
-\begin_inset Formula $\mathcal{F}_{\tau}=\sigma\left(\left\{ X_{t}\left(\omega\right):t\in\tau,\omega\in\Omega\right\} \right)$
+\begin_inset Formula $\mathcal{F}_{\mathcal{T}}=\sigma\left(\left\{ X_{t}\left(\omega\right):t\in\mathcal{T},\omega\in\Omega\right\} \right)$
 \end_inset
 
  be the 
@@ -155,11 +165,11 @@ where
 \end_inset
 
 algebra of events observed during 
-\begin_inset Formula $\tau$
+\begin_inset Formula $\mathcal{T}$
 \end_inset
 
 , and 
-\begin_inset Formula $\mathbb{P}_{\tau}$
+\begin_inset Formula $\mathbb{P}_{\mathcal{T}}$
 \end_inset
 
  be the restriction of 
@@ -167,27 +177,11 @@ algebra of events observed during
 \end_inset
 
  to 
-\begin_inset Formula $\Omega_{\tau}:=\left\{ X_{t}\left(\omega\right):t\in\tau,\omega\in\Omega\right\} $
+\begin_inset Formula $\Omega_{\mathcal{T}}:=\left\{ X_{t}\left(\omega\right):t\in\mathcal{T},\omega\in\Omega\right\} $
 \end_inset
 
 .
  Furthermore, for ease of notation, let 
-\begin_inset Formula $:t$
-\end_inset
-
- be the set 
-\begin_inset Formula $\left[0,t\right]$
-\end_inset
-
-, 
-\begin_inset Formula $t:$
-\end_inset
-
- be the set 
-\begin_inset Formula $\left[t,1\right]$
-\end_inset
-
-, 
 \begin_inset Formula $t:u$
 \end_inset
 
@@ -195,17 +189,114 @@ algebra of events observed during
 \begin_inset Formula $\left[t,u\right]$
 \end_inset
 
+ or 
+\begin_inset Formula $\{t,t+1,\dots,u-1,u\}$
+\end_inset
+
+, to be made clear by context.
+\end_layout
+
+\begin_layout Standard
+We shall always denote probability measures by capital letters 
+\begin_inset Formula $\mathbb{P},\mathbb{Q},\dots$
+\end_inset
+
+ in blackboard boldface.
+ Random variables will be denoted by capital letters 
+\begin_inset Formula $X,Y,\dots$
+\end_inset
+
+, and particular realizations by lower-case letters 
+\begin_inset Formula $x,y,\dots$
+\end_inset
+
+ as per convention.
+ Vectors 
+\begin_inset Formula $\mathbf{x},\mathbf{y},\dots,$
+\end_inset
+
+ will be denoted in boldface, and note that a vector may also be a random
+ variable.
+ In general, for vectors of countable length, 
+\begin_inset Formula $\mathbf{x}^{(i)}$
+\end_inset
+
+ will denote the 
+\begin_inset Formula $i$
+\end_inset
+
+th element of such a vector due to the overloading of the subscript operator.
+ Subscripts will be used to denote elements of vectors or sets of uncountable
+ length i.e.
+ 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ is the value of the stochastic process 
+\begin_inset Formula $X$
+\end_inset
+
+ at time 
+\begin_inset Formula $t\in[0,1]$
+\end_inset
+
+, and 
+\begin_inset Formula $X_{\mathcal{T}}$
+\end_inset
+
+ for some set 
+\begin_inset Formula $\mathcal{T}=\{t_{0},\dots,t_{n}\}$
+\end_inset
+
+ is the value of the stochastic process at times 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
 .
+ Often, we will suppress the set braces for subscripts for clarity, i.e.
+ 
+\begin_inset Formula $X_{0,1}$
+\end_inset
+
+ to denote the value of 
+\begin_inset Formula $X$
+\end_inset
+
+ at times 
+\begin_inset Formula $\{0,1\}$
+\end_inset
+
+.
+ Finally, let 
+\begin_inset Formula $\mathcal{R}$
+\end_inset
+
+ be the set of real numbers.
+ A full list of notation can be found at the end of the thesis.
+ Having set our notation, we begin with the theory of Markov measures.
 \end_layout
 
 \begin_layout Section
-Markov Measures
+Markov Bridges
 \end_layout
 
 \begin_layout Standard
 We begin by introducing fundamental notions related to Markov measures,
  with an eye towards a fundamental result: that a marginal measure and an
  appropriate set of transition kernels uniquely defines a Markov measure.
+ Then, we will define a Markov bridge measure and explore some properties
+ of Markov bridges, roughly following the exposition of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "leonard-2014"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+First, we define a Markov measure.
 \end_layout
 
 \begin_layout Definition
@@ -213,93 +304,28 @@ We begin by introducing fundamental notions related to Markov measures,
 status open
 
 \begin_layout Plain Layout
-Markov measure and Markov process
+Markov measure
 \end_layout
 
 \end_inset
 
- A measure 
+ A probability measure 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- on 
-\begin_inset Formula $\Omega$
-\end_inset
-
- is said to be a Markov measure if for any 
-\begin_inset Formula $t\in I$
-\end_inset
-
- and for any events 
-\begin_inset Formula $A\in\mathcal{F}_{:t}$
-\end_inset
-
- and 
-\begin_inset Formula $B\in\mathcal{F}_{t:}$
-\end_inset
-
-, 
-\begin_inset Formula 
-\begin{equation}
-\mathbb{P}\left(A\cap B\mid\mathcal{F}_{t}\right)=\mathbb{P}\left(A\mid\mathcal{F}_{t}\right)\mathbb{P}\left(B\mid\mathcal{F}_{t}\right),\mbox{ }\mathbb{P}-a.e.\label{eq:markov-prop}
-\end{equation}
-
-\end_inset
-
-We will say that the canonical process under a Markov measure is a Markov
- process.
-\end_layout
-
-\begin_layout Standard
-Informally, the past and the future are conditionally independent given
- the present under a Markov measure.
- 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:markov-prop"
-
-\end_inset
-
- is known as the (symmetric) Markov property.
- Another common and useful formulation of a Markov measure says that the
- canonical process is memoryless under such a measure, a notion formalized
- below.
-\end_layout
-
-\begin_layout Proposition
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset citation
-LatexCommand citet
-key "doob-1953"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-A path measure 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- satisfies the Markov property if and only if for all 
+ is a Markov measure if and only if for all 
 \begin_inset Formula $t\in\left[0,1\right]$
 \end_inset
 
  and all 
-\begin_inset Formula $A\in\mathcal{F}_{:t},B\in\mathcal{F}_{t:}$
+\begin_inset Formula $A\in\mathcal{F}_{[0,t]},B\in\mathcal{F}_{[t,1]}$
 \end_inset
 
-, 
+,
 \begin_inset Formula 
-\begin{eqnarray}
-\mathbb{P}\left(B\mid\mathcal{F}_{:t}\right) & = & \mathbb{P}\left(B\mid\mathcal{F}_{t}\right),\mbox{ }\mathbb{P}-a.e.\label{eq:memorylessness}\\
-\mathbb{P}\left(A\mid\mathcal{F}_{t:}\right) & = & \mathbb{P}\left(A\mid\mathcal{F}_{t}\right),\mbox{ }\mathbb{P}-a.e.\label{eq:rev-memorylessness}
-\end{eqnarray}
+\[
+\mathbb{P}(B\mid\mathcal{F}_{[0,t]})=\mathbb{P}(B\mid\mathcal{F}_{t}),\mbox{ }\mathbb{P}-a.e.
+\]
 
 \end_inset
 
@@ -307,9 +333,10 @@ A path measure
 \end_layout
 
 \begin_layout Standard
-Thus, not only does a Markov process forget its past, it is also memoryless
- in a time-symmetric manner; in other words, a Markov process remains Markovian
- under time-reversal.
+We will say that the canonical process on a Markov measure is a Markov process.
+ Intuitively, a Markov measure is memoryless: conditioning on anything before
+ its current state will give no new information as to the evolution of the
+ canonical process.
  Measures can also be strongly Markov, as defined below.
 \end_layout
 
@@ -332,21 +359,21 @@ A probability measure
 \end_inset
 
 , any 
-\begin_inset Formula $\mathcal{F}_{:t}-$
+\begin_inset Formula $\mathcal{F}_{[0,t]}-$
 \end_inset
 
 stopping time 
 \begin_inset Formula $\tau$
 \end_inset
 
-which is almost surely finite, and any 
+ which is almost surely finite, and any 
 \begin_inset Formula $A\in\mathcal{F}_{\tau+t}$
 \end_inset
 
 , 
 \begin_inset Formula 
 \[
-\mathbb{P}\left(A\mid\mathcal{F}_{:\tau}\right)=\mathbb{P}\left(A\mid\mathcal{F}_{\tau}\right)
+\mathbb{P}(A\mid\mathcal{F}_{[0,\tau]})=\mathbb{P}(A\mid\mathcal{F}_{\tau}),\mbox{ }\mathbb{P}-a.e.
 \]
 
 \end_inset
@@ -366,19 +393,6 @@ In an intuitive sense, a strongly Markov measure is Markov not only for
 
 .
  Of course, all strongly Markov measures are also Markov measures.
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-Is strongly Markovian also time-reversible? Should I even keep in the time-symme
-tric presentation? I think it's nice in the context of the time-reversal
- in Chapter 4, and in the context of the use of the forward/backward transition
- density to derive the bridge measure density at the end of this chapter.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -388,11 +402,11 @@ We define now the transition kernels associated with a given Markov measure
 \end_inset
 
 , recalling that for a general measurable spaces 
-\begin_inset Formula $\left(X,\mathcal{A}\right)$
+\begin_inset Formula $(X,\mathcal{A})$
 \end_inset
 
  and 
-\begin_inset Formula $\left(Y,\mathcal{B}\right)$
+\begin_inset Formula $(Y,\mathcal{B})$
 \end_inset
 
 , a regular conditional probability in the sense of 
@@ -403,11 +417,11 @@ key "breiman-1968"
 \end_inset
 
  is a function 
-\begin_inset Formula $\nu:X\times\mathcal{B}\rightarrow\left[0,1\right]$
+\begin_inset Formula $v:X\times\mathcal{B}\rightarrow\left[0,1\right]$
 \end_inset
 
  such that 
-\begin_inset Formula $v\left(\cdot,B\right)$
+\begin_inset Formula $v(\cdot,B)$
 \end_inset
 
  is 
@@ -415,7 +429,7 @@ key "breiman-1968"
 \end_inset
 
 measurable and 
-\begin_inset Formula $\nu\left(x,\cdot\right)$
+\begin_inset Formula $v(x,\cdot)$
 \end_inset
 
  is a probability measure on 
@@ -453,22 +467,19 @@ Forward and backward transition kernel
 \end_inset
 
 , the forward transition kernel 
-\begin_inset Formula $P_{s,t}\left(x,A\right)$
+\begin_inset Formula $P_{s,t}(x,A)$
 \end_inset
 
  associated with 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is the regular conditional probability
-\begin_inset Formula 
-\[
-P_{s,t}\left(x,A\right)=\mathbb{P}\left(A\mid X_{s}=x\right)
-\]
-
+ is the regular conditional probability 
+\begin_inset Formula $P_{s,t}(x,A)=\mathbb{P}(A\mid X_{s}=x)$
 \end_inset
 
-Similarly, for 
+.
+ Similarly, for 
 \begin_inset Formula $y\in\Omega_{t}$
 \end_inset
 
@@ -477,48 +488,14 @@ Similarly, for
 \end_inset
 
 , the backward transition kernel 
-\begin_inset Formula $P_{s,t}^{*}\left(B,y\right)$
+\begin_inset Formula $P_{s,t}^{*}(B,y)$
 \end_inset
 
- is the regular conditional probability (with swapped arguments)
-\begin_inset Formula 
-\[
-P_{s,t}^{*}\left(B,y\right)=\mathbb{P}\left(B\mid X_{t}=y\right)
-\]
-
+ is the regular conditional probability (with swapped arguments) 
+\begin_inset Formula $P_{s,t}^{*}(B,y)=\mathbb{P}(B\mid X_{t}=y)$
 \end_inset
 
-Of course, these kernels satisfy Chapman-Kolmogorov relation, so that for
- any 
-\begin_inset Formula $0\leq s\leq t\leq u\leq1$
-\end_inset
-
-, 
-\begin_inset Formula 
-\begin{eqnarray*}
-P_{s,u}\left(x,\cdot\right) & = & \int_{\Omega_{t}}P_{s,t}\left(x,dy\right)P_{t,u}\left(y,\cdot\right)\\
-P_{s,u}^{*}\left(\cdot,z\right) & = & \int_{\Omega_{t}}P_{s,t}^{*}\left(\cdot,x\right)P_{t,u}^{*}\left(dx,z\right)
-\end{eqnarray*}
-
-\end_inset
-
-for 
-\begin_inset Formula $x$
-\end_inset
-
-, 
-\begin_inset Formula $\mathbb{P}_{s}-a.e.$
-\end_inset
-
-, and 
-\begin_inset Formula $z$
-\end_inset
-
-, 
-\begin_inset Formula $\mathbb{P}_{u}-a.e.$
-\end_inset
-
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -559,7 +536,7 @@ Fix
 
  be a marginal probability measure.
  Furthermore, let 
-\begin_inset Formula $\left\{ P_{u,v}\left(x,\cdot\right)\mid t\leq u\leq v\leq1,x\in\Omega_{u}\right\} $
+\begin_inset Formula $\{P_{u,v}(x,\cdot)\mid t\leq u\leq v\leq1,x\in\Omega_{u}\}$
 \end_inset
 
  be the forward transition kernels from time 
@@ -567,7 +544,7 @@ Fix
 \end_inset
 
 , and 
-\begin_inset Formula $\left\{ P_{r,s}^{*}\left(\cdot,y\right)\mid0\leq r\leq s\leq t,y\in\Omega_{s}\right\} $
+\begin_inset Formula $\{P_{r,s}^{*}(\cdot,y)\mid0\leq r\leq s\leq t,y\in\Omega_{s}\}$
 \end_inset
 
  be the backward transition kernels from time 
@@ -579,8 +556,8 @@ Fix
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is the time-homogenous Markov measure with the given marginal and transition
- kernels if and only if 
+ is a Markov measure with the given marginal and transition kernels if and
+ only if 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -602,22 +579,10 @@ as its finite-dimensional projection, for any choice of
 
 .
  Note the notation is such that 
-\begin_inset Formula $\left(\mathbb{P}_{t}\times P_{t,s}\right)\left(dx\times dy\right)=\mathbb{P}_{t}\left(dx\right)P_{t,s}\left(x,dy\right)$
+\begin_inset Formula $(\mathbb{P}_{t}\times P_{t,u})(dx\times dy)=\mathbb{P}_{t}(dx)P_{t,u}(x,dy)$
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Proof
-This result is a direct consequence of the Kolmogorov extension theorem.
- We refer the reader to references like 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "fristedt-gray-1996"
-
-\end_inset
-
- for a detailed proof.
 \end_layout
 
 \begin_layout Standard
@@ -664,71 +629,39 @@ Fix
 \begin_inset Formula $0\leq s\leq t\leq1$
 \end_inset
 
- and 
-\begin_inset Formula $s',t'\in\left[0,1\right]$
-\end_inset
-
- such that 
-\begin_inset Formula $t-s=t'-s'$
-\end_inset
-
 .
  Then, a time-homogenous Markov measure 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is a Markov measure such that for any 
-\begin_inset Formula $x\in\Omega_{s}$
+ is a Markov measure such that for any associated transition kernel 
+\begin_inset Formula $P_{s,t}$
 \end_inset
 
 , 
-\begin_inset Formula $x'\in\Omega_{s'}$
+\begin_inset Formula $P_{s,t}$
 \end_inset
 
-, 
-\begin_inset Formula $A\in\mathcal{F}_{t}$
-\end_inset
-
-, and 
-\begin_inset Formula $A'\in\mathcal{F}_{t'}$
-\end_inset
-
-, 
-\begin_inset Formula 
-\[
-\mathbb{P}\left(A\mid X_{s}=x\right)=\mathbb{P}\left(A'\mid X_{s'}=x'\right)
-\]
-
-\end_inset
-
-An analogous definition holds for the backward transition kernels.
-\end_layout
-
-\begin_layout Standard
-In other words, a time-homogenous Markov measure is one where the transition
- kernels 
-\begin_inset Formula $P_{s,t}\left(x,A\right)$
-\end_inset
-
- and 
-\begin_inset Formula $P_{s,t}^{*}\left(B,y\right)$
-\end_inset
-
- are only a function of 
+ can be expressed as only a function of 
 \begin_inset Formula $t-s$
 \end_inset
 
 .
- We will write 
-\begin_inset Formula $P_{\Delta}\left(x,A\right)=P_{s,t}\left(x,A\right)$
+ 
+\end_layout
+
+\begin_layout Standard
+We will write 
+\begin_inset Formula $P_{\Delta}(x,A)=P_{s,t}(x,A)$
 \end_inset
 
  where 
 \begin_inset Formula $\Delta=t-s$
 \end_inset
 
- going forward to highlight this fact.
- With this in mind, 
+ going forward to highlight the fact that we will strictly consider time-homogen
+ous Markov measures.
+ Note 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:markov-construction-thm"
@@ -741,32 +674,10 @@ reference "thm:markov-construction-thm"
 \end_inset
 
  and the set of forward transition kernels 
-\begin_inset Formula $\left\{ P_{t}\left(x,A\right)\mid0\leq t\leq1\right\} $
+\begin_inset Formula $\{P_{t}(x,A)\mid0\leq t\leq1\}$
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Example
-The standard Wiener measure 
-\begin_inset Formula $\mathbb{W}$
-\end_inset
-
- is uniquely determined by the following marginal measure and the set of
- forward transition kernels:
-\begin_inset Formula 
-\begin{eqnarray*}
-\mathbb{W}_{0}\left(A\right) & = & \delta\left(A\right)\\
-W_{t}\left(x,A\right) & = & \frac{1}{\sqrt{2\pi t}}\int_{A}\exp\left\{ -\frac{\left(y-x\right)^{2}}{2t}\right\} dy,\mbox{ for }0\leq t\leq1
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Markov Bridge Measures
 \end_layout
 
 \begin_layout Standard
@@ -798,18 +709,18 @@ reference "thm:markov-construction-thm"
 
  in the following way:
 \begin_inset Formula 
-\begin{equation}
-\mathbb{P}=\int_{\Omega_{0,1}}\mathbb{P}\left(\cdot\mid X_{0}=x,X_{1}=y\right)\mathbb{P}_{0,1}\left(dxdy\right)\label{eq:bridge-decomposition}
-\end{equation}
+\[
+\mathbb{P}=\int_{\Omega_{0,1}}\mathbb{P}(\cdot\mid X_{0}=x,X_{1}=y)\mathbb{P}_{0,1}(dxdy)
+\]
 
 \end_inset
 
 Under some fairly general conditions, the measure 
-\begin_inset Formula $\mathbb{P}\left(\cdot\mid X_{0}=x,X_{1}=y\right)$
+\begin_inset Formula $\mathbb{P}(\cdot\mid X_{0}=x,X_{1}=y)$
 \end_inset
 
  exists for all 
-\begin_inset Formula $\left(x,y\right)\in\Omega_{0}\times\Omega_{1}$
+\begin_inset Formula $(x,y)\in\Omega_{0}\times\Omega_{1}$
 \end_inset
 
  and is defined everywhere (the earliest abstract exposition on the existence
@@ -830,10 +741,20 @@ key "fitz-pitman-1993"
 \end_inset
 
 .
- 
+ We note that such a bridge measure inherits the Markov property.
 \end_layout
 
 \begin_layout Proposition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Markov bridges are Markov
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "prop:bridge-measures-are-markov"
@@ -846,7 +767,7 @@ Let
 
  be a Markov measure.
  Then, for any 
-\begin_inset Formula $\left(x,y\right)\in\Omega_{0}\times\Omega_{1}$
+\begin_inset Formula $(x,y)\in\Omega_{0}\times\Omega_{1}$
 \end_inset
 
 , the bridge measure 
@@ -854,80 +775,6 @@ Let
 \end_inset
 
  is also Markov.
-\end_layout
-
-\begin_layout Proof
-Let 
-\begin_inset Formula $t\in I$
-\end_inset
-
-, and 
-\begin_inset Formula $A\in\mathcal{F}_{:t}$
-\end_inset
-
- and 
-\begin_inset Formula $B\in\mathcal{F}_{t:}$
-\end_inset
-
- be two events.
- Then, 
-\begin_inset Formula 
-\begin{eqnarray}
-\mathbb{P}\left(A\cap B\mid X_{0},X_{t},X_{1}\right) & = & \mathbb{E}\left[\mathbf{1}_{A}\mathbf{1}_{B}\mid X_{0},X_{t},X_{1}\right]\nonumber \\
- & = & \mathbb{E}\left[\mathbf{1}_{B}\mathbb{E}\left[\mathbf{1}_{A}\mid X_{0},X_{t:}\right]\mid X_{0},X_{t},X_{1}\right]\nonumber \\
- & = & \mathbb{E}\left[\mathbf{1}_{A}\mid X_{0},X_{t}\right]\mathbb{E}\left[\mathbf{1}_{B}\mid X_{0},X_{t},X_{1}\right]\nonumber \\
- & = & \mathbb{P}\left(A\mid X_{0},X_{t}\right)\mathbb{P}\left(B\mid X_{0},X_{t},X_{1}\right)\label{eq:bridge-is-markov-helper}
-\end{eqnarray}
-
-\end_inset
-
-Note also that 
-\begin_inset Formula $\mathbb{P}\left(A\mid X_{0},X_{t}\right)=\mathbb{P}\left(A\mid X_{0},X_{t},X_{1}\right)$
-\end_inset
-
-, which along with 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:bridge-is-markov-helper"
-
-\end_inset
-
-, gives 
-\begin_inset Formula 
-\[
-\mathbb{P}^{X_{0},X_{1}}\left(A\cap B\mid X_{t}\right)=\mathbb{P}^{X_{0},X_{1}}\left(A\mid X_{t}\right)\mathbb{P}^{X_{0},X_{1}}\left(B\mid X_{t}\right)
-\]
-
-\end_inset
-
-which shows that a particular bridge measure of a Markov measure is itself
- Markov.
- Since 
-\begin_inset Formula $X_{0}$
-\end_inset
-
- and 
-\begin_inset Formula $X_{1}$
-\end_inset
-
- were arbitrary, we conclude that any bridge 
-\begin_inset Formula $\mathbb{P}^{x,y}$
-\end_inset
-
- for 
-\begin_inset Formula $\left(x,y\right)\in\Omega_{0}\times\Omega_{1}$
-\end_inset
-
- of a Markov measure is itself Markov.
-\end_layout
-
-\begin_layout Standard
-This result can be understood on an intuitive level by noting that if a
- process is Markov, only its current state should affect its forward evolution;
- conditioning on the starting value should not affect this.
- By time-reversibility, conditioning on the end value of a Markov process
- should also not affect whether it remains Markovian, and thus Markov bridges
- are themselves Markov.
 \end_layout
 
 \begin_layout Standard
@@ -941,11 +788,11 @@ Before continuing, we set a reference Markov measure
 \end_inset
 
  that are defined everywhere, and the transition kernels 
-\begin_inset Formula $P_{s,t}\left(x,\cdot\right)$
+\begin_inset Formula $P_{t}(x,\cdot)$
 \end_inset
 
  and 
-\begin_inset Formula $P_{s,t}^{*}\left(\cdot,y\right)$
+\begin_inset Formula $P_{t}^{*}(\cdot,y)$
 \end_inset
 
  of 
@@ -958,18 +805,11 @@ Before continuing, we set a reference Markov measure
 \end_inset
 
 .
- Then, by the Radon-Nikodym theorem and the usual assumptions 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "nikodym-1930"
-
-\end_inset
-
-, we can write the transition densities
+ Then, we can write the transition densities
 \begin_inset Formula 
 \begin{eqnarray*}
-p_{s,t}\left(x,y\right) & = & P_{s,t}\left(x,dy\right)/dy\\
-p_{s,t}^{*}\left(x,y\right) & = & P_{s,t}^{*}\left(dx,y\right)/dx,\mbox{ }
+p_{t}(x,y) & = & P_{t}(x,dy)/dy\\
+p_{t}^{*}(x,y) & = & P_{t}^{*}(dx,y)/dx,\mbox{ }
 \end{eqnarray*}
 
 \end_inset
@@ -979,28 +819,24 @@ defined almost everywhere with respect to the appropriate measures.
 
 \begin_layout Standard
 We can also write 
-\begin_inset Formula $\mathbb{P}_{0}\left(dx\right)=p_{0}\left(x\right)dx$
+\begin_inset Formula $\mathbb{P}_{0}(dx)=p_{0}(x)dx$
 \end_inset
 
  where 
-\begin_inset Formula $p_{0}\left(x\right)=\int p_{0,1}^{*}\left(x,y\right)\mathbb{P}_{1}\left(dy\right)$
+\begin_inset Formula $p_{0}(x)=\int p_{1}^{*}(x,y)\mathbb{P}_{1}(dy)$
 \end_inset
 
  is the density of the marginal measure 
 \begin_inset Formula $\mathbb{P}_{0}$
 \end_inset
 
- with respect to the Lebesgue measure, and let the density 
-\begin_inset Formula $p_{1}\left(x\right)$
-\end_inset
-
- be analogous using the forward transition density.
+ with respect to the Lebesgue measure.
  For convenience, we will write 
-\begin_inset Formula $\mathbb{P}_{0,1}\left(dxdy\right)=c\left(x,y\right)dxdy$
+\begin_inset Formula $\mathbb{P}_{0,1}(dxdy)=c(x,y)dxdy$
 \end_inset
 
 , defining 
-\begin_inset Formula $c\left(x,y\right)=p_{0}\left(x\right)p_{0,1}\left(x,y\right)=p_{0,1}^{*}\left(x,y\right)p_{1}\left(y\right)$
+\begin_inset Formula $c(x,y)=p_{0}(x)p_{1}(x,y)$
 \end_inset
 
  as the density of the joint marginal measure 
@@ -1008,142 +844,8 @@ We can also write
 \end_inset
 
  with respect to the Lebesgue measure.
- 
-\end_layout
-
-\begin_layout Standard
-With these densities in hand, we may state the following result.
-\end_layout
-
-\begin_layout Lemma
-\begin_inset CommandInset label
-LatexCommand label
-name "lem:endpoint-dominating-lemma"
-
-\end_inset
-
-The probability measure 
-\begin_inset Formula $P_{0,t}^{*}\left(\cdot,z\right)P_{t,1}\left(z,\cdot\right)$
-\end_inset
-
- is dominated by 
-\begin_inset Formula $\mathbb{P}_{0,1}$
-\end_inset
-
- for 
-\begin_inset Formula $z$
-\end_inset
-
-, 
-\begin_inset Formula $\mathbb{P}_{t}-a.e.$
-\end_inset
-
- Accordingly, the density of 
-\begin_inset Formula $P_{0,t}^{*}\left(\cdot,z\right)P_{t,1}\left(z,\cdot\right)$
-\end_inset
-
- with respect to 
-\begin_inset Formula $\mathbb{P}_{0,1}$
-\end_inset
-
- is 
-\begin_inset Formula 
-\[
-\frac{P_{0,t}^{*}\left(dx,z\right)P_{t,1}\left(z,dy\right)}{\mathbb{P}_{0,1}\left(dxdy\right)}=\frac{p_{0,t}^{*}\left(x,z\right)p_{t,1}\left(z,y\right)}{c\left(x,y\right)}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-It suffices to show that if 
-\begin_inset Formula $c\left(x,y\right)=0$
-\end_inset
-
-, then 
-\begin_inset Formula $r_{0,t}^{*}\left(x,z\right)r_{t,1}\left(z,y\right)=0$
-\end_inset
-
-, for any 
-\begin_inset Formula $z$
-\end_inset
-
-, 
-\begin_inset Formula $\mathbb{R}_{t}-a.e.$
-\end_inset
-
- Note that
-\begin_inset Formula 
-\begin{eqnarray*}
-\mathbb{P}_{0,1}\left(dxdy\right) & = & \int_{\Omega_{t}}\mathbb{P}_{0,t,1}\left(dxdzdy\right)\\
- & = & \int_{\Omega_{t}}P_{0,t}^{*}\left(dx,z\right)\mathbb{P}_{t}\left(dz\right)P_{t,1}\left(z,dy\right)\\
- & = & \int_{\Omega_{t}}p_{0,t}^{*}\left(x,z\right)\mathbb{P}_{t}\left(dz\right)p_{t,1}\left(z,y\right)dxdy
-\end{eqnarray*}
-
-\end_inset
-
-On the other hand, 
-\begin_inset Formula $\mathbb{P}_{0,1}\left(dxdy\right)=c\left(x,y\right)dxdy$
-\end_inset
-
-.
- Thus, 
-\begin_inset Formula 
-\[
-c\left(x,y\right)=\int_{\Omega_{t}}p_{0,t}^{*}\left(x,z\right)\mathbb{P}_{t}\left(dz\right)p_{t,1}\left(z,y\right)
-\]
-
-\end_inset
-
-Since 
-\begin_inset Formula $\mathbb{P}_{t}\left(dz\right)$
-\end_inset
-
- is positive 
-\begin_inset Formula $\mathbb{P}_{t}-a.e.$
-\end_inset
-
-, we see that 
-\begin_inset Formula $c\left(x,y\right)=0$
-\end_inset
-
- necessarily implies 
-\begin_inset Formula $p_{0,t}^{*}\left(x,z\right)p_{t,1}\left(z,y\right)=0$
-\end_inset
-
- for 
-\begin_inset Formula $z$
-\end_inset
-
-, 
-\begin_inset Formula $\mathbb{P}_{t}-a.e.$
-\end_inset
-
- as desired.
- By the Radon-Nikodym theorem, the density of 
-\begin_inset Formula $P_{0,t}^{*}\left(dx,z\right)P_{t,1}\left(z,dy\right)$
-\end_inset
-
- with respect to 
-\begin_inset Formula $\mathbb{P}_{0,1}$
-\end_inset
-
- is therefore 
-\begin_inset Formula 
-\[
-\frac{P_{0,t}^{*}\left(dx,z\right)P_{t,1}\left(z,dy\right)}{\mathbb{P}_{0,1}\left(dxdy\right)}=\frac{p_{0,t}^{*}\left(x,z\right)p_{t,1}\left(z,y\right)}{c\left(x,y\right)}
-\]
-
-\end_inset
-
-as desired.
-\end_layout
-
-\begin_layout Standard
-We now present the major result of this chapter, which relates a Markov
- bridge measure explicitly to its reference measure.
+ Now, we may state a general result about the marginal density of a Markov
+ bridge.
 \end_layout
 
 \begin_layout Theorem
@@ -1157,16 +859,8 @@ For all
 \begin_inset Formula $0<t<1$
 \end_inset
 
-, all 
-\begin_inset Formula $\left(x,y\right)\in\Omega_{0}\times\Omega_{1}$
-\end_inset
-
-, and any 
-\begin_inset Formula $z$
-\end_inset
-
-, 
-\begin_inset Formula $\mathbb{P}_{t}-a.e.$
+ and all 
+\begin_inset Formula $(x,y)\in\Omega_{0}\times\Omega_{1}$
 \end_inset
 
 , the bridge measure of 
@@ -1205,7 +899,7 @@ For all
  is given by 
 \begin_inset Formula 
 \[
-\frac{\mathbb{P}_{t}^{x,y}\left(dz\right)}{\mathbb{P}_{t}\left(dz\right)}=\frac{p_{0,t}^{*}\left(x,z\right)p_{t,1}\left(z,y\right)}{c\left(x,y\right)}
+\frac{d\mathbb{P}_{t}^{x,y}}{d\mathbb{P}_{t}}=\frac{p_{t}^{*}(x,\cdot)p_{1-t}(\cdot,y)}{c(x,y)}
 \]
 
 \end_inset
@@ -1213,309 +907,545 @@ For all
 
 \end_layout
 
-\begin_layout Proof
-Consider an event 
-\begin_inset Formula $A\in\mathcal{F}_{t}$
+\begin_layout Section
+Generalized Bridges
+\end_layout
+
+\begin_layout Standard
+Generalized bridges have been explored in the literature in a number of
+ different directions.
+ One natural generalization of a bridge process comes from conditioning
+ on a vector 
+\begin_inset Formula $\mathbf{Z}$
 \end_inset
 
-.
- First, note 
-\begin_inset Formula $\mathbb{P}_{t}^{x,y}\left(A\right)=\mathbb{E}_{\mathbb{P}}\left[\mathbf{1}_{A}\mid X_{0},X_{1}\right]$
+ of 
+\begin_inset Formula $\mathcal{F}_{1}-$
 \end_inset
 
-.
- Then, consider any two bounded and measurable functions 
-\begin_inset Formula $f,g$
-\end_inset
-
-, and write
-\begin_inset Formula 
-\begin{eqnarray}
- &  & \mathbb{E}_{\mathbb{P}}\left[f\left(X_{0}\right)g\left(X_{1}\right)\mathbb{E}_{\mathbb{P}}\left[\mathbf{1}_{A}\mid X_{0},X_{1}\right]\right]\label{eq:bridge-thm-start}\\
- & = & \mathbb{E}_{\mathbb{P}}\left[f\left(X_{0}\right)\mathbf{1}_{A}g\left(X_{1}\right)\right]\nonumber \\
- & = & \mathbb{E}_{\mathbb{P}}\left[\mathbb{E}_{\mathbb{P}}\left[f\left(X_{0}\right)\mid X_{t}\right]\mathbf{1}_{A}\mathbb{E}_{\mathbb{P}}\left[g\left(X_{1}\right)\mid X_{t}\right]\right]\label{eq:bridge-thm-expectation-split}
-\end{eqnarray}
-
-\end_inset
-
-We note that 
-\begin_inset Formula 
-\begin{eqnarray*}
-\mathbb{E}_{\mathbb{P}}\left[f\left(X_{0}\right)\mid X_{t}\right] & = & \int_{\Omega_{0}}f\left(x\right)P_{0,t}^{*}\left(dx,X_{t}\right)\\
-\mathbb{E}_{\mathbb{P}}\left[g\left(X_{1}\right)\mid X_{t}\right] & = & \int_{\Omega_{1}}g\left(y\right)P_{t,1}\left(dy,X_{t}\right)
-\end{eqnarray*}
+adapted functionals of a reference process.
+ This notion was first presented by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "alili-2002"
 
 \end_inset
 
-and substitute these definitions into 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:bridge-thm-expectation-split"
+ for the case of a Wiener process 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+ as the reference process and functionals of the form 
+\begin_inset Formula $\mathbf{Z}^{\left(i\right)}=\int_{0}^{1}f_{i}\left(s\right)dW_{s}$
+\end_inset
+
+ for square-integrable functions 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+, giving explicit decompositions of the resulting generalized bridge as
+ semimartingales.
+ Note that choosing 
+\begin_inset Formula $N=1$
+\end_inset
+
+ and 
+\begin_inset Formula $Z^{\left(1\right)}=\int_{0}^{1}dW_{s}=W_{1}$
+\end_inset
+
+ for an integral in the sense of Itô induces a Wiener bridge measure in
+ the sense of the previous section.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "sottinen-yazigi-2014"
 
 \end_inset
 
- to find
-\begin_inset Formula 
-\begin{equation}
-\mathbb{E}_{\mathbb{P}}\left[\mathbf{1}_{A}\int f\left(x\right)g\left(y\right)P_{0,t}^{*}\left(dx,X_{t}\right)P_{t,1}\left(dy,X_{t}\right)\right]\label{eq:bridge-thm-integral-pre-rewrite}
-\end{equation}
+ generalized the result of 
+\begin_inset CommandInset citation
+LatexCommand citeauthor
+key "alili-2002"
 
 \end_inset
 
- By 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "lem:endpoint-dominating-lemma"
+ greatly by studying a large class of non-semimartingale Gaussian processes
+ (simultaneously extending the work of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-coutin-2007"
 
 \end_inset
 
-, we can re-write the integral in 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:bridge-thm-integral-pre-rewrite"
+, which focuses on standard bridges of the same class of stochastic processes,
+ known as Gaussian Volterra processes).
+\end_layout
+
+\begin_layout Standard
+While the above notions of generalization are interesting, they continue
+ to condition a process on the value of some realization of its functionals.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-2002"
 
 \end_inset
 
- with respect to 
-\begin_inset Formula $\mathbb{P}_{0,1}$
-\end_inset
+ introduced the notion of conditioning the functionals of a process on their
+ distribution, and this conceptual leap is precisely what we need to drive
+ the analysis to follow.
+ We present some of the major results of Baudoin below, working on the usual
+ probability space.
+ First, we define the concept of a Baudoin conditioning.
+ 
+\end_layout
 
- as follows:
-\begin_inset Formula 
-\begin{eqnarray}
- &  & \mathbb{E}_{\mathbb{P}}\left[\mathbf{1}_{A}\int f\left(x\right)g\left(y\right)\frac{p_{0,t}^{*}\left(x,X_{t}\right)p_{t,1}\left(X_{t},y\right)}{c\left(x,y\right)}\mathbb{P}_{0,1}\left(dxdy\right)\right]\nonumber \\
- & = & \int f\left(x\right)g\left(y\right)\mathbb{E}_{\mathbb{P}}\left[\mathbf{1}_{A}\frac{p_{0,t}^{*}\left(x,X_{t}\right)p_{t,1}\left(X_{t},y\right)}{c\left(x,y\right)}\right]\mathbb{P}_{0,1}\left(dxdy\right)\label{eq:bridge-thm-done}
-\end{eqnarray}
-
-\end_inset
-
-Since 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:bridge-thm-start"
-
-\end_inset
-
- is equal to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:bridge-thm-done"
-
-\end_inset
-
- for any functions 
-\begin_inset Formula $f,g$
-\end_inset
-
-, it must be true that 
-\begin_inset Marginal
+\begin_layout Definition
+\begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
-I think the final steps are kosher? Need to double-check.
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Definition 1 in"
+key "baudoin-2002"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+A Baudoin 
+\begin_inset Formula $(Y,\nu)$
+\end_inset
+
+-conditioning on the usual probability space is a tuple 
+\begin_inset Formula $(Y,\nu)$
+\end_inset
+
+ where
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $Y$
+\end_inset
+
+ is a 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+-measurable random variable valued in 
+\begin_inset Formula $\mathbb{R}^{n}$
+\end_inset
+
+ representing the functional being conditioned,
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\nu$
+\end_inset
+
+ is a probability measure on 
+\begin_inset Formula $\mathcal{B}(\mathbb{R}^{n})$
+\end_inset
+
+ representing the conditioning, 
+\end_layout
+
+\end_deeper
+\begin_layout Definition
+such that, for 
+\begin_inset Formula $\mathbb{P}_{Y}\coloneqq\mathbb{P}\circ Y^{-1}$
+\end_inset
+
+, the law of 
+\begin_inset Formula $Y$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+,
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\nu$
+\end_inset
+
+ is absolutely continuous with respect to 
+\begin_inset Formula $\mathbb{P}_{Y}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\mathbb{E}_{\mathbb{P}_{Y}}\left[\varphi(d\nu/d\mathbb{P}_{Y})\right]$
+\end_inset
+
+ is bounded for any convex function 
+\begin_inset Formula $\varphi:\mathbb{R}^{+}\rightarrow\mathbb{R}^{+}$
+\end_inset
+
+, and 
+\end_layout
+
+\begin_layout Enumerate
+for any 
+\begin_inset Formula $t\in[0,1)$
+\end_inset
+
+ there exists a process 
+\begin_inset Formula $\eta_{t}^{y}$
+\end_inset
+
+ for all 
+\begin_inset Formula $y\in\mathbb{R}^{n}$
+\end_inset
+
+ such that for any 
+\begin_inset Formula $\mathcal{F}_{:t}-$
+\end_inset
+
+measurable random variable 
+\begin_inset Formula $X$
+\end_inset
+
+ and 
+\begin_inset Formula $y,\mathbb{P}_{Y}-a.e.$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbb{E}_{\mathbb{P}}\left[X\mid Y=y\right]=\mathbb{E}_{\mathbb{P}}\left[\eta_{t}^{y}X\right]$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+We now present a result characterizing a particular element in the set of
+ probability measures which are absolutely continuous and have a sufficiently
+ smooth density with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, and for which the law of 
+\begin_inset Formula $Y$
+\end_inset
+
+ with respect to any member of the set is 
+\begin_inset Formula $\nu$
+\end_inset
+
+, for any conditioning 
+\begin_inset Formula $(Y,\nu)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proposition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Proposition 3 and 6 in"
+key "baudoin-2002"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
 
 
-\begin_inset Formula 
-\[
-\mathbb{E}_{\mathbb{P}}\left[\mathbf{1}_{A}\mid X_{0},X_{1}\right]=\mathbb{E}_{\mathbb{P}}\left[\mathbf{1}_{A}\frac{p_{0,t}^{*}\left(x,X_{t}\right)p_{t,1}\left(X_{t},y\right)}{c\left(x,y\right)}\right]
-\]
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:pv-1"
 
 \end_inset
 
-which, since 
-\begin_inset Formula $A$
+Fix a Baudoin conditioning 
+\begin_inset Formula $(Y,\nu)$
 \end_inset
 
- was arbitrary, implies that
-\begin_inset Formula 
-\[
-\mathbb{P}_{t}^{x,y}\left(dz\right)=\frac{p_{0,t}^{*}\left(x,z\right)p_{t,1}\left(z,y\right)}{c\left(x,y\right)}\mathbb{P}_{t}\left(dz\right)
-\]
-
+ on the usual probability space and any convex function 
+\begin_inset Formula $\varphi:\mathbb{R}^{+}\rightarrow\mathbb{R}^{+}$
 \end_inset
 
-for 
-\begin_inset Formula $z$
+.
+ Consider the set of probability measures 
+\begin_inset Formula $\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
+\end_inset
+
+ such that for any 
+\begin_inset Formula $\mathbb{Q}\in\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
+\end_inset
+
+,
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ is absolutely continuous with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(d\mathbb{Q}/d\mathbb{P}\right)\right]$
+\end_inset
+
+ is bounded, and
+\end_layout
+
+\begin_layout Enumerate
+the law of 
+\begin_inset Formula $Y$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ is 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proposition
+Then, for any 
+\begin_inset Formula $\mathbb{Q}\in\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
 \end_inset
 
 , 
-\begin_inset Formula $\mathbb{P}_{t}-a.e.$
+\begin_inset Formula 
+\[
+\inf_{\mathcal{Q}_{\nu,\varphi}}\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\right]=\mathbb{E}_{\mathbb{P}^{\nu}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\right]
+\]
+
 \end_inset
 
- Since 
+where 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ is the unique measure in 
+\begin_inset Formula $\mathcal{Q}_{\mathbb{P},\nu}=\bigcup_{\varphi}\mathcal{Q}_{\mathbb{P},\nu,\varphi}$
+\end_inset
+
+ such that for any bounded random variable 
+\begin_inset Formula $X:\Omega\rightarrow\mathbb{R}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbb{E}_{\mathbb{P}^{\nu}}[X\mid Y]=\mathbb{E}_{\mathbb{P}}[X\mid Y]$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+We refer to 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ as the Baudoin 
+\begin_inset Formula $(Y,\nu)$
+\end_inset
+
+-conditioning of 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, and the canonical process on 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ the Baudoin 
+\begin_inset Formula $(Y,\nu)$
+\end_inset
+
+-bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+, the canonical process on 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+.
+ 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "lem:endpoint-dominating-lemma"
+reference "prop:pv-1"
 
 \end_inset
 
- ensures that 
-\begin_inset Formula $c\left(x,y\right)=0$
+ is a central result that says that the variance and entropy minimizing
+ measure in 
+\begin_inset Formula $\mathcal{Q}_{\mathbb{P},\nu}$
 \end_inset
 
- implies 
-\begin_inset Formula $p_{0,t}^{*}\left(x,z\right)p_{t,1}\left(z,y\right)=0$
+ is precisely the unique measure in 
+\begin_inset Formula $\mathcal{Q}_{\mathbb{P},\nu}$
 \end_inset
 
-, we know that 
-\begin_inset Formula $\mathbb{P}_{t}^{x,y}$
+ which coincides with 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ on events independent of 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+ Of course, under 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+, 
+\begin_inset Formula $Y$
+\end_inset
+
+ has law 
+\begin_inset Formula $\nu$
+\end_inset
+
+, and 
+\begin_inset Formula $\mathbb{P}^{\nu}=\mathbb{P}$
+\end_inset
+
+ if and only if 
+\begin_inset Formula $\nu=\mathbb{P}_{Y}$
+\end_inset
+
+.
+ Baudoin notes that 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ can be disintegrated along the 
+\begin_inset Formula $\sigma-$
+\end_inset
+
+algebra generated by 
+\begin_inset Formula $Y$
+\end_inset
+
+ as
+\begin_inset Formula 
+\[
+\mathbb{P}^{\nu}=\int_{\mathbb{R}^{n}}\mathbb{P}(\cdot\mid Y=y)\nu(dy)
+\]
+
+\end_inset
+
+since the regular conditional probability 
+\begin_inset Formula $\mathbb{P}(\cdot\mid Y=y)$
+\end_inset
+
+ exists by the existence of 
+\begin_inset Formula $\eta_{t}^{y}$
+\end_inset
+
+.
+ This will be an invaluable disintegration going forward.
+\end_layout
+
+\begin_layout Standard
+Having formalized the notion of conditioning a reference measure on functionals
+ of its canonical process, the density of 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ restricted to some time 
+\begin_inset Formula $t\in(0,1)$
+\end_inset
+
+ follows easily.
+\end_layout
+
+\begin_layout Proposition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Proposition 9 in"
+key "baudoin-2002"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:pv-density-1"
+
+\end_inset
+
+For any 
+\begin_inset Formula $t\in(0,1)$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbb{P}_{t}^{\nu}$
 \end_inset
 
  is absolutely continuous with respect to 
 \begin_inset Formula $\mathbb{P}_{t}$
 \end_inset
 
-, and the density as given in the statement of the theorem exists.
- 
-\end_layout
-
-\begin_layout Standard
-This result is easily generalized to hold for any restriction 
-\begin_inset Formula $\mathbb{R}_{s:t}$
-\end_inset
-
- for 
-\begin_inset Formula $0<s\leq t<1$
-\end_inset
-
-, as presented in 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "leonard-2014"
-
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "thm:density-of-bridge"
-
-\end_inset
-
- is useful because it gives the density of the bridge measure 
-\begin_inset Formula $\mathbb{R}^{x,y}$
-\end_inset
-
- with respect to the reference measure 
-\begin_inset Formula $\mathbb{R}$
-\end_inset
-
- at some time 
-\begin_inset Formula $0<t<1$
-\end_inset
-
-; since we know that 
-\begin_inset Formula $\mathbb{R}$
-\end_inset
-
- is absolutely continuous with respect to the Lebesgue measure, we can therefore
- easily recover the density of the bridge measure 
-\begin_inset Formula $\mathbb{R}_{t}^{x,y}$
-\end_inset
-
- with respect to the Lebesgue measure.
-\end_layout
-
-\begin_layout Example
-We consider again the standard Wiener measure 
-\begin_inset Formula $\mathbb{W}$
-\end_inset
-
- on a Wiener space.
- 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "levy-1948"
-
-\end_inset
-
- showed that the bridge 
-\begin_inset Formula $\mathbb{W}^{x,y}$
-\end_inset
-
- of this measure exists, and it is well-known that 
-\begin_inset Formula $\mathbb{W}$
-\end_inset
-
- is absolutely continuous with respect to the Lebesgue measure.
- So, 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "thm:density-of-bridge"
-
-\end_inset
-
- applies, and the requisite densities are given, for any 
-\begin_inset Formula $0\leq s\leq t\leq1$
-\end_inset
-
- and 
-\begin_inset Formula $x,y\in\mathbb{R}$
-\end_inset
-
-, as 
-\begin_inset Formula 
-\begin{eqnarray*}
-w_{s,t}\left(z,y\right) & = & \frac{1}{\sqrt{2\pi\left(t-s\right)}}\exp\left\{ -\frac{\left(y-z\right)^{2}}{2\left(t-s\right)^{2}}\right\} \\
-w_{s,t}^{*}\left(x,z\right) & = & \frac{w_{s,t}\left(z,x\right)w_{0,s}\left(0,x\right)}{w_{0,t}\left(0,z\right)}\\
-c\left(x,y\right) & = & \delta\left(x\right)\frac{1}{\sqrt{2\pi}}\exp\left\{ -\frac{\left(y-x\right)^{2}}{2}\right\} 
-\end{eqnarray*}
-
-\end_inset
-
-where the backward transition density 
-\begin_inset Formula $w_{s,t}^{*}\left(z,y\right)$
-\end_inset
-
- is by Bayes' rule.
- Therefore, the density of 
-\begin_inset Formula $\mathbb{W}_{t}^{x,y}$
+, and the density of 
+\begin_inset Formula $\mathbb{P}_{t}^{\nu}$
 \end_inset
 
  with respect to 
-\begin_inset Formula $\mathbb{W}_{t}$
+\begin_inset Formula $\mathbb{P}_{t}$
 \end_inset
 
  is given by 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{W}_{t}^{x,y}}{d\mathbb{W}_{t}}=\frac{1}{1-t}\exp\left\{ \frac{1}{2}\left[\left(x-y\right)^{2}-\frac{\left(x-z\right)^{2}}{t^{2}}-\frac{\left(y-z\right)^{2}}{\left(1-t\right)^{2}}+\frac{z^{2}}{t^{2}}\right]\right\} 
+\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathbb{R}^{n}}\eta_{t}^{y}\nu(dy)
 \]
 
 \end_inset
 
-Accordingly, the density of the Brownian bridge from 
-\begin_inset Formula $x$
-\end_inset
 
- to 
-\begin_inset Formula $y$
-\end_inset
+\end_layout
 
- with respect to the Lebesgue measure is
-\begin_inset Formula 
-\[
-\frac{d\mathbb{W}_{t}^{x,y}}{dz}=\frac{1}{\sqrt{2\pi\left(1-t\right)t}}\exp\left\{ -\frac{1}{2}\left[\frac{\left(z-\left(1-t\right)x-ty\right)^{2}}{2\left(1-t\right)t}\right]\right\} 
-\]
-
-\end_inset
-
-which is a Gaussian density with mean 
-\begin_inset Formula $\left(1-t\right)x+ty$
-\end_inset
-
- and variance 
-\begin_inset Formula $\left(1-t\right)t$
-\end_inset
-
- as is well-known.
+\begin_layout Standard
+With the necessary theoretical ideas outlined, we move now to the main part
+ of the thesis.
 \end_layout
 
 \end_body

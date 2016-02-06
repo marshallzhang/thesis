@@ -83,102 +83,107 @@ name "ch:Introduction"
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Marginal
-status collapsed
-
-\begin_layout Plain Layout
-This introduction currently serves as the abstract for the thesis; I will
- be revising it to a full introduction in the future.
-\end_layout
-
-\end_inset
-
-This thesis introduces 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges, which intuitively represent diffusion processes conditioned on
- their initial and end values following a given joint distribution 
-\begin_inset Formula $\nu$
-\end_inset
-
-.
- 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges are a generalization of the concept of a diffusion bridge, which
- represents a given diffusion conditioned on a particular realization of
- its initial and end value.
+\begin_layout Section
+From Ex-Post to Ex-Ante
 \end_layout
 
 \begin_layout Standard
-In Part 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "part:2"
-
-\end_inset
-
-, an overview of the theory of stochastic bridges is given, with emphasis
- on Markov bridges in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:2"
-
-\end_inset
-
- and the generalized bridges of 
+Among the earliest general theories of maximum likelihood estimation (MLE)
+ for continuous-time stochastic processes was proposed by 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "baudoin-2002"
+key "feigin-1976"
 
 \end_inset
 
- in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:3"
+ in 1976.
+ The study of inference on discrete observations of stochastic processes
+ in general begun with 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "rao-1988"
+
+\end_inset
+
+, and was considered in detail for diffusion processes by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "yoshida-1992"
 
 \end_inset
 
 .
+ Given the immense variety of phenomena which are modeled
+\series bold
+ 
+\series default
+by continuous-time stochastic processes, and the availability of only discrete
+ observations of such processes in the physical world, such theory is both
+ important and applicable.
 \end_layout
 
 \begin_layout Standard
-Then, in Part 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "part:3"
+This thesis considers an alternative interpretation of the theory of MLE
+ on discretely observed data.
+ In particular, we examine the problem from an ex-ante perspective.
+ What if, instead of having observed the stochastic process in question
+ at discrete time instances, we were told by an omniscient being that such
+ a process would take on certain values at future time instances? It seems
+ that we ought to be able to conduct MLE on the to-be observed stochastic
+ process as usual.
+\end_layout
 
-\end_inset
+\begin_layout Standard
+However, an interesting generalization of the problem is allowed by this
+ ex-ante perspective.
+ Suppose that instead of being told the values of the process at some future
+ times, the omniscient being gave us the true distribution of such values.
+ The procedure of MLE is no longer well-defined, given a lack of observed
+ data; yet, it seems intuitively true that we have learned something about
+ the dynamics governing the process in question.
+\end_layout
 
-, the formal notion of a 
-\begin_inset Formula $\nu-$
-\end_inset
+\begin_layout Standard
+The problem of inference on distributions is highly applicable in a variety
+ of instances.
+ For example, in economics and finance, we can think of surveys of professional
+ forecasters, which return forecasted distributions of macroeconomic indicators
+ at discrete points in time, or options markets, in which market-implied
+ distributions of an underlying security price at future time instances
+ can be backed out from the prices of the associated derivatives.
+ The theory and empirical strategies developed in this thesis will be helpful
+ in understanding how we can conduct inference in these various settings.
+\end_layout
 
-bridge is introduced as a specific case of a Baudoin bridge.
- Most of the theory developed in 
+\begin_layout Section
+Contributions and Related Work
+\end_layout
+
+\begin_layout Standard
+In this thesis, we propose a natural generalization of maximum likelihood
+ estimation in the context of the problem above, and offer an interpretation
+ of such a procedure as the limiting case of MLE under model misspecification.
+ This is a novel problem and solution to the best of our knowledge.
+ We also build on the literature surrounding the simulation of diffusion
+ bridges (see 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "baudoin-2002"
+key "papa-roberts-2012,bladt-sorensen-2014,bladt-finch-sorenson-2015"
 
 \end_inset
 
- therefore applies, and thus 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:4"
+) by proposing a simulation strategy for a generalized notion of a diffusion
+ bridge.
+ Using such a simulation strategy, we are able to develop a framework for
+ conducting simulated-based inference on data in the form of distributions,
+ generalizing the work of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "roberts-stramer-2001,beskos-2006"
 
 \end_inset
 
- focuses on characterizing an approximate 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge sampler in the spirit of the diffusion bridge sampler proposed by
- 
+, and 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "bladt-sorensen-2014"
@@ -186,30 +191,70 @@ key "bladt-sorensen-2014"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Section
+Outline
+\end_layout
+
+\begin_layout Standard
+In the next chapter, an overview of the theory of stochastic bridges is
+ given, with emphasis on Markov bridges and the generalized bridges of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-2002"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+With the mathematical underpinnings set, Part 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "part:2"
+
+\end_inset
+
+ will focus on the theoretical aspects of the thesis.
+ The general problem of conducting inference on data in the form of distribution
+s is introduced and formalized in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:EM"
+
+\end_inset
+
+.
+ A procedure for conducting inference is developed and an interpretation
+ of such a procedure as being a limited case of MLE on a misspecified model
+ is also given.
+ An Monte Carlo expectation-maximization (MCEM) algorithm to address the
+ problem of intractable transition densities for most diffusion processes.
  Then, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "chap:5"
+reference "chap:4"
 
 \end_inset
 
-, simulation studies are carried to evalute the distributions of 
-\begin_inset Formula $\nu-$
+, a simulation strategy for a generalized diffusion bridge is given, which
+ will allow for the implementation of the proposed MCEM algorithm.
+ Approximate and exact sampling schemes are developed, and the marginal
+ density of such a bridge is also given.
+\end_layout
+
+\begin_layout Standard
+Part 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "part:3"
+
 \end_inset
 
-bridges sampled from the proposed sampler against their theoretical distribution
-s, and to heuristically understand the behavior of 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges.
- Furthermore, some applications of the theory of 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges to situations in which the distribution of a particular stochastic
- process is known or forecasted at two points in time (for example, in some
- areas of economic forecasting) are explored.
+ will focus on the empirical aspects of the thesis.
+ 
 \end_layout
 
 \end_body

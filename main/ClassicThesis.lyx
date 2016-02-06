@@ -247,13 +247,20 @@ pagenumbering{arabic}
 \end_layout
 
 \begin_layout Part
-Introduction
+Preliminaries
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
 filename "Chapter01.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "Chapter02.lyx"
 
 \end_inset
 
@@ -344,23 +351,20 @@ name "part:2"
 
 \end_inset
 
-Theoretical Background
+Theoretical Contribution
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "Chapter02.lyx"
+filename "ChapterEM.lyx"
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "Chapter03.lyx"
+filename "Chapter04.lyx"
 
 \end_inset
 
@@ -465,26 +469,6 @@ name "part:3"
 \end_inset
 
 Theoretical Contribution
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "Chapter04.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "ChapterEM.lyx"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Part

@@ -1055,11 +1055,29 @@ name "thm:approx-sim"
 \end_inset
 
 Let 
+\begin_inset Formula $X$
+\end_inset
+
+ be the stationary solution to 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:basic-sde"
+
+\end_inset
+
+ in one dimension, and let 
 \begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
- be the canonical process on 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+ be the solution to 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:basic-sde"
+
+\end_inset
+
+ in two dimensions with initial condition 
+\begin_inset Formula $\mathbf{X}^{\nu}\sim\nu$
 \end_inset
 
 .
@@ -1282,6 +1300,15 @@ We will first show that
 \end_inset
 
 .
+ For any pair 
+\begin_inset Formula $\mathbf{z}=(a,b)$
+\end_inset
+
+, let 
+\begin_inset Formula $\tilde{\mathbf{z}}=(b,a)$
+\end_inset
+
+.
  By definition of 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
@@ -1297,7 +1324,7 @@ We will first show that
 , as 
 \begin_inset Formula 
 \[
-\mathscr{B}=\left\{ \mathbf{X}_{1}^{*,\left(1\right)}=\mathbf{X}_{0}^{\nu,\left(2\right)},\mathbf{X}_{1}^{*,\left(2\right)}=\mathbf{X}_{0}^{\nu,\left(1\right)}\right\} 
+\mathscr{B}=\left\{ \mathbf{X}_{1}^{*}=\tilde{\mathbf{X}}_{0}^{\nu}\right\} 
 \]
 
 \end_inset
@@ -1322,7 +1349,7 @@ reference "lem:time-reversal"
 
 \end_inset
 
-, we therefore know that the measure induced by 
+, we therefore know that 
 \begin_inset Formula $\mathbf{X}^{*}$
 \end_inset
 
@@ -1339,15 +1366,15 @@ reference "lem:time-reversal"
 \begin_inset Formula $\mathbf{X}^{*}$
 \end_inset
 
-) is equal to the measure induced by the time-reversed process 
-\begin_inset Formula $(\bar{\mathbf{X}}_{1-t}^{\nu,\left(2\right)},\bar{\mathbf{X}}_{1-t}^{\nu,\left(1\right)})$
+) is equal in distribution to the time-reversed process 
+\begin_inset Formula $\tilde{\bar{\mathbf{X}}}_{1-t}^{\nu}$
 \end_inset
 
 , which by construction of 
 \begin_inset Formula $\mathbf{Z}$
 \end_inset
 
- gives that 
+ and the strong Markov property gives that 
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)=\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
 \end_inset
 
@@ -1359,49 +1386,66 @@ We now show that
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
 \end_inset
 
- is also equal to the measure induced by two independent
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges of 
-\begin_inset Formula $X$
-\end_inset
-
- subject to some conditions.
- By definition of the process 
-\begin_inset Formula $\mathbf{X}^{\nu}$
-\end_inset
-
-, 
-\begin_inset Formula $\mathscr{B}$
-\end_inset
-
- represents the event that 
-\begin_inset Formula $(\mathbf{X}_{0}^{\nu,\left(1\right)},\mathbf{X}_{1}^{*,\left(1\right)})$
-\end_inset
-
- and 
-\begin_inset Formula $(\mathbf{X}_{0}^{*,\left(2\right)},\mathbf{X}_{1}^{\nu,\left(2\right)}$
-\end_inset
-
-) are distributed with laws 
+ is also equal to the measure induced by a 
 \begin_inset Formula $\nu$
 \end_inset
 
- and 
+-bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ and a 
 \begin_inset Formula $\tilde{\nu}$
 \end_inset
 
- respectively.
- So, the event 
-\begin_inset Formula $\left\{ \mathscr{B}\cap\mathscr{R}\right\} $
+-bridge of 
+\begin_inset Formula $X$
 \end_inset
 
- is the event that 
+, subject to some conditions.
+ In particular, we note that we may disintegrate 
+\begin_inset Formula $\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R})$
+\end_inset
+
+ by writing 
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R}) & = & \int\mathbb{Y}(\cdot\mid\mathscr{R},\mathbf{Y}_{1}=\tilde{\mathbf{Y}}_{0},\mathbf{Y}_{0}=\mathbf{y}_{0})\nu(d\mathbf{y}_{0})\\
+ & = & \int\mathbb{Y}(\cdot\mid\mathscr{R},\mathbf{Y}_{0,1}^{(2)}=\tilde{\mathbf{Y}}_{0,1}^{(1)},\mathbf{Y}_{0,1}^{(1)}=\mathbf{y}_{0,1}^{(1)})\nu(d\mathbf{y}_{0,1}^{(1)})
+\end{eqnarray*}
+
+\end_inset
+
+As such, we can understand 
+\begin_inset Formula $\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R})$
+\end_inset
+
+ as the Baudoin 
+\begin_inset Formula $(\mathbf{Y}_{0,1}^{(1)},\nu$
+\end_inset
+
+)-conditioning of 
+\begin_inset Formula $\mathbb{Y}$
+\end_inset
+
+ conditional on the coordinates of 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
- is a 
+ being hit by the respective coordinates of 
+\begin_inset Formula $\mathbf{X}^{*}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{Y}_{1}^{(2)}=\tilde{\mathbf{Y}}_{0}^{(1)}$
+\end_inset
+
+.
+ It is clear then, that 
+\begin_inset Formula $\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R})$
+\end_inset
+
+ is the measure induced by a 
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -1409,19 +1453,16 @@ bridge of
 \begin_inset Formula $X$
 \end_inset
 
- in its first coordinate and an independent, time-reversed 
-\begin_inset Formula $\nu-$
+ and a related, time-reversed 
+\begin_inset Formula $\tilde{\nu}-$
 \end_inset
 
 bridge of 
 \begin_inset Formula $X$
 \end_inset
 
- in its second coordinate, where the coordinates of 
-\begin_inset Formula $\mathbf{Y}$
-\end_inset
-
- are hit by the respective coordinates of an independent Baudoin 
+, where each of the bridges is hit by the respective coordinate of an independen
+t Baudoin 
 \begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
 \end_inset
 
@@ -1556,7 +1597,8 @@ Finally, we simply note that
 \begin_inset Formula $\bar{\mathbf{X}}^{\nu}$
 \end_inset
 
- are equal in distribution, and therefore the first coordinate of 
+ are equal in distribution, and by the strong Markov property the first
+ coordinate of 
 \begin_inset Formula $\mathbf{Z}$
 \end_inset
 
@@ -2433,6 +2475,7 @@ hitting
 
 \begin_layout Standard
 \begin_inset Float algorithm
+placement t
 wide false
 sideways false
 status open
@@ -2445,7 +2488,7 @@ Simulation of Exact
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridge
+bridges
 \end_layout
 
 \end_inset
@@ -2555,7 +2598,7 @@ EndFunction
 \backslash
 Function{exact $
 \backslash
-nu$-bridge}{$
+nu$-bridges}{$
 \backslash
 mu, 
 \backslash
