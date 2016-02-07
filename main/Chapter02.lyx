@@ -3,6 +3,15 @@
 \begin_document
 \begin_header
 \textclass classicthesis
+\begin_preamble
+\newref{prop}{name=Proposition~,Name=Proposition~}
+\newref{prob}{name=Problem~,Name=Problem~}
+\newref{thm}{name=Theorem~,Name=Theorem~}
+\newref{chap}{name=Chapter~,Name=Chapter~}
+\newref{part}{name=Part~,Name=Part~}
+\newref{algo}{name=Algorithm~,Name=Algorithm~}
+\newref{lem}{name=Lemma~,Name=Lemma~}
+\end_preamble
 \use_default_options true
 \begin_modules
 theorems-ams
@@ -51,7 +60,7 @@ theorems-chap
 \paperorientation portrait
 \suppress_date false
 \justification true
-\use_refstyle 0
+\use_refstyle 1
 \branch ch02only
 \selected 1
 \filename_suffix 0
@@ -127,13 +136,13 @@ From this point on, unless otherwise noted, we always consider the probability
 
 .
  The canonical process 
-\begin_inset Formula $X=\left\{ X_{t}\right\} _{t\in\left[0,1\right]}$
+\begin_inset Formula $\mathbf{X}=\left\{ \mathbf{X}_{t}\right\} _{t\in\left[0,1\right]}$
 \end_inset
 
  is defined to be such that 
 \begin_inset Formula 
 \[
-X_{t}\left(\omega\right)\coloneqq\omega\left(t\right)
+\mathbf{X}_{t}\left(\omega\right)\coloneqq\omega\left(t\right),
 \]
 
 \end_inset
@@ -143,13 +152,12 @@ where
 \end_inset
 
 .
- .
  For any subset 
 \begin_inset Formula $\mathcal{T}\subseteq\left[0,1\right]$
 \end_inset
 
 , let 
-\begin_inset Formula $X_{\mathcal{T}}=\left\{ X_{t}\right\} _{t\in\mathcal{T}}$
+\begin_inset Formula $\mathbf{X}_{\mathcal{T}}=\left\{ \mathbf{X}_{t}\right\} _{t\in\mathcal{T}}$
 \end_inset
 
  be the canonical process over 
@@ -157,7 +165,7 @@ where
 \end_inset
 
 , 
-\begin_inset Formula $\mathcal{F}_{\mathcal{T}}=\sigma\left(\left\{ X_{t}\left(\omega\right):t\in\mathcal{T},\omega\in\Omega\right\} \right)$
+\begin_inset Formula $\mathcal{F}_{\mathcal{T}}=\sigma\left(\left\{ \mathbf{X}_{t}\left(\omega\right):t\in\mathcal{T},\omega\in\Omega\right\} \right)$
 \end_inset
 
  be the 
@@ -177,7 +185,7 @@ algebra of events observed during
 \end_inset
 
  to 
-\begin_inset Formula $\Omega_{\mathcal{T}}:=\left\{ X_{t}\left(\omega\right):t\in\mathcal{T},\omega\in\Omega\right\} $
+\begin_inset Formula $\Omega_{\mathcal{T}}\coloneqq\left\{ \mathbf{X}_{t}\left(\omega\right):t\in\mathcal{T},\omega\in\Omega\right\} $
 \end_inset
 
 .
@@ -197,11 +205,108 @@ algebra of events observed during
 \end_layout
 
 \begin_layout Standard
-We shall always denote probability measures by capital letters 
+In the next Part, we will study in detail time-homogenous Itô diffusions
+ i.e.
+ continuous and strongly Markovian diffusion processes (where strongly Markovian
+ is to be defined below).
+ In particular, we will study processes 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ of the form 
+\begin_inset Formula 
+\[
+\mathbf{X}_{t}-\mathbf{X}_{0}=\int_{0}^{t}\mu(\mathbf{X}_{s})ds+\int_{0}^{t}\sigma(\mathbf{X}_{s})d\mathbf{W}_{s},
+\]
+
+\end_inset
+
+for a vector of independent Wiener processes 
+\begin_inset Formula $\mathbf{W}$
+\end_inset
+
+ where the second integral is one in the sense of Itô.
+ As per convention, we will refer to such processes as solutions to the
+ stochastic differential equation (SDE)
+\begin_inset Formula 
+\[
+d\mathbf{X}_{t}=\mu(\mathbf{X}_{t})dt+\sigma(\mathbf{X}_{t})d\mathbf{W}_{t},
+\]
+
+\end_inset
+
+with a given initial condition on 
+\begin_inset Formula $\mathbf{X}_{0}$
+\end_inset
+
+.
+ In all diffusions to be studied, we will assume that 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ are suitably regular, admitting a weakly unique solution (i.e.
+ all solutions have the same finite-dimensional distributions), and an invariant
+ measure 
+\begin_inset Formula $\Pi$
+\end_inset
+
+ induced by such a solution, which can be normalized to a probability density.
+ Note, for example, that these assumptions exclude the Wiener process, since
+ the Lebesgue measure cannot be normalized to a density.
+ We further assume that 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ is 
+\begin_inset Formula $\gamma$
+\end_inset
+
+-symmetric in the sense of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "silverstein-1974"
+
+\end_inset
+
+, so that there exists a unique function 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ such that for any 
+\begin_inset Formula $\mathbf{x},\mathbf{y}$
+\end_inset
+
+ in the state space,
+\begin_inset Formula 
+\[
+\gamma(\mathbf{x})p_{t}(\mathbf{x},\mathbf{y})=\gamma(\mathbf{y})p_{t}(\mathbf{y},\mathbf{x}),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $p_{t}$
+\end_inset
+
+ is the transition density associated with the diffusion.
+ Note that this together with the stationarity requirement implies that
+ stationary solutions 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ are reversible.
+\end_layout
+
+\begin_layout Standard
+We shall denote probability measures by capital letters 
 \begin_inset Formula $\mathbb{P},\mathbb{Q},\dots$
 \end_inset
 
- in blackboard boldface.
+ in blackboard boldface with few exceptions.
  Random variables will be denoted by capital letters 
 \begin_inset Formula $X,Y,\dots$
 \end_inset
@@ -273,7 +378,8 @@ th element of such a vector due to the overloading of the subscript operator.
 
  be the set of real numbers.
  A full list of notation can be found at the end of the thesis.
- Having set our notation, we begin with the theory of Markov measures.
+ Having set our notation, we begin with the theory of Markov measures, focusing
+ on one-dimensional processes for expositional clarity.
 \end_layout
 
 \begin_layout Section
@@ -293,6 +399,7 @@ key "leonard-2014"
 \end_inset
 
 .
+ 
 \end_layout
 
 \begin_layout Standard
@@ -318,13 +425,13 @@ Markov measure
 \end_inset
 
  and all 
-\begin_inset Formula $A\in\mathcal{F}_{[0,t]},B\in\mathcal{F}_{[t,1]}$
+\begin_inset Formula $A\in\mathcal{F}_{[t,1]}$
 \end_inset
 
 ,
 \begin_inset Formula 
 \[
-\mathbb{P}(B\mid\mathcal{F}_{[0,t]})=\mathbb{P}(B\mid\mathcal{F}_{t}),\mbox{ }\mathbb{P}-a.e.
+\mathbb{P}(A\mid\mathcal{F}_{[0,t]})=\mathbb{P}(A\mid\mathcal{F}_{t}),\mbox{ }\mathbb{P}-a.e.
 \]
 
 \end_inset
@@ -359,10 +466,10 @@ A probability measure
 \end_inset
 
 , any 
-\begin_inset Formula $\mathcal{F}_{[0,t]}-$
+\begin_inset Formula $\mathcal{F}_{[0,t]}$
 \end_inset
 
-stopping time 
+-stopping time 
 \begin_inset Formula $\tau$
 \end_inset
 
@@ -409,14 +516,7 @@ We define now the transition kernels associated with a given Markov measure
 \begin_inset Formula $(Y,\mathcal{B})$
 \end_inset
 
-, a regular conditional probability in the sense of 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "breiman-1968"
-
-\end_inset
-
- is a function 
+, a regular conditional probability is a function 
 \begin_inset Formula $v:X\times\mathcal{B}\rightarrow\left[0,1\right]$
 \end_inset
 
@@ -710,7 +810,7 @@ reference "thm:markov-construction-thm"
  in the following way:
 \begin_inset Formula 
 \[
-\mathbb{P}=\int_{\Omega_{0,1}}\mathbb{P}(\cdot\mid X_{0}=x,X_{1}=y)\mathbb{P}_{0,1}(dxdy)
+\mathbb{P}=\int_{\Omega_{0,1}}\mathbb{P}(\cdot\mid X_{0}=x,X_{1}=y)\mathbb{P}_{0,1}(dxdy).
 \]
 
 \end_inset
@@ -736,12 +836,11 @@ key "fitz-pitman-1993"
 \begin_inset Formula $\mathbb{P}^{x,y}$
 \end_inset
 
- of the Markov measure 
+ of 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
-.
- We note that such a bridge measure inherits the Markov property.
+, and note that bridge measures inherit the Markov property.
 \end_layout
 
 \begin_layout Proposition
@@ -778,16 +877,7 @@ Let
 \end_layout
 
 \begin_layout Standard
-Before continuing, we set a reference Markov measure 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- which is absolutely continuous with respect to the Lebesgue measure.
- We assume this measure admits a family of bridge measures 
-\begin_inset Formula $\mathbb{P}^{x,y}$
-\end_inset
-
- that are defined everywhere, and the transition kernels 
+Now, suppose the transition kernels 
 \begin_inset Formula $P_{t}(x,\cdot)$
 \end_inset
 
@@ -796,56 +886,35 @@ Before continuing, we set a reference Markov measure
 \end_inset
 
  of 
-\begin_inset Formula $\mathbb{R}$
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
- are absolutely continuous with respect to the Lebesgue measure for any
- 
-\begin_inset Formula $0\leq s<t\leq1$
+ have Lebesgue densities 
+\begin_inset Formula $p_{t}(x,y)$
 \end_inset
 
-.
- Then, we can write the transition densities
-\begin_inset Formula 
-\begin{eqnarray*}
-p_{t}(x,y) & = & P_{t}(x,dy)/dy\\
-p_{t}^{*}(x,y) & = & P_{t}^{*}(dx,y)/dx,\mbox{ }
-\end{eqnarray*}
-
+ and 
+\begin_inset Formula $p_{t}^{*}(x,y)$
 \end_inset
 
-defined almost everywhere with respect to the appropriate measures.
-\end_layout
-
-\begin_layout Standard
-We can also write 
-\begin_inset Formula $\mathbb{P}_{0}(dx)=p_{0}(x)dx$
-\end_inset
-
- where 
-\begin_inset Formula $p_{0}(x)=\int p_{1}^{*}(x,y)\mathbb{P}_{1}(dy)$
-\end_inset
-
- is the density of the marginal measure 
-\begin_inset Formula $\mathbb{P}_{0}$
-\end_inset
-
- with respect to the Lebesgue measure.
- For convenience, we will write 
-\begin_inset Formula $\mathbb{P}_{0,1}(dxdy)=c(x,y)dxdy$
-\end_inset
-
-, defining 
-\begin_inset Formula $c(x,y)=p_{0}(x)p_{1}(x,y)$
-\end_inset
-
- as the density of the joint marginal measure 
+ respectively, and suppose that joint marginal measure 
 \begin_inset Formula $\mathbb{P}_{0,1}$
 \end_inset
 
- with respect to the Lebesgue measure.
- Now, we may state a general result about the marginal density of a Markov
- bridge.
+ has Lebesgue density 
+\begin_inset Formula $c(x,y)=p_{0}(x)p_{1}(x,y)$
+\end_inset
+
+ where 
+\begin_inset Formula $p_{0}(x)$
+\end_inset
+
+ is the density of 
+\begin_inset Formula $\mathbb{P}_{0}$
+\end_inset
+
+.
+ Then, we may state a result about the marginal density of a Markov bridge.
 \end_layout
 
 \begin_layout Theorem
@@ -899,7 +968,7 @@ For all
  is given by 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{P}_{t}^{x,y}}{d\mathbb{P}_{t}}=\frac{p_{t}^{*}(x,\cdot)p_{1-t}(\cdot,y)}{c(x,y)}
+\frac{d\mathbb{P}_{t}^{x,y}}{d\mathbb{P}_{t}}=\frac{p_{t}^{*}(x,\cdot)p_{1-t}(\cdot,y)}{c(x,y)}.
 \]
 
 \end_inset
@@ -1017,6 +1086,13 @@ key "baudoin-2002"
 
 \end_inset
 
+
+\begin_inset CommandInset label
+LatexCommand label
+name "def:conditioning"
+
+\end_inset
+
 A Baudoin 
 \begin_inset Formula $(Y,\nu)$
 \end_inset
@@ -1025,7 +1101,7 @@ A Baudoin
 \begin_inset Formula $(Y,\nu)$
 \end_inset
 
- where
+ where 
 \end_layout
 
 \begin_deeper
@@ -1038,7 +1114,7 @@ A Baudoin
 \end_inset
 
 -measurable random variable valued in 
-\begin_inset Formula $\mathbb{R}^{n}$
+\begin_inset Formula $\mathcal{R}^{n}$
 \end_inset
 
  representing the functional being conditioned,
@@ -1049,7 +1125,7 @@ A Baudoin
 \end_inset
 
  is a probability measure on 
-\begin_inset Formula $\mathcal{B}(\mathbb{R}^{n})$
+\begin_inset Formula $\mathcal{B}(\mathcal{R}^{n})$
 \end_inset
 
  representing the conditioning, 
@@ -1089,7 +1165,7 @@ such that, for
 \end_inset
 
  is bounded for any convex function 
-\begin_inset Formula $\varphi:\mathbb{R}^{+}\rightarrow\mathbb{R}^{+}$
+\begin_inset Formula $\varphi:\mathcal{R}^{+}\rightarrow\mathcal{R}^{+}$
 \end_inset
 
 , and 
@@ -1105,11 +1181,11 @@ for any
 \end_inset
 
  for all 
-\begin_inset Formula $y\in\mathbb{R}^{n}$
+\begin_inset Formula $y\in\mathcal{R}^{n}$
 \end_inset
 
  such that for any 
-\begin_inset Formula $\mathcal{F}_{:t}-$
+\begin_inset Formula $\mathcal{F}_{[0,t]}-$
 \end_inset
 
 measurable random variable 
@@ -1129,8 +1205,13 @@ measurable random variable
 
 \end_deeper
 \begin_layout Standard
-We now present a result characterizing a particular element in the set of
- probability measures which are absolutely continuous and have a sufficiently
+From this point on, we will always assume that the tuples 
+\begin_inset Formula $(Y,\nu)$
+\end_inset
+
+ we deal with satisfy the conditions above.
+ We now present a result characterizing a particular element in the set
+ of probability measures which are absolutely continuous and have a sufficiently
  smooth density with respect to 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
@@ -1179,7 +1260,7 @@ Fix a Baudoin conditioning
 \end_inset
 
  on the usual probability space and any convex function 
-\begin_inset Formula $\varphi:\mathbb{R}^{+}\rightarrow\mathbb{R}^{+}$
+\begin_inset Formula $\varphi:\mathcal{R}^{+}\rightarrow\mathcal{R}^{+}$
 \end_inset
 
 .
@@ -1238,7 +1319,7 @@ Then, for any
 , 
 \begin_inset Formula 
 \[
-\inf_{\mathcal{Q}_{\nu,\varphi}}\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\right]=\mathbb{E}_{\mathbb{P}^{\nu}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\right]
+\inf_{\mathcal{Q}_{\nu,\varphi}}\mathbb{E}_{\mathbb{Q}}\left[\varphi\left(\frac{d\mathbb{Q}}{d\mathbb{P}}\right)\right]=\mathbb{E}_{\mathbb{P}^{\nu}}\left[\varphi\left(\frac{d\mathbb{P}^{\nu}}{d\mathbb{P}}\right)\right],
 \]
 
 \end_inset
@@ -1280,15 +1361,11 @@ We refer to
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- the Baudoin 
+ as the Baudoin 
 \begin_inset Formula $(Y,\nu)$
 \end_inset
 
--bridge of 
-\begin_inset Formula $X$
-\end_inset
-
-, the canonical process on 
+-bridge of the canonical process on 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -1354,7 +1431,7 @@ algebra generated by
  as
 \begin_inset Formula 
 \[
-\mathbb{P}^{\nu}=\int_{\mathbb{R}^{n}}\mathbb{P}(\cdot\mid Y=y)\nu(dy)
+\mathbb{P}^{\nu}=\int_{\mathcal{R}^{n}}\mathbb{P}(\cdot\mid Y=y)\nu(dy),
 \]
 
 \end_inset
@@ -1435,7 +1512,7 @@ For any
  is given by 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathbb{R}^{n}}\eta_{t}^{y}\nu(dy)
+\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathcal{R}^{n}}\eta_{t}^{y}\nu(dy).
 \]
 
 \end_inset

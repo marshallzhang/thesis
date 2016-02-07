@@ -5,6 +5,13 @@
 \textclass classicthesis
 \begin_preamble
 \usepackage{algorithm,algpseudocode}
+\newref{prop}{name=Proposition~,Name=Proposition~}
+\newref{prob}{name=Problem~,Name=Problem~}
+\newref{thm}{name=Theorem~,Name=Theorem~}
+\newref{chap}{name=Chapter~,Name=Chapter~}
+\newref{part}{name=Part~,Name=Part~}
+\newref{algo}{name=Algorithm~,Name=Algorithm~}
+\newref{lem}{name=Lemma~,Name=Lemma~}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -54,7 +61,7 @@ theorems-chap
 \paperorientation portrait
 \suppress_date false
 \justification true
-\use_refstyle 0
+\use_refstyle 1
 \index Index
 \shortcut idx
 \color #008000
@@ -77,10 +84,11 @@ theorems-chap
 \begin_body
 
 \begin_layout Chapter
-\begin_inset Formula $\nu-$
+The Simulation of 
+\begin_inset Formula $\nu$
 \end_inset
 
-bridges and Simulation
+-bridges
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:4"
@@ -90,59 +98,7 @@ name "chap:4"
 
 \end_layout
 
-\begin_layout Standard
-In this chapter, we return to the original notion of a bridge process (a
- process that 
-\begin_inset Quotes eld
-\end_inset
-
-bridges
-\begin_inset Quotes erd
-\end_inset
-
- a given start and end value), but expand the concept with Baudoin's idea
- of conditioning.
- In particular, we will explore what it means to condition a process on
- the joint distribution 
-\begin_inset Formula $\nu$
-\end_inset
-
- of its initial and end values.
- This is a generalization of traditional diffusion bridges in the sense
- that such bridges are simply 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges where the marginal measures of 
-\begin_inset Formula $\nu$
-\end_inset
-
- are Dirac delta functions.
- Of course, Baudoin's general results hold in particular for these 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges, and thus we focus here on proposing an approximate simulation strategy
- for such bridges in the spirit of 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bladt-sorensen-2014"
-
-\end_inset
-
-, as well as quantifying how 
-\begin_inset Quotes eld
-\end_inset
-
-approximate
-\begin_inset Quotes erd
-\end_inset
-
- the bridges sampled are.
-\end_layout
-
 \begin_layout Section
-An Introduction to 
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -150,27 +106,37 @@ bridges
 \end_layout
 
 \begin_layout Standard
-We begin by fixing the objects which we will study.
- We will work on the usual probability space and restrict our focus to time-homo
-genous Itô diffusions, i.e.
- continuous and strongly Markovian diffusions.
- In particular, fixing 
-\begin_inset Formula $\mathbf{W}=(W^{\left(1\right)},\dots,W^{\left(n\right)})$
+To begin, we note that the canonical processes on the measures 
+\begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- for some 
-\begin_inset Formula $n$
+ from the previous chapter can be interpreted as diffusions conditioned
+ to follow a given law 
+\begin_inset Formula $\nu$
 \end_inset
 
- to be a vector of independent Wiener processes, we will study the solution
+ at various time instances.
+ These processes can be seen as generalized diffusion bridges, in the sense
+ that when 
+\begin_inset Formula $\nu$
+\end_inset
+
+ is a product measure of Dirac delta functions, these processes are regular
+ diffusion bridges.
  
+\end_layout
+
+\begin_layout Standard
+In this chapter, we will study these generalized diffusion bridges and develop
+ methods to sample such bridges.
+ In particular, we will examine solutions 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
 
  to the stochastic differential equation
 \begin_inset Formula 
 \begin{equation}
-d\mathbf{X}_{t}=\mu\left(\mathbf{X}_{t}\right)dt+\sigma\left(\mathbf{X}_{t}\right)d\mathbf{W}_{t}\label{eq:basic-sde}
+d\mathbf{X}_{t}=\mu(\mathbf{X}_{t})dt+\Sigma(\mathbf{X}_{t})d\mathbf{W}_{t},\label{eq:basic-sde}
 \end{equation}
 
 \end_inset
@@ -180,89 +146,39 @@ where
 \end_inset
 
  and 
-\begin_inset Formula $\sigma$
+\begin_inset Formula $\Sigma(\mathbf{X}_{t})=\sigma(\mathbf{X}_{t})I$
 \end_inset
 
- are sufficiently regular, admitting a weakly unique solution (i.e.
- all solutions have the same finite-dimensional distribution) and an invariant
- measure 
-\begin_inset Formula $\pi$
+ have known parametric forms, abstracting from the parameterization 
+\begin_inset Formula $\theta$
 \end_inset
 
- for such a solution.
- Further assume that 
-\begin_inset Formula $\pi$
+ in the previous chapter.
+ Fix a Baudoin conditioning 
+\begin_inset Formula $((A,B),\nu)$
 \end_inset
 
- can be normalized to a probability density (e.g.
- the Lebesgue measure is an invariant measure for the Wiener process, but
- 
-\begin_inset Formula $\int_{\mathbb{R}}dx=\infty$
+ without loss of generality since 
+\begin_inset Formula $\mathbf{X}$
 \end_inset
 
-, and thus the measure does not meet this condition).
- We will also assume for the remainder of this chapter that a solution to
- 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
+ is Markov, so that for any 
+\begin_inset Formula $\nu^{*}(dx_{t_{0}}\cdots dx_{t_{n}})$
 \end_inset
 
- for any distribution on 
-\begin_inset Formula $\mathbf{X}_{0}$
+, there exist 
+\begin_inset Formula $\nu^{(i)}=(dx_{t_{i-1}}dx_{t_{i}})$
 \end_inset
 
- is 
-\begin_inset Formula $\gamma-$
-\end_inset
-
-symmetric in the sense of 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "silverstein-1974"
-
-\end_inset
-
-; that is, for
-\begin_inset Formula $\left|t-s\right|=\left|t'-s'\right|$
-\end_inset
-
-, there exists a unique function 
-\begin_inset Formula $\gamma$
-\end_inset
-
- satisfying 
+ such that 
 \begin_inset Formula 
 \[
-\mathbb{P}\left(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x}\right)\gamma\left(\mathbf{x}\right)=\mathbb{P}\left(\mathbf{X}_{t'}\in\cdot\mid\mathbf{X}_{s'}=\mathbf{y}\right)\gamma\left(\mathbf{y}\right)
+\mathbb{P}^{\nu^{*}}=\bigotimes_{n=1}^{n}\mathbb{P}^{\nu^{(i)}}.
 \]
 
 \end_inset
 
-where 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- is the measure that 
-\begin_inset Formula $\mathbf{X}$
-\end_inset
-
- induces.
- Note this implies that 
-\begin_inset Formula $\mathbf{X}$
-\end_inset
-
- is reversible.
-\end_layout
-
-\begin_layout Standard
-Now, fix a probability measure 
-\begin_inset Formula $\nu\left(dxdy\right)$
-\end_inset
-
-.
- We will denote the probability measure induced by the stationary solution
+We will denote the probability measure induced by the stationary solution
  to 
 \begin_inset CommandInset ref
 LatexCommand eqref
@@ -276,10 +192,10 @@ reference "eq:basic-sde"
 
 .
  Note that the Baudoin 
-\begin_inset Formula $\left(\mathbf{X}_{0},\nu\right)-$
+\begin_inset Formula $(\mathbf{X}_{0},\nu)$
 \end_inset
 
-conditioning of 
+-conditioning of 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -300,10 +216,12 @@ reference "eq:basic-sde"
 \end_inset
 
  as usual.
+ 
 \end_layout
 
 \begin_layout Standard
-We now present a definition of the main topic of study of this thesis.
+We now present a formal definition of the sort of generalized diffusion
+ bridge we are interested in.
  We will focus on the one-dimensional case, though multivariate extensions
  are possible.
 \end_layout
@@ -340,7 +258,7 @@ reference "eq:basic-sde"
 \begin_inset Formula $\mathbb{X}$
 \end_inset
 
- be the measure it induces on the usual probability space.
+ be the measure it induces.
  Then, the 
 \begin_inset Formula $\nu-$
 \end_inset
@@ -350,11 +268,11 @@ bridge of
 \end_inset
 
  is the stochastic process on 
-\begin_inset Formula $t\in\left[0,1\right]$
+\begin_inset Formula $t\in[0,1]$
 \end_inset
 
  that induces the Baudoin 
-\begin_inset Formula $\left(X_{0,1},\nu\right)-$
+\begin_inset Formula $(X_{0,1},\nu)-$
 \end_inset
 
 conditioning of 
@@ -365,7 +283,7 @@ conditioning of
 \begin_inset Formula $\mathbb{X}^{\nu}$
 \end_inset
 
-, on the same space.
+.
 \end_layout
 
 \begin_layout Standard
@@ -399,7 +317,7 @@ The marginal density of
  is given by 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{X}_{t}^{\nu}}{d\mathbb{X}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{0,t}^{*}\left(x_{0},\cdot\right)p_{t,1}\left(\cdot,x_{1}\right)}{c\left(x_{0},x_{1}\right)}\nu\left(dx_{0}dx_{1}\right)
+\frac{d\mathbb{X}_{t}^{\nu}}{d\mathbb{X}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{0,t}^{*}(x_{0},\cdot)p_{t,1}(\cdot,x_{1})}{c(x_{0},x_{1})}\nu(dx_{0}dx_{1}),
 \]
 
 \end_inset
@@ -457,7 +375,7 @@ for arbitrary
  Therefore, 
 \begin_inset Formula 
 \[
-\eta_{t}^{x,y}=\frac{p_{0,t}^{*}\left(x,X_{t}\right)r_{t,1}\left(X_{t},y\right)}{c\left(x,y\right)}
+\eta_{t}^{x,y}=\frac{p_{0,t}^{*}(x,X_{t})r_{t,1}(X_{t},y)}{c(x,y)}
 \]
 
 \end_inset
@@ -474,7 +392,7 @@ is the Radon-Nikodym derivative associated with the Baudoin
  Then, 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "prop:pv-density"
+reference "prop:pv-density-1"
 
 \end_inset
 
@@ -521,12 +439,12 @@ key "baudoin-2002"
 
 -conditionings in great detail, and his results carry over easily to this
  specific case.
- We therefore focus on proposing a simulation scheme for 
+ We therefore focus on proposing approximate and exact simulation schemes
+ for 
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridges, and evaluating such a scheme theoretically, for the remainder of
- this chapter.
+bridges in the remainder of this chapter.
 \end_layout
 
 \begin_layout Section
@@ -619,7 +537,7 @@ reference "thm:approx-sim"
 
 \end_inset
 
-, and given in detail in Algorithm 
+, and given in detail in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "algo:approx-sim"
@@ -678,7 +596,7 @@ The following measures are equal:
 \end_inset
 
 , the Baudoin 
-\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)-$
+\begin_inset Formula $(\mathbf{X}_{1},\nu)-$
 \end_inset
 
 conditioning of 
@@ -700,7 +618,7 @@ reference "eq:basic-sde"
 \end_inset
 
  with initial distribution 
-\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\nu\left(d\mathbf{x}_{1}\right)$
+\begin_inset Formula $\int p_{1}(\mathbf{x}_{1},\cdot)\nu(d\mathbf{x}_{1})$
 \end_inset
 
 .
@@ -758,9 +676,9 @@ Let
  as
 \begin_inset Formula 
 \begin{eqnarray}
- &  & \mathbb{P}^{\nu,\leftarrow}\left(\mathbf{X}_{t}^{\nu,\leftarrow}\in\cdot\mid\mathbf{X}_{s}^{\nu,\leftarrow}=\mathbf{x}\right)\nonumber \\
- & = & \mathbb{P}^{\nu}\left(\mathbf{X}_{1-t}^{\nu}\in\cdot\mid\mathbf{X}_{1-s}^{\nu}=\mathbf{x}\right)\nonumber \\
- & = & \int\mathbb{P}\left(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0}\right)\nu\left(d\mathbf{x}_{0}\right)\label{eq:p-integral-reversal}
+ &  & \mathbb{P}^{\nu,\leftarrow}(\mathbf{X}_{t}^{\nu,\leftarrow}\in\cdot\mid\mathbf{X}_{s}^{\nu,\leftarrow}=\mathbf{x})\nonumber \\
+ & = & \mathbb{P}^{\nu}(\mathbf{X}_{1-t}^{\nu}\in\cdot\mid\mathbf{X}_{1-s}^{\nu}=\mathbf{x})\nonumber \\
+ & = & \int\mathbb{P}(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0})\nu(d\mathbf{x}_{0})\label{eq:p-integral-reversal}
 \end{eqnarray}
 
 \end_inset
@@ -778,8 +696,8 @@ where the first equality is by definition and the second equality follows
 symmetry condition, we have
 \begin_inset Formula 
 \begin{eqnarray*}
- &  & \int\mathbb{P}\left(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0}\right)\nu\left(d\mathbf{x}_{0}\right)\\
- & = & \int\mathbb{P}\left(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1}\right)\nu\left(d\mathbf{x}_{1}\right)
+ &  & \int\mathbb{P}(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0})\nu(d\mathbf{x}_{0})\\
+ & = & \int\mathbb{P}(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1})\nu(d\mathbf{x}_{1})
 \end{eqnarray*}
 
 \end_inset
@@ -794,8 +712,8 @@ reference "eq:p-integral-reversal"
 , gives 
 \begin_inset Formula 
 \begin{eqnarray*}
-\mathbb{P}^{\nu,\leftarrow}\left(\mathbf{X}_{t}^{\nu,\leftarrow}\in\cdot\mid\mathbf{X}_{s}^{\nu,\leftarrow}=\mathbf{x}\right) & = & \int\mathbb{P}\left(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1}\right)\nu\left(d\mathbf{x}_{1}\right)\\
- & = & \mathbb{Q}\left(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x}\right)
+\mathbb{P}^{\nu,\leftarrow}(\mathbf{X}_{t}^{\nu,\leftarrow}\in\cdot\mid\mathbf{X}_{s}^{\nu,\leftarrow}=\mathbf{x}) & = & \int\mathbb{P}(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1})\nu(d\mathbf{x}_{1})\\
+ & = & \mathbb{Q}(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x})
 \end{eqnarray*}
 
 \end_inset
@@ -826,7 +744,7 @@ Now, note that since
 \end_inset
 
  for any 
-\begin_inset Formula $t\in\left[0,1\right]$
+\begin_inset Formula $t\in[0,1]$
 \end_inset
 
 .
@@ -917,14 +835,13 @@ reference "eq:basic-sde"
 
  as
 \begin_inset Formula 
-\begin{eqnarray*}
-\mathbb{P}_{0,1} & = & p_{1}\left(\mathbf{x}_{0},\cdot\right)\pi\left(\mathbf{x}_{0}\right)\\
- & = & p_{1}\left(\mathbf{x}_{1},\cdot\right)\pi\left(\mathbf{x}_{1}\right)
-\end{eqnarray*}
+\[
+\mathbb{P}_{0,1}=p_{1}\left(\mathbf{x}_{0},\cdot\right)\pi\left(\mathbf{x}_{0}\right)=p_{1}\left(\mathbf{x}_{1},\cdot\right)\pi\left(\mathbf{x}_{1}\right)
+\]
 
 \end_inset
 
-where the second equality follows by 
+by 
 \begin_inset Formula $\gamma-$
 \end_inset
 
@@ -992,11 +909,7 @@ reference "eq:basic-sde"
 \end_inset
 
 .
- By 
-\begin_inset Formula $\gamma-$
-\end_inset
-
-symmetry, it follows that 
+ By reversibility, it follows that 
 \begin_inset Formula $\mathbb{P}^{0}$
 \end_inset
 
@@ -1275,6 +1188,14 @@ on the event
 \begin_inset Formula $\mathbb{Z}$
 \end_inset
 
+, and for any pair 
+\begin_inset Formula $\mathbf{p}=(a,b)$
+\end_inset
+
+, let 
+\begin_inset Formula $\tilde{\mathbf{p}}=(b,a)$
+\end_inset
+
 .
 \end_layout
 
@@ -1282,7 +1203,7 @@ on the event
 Now, define the event 
 \begin_inset Formula 
 \begin{equation}
-\mathscr{B}=\left\{ \mathbf{Y}_{1}^{\left(1\right)}=\mathbf{Y}_{0}^{\left(2\right)},\mathbf{Y}_{1}^{\left(2\right)}=\mathbf{Y}_{0}^{\left(1\right)}\right\} \label{eq:bridge-event}
+\mathscr{B}=\left\{ \mathbf{Y}_{1}=\tilde{\mathbf{Y}}_{0}\right\} \label{eq:bridge-event}
 \end{equation}
 
 \end_inset
@@ -1297,15 +1218,6 @@ We will first show that
 
  is equal to 
 \begin_inset Formula $\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
-\end_inset
-
-.
- For any pair 
-\begin_inset Formula $\mathbf{z}=(a,b)$
-\end_inset
-
-, let 
-\begin_inset Formula $\tilde{\mathbf{z}}=(b,a)$
 \end_inset
 
 .
@@ -1689,7 +1601,7 @@ bridge
 
 .
  Then, the density 
-\begin_inset Formula $\tilde{f}$
+\begin_inset Formula $\hat{f}$
 \end_inset
 
  of an approximate 
@@ -1707,7 +1619,7 @@ bridge can be written in terms of the density
 bridge as
 \begin_inset Formula 
 \begin{equation}
-\tilde{f}\left(x\right)=f\left(y\right)\frac{\mbox{Pr}(I_{x,Y})}{\mbox{Pr}(I_{X,Y})}\label{eq:approx-exact-rel}
+\hat{f}\left(x\right)=f\left(y\right)\frac{\mbox{Pr}(I_{x,Y})}{\mbox{Pr}(I_{X,Y})}\label{eq:approx-exact-rel}
 \end{equation}
 
 \end_inset
@@ -2310,15 +2222,15 @@ bridge follows accordingly.
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridge of the one-dimensional solution to 
+bridge of the one-dimensional solution 
+\begin_inset Formula $X$
+\end_inset
+
+ to 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "eq:basic-sde"
 
-\end_inset
-
- 
-\begin_inset Formula $X$
 \end_inset
 
  and an independent hitting diffusion 
@@ -2407,75 +2319,8 @@ reference "eq:approx-exact-rel"
 \end_layout
 
 \begin_layout Standard
-Fortunately, the extension of our approximate 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge sampler to an exact sampler is precisely the same as the extension
- for a regular diffusion bridge, and thus we refer the reader to 
-\begin_inset CommandInset citation
-LatexCommand citet
-before "Section 2.3 in"
-key "bladt-sorensen-2014"
-
-\end_inset
-
- for the derivation of such an extension.
- Following the algorithm presented there, Algorithm 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "algo:exact-sim"
-
-\end_inset
-
- presents a pseudo-marginal Metropolis-Hastings sampler for exact 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges, given
-\end_layout
-
-\begin_layout Enumerate
-
-\noun on
-approximate 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge
-\noun default
-(
-\series bold
-\noun on
-
-\begin_inset Formula $\mu,\sigma,\nu,N$
-\end_inset
-
-
-\series default
-\noun default
-), defined in Algorithm 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "algo:approx-sim"
-
-\end_inset
-
-, and
-\end_layout
-
-\begin_layout Enumerate
-
-\noun on
-hitting
-\noun default
-(), a method of drawing a sample path of the hitting diffusion (the initial
- distribution may need to be sampled through MCMC methods).
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float algorithm
-placement t
+placement H
 wide false
 sideways false
 status open
@@ -2812,6 +2657,73 @@ name "algo:exact-sim"
 \end_layout
 
 \begin_layout Standard
+Fortunately, the extension of our approximate 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge sampler to an exact sampler is precisely the same as the extension
+ for a regular diffusion bridge, and thus we refer the reader to 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Section 2.3 in"
+key "bladt-sorensen-2014"
+
+\end_inset
+
+ for the derivation of such an extension.
+ Following the algorithm presented there, 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "algo:exact-sim"
+
+\end_inset
+
+ presents a pseudo-marginal Metropolis-Hastings sampler for exact 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridges, given
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+approximate 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge
+\noun default
+(
+\series bold
+\noun on
+
+\begin_inset Formula $\mu,\sigma,\nu,N$
+\end_inset
+
+
+\series default
+\noun default
+), defined in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "algo:approx-sim"
+
+\end_inset
+
+, and
+\end_layout
+
+\begin_layout Enumerate
+
+\noun on
+hitting
+\noun default
+(), a method of drawing a sample path of the hitting diffusion (the initial
+ distribution may need to be sampled through MCMC methods).
+\end_layout
+
+\begin_layout Standard
 Note that in a standard Metropolis-Hastings setting, the acceptance ratio
  by 
 \begin_inset CommandInset ref
@@ -2839,7 +2751,7 @@ key "andrieu-roberts"
 \begin_inset Formula $\hat{\rho}\left(x,M\right)$
 \end_inset
 
- in Algorithm 
+ in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "algo:exact-sim"
@@ -2859,6 +2771,29 @@ reference "algo:exact-sim"
 
 .
  
+\end_layout
+
+\begin_layout Standard
+
+\noun on
+exact 
+\begin_inset Formula $\nu-$
+\end_inset
+
+bridge 
+\noun default
+is precisely the method we needed to implement the MCEM algorithm proposed
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "algo:mcem"
+
+\end_inset
+
+.
+ With all the necessary ingredients, we can now move on to evaluating these
+ methods in a simulation setting, and putting theory to practice with data
+ in the next part.
 \end_layout
 
 \end_body

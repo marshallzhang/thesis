@@ -5,6 +5,13 @@
 \textclass classicthesis
 \begin_preamble
 \usepackage{algorithm,algpseudocode}
+\newref{prop}{name=Proposition~,Name=Proposition~}
+\newref{prob}{name=Problem~,Name=Problem~}
+\newref{thm}{name=Theorem~,Name=Theorem~}
+\newref{chap}{name=Chapter~,Name=Chapter~}
+\newref{part}{name=Part~,Name=Part~}
+\newref{algo}{name=Algorithm~,Name=Algorithm~}
+\newref{lem}{name=Lemma~,Name=Lemma~}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -54,7 +61,7 @@ theorems-chap
 \paperorientation portrait
 \suppress_date false
 \justification true
-\use_refstyle 0
+\use_refstyle 1
 \index Index
 \shortcut idx
 \color #008000
@@ -246,6 +253,37 @@ pagenumbering{arabic}
 
 \end_layout
 
+\begin_layout Part Introduction (ClassicThesis)
+In this part, this work is introduced and theoretical foundations are set
+ for the remainder of the thesis to build upon.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:Introduction"
+
+\end_inset
+
+, the central problem of this thesis stated informally and the contributions
+ made are outlined.
+\begin_inset Newline newline
+\end_inset
+
+In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:2"
+
+\end_inset
+
+, the mathematical objects of focus in this thesis are given, and an overview
+ of the requisite theory of Markov measures, Markov bridge measures, and
+ generalized bridges is presented.
+\end_layout
+
 \begin_layout Part
 Preliminaries
 \end_layout
@@ -268,80 +306,58 @@ filename "Chapter02.lyx"
 \end_layout
 
 \begin_layout Part Introduction (ClassicThesis)
-In this part, an overview of the theory of stochastic bridges is given,
- with emphasis on Markov bridges in 
+In this part, the central problem of this thesis treated theoretically,
+ with a focus on simulation-based inference.
+\begin_inset Newline newline
+\end_inset
+
+In 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "chap:2"
+reference "chap:EM"
 
 \end_inset
 
- and the generalized bridges of 
+, the problem of inference on distributional data is formalized and interpreted
+ in the context of maximum liklihood estimation under model misspecification.
+ An MCEM algorithm generalizing those of 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "baudoin-2002"
+key "beskos-2006"
 
 \end_inset
 
- in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:3"
+ and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
 
 \end_inset
 
-.
+ to carry out inference on such data is proposed, and the algorithm's need
+ for a sampler of a special case of a Baudoin bridge is noted.
  
 \begin_inset Newline newline
 \end_inset
 
-
+Accordingly, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "chap:2"
+reference "chap:4"
 
 \end_inset
 
- follows the exposition by 
+, a light theoretical treatment of the specific Baudoin bridges of interest
+ is given, and a simple approximate sampler is developed in the spirit of
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "leonard-2014"
-
-\end_inset
-
- of Markov bridges, beginning with a treatment of standard results regarding
- Markov measures.
- Then, the theory of bridge measures on a reference Markov measure is presented,
- and the chapter concludes with a statement regarding the marginal density
- of a bridge measure with respect to its reference measure.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:3"
-
-\end_inset
-
- begins by briefly exploring the various notions of a generalized bridge
- that have appeared in the literature, and then focuses on the generalized
- bridges of 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "baudoin-2002"
+key "bladt-sorensen-2014"
 
 \end_inset
 
 .
- Some key theorems of 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "baudoin-2002"
-
-\end_inset
-
- are presented.
+ A slightly more complex exact sampler is also proposed.
 \end_layout
 
 \begin_layout Part
@@ -371,8 +387,24 @@ filename "Chapter04.lyx"
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage cleardoublepage
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "Bibliography.lyx"
+
+\end_inset
+
+
+\begin_inset Note Comment
+status open
+
 \begin_layout Part Introduction (ClassicThesis)
-In this part, the central notion of this thesis, a 
+In this part, the central problem of this thesis is explored from a theoretical
+ p, a 
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -411,7 +443,7 @@ reference "chap:4"
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridge in the language of Part 
+bridge in the language of 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "part:2"
@@ -468,14 +500,10 @@ name "part:3"
 
 \end_inset
 
-Theoretical Contribution
-\end_layout
-
-\begin_layout Part
 Empirical Contribution
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Chapter05.lyx"
@@ -485,23 +513,7 @@ filename "Chapter05.lyx"
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Newpage cleardoublepage
-\end_inset
-
-
-\begin_inset CommandInset include
-LatexCommand include
-filename "Bibliography.lyx"
-
-\end_inset
-
-
-\begin_inset Note Comment
-status open
-
 \begin_layout Part
-\start_of_appendix
 Appendix
 \end_layout
 

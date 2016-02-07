@@ -3,6 +3,15 @@
 \begin_document
 \begin_header
 \textclass classicthesis
+\begin_preamble
+\newref{prop}{name=Proposition~,Name=Proposition~}
+\newref{prob}{name=Problem~,Name=Problem~}
+\newref{thm}{name=Theorem~,Name=Theorem~}
+\newref{chap}{name=Chapter~,Name=Chapter~}
+\newref{part}{name=Part~,Name=Part~}
+\newref{algo}{name=Algorithm~,Name=Algorithm~}
+\newref{lem}{name=Lemma~,Name=Lemma~}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language american
@@ -76,7 +85,7 @@ Introduction
 \begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
-name "ch:Introduction"
+name "chap:Introduction"
 
 \end_inset
 
@@ -117,7 +126,7 @@ key "yoshida-1992"
 \series bold
  
 \series default
-by continuous-time stochastic processes, and the availability of only discrete
+by continuous-time diffusion processes, and the availability of only discrete
  observations of such processes in the physical world, such theory is both
  important and applicable.
 \end_layout
@@ -126,11 +135,10 @@ by continuous-time stochastic processes, and the availability of only discrete
 This thesis considers an alternative interpretation of the theory of MLE
  on discretely observed data.
  In particular, we examine the problem from an ex-ante perspective.
- What if, instead of having observed the stochastic process in question
- at discrete time instances, we were told by an omniscient being that such
- a process would take on certain values at future time instances? It seems
- that we ought to be able to conduct MLE on the to-be observed stochastic
- process as usual.
+ What if, instead of having observed the diffusion in question at discrete
+ time instances, we were told by an omniscient being that such a diffusion
+ would take on certain values at future time instances? It seems that we
+ ought to be able to conduct MLE on the to-be observed diffusion as usual.
 \end_layout
 
 \begin_layout Standard
@@ -144,8 +152,8 @@ However, an interesting generalization of the problem is allowed by this
 \end_layout
 
 \begin_layout Standard
-The problem of inference on distributions is highly applicable in a variety
- of instances.
+The problem of inference on distributional data is highly applicable in
+ a variety of instances.
  For example, in economics and finance, we can think of surveys of professional
  forecasters, which return forecasted distributions of macroeconomic indicators
  at discrete points in time, or options markets, in which market-implied
@@ -163,20 +171,8 @@ Contributions and Related Work
 In this thesis, we propose a natural generalization of maximum likelihood
  estimation in the context of the problem above, and offer an interpretation
  of such a procedure as the limiting case of MLE under model misspecification.
- This is a novel problem and solution to the best of our knowledge.
- We also build on the literature surrounding the simulation of diffusion
- bridges (see 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "papa-roberts-2012,bladt-sorensen-2014,bladt-finch-sorenson-2015"
-
-\end_inset
-
-) by proposing a simulation strategy for a generalized notion of a diffusion
- bridge.
- Using such a simulation strategy, we are able to develop a framework for
- conducting simulated-based inference on data in the form of distributions,
- generalizing the work of 
+ We develop a simulation-based inference technique to conduct this generalized
+ MLE procedure, building on the work of 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "roberts-stramer-2001,beskos-2006"
@@ -191,6 +187,29 @@ key "bladt-sorensen-2014"
 \end_inset
 
 .
+ This is a novel problem and solution to the best of our knowledge.
+ Finally, we point out how a particular generalized notion of a diffusion
+ bridge arises naturally from a simulation-based inference technique to
+ conduct the generalized MLE procedure, and connect the literature surrounding
+ the simulation of diffusion bridges (see 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "papa-roberts-2012,bladt-sorensen-2014,bladt-finch-sorenson-2015"
+
+\end_inset
+
+) with the literature on generalized bridges (see 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-2002"
+
+\end_inset
+
+) by proposing a simulation strategy for these generalized bridges.
+\end_layout
+
+\begin_layout Standard
+Empirically, we will do some things that I haven't written up yet.
 \end_layout
 
 \begin_layout Section
@@ -230,19 +249,21 @@ reference "chap:EM"
  A procedure for conducting inference is developed and an interpretation
  of such a procedure as being a limited case of MLE on a misspecified model
  is also given.
- An Monte Carlo expectation-maximization (MCEM) algorithm to address the
- problem of intractable transition densities for most diffusion processes.
- Then, in 
+ An expectation-maximization algorithm is developed to address the problem
+ of intractable transition densities for most diffusion processes.
+ However, the need to exactly sample generalized diffusion bridges becomes
+ apparent if we wish to be able to carry out such an EM algorithm under
+ Monte Carlo framework.
+ As such, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:4"
 
 \end_inset
 
-, a simulation strategy for a generalized diffusion bridge is given, which
- will allow for the implementation of the proposed MCEM algorithm.
- Approximate and exact sampling schemes are developed, and the marginal
- density of such a bridge is also given.
+, a simulation strategy for approximate and exact generalized diffusion
+ bridges of this sort is given, as well as the marginal density of such
+ a bridge.
 \end_layout
 
 \begin_layout Standard
@@ -253,8 +274,8 @@ reference "part:3"
 
 \end_inset
 
- will focus on the empirical aspects of the thesis.
- 
+ will focus on the empirical aspects of the thesis, which I haven't written
+ up yet.
 \end_layout
 
 \end_body
