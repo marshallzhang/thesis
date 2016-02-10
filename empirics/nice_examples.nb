@@ -1,0 +1,151 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4070,        142]
+NotebookOptionsPosition[      3560,        119]
+NotebookOutlinePosition[      3914,        135]
+CellTagsIndexPosition[      3871,        132]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[StyleBox["Hitting Distributions", "Subchapter"]], "Text",
+ CellChangeTimes->{{3.664057439845265*^9, 3.6640574781835127`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Ornstein-Uhlenbeck.", "Subsubsection",
+ CellChangeTimes->{{3.664057483407448*^9, 3.664057490039027*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[Nu]", "[", 
+   RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+  RowBox[{"PDF", "[", 
+   RowBox[{
+    RowBox[{"MultinormalDistribution", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"1", "/", "2"}], ",", 
+          RowBox[{
+           RowBox[{"Exp", "[", 
+            RowBox[{"-", "1"}], "]"}], "/", "2"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Exp", "[", 
+            RowBox[{"-", "1"}], "]"}], "/", "2"}], ",", 
+          RowBox[{"1", "/", "2"}]}], "}"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.664057501756967*^9, 3.664057569235086*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"TransitionDensityOU", "[", 
+   RowBox[{"t_", ",", "x_", ",", "y_"}], "]"}], ":=", 
+  RowBox[{"PDF", "[", 
+   RowBox[{
+    RowBox[{"NormalDistribution", "[", 
+     RowBox[{
+      RowBox[{"x", "*", 
+       RowBox[{"Exp", "[", 
+        RowBox[{"-", "t"}], "]"}]}], ",", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "2"}], "*", "t"}], "]"}]}], ")"}], "/", "2"}]}], 
+     "]"}], ",", "y"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.664057866633553*^9, 3.664057873764902*^9}, {
+  3.66405790857202*^9, 3.664058012069908*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Integrate", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"TransitionDensityOU", "[", 
+     RowBox[{"1", ",", "y", ",", "z"}], "]"}], "*", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{"\[Nu]", "[", 
+       RowBox[{"x", ",", "y"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", 
+        RowBox[{"-", "Infinity"}], ",", "Infinity"}], "}"}]}], "]"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "Infinity"}], ",", "Infinity"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6640575717347603`*^9, 3.664057586483953*^9}, {
+  3.6640580753795853`*^9, 3.6640581071602907`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  SuperscriptBox["\[ExponentialE]", 
+   RowBox[{"2", "-", 
+    FractionBox[
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[ExponentialE]", "4"], " ", 
+      SuperscriptBox["z", "2"]}], 
+     RowBox[{"1", "+", 
+      SuperscriptBox["\[ExponentialE]", "4"]}]]}]], " ", 
+  SqrtBox[
+   FractionBox["2", 
+    RowBox[{"\[Pi]", "+", 
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", "4"], " ", "\[Pi]"}]}]]]}]], "Output",\
+
+ CellChangeTimes->{
+  3.664057588857934*^9, {3.664058089702796*^9, 3.6640581115193233`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{718, 855},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (October 9, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 139, 1, 47, "Text"],
+Cell[CellGroupData[{
+Cell[722, 25, 110, 1, 35, "Subsubsection"],
+Cell[835, 28, 843, 26, 63, "Input"],
+Cell[1681, 56, 645, 19, 46, "Input"],
+Cell[CellGroupData[{
+Cell[2351, 79, 639, 17, 46, "Input"],
+Cell[2993, 98, 539, 17, 92, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

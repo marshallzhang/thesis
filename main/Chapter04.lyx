@@ -2565,7 +2565,7 @@ right
 \backslash
 If{
 \backslash
-Call{unif}{0,1} $> 
+Call{unif}{0,1} $< 
 \backslash
 alpha$}
 \end_layout

@@ -1,4 +1,4 @@
-source("/Users/marshall/Documents/senior/thesis/simulation_functions.R")
+source("/Users/marshall/Documents/senior/thesis/empirics/simulation_functions.R")
 
 #
 # Mimicking unconstrained.
@@ -18,12 +18,6 @@ for (i in 1:N) {
 cov(o.sims[,c(1,100)])
 
 nu.o = function(n) {rmvnorm(n, c(0,0), matrix(c(1/2, exp(-1)/2, exp(-1)/2, 1/2), nrow = 2, ncol = 2))} 
-
-nu.o.sims = gen.double.nu.bridge(ou, theta, 0, 0, 1000)
-nu.o.sims[2, ] = rev(nu.o.sims[2,])
-plot(nu.o.sims[1,], type = "l")
-lines(nu.o.sims[2,])
-sum(nu.o.sims[1,] - nu.o.sims[2,] > 0 | nu.o.sims[1,] - nu.o.sims[2,] < 0)
 
 nu.o.sims = gen.nu.bridge(nu.o, ou, theta, 10000, 100)
 

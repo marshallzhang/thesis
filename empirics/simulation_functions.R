@@ -67,23 +67,30 @@ gen.double.nu.bridge = function(r.diffusion, theta, start, end, steps) {
     rbind(b1, b2)
 }
 
+# Check crossing
+cross = function(x, y) {
+  if (length(x) == length(y)) {
+    diff = x - y
+    all(difference < 0) | all(difference > 0)
+  } else {
+    stop("Different lengths of paths.")
+  }
+}
 
 # Helper to generate a bridge.
 gen.nu.helper = function(r.diffusion, theta, start, end, steps, flip = F) {
     y.1 = r.diffusion(start, steps, theta)
     y.2 = rev(r.diffusion(end, steps, theta))
-    difference = y.1 - y.2
-    
+
     counter = 0
     # If they don't intersect, re-generate.
-    while (all(difference < 0) | all(difference > 0)) {
+    while (cross(y.1, y.2)) {
       counter = counter + 1
       if (counter > 500) {
         stop("Too many tries.")
       }
       y.1 = r.diffusion(start, steps, theta)
       y.2 = rev(r.diffusion(end, steps, theta))
-      difference = y.1 - y.2
     }
       
     # Otherwise, find where they intersect and create the bridge.  
@@ -115,7 +122,13 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps) {
   bridges
 }
 
-# MISC
+#
+#
+#
+# OU
+#
+#
+#
 
 # Generate OU process.
 ou = function(start, steps, theta) {
@@ -124,12 +137,15 @@ ou = function(start, steps, theta) {
   x
 }
 
-# Pretty plot.
-pretty.plot = function(melted.data) {
-  ggplot(data = data.melt) + theme_bw(base_size = 12, base_family = "Helvetica")
-}
 
+#
+#
+#
 # CIR
+#
+#
+#
+
 
 cir = function(start, steps, theta) {
   x = sde.sim(X0 = start, N = steps - 1,
@@ -137,7 +153,7 @@ cir = function(start, steps, theta) {
   as.numeric(x)
 }
 
-joint = function(current) {
+cir.joint = function(current) {
   x = current[1]
   y = current[2]
   c = 2 / (1-exp(-1))
@@ -149,12 +165,58 @@ joint = function(current) {
 }
 
 
+#
+#
+#
+# EXACT SIMULATION
+#
+#
+#
+
+# hat rho
+rho = function(x, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps) {
+  Ts = array(1, dim = M)
+  for (i in 1:M) {
+    hitting = r.diffusion(r.hitting.init(1), steps, theta)
+    while (!cross(x, hitting)) {
+      Ts[i] = Ts[i] + 1
+      hitting = r.hitting(r.hitting.init(1), steps, theta)
+    }
+  }
+  mean(Ts)
+}
+
+exact.nu.bridge = function(M, r.hitting.init, samples, ...) {
+  bridges = vector("list", samples)
+  bridges[[1]] = gen.nu.bridge(...)
+  for (i in 2:samples) {
+    proposal = gen.nu.bridge(...)
+    alpha = min(1, rho(proposal, M, r.hitting.init, ...) / rho(bridges[[i-1]], M, r.hitting.init, ...))
+    if (runif(1) < alpha) {
+      bridges[[i]] = proposal
+    } else {
+      bridges[[i]] = bridges[[i-1]]
+    }
+  }
+}
+
+#
+#
+#
+# GENERAL FUNCTIONS LIKE PLOTTING AND MH
+#
+#
+#
+
 # Metropolis-Hastings with normal proposals.
-mcmc.mh = function(current, d.posterior, r.proposal) {
+mcmc.mh = function(current, d.posterior, r.proposal, special = "") {
   
     # Propose and find density according to random walk.
     proposal = r.proposal(length(current), current)
-    alpha = min(1, exp(d.posterior(proposal) - d.posterior(current) + sum(dgamma(current, shape = 2, rate = 2, log =T )) - sum(dgamma(proposal, shape = 2, rate = 2, log = T))))
+    if (special == "gamma") {
+      alpha = min(1, exp(d.posterior(proposal) - d.posterior(current) + sum(dgamma(current, shape = 2, rate = 2, log =T )) - sum(dgamma(proposal, shape = 2, rate = 2, log = T))))
+    } else if (special == "") {
+      alpha = min(1, exp(d.posterior(proposal) - d.posterior(current)))
     
     # Accept or reject.
     if (runif(1) < alpha) {
@@ -252,6 +314,31 @@ plot.many = function(data, N, ...){
     lines(data[i, ], col = rgb(0,0,0,1/(N/75)))
   }
 }
+
+# Pretty plot.
+pretty.plot = function(melted.data) {
+  ggplot(data = data.melt) + theme_bw(base_size = 12, base_family = "Helvetica")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 joint.dirac = function(N, a, b, lambda, kappa) {
   

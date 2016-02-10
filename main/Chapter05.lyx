@@ -12,6 +12,7 @@
 \newref{part}{name=Part~,Name=Part~}
 \newref{algo}{name=Algorithm~,Name=Algorithm~}
 \newref{lem}{name=Lemma~,Name=Lemma~}
+\newref{fig}{name=Figure~,Name=Figure~}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -103,22 +104,16 @@ reference "part:2"
 \end_inset
 
  in a controlled simulation environment to demonstrate their correctness.
- First, we demonstrate the correctness of the 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridge sampling scheme proposed in 
+ First, we demonstrate the correctness of the generalized bridge sampling
+ scheme proposed in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:4"
 
 \end_inset
 
-, and show that the approximate scheme produces samples of 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridges that are extremely close in distribution to the exact sampler.
+, and show that the approximate scheme produces samples of generalized bridges
+ that are extremely close in distribution to the exact sampler.
  Then, with a correct sampler in hand, we demonstrate that the MCEM scheme
  proposed in 
 \begin_inset CommandInset ref
@@ -252,19 +247,7 @@ In general, we will refer to the parameter vector of either process as
 
 .
  Both these measures have Lebesgue densities.
- In the remainder of this section, we assume for the OU process that 
-\begin_inset Formula $\theta=1$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma=1$
-\end_inset
-
-, and for the CIR process, that 
-\begin_inset Formula $\theta=1,\mu=1,\sigma=1$
-\end_inset
-
-.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -278,25 +261,24 @@ In all simulations to follow, the relevant process is simulated over the
 \end_inset
 
  using the Euler-Marayuma approximation.
+ In general, we simulate 
+\begin_inset Formula $10,000$
+\end_inset
+
+ independent paths of the relevant process unless otherwise noted.
  All simulations are implemented in R on a 2012 Macbook Pro.
 \end_layout
 
 \begin_layout Section
-Sampling 
-\begin_inset Formula $\nu$
-\end_inset
+Sampling Generalized Bridges
+\end_layout
 
--bridges
+\begin_layout Subsection
+Correctness of Exact Sampler
 \end_layout
 
 \begin_layout Standard
-Since we de
-\end_layout
-
-\begin_layout Standard
-We begin by a baseline test of the simulation method proposed.
- Since both the OU process and the CIR process admit invariant measures,
- the solutions 
+Let 
 \begin_inset Formula $O$
 \end_inset
 
@@ -304,7 +286,7 @@ We begin by a baseline test of the simulation method proposed.
 \begin_inset Formula $C$
 \end_inset
 
- to 
+ represent stationary solutions to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ou-sde"
@@ -318,36 +300,30 @@ reference "eq:cir-sde"
 
 \end_inset
 
- with initial conditions 
-\begin_inset Formula $O_{0}\sim\pi_{O}$
-\end_inset
-
- and 
-\begin_inset Formula $C_{0}\sim\pi_{C}$
-\end_inset
-
- will have the respective invariant distribution at every time 
-\begin_inset Formula $t\in\left[0,1\right]$
-\end_inset
-
-.
- Then, the 
-\begin_inset Formula $\nu^{O}-$
-\end_inset
-
-bridge of 
+, respectively.
+ By the definition of a stationary solution, we know that 
 \begin_inset Formula $O$
 \end_inset
 
- and the 
-\begin_inset Formula $\nu^{C}-$
-\end_inset
-
-bridge of 
+ and 
 \begin_inset Formula $C$
 \end_inset
 
-, where 
+ have marginal distributions at any time 
+\begin_inset Formula $t\in[0,1]$
+\end_inset
+
+ equal to their respective invariant distributions.
+ This gives us a method by which to validate the correctness of the sampling
+ scheme proposed in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+.
+ In particular, let 
 \begin_inset Formula $\nu^{O}$
 \end_inset
 
@@ -355,7 +331,7 @@ bridge of
 \begin_inset Formula $\nu^{C}$
 \end_inset
 
- are the joint distributions of 
+ be the joint distributions of 
 \begin_inset Formula $(O_{0},O_{1})$
 \end_inset
 
@@ -363,28 +339,78 @@ bridge of
 \begin_inset Formula $(C_{0},C_{1})$
 \end_inset
 
- respectively, should trivially have the same invariant distribution at
- every time 
-\begin_inset Formula $t\in\left[0,1\right]$
+ respectively.
+ It ought to be the case then, that a 
+\begin_inset Formula $\nu^{O}$
 \end_inset
 
- as implied by 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "prop:v-bridge-density"
-
+-bridge of 
+\begin_inset Formula $O$
 \end_inset
 
-.
+ and a 
+\begin_inset Formula $\nu^{C}$
+\end_inset
+
+-bridge of 
+\begin_inset Formula $C$
+\end_inset
+
+ has the same marginal distribution at any 
+\begin_inset Formula $t\in[0,1]$
+\end_inset
+
+ as 
+\begin_inset Formula $O$
+\end_inset
+
+ and 
+\begin_inset Formula $C$
+\end_inset
+
+ themselves.
 \end_layout
 
 \begin_layout Standard
-It is well-known that the OU process is a Gaussian process.
- Therefore, the joint distribution of 
-\begin_inset Formula $(O_{0},O_{1})$
+For clarity, we fix in this section 
+\begin_inset Formula $\theta=1,\mu=0,\sigma=1$
 \end_inset
 
- is a bivariate Gaussian with mean 
+ for 
+\begin_inset Formula $O$
+\end_inset
+
+, and 
+\begin_inset Formula $\theta=1,\mu=1,\sigma=1$
+\end_inset
+
+ for 
+\begin_inset Formula $C$
+\end_inset
+
+.
+ In order to sample 
+\begin_inset Formula $\nu^{O}$
+\end_inset
+
+- or 
+\begin_inset Formula $\nu^{C}$
+\end_inset
+
+-bridges, we must be able to sample from 
+\begin_inset Formula $\nu^{O}$
+\end_inset
+
+ and 
+\begin_inset Formula $\nu^{C}$
+\end_inset
+
+.
+ Since the OU process is a Gaussian process, it is well-known that 
+\begin_inset Formula $\nu^{O}$
+\end_inset
+
+ is a bivariate Gaussian distribution with mean 
 \begin_inset Formula $0$
 \end_inset
 
@@ -396,15 +422,17 @@ It is well-known that the OU process is a Gaussian process.
 \begin_inset Formula $e^{-1}/2$
 \end_inset
 
- and is easily sampled from.
-\end_layout
+.
+ As such, 
+\begin_inset Formula $\nu^{O}$
+\end_inset
 
-\begin_layout Standard
-On the other hand, the CIR process is not a Gaussian process, but its analytic
+ is easily sampled from.
+ On the other hand, the CIR process is not a Gaussian process, but its analytic
  transition density is known to be 
 \begin_inset Formula 
 \[
-p_{0,1}^{C}\left(x,y\right)=ce^{-u-v}\left(\frac{v}{u}\right)^{1/2}I_{1}\left(2\sqrt{uv}\right)
+p_{1}^{C}\left(x,y\right)=ce^{-u-v}\left(\frac{v}{u}\right)^{1/2}I_{1}\left(2\sqrt{uv}\right)
 \]
 
 \end_inset
@@ -426,18 +454,22 @@ and
 \end_inset
 
 .
- Therefore, the joint distribution of 
-\begin_inset Formula $(C_{0},C_{1})$
+ Therefore, 
+\begin_inset Formula $\nu^{C}$
 \end_inset
 
  has density equal to 
-\begin_inset Formula $(d\pi_{C}/dx)\times p_{0,1}^{C}\left(x,y\right)$
+\begin_inset Formula $(d\Pi^{C}/dx)\times p_{1}^{C}(x,y)$
 \end_inset
 
 , and we can draw from this density using standard Monte Carlo Markov Chain
  methods.
- We use a standard Metropolis-Hastings sampler with a bivariate and independent
- Gamma(2,2) proposal.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+In particular, we use a standard Metropolis-Hastings sampler with a bivariate
+ and independent Gamma(2,2) proposal.
  We use 202,000 iterations, burning the first 2,000 samples, and taking
  every 20th sample for a total of 10,000 samples from 
 \begin_inset Formula $(C_{0},C_{1})$
@@ -460,6 +492,25 @@ and
 \end_inset
 
  as expected by standard results about the CIR process.
+\end_layout
+
+\end_inset
+
+ Furthermore, we note that the initial distributions of the hitting diffusions
+ for the OU and CIR process are readily available analytically as a Gaussian
+ distribution of mean 
+\begin_inset Formula $0$
+\end_inset
+
+ and variance 
+\begin_inset Formula $\left(2-2e^{2}+2e^{4}\right)/4$
+\end_inset
+
+, and a Gamma distribution with shape and rate parameter 
+\begin_inset Formula $2$
+\end_inset
+
+, respectively.
 \end_layout
 
 \begin_layout Standard
@@ -640,477 +691,8 @@ bridges are conditioned on the crossing of a process
  information.
 \end_layout
 
-\begin_layout Standard
-One easy extension to the above simulation that can help achieve a heuristic
- understanding of 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges (and to check the sampler's effectiveness from an intuitive standpoint)
- is to maintain the same marginal distributions as 
-\begin_inset Formula $\nu^{O}$
-\end_inset
-
- and 
-\begin_inset Formula $\nu^{C}$
-\end_inset
-
-, but vary the covariance structure and observe how the distributions of
- the bridges change.
- Since the Ornstein-Uhlenbeck process is a Gaussian process for which the
- joint distributions are competely determined by the first and second moments,
- it is easy to do this; on the other hand, we must choose a copula to impose
- on the joint distribution of 
-\begin_inset Formula $(C_{0},C_{1})$
-\end_inset
-
-.
- For simplicity, we choose a Gaussian copula.
- 
-\end_layout
-
-\begin_layout Standard
-Until an exact sampler is derived, we have no choice to but to assume the
- thin-tailedness of the samples in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:joint-invariant"
-
-\end_inset
-
- is due to the approximate nature of the sampler.
- To explore the salient features of the 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges as we vary the covariance structure, we therefore compare the sample
- quantiles of the covariance-varied bridges with the sample quantiles of
- the 
-\begin_inset Formula $\nu^{O}-$
-\end_inset
-
- and 
-\begin_inset Formula $\nu^{C}-$
-\end_inset
-
-bridges, instead of the theoretical distribution, in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:covariance-vary"
-
-\end_inset
-
-.
- This allows us to see the changes in distribution as we vary the covariance,
- modulo the (slight) approximation error in the sampler.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename /Users/marshall/Documents/senior/thesis/figures/varying_correlation.pdf
-	width 100col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:covariance-vary"
-
-\end_inset
-
-Q-Q plots demonstrating how the distribution of sampled 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges at 
-\begin_inset Formula $t=1/2$
-\end_inset
-
- varies with the covariance structure of the initial and end values, relative
- to sampled 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges mimicking an unconstrained Ornstein-Uhlenbeck process (left) and
- an unconstrained Cox-Ingersoll-Ross process (right), holding marginals
- fixed and equal.
- The marginals follow the invariant distribution of the respective process,
- and a Gaussian copula is assumed to link the initial and end values of
- the CIR process to allow for varying correlation.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-In 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:covariance-vary"
-
-\end_inset
-
-, we see that relative to the unconstrained distribution (where the correlation
- of the initial and end process for both the OU and CIR process is 
-\begin_inset Formula $e^{-1}\approx0.36$
-\end_inset
-
-), higher correlation results in fatter tails while lower correlation results
- in thinner tails at 
-\begin_inset Formula $t=1/2$
-\end_inset
-
-.
- Intuitively, this makes sense.
- If the process is constrained to begin at a high value and end at a low
- value, or vice versa, it is much more likely to pass through a middle value
- than if it were constrained to start high and end high, for example.
- The kinks in the plot for the CIR process are, however, somewhat mysterious.
-\end_layout
-
 \begin_layout Subsection
-Arbitrary Choice of 
-\begin_inset Formula $\nu$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-A simple choice of 
-\begin_inset Formula $\nu$
-\end_inset
-
- can serve as a further sanity check to supplement the results of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:covariance-vary"
-
-\end_inset
-
-.
- In particular, consider the measure 
-\begin_inset Formula $\nu_{\lambda,\kappa}^{a,b}$
-\end_inset
-
- induced by the two-period process 
-\begin_inset Formula $\left\{ A_{0},A_{1}\right\} $
-\end_inset
-
- on the space 
-\begin_inset Formula $\left\{ a,b\right\} $
-\end_inset
-
-, where 
-\begin_inset Formula $\mbox{Pr}\left(A_{0}=a\right)=\lambda$
-\end_inset
-
- and 
-\begin_inset Formula $\mbox{Pr}\left(A_{1}=i\mid A_{0}=i\right)=\kappa$
-\end_inset
-
-, for 
-\begin_inset Formula $i\in\left\{ a,b\right\} $
-\end_inset
-
-.
- Intuitively, this process begins at either 
-\begin_inset Formula $a$
-\end_inset
-
- or 
-\begin_inset Formula $b$
-\end_inset
-
- according to 
-\begin_inset Formula $\lambda$
-\end_inset
-
-, and ends in the same state with probability 
-\begin_inset Formula $\kappa$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-In 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:dirac-delta"
-
-\end_inset
-
-, we present visualizations of the distribution of the 
-\begin_inset Formula $\nu_{\lambda,k}^{-1,1}-$
-\end_inset
-
-bridge of an OU process and the 
-\begin_inset Formula $\nu_{\lambda,k}^{1,3}-$
-\end_inset
-
-bridge of a CIR process, for 
-\begin_inset Formula $\lambda=0.5$
-\end_inset
-
- and 
-\begin_inset Formula $\kappa\in\left\{ 0,0.5,1\right\} $
-\end_inset
-
-.
- The results are as we would intuitively expect, with 
-\begin_inset Formula $\kappa=0$
-\end_inset
-
- demonstrating a distinct 
-\begin_inset Quotes eld
-\end_inset
-
-X
-\begin_inset Quotes erd
-\end_inset
-
--shape as probability mass moves from 
-\begin_inset Formula $a$
-\end_inset
-
- or 
-\begin_inset Formula $b$
-\end_inset
-
- at 
-\begin_inset Formula $t=0$
-\end_inset
-
- to the other state at 
-\begin_inset Formula $t=1$
-\end_inset
-
-.
- As 
-\begin_inset Formula $\kappa$
-\end_inset
-
- increases, the distinctiveness of the 
-\begin_inset Quotes eld
-\end_inset
-
-X
-\begin_inset Quotes erd
-\end_inset
-
- is reduced; however, since both the OU process and the CIR process are
- mean-reverting, there is still some more probability mass at their respective
- means even when 
-\begin_inset Formula $\kappa=1$
-\end_inset
-
- than one might expect from non-mean-reverting processes.
- Furthermore, these results are congruent with the results in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:covariance-vary"
-
-\end_inset
-
-, with the tail thickness at 
-\begin_inset Formula $t=1/2$
-\end_inset
-
- increases as 
-\begin_inset Formula $\kappa$
-\end_inset
-
- (representing some measure of covariance) increases.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename /Users/marshall/Documents/senior/thesis/figures/dirac_delta.png
-	width 100col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:dirac-delta"
-
-\end_inset
-
-Distributions of 
-\begin_inset Formula $\nu_{0.5,\kappa}^{a,b}-$
-\end_inset
-
-bridges for 
-\begin_inset Formula $\kappa=1$
-\end_inset
-
- (top row), 
-\begin_inset Formula $\kappa=0.5$
-\end_inset
-
- (middle row), and 
-\begin_inset Formula $\kappa=0$
-\end_inset
-
- (bottom row), for Ornstein-Uhlenbeck (left column) and Cox-Ingersoll-Ross
- processes (right column).
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Though the results of the sampler for the simple cases presented above agree
- with intuition, we ultimately wish to study the proposed sampler's effectivenes
-s with slightly more rigor.
- Due to 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "prop:v-bridge-density"
-
-\end_inset
-
-, we have an expression for the exact density of such bridges at any point
- in time, but the integral remains intractable even for the simplest cases
- (a 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $O$
-\end_inset
-
-, where 
-\begin_inset Formula $\nu$
-\end_inset
-
- has the same marginals as in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sub:mimicking-unconstrained"
-
-\end_inset
-
- but an arbitrary covariance, for example).
- Intuitively, this is because the marginal densities at 
-\begin_inset Formula $t\in\left[0,1\right]$
-\end_inset
-
- can become arbitrarily complex as a function of 
-\begin_inset Formula $\nu$
-\end_inset
-
-.
- Fortunately, we can turn to numerical integration techniques and attempt
- to recover the theoretical quantiles of the marginal distributions using
- 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "prop:v-bridge-density"
-
-\end_inset
-
-.
- These results are to follow.
-\end_layout
-
-\begin_layout Section
-From Theory to Practice
-\end_layout
-
-\begin_layout Standard
-In this section, I want to take granular data from a central bank's Survey
- of Professional Forecasters, which gives the individual forecasts of economists
- for inflation and interest rates throughout time.
- I will find some way to impute the parameters of an Ornstein-Uhlenbeck
- process for inflation, and Cox-Ingersoll-Ross process for the interest
- rate, and then find the distribution of 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges using forecasts at different points in time as the initial and end
- distributions.
- 
-\end_layout
-
-\begin_layout Standard
-One thing I would like to do is see whether economists are consistent in
- their forecasts at various time horizons i.e.
- if I use the 
-\begin_inset Formula $t+1$
-\end_inset
-
- and 
-\begin_inset Formula $t+10$
-\end_inset
-
- forecasts as my initial and end distributions, and the 
-\begin_inset Formula $t+5$
-\end_inset
-
- forecasts are available, do the 
-\begin_inset Formula $t+5$
-\end_inset
-
- forecasts match up with the implied distribution from the 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge (there might be an joint hypothesis issue here since I will have
- to impute parameters of the processes from their forecasts, and also check
- whether their forecasts are consistent).
-\end_layout
-
-\begin_layout Standard
-Another data source I could use is the distribution of stock prices as implied
- by option prices at various horizons, to do a similar study.
- I would have to impose a copula on the marginals implied by the options,
- which is just another parameter to add to the joint hypothesis problem,
- so maybe this will be a little harder.
- I think options data is also tough to get.
-\end_layout
-
-\begin_layout Standard
-I am also continuing to think of other data from non-financial sources that
- might be interesting.
+High Quality Approximate Samples
 \end_layout
 
 \end_body
