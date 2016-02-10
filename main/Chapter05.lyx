@@ -5,6 +5,13 @@
 \textclass classicthesis
 \begin_preamble
 \usepackage{algorithm,algpseudocode}
+\newref{prop}{name=Proposition~,Name=Proposition~}
+\newref{prob}{name=Problem~,Name=Problem~}
+\newref{thm}{name=Theorem~,Name=Theorem~}
+\newref{chap}{name=Chapter~,Name=Chapter~}
+\newref{part}{name=Part~,Name=Part~}
+\newref{algo}{name=Algorithm~,Name=Algorithm~}
+\newref{lem}{name=Lemma~,Name=Lemma~}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -54,7 +61,7 @@ theorems-chap
 \paperorientation portrait
 \suppress_date false
 \justification true
-\use_refstyle 0
+\use_refstyle 1
 \index Index
 \shortcut idx
 \color #008000
@@ -77,7 +84,7 @@ theorems-chap
 \begin_body
 
 \begin_layout Chapter
-Empirical Studies
+Simulation Studies
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:5"
@@ -88,102 +95,91 @@ name "chap:5"
 \end_layout
 
 \begin_layout Standard
-In this chapter, we study the sampling method proposed in 
+In this chapter, we study the methods proposed in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "part:2"
+
+\end_inset
+
+ in a controlled simulation environment to demonstrate their correctness.
+ First, we demonstrate the correctness of the 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridge sampling scheme proposed in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:4"
 
 \end_inset
 
- through simulation, and apply it to data.
- In all examples considered we simulate 
-\begin_inset Formula $10,000$
+, and show that the approximate scheme produces samples of 
+\begin_inset Formula $\nu$
 \end_inset
 
- realizations of the relevant process over the time interval 
-\begin_inset Formula $\left[0,1\right]$
+-bridges that are extremely close in distribution to the exact sampler.
+ Then, with a correct sampler in hand, we demonstrate that the MCEM scheme
+ proposed in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:EM"
+
 \end_inset
 
-.
- The Euler-Marayuma scheme is used with with step size 
-\begin_inset Formula $\delta=1/100$
-\end_inset
-
-, and taken as an 
-\begin_inset Quotes eld
-\end_inset
-
-exact
-\begin_inset Quotes erd
-\end_inset
-
- diffusion sampler.
- All simulations and other computations are implemented in R and Mathematica
- on a Macbook Pro.
+ converges to the Kullback-Liebler divergence minimizing parameter in a
+ variety of situations as expected.
 \end_layout
 
 \begin_layout Section
-Simulating 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges
+Objects and Methods
 \end_layout
 
 \begin_layout Standard
-We consider two examples of diffusions for which the simulation method proposed
- in 
+As usual, we begin by fixing the objects of study.
+ We shall consider two examples of diffusions which satisfy the assumptions
+ outlined in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "chap:4"
+reference "chap:2"
 
 \end_inset
 
- can be applied: the Ornstein-Uhlenbeck and Cox-Ingersoll-Ross processes.
- The Ornstein-Uhlenbeck (OU) process is a solution to the stochastic differentia
-l equation 
+.
+ The first process is an Ornstein-Uhlenbeck (OU) process, which is a solution
+ to the SDE 
 \begin_inset Formula 
 \begin{equation}
-dO_{t}=-\theta\left(O_{t}-\mu\right)dt+\sigma dW_{t}\label{eq:ou-sde}
+dO_{t}=-\lambda\left(O_{t}-\mu\right)dt+\sigma dW_{t},\label{eq:ou-sde}
 \end{equation}
 
 \end_inset
 
-with some initial condition on 
+for some initial condition on 
 \begin_inset Formula $O_{0}$
 \end_inset
 
+ and a Wiener process 
+\begin_inset Formula $W_{t}$
+\end_inset
+
 .
- We will always set 
-\begin_inset Formula $\mu=0$
+ OU processes are both theoretically appealing (representing the only non-trivia
+l stationary, Gaussian, and Markovian process) and practically useful (used
+ to model everything from springs to currency exchange rates—see standard
+ physics references or 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "hirsa-2012"
+
 \end_inset
 
- without loss of generality, and it is well-known that the Gaussian measure
- 
-\begin_inset Formula $\pi_{O}$
-\end_inset
-
- with mean 
-\begin_inset Formula $0$
-\end_inset
-
- and variance 
-\begin_inset Formula $1/2\theta$
-\end_inset
-
- is an invariant measure for this process.
- The OU process is well-known in many disciplines and is used to model processes
- ranging from springs to currency exchange rates and commodity prices.
-\end_layout
-
-\begin_layout Standard
-On the other hand, the Cox-Ingersoll-Ross (CIR) process is a modification
- of the Ornstein-Uhlenbeck process, and is most often used to model short-term
- interest rates.
- This process is a solution to the stochastic differential equation 
+ for applications in finance).
+ The second process we shall focus on here is a Cox-Ingersoll-Ross (CIR)
+ process, which is a solution to the SDE 
 \begin_inset Formula 
 \begin{equation}
-dC_{t}=-\theta\left(C_{t}-\mu\right)dt+\sigma\sqrt{C_{t}}dW_{t}\label{eq:cir-sde}
+dC_{t}=-\lambda\left(C_{t}-\mu\right)dt+\sigma\sqrt{C_{t}}dW_{t},\label{eq:cir-sde}
 \end{equation}
 
 \end_inset
@@ -192,33 +188,71 @@ with some initial condition on
 \begin_inset Formula $C_{0}$
 \end_inset
 
+ and a Wiener process 
+\begin_inset Formula $W_{t}$
+\end_inset
+
 .
- We assume 
+ We assume as per the literature that 
 \begin_inset Formula $2\theta\mu\geq\sigma^{2}$
 \end_inset
 
- so that 
-\begin_inset Formula $C_{t}$
+, so 
+\begin_inset Formula $C$
 \end_inset
 
  lives on the positive real line.
- Then, the CIR process has as its invariant measure the Gamma measure 
-\begin_inset Formula $\pi_{C}$
+ With this restriction, CIR processes form the foundation of common short-term
+ interest rate and stochastic volatility models (see 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "cir-1985"
+
 \end_inset
 
- with shape parameter 
-\begin_inset Formula $2\theta\mu/\sigma^{2}$
+ and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "heston-1993"
+
 \end_inset
 
- and rate parameter 
-\begin_inset Formula $2\theta/\sigma^{2}$
-\end_inset
-
-.
+).
 \end_layout
 
 \begin_layout Standard
-In the remainder of this section, we assume for the OU process that 
+In general, we will refer to the parameter vector of either process as 
+\begin_inset Formula $\theta$
+\end_inset
+
+, with superscripts when needed for clarity.
+ Note that the OU process has a well-known invariant measure 
+\begin_inset Formula $\Pi_{\theta}^{O}$
+\end_inset
+
+, which is a Gaussian measure with mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and variance 
+\begin_inset Formula $\sigma^{2}/2\lambda$
+\end_inset
+
+, while the CIR process has a well-known invariant measure 
+\begin_inset Formula $\Pi_{\theta}^{C}$
+\end_inset
+
+, which is a Gamma measure with shape parameter 
+\begin_inset Formula $2\lambda\mu/\sigma^{2}$
+\end_inset
+
+ and rate parameter 
+\begin_inset Formula $2\lambda/\sigma^{2}$
+\end_inset
+
+.
+ Both these measures have Lebesgue densities.
+ In the remainder of this section, we assume for the OU process that 
 \begin_inset Formula $\theta=1$
 \end_inset
 
@@ -233,15 +267,30 @@ In the remainder of this section, we assume for the OU process that
 .
 \end_layout
 
-\begin_layout Subsection
-Mimicking Unconstrained Diffusions
-\begin_inset CommandInset label
-LatexCommand label
-name "sub:mimicking-unconstrained"
-
+\begin_layout Standard
+In all simulations to follow, the relevant process is simulated over the
+ time interval 
+\begin_inset Formula $[0,1]$
 \end_inset
 
+ with a step size 
+\begin_inset Formula $\delta=1/100$
+\end_inset
 
+ using the Euler-Marayuma approximation.
+ All simulations are implemented in R on a 2012 Macbook Pro.
+\end_layout
+
+\begin_layout Section
+Sampling 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridges
+\end_layout
+
+\begin_layout Standard
+Since we de
 \end_layout
 
 \begin_layout Standard

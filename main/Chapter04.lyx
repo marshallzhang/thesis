@@ -146,7 +146,7 @@ where
 \end_inset
 
  and 
-\begin_inset Formula $\Sigma(\mathbf{X}_{t})=\sigma(\mathbf{X}_{t})I$
+\begin_inset Formula $\Sigma$
 \end_inset
 
  have known parametric forms, abstracting from the parameterization 
@@ -317,7 +317,7 @@ The marginal density of
  is given by 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{X}_{t}^{\nu}}{d\mathbb{X}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{0,t}^{*}(x_{0},\cdot)p_{t,1}(\cdot,x_{1})}{c(x_{0},x_{1})}\nu(dx_{0}dx_{1}),
+\frac{d\mathbb{X}_{t}^{\nu}}{d\mathbb{X}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{t}^{*}(x_{0},\cdot)p_{1-t}(\cdot,x_{1})}{c(x_{0},x_{1})}\nu(dx_{0}dx_{1}),
 \]
 
 \end_inset
@@ -362,7 +362,7 @@ reference "thm:density-of-bridge"
 , we know that 
 \begin_inset Formula 
 \[
-\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\mid X_{0}=x,X_{1}=y\right]=\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\frac{p_{0,t}^{*}\left(x,X_{t}\right)r_{t,1}\left(X_{t},y\right)}{c\left(x,y\right)}\right]
+\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\mid X_{0}=x,X_{1}=y\right]=\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\frac{p_{t}^{*}\left(x,X_{t}\right)p_{1-t}\left(X_{t},y\right)}{c\left(x,y\right)}\right]
 \]
 
 \end_inset
@@ -375,7 +375,7 @@ for arbitrary
  Therefore, 
 \begin_inset Formula 
 \[
-\eta_{t}^{x,y}=\frac{p_{0,t}^{*}(x,X_{t})r_{t,1}(X_{t},y)}{c(x,y)}
+\eta_{t}^{x,y}=\frac{p_{t}^{*}(x,\cdot)p_{1-t}(\cdot,y)}{c(x,y)}
 \]
 
 \end_inset
@@ -991,6 +991,10 @@ reference "eq:basic-sde"
 
  in two dimensions with initial condition 
 \begin_inset Formula $\mathbf{X}^{\nu}\sim\nu$
+\end_inset
+
+ and diffusion coefficient 
+\begin_inset Formula $\mbox{diag}(\Sigma,\Sigma)$
 \end_inset
 
 .
@@ -2136,7 +2140,15 @@ reference "eq:basic-sde"
 \begin_inset Formula $\nu\left(d\mathbf{x}_{0}d\mathbf{x}_{1}\right)$
 \end_inset
 
-.
+ and diffusion coefficient 
+\begin_inset Formula $\Sigma\oplus\Sigma$
+\end_inset
+
+, where 
+\begin_inset Formula $\oplus$
+\end_inset
+
+ is the direct sum operator.
  Let 
 \begin_inset Formula $\tau^{\left(i\right)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\mathbf{X}_{1-t}^{\nu,\left(i+n\right)}\}$
 \end_inset

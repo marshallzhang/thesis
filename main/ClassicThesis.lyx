@@ -387,6 +387,30 @@ filename "Chapter04.lyx"
 
 \end_layout
 
+\begin_layout Part Introduction (ClassicThesis)
+In this part, the theoretical results 
+\end_layout
+
+\begin_layout Part
+\begin_inset CommandInset label
+LatexCommand label
+name "part:3"
+
+\end_inset
+
+Empirical Contribution
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Chapter05.lyx"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage cleardoublepage
 \end_inset
@@ -401,117 +425,6 @@ filename "Bibliography.lyx"
 
 \begin_inset Note Comment
 status open
-
-\begin_layout Part Introduction (ClassicThesis)
-In this part, the central problem of this thesis is explored from a theoretical
- p, a 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge, is introduced and explored, with 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:4"
-
-\end_inset
-
- focusing on characterizing such bridges and proposing an approximate simulation
- scheme, and 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:EM"
-
-\end_inset
-
- studying the proposed simulation scheme and demonstrating potential application
-s of 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:4"
-
-\end_inset
-
- defines a 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge in the language of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "part:2"
-
-\end_inset
-
-, and demonstrates how such a bridge might be simulated in the spirit of
- 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bladt-sorensen-2014"
-
-\end_inset
-
-.
- The approximate nature of the simulation is quantified, and the density
- of such samples is quantified alongside the exact density of true 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:EM"
-
-\end_inset
-
- takes theory to practice and begins with simulation studies of the simulation
- scheme proposed in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:4"
-
-\end_inset
-
- for the Ornstein-Uhlenbeck and Cox-Ingersoll-Ross processes.
- Then, an immediate application of 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges is explored to impute forecasts from various macroeconomic survey
- forecasts.
- 
-\end_layout
-
-\begin_layout Part
-\begin_inset CommandInset label
-LatexCommand label
-name "part:3"
-
-\end_inset
-
-Empirical Contribution
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "Chapter05.lyx"
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Part
 Appendix
