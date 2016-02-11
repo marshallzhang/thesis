@@ -84,11 +84,7 @@ theorems-chap
 \begin_body
 
 \begin_layout Chapter
-The Simulation of 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridges
+The Simulation of Generalized Bridges
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:4"
@@ -129,7 +125,7 @@ To begin, we note that the canonical processes on the measures
 \begin_layout Standard
 In this chapter, we will study these generalized diffusion bridges and develop
  methods to sample such bridges.
- In particular, we will examine solutions 
+ In general, we will examine solutions 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
 
@@ -146,84 +142,23 @@ where
 \end_inset
 
  and 
-\begin_inset Formula $\Sigma$
+\begin_inset Formula $\Sigma=\sigma(\mathbf{X}_{t})I$
 \end_inset
 
- have known parametric forms, abstracting from the parameterization 
-\begin_inset Formula $\theta$
+ have known parametric forms and as usual, 
+\begin_inset Formula $\mathbf{W}_{t}$
 \end_inset
 
- in the previous chapter.
- Fix a Baudoin conditioning 
-\begin_inset Formula $((A,B),\nu)$
-\end_inset
-
- without loss of generality since 
-\begin_inset Formula $\mathbf{X}$
-\end_inset
-
- is Markov, so that for any 
-\begin_inset Formula $\nu^{*}(dx_{t_{0}}\cdots dx_{t_{n}})$
-\end_inset
-
-, there exist 
-\begin_inset Formula $\nu^{(i)}=(dx_{t_{i-1}}dx_{t_{i}})$
-\end_inset
-
- such that 
-\begin_inset Formula 
-\[
-\mathbb{P}^{\nu^{*}}=\bigotimes_{n=1}^{n}\mathbb{P}^{\nu^{(i)}}.
-\]
-
-\end_inset
-
-We will denote the probability measure induced by the stationary solution
- to 
+ is a vector of independent Wiener processes.
+ Having developed the theory of Baudoin conditionings in 
 \begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
+LatexCommand formatted
+reference "chap:2"
 
 \end_inset
 
- in two dimensions as 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
-.
- Note that the Baudoin 
-\begin_inset Formula $(\mathbf{X}_{0},\nu)$
-\end_inset
-
--conditioning of 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- is equal to the measure induced by the solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- in two dimensions for the initial condition 
-\begin_inset Formula $\mathbf{X}_{0}\sim\nu$
-\end_inset
-
-.
- Let this measure be denoted by 
-\begin_inset Formula $\mathbb{P}^{\nu}$
-\end_inset
-
- as usual.
- 
-\end_layout
-
-\begin_layout Standard
-We now present a formal definition of the sort of generalized diffusion
- bridge we are interested in.
- We will focus on the one-dimensional case, though multivariate extensions
- are possible.
+, we may present a definition of the particular sort of generalized bridge
+ we intend we simulate.
 \end_layout
 
 \begin_layout Definition
@@ -284,6 +219,86 @@ conditioning of
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Note that we may fix a Baudoin conditioning of the form 
+\begin_inset Formula $(X_{0,1},\nu)$
+\end_inset
+
+ without loss of generality since 
+\begin_inset Formula $X$
+\end_inset
+
+ is Markov.
+ As such, for any 
+\begin_inset Formula $\nu^{*}(dx_{t_{0}}\cdots dx_{t_{n}})$
+\end_inset
+
+, there exist 
+\begin_inset Formula $\nu^{(i)}=(dx_{t_{i-1}}dx_{t_{i}})$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\[
+\mathbb{P}^{\nu^{*}}=\bigotimes_{n=1}^{n}\mathbb{P}^{\nu^{(i)}},
+\]
+
+\end_inset
+
+and thus once a sampler for 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridges is developed, a sampler for 
+\begin_inset Formula $(X_{\mathcal{T}},\nu)$
+\end_inset
+
+-bridges for general 
+\begin_inset Formula $\mathcal{T}=\{t_{0},\dots,t_{n}\}$
+\end_inset
+
+ follows readily.
+ For notational ease in the following sections, we will denote the probability
+ measure induced by the stationary solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in two dimensions as 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+.
+ Note that the Baudoin 
+\begin_inset Formula $(\mathbf{X}_{0},\nu)$
+\end_inset
+
+-conditioning of 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ is equal to the measure induced by the solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in two dimensions for the initial condition 
+\begin_inset Formula $\mathbf{X}_{0}\sim\nu$
+\end_inset
+
+.
+ Let this measure be denoted by 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ as usual.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -412,7 +427,7 @@ reference "prop:v-bridge-density"
 \end_inset
 
  is chosen to be the law of 
-\begin_inset Formula $\left(X_{0},X_{1}\right)$
+\begin_inset Formula $X_{0,1}$
 \end_inset
 
  under 
@@ -426,33 +441,12 @@ reference "prop:v-bridge-density"
 .
 \end_layout
 
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "baudoin-2002"
-
-\end_inset
-
- details the theoretical properties of general Baudoin 
-\begin_inset Formula $\left(Y,\nu\right)$
-\end_inset
-
--conditionings in great detail, and his results carry over easily to this
- specific case.
- We therefore focus on proposing approximate and exact simulation schemes
- for 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges in the remainder of this chapter.
-\end_layout
-
 \begin_layout Section
 Approximate Simulation of 
-\begin_inset Formula $\nu-$
+\begin_inset Formula $\nu$
 \end_inset
 
-bridges
+-Bridges
 \end_layout
 
 \begin_layout Standard
@@ -1095,7 +1089,7 @@ reference "eq:basic-sde"
 
 \begin_layout Proof
 Set the stopping times 
-\begin_inset Formula $\rho^{\left(i\right)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\mathbf{X}_{t}^{*,\left(i\right)}\}$
+\begin_inset Formula $\rho^{(i)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,(i)}=\mathbf{X}_{t}^{*,(i)}\}$
 \end_inset
 
 , and define a stochastic process 
@@ -1105,23 +1099,28 @@ Set the stopping times
  such that 
 \begin_inset Formula 
 \[
-\mathbf{Y}_{t}^{\left(i\right)}=\begin{cases}
-\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\rho^{\left(i\right)}\\
-\mathbf{X}_{t}^{*,\left(i\right)} & \mbox{if }\rho^{\left(i\right)}<t\leq1
+\mathbf{Y}_{t}^{(i)}=\begin{cases}
+\mathbf{X}_{t}^{\nu,(i)} & \mbox{if }0\leq t\leq\rho^{(i)}\\
+\mathbf{X}_{t}^{*,(i)} & \mbox{if }\rho^{\left(i\right)}<t\leq1
 \end{cases}
 \]
 
 \end_inset
 
 on the event 
-\begin_inset Formula $\mathscr{R}=\{\rho^{\left(1\right)}<1,\rho^{\left(2\right)}<1\}$
+\begin_inset Formula $\mathscr{R}^{(i)}=\{\rho^{(i)}<1\}$
 \end_inset
 
  and 
-\begin_inset Formula $\mathbf{Y}=\mathbf{X}^{\nu}$
+\begin_inset Formula $\mathbf{Y}^{(i)}=\mathbf{X}^{\nu,(i)}$
 \end_inset
 
  otherwise.
+ Let 
+\begin_inset Formula $\mathscr{R}=\mathscr{R}^{(1)}\cup\mathscr{R}^{(2)}$
+\end_inset
+
+.
  Denote the measure induced by 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
@@ -1157,7 +1156,7 @@ th coordinate of
 
 \begin_layout Proof
 Similarly, set the stopping times 
-\begin_inset Formula $\tau^{\left(i\right)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\bar{\mathbf{X}}_{1-t}^{\nu,\left(\setminus i\right)}\}$
+\begin_inset Formula $\tau^{(i)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,(i)}=\mathbf{X}_{1-t}^{\nu,(\setminus i)}\}$
 \end_inset
 
 , and define a stochastic process 
@@ -1167,23 +1166,36 @@ Similarly, set the stopping times
  such that
 \begin_inset Formula 
 \[
-\mathbf{Z}_{t}^{\left(i\right)}=\begin{cases}
-\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\tau^{\left(i\right)}\\
-\bar{\mathbf{X}}_{1-t}^{\nu,\left(\setminus i\right)} & \mbox{if }\tau^{\left(i\right)}<t\leq1
+\mathbf{Z}_{t}^{(i)}=\begin{cases}
+\mathbf{X}_{t}^{\nu,(i)} & \mbox{if }0\leq t\leq\tau^{(i)}\\
+\mathbf{X}_{1-t}^{\nu,(\setminus i)} & \mbox{if }\tau^{(i)}<t\leq1
 \end{cases}
 \]
 
 \end_inset
 
 on the event 
-\begin_inset Formula $\mathscr{T}=\{\tau^{\left(1\right)}<1,\tau^{\left(2\right)}<1\}$
+\begin_inset Formula $\mathscr{T}^{(i)}=\{\tau^{(i)}<1\}$
 \end_inset
 
  and 
-\begin_inset Formula $\mathbf{Z}=\mathbf{X}^{\nu}$
+\begin_inset Formula $\mathbf{Z}^{(i)}=\mathbf{X}^{\nu,(1)}$
 \end_inset
 
  otherwise.
+ Let 
+\begin_inset Formula $\mathscr{T}=\mathscr{T}^{(1)}\cup\mathscr{T}^{(2)}$
+\end_inset
+
+, and note that 
+\begin_inset Formula $\mathscr{T}$
+\end_inset
+
+ is also equal to 
+\begin_inset Formula $\mathscr{T}^{(1)}\cap\mathscr{T}^{(2)}$
+\end_inset
+
+ by construction.
  Denote the measure induced by 
 \begin_inset Formula $\mathbf{Z}$
 \end_inset
@@ -1193,11 +1205,11 @@ on the event
 \end_inset
 
 , and for any pair 
-\begin_inset Formula $\mathbf{p}=(a,b)$
+\begin_inset Formula $\mathbf{p}=(\mathbf{p}^{(1)},\mathbf{p}^{(2)})$
 \end_inset
 
 , let 
-\begin_inset Formula $\tilde{\mathbf{p}}=(b,a)$
+\begin_inset Formula $\tilde{\mathbf{p}}=(\mathbf{p}^{(2)},\mathbf{p}^{(1)})$
 \end_inset
 
 .
@@ -1283,7 +1295,7 @@ reference "lem:time-reversal"
 \end_inset
 
 ) is equal in distribution to the time-reversed process 
-\begin_inset Formula $\tilde{\bar{\mathbf{X}}}_{1-t}^{\nu}$
+\begin_inset Formula $\tilde{\mathbf{X}}_{1-t}^{\nu}$
 \end_inset
 
 , which by construction of 
@@ -2072,219 +2084,6 @@ name "algo:approx-sim"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-We note for completeness that the proof and results of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "thm:approx-sim"
-
-\end_inset
-
- extend immediately to approximate simulation of a 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $X$
-\end_inset
-
- where 
-\begin_inset Formula $X$
-\end_inset
-
- is a multivariate diffusion.
- In this case, the statement of the theorem is as follows.
-\end_layout
-
-\begin_layout Theorem
-\begin_inset CommandInset label
-LatexCommand label
-name "thm:mv-approx"
-
-\end_inset
-
-Let 
-\begin_inset Formula $\mathbf{X}$
-\end_inset
-
- be the stationary solution to 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "eq:basic-sde"
-
-\end_inset
-
- in 
-\begin_inset Formula $n$
-\end_inset
-
- dimensions.
- Let 
-\begin_inset Formula $\mathbf{X}^{\nu}$
-\end_inset
-
- be a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- in 
-\begin_inset Formula $2n$
-\end_inset
-
- dimensions with initial condition 
-\begin_inset Formula $\nu\left(d\mathbf{x}_{0}d\mathbf{x}_{1}\right)$
-\end_inset
-
- and diffusion coefficient 
-\begin_inset Formula $\Sigma\oplus\Sigma$
-\end_inset
-
-, where 
-\begin_inset Formula $\oplus$
-\end_inset
-
- is the direct sum operator.
- Let 
-\begin_inset Formula $\tau^{\left(i\right)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(i\right)}=\mathbf{X}_{1-t}^{\nu,\left(i+n\right)}\}$
-\end_inset
-
-.
- Define a process 
-\begin_inset Formula $\mathbf{Z}$
-\end_inset
-
- as 
-\begin_inset Formula 
-\[
-\mathbf{Z}_{t}^{\left(i\right)}=\begin{cases}
-\mathbf{X}_{t}^{\nu,\left(i\right)} & \mbox{if }0\leq t\leq\tau^{\left(i\right)}\\
-\mathbf{X}_{1-t}^{\nu,\left(i+n\right)} & \mbox{if }\tau^{\left(i\right)}<t\leq1
-\end{cases}
-\]
-
-\end_inset
-
-on the event 
-\begin_inset Formula $\mathscr{T}=\{\tau^{\left(1\right)}<1,\dots,\tau^{\left(n\right)}<1\}$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbf{Z}=\mathbf{X}^{\nu,\left(1:n\right)}$
-\end_inset
-
- otherwise.
-\end_layout
-
-\begin_layout Theorem
-Then, the measure induced by 
-\begin_inset Formula $\mathbf{Z}$
-\end_inset
-
- conditional on 
-\begin_inset Formula $\mathscr{T}$
-\end_inset
-
- is equal to the measure induced by a 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of 
-\begin_inset Formula $\mathbf{X}$
-\end_inset
-
-, conditional on the coordinates of such a bridge being hit by the respective
- coordinates of an independent stationary solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- in 
-\begin_inset Formula $n$
-\end_inset
-
- dimensions with initial distribution 
-\begin_inset Formula $\int p_{1}(\mathbf{x}_{1}^{\left(1:n\right)},\cdot)\tilde{\nu}(d\mathbf{x}_{1})$
-\end_inset
-
-, where 
-\begin_inset Formula $\tilde{\nu}(d\mathbf{x}^{\left(1:n\right)}d\mathbf{x}^{\left(n+1:2n\right)}):=\nu(d\mathbf{x}^{\left(n+1:2n\right)}d\mathbf{x}^{\left(1:n\right)})$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-The simulation strategy for a multi-dimensional 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge follows accordingly.
- However, note that as long as 
-\begin_inset Formula $\mbox{Pr}(I_{X,Y})$
-\end_inset
-
- for a 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge of the one-dimensional solution 
-\begin_inset Formula $X$
-\end_inset
-
- to 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "eq:basic-sde"
-
-\end_inset
-
- and an independent hitting diffusion 
-\begin_inset Formula $Y$
-\end_inset
-
- is less than one, the probability of 
-\begin_inset Formula $\mathcal{\mathscr{T}}$
-\end_inset
-
- approaches 
-\begin_inset Formula $0$
-\end_inset
-
- as 
-\begin_inset Formula $n\rightarrow\infty$
-\end_inset
-
-.
- As such, the approximation to multivariate bridges of high dimension using
- the naïve algorithm implied by 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "thm:mv-approx"
-
-\end_inset
-
- becomes increasingly poor.
- 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bladt-finch-sorenson-2015"
-
-\end_inset
-
- address this curse of dimensionality by proposing a modified algorithm
- relying on coupling methods in which the backward diffusion is driven jointly
- by an orthogonal projection of the Weiner process driving the forward diffusion
- onto a particular linear subspace and an independent Wiener process.
- Hence, the backward diffusion's innovations are independent from the forward
- diffusion's innovations, but the probability that they intersect can be
- made sufficiently large.
 \end_layout
 
 \begin_layout Section

@@ -57,9 +57,9 @@ nu.c.sims.exact = exact.nu.double.bridge(10, function(n) sample(nu.c.draws, n, r
 
 # Plot.
 th.q = qsOU(ppoints(1:10000), c(0, 1, 1))
-data.q = sort(o.sims[1:10000,50])
-my.data.q = sort(nu.o.sims[1:10000,50])
-exact.data.q = sort(nu.o.sims.exact.cut[,50])
+data.q = sort(o.sims[1:10000,10])
+my.data.q = sort(nu.o.sims[1:10000,10])
+exact.data.q = sort(nu.o.sims.exact.cut[,10])
 data = data.frame(th = th.q, dat = data.q, my.dat = my.data.q, exact = exact.data.q)
 # data = data.frame(dat = data.q, my.dat = my.data.q, exact = exact.data.q)
 data.melt = melt(data, id = "th")
