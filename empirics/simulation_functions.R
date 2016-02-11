@@ -177,13 +177,13 @@ d.rho = function(x, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps) {
   for (i in 1:M) {
     hitting1 = as.vector(r.diffusion(rnorm(1, x[1,100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
     hitting2 = as.vector(r.diffusion(rnorm(1, x[2,100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
-    while (no.cross(x[1,], hitting1) | no.cross(x[2,], hitting2)) {
+    while (no.cross(x[1,], hitting1) & no.cross(x[2,], hitting2)) {
       Ts[i] = Ts[i] + 1
       hitting1 = as.vector(r.diffusion(rnorm(1, x[1,100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
       hitting2 = as.vector(r.diffusion(rnorm(1, x[2,100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
     }
   }
-  mean(Ts)
+  c(mean(Ts), !no.cross(x[1,], hitting1), !no.cross(x[2,], hitting2))
 }
 
 rho = function(x, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps) {
@@ -199,32 +199,44 @@ rho = function(x, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps) {
 }
 
 exact.nu.double.bridge = function(M, r.hitting.init, r.nu, samples, r.diffusion, theta, steps) {
+  bridge.is = array(0, dim = samples)
   bridges = vector("list", samples)
   xy = r.nu(1)
   bridges[[1]] = gen.double.nu.bridge(r.diffusion, theta, xy[1], xy[2], steps)
+  bridge.is[1] = 1
   for (i in 2:samples) {
     xy = r.nu(1)
     proposal = gen.double.nu.bridge(r.diffusion, theta, xy[1], xy[2], steps)
     rho.im1 = d.rho(bridges[[i-1]], M, r.hitting.init, r.nu, r.diffusion, theta, N, steps)
     rho.i = d.rho(proposal, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps)
-    r = rho.i / rho.im1
+    r = rho.i[1] / rho.im1[1]
     alpha = min(1, r)
     if (runif(1) < alpha) {
+      bridge.is[i] = which(rho.i == T)[1] - 1
       bridges[[i]] = proposal
     } else {
       xy = r.nu(1)
       second.proposal = gen.double.nu.bridge(r.diffusion, theta, xy[1], xy[2], steps)
       rho.ip1 = d.rho(second.proposal, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps)
-      alpha.2 = (rho.ip1 / rho.im1) * ((1 - min(1,(rho.i / rho.ip1))) / (1 - r))
+      alpha.2 = (rho.ip1[1] / rho.im1[1]) * ((1 - min(1,(rho.i[1] / rho.ip1[1]))) / (1 - r))
       print(paste(i, round(r, digits = 2), round(min(1,alpha.2), digits = 2)))
       if (runif(1) < min(1,alpha.2)) {
+        bridge.is[i] = which(rho.ip1 == T)[1] - 1
         bridges[[i]] = second.proposal
       } else {
         bridges[[i]] = bridges[[i-1]]
       }
     }
   }
-  bridges
+  ret = matrix(0, nrow = samples, ncol = 100)
+  for (i in 1:samples) {
+    if (bridge.is[i] == 1) {
+      ret[i, ] = bridges[[i]][1, ]
+    } else {
+      ret[i, ] = rev(bridges[[i]][2, ])
+    }
+  }
+  ret
 }
 
 exact.nu.bridge = function(M, r.hitting.init, samples, ...) {

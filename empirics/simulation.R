@@ -23,6 +23,7 @@ cor(o.sims[,c(1,100)])
 nu.o = function(n) {rmvnorm(n, c(0,0), matrix(c(1/2, exp(-1)/2, exp(-1)/2, 1/2), nrow = 2, ncol = 2))} 
 
 nu.o.sims = gen.nu.bridge(nu.o, ou, theta, N, 100)
+
 plot(apply(nu.o.sims, 2, var),ylim=c(0.3,0.8))
 abline(b=0,a=.5)
 hist(nu.o.sims[,50])
@@ -31,12 +32,13 @@ cor(nu.o.sims[,c(1,100)])
 r.ou.hitting.init = function(n) rnorm(n, mean = 0, sd = sqrt(0.5))
 # r.ou.hitting.init = function(n) rnorm(n, 0, sqrt((1-exp(-2))/2))
 
-nu.o.sims.exact = exact.nu.bridge(20, r.ou.hitting.init, N,
+nu.o.sims.exact = exact.nu.bridge(100, r.ou.hitting.init, 22000,
                                   nu.o, ou, theta, 1, 100)
 
-nu.o.sims.exact = exact.nu.double.bridge(10, r.ou.hitting.init, nu.o, 2000, ou, theta, 100)
+nu.o.sims.exact = exact.nu.double.bridge(10, r.ou.hitting.init, nu.o, 20000, ou, theta, 100)
   
-nu.o.sims.exact.cut = nu.o.sims.exact[seq(2001,12000,1),]
+nu.o.sims.exact.cut = nu.o.sims.exact[seq(1,20000,2),]
+nu.o.sims.exact.cut = nu.o.sims.exact[seq(2001,22000,2),]
 nu.o.sims.exact.cut = t(sapply(nu.o.sims.exact, function(x) x[1,]))
 
 plot(apply(nu.o.sims.exact.cut, 2, var), ylim =c(0.3,0.8))
@@ -59,10 +61,10 @@ nu.c = function(n) { mcmc(c(1, 1), 20 * N + 2000, 2000, everyother = 20, trace =
 nu.c.sims = gen.nu.bridge(nu.c, cir, theta, 10000, 100)
 
 # Plot.
-th.q = qsOU(ppoints(o.sims[,50]), c(0, 1, 1))
-data.q = sort(o.sims[,50])
-my.data.q = sort(nu.o.sims[,50])
-exact.data.q = sort(nu.o.sims.exact.cut[,50])
+th.q = qsOU(ppoints(1:10000), c(0, 1, 1))
+data.q = sort(o.sims[1:2000,50])
+my.data.q = sort(nu.o.sims[1:2000,50])
+exact.data.q = sort(nu.o.sims.exact.cut[seq(1, 4000,2),50])
 data = data.frame(th = th.q, my.dat = my.data.q, exact = exact.data.q)
 # data = data.frame(dat = data.q, my.dat = my.data.q, exact = exact.data.q)
 data.melt = melt(data, id = "th")
