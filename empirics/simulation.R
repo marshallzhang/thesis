@@ -34,8 +34,10 @@ r.ou.hitting.init = function(n) rnorm(n, mean = 0, sd = sqrt(0.5))
 nu.o.sims.exact = exact.nu.bridge(20, r.ou.hitting.init, N,
                                   nu.o, ou, theta, 1, 100)
 
+nu.o.sims.exact = exact.nu.double.bridge(10, r.ou.hitting.init, nu.o, 2000, ou, theta, 100)
+  
 nu.o.sims.exact.cut = nu.o.sims.exact[seq(2001,12000,1),]
-# nu.o.sims.exact.cut = nu.o.sims.exact[seq(1,2000,5),]
+nu.o.sims.exact.cut = t(sapply(nu.o.sims.exact, function(x) x[1,]))
 
 plot(apply(nu.o.sims.exact.cut, 2, var), ylim =c(0.3,0.8))
 abline(b=0,a=.5)
