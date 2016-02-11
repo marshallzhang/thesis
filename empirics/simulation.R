@@ -15,11 +15,32 @@ for (i in 1:N) {
   o.sims[i, ] = ou(o.sims.start[i], 100, theta)
 }
 
-cov(o.sims[,c(1,100)])
+plot(apply(o.sims, 2, var),ylim=c(0.3,0.8))
+abline(b=0,a=.5)
+var(o.sims[,50])
+cor(o.sims[,c(1,100)])
 
 nu.o = function(n) {rmvnorm(n, c(0,0), matrix(c(1/2, exp(-1)/2, exp(-1)/2, 1/2), nrow = 2, ncol = 2))} 
 
-nu.o.sims = gen.nu.bridge(nu.o, ou, theta, 10000, 100)
+nu.o.sims = gen.nu.bridge(nu.o, ou, theta, N, 100)
+plot(apply(nu.o.sims, 2, var),ylim=c(0.3,0.8))
+abline(b=0,a=.5)
+hist(nu.o.sims[,50])
+cor(nu.o.sims[,c(1,100)])
+
+r.ou.hitting.init = function(n) rnorm(n, mean = 0, sd = sqrt(0.5))
+# r.ou.hitting.init = function(n) rnorm(n, 0, sqrt((1-exp(-2))/2))
+
+nu.o.sims.exact = exact.nu.bridge(20, r.ou.hitting.init, N,
+                                  nu.o, ou, theta, 1, 100)
+
+nu.o.sims.exact.cut = nu.o.sims.exact[seq(2001,12000,1),]
+# nu.o.sims.exact.cut = nu.o.sims.exact[seq(1,2000,5),]
+
+plot(apply(nu.o.sims.exact.cut, 2, var), ylim =c(0.3,0.8))
+abline(b=0,a=.5)
+var(nu.o.sims.exact.cut[,50])
+cor(nu.o.sims.exact.cut[,c(1,100)])
 
 # CIR process.
 theta = c(1, 1, 1)
@@ -39,8 +60,11 @@ nu.c.sims = gen.nu.bridge(nu.c, cir, theta, 10000, 100)
 th.q = qsOU(ppoints(o.sims[,50]), c(0, 1, 1))
 data.q = sort(o.sims[,50])
 my.data.q = sort(nu.o.sims[,50])
-data = data.frame(dat = data.q, th = th.q, my.dat = my.data.q)
+exact.data.q = sort(nu.o.sims.exact.cut[,50])
+data = data.frame(th = th.q, my.dat = my.data.q, exact = exact.data.q)
+# data = data.frame(dat = data.q, my.dat = my.data.q, exact = exact.data.q)
 data.melt = melt(data, id = "th")
+# data.melt = melt(data, id = "dat")
 o.plot = pretty.plot(data.melt) + 
               geom_point(aes(x = th, y = value, color = variable)) + 
               xlab("Theoretical Quantiles") + 
@@ -48,7 +72,9 @@ o.plot = pretty.plot(data.melt) +
               geom_abline(slope = 1) +
               scale_y_continuous(breaks = -3:3) + 
               scale_x_continuous(breaks = -3:3) + 
-              scale_color_manual(name = "", labels = c("Unconstrained diffusion       ", bquote(paste(nu, "-bridge"))), values = c(dat = "black", my.dat = "gray")) 
+              scale_color_manual(name = "", 
+                                 labels = c("Unconstrained diffusion       ", bquote(paste(nu, "-bridge")), "Exact"), 
+                                 values = c(dat = "black", my.dat = "gray", exact = "red")) 
 
 th.q = qsCIR(ppoints(c.sims[,50]), c(1,1,1))
 data.q = sort(c.sims[,50])

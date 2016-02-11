@@ -6,6 +6,7 @@ library(mvtnorm)
 library(scales)
 library(grid)
 library(gridExtra)
+library(NCmisc)
 
 #
 # GENERATE NU BRIDGE
@@ -68,10 +69,10 @@ gen.double.nu.bridge = function(r.diffusion, theta, start, end, steps) {
 }
 
 # Check crossing
-cross = function(x, y) {
+no.cross = function(x, y) {
   if (length(x) == length(y)) {
     diff = x - y
-    all(difference < 0) | all(difference > 0)
+    return(all(diff< 0) | all(diff> 0))
   } else {
     stop("Different lengths of paths.")
   }
@@ -84,7 +85,7 @@ gen.nu.helper = function(r.diffusion, theta, start, end, steps, flip = F) {
 
     counter = 0
     # If they don't intersect, re-generate.
-    while (cross(y.1, y.2)) {
+    while (no.cross(y.1, y.2)) {
       counter = counter + 1
       if (counter > 500) {
         stop("Too many tries.")
@@ -94,7 +95,8 @@ gen.nu.helper = function(r.diffusion, theta, start, end, steps, flip = F) {
     }
       
     # Otherwise, find where they intersect and create the bridge.  
-    if (difference[1] > 0) {
+    difference = y.1 - y.2
+    if ((difference[1] > 0)) {
       iota = which(difference < 0)[1] 
       c(y.1[1:(iota - 1)], y.2[iota:length(y.2)])
     } else {
@@ -117,7 +119,7 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps) {
     }, error = function(e) {
      bridges[i - 1, ]
     })
-    print(i)
+#     print(i)
   }
   bridges
 }
@@ -133,7 +135,7 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps) {
 # Generate OU process.
 ou = function(start, steps, theta) {
   x = sde.sim(X0 = start, N = steps - 1,
-          model = "OU", theta = theta )
+          model = "OU", theta = theta, method = "euler")
   x
 }
 
@@ -177,27 +179,49 @@ cir.joint = function(current) {
 rho = function(x, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps) {
   Ts = array(1, dim = M)
   for (i in 1:M) {
-    hitting = r.diffusion(r.hitting.init(1), steps, theta)
-    while (!cross(x, hitting)) {
+    hitting = as.vector(r.diffusion(rnorm(1, x[100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
+#       hitting = as.vector(r.diffusion(r.hitting.init(1), steps, theta))
+    while (no.cross(x, hitting)) {
       Ts[i] = Ts[i] + 1
-      hitting = r.hitting(r.hitting.init(1), steps, theta)
+      hitting = as.vector(r.diffusion(rnorm(1, x[100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
+#       hitting = as.vector(r.diffusion(r.hitting.init(1), steps, theta))
     }
   }
   mean(Ts)
 }
 
 exact.nu.bridge = function(M, r.hitting.init, samples, ...) {
-  bridges = vector("list", samples)
-  bridges[[1]] = gen.nu.bridge(...)
+  bridges = array(0, dim = c(samples, 100))
+  bridges[1,] = gen.nu.bridge(...)
   for (i in 2:samples) {
     proposal = gen.nu.bridge(...)
-    alpha = min(1, rho(proposal, M, r.hitting.init, ...) / rho(bridges[[i-1]], M, r.hitting.init, ...))
+    rho.im1 = rho(bridges[i-1,], M, r.hitting.init, ...)
+    rho.i = rho(proposal, M, r.hitting.init, ...)
+    r = rho.i / rho.im1
+    alpha = min(1, r)
     if (runif(1) < alpha) {
-      bridges[[i]] = proposal
+      bridges[i,] = proposal
     } else {
-      bridges[[i]] = bridges[[i-1]]
+      second.proposal = gen.nu.bridge(...)
+      rho.ip1 = rho(second.proposal, M, r.hitting.init, ...)
+      alpha.2 = (rho.ip1 / rho.im1) * ((1 - min(1,(rho.i / rho.ip1))) / (1 - r))
+      print(paste(i, round(r, digits = 2), round(min(1,alpha.2), digits = 2)))
+      if (runif(1) < min(1,alpha.2)) {
+        bridges[i, ] = second.proposal
+      } else {
+#         third.proposal = gen.nu.bridge(...)
+#         rho.ip2 = rho(third.proposal, M, r.hitting.init, ...)
+#         alpha.3 = (rho.ip2 / rho.im1) *  ((1 - min(1,(rho.ip1 / rho.ip2))) * (1 - min(1,(rho.i / rho.ip2)))) / ((1 - r) * (1-alpha.2))
+#         print(paste(i, round(r, digits = 2), round(min(1,alpha.2),digits=2), round(min(1,alpha.3), digits = 2)))
+#         if (runif(1) < min(1,alpha.3)) {
+#           bridges[i,] = third.proposal
+#         } else {
+          bridges[i,] = bridges[i-1,]
+#         }
+      }
     }
   }
+  bridges
 }
 
 #
@@ -217,6 +241,7 @@ mcmc.mh = function(current, d.posterior, r.proposal, special = "") {
       alpha = min(1, exp(d.posterior(proposal) - d.posterior(current) + sum(dgamma(current, shape = 2, rate = 2, log =T )) - sum(dgamma(proposal, shape = 2, rate = 2, log = T))))
     } else if (special == "") {
       alpha = min(1, exp(d.posterior(proposal) - d.posterior(current)))
+    }
     
     # Accept or reject.
     if (runif(1) < alpha) {

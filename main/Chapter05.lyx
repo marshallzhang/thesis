@@ -260,12 +260,9 @@ In all simulations to follow, the relevant process is simulated over the
 \begin_inset Formula $\delta=1/100$
 \end_inset
 
- using the Euler-Marayuma approximation.
- In general, we simulate 
-\begin_inset Formula $10,000$
-\end_inset
-
- independent paths of the relevant process unless otherwise noted.
+.
+ Since both the OU and CIR processes have known transition densities, we
+ simulate exact paths.
  All simulations are implemented in R on a 2012 Macbook Pro.
 \end_layout
 
@@ -497,20 +494,8 @@ In particular, we use a standard Metropolis-Hastings sampler with a bivariate
 \end_inset
 
  Furthermore, we note that the initial distributions of the hitting diffusions
- for the OU and CIR process are readily available analytically as a Gaussian
- distribution of mean 
-\begin_inset Formula $0$
-\end_inset
-
- and variance 
-\begin_inset Formula $\left(2-2e^{2}+2e^{4}\right)/4$
-\end_inset
-
-, and a Gamma distribution with shape and rate parameter 
-\begin_inset Formula $2$
-\end_inset
-
-, respectively.
+ for the OU and CIR process are by definition in this case simply the respective
+ stationary distributions of the proceses.
 \end_layout
 
 \begin_layout Standard
