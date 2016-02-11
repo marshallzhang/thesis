@@ -129,8 +129,8 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps) {
 #
 
 # Generate OU process.
-ou = function(start, steps, theta) {
-  x = sde.sim(X0 = start, N = steps - 1,
+ou = function(start, steps, theta, time = 1) {
+  x = sde.sim(T= time, X0 = start, N = steps - 1,
           model = "OU", theta = theta, method = "euler")
   x
 }
@@ -145,8 +145,8 @@ ou = function(start, steps, theta) {
 #
 
 
-cir = function(start, steps, theta) {
-  x = sde.sim(X0 = start, N = steps - 1,
+cir = function(start, steps, theta, time = 1) {
+  x = sde.sim(T = time, X0 = start, N = steps - 1,
               model = "CIR", theta = theta )
   as.numeric(x)
 }
@@ -172,15 +172,19 @@ cir.joint = function(current) {
 #
 
 # hat rho
-d.rho = function(x, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps) {
+d.rho = function(x, M, r.nu, r.diffusion, theta, N, steps) {
   Ts = array(1, dim = M)
   for (i in 1:M) {
-    hitting1 = as.vector(r.diffusion(rnorm(1, x[1,100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
-    hitting2 = as.vector(r.diffusion(rnorm(1, x[2,100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
+    init.1 = r.diffusion(x[1,100], steps, theta)[steps]
+    init.2 = r.diffusion(x[2,100], steps, theta)[steps]
+    hitting1 = as.vector(r.diffusion(init.1, steps, theta))
+    hitting2 = as.vector(r.diffusion(init.2, steps, theta))
     while (no.cross(x[1,], hitting1) & no.cross(x[2,], hitting2)) {
       Ts[i] = Ts[i] + 1
-      hitting1 = as.vector(r.diffusion(rnorm(1, x[1,100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
-      hitting2 = as.vector(r.diffusion(rnorm(1, x[2,100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
+      init.1 = r.diffusion(x[1,100], steps, theta)[steps]
+      init.2 = r.diffusion(x[2,100], steps, theta)[steps]
+      hitting1 = as.vector(r.diffusion(init.1, steps, theta))
+      hitting2 = as.vector(r.diffusion(init.2, steps, theta))
     }
   }
   c(mean(Ts), !no.cross(x[1,], hitting1), !no.cross(x[2,], hitting2))
@@ -198,7 +202,7 @@ rho = function(x, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps) {
   mean(Ts)
 }
 
-exact.nu.double.bridge = function(M, r.hitting.init, r.nu, samples, r.diffusion, theta, steps) {
+exact.nu.double.bridge = function(M, r.nu, samples, r.diffusion, theta, steps) {
   bridge.is = array(0, dim = samples)
   bridges = vector("list", samples)
   xy = r.nu(1)
@@ -207,8 +211,8 @@ exact.nu.double.bridge = function(M, r.hitting.init, r.nu, samples, r.diffusion,
   for (i in 2:samples) {
     xy = r.nu(1)
     proposal = gen.double.nu.bridge(r.diffusion, theta, xy[1], xy[2], steps)
-    rho.im1 = d.rho(bridges[[i-1]], M, r.hitting.init, r.nu, r.diffusion, theta, N, steps)
-    rho.i = d.rho(proposal, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps)
+    rho.im1 = d.rho(bridges[[i-1]], M, r.nu, r.diffusion, theta, N, steps)
+    rho.i = d.rho(proposal, M, r.nu, r.diffusion, theta, N, steps)
     r = rho.i[1] / rho.im1[1]
     alpha = min(1, r)
     if (runif(1) < alpha) {
@@ -217,7 +221,7 @@ exact.nu.double.bridge = function(M, r.hitting.init, r.nu, samples, r.diffusion,
     } else {
       xy = r.nu(1)
       second.proposal = gen.double.nu.bridge(r.diffusion, theta, xy[1], xy[2], steps)
-      rho.ip1 = d.rho(second.proposal, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps)
+      rho.ip1 = d.rho(second.proposal, M, r.nu, r.diffusion, theta, N, steps)
       alpha.2 = (rho.ip1[1] / rho.im1[1]) * ((1 - min(1,(rho.i[1] / rho.ip1[1]))) / (1 - r))
       print(paste(i, round(r, digits = 2), round(min(1,alpha.2), digits = 2)))
       if (runif(1) < min(1,alpha.2)) {
