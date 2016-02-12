@@ -29,6 +29,8 @@ abline(b=0,a=.5)
 hist(nu.o.sims[,50])
 cor(nu.o.sims[,c(1,100)])
 
+nu.o.sims.exact= exact.bridges(5, nu.o, 3000, ou, theta, 100)
+
 nu.o.sims.exact = exact.nu.double.bridge(5, nu.o, 3000, ou, theta, 100)
   
 nu.o.sims.exact.cut = nu.o.sims.exact[seq(2001,12000),]

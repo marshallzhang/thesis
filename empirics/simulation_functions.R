@@ -110,10 +110,13 @@ gen.nu.helper = function(r.diffusion, theta, start, end, steps, flip = F) {
 }
 
 # Generating a nu bridge.
-gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps) {
+gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps, set.start = c(-Inf,-Inf)) {
   
   bridges = array(0, dim = c(N, steps))
   xy = r.nu(N)
+  if (N == 1 & all(is.finite(set.start))) {
+    xy = t(matrix(set.start))
+  }
   
   for (i in 1:N){
   # Generate two independent diffusions, one starting at start and the other at end.
@@ -198,16 +201,41 @@ d.rho = function(x, M, r.nu, r.diffusion, theta, N, steps) {
   c(mean(Ts), !no.cross(x[1,], hitting1), !no.cross(x[2,], hitting2))
 }
 
-rho = function(x, M, r.hitting.init, r.nu, r.diffusion, theta, N, steps) {
+rho = function(x, M, r.diffusion, theta, steps) {
   Ts = array(1, dim = M)
   for (i in 1:M) {
-    hitting = as.vector(r.diffusion(rnorm(1, x[100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
+    init.1 = r.diffusion(x[steps], steps, theta)[steps]
+    hitting = as.vector(r.diffusion(init.1, steps, theta))
     while (no.cross(x, hitting)) {
       Ts[i] = Ts[i] + 1
-      hitting = as.vector(r.diffusion(rnorm(1, x[100]*exp(-1), sqrt((1-exp(-2))/2)), steps, theta))
+      init.1 = r.diffusion(x[steps], steps, theta)[steps]
+      hitting = as.vector(r.diffusion(init.1, steps, theta))
     }
   }
   mean(Ts)
+}
+
+exact.bridges = function(M, r.nu, samples, r.diffusion, theta, steps) {
+  bridges = matrix(0, nrow = samples, ncol = 100)
+  bridges[1, ] = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps)
+  for (i in 2:samples) {
+    tryCatch({
+      start.end = r.nu(1)
+      proposal.1 = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, set.start = start.end)
+      proposal.2 = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, set.start = start.end)
+    }, error = function(e) {
+      bridges[i, ] = bridges[i-1,]
+    })
+    r = rho(proposal.2, M, r.diffusion, theta, steps) / rho(proposal.1, M, r.diffusion, theta, steps)
+    alpha = min(1, r)
+    print(paste(i,alpha))
+    if (runif(1) < alpha) {
+      bridges[i,] = proposal.2
+    } else {
+      bridges[i,] = proposal.1
+    }
+  }
+  bridges
 }
 
 exact.nu.double.bridge = function(M, r.nu, samples, r.diffusion, theta, steps) {
