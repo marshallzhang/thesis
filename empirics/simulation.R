@@ -29,7 +29,7 @@ abline(b=0,a=.5)
 hist(nu.o.sims[,50])
 cor(nu.o.sims[,c(1,100)])
 
-nu.o.sims.exact= exact.bridges(5, nu.o, 3000, ou, theta, 100)
+nu.o.sims.exact= exact.bridges(10, nu.o, 10000, ou, theta, 100)
 
 nu.o.sims.exact = exact.nu.double.bridge(5, nu.o, 3000, ou, theta, 100)
   
@@ -59,21 +59,23 @@ nu.c.draws = nu.c(20000)
 nu.c.sims.exact = exact.nu.double.bridge(10, function(n) sample(nu.c.draws, n, replace = T), 20000, ou, theta, 100)
 
 # Plot.
-th.q = qsOU(ppoints(1:3000), c(0, 1, 1))
-data.q = sort(o.sims[1:3000,50])
-my.data.q = sort(nu.o.sims[1:3000,50])
+th.q = qsOU(ppoints(1:10000), c(0, 1, 1))
+data.q = sort(o.sims[1:10000,50])
+my.data.q = sort(nu.o.sims[1:10000,50])
 exact.data.q = sort(nu.o.sims.exact.cut[,50])
 data = data.frame(th = th.q, dat = data.q, my.dat = my.data.q, exact = exact.data.q)
 # data = data.frame(dat = data.q, my.dat = my.data.q, exact = exact.data.q)
 data.melt = melt(data, id = "th")
 # data.melt = melt(data, id = "dat")
 o.plot = pretty.plot(data.melt) + 
-              geom_point(aes(x = th, y = value, color = variable)) + 
+              geom_point(aes(x = th, y = value, color = variable, shape = variable)) + 
               xlab("Theoretical Quantiles") + 
               ylab("Sample Quantiles") + 
               geom_abline(slope = 1) +
               scale_y_continuous(breaks = -3:3) + 
-              scale_x_continuous(breaks = -3:3) + 
+              scale_x_continuous(breaks = -3:3) +
+              scale_shape(solid = F) +
+              scale_shape_manual(values = c(1,2,4)) + 
               scale_color_manual(name = "", 
                                  labels = c("Unconstrained diffusion       ", bquote(paste(nu, "-bridge")), "Exact"), 
                                  values = c(dat = "black", my.dat = "gray", exact = "red")) 
