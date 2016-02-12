@@ -1079,6 +1079,10 @@ reference "eq:basic-sde"
 \begin_inset Formula $\mathbf{X}_{0}^{\nu}\sim\nu$
 \end_inset
 
+ and 
+\begin_inset Formula $\bar{\mathbf{X}}_{0}^{\nu}=\tilde{\mathbf{X}}_{0}^{\nu}$
+\end_inset
+
 , and let 
 \begin_inset Formula $\mathbf{X}^{*}$
 \end_inset

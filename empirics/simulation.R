@@ -29,9 +29,10 @@ abline(b=0,a=.5)
 hist(nu.o.sims[,50])
 cor(nu.o.sims[,c(1,100)])
 
-nu.o.sims.exact = exact.nu.double.bridge(5, nu.o, 12000, ou, theta, 100)
+nu.o.sims.exact = exact.nu.double.bridge(5, nu.o, 3000, ou, theta, 100)
   
 nu.o.sims.exact.cut = nu.o.sims.exact[seq(2001,12000),]
+nu.o.sims.exact.cut = nu.o.sims.exact
 
 plot(apply(nu.o.sims.exact.cut, 2, var), ylim =c(0.3,0.8))
 abline(b=0,a=.5)
@@ -56,10 +57,10 @@ nu.c.draws = nu.c(20000)
 nu.c.sims.exact = exact.nu.double.bridge(10, function(n) sample(nu.c.draws, n, replace = T), 20000, ou, theta, 100)
 
 # Plot.
-th.q = qsOU(ppoints(1:10000), c(0, 1, 1))
-data.q = sort(o.sims[1:10000,10])
-my.data.q = sort(nu.o.sims[1:10000,10])
-exact.data.q = sort(nu.o.sims.exact.cut[,10])
+th.q = qsOU(ppoints(1:3000), c(0, 1, 1))
+data.q = sort(o.sims[1:3000,50])
+my.data.q = sort(nu.o.sims[1:3000,50])
+exact.data.q = sort(nu.o.sims.exact.cut[,50])
 data = data.frame(th = th.q, dat = data.q, my.dat = my.data.q, exact = exact.data.q)
 # data = data.frame(dat = data.q, my.dat = my.data.q, exact = exact.data.q)
 data.melt = melt(data, id = "th")
