@@ -2123,14 +2123,117 @@ key "bladt-sorensen-2014"
 
  extend their approximate sampler to an exact sampler by leveraging the
  relationship between the densities of an approximate and exact diffusion
- bridge, given by 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:approx-exact-rel"
+ bridge in a pseudo-marginal Metropolis-Hastings sampler, using their approximat
+e sampling scheme as a proposal.
+ In particular, if 
+\begin_inset Formula $\hat{f}(x)$
+\end_inset
+
+ is the density of an approximate diffusion bridge, 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is the density of an exact diffusion bridge, and 
+\begin_inset Formula $I_{x,y}$
+\end_inset
+
+ is the event that 
+\begin_inset Formula $x,y\in\Omega$
+\end_inset
+
+ intersect i.e.
+ there exists some 
+\begin_inset Formula $t$
+\end_inset
+
+ such that 
+\begin_inset Formula $x_{t}=y_{t}$
+\end_inset
+
+, then 
+\begin_inset Formula 
+\[
+\hat{f}(x)=f(x)\frac{\mbox{Pr}(I_{x,Y})}{\mbox{Pr}(I_{X,Y})}.
+\]
 
 \end_inset
 
-, in a pseudo-marginal Metropolis-Hastings sampler.
+The proof of this fact can be found in 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "below Theorem 2.1. in"
+key "bladt-sorensen-2014"
+
+\end_inset
+
+.
+ As such, the acceptance ratio in an exact sampler for a diffusion bridge
+ should be 
+\begin_inset Formula $\mbox{Pr}(I_{X^{(i-1)},Y})/\mbox{Pr}(I_{X',Y})$
+\end_inset
+
+ where 
+\begin_inset Formula $X^{(i-1)}$
+\end_inset
+
+ is the previous bridge and 
+\begin_inset Formula $X'$
+\end_inset
+
+ is the proposal.
+ However, this ratio is difficult to compute analytically, and by a result
+ of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "andrieu-roberts"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
+
+\end_inset
+
+ use unbiased estimates of 
+\begin_inset Formula $\mbox{Pr}(I_{x,Y})$
+\end_inset
+
+ in the acceptance ratio to carry out their MCMC.
+ 
+\end_layout
+
+\begin_layout Standard
+Now, we note that to sample an exact 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridge, we merely need to sample 
+\begin_inset Formula $(a,b)\sim\nu$
+\end_inset
+
+, and simulate an exact diffusion bridge from 
+\begin_inset Formula $a$
+\end_inset
+
+ to 
+\begin_inset Formula $b$
+\end_inset
+
+.
+ Using the fact that the exact sampler of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
+
+\end_inset
+
+ is an independence sampler, we propose the following exact 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridge sampler.
 \end_layout
 
 \begin_layout Standard
@@ -2202,7 +2305,7 @@ gets 1$}
 \backslash
 While{
 \backslash
-Call{hitting}{ } and $x$ do not cross}
+Call{hitting}{$x_{1}$} and $x$ do not cross}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2314,7 +2417,20 @@ dots,$ samples}
 
 
 \backslash
-State{$X^{'} 
+State{
+\backslash
+textbf{draw} $(a,b)
+\backslash
+sim
+\backslash
+nu$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$X^{} 
 \backslash
 gets$ 
 \backslash
@@ -2326,7 +2442,26 @@ mu,
 \backslash
 sigma, 
 \backslash
-nu, N$}}
+delta_{a,b}, N$}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$X^{2} 
+\backslash
+gets$ 
+\backslash
+Call{approximate $
+\backslash
+nu$-bridge}{$
+\backslash
+mu, 
+\backslash
+sigma, 
+\backslash
+delta_{a,b}, N$}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2349,13 +2484,11 @@ cfrac{
 \backslash
 hat{
 \backslash
-rho}(X^{'},M)}{
+rho}(X^{2},M)}{
 \backslash
 hat{
 \backslash
-rho}(
-\backslash
-mathbf{X}^{(i-1)},M)}
+rho}(X^{1},M)}
 \backslash
 right
 \backslash
@@ -2381,7 +2514,7 @@ State{$
 \backslash
 mathbf{X}^{(i)} 
 \backslash
-gets X^{'}$}
+gets X^{2}$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2399,9 +2532,7 @@ State{$
 \backslash
 mathbf{X}^{(i)} 
 \backslash
-gets 
-\backslash
-mathbf{X}^{(i-1)}$}
+gets X^{1}$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2472,97 +2603,7 @@ name "algo:exact-sim"
 \end_layout
 
 \begin_layout Standard
-Fortunately, the extension of our approximate 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge sampler to an exact sampler is precisely the same as the extension
- for a regular diffusion bridge, and thus we refer the reader to 
-\begin_inset CommandInset citation
-LatexCommand citet
-before "Section 2.3 in"
-key "bladt-sorensen-2014"
-
-\end_inset
-
- for the derivation of such an extension.
- Following the algorithm presented there, 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "algo:exact-sim"
-
-\end_inset
-
- presents a pseudo-marginal Metropolis-Hastings sampler for exact 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges, given
-\end_layout
-
-\begin_layout Enumerate
-
-\noun on
-approximate 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge
-\noun default
-(
-\series bold
-\noun on
-
-\begin_inset Formula $\mu,\sigma,\nu,N$
-\end_inset
-
-
-\series default
-\noun default
-), defined in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "algo:approx-sim"
-
-\end_inset
-
-, and
-\end_layout
-
-\begin_layout Enumerate
-
-\noun on
-hitting
-\noun default
-(), a method of drawing a sample path of the hitting diffusion (the initial
- distribution may need to be sampled through MCMC methods).
-\end_layout
-
-\begin_layout Standard
-Note that in a standard Metropolis-Hastings setting, the acceptance ratio
- by 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:approx-exact-rel"
-
-\end_inset
-
- should be 
-\begin_inset Formula $\mbox{Pr}(I_{\mathbf{X}^{\left(i-1\right)},Y})/\mbox{Pr}(I_{X',Y})$
-\end_inset
-
-.
- However, this ratio is difficult to compute analytically, and by the result
- of 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "andrieu-roberts"
-
-\end_inset
-
-, we may instead use unbiased estimates of the factors in the acceptance
- ratio to carry out our MCMC.
- The helper function 
+Note that the function 
 \begin_inset Formula $\hat{\rho}\left(x,M\right)$
 \end_inset
 
@@ -2573,9 +2614,8 @@ reference "algo:exact-sim"
 
 \end_inset
 
- offers precisely such an estimate, since it returns an unbiased Monte Carlo
- estimate for the expectation of a geometric distribution with probability
- of success 
+ is an unbiased Monte Carlo estimate for the expectation of a geometric
+ distribution with probability of success 
 \begin_inset Formula $\mbox{Pr}(I_{x,Y})$
 \end_inset
 
@@ -2584,8 +2624,38 @@ reference "algo:exact-sim"
 \begin_inset Formula $1/\mbox{Pr}(I_{x,Y})$
 \end_inset
 
-.
- 
+, and 
+\noun on
+hitting
+\noun default
+(
+\begin_inset Formula $b$
+\end_inset
+
+) returns a solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in one dimension over 
+\begin_inset Formula $[t,2t]$
+\end_inset
+
+ with initial distribution 
+\begin_inset Formula $p_{1}(b,\cdot)$
+\end_inset
+
+ (see 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Section 2.3 in"
+key "bladt-sorensen-2014"
+
+\end_inset
+
+ for the details of the hitting diffusion).
 \end_layout
 
 \begin_layout Standard

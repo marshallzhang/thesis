@@ -32,7 +32,7 @@ gen.double.nu.bridge = function(r.diffusion, theta, start, end, steps) {
     # If they don't intersect, re-generate.
     while (no.cross(y.1.1,y.2.1) | no.cross(y.1.2,y.2.2)){
       counter = counter + 1
-      if (counter > 500) {
+      if (counter > 1000) {
         stop("Too many tries.")
       }
 
@@ -63,10 +63,10 @@ gen.double.nu.bridge = function(r.diffusion, theta, start, end, steps) {
     
     if (difference.2[1] > 0) {
       iota = which(difference.2 < 0)[1] 
-      b2 = c(y.1.2[1:(iota - 1)], y.2.2[iota:length(y.2.2)])
+      b2 = rev(c(y.1.2[1:(iota - 1)], y.2.2[iota:length(y.2.2)]))
     } else {
       iota = which(difference.2 > 0)[1]
-      b2 = c(y.1.2[1:(iota - 1)], y.2.2[iota:length(y.2.2)])
+      b2 = rev(c(y.1.2[1:(iota - 1)], y.2.2[iota:length(y.2.2)]))
       }
     
     rbind(b1, b2)
@@ -124,7 +124,23 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps, set.start = c(-Inf,
      tryCatch({
       gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
     }, error = function(e) {
-     bridges[i - 1, ]
+      tryCatch({
+        gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
+      }, error = function(e) {
+        tryCatch({
+          gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
+        }, error = function(e) {
+          tryCatch({
+            gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
+          }, error = function(e) {
+            tryCatch({
+              gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
+            }, error = function(e) {
+               print(e)
+            })
+          })
+        })
+      })
     })
 #     print(i)
   }
@@ -146,6 +162,10 @@ ou = function(start, steps, theta, time = 1) {
   x
 }
 
+set.seed(123)
+d <- expression(-5 * x)
+s <- expression(3.5) 
+sde.sim(X0=10,drift=d, sigma=s) -> X
 
 #
 #
@@ -228,7 +248,7 @@ exact.bridges = function(M, r.nu, samples, r.diffusion, theta, steps) {
     })
     r = rho(proposal.2, M, r.diffusion, theta, steps) / rho(proposal.1, M, r.diffusion, theta, steps)
     alpha = min(1, r)
-    print(paste(i,alpha))
+#     print(paste(i,alpha))
     if (runif(1) < alpha) {
       bridges[i,] = proposal.2
     } else {
@@ -423,10 +443,35 @@ pretty.plot = function(melted.data) {
   ggplot(data = data.melt) + theme_bw(base_size = 12, base_family = "Helvetica")
 }
 
+#
+#
+# MAXIMUM LAMBDA-NU ESTIMATION
+#
+#
 
+ou.expected.ll = function(theta, x) {
+  delta = 1/length(x)
+  ll = 0
+  for (i in 2:length(x[1,])) {
+    ll = ll + log(dnorm(x[,i], x[,i-1] * exp(-delta), rep(1-exp(-2*delta) / 2, length(x[,1]))))
+  }
+  ll/length(x[,1])
+}
 
-
-
+q.unit = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact = F) {
+  set.seed(1)
+  theta1 = 1
+  theta2 = theta[1]
+  expectation = 0
+  bridges = if (exact) {
+    exact.bridges(1, r.nu, M, r.diffusion, theta.tilde, steps)
+  } else {
+    gen.nu.bridge(r.nu, r.diffusion, theta.tilde, M, steps)
+  }
+  us = sample(1:steps, M, replace = T)
+  expectation = sum(rowSums(rowDiffs(bridges) * (theta1 - theta2 * bridges[,1:(steps-1)]))) - sum((1/2) * (theta1 - theta2 * bridges[cbind(1:M, us)])^2)
+  -expectation / M
+}
 
 
 

@@ -10,9 +10,12 @@
 \newref{thm}{name=Theorem~,Name=Theorem~}
 \newref{chap}{name=Chapter~,Name=Chapter~}
 \newref{part}{name=Part~,Name=Part~}
+\newref{tab}{name=Table~,Name=Table~}
 \newref{algo}{name=Algorithm~,Name=Algorithm~}
 \newref{lem}{name=Lemma~,Name=Lemma~}
 \newref{fig}{name=Figure~,Name=Figure~}
+\usepackage{array}
+\usepackage{booktabs}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -267,11 +270,11 @@ In all simulations to follow, the relevant process is simulated over the
 \end_layout
 
 \begin_layout Section
-Sampling Generalized Bridges
-\end_layout
+Sampling 
+\begin_inset Formula $\nu$
+\end_inset
 
-\begin_layout Subsection
-Correctness of Exact Sampler
+-Bridges
 \end_layout
 
 \begin_layout Standard
@@ -298,74 +301,46 @@ reference "eq:cir-sde"
 \end_inset
 
 , respectively.
- By the definition of a stationary solution, we know that 
-\begin_inset Formula $O$
-\end_inset
-
- and 
-\begin_inset Formula $C$
-\end_inset
-
- have marginal distributions at any time 
-\begin_inset Formula $t\in[0,1]$
-\end_inset
-
- equal to their respective invariant distributions.
- This gives us a method by which to validate the correctness of the sampling
- scheme proposed in 
+ An easy way to validate the correctness of the approximate and exact samplers
+ proposed in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:4"
 
 \end_inset
 
-.
- In particular, let 
-\begin_inset Formula $\nu^{O}$
-\end_inset
-
- and 
-\begin_inset Formula $\nu^{C}$
-\end_inset
-
- be the joint distributions of 
-\begin_inset Formula $(O_{0},O_{1})$
-\end_inset
-
- and 
-\begin_inset Formula $(C_{0},C_{1})$
-\end_inset
-
- respectively.
- It ought to be the case then, that a 
-\begin_inset Formula $\nu^{O}$
-\end_inset
-
--bridge of 
+ is to simulate unconstrained sample paths of 
 \begin_inset Formula $O$
 \end_inset
 
- and a 
-\begin_inset Formula $\nu^{C}$
-\end_inset
-
--bridge of 
+ and 
 \begin_inset Formula $C$
 \end_inset
 
- has the same marginal distribution at any 
+, and compare the marginal distributions of these sample paths with generalized
+ bridges sampled according to 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+ with endpoints drawn from 
+\begin_inset Formula $O_{0,1}$
+\end_inset
+
+ and 
+\begin_inset Formula $C_{0,1}$
+\end_inset
+
+.
+ Then, the marginal distributions of these generalized bridges at any time
+ 
 \begin_inset Formula $t\in[0,1]$
 \end_inset
 
- as 
-\begin_inset Formula $O$
-\end_inset
-
- and 
-\begin_inset Formula $C$
-\end_inset
-
- themselves.
+ ought to be the same as the distribution of the unconstrained sample path.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -387,127 +362,55 @@ For clarity, we fix in this section
 
 .
  In order to sample 
-\begin_inset Formula $\nu^{O}$
+\begin_inset Formula $O_{0,1}$
 \end_inset
 
 - or 
-\begin_inset Formula $\nu^{C}$
+\begin_inset Formula $C_{0,1}$
 \end_inset
 
--bridges, we must be able to sample from 
-\begin_inset Formula $\nu^{O}$
-\end_inset
-
- and 
-\begin_inset Formula $\nu^{C}$
-\end_inset
-
-.
- Since the OU process is a Gaussian process, it is well-known that 
-\begin_inset Formula $\nu^{O}$
-\end_inset
-
- is a bivariate Gaussian distribution with mean 
-\begin_inset Formula $0$
-\end_inset
-
-, variance 
-\begin_inset Formula $1/2$
-\end_inset
-
-, and covariance 
-\begin_inset Formula $e^{-1}/2$
-\end_inset
-
-.
- As such, 
-\begin_inset Formula $\nu^{O}$
-\end_inset
-
- is easily sampled from.
- On the other hand, the CIR process is not a Gaussian process, but its analytic
- transition density is known to be 
-\begin_inset Formula 
-\[
-p_{1}^{C}\left(x,y\right)=ce^{-u-v}\left(\frac{v}{u}\right)^{1/2}I_{1}\left(2\sqrt{uv}\right)
-\]
-
-\end_inset
-
-where
-\begin_inset Formula 
-\[
-c=\frac{2}{\left(1-e^{-1}\right)},\mbox{ }u=cxe^{-1},\mbox{ }v=cy
-\]
-
-\end_inset
-
-and 
-\begin_inset Formula $I_{1}$
-\end_inset
-
- is a modified Bessel function of the first kind, of order 
-\begin_inset Formula $1$
-\end_inset
-
-.
- Therefore, 
-\begin_inset Formula $\nu^{C}$
-\end_inset
-
- has density equal to 
-\begin_inset Formula $(d\Pi^{C}/dx)\times p_{1}^{C}(x,y)$
-\end_inset
-
-, and we can draw from this density using standard Monte Carlo Markov Chain
- methods.
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-In particular, we use a standard Metropolis-Hastings sampler with a bivariate
- and independent Gamma(2,2) proposal.
- We use 202,000 iterations, burning the first 2,000 samples, and taking
- every 20th sample for a total of 10,000 samples from 
-\begin_inset Formula $(C_{0},C_{1})$
-\end_inset
-
-, verifying that the variance of 
-\begin_inset Formula $C_{0}$
+-bridges, we must be able to sample exactly from 
+\begin_inset Formula $O_{0,1}$
 \end_inset
 
  and 
-\begin_inset Formula $C_{1}$
+\begin_inset Formula $C_{0,1}$
 \end_inset
 
- is approximately 
-\begin_inset Formula $1/2$
+.
+ This is easy; we can simply sample a path of 
+\begin_inset Formula $O$
 \end_inset
 
- and the covariance is approximately 
-\begin_inset Formula $e^{-1}/2$
+ or 
+\begin_inset Formula $C$
 \end_inset
 
- as expected by standard results about the CIR process.
-\end_layout
-
+, and take its values at times 
+\begin_inset Formula $t=\{0,1\}$
 \end_inset
 
- Furthermore, we note that the initial distributions of the hitting diffusions
- for the OU and CIR process are by definition in this case simply the respective
- stationary distributions of the proceses.
+ as an exact draw from 
+\begin_inset Formula $O_{0,1}$
+\end_inset
+
+ or 
+\begin_inset Formula $C_{0,1}$
+\end_inset
+
+ respectively.
 \end_layout
 
 \begin_layout Standard
-We present the sample quantiles of the 
-\begin_inset Formula $\nu^{O}-$
+With this in mind, we present the sample distributions of 
+\begin_inset Formula $O_{0,1}$
 \end_inset
 
- and 
-\begin_inset Formula $\nu^{C}-$
+-bridges and 
+\begin_inset Formula $C_{0,1}$
 \end_inset
 
- bridges of 
+-bridges of 
 \begin_inset Formula $O$
 \end_inset
 
@@ -515,15 +418,8 @@ We present the sample quantiles of the
 \begin_inset Formula $C$
 \end_inset
 
-, along with the sample quantiles of 
-\begin_inset Formula $O$
-\end_inset
-
- and 
-\begin_inset Formula $C$
-\end_inset
-
- themselves, against their theoretical quantiles in 
+ against the empirical distributions of the unconstrained stationary solutions
+ in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:joint-invariant"
@@ -531,18 +427,31 @@ reference "fig:joint-invariant"
 \end_inset
 
 .
- 
+ The M-H algorithm for the exact sampler is carried out with 
+\begin_inset Formula $M=10$
+\end_inset
+
+ (the number of 
+\begin_inset Formula $T$
+\end_inset
+
+-values simulated in order to calculate 
+\begin_inset Formula $\hat{\rho}$
+\end_inset
+
+), and no burn-in is used since the proposals are independent of one another.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/marshall/Documents/senior/thesis/figures/invariant_density.pdf
+	filename /Users/marshall/Documents/senior/thesis/figures/invariant_densities.pdf
 	width 100col%
 
 \end_inset
@@ -560,34 +469,21 @@ name "fig:joint-invariant"
 
 \end_inset
 
-Q-Q plots comparing the empirical distributions at 
-\begin_inset Formula $t=1/2$
-\end_inset
-
- of the unconstrained Ornstein-Uhlenbeck (left) and Cox-Ingersoll-Ross (right)
- processes to those of their 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges, for 
-\begin_inset Formula $\nu$
-\end_inset
-
- equal to the law of the initial and end values of the unconstrained processes.
- Sample quantiles taken from 
+Q-Q plots comparing 
 \begin_inset Formula $10,000$
 \end_inset
 
- sample paths of each process.
- 
-\begin_inset Formula $\nu^{O}$
+ sample paths at 
+\begin_inset Formula $t=1/2$
 \end_inset
 
- is sampled exactly and 
-\begin_inset Formula $\nu^{C}$
+ of unconstrained stationary Ornstein-Uhlenbeck (left) and Cox-Ingersoll-Ross
+ (right) processes to those of their 
+\begin_inset Formula $\nu$
 \end_inset
 
- is sampled from a Metropolis-Hastings sampler.
+-bridges, using an approximate (first row) and exact (second row) sampling
+ scheme.
 \end_layout
 
 \end_inset
@@ -601,83 +497,404 @@ bridges, for
 \end_layout
 
 \begin_layout Standard
-Recall that we have the theoretical quantiles since we know the processes
- are distributed accordingly to their invariant measure as long as their
- initial distribution is as such.
- The distributions are compared at 
-\begin_inset Formula $t=1/2$
-\end_inset
-
- to demonstrate the point in time at which, intuitively, it ought to be
- the most difficult to obtain an exact simulation of a 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge.
- Nonetheless, it appears that the 
-\begin_inset Formula $\nu^{O}-$
-\end_inset
-
- and 
-\begin_inset Formula $\nu^{C}-$
-\end_inset
-
-bridges are very good approximations to the exact simulations of the respective
- unconstrained diffusions, modulo the approximation error from using the
- Euler-Maruyama scheme instead of an exact diffusion sampler.
- However, it is true that the 
-\begin_inset Formula $\nu^{O}-$
-\end_inset
-
-bridge (
-\begin_inset Formula $\nu^{C}-$
-\end_inset
-
-bridge) appears slightly more thinner-tailed (right-skewed) than the unconstrain
-ed diffusion, which itself is slightly thin-tailed relative to the theoretical
- distribution, most likely due to the approximate nature of the Euler-Marayuma
- scheme; the more intense thin-tailedness of the sampled 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges can 
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-Not sure if this is the real explanation of the thin-tailedness; we need
- an exact sampler to be sure.
-\end_layout
-
-\end_inset
-
-also be attributed to the approximate nature of the proposed sampler.
- In particular, the simulated 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges are conditioned on the crossing of a process 
-\begin_inset Formula $\mathbf{X}^{\nu}$
-\end_inset
-
- with initial distribution 
+We first note that the approximate sampler produces marginal distributions
+ that are reasonable approximations to the exact sampler, though slightly
+ thinner-tailed than they should be.
+ This is a result of the approximate sampler drawing 
 \begin_inset Formula $\nu$
 \end_inset
 
- with an independent diffusion 
-\begin_inset Formula $\mathbf{X}$
+-bridges conditioned on the bridges being hit by a hitting diffusion; in
+ this experiment, these hitting diffusions tend towards the mean of the
+ marginal initial and end distributions, reducing the variance in-between.
+ Though the exact samples appear to be slightly thin-tailed as well, we
+ will demonstrate in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:KS-stats"
+
 \end_inset
 
- conditioned on 
-\begin_inset Formula $\mathbf{X}_{1}\sim\nu$
+ that we cannot reject the hypothesis that the exact samples and the unconstrain
+ed diffusion are drawn from the same distribution at any reasonable confidence
+ level.
+ We also present in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:KS-stats"
+
 \end_inset
 
-, a thinner-tailed outcome may be expected we are conditioning on some extra
- information.
+ analogous simulations for non-stationary solutions to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ou-sde"
+
+\end_inset
+
+; in particular, we consider solutions with initial distributions 
+\begin_inset Formula $X_{0}\sim\mathcal{N}(1,1/2)$
+\end_inset
+
+,
+\begin_inset Formula $X_{0}\sim2\mbox{Bern}-1$
+\end_inset
+
+, and 
+\begin_inset Formula $X_{0}\sim\mbox{Expo}(2)$
+\end_inset
+
+.
+ As before, we can draw exactly from 
+\begin_inset Formula $O_{0,1}$
+\end_inset
+
+ merely by simulating a solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ou-sde"
+
+\end_inset
+
+ with the appropriate initial condition, and taking its value at times 
+\begin_inset Formula $t=\{0,1\}$
+\end_inset
+
+.
+ 
 \end_layout
 
-\begin_layout Subsection
-High Quality Approximate Samples
+\begin_layout Standard
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:KS-stats"
+
+\end_inset
+
+ confirms for a wide range of unorthodox joint initial/end distributions,
+ the exact sampler indeed samples from the true bridge distribution at the
+ cost of more computational power.
+ We use 
+\begin_inset Formula $M=1$
+\end_inset
+
+ for the exact sampler to minimize computational cost, which does not seem
+ to have a significant adverse impact on the quality of the exact samples.
+ We note that the computing time required to exactly sample an OU process
+ with initial distribution 
+\begin_inset Formula $\mathcal{N}(1,1/2)$
+\end_inset
+
+ is far higher than any other process considered; this is a result of the
+ lower probability of a hitting diffusion (which has an initial distribution
+ with mean 
+\begin_inset Formula $e^{-1}$
+\end_inset
+
+ and mean-reverts towards 
+\begin_inset Formula $0$
+\end_inset
+
+) intersecting with the bridge.
+ This relatively low probability of a hitting diffusion intersection is
+ reflected in the large K-S statistic for the approximately sampled bridge,
+ and speaks to the idea that to 
+\begin_inset Quotes eld
+\end_inset
+
+make up
+\begin_inset Quotes erd
+\end_inset
+
+ for a poor approximate sampler, an exact sampler must use more computational
+ power.
+ It is also worth noting that the K-S statistics presented in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:KS-stats"
+
+\end_inset
+
+ represent the most conservative estimates of the deviation from true unconstrai
+ned diffusions—in particular, the marginal distribution of the sampled bridges,
+ whether approximate or exact, are the same as the unconstrained diffusion
+ at times 
+\begin_inset Formula $t=\{0,1\}$
+\end_inset
+
+ by definition, and 
+\begin_inset Formula $t=1/2$
+\end_inset
+
+ represents the point in time at which the marginal distributions of these
+ bridges have the most freedom to drift from the true distribution.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{@{}llllll@{}} 
+\backslash
+toprule 
+\backslash
+multirow{2}{*}{Process}                 & 
+\backslash
+multirow{2}{*}{Initial Condition} & 
+\backslash
+multicolumn{2}{l}{K-S statistic ($
+\backslash
+times 10^{-2}$)} & 
+\backslash
+multicolumn{2}{l}{CPU (relative)} 
+\backslash
+
+\backslash
+ 
+\backslash
+cmidrule(l){3-6}                                           &           
+                         & Approx.
+                   & Exact                  & Approx.
+                  & Exact                 
+\backslash
+
+\backslash
+ 
+\backslash
+midrule 
+\backslash
+multicolumn{1}{l|}{
+\backslash
+multirow{4}{*}{OU}} & Stationary                         & 2.03*        
+             & 1.46                   & 2.87                     & 12.0   
+               
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{l|}{}                    & $
+\backslash
+mathcal{N}(1,1/2)$               & 4.38***                   & 1.79      
+             & 3.13                     & 35.6                  
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{l|}{}                    & $2
+\backslash
+text{Bern}-1$                   & 2.80***                   & 1.81       
+            & 3.01                     & 12.0                  
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{l|}{}                    & $
+\backslash
+text{Expo}(2)$                   & 2.75**                    & 2.13*     
+             & 2.91                     & 11.5                  
+\backslash
+
+\backslash
+                                          &                            
+        &                           &                        &         
+                 &                       
+\backslash
+
+\backslash
+[-2.9ex] 
+\backslash
+multicolumn{1}{l|}{CIR}                 & Stationary                   
+      & 2.41**                    & 1.34                   & 2.86         
+            & 10.8                  
+\backslash
+
+\backslash
+ 
+\backslash
+bottomrule 
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle" width="2cm">
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:KS-stats"
+
+\end_inset
+
+Kolmogorov-Smirnov statistics comparing 
+\begin_inset Formula $10,000$
+\end_inset
+
+ sample paths at 
+\begin_inset Formula $t=1/2$
+\end_inset
+
+ of approximately and exactly sampled generalized bridges against the correspond
+ing unconstrained diffusions, as well as the relative running times of sampling
+ the bridges against sampling the unconstrained diffusions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Somewhat unfortunately for our approximate sampler (which is roughly an
+ order of magnitude faster than our exact sampler), we are able to reject
+ the hypothesis that it samples from the unconstrained diffusion at 
+\begin_inset Formula $t=1/2$
+\end_inset
+
+ for every initial condition examined, at the 
+\begin_inset Formula $95\%$
+\end_inset
+
+ confidence level.
+ However, recall that the MCEM algorithm proposed in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:EM"
+
+\end_inset
+
+ involves taking an expectation of an integral over an entire diffusion
+ bridge sample path, and so the K-S test on the marginal distribution of
+ our sampled paths at 
+\begin_inset Formula $t=1/2$
+\end_inset
+
+ represents an overly stringent view on the quality of these samples.
+ In the next section, we shall experiment with our MCEM algorithm and demonstrat
+e that.....
+\end_layout
+
+\begin_layout Section
+Inference on Simulated Distributional Data
+\end_layout
+
+\begin_layout Standard
+In this section, we verify the correctness of the MCEM algorithm proposed
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:EM"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+As a first toy example, we consider stationary OU and CIR processes with
+ the parameters from the previous section (importantly, both processes have
+ unit diffusion coefficient).
+ In particular, suppose the Oracle told us that Of course, we know how to
+ draw from the joint initial/end distributions of these processes, and so
+ an implementation of the MCEM algorithm 
 \end_layout
 
 \end_body
