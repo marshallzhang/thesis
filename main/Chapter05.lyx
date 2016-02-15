@@ -16,6 +16,7 @@
 \newref{fig}{name=Figure~,Name=Figure~}
 \usepackage{array}
 \usepackage{booktabs}
+\usepackage[labelfont=bf]{caption}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -192,7 +193,7 @@ with some initial condition on
 
 .
  We assume as per the literature that 
-\begin_inset Formula $2\theta\mu\geq\sigma^{2}$
+\begin_inset Formula $2\lambda\mu\geq\sigma^{2}$
 \end_inset
 
 , so 
@@ -447,7 +448,7 @@ reference "fig:joint-invariant"
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -478,12 +479,12 @@ Q-Q plots comparing
 \end_inset
 
  of unconstrained stationary Ornstein-Uhlenbeck (left) and Cox-Ingersoll-Ross
- (right) processes to those of their 
-\begin_inset Formula $\nu$
+ (right) processes to generalized bridges of their joint distributions at
+ 
+\begin_inset Formula $t=\{0,1\}$
 \end_inset
 
--bridges, using an approximate (first row) and exact (second row) sampling
- scheme.
+, using an approximate (first row) and exact (second row) sampling scheme.
 \end_layout
 
 \end_inset
@@ -652,17 +653,18 @@ multirow{2}{*}{Process}                 &
 \backslash
 multirow{2}{*}{Initial Condition} & 
 \backslash
-multicolumn{2}{l}{K-S statistic ($
+multicolumn{2}{l}{K-S stat.
+ ($
 \backslash
 times 10^{-2}$)} & 
 \backslash
-multicolumn{2}{l}{CPU (relative)} 
+multicolumn{2}{l}{CPU (rel.)} 
 \backslash
 
 \backslash
  
 \backslash
-cmidrule(l){3-6}                                           &           
+cmidrule(l){3-4}                                           &           
                          & Approx.
                    & Exact                  & Approx.
                   & Exact                 
@@ -675,15 +677,7 @@ midrule
 \backslash
 multicolumn{1}{l|}{
 \backslash
-multirow{4}{*}{OU}} & Stationary                         & 2.03*        
-             & 1.46                   & 2.87                     & 12.0   
-               
-\backslash
-
-\backslash
- 
-\backslash
-multicolumn{1}{l|}{}                    & $
+multirow{4}{*}{OU}} & $
 \backslash
 mathcal{N}(1,1/2)$               & 4.38***                   & 1.79      
              & 3.13                     & 35.6                  
@@ -708,13 +702,21 @@ text{Expo}(2)$                   & 2.75**                    & 2.13*
 \backslash
 
 \backslash
+ 
+\backslash
+multicolumn{1}{l|}{}                    & Stationary                   
+      & 2.03*                     & 1.46                   & 2.87         
+            & 12.0                  
+\backslash
+
+\backslash
                                           &                            
         &                           &                        &         
                  &                       
 \backslash
 
 \backslash
-[-2.9ex] 
+[-2.5ex] 
 \backslash
 multicolumn{1}{l|}{CIR}                 & Stationary                   
       & 2.41**                    & 1.34                   & 2.86         
@@ -726,7 +728,7 @@ multicolumn{1}{l|}{CIR}                 & Stationary
 \backslash
 bottomrule 
 \backslash
-end{tabular}
+end{tabular} 
 \end_layout
 
 \end_inset
@@ -872,7 +874,7 @@ e that.....
 \end_layout
 
 \begin_layout Section
-Inference on Simulated Distributional Data
+Inference on Distributional Data
 \end_layout
 
 \begin_layout Standard
@@ -892,9 +894,785 @@ reference "chap:EM"
 As a first toy example, we consider stationary OU and CIR processes with
  the parameters from the previous section (importantly, both processes have
  unit diffusion coefficient).
- In particular, suppose the Oracle told us that Of course, we know how to
- draw from the joint initial/end distributions of these processes, and so
- an implementation of the MCEM algorithm 
+ In particular, we Of course, we know how to draw from the joint initial/end
+ distributions of these processes, and so an implementation of the MCEM
+ algorithm 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide true
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering 
+\backslash
+begin{tabular}{@{}cllllllllll@{}} 
+\backslash
+toprule 
+\backslash
+multirow{2}{*}{Iteration} &  & 
+\backslash
+multicolumn{2}{l}{Approx.}                                           & 
+\backslash
+multicolumn{2}{l}{Exact}                                              
+\backslash
+
+\backslash
+ 
+\backslash
+cmidrule(lr){3-4}                             &  & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+lambda}$} & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+mu}$} & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+lambda}$} & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+mu}$}  
+\backslash
+
+\backslash
+ 
+\backslash
+cmidrule(r){1-1} 
+\backslash
+cmidrule(lr){3-6} 0                          &  & 2.00                  
+              & 2.00                            & 2.00                   
+             & 2.00                                                     
+   
+\backslash
+
+\backslash
+ 1                          &  & 1.80                                & 0.21
+                            & 1.10                                & 0.38 
+                                                       
+\backslash
+
+\backslash
+ 2                          &  & 1.45                                & 0.12
+                            & 1.04                                & 0.05 
+                                                       
+\backslash
+
+\backslash
+ 3                          &  & 1.21                                & 0.04
+                            & 0.88                                & 0.03 
+                                                         
+\backslash
+
+\backslash
+ 4                          &  & 1.26                                & 0.00
+                            & 1.02                                & 0.05 
+                                                         
+\backslash
+
+\backslash
+ 5                          &  & 1.11                                & 0.00
+                            & 1.00                                & 0.04 
+                                                         
+\backslash
+
+\backslash
+ 6                          &  & 1.07                                & 0.00
+                            & 0.95                                & 0.04 
+                                                         
+\backslash
+
+\backslash
+ 7                          &  & 1.08                                & 0.00
+                            & 1.04                                & 0.02 
+                                                         
+\backslash
+
+\backslash
+ 8                          &  & 1.08                                & 0.01
+                            & 0.98                                & 0.04 
+                                                         
+\backslash
+
+\backslash
+ 9                          &  & 1.07                                & 0.01
+                            & 1.04                                & 0.02 
+                                                         
+\backslash
+
+\backslash
+ 10                         &  & 1.07                                & 0.00
+                            & 1.03                                & 0.03 
+                                                       
+\backslash
+
+\backslash
+ 
+\backslash
+bottomrule 
+\backslash
+end{tabular} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle" width="2cm">
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:mcem-stationary"
+
+\end_inset
+
+MCEM iterations for inference on the parameters of an OU process with unit
+ diffusion, given the joint distribution at 
+\begin_inset Formula $t=\{0,1\}$
+\end_inset
+
+ induced by a stationary solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ou-sde"
+
+\end_inset
+
+, using approximate and exact generalized bridge samplers.
+ The 
+\begin_inset Formula $i$
+\end_inset
+
+th iteration is performed using 
+\begin_inset Formula $100\times\left\lfloor i^{1.5}\right\rfloor $
+\end_inset
+
+ MC samples, and the Fletcher-Reeves conjugate gradient method is used for
+ maximization.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways true
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering 
+\backslash
+begin{tabular}{@{}cllllllllllllllllllll@{}} 
+\backslash
+cmidrule(r){1-6} 
+\backslash
+cmidrule(l){8-21} 
+\backslash
+multirow{3}{*}{Iteration} &  & 
+\backslash
+multicolumn{4}{l}{$
+\backslash
+mathcal{N}(0,1/2)$}                                                    
+                                                  &  & 
+\backslash
+multicolumn{4}{l}{$2
+\backslash
+text{Bern}-1$}                                                         
+                             &  & 
+\backslash
+multicolumn{4}{l}{$
+\backslash
+text{Expo}(2)$}                          &  & 
+\backslash
+multicolumn{4}{l}{$
+\backslash
+hat{
+\backslash
+mathcal{N}}(0,1/2)$ (100 samples)}                      
+\backslash
+
+\backslash
+ 
+\backslash
+cmidrule(lr){3-6} 
+\backslash
+cmidrule(lr){8-11} 
+\backslash
+cmidrule(lr){13-16} 
+\backslash
+cmidrule(l){18-21}                             &  & 
+\backslash
+multicolumn{2}{l}{Approx.}                                           & 
+\backslash
+multicolumn{2}{l}{Exact}                                             & 
+ & 
+\backslash
+multicolumn{2}{l}{Approx.}                                           & 
+\backslash
+multicolumn{2}{l}{Exact}                         &  & 
+\backslash
+multicolumn{2}{l}{Approx.}   & 
+\backslash
+multicolumn{2}{l}{Exact}     &  & 
+\backslash
+multicolumn{2}{l}{Approx.}                       & 
+\backslash
+multicolumn{2}{l}{Exact}     
+\backslash
+
+\backslash
+ 
+\backslash
+cmidrule(lr){3-4} 
+\backslash
+cmidrule(lr){8-9} 
+\backslash
+cmidrule(lr){13-14} 
+\backslash
+cmidrule(lr){18-19}                            &  & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+lambda}$} & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+mu}$} & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+lambda}$} & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+mu}$} &  & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+lambda}$} & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+mu}$} & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+lambda}$} & $
+\backslash
+hat{
+\backslash
+mu}$ &  & $
+\backslash
+hat{
+\backslash
+lambda}$ & $
+\backslash
+hat{
+\backslash
+mu}$ & $
+\backslash
+hat{
+\backslash
+lambda}$ & $
+\backslash
+hat{
+\backslash
+mu}$ &  & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+lambda}$} & $
+\backslash
+hat{
+\backslash
+mu}$ & $
+\backslash
+hat{
+\backslash
+lambda}$ & $
+\backslash
+hat{
+\backslash
+mu}$ 
+\backslash
+
+\backslash
+ 
+\backslash
+cmidrule(r){1-1} 
+\backslash
+cmidrule(lr){3-6} 
+\backslash
+cmidrule(lr){8-11} 
+\backslash
+cmidrule(lr){13-16} 
+\backslash
+cmidrule(l){18-21}  0                          &  & 2.00                
+                & 2.00                            & 2.00                 
+               & 2.00                            &  & 2.00               
+                 & 2.00                            & 2.00                
+                & 2.00        &  & 2.00            & 2.00        & 2.00    
+        & 2.00        &  & 2.00                                & 2.00     
+   & 2.00            & 2.00        
+\backslash
+
+\backslash
+ 1                          &  & 1.89                                & 0.46
+                            & 1.30                                & 0.15 
+                           &  & 0.95                                & 1.23
+                            & 0.79                                & -0.03
+       &  & 0.94            & 0.09        & 1.04            & -0.17       &
+  & 1.23                                & 0.36        & 0.99            & 0.04
+        
+\backslash
+
+\backslash
+ 2                          &  & 1.71                                & 0.25
+                            & 1.23                                & 0.14 
+                           &  & 1.10                                & 1.06
+                            & 0.83                                & -0.09
+       &  & 1.10            & -0.04       & 1.27            & -0.01       &
+  & 1.10                                & 0.05        & 1.04            & 0.04
+        
+\backslash
+
+\backslash
+ 3                          &  & 1.46                                & 0.16
+                            & 1.19                                & 0.02 
+                           &  & 1.25                                & 1.05
+                            & 1.11                                & 0.01 
+       &  & 1.17            & -0.04       & 1.18            & 0.01        &
+  & 1.09                                & 0.03        & 1.02            & 0.03
+        
+\backslash
+
+\backslash
+ 4                          &  & 1.55                                & 0.17
+                            & 1.12                                & 0.01 
+                           &  & 1.17                                & 1.02
+                            & 1.06                                & 0.05 
+       &  & 1.25            & 0.02        & 1.17            & 0.04        &
+  & 1.15                                & 0.02        & 0.99            & 0.03
+        
+\backslash
+
+\backslash
+ 5                          &  & 1.45                                & 0.13
+                            & 1.07                                & 0.11 
+                           &  & 1.17                                & 1.03
+                            & 1.03                                & 0.01 
+       &  & 1.17            & 0.00        & 1.03            & -0.03       &
+  & 1.14                                & 0.06        & 1.02            & 0.14
+        
+\backslash
+
+\backslash
+ 6                          &  & 1.39                                & 0.12
+                            & 1.12                                & 0.09 
+                           &  & 1.15                                & 0.97
+                            & 1.03                                & 0.01 
+       &  & 1.17            & 0.00        & 1.07            & -0.01       &
+  & 1.07                                & 0.06        & 1.00            & 0.09
+        
+\backslash
+
+\backslash
+ 7                          &  & 1.42                                & 0.13
+                            & 1.15                                & 0.05 
+                           &  & 1.10                                & 0.99
+                            & 1.07                                & -0.00
+       &  & 1.15            & 0.00        & 1.00            & -0.02       &
+  & 1.10                                & 0.07        & 0.99            & 0.06
+        
+\backslash
+
+\backslash
+ 8                          &  & 1.45                                & 0.12
+                            & 1.07                                & 0.06 
+                           &  & 1.11                                & 0.98
+                            & 1.07                                & 0.00 
+       &  & 1.10            & 0.00        & 1.25            & 0.04        &
+  & 1.07                                & 0.08        & 1.01            & 0.04
+        
+\backslash
+
+\backslash
+ 9                          &  & 1.33                                & 0.10
+                            & 1.08                                & 0.00 
+                           &  & 1.09                                & 0.98
+                            & 1.01                                & 0.00 
+       &  & 1.18            & -0.01       & 1.10            & 0.04        &
+  & 1.10                                & 0.09        & 1.05            & 0.02
+        
+\backslash
+
+\backslash
+ 10                         &  & 1.28                                & 0.08
+                            & 1.07                                & 0.03 
+                           &  & 1.03                                & 0.99
+                            & 1.01                                & 0.01 
+       &  & 1.17            & 0.01        & 1.04            & -0.00       &
+  & 1.09                                & 0.09        & 1.01            & 0.05
+        
+\backslash
+
+\backslash
+ 
+\backslash
+bottomrule 
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle" width="2cm">
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:diff-diffusions"
+
+\end_inset
+
+MCEM iterations for inference on the parameters of an OU process with unit
+ diffusion given the joint distribution at 
+\begin_inset Formula $t=\{0,1\}$
+\end_inset
+
+ induced by a solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ou-sde"
+
+\end_inset
+
+ with various initial conditions and 
+\begin_inset Formula $\lambda=1,\mu=0$
+\end_inset
+
+, using approximate and exact generalized bridge samplers.
+ The 
+\begin_inset Formula $i$
+\end_inset
+
+th iteration is performed using 
+\begin_inset Formula $100\times\left\lfloor i^{1.5}\right\rfloor $
+\end_inset
+
+ MC samples, and the Fletcher-Reeves conjugate gradient method is used for
+ maximization.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Of course, as noted in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:EM"
+
+\end_inset
+
+, diffusions with unit diffusion coefficient are far too restrictive of
+ a class of processes to focus on.
+ As an example of diffusions with arbitrary coefficient, we consider solutions
+ to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:cir-sde"
+
+\end_inset
+
+.
+ If 
+\begin_inset Formula $\theta=(\lambda,\mu,\sigma)$
+\end_inset
+
+, we may follow 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:lamperti"
+
+\end_inset
+
+ to define a diffusion 
+\begin_inset Formula $Y$
+\end_inset
+
+, which is a Lamperti transformation of 
+\begin_inset Formula $C$
+\end_inset
+
+, by writing
+\begin_inset Formula 
+\[
+Y_{t}=\eta_{\theta}(C_{t})=\frac{2\sqrt{C_{t}}}{\sigma},
+\]
+
+\end_inset
+
+so that 
+\begin_inset Formula $\eta_{\theta}^{-1}(Y_{t})=\frac{\sigma^{2}}{4}Y_{t}^{2}$
+\end_inset
+
+.
+ By 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:eta-y"
+
+\end_inset
+
+, 
+\begin_inset Formula $Y$
+\end_inset
+
+ is the solution to the SDE 
+\begin_inset Formula 
+\[
+dY_{t}=\left(-\frac{\lambda Y_{t}}{2}-\frac{1}{2Y_{t}}\left(1-\frac{4\lambda\mu}{\sigma^{2}}\right)\right)dt+dW_{t},
+\]
+
+\end_inset
+
+for a Wiener process 
+\begin_inset Formula $W_{t}$
+\end_inset
+
+.
+ Then, the necessary expressions to carry out MCEM according to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:general-q"
+
+\end_inset
+
+ are
+\begin_inset Formula 
+\begin{eqnarray*}
+A_{\theta}(Y_{t}) & = & -\frac{\lambda Y_{t}^{2}}{4}-\left(\frac{1}{2}-\frac{2\lambda\mu}{\sigma^{2}}\right)\log Y_{t},\mbox{ and}\\
+(\alpha_{\theta}^{2}+\alpha'_{\theta})(Y_{t}) & = & \left(-\frac{\lambda Y_{t}}{2}-\frac{1}{2Y_{t}}\left(1-\frac{4\lambda\mu}{\sigma^{2}}\right)\right)^{2}-\frac{\lambda}{2}+\frac{1}{2Y_{t}^{2}}\left(1-\frac{4\lambda\mu}{\sigma^{2}}\right).
+\end{eqnarray*}
+
+\end_inset
+
+
 \end_layout
 
 \end_body

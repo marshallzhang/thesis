@@ -1424,9 +1424,9 @@ The problem of non-unit diffusion is easily addressed by the Lamperti transform
 
 , where 
 \begin_inset Formula 
-\[
-\eta_{\theta}(x)=\int_{x^{*}}^{x}\frac{1}{\sigma_{\theta}(y)}dy
-\]
+\begin{equation}
+\eta_{\theta}(x)=\int_{x^{*}}^{x}\frac{1}{\sigma_{\theta}(y)}dy`\label{eq:lamperti}
+\end{equation}
 
 \end_inset
 
@@ -1454,7 +1454,7 @@ dY_{t}=\alpha_{\theta}(Y_{t})dt+dW_{t},\label{eq:eta-y}
 where 
 \begin_inset Formula 
 \[
-\alpha_{\theta}(y)=\frac{\mu_{\theta}(\eta_{\theta}^{-1}(y))}{\sigma_{\theta}(\eta^{-1}(y))}-\frac{1}{2}\sigma_{\theta}^{'}(\eta_{\theta}^{-1}(y)).
+\alpha_{\theta}(y)=\frac{\mu_{\theta}(\eta_{\theta}^{-1}(y))}{\sigma_{\theta}(\eta_{\theta}^{-1}(y))}-\frac{1}{2}\sigma_{\theta}^{'}(\eta_{\theta}^{-1}(y)).
 \]
 
 \end_inset
@@ -1510,7 +1510,7 @@ key "beskos-2006"
 \begin_inset Formula $1$
 \end_inset
 
-) and would prevent EM from being carried out properly.
+) which would prevent EM from converging.
 \end_layout
 
 \begin_layout Standard
@@ -2064,10 +2064,10 @@ reference "eq:q-simple"
 
 , we write 
 \begin_inset Formula 
-\begin{eqnarray*}
-Q(\theta\mid\tilde{\theta}) & = & \mathbb{E}_{\nu\circ\eta_{\theta}^{-1}}\left[A_{\tilde{\theta}}(Y_{1})-A_{\tilde{\theta}}(Y_{0})\right]-\\
- &  & \frac{1}{2}\mathbb{E}_{\mathbb{P}^{\nu\circ\eta_{\theta}^{-1}}(\cdot\mid\tilde{\theta})\times\mathbb{U}}\left[(\alpha_{\tilde{\theta}}^{2}+\alpha_{\tilde{\theta}}^{'})(Y_{U}^{*}(\theta,\tilde{\theta}))\right]
-\end{eqnarray*}
+\begin{eqnarray}
+Q(\theta\mid\tilde{\theta}) & = & \mathbb{E}_{\nu\circ\eta_{\theta}^{-1}}\left[A_{\tilde{\theta}}(Y_{1})-A_{\tilde{\theta}}(Y_{0})\right]-\nonumber \\
+ &  & \frac{1}{2}\mathbb{E}_{\mathbb{Y}^{\nu\circ\eta_{\theta}^{-1}}(\cdot\mid\tilde{\theta})\times\mathbb{U}}\left[(\alpha_{\tilde{\theta}}^{2}+\alpha_{\tilde{\theta}}^{'})(Y_{U}^{*}(\theta,\tilde{\theta}))\right]\label{eq:general-q}
+\end{eqnarray}
 
 \end_inset
 
