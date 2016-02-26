@@ -226,46 +226,22 @@ DEoptim(f = function(theta) q.unit(theta, ou, c(2,2,1), nu.o, 10, 100, exact = F
 oldpar = c(2,2)
 for (i in 1:10) {
   oldpar = optim(par = oldpar,
-        f = function(theta) q.unit(theta, ou, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = F),
-        method = "CG")$par
+        f = function(theta) q.unit(theta, ou, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = T),
+        method = "CG",
+        control = list(trace = 6))$par
   print(oldpar)
 }
 
 nu.c = function(n) { mcmc(c(1, 1), 20 * n + 2000, 2000, everyother = 20, trace = 1000, d.posterior = cir.joint, r.proposal = function(n, current) {rgamma(2, rate = 2, shape = 2)}, special = "gamma") }
-c.draws = nu.c(202000)
+c.start = nu.c(10000)
+real.nu.c = function(n) t(as.matrix(c.start[sample(1:10000, n, replace = T),]))
 oldpar = c(3,2)
 for (i in 1:10) {
   oldpar = optim(par = oldpar,
-        f = function(theta) q.unit(theta, cir, c(oldpar,1), nu.c, round(i^1.5)*100, 100, exact = F),
-        method = "CG")$par
+        f = function(theta) q.unit(theta, cir, c(oldpar,1), real.nu.c, round(i^1.5)*100, 100, exact = T),
+        method = "CG",
+        control = list(trace = 6))$par
   print(oldpar)
 }
 
-#
-#
-# EM WITH NON-UNIT DIFFUSION
-#
-#
-
-print("approx and v2")
-oldpar = c(1,1,1)
-nu.c = function(n) { mcmc(c(1, 1), 20 * n + 2000, 2000, everyother = 20, trace = 1000, d.posterior = cir.joint, r.proposal = function(n, current) {rgamma(2, rate = 2, shape = 2)}, special = "gamma") } 
-# nu.test = function(n) {cbind(rep(1, n), rep(2,n))}
-for (i in 1:10) {
-  oldpar = optim(par = oldpar,
-        f = function(theta) q.1(theta, trans.cir, oldpar, nu.c, round(i^1.5)*100, 100, exact = F),
-        method = "CG", control = list(trace = 6))$par
-  print(oldpar)
-}
-
-print("exact and v2")
-oldpar = c(4,2,2)
-nu.c = function(n) { mcmc(c(1, 1), 20 * n + 2000, 2000, everyother = 20, trace = 1000, d.posterior = cir.joint, r.proposal = function(n, current) {rgamma(2, rate = 2, shape = 2)}, special = "gamma") } 
-c.start = nu.c(10000)
-real.nu.c = function(n) t(as.matrix(c.start[sample(1:10000, n, replace = T),]))
-for (i in 1:10) {
-  oldpar = optim(par = oldpar,
-        f = function(theta) q.1(theta, trans.cir, oldpar, real.nu.c, round(i^1.5)*100, 100, exact = T),
-        method = "CG", control = list(trace = 6))$par
-  print(oldpar)
-}
+q.unit(c(1,1), ou, c(2,2,1), nu.o, 5000, 100, exact = F)

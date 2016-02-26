@@ -1313,7 +1313,7 @@ and thus the expectation step of an EM algorithm would consist of computing
 \begin_inset Formula 
 \begin{eqnarray}
 Q(\theta\mid\tilde{\theta}) & = & \mathbb{E}_{\mathbb{P}^{\nu}(\cdot\mid\tilde{\theta})}\left[\int_{0}^{1}\mu_{\theta}(X_{s})dX_{s}-\frac{1}{2}\int_{0}^{1}\mu_{\theta}^{2}(X_{s})ds\right]\nonumber \\
- & = & \mathbb{E}_{\mathbb{P}^{\nu}(\cdot\mid\tilde{\theta})\times\mathbb{U}}\left[\int_{0}^{1}\mu_{\theta}(X_{s})dX_{s}-\frac{1}{2}\mu_{\theta}^{2}(X_{U})\right]\label{eq:q-simple}
+ & = & \mathbb{E}_{\mathbb{P}^{\nu}(\cdot\mid\tilde{\theta})\times\mathbb{U}}\left[A_{\theta}(X_{1})-A_{\theta}(X_{0})-\frac{1}{2}\left(\mu_{\theta}^{2}+\mu_{\theta}^{'}\right)(X_{U})\right]\label{eq:q-simple}
 \end{eqnarray}
 
 \end_inset
@@ -1323,15 +1323,26 @@ for independent
 \end_inset
 
 .
- The quantity in 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:q-simple"
+ Arguments that 
+\begin_inset Formula $Q(\theta\mid\tilde{\theta})$
+\end_inset
+
+ is the relevant likelihood function can be found in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "papa-roberts-2012"
 
 \end_inset
 
- is still intractable analytically, but hints at a way we may adopt a Monte
- Carlo implementation of the EM algorithm suggested by 
+ and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beskos-2006"
+
+\end_inset
+
+; though still intractable analytically, its form hints at a way we may
+ adopt a Monte Carlo implementation of the EM algorithm suggested by 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:em"
@@ -1583,6 +1594,26 @@ reference "prop:pv-density-1"
  is absolutely continuous with respect to the Wiener measure, and therefore
  admits a complete log-likelihood by Girsanov's theorem.
  
+\end_layout
+
+\begin_layout Standard
+The likelihood of a path 
+\begin_inset Formula $y$
+\end_inset
+
+ of 
+\begin_inset Formula $\eta_{\theta}(X)$
+\end_inset
+
+ is
+\begin_inset Formula 
+\[
+\mathcal{N}(x_{1}-x_{0})\exp\left\{ A_{\theta}(x_{1})-A_{\theta}(x_{0})-\frac{1}{2}\int\left(\alpha_{\theta}^{2}+\alpha_{\theta}^{'}\right)\left(x_{s}\right)ds\right\} \left|\eta_{\theta}^{'}(w)\right|
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proposition

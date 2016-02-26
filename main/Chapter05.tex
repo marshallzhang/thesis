@@ -1,0 +1,273 @@
+%% LyX 2.1.4 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[american,fontsize=11pt,paper=a4,twoside,openright,titlepage,numbers=noenddot,headinclude,BCOR=5mm,footinclude=true,cleardoublepage=empty]{scrreprt}
+\usepackage[T1]{fontenc}
+\setcounter{secnumdepth}{2}
+\usepackage{array}
+\usepackage{refstyle}
+\usepackage{rotfloat}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[numbers]{natbib}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+
+\AtBeginDocument{\providecommand\partref[1]{\ref{part:#1}}}
+\AtBeginDocument{\providecommand\chapref[1]{\ref{chap:#1}}}
+\AtBeginDocument{\providecommand\figref[1]{\ref{fig:#1}}}
+\AtBeginDocument{\providecommand\tabref[1]{\ref{tab:#1}}}
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+\RS@ifundefined{subref}
+  {\def\RSsubtxt{section~}\newref{sub}{name = \RSsubtxt}}
+  {}
+\RS@ifundefined{thmref}
+  {\def\RSthmtxt{theorem~}\newref{thm}{name = \RSthmtxt}}
+  {}
+\RS@ifundefined{lemref}
+  {\def\RSlemtxt{lemma~}\newref{lem}{name = \RSlemtxt}}
+  {}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+% Classic Thesis Style loader
+\makeatother
+\input{classicthesis-config.tex}
+\makeatletter
+% use Latin Modern instead of Computer Modern sans serif
+\renewcommand{\sfdefault}{lmss}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{algorithm,algpseudocode}
+\newref{prop}{name=Proposition~,Name=Proposition~}
+\newref{prob}{name=Problem~,Name=Problem~}
+\newref{thm}{name=Theorem~,Name=Theorem~}
+\newref{chap}{name=Chapter~,Name=Chapter~}
+\newref{part}{name=Part~,Name=Part~}
+\newref{tab}{name=Table~,Name=Table~}
+\newref{algo}{name=Algorithm~,Name=Algorithm~}
+\newref{lem}{name=Lemma~,Name=Lemma~}
+\newref{fig}{name=Figure~,Name=Figure~}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\chapter{Simulation Studies\label{chap:5}}
+
+In this chapter, we study the methods proposed in \partref{2} in
+a controlled simulation environment to demonstrate their correctness.
+First, we demonstrate the correctness of the generalized bridge sampling
+scheme proposed in \chapref{4}, and show that the approximate scheme
+produces samples of generalized bridges that are extremely close in
+distribution to the exact sampler. Then, with a correct sampler in
+hand, we demonstrate that the MCEM scheme proposed in \chapref{EM}
+converges to the Kullback-Liebler divergence minimizing parameter
+in a variety of situations as expected.
+
+
+\section{Objects and Methods}
+
+As usual, we begin by fixing the objects of study. We shall consider
+two examples of diffusions which satisfy the assumptions outlined
+in \chapref{2}. The first process is an Ornstein-Uhlenbeck (OU) process,
+which is a solution to the SDE 
+\begin{equation}
+dO_{t}=-\lambda\left(O_{t}-\mu\right)dt+\sigma dW_{t},\label{eq:ou-sde}
+\end{equation}
+for some initial condition on $O_{0}$ and a Wiener process $W_{t}$.
+OU processes are both theoretically appealing (representing the only
+non-trivial stationary, Gaussian, and Markovian process) and practically
+useful (used to model everything from springs to currency exchange
+rates\textemdash see standard physics references or \citet{hirsa-2012}
+for applications in finance). The second process we shall focus on
+here is a Cox-Ingersoll-Ross (CIR) process, which is a solution to
+the SDE 
+\begin{equation}
+dC_{t}=-\lambda\left(C_{t}-\mu\right)dt+\sigma\sqrt{C_{t}}dW_{t},\label{eq:cir-sde}
+\end{equation}
+with some initial condition on $C_{0}$ and a Wiener process $W_{t}$.
+We assume as per the literature that $2\theta\mu\geq\sigma^{2}$,
+so $C$ lives on the positive real line. With this restriction, CIR
+processes form the foundation of common short-term interest rate and
+stochastic volatility models (see \citet{cir-1985} and \citet{heston-1993}).
+
+In general, we will refer to the parameter vector of either process
+as $\theta$, with superscripts when needed for clarity. Note that
+the OU process has a well-known invariant measure $\Pi_{\theta}^{O}$,
+which is a Gaussian measure with mean $\mu$ and variance $\sigma^{2}/2\lambda$,
+while the CIR process has a well-known invariant measure $\Pi_{\theta}^{C}$,
+which is a Gamma measure with shape parameter $2\lambda\mu/\sigma^{2}$
+and rate parameter $2\lambda/\sigma^{2}$. Both these measures have
+Lebesgue densities. 
+
+In all simulations to follow, the relevant process is simulated over
+the time interval $[0,1]$ with a step size $\delta=1/100$. Since
+both the OU and CIR processes have known transition densities, we
+simulate exact paths. All simulations are implemented in R on a 2012
+Macbook Pro.
+
+
+\section{Sampling $\nu$-Bridges}
+
+Let $O$ and $C$ represent stationary solutions to (\ref{eq:ou-sde})
+and (\ref{eq:cir-sde}), respectively. An easy way to validate the
+correctness of the approximate and exact samplers proposed in \chapref{4}
+is to simulate unconstrained sample paths of $O$ and $C$, and compare
+the marginal distributions of these sample paths with generalized
+bridges sampled according to \chapref{4} with endpoints drawn from
+$O_{0,1}$ and $C_{0,1}$. Then, the marginal distributions of these
+generalized bridges at any time $t\in[0,1]$ ought to be the same
+as the distribution of the unconstrained sample path. 
+
+For clarity, we fix in this section $\theta=1,\mu=0,\sigma=1$ for
+$O$, and $\theta=1,\mu=1,\sigma=1$ for $C$. In order to sample
+$O_{0,1}$- or $C_{0,1}$-bridges, we must be able to sample exactly
+from $O_{0,1}$ and $C_{0,1}$. This is easy; we can simply sample
+a path of $O$ or $C$, and take its values at times $t=\{0,1\}$
+as an exact draw from $O_{0,1}$ or $C_{0,1}$ respectively.
+
+With this in mind, we present the sample distributions of $O_{0,1}$-bridges
+and $C_{0,1}$-bridges of $O$ and $C$ against the empirical distributions
+of the unconstrained stationary solutions in \figref{joint-invariant}.
+The M-H algorithm for the exact sampler is carried out with $M=10$
+(the number of $T$-values simulated in order to calculate $\hat{\rho}$),
+and no burn-in is used since the proposals are independent of one
+another.
+
+\begin{figure}[h]
+\includegraphics[width=1\columnwidth]{/Users/marshall/Documents/senior/thesis/figures/invariant_densities}
+
+\caption{\label{fig:joint-invariant}Q-Q plots comparing $10,000$ sample paths
+at $t=1/2$ of unconstrained stationary Ornstein-Uhlenbeck (left)
+and Cox-Ingersoll-Ross (right) processes to those of their $\nu$-bridges,
+using an approximate (first row) and exact (second row) sampling scheme.}
+\end{figure}
+
+
+We first note that the approximate sampler produces marginal distributions
+that are reasonable approximations to the exact sampler, though slightly
+thinner-tailed than they should be. This is a result of the approximate
+sampler drawing $\nu$-bridges conditioned on the bridges being hit
+by a hitting diffusion; in this experiment, these hitting diffusions
+tend towards the mean of the marginal initial and end distributions,
+reducing the variance in-between. Though the exact samples appear
+to be slightly thin-tailed as well, we will demonstrate in \tabref{KS-stats}
+that we cannot reject the hypothesis that the exact samples and the
+unconstrained diffusion are drawn from the same distribution at any
+reasonable confidence level. We also present in \tabref{KS-stats}
+analogous simulations for non-stationary solutions to (\ref{eq:ou-sde});
+in particular, we consider solutions with initial distributions $X_{0}\sim\mathcal{N}(1,1/2)$,$X_{0}\sim2\mbox{Bern}-1$,
+and $X_{0}\sim\mbox{Expo}(2)$. As before, we can draw exactly from
+$O_{0,1}$ merely by simulating a solution to (\ref{eq:ou-sde}) with
+the appropriate initial condition, and taking its value at times $t=\{0,1\}$. 
+
+\tabref{KS-stats} confirms for a wide range of unorthodox joint initial/end
+distributions, the exact sampler indeed samples from the true bridge
+distribution at the cost of more computational power. We use $M=1$
+for the exact sampler to minimize computational cost, which does not
+seem to have a significant adverse impact on the quality of the exact
+samples. We note that the computing time required to exactly sample
+an OU process with initial distribution $\mathcal{N}(1,1/2)$ is far
+higher than any other process considered; this is a result of the
+lower probability of a hitting diffusion (which has an initial distribution
+with mean $e^{-1}$ and mean-reverts towards $0$) intersecting with
+the bridge. This relatively low probability of a hitting diffusion
+intersection is reflected in the large K-S statistic for the approximately
+sampled bridge, and speaks to the idea that to ``make up'' for a
+poor approximate sampler, an exact sampler must use more computational
+power. It is also worth noting that the K-S statistics presented in
+\tabref{KS-stats} represent the most conservative estimates of the
+deviation from true unconstrained diffusions\textemdash in particular,
+the marginal distribution of the sampled bridges, whether approximate
+or exact, are the same as the unconstrained diffusion at times $t=\{0,1\}$
+by definition, and $t=1/2$ represents the point in time at which
+the marginal distributions of these bridges have the most freedom
+to drift from the true distribution.
+
+\begin{table}
+\begin{tabular}{@{}llllll@{}} \toprule \multirow{2}{*}{Process}                 & \multirow{2}{*}{Initial Condition} & \multicolumn{2}{l}{K-S stat. ($\times 10^{-2}$)} & \multicolumn{2}{l}{CPU (rel.)} \\ \cmidrule(l){3-4}                                           &                                    & Approx.                   & Exact                  & Approx.                  & Exact                 \\ \midrule \multicolumn{1}{l|}{\multirow{4}{*}{OU}} & $\mathcal{N}(1,1/2)$               & 4.38***                   & 1.79                   & 3.13                     & 35.6                  \\ \multicolumn{1}{l|}{}                    & $2\text{Bern}-1$                   & 2.80***                   & 1.81                   & 3.01                     & 12.0                  \\ \multicolumn{1}{l|}{}                    & $\text{Expo}(2)$                   & 2.75**                    & 2.13*                  & 2.91                     & 11.5                  \\ \multicolumn{1}{l|}{}                    & Stationary                         & 2.03*                     & 1.46                   & 2.87                     & 12.0                  \\                                          &                                    &                           &                        &                          &                       \\[-2.5ex] \multicolumn{1}{l|}{CIR}                 & Stationary                         & 2.41**                    & 1.34                   & 2.86                     & 10.8                  \\ \bottomrule \end{tabular} 
+
+\begin{centering}
+\begin{tabular}{lllll>{\raggedright}m{2cm}}
+\multirow{1}{*}{} & \multirow{1}{*}{} &  &  &  & \tabularnewline
+\end{tabular}
+\par\end{centering}
+
+\caption{\label{tab:KS-stats}Kolmogorov-Smirnov statistics comparing $10,000$
+sample paths at $t=1/2$ of approximately and exactly sampled generalized
+bridges against the corresponding unconstrained diffusions, as well
+as the relative running times of sampling the bridges against sampling
+the unconstrained diffusions.}
+\end{table}
+
+
+Somewhat unfortunately for our approximate sampler (which is roughly
+an order of magnitude faster than our exact sampler), we are able
+to reject the hypothesis that it samples from the unconstrained diffusion
+at $t=1/2$ for every initial condition examined, at the $95\%$ confidence
+level. However, recall that the MCEM algorithm proposed in \chapref{EM}
+involves taking an expectation of an integral over an entire diffusion
+bridge sample path, and so the K-S test on the marginal distribution
+of our sampled paths at $t=1/2$ represents an overly stringent view
+on the quality of these samples. In the next section, we shall experiment
+with our MCEM algorithm and demonstrate that.....
+
+
+\section{Inference on Distributional Data}
+
+In this section, we verify the correctness of the MCEM algorithm proposed
+in \chapref{EM}. 
+
+As a first toy example, we consider stationary OU and CIR processes
+with the parameters from the previous section (importantly, both processes
+have unit diffusion coefficient). In particular, we Of course, we
+know how to draw from the joint initial/end distributions of these
+processes, and so an implementation of the MCEM algorithm 
+
+\begin{table*}
+\centering \begin{tabular}{@{}cllllllllll@{}} \toprule \multirow{2}{*}{Iteration} &  & \multicolumn{2}{l}{Approx.}                                           & \multicolumn{2}{l}{Exact}                                              \\ \cmidrule(lr){3-4}                             &  & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\mu}$} & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\mu}$}  \\ \cmidrule(r){1-1} \cmidrule(lr){3-6} 0                          &  & 2.00                                & 2.00                            & 2.00                                & 2.00                                                        \\ 1                          &  & 1.80                                & 0.21                            & 1.10                                & 0.38                                                        \\ 2                          &  & 1.45                                & 0.12                            & 1.04                                & 0.05                                                        \\ 3                          &  & 1.21                                & 0.04                            & 0.88                                & 0.03                                                          \\ 4                          &  & 1.26                                & 0.00                            & 1.02                                & 0.05                                                          \\ 5                          &  & 1.11                                & 0.00                            & 1.00                                & 0.04                                                          \\ 6                          &  & 1.07                                & 0.00                            & 0.95                                & 0.04                                                          \\ 7                          &  & 1.08                                & 0.00                            & 1.04                                & 0.02                                                          \\ 8                          &  & 1.08                                & 0.01                            & 0.98                                & 0.04                                                          \\ 9                          &  & 1.07                                & 0.01                            & 1.04                                & 0.02                                                          \\ 10                         &  & 1.07                                & 0.00                            & 1.03                                & 0.03                                                        \\ \bottomrule \end{tabular} 
+
+\begin{centering}
+\begin{tabular}{lllll>{\raggedright}m{2cm}}
+\multirow{1}{*}{} & \multirow{1}{*}{} &  &  &  & \tabularnewline
+\end{tabular}
+\par\end{centering}
+
+\caption{\label{tab:mcem-stationary}MCEM iterations for inference on the parameters
+of an OU process with unit diffusion, given the joint distribution
+at $t=\{0,1\}$ induced by a stationary solution to (\ref{eq:ou-sde}),
+using approximate and exact generalized bridge samplers. The $i$th
+iteration is performed using $100\times\left\lfloor i^{1.5}\right\rfloor $
+MC samples, and the Fletcher-Reeves conjugate gradient method is used
+for maximization.}
+\end{table*}
+
+
+\begin{sidewaystable}
+\centering \begin{tabular}{@{}cllllllllllllllllllll@{}} \cmidrule(r){1-6} \cmidrule(l){8-21} \multirow{3}{*}{Iteration} &  & \multicolumn{4}{l}{$\mathcal{N}(0,1/2)$}                                                                                                      &  & \multicolumn{4}{l}{$2\text{Bern}-1$}                                                                                      &  & \multicolumn{4}{l}{$\text{Expo}(2)$}                          &  & \multicolumn{4}{l}{$\hat{\mathcal{N}}(0,1/2)$ (100 samples)}                      \\ \cmidrule(lr){3-6} \cmidrule(lr){8-11} \cmidrule(lr){13-16} \cmidrule(l){18-21}                             &  & \multicolumn{2}{l}{Approx.}                                           & \multicolumn{2}{l}{Exact}                                             &  & \multicolumn{2}{l}{Approx.}                                           & \multicolumn{2}{l}{Exact}                         &  & \multicolumn{2}{l}{Approx.}   & \multicolumn{2}{l}{Exact}     &  & \multicolumn{2}{l}{Approx.}                       & \multicolumn{2}{l}{Exact}     \\ \cmidrule(lr){3-4} \cmidrule(lr){8-9} \cmidrule(lr){13-14} \cmidrule(lr){18-19}                            &  & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\mu}$} & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\mu}$} &  & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\mu}$} & \multicolumn{1}{c}{$\hat{\lambda}$} & $\hat{\mu}$ &  & $\hat{\lambda}$ & $\hat{\mu}$ & $\hat{\lambda}$ & $\hat{\mu}$ &  & \multicolumn{1}{c}{$\hat{\lambda}$} & $\hat{\mu}$ & $\hat{\lambda}$ & $\hat{\mu}$ \\ \cmidrule(r){1-1} \cmidrule(lr){3-6} \cmidrule(lr){8-11} \cmidrule(lr){13-16} \cmidrule(l){18-21}  0                          &  & 2.00                                & 2.00                            & 2.00                                & 2.00                            &  & 2.00                                & 2.00                            & 2.00                                & 2.00        &  & 2.00            & 2.00        & 2.00            & 2.00        &  & 2.00                                & 2.00        & 2.00            & 2.00        \\ 1                          &  & 1.89                                & 0.46                            & 1.30                                & 0.15                            &  & 0.95                                & 1.23                            & 0.79                                & -0.03       &  & 0.94            & 0.09        & 1.04            & -0.17       &  & 1.23                                & 0.36        & 0.99            & 0.04        \\ 2                          &  & 1.71                                & 0.25                            & 1.23                                & 0.14                            &  & 1.10                                & 1.06                            & 0.83                                & -0.09       &  & 1.10            & -0.04       & 1.27            & -0.01       &  & 1.10                                & 0.05        & 1.04            & 0.04        \\ 3                          &  & 1.46                                & 0.16                            & 1.19                                & 0.02                            &  & 1.25                                & 1.05                            & 1.11                                & 0.01        &  & 1.17            & -0.04       & 1.18            & 0.01        &  & 1.09                                & 0.03        & 1.02            & 0.03        \\ 4                          &  & 1.55                                & 0.17                            & 1.12                                & 0.01                            &  & 1.17                                & 1.02                            & 1.06                                & 0.05        &  & 1.25            & 0.02        & 1.17            & 0.04        &  & 1.15                                & 0.02        & 0.99            & 0.03        \\ 5                          &  & 1.45                                & 0.13                            & 1.07                                & 0.11                            &  & 1.17                                & 1.03                            & 1.03                                & 0.01        &  & 1.17            & 0.00        & 1.03            & -0.03       &  & 1.14                                & 0.06        & 1.02            & 0.14        \\ 6                          &  & 1.39                                & 0.12                            & 1.12                                & 0.09                            &  & 1.15                                & 0.97                            & 1.03                                & 0.01        &  & 1.17            & 0.00        & 1.07            & -0.01       &  & 1.07                                & 0.06        & 1.00            & 0.09        \\ 7                          &  & 1.42                                & 0.13                            & 1.15                                & 0.05                            &  & 1.10                                & 0.99                            & 1.07                                & -0.00       &  & 1.15            & 0.00        & 1.00            & -0.02       &  & 1.10                                & 0.07        & 0.99            & 0.06        \\ 8                          &  & 1.45                                & 0.12                            & 1.07                                & 0.06                            &  & 1.11                                & 0.98                            & 1.07                                & 0.00        &  & 1.10            & 0.00        & 1.25            & 0.04        &  & 1.07                                & 0.08        & 1.01            & 0.04        \\ 9                          &  & 1.33                                & 0.10                            & 1.08                                & 0.00                            &  & 1.09                                & 0.98                            & 1.01                                & 0.00        &  & 1.18            & -0.01       & 1.10            & 0.04        &  & 1.10                                & 0.09        & 1.05            & 0.02        \\ 10                         &  & 1.28                                & 0.08                            & 1.07                                & 0.03                            &  & 1.03                                & 0.99                            & 1.01                                & 0.01        &  & 1.17            & 0.01        & 1.04            & -0.00       &  & 1.09                                & 0.09        & 1.01            & 0.05        \\ \bottomrule \end{tabular}
+
+\begin{centering}
+\begin{tabular}{lllll>{\raggedright}m{2cm}}
+\multirow{1}{*}{} & \multirow{1}{*}{} &  &  &  & \tabularnewline
+\end{tabular}
+\par\end{centering}
+
+\caption{\label{tab:diff-diffusions}MCEM iterations for inference on the parameters
+of an OU process with unit diffusion given the joint distribution
+at $t=\{0,1\}$ induced by a solution to (\ref{eq:ou-sde}) with various
+initial conditions and $\lambda=1,\mu=0$, using approximate and exact
+generalized bridge samplers. The $i$th iteration is performed using
+$100\times\left\lfloor i^{1.5}\right\rfloor $ MC samples, and the
+Fletcher-Reeves conjugate gradient method is used for maximization.}
+\end{sidewaystable}
+
+\end{document}

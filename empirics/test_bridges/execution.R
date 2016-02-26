@@ -1,11 +1,8 @@
-source("/Users/marshall/Documents/senior/thesis/empirics/simulation_functions.R")
+source("/Users/marshall/Documents/senior/thesis/empirics/general_functions.R")
+source("/Users/marshall/Documents/senior/thesis/empirics/test_bridges/functions.R")
+N = 100
 
-#
-# 
-# STATIONARY SOLUTIONS.
-#
-#
-N = 10000
+# QQ plot.
 
 # OU process.
 theta = c(0, 1, 1)
@@ -21,7 +18,7 @@ nu.o = function(n) {rmvnorm(n, c(0,0), matrix(c(1/2, exp(-1)/2, exp(-1)/2, 1/2),
 
 o.stationary.approx = timeit(nu.o.sims <- gen.nu.bridge(nu.o, ou, theta, N, 100))
 
-o.stationary.exact = timeit(nu.o.sims.exact <- exact.bridges(1, nu.o, 10000, ou, theta, 100))
+o.stationary.exact = timeit(nu.o.sims.exact <- exact.bridges(1, nu.o, N, ou, theta, 100))
 
 # CIR process.
 theta = c(1, 1, 1)
@@ -33,17 +30,17 @@ basic = timeit(for (i in 1:N) {
 })
 
 nu.c = function(n) { mcmc(c(1, 1), 20 * N + 2000, 2000, everyother = 20, trace = 1000, d.posterior = cir.joint, r.proposal = function(n, current) {rgamma(2, rate = 2, shape = 2)}, special = "gamma") }
-sims = timeit(c.sims2 <- nu.c(202000))
-c.stationary.approx = timeit(nu.c.sims <- gen.nu.bridge(nu.c, cir, theta, 10000, 100))
+sims = timeit(c.sims2 <- nu.c(N))
+c.stationary.approx = timeit(nu.c.sims <- gen.nu.bridge(nu.c, cir, theta, N, 100))
 
-c.start = nu.c(202000)
-c.stationary.exact = timeit(nu.c.sims.exact <- exact.bridges(1, function(n) t(as.matrix(c.start[sample(1:10000, n, replace = T),])), 10000, cir, theta, 100))
+c.start = nu.c(N)
+c.stationary.exact = timeit(nu.c.sims.exact <- exact.bridges(1, function(n) t(as.matrix(c.start[sample(1:N, n, replace = T),])), N, cir, theta, 100))
 
 # Plot.
-th.q = qsOU(ppoints(1:10000), c(0, 1, 1))
-data.q = sort(o.sims[1:10000,50])
-my.data.q = sort(nu.o.sims[1:10000,50])
-exact.data.q = sort(nu.o.sims.exact.cut[,50])
+th.q = qsOU(ppoints(1:N), c(0, 1, 1))
+data.q = sort(o.sims[1:N,50])
+my.data.q = sort(nu.o.sims[1:N,50])
+exact.data.q = sort(nu.o.sims.exact[,50])
 data = data.frame(th = data.q, my.dat = my.data.q)
 data.melt = melt(data, id = "th")
 o.plot.approx = pretty.plot(data.melt) + 
@@ -115,12 +112,7 @@ pdf(file = "/Users/marshall/Documents/senior/thesis/figures/invariant_densities.
 multiplot(o.plot.approx, o.plot.exact, c.plot.approx, c.plot.exact, cols = 2)
 dev.off()
 
-
-#
-#
-# MORE EXTREME STARTING POINTS
-#
-#
+# Alternative starting distributions.
 
 # Mean 1 Normal distribution.
 theta = c(0, 1, 1)
@@ -143,7 +135,7 @@ nu.o = function(n) {as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)])}
 sims.m1.time = timeit(nu.o.sims.m1 <- gen.nu.bridge(nu.o, ou, theta, N, 100))
 
 nu.o = function(n) {t(as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)]))}
-sims.m1.exact.time = timeit(nu.o.sims.exact.m1 <- exact.bridges(5, nu.o, 10000, ou, theta, 100))
+sims.m1.exact.time = timeit(nu.o.sims.exact.m1 <- exact.bridges(5, nu.o, N, ou, theta, 100))
 
 # Bernouilli starting distribution.
 o.sims.binom = array(0, dim = c(N, 100))
@@ -164,7 +156,7 @@ nu.o = function(n) {as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)])}
 sims.binom.time = timeit(nu.o.sims.binom <- gen.nu.bridge(nu.o, ou, theta, N, 100))
 
 nu.o = function(n) {t(as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)]))}
-sims.exact.binom.time = timeit(nu.o.sims.exact.rbinom <- exact.bridges(1, nu.o, 10000, ou, theta, 100))
+sims.exact.binom.time = timeit(nu.o.sims.exact.rbinom <- exact.bridges(1, nu.o, N, ou, theta, 100))
 
 # Expo starting distribution.
 o.sims.exp = array(0, dim = c(N, 100))
@@ -186,7 +178,7 @@ nu.o = function(n) {as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)])}
 sims.exp.time = timeit(nu.o.sims.exp <- gen.nu.bridge(nu.o, ou, theta, N, 100))
 
 nu.o = function(n) {t(as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)]))}
-sims.exact.exp.time = timeit(nu.o.sims.exact.exp<- exact.bridges(1, nu.o, 10000, ou, theta, 100))
+sims.exact.exp.time = timeit(nu.o.sims.exact.exp<- exact.bridges(1, nu.o, N, ou, theta, 100))
 
 table1data = list(binom.real = o.sims.binom,
                   binom.approx = nu.o.sims.binom,
@@ -199,73 +191,3 @@ table1data = list(binom.real = o.sims.binom,
                   exp.exact = nu.o.sims.exact.exp)
 
 save(table1data, file = "/Users/marshall/Documents/senior/thesis/figures/table1data.Rdata")
-
-#
-#
-# EM WITH UNIT DIFFUSION
-#
-#
-
-# Stationary.
-theta = c(0, 1, 1)
-
-o.sims = array(0, dim = c(N, 100))
-o.sims.start = rnorm(N, mean = 0, sd = sqrt(1/2))
-for (i in 1:N) {
-  print(i)
-  o.sims[i, ] = ou(o.sims.start[i], 100, theta)
-}
-
-nu.o = function(n) {rmvnorm(n, c(0,0), matrix(c(1/2, exp(-1)/2, exp(-1)/2, 1/2), nrow = 2, ncol = 2))} 
-
-DEoptim(f = function(theta) q.unit(theta, ou, c(2,2,1), nu.o, 10, 100, exact = F),
-      lower = c(-1, 0),
-      upper = c(5, 4),
-      control = DEoptim.control(trace = 1))
-
-oldpar = c(2,2)
-for (i in 1:10) {
-  oldpar = optim(par = oldpar,
-        f = function(theta) q.unit(theta, ou, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = F),
-        method = "CG")$par
-  print(oldpar)
-}
-
-nu.c = function(n) { mcmc(c(1, 1), 20 * n + 2000, 2000, everyother = 20, trace = 1000, d.posterior = cir.joint, r.proposal = function(n, current) {rgamma(2, rate = 2, shape = 2)}, special = "gamma") }
-c.draws = nu.c(202000)
-oldpar = c(3,2)
-for (i in 1:10) {
-  oldpar = optim(par = oldpar,
-        f = function(theta) q.unit(theta, cir, c(oldpar,1), nu.c, round(i^1.5)*100, 100, exact = F),
-        method = "CG")$par
-  print(oldpar)
-}
-
-#
-#
-# EM WITH NON-UNIT DIFFUSION
-#
-#
-
-print("approx and v2")
-oldpar = c(1,1,1)
-nu.c = function(n) { mcmc(c(1, 1), 20 * n + 2000, 2000, everyother = 20, trace = 1000, d.posterior = cir.joint, r.proposal = function(n, current) {rgamma(2, rate = 2, shape = 2)}, special = "gamma") } 
-# nu.test = function(n) {cbind(rep(1, n), rep(2,n))}
-for (i in 1:10) {
-  oldpar = optim(par = oldpar,
-        f = function(theta) q.1(theta, trans.cir, oldpar, nu.c, round(i^1.5)*100, 100, exact = F),
-        method = "CG", control = list(trace = 6))$par
-  print(oldpar)
-}
-
-print("exact and v2")
-oldpar = c(4,2,2)
-nu.c = function(n) { mcmc(c(1, 1), 20 * n + 2000, 2000, everyother = 20, trace = 1000, d.posterior = cir.joint, r.proposal = function(n, current) {rgamma(2, rate = 2, shape = 2)}, special = "gamma") } 
-c.start = nu.c(10000)
-real.nu.c = function(n) t(as.matrix(c.start[sample(1:10000, n, replace = T),]))
-for (i in 1:10) {
-  oldpar = optim(par = oldpar,
-        f = function(theta) q.1(theta, trans.cir, oldpar, real.nu.c, round(i^1.5)*100, 100, exact = T),
-        method = "CG", control = list(trace = 6))$par
-  print(oldpar)
-}

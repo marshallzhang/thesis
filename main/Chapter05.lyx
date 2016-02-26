@@ -17,6 +17,12 @@
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage[labelfont=bf]{caption}
+
+\makeatletter
+\renewcommand*{\thetable}{\arabic{chapter}.\arabic{table}}
+\renewcommand*{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\let\c@table\c@figure
+\makeatother 
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -108,16 +114,16 @@ reference "part:2"
 \end_inset
 
  in a controlled simulation environment to demonstrate their correctness.
- First, we demonstrate the correctness of the generalized bridge sampling
- scheme proposed in 
+ First, we show qualitatively that the approximate generalized bridge sampler
+ produces high quality samples of generalized bridges, and demonstrate formally
+ the correctness of the exact sampling scheme proposed in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:4"
 
 \end_inset
 
-, and show that the approximate scheme produces samples of generalized bridges
- that are extremely close in distribution to the exact sampler.
+.
  Then, with a correct sampler in hand, we demonstrate that the MCEM scheme
  proposed in 
 \begin_inset CommandInset ref
@@ -136,8 +142,8 @@ Objects and Methods
 
 \begin_layout Standard
 As usual, we begin by fixing the objects of study.
- We shall consider two examples of diffusions which satisfy the assumptions
- outlined in 
+ We consider two examples of diffusions which satisfy the assumptions outlined
+ in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:2"
@@ -163,10 +169,10 @@ for some initial condition on
 \end_inset
 
 .
- OU processes are both theoretically appealing (representing the only non-trivia
-l stationary, Gaussian, and Markovian process) and practically useful (used
- to model everything from springs to currency exchange rates—see standard
- physics references or 
+ OU processes are both theoretically interesting (representing the only
+ non-trivial stationary, Gaussian, and Markovian process) and practically
+ useful (used to model everything from springs to currency exchange rates—see
+ standard physics references or 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "hirsa-2012"
@@ -174,8 +180,8 @@ key "hirsa-2012"
 \end_inset
 
  for applications in finance).
- The second process we shall focus on here is a Cox-Ingersoll-Ross (CIR)
- process, which is a solution to the SDE 
+ The second process we focus on here is a Cox-Ingersoll-Ross (CIR) process,
+ which is a solution to the SDE 
 \begin_inset Formula 
 \begin{equation}
 dC_{t}=-\lambda\left(C_{t}-\mu\right)dt+\sigma\sqrt{C_{t}}dW_{t},\label{eq:cir-sde}
@@ -220,16 +226,7 @@ key "heston-1993"
 \end_layout
 
 \begin_layout Standard
-In general, we will refer to the parameter vector of either process as 
-\begin_inset Formula $\theta$
-\end_inset
-
-, with superscripts when needed for clarity.
- Note that the OU process has a well-known invariant measure 
-\begin_inset Formula $\Pi_{\theta}^{O}$
-\end_inset
-
-, which is a Gaussian measure with mean 
+Note that the OU process has invariant Gaussian measure with mean 
 \begin_inset Formula $\mu$
 \end_inset
 
@@ -237,11 +234,8 @@ In general, we will refer to the parameter vector of either process as
 \begin_inset Formula $\sigma^{2}/2\lambda$
 \end_inset
 
-, while the CIR process has a well-known invariant measure 
-\begin_inset Formula $\Pi_{\theta}^{C}$
-\end_inset
-
-, which is a Gamma measure with shape parameter 
+, while the CIR process has invariant Gamma measure with shape parameter
+ 
 \begin_inset Formula $2\lambda\mu/\sigma^{2}$
 \end_inset
 
@@ -250,7 +244,12 @@ In general, we will refer to the parameter vector of either process as
 \end_inset
 
 .
- Both these measures have Lebesgue densities.
+ In general, we will refer to the parameter vector of either process as
+ 
+\begin_inset Formula $\theta=(\mu,\lambda,\sigma)$
+\end_inset
+
+.
  
 \end_layout
 
@@ -428,7 +427,11 @@ reference "fig:joint-invariant"
 \end_inset
 
 .
- The M-H algorithm for the exact sampler is carried out with 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The M-H algorithm for the exact sampler is carried out with 
 \begin_inset Formula $M=10$
 \end_inset
 
@@ -443,12 +446,17 @@ reference "fig:joint-invariant"
 ), and no burn-in is used since the proposals are independent of one another.
 \end_layout
 
+\end_inset
+
+ 
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement th
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -499,15 +507,12 @@ Q-Q plots comparing
 
 \begin_layout Standard
 We first note that the approximate sampler produces marginal distributions
- that are reasonable approximations to the exact sampler, though slightly
- thinner-tailed than they should be.
- This is a result of the approximate sampler drawing 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridges conditioned on the bridges being hit by a hitting diffusion; in
- this experiment, these hitting diffusions tend towards the mean of the
- marginal initial and end distributions, reducing the variance in-between.
+ that are reasonable approximations to the exact distribution, though they
+ are slightly thinner-tailed than they should be.
+ This is a result of the approximate sampler drawing generalized bridges
+ conditioned on the bridges being hit by a hitting diffusion; in this experiment
+, these hitting diffusions tend towards the mean of the marginal initial
+ and end distributions, reducing the variance in between.
  Though the exact samples appear to be slightly thin-tailed as well, we
  will demonstrate in 
 \begin_inset CommandInset ref
@@ -534,19 +539,23 @@ reference "eq:ou-sde"
 \end_inset
 
 ; in particular, we consider solutions with initial distributions 
-\begin_inset Formula $X_{0}\sim\mathcal{N}(1,1/2)$
+\begin_inset Formula $O_{0}\sim\mathcal{N}(1,1/2)$
 \end_inset
 
 ,
-\begin_inset Formula $X_{0}\sim2\mbox{Bern}-1$
+\begin_inset Formula $O_{0}\sim2\mbox{Bern}-1$
 \end_inset
 
 , and 
-\begin_inset Formula $X_{0}\sim\mbox{Expo}(2)$
+\begin_inset Formula $O_{0}\sim\mbox{Expo}(2)$
 \end_inset
 
 .
- As before, we can draw exactly from 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+As before, we can draw exactly from 
 \begin_inset Formula $O_{0,1}$
 \end_inset
 
@@ -565,6 +574,11 @@ reference "eq:ou-sde"
  
 \end_layout
 
+\end_inset
+
+ 
+\end_layout
+
 \begin_layout Standard
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -575,40 +589,50 @@ reference "tab:KS-stats"
  confirms for a wide range of unorthodox joint initial/end distributions,
  the exact sampler indeed samples from the true bridge distribution at the
  cost of more computational power.
- We use 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+We use 
 \begin_inset Formula $M=1$
 \end_inset
 
- for the exact sampler to minimize computational cost, which does not seem
+ for the exact sampler to minimize simulation time, which does not seem
  to have a significant adverse impact on the quality of the exact samples.
+ This is expected due to the exact sampler being having an independent proposal.
+\end_layout
+
+\end_inset
+
  We note that the computing time required to exactly sample an OU process
  with initial distribution 
 \begin_inset Formula $\mathcal{N}(1,1/2)$
 \end_inset
 
  is far higher than any other process considered; this is a result of the
- lower probability of a hitting diffusion (which has an initial distribution
- with mean 
+ lower probability of a hitting diffusion
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This diffusion has an initial distribution with mean 
 \begin_inset Formula $e^{-1}$
 \end_inset
 
- and mean-reverts towards 
+ and is mean-reverting towards 
 \begin_inset Formula $0$
 \end_inset
 
-) intersecting with the bridge.
- This relatively low probability of a hitting diffusion intersection is
- reflected in the large K-S statistic for the approximately sampled bridge,
- and speaks to the idea that to 
-\begin_inset Quotes eld
+.
+\end_layout
+
 \end_inset
 
-make up
-\begin_inset Quotes erd
-\end_inset
-
- for a poor approximate sampler, an exact sampler must use more computational
- power.
+ intersecting with the bridge.
+ The relatively low probability of a hitting diffusion intersection is reflected
+ in the large K-S statistic for the approximately sampled bridge, and speaks
+ to the idea that the exact sampler must use proportionally more computational
+ resources to sample increasingly unlikely bridges.
  It is also worth noting that the K-S statistics presented in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -640,6 +664,13 @@ status open
 \begin_layout Plain Layout
 \begin_inset ERT
 status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -844,33 +875,41 @@ ing unconstrained diffusions, as well as the relative running times of sampling
 \end_layout
 
 \begin_layout Standard
-Somewhat unfortunately for our approximate sampler (which is roughly an
- order of magnitude faster than our exact sampler), we are able to reject
- the hypothesis that it samples from the unconstrained diffusion at 
-\begin_inset Formula $t=1/2$
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:KS-stats"
+
 \end_inset
 
- for every initial condition examined, at the 
-\begin_inset Formula $95\%$
+ confirms our knowledge that the approximate sampler does not sample from
+ the true distribution; rather, as we know, it samples generalized bridges
+ conditional on the bridges being hit by hitting diffusions.
+ However, the approximate samples are qualitatively similar to the exact
+ samples (see 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:joint-invariant"
+
 \end_inset
 
- confidence level.
- However, recall that the MCEM algorithm proposed in 
+); recalling that the MCEM algorithm proposed in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:EM"
 
 \end_inset
 
- involves taking an expectation of an integral over an entire diffusion
- bridge sample path, and so the K-S test on the marginal distribution of
- our sampled paths at 
+ involves taking an expectation of an integral over an entire generalized
+ bridge sample path, the K-S test on the marginal distribution of our approximat
+ely sampled paths at 
 \begin_inset Formula $t=1/2$
 \end_inset
 
- represents an overly stringent view on the quality of these samples.
- In the next section, we shall experiment with our MCEM algorithm and demonstrat
-e that.....
+ represents an overly stringent view on the usability of these samples in
+ MCEM.
+ In the next section, we demonstrate that an MCEM algorithm using the approximat
+e bridge sampler produces comparable results to one using the exact bridge
+ sampler.
 \end_layout
 
 \begin_layout Section
@@ -1627,7 +1666,7 @@ Y_{t}=\eta_{\theta}(C_{t})=\frac{2\sqrt{C_{t}}}{\sigma},
 
 \end_inset
 
-so that 
+ so that 
 \begin_inset Formula $\eta_{\theta}^{-1}(Y_{t})=\frac{\sigma^{2}}{4}Y_{t}^{2}$
 \end_inset
 
@@ -1664,6 +1703,15 @@ reference "eq:general-q"
 \end_inset
 
  are
+\begin_inset Formula 
+\begin{eqnarray*}
+s_{\theta}(x) & = & \frac{-\lambda(x-\mu\log x)}{\sigma^{2}}\\
+g_{\theta}(x) & = & \frac{-\lambda(x-\mu\log x)\left(\log\sigma+\frac{1}{2}\log x\right)}{2\sigma^{2}}
+\end{eqnarray*}
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{eqnarray*}
 A_{\theta}(Y_{t}) & = & -\frac{\lambda Y_{t}^{2}}{4}-\left(\frac{1}{2}-\frac{2\lambda\mu}{\sigma^{2}}\right)\log Y_{t},\mbox{ and}\\

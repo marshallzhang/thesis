@@ -10,8 +10,19 @@
 \newref{thm}{name=Theorem~,Name=Theorem~}
 \newref{chap}{name=Chapter~,Name=Chapter~}
 \newref{part}{name=Part~,Name=Part~}
+\newref{tab}{name=Table~,Name=Table~}
 \newref{algo}{name=Algorithm~,Name=Algorithm~}
 \newref{lem}{name=Lemma~,Name=Lemma~}
+\newref{fig}{name=Figure~,Name=Figure~}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[labelfont=bf]{caption}
+
+\makeatletter
+\renewcommand*{\thetable}{\arabic{chapter}.\arabic{table}}
+\renewcommand*{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\let\c@table\c@figure
+\makeatother 
 \end_preamble
 \use_default_options true
 \begin_modules

@@ -209,20 +209,17 @@ save(table1data, file = "/Users/marshall/Documents/senior/thesis/figures/table1d
 # Stationary.
 theta = c(0, 1, 1)
 
-o.sims = array(0, dim = c(N, 100))
-o.sims.start = rnorm(N, mean = 0, sd = sqrt(1/2))
+# mean 1
+o.sims2 = array(0, dim = c(N, 100))
+o.sims.start = rnorm(N, mean = 1, sd = sqrt(1/2))
 for (i in 1:N) {
-  print(i)
-  o.sims[i, ] = ou(o.sims.start[i], 100, theta)
+#   print(i)
+  o.sims2[i, ] = ou(o.sims.start[i], 100, theta)
 }
 
-nu.o = function(n) {rmvnorm(n, c(0,0), matrix(c(1/2, exp(-1)/2, exp(-1)/2, 1/2), nrow = 2, ncol = 2))} 
+nu.o = function(n) {as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)])}
 
-DEoptim(f = function(theta) q.unit(theta, ou, c(2,2,1), nu.o, 10, 100, exact = F),
-      lower = c(-1, 0),
-      upper = c(5, 4),
-      control = DEoptim.control(trace = 1))
-
+print("mean 1 approx")
 oldpar = c(2,2)
 for (i in 1:10) {
   oldpar = optim(par = oldpar,
@@ -231,41 +228,94 @@ for (i in 1:10) {
   print(oldpar)
 }
 
-nu.c = function(n) { mcmc(c(1, 1), 20 * n + 2000, 2000, everyother = 20, trace = 1000, d.posterior = cir.joint, r.proposal = function(n, current) {rgamma(2, rate = 2, shape = 2)}, special = "gamma") }
-c.draws = nu.c(202000)
-oldpar = c(3,2)
+print("mean 1 exact")
+nu.o = function(n) {t(as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)]))}
 for (i in 1:10) {
   oldpar = optim(par = oldpar,
-        f = function(theta) q.unit(theta, cir, c(oldpar,1), nu.c, round(i^1.5)*100, 100, exact = F),
+        f = function(theta) q.unit(theta, ou, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = T),
         method = "CG")$par
   print(oldpar)
 }
 
-#
-#
-# EM WITH NON-UNIT DIFFUSION
-#
-#
+# Binom
+o.sims2 = array(0, dim = c(N, 100))
+o.sims.start = (rbinom(N, 1, 0.5) * 2) - 1
+for (i in 1:N) {
+#   print(i)
+  o.sims2[i, ] = ou(o.sims.start[i], 100, theta)
+}
 
-print("approx and v2")
-oldpar = c(1,1,1)
-nu.c = function(n) { mcmc(c(1, 1), 20 * n + 2000, 2000, everyother = 20, trace = 1000, d.posterior = cir.joint, r.proposal = function(n, current) {rgamma(2, rate = 2, shape = 2)}, special = "gamma") } 
-# nu.test = function(n) {cbind(rep(1, n), rep(2,n))}
+nu.o = function(n) {as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)])}
+
+print("binom approx")
+oldpar = c(2,2)
 for (i in 1:10) {
   oldpar = optim(par = oldpar,
-        f = function(theta) q.1(theta, trans.cir, oldpar, nu.c, round(i^1.5)*100, 100, exact = F),
-        method = "CG", control = list(trace = 6))$par
+        f = function(theta) q.unit(theta, ou, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = F),
+        method = "CG")$par
   print(oldpar)
 }
 
-print("exact and v2")
-oldpar = c(4,2,2)
-nu.c = function(n) { mcmc(c(1, 1), 20 * n + 2000, 2000, everyother = 20, trace = 1000, d.posterior = cir.joint, r.proposal = function(n, current) {rgamma(2, rate = 2, shape = 2)}, special = "gamma") } 
-c.start = nu.c(10000)
-real.nu.c = function(n) t(as.matrix(c.start[sample(1:10000, n, replace = T),]))
+nu.o = function(n) {t(as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)]))}
+print("binom exact")
 for (i in 1:10) {
   oldpar = optim(par = oldpar,
-        f = function(theta) q.1(theta, trans.cir, oldpar, real.nu.c, round(i^1.5)*100, 100, exact = T),
-        method = "CG", control = list(trace = 6))$par
+        f = function(theta) q.unit(theta, ou, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = T),
+        method = "CG")$par
+  print(oldpar)
+}
+
+#Expo
+o.sims2 = array(0, dim = c(N, 100))
+o.sims.start = rexp(N, 2)
+for (i in 1:N) {
+#   print(i)
+  o.sims2[i, ] = ou(o.sims.start[i], 100, theta)
+}
+
+nu.o = function(n) {as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)])}
+
+print("expo approx")
+oldpar = c(2,2)
+for (i in 1:10) {
+  oldpar = optim(par = oldpar,
+        f = function(theta) q.unit(theta, ou, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = F),
+        method = "CG")$par
+  print(oldpar)
+}
+
+print("expo exact")
+nu.o = function(n) {t(as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)]))}
+for (i in 1:10) {
+  oldpar = optim(par = oldpar,
+        f = function(theta) q.unit(theta, ou, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = T),
+        method = "CG")$par
+  print(oldpar)
+}
+
+o.sims2 = array(0, dim = c(100, 100))
+o.sims.start = (rnorm(N, 0, 0.5))
+for (i in 1:100) {
+#   print(i)
+  o.sims2[i, ] = ou(o.sims.start[i], 100, theta)
+}
+
+nu.o = function(n) {as.matrix(o.sims2[sample(1:100, n, replace = T),c(1,100)])}
+
+print("small sample approx")
+oldpar = c(2,2)
+for (i in 1:10) {
+  oldpar = optim(par = oldpar,
+        f = function(theta) q.unit(theta, ou, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = F),
+        method = "CG")$par
+  print(oldpar)
+}
+
+nu.o = function(n) {t(as.matrix(o.sims2[sample(1:100, n, replace = T),c(1,100)]))}
+print("small sample exact")
+for (i in 1:10) {
+  oldpar = optim(par = oldpar,
+        f = function(theta) q.unit(theta, ou, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = T),
+        method = "CG")$par
   print(oldpar)
 }

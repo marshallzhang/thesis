@@ -1,13 +1,4 @@
-library(sde)
-library(lattice)
-library(ggplot2)
-library(reshape2)
-library(mvtnorm)
-library(scales)
-library(grid)
-library(gridExtra)
-library(NCmisc)
-library(matrixStats)
+
 
 #
 # GENERATE NU BRIDGE
@@ -92,7 +83,7 @@ gen.nu.helper = function(r.diffusion, theta, start, end, steps, flip = F) {
     # If they don't intersect, re-generate.
     while (no.cross(y.1, y.2)) {
       counter = counter + 1
-      if (counter > 1000) {
+      if (counter > 5000) {
         stop("Too many tries.")
       }
       y.1 = r.diffusion(start, steps, theta)
@@ -121,24 +112,28 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps, set.start = c(-Inf,
   
   for (i in 1:N){
   # Generate two independent diffusions, one starting at start and the other at end.
-    bridges[i, ] = 
-     tryCatch({
-      gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
+   tryCatch({
+      bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
     }, error = function(e) {
       tryCatch({
-        gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
+#         browser()
+        xy1 = r.nu(200)[200,]
+        bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps)
       }, error = function(e) {
         tryCatch({
-          gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
+          xy1 = r.nu(200)[200,]
+          bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps)
         }, error = function(e) {
           tryCatch({
-            gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
+            xy1 = r.nu(200)[200,]
+            bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps)
           }, error = function(e) {
             tryCatch({
-              gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
+              xy1 = r.nu(200)[200,]
+              bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps)
             }, error = function(e) {
-               seq(xy[i,1], xy[i,2], length.out = steps)
-               print(e)
+               browser()
+               print(c(i, xy[i,1], xy[i,2]))
             })
           })
         })
@@ -162,6 +157,16 @@ ou = function(start, steps, theta, time = 1) {
   x = sde.sim(T= time, X0 = start, N = steps - 1,
           model = "OU", theta = theta, method = "euler")
   x
+}
+
+ou.fast = function(start, steps, theta, time = 1) {
+  x = sde.sim(T = time, X0 = start, N = steps - 1,
+              drift = eval(substitute(expression(theta1 -  (-theta2) * x), list(theta1 = theta[1], theta2 = theta[2]))),
+              drift.x = eval(substitute(expression(-theta2), list(theta2 = theta[2]))),
+              sigma = eval(substitute(expression(theta3), list(theta3 = theta[3]))),
+              sigma.x = expression(0),
+              method = "milstein")
+  as.numeric(x)
 }
 
 set.seed(123)
@@ -332,6 +337,11 @@ exact.nu.bridge = function(M, r.hitting.init, samples, ...) {
 #
 #
 
+# Vectorized seq.
+
+composite = function(f,g) function(...) f(g(...))
+vec.seq = composite(t, Vectorize(seq.default, vectorize.args = c("from", "to")))
+
 # Metropolis-Hastings with normal proposals.
 mcmc.mh = function(current, d.posterior, r.proposal, special = "") {
   
@@ -486,128 +496,223 @@ A = function(x, theta) {
     ) * log(x)
 }
 
+drift.cir = expression(theta1 - theta2 * x)
+
 a.2.a.prime = function(x, theta) {
   mu = theta[1] / theta[2]
   lambda = theta[2]
   sigma = theta[3]
   (
-    (-(lambda * x) / 2) - ((1/(2*x)) * (1 - (4*lambda*mu)/sigma^2))
+    (-(lambda * x) / 2) - ((1/(2*x)) * (1 - (4*lambda*mu)/(sigma^2)))
   )^2 - 
   (lambda / 2) +
-  (1/(2*x^2)) * (1 - (4*lambda*mu)/sigma^2)
+  (1/(2*x^2)) * (1 - (4*lambda*mu)/(sigma^2))
 }
+
+alpha = function(x, theta) {
+  mu = theta[1] / theta[2]
+  lambda = theta[2]
+  sigma = theta[3]
+  (-(lambda * x) / 2) - (1 / (2*x)) *(1- (4*lambda*mu)/(sigma^2))
+}
+
 
 eta.inv = function(x, theta) {
   (theta[3]^2 / 4) * x^2
 }
 
+eta = function(x, theta) {
+  2 * sqrt(x) / theta[3]
+}
+
+s = function(x, theta) {
+  mu = theta[1] / theta[2]
+  lambda = theta[2]
+  sigma = theta[3]
+  
+  (-lambda * (x - mu * log(x)))/(sigma^2)
+}
+
+g = function(x, theta) {
+  sigma = theta[3]
+  s(x,theta) * (1/2) * log(sigma * sqrt(x))
+}
+
+# N = 10000
+# tran = matrix(0, nrow = N, ncol = 100)
+# for (i in 1:10000) {
+#   tran[i, ] = (trans.cir(sqrt(2),100,c(4,2,2)))
+# }
+# norm = matrix(0, nrow = N, ncol = 100)
+# for (i in 1:10000) {
+#   norm[i, ] = (eta(cir(2,100,c(4,2,2)), c(4,2,2)))
+# }
+# 
+# plot(tran[1, ], ylim = c(0, 6), type = "l", col = rgb(0,0,0,0.05))
+# for (i in 1:1000) {
+#   lines(tran[i,], ylim = c(0, 6), type = "l", col = rgb(0,0,0,0.05))
+# }
+# 
+# plot(norm[1, ], ylim = c(0, 6), type = "l", col = rgb(0,0,0,0.05))
+# for (i in 1:1000) {
+#   lines(norm[i,], ylim = c(0, 4), type = "l", col = rgb(0,0,0,0.05))
+# }
+# 
+# ks.test(tran[,100], norm[,100])
+
 trans.cir = function(start, steps, theta, time = 1) {
   x = sde.sim(T = time, X0 = start, N = steps - 1,
               drift = eval(substitute(expression((-(lambda * x) / 2) - 
-                                   (1 / (2*x)) *(1- (4*lambda*mu)/sigma^2)), list(lambda = theta[2], mu = theta[1]/theta[2], sigma = theta[3]))),
+                                   (1 / (2*x)) *(1- (4*lambda*mu)/(sigma^2))), list(lambda = theta[2], mu = theta[1]/theta[2], sigma = theta[3]))),
               drift.x = eval(substitute(expression(- 
                                                      (lambda / 2) +
-                                                     (1/(2*x^2)) * (1 - (4*lambda*mu)/sigma^2)), list(lambda = theta[2], mu = theta[1]/theta[2], sigma = theta[3]))),
+                                                     (1/(2*x^2)) * (1 - (4*lambda*mu)/(sigma^2))), list(lambda = theta[2], mu = theta[1]/theta[2], sigma = theta[3]))),
+              drift.xx = eval(substitute(expression((-1/(x^3)) * (1 - (4*lambda*mu)/(sigma^2))), list(lambda = theta[2], mu =theta[1]/theta[2], sigma = theta[3]))),
+              drift.t = expression(0),
               sigma = expression(1),
               sigma.x = expression(0),
-              method = "milstein")
+              method = "shoji")
   as.numeric(x)
 }
 
-q.v1 = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact = F) {
-  set.seed(1)
-  theta1 = theta[1]
-  theta2 = theta[2]
-  theta3 = theta[3]
-  mu = theta1 / theta2
-  lambda = theta2
-  sigma = theta3
-    
-  expectation = 0
-  
-  r.nu.theta = function(n) {eta.inv(r.nu(n), theta)}  
-  
-  bridges = if (exact) {
-    exact.bridges(1, r.nu.theta, M, r.diffusion, theta.tilde, steps)
-  } else {
-    gen.nu.bridge(r.nu.theta, r.diffusion, theta.tilde, M, steps)
+
+# q = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact = F) {
+#   set.seed(1)
+#   theta1 = theta[1]
+#   theta2 = theta[2]
+#   theta3 = theta[3]
+#   if (2 * theta1 <= theta3^2 | theta1<0 | theta2<0 |theta3<0) {
+#     return(NA)
+#   }
+#   
+#   mu = theta1 / theta2
+#   lambda = theta2
+#   sigma = theta3
+#     
+#   expectation = 0
+#   
+#   r.nu.theta = function(n) {eta(r.nu(n), theta)}  
+#   
+#   bridges = if (exact) {
+#     exact.bridges(1, r.nu.theta, M, r.diffusion, theta.tilde, steps)
+#   } else {
+#     gen.nu.bridge(r.nu.theta, r.diffusion, theta.tilde, M, steps, theta)
+#   }
+#   
+#   us = sample(1:steps, M, replace = T)
+#   
+#   expectation = expectation + mean(A(bridges[,100], theta) - A(bridges[,1], theta))
+#   
+#   expectation = expectation - mean((1/2) * a.2.a.prime(bridges[cbind(1:M, us)], theta))
+#   
+# #   print(c(theta, expectation))
+#   
+#   if (is.nan(expectation)) {
+#     return(NA)
+#   }
+#   -expectation
+# }
+#  
+
+gen.nu.bridge.special = function(r.nu, r.diffusion, theta.tilde, theta, M, steps, type) {
+  if (type == "exact") {
+    raw.bridges.0 = exact.bridges(1, function(n) {eta(r.nu(n), theta.tilde)},M, r.diffusion, theta.tilde, steps)
+  } else if (type == "approx") {
+    raw.bridges.0 = gen.nu.bridge(function(n) {eta(r.nu(n), theta.tilde)}, r.diffusion, theta.tilde, M, steps)
   }
-  
-  us = sample(1:steps, M, replace = T)
-  
-  expectation = expectation + mean(A(bridges[,1], theta.tilde) - A(bridges[,100], theta.tilde))
-  
-  expectation = expectation - mean((1/2) * a.2.a.prime(bridges[cbind(1:M, us)], theta.tilde))
-  
-  -expectation
+#   if (type == "exact") {
+#     raw.bridges.0 = exact.bridges(1, function(n) {matrix(0.5, nrow = n, ncol = 2)},M, r.diffusion, theta.tilde, steps)
+#   } else if (type == "approx") {
+#     raw.bridges.0 = gen.nu.bridge(function(n) {matrix(0.5, nrow = n, ncol = 2)}, r.diffusion, theta.tilde, M, steps)
+#   }
+  ends = raw.bridges.0[,c(1,steps)]
+  new.ends = eta(eta.inv(ends, theta.tilde), theta)
+#   new.ends = eta(matrix(1, nrow = M, ncol = 2), theta)
+  difference = new.ends - ends
+  raw.bridges.0 + vec.seq(difference[,1], difference[,2], length.out = steps)
 }
 
-q.v2 = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact = F) {
+q.1 = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact = F) {
   set.seed(1)
   theta1 = theta[1]
   theta2 = theta[2]
   theta3 = theta[3]
+  theta3 = 1
+  if (2 * theta1 <= theta3^2 | theta1<0 | theta2<0 |theta3<0) {
+    return(NA)
+  }
+  
   mu = theta1 / theta2
   lambda = theta2
   sigma = theta3
     
   expectation = 0
   
-  r.nu.theta = function(n) {eta.inv(r.nu(n), theta)}  
+  r.nu.theta = function(n) {eta(r.nu(n), theta)}  
   
   bridges = if (exact) {
-    exact.bridges(1, r.nu.theta, M, r.diffusion, theta.tilde, steps)
+    gen.nu.bridge.special(r.nu, r.diffusion, theta.tilde, theta, M, steps, "exact")
   } else {
-    gen.nu.bridge(r.nu.theta, r.diffusion, theta.tilde, M, steps)
+    gen.nu.bridge.special(r.nu, r.diffusion, theta.tilde, theta, M, steps, "approx")
   }
   
   us = sample(1:steps, M, replace = T)
   
-  expectation = expectation + mean(A(bridges[,1], theta) - A(bridges[,100], theta))
   
+  expectation = expectation + mean(g(eta.inv(bridges[,100], theta), theta) - g(eta.inv(bridges[,1], theta), theta))
+  expectation = expectation - (1/2) * mean((bridges[,100] - bridges[,1])^2)
+  expectation = expectation - mean(log(sigma * sqrt(eta.inv(bridges[,100], theta))))
+#   expectation = sum(rowSums(rowDiffs(bridges) * (theta1 - theta2 * bridges[,1:(steps-1)]))) - sum((1/2) * (theta1 - theta2 * bridges[cbind(1:M, us)])^2)
+#     expectation = expectation + mean(rowSums(rowDiffs(bridges) * alpha(bridges[,1:(steps-1)], theta)))
+#   expectation = expectation - (1/2) * mean(alpha(bridges[cbind(1:M,us)], theta)^2)
   expectation = expectation - mean((1/2) * a.2.a.prime(bridges[cbind(1:M, us)], theta))
   
+  if (is.nan(expectation)) {
+    return(NA)
+  } else if (expectation > 8){
+    browser()
+  }
   -expectation
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-joint.dirac = function(N, a, b, lambda, kappa) {
-  
-  ret = array(0, dim = c(N, 2))
-  
-  for (i in 1:N) {
-    if (runif(1) < lambda) {
-      ret[i,1] = a
-    } else {
-      ret[i,1] = b
-    }
-    if (ret[i,1] == a) {
-      if (runif(1) < kappa) {
-        ret[i,2] = a
-      } else {
-        ret[i,2] = b
-      }
-    } else {
-      if (runif(1) < kappa) {
-        ret[i,2] = b
-      } else {
-        ret[i,2] = a
-      }
-    }
+q.2 = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact = F) {
+  set.seed(2)
+  theta1 = theta[1]
+  theta2 = theta[2]
+  theta3 = theta[3]
+  if (2 * theta1 <= theta3^2 | theta1<0 | theta2<0 |theta3<0) {
+    return(NA)
   }
-  ret
+  
+  mu = theta1 / theta2
+  lambda = theta2
+  sigma = theta3
+    
+  expectation = 0
+  
+  r.nu.theta = function(n) {eta(r.nu(n), theta)}  
+  
+  bridges = if (exact) {
+    exact.bridges(1, r.nu.theta, M, r.diffusion, theta.tilde, steps)
+  } else {
+    gen.nu.bridge(r.nu.theta, r.diffusion, theta.tilde, M, steps, theta)
+  }
+  
+  us = sample(1:steps, M, replace = T)
+  
+  expectation = sum(rowSums(rowDiffs(bridges) * (alpha(bridges[,1:(steps-1)], theta)))) - sum((1/2) * alpha(bridges[cbind(1:M, us)], theta)^2)
+  
+  if (is.nan(expectation)) {
+    return(NA)
+#   } else if (abs(expectation) > 100) {
+#     browser()
+  }
+  -expectation / M
 }
+
+
+
+
+
+
