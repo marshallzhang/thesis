@@ -56,16 +56,16 @@ q.beskos.known = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact
   expectation = 0
   
   bridges = if (exact) {
-    eta(exact.bridges(1, r.nu, M, r.diffusion, theta.tilde, steps), c(theta,1))
+    eta(exact.bridges(1, r.nu, M, r.diffusion, theta.tilde, steps), c(theta,2))
   } else {
-    eta(gen.nu.bridge(r.nu, r.diffusion, theta.tilde, M, steps), c(theta, 1))
+    eta(gen.nu.bridge(r.nu, r.diffusion, theta.tilde, M, steps), c(theta, 2))
   }
   
   us = sample(1:steps, M, replace = T)
   
 #   expectation2 = sum(rowSums(rowDiffs(bridges) * (alpha(bridges[,1:(steps-1)], c(theta,1))))) - sum((1/2) * (alpha(bridges[cbind(1:M, us)], c(theta,1)))^2)
-  expectation = expectation + mean(A(bridges[,100], c(theta,1)) - A(bridges[,1], c(theta, 1)))
-  expectation = expectation - mean((1/2) * a.2.a.prime(bridges[cbind(1:M, us)], c(theta, 1)))
+  expectation = expectation + mean(A(bridges[,100], c(theta,1)) - A(bridges[,1], c(theta, 2)))
+  expectation = expectation - mean((1/2) * a.2.a.prime(bridges[cbind(1:M, us)], c(theta, 2)))
   
   if (is.nan(expectation)) {
     return(NA)
@@ -74,10 +74,11 @@ q.beskos.known = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact
 }
 
 q.beskos.unknown = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact = F) {
-  set.seed(34)
+  set.seed(2)
   theta1 = theta[1]
   theta2 = theta[2]
-  theta3 = theta[3]
+  theta3 = 2
+  theta = c(theta1, theta2, 2)
   if (2 * theta1 <= theta3^2 | theta1<0 | theta2<0 |theta3<0) {
     return(NA)
   }
@@ -89,9 +90,11 @@ q.beskos.unknown = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exa
   expectation = 0
   
   bridges = if (exact) {
-    gen.nu.bridge.special(r.nu, r.diffusion, theta.tilde, theta, M, steps, "exact")
+    eta(exact.bridges(1, r.nu, M, r.diffusion, theta.tilde, steps), theta)
+#     gen.nu.bridge.special(r.nu, r.diffusion, theta.tilde, theta, M, steps, "exact")
   } else {
-    gen.nu.bridge.special(r.nu, r.diffusion, theta.tilde, theta, M, steps, "approx")
+    eta(gen.nu.bridge(r.nu, r.diffusion, theta.tilde, M, steps), theta)
+#     gen.nu.bridge.special(r.nu, r.diffusion, theta.tilde, theta, M, steps, "approx")
   }
   
   us = sample(1:steps, M, replace = T)
@@ -101,8 +104,8 @@ q.beskos.unknown = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exa
     print("Super small!")
   }
   expectation = expectation + mean(A(bridges[,100], theta) - A(bridges[,1], theta))
-  expectation = expectation + mean(dnorm(bridges[,100] - bridges[,1], 0, 1, log = T))
-  expectation = expectation + mean(log(abs(eta.p(eta.inv(bridges[,100], theta), theta))))
+#   expectation = expectation + mean(dnorm(bridges[,100] - bridges[,1], 0, 1, log = T))
+#   expectation = expectation + mean(log(abs(eta.p(eta.inv(bridges[,100], theta), theta))))
 #   expectation = expectation + (sum(rowSums(rowDiffs(bridges) * (alpha(bridges[,1:(steps-1)], theta)))) - sum((1/2) * (alpha(bridges[cbind(1:M, us)], theta))^2)) / M
   expectation = expectation - mean((1/2) * a.2.a.prime(bridges[cbind(1:M, us)], theta))
   

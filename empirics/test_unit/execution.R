@@ -5,13 +5,19 @@ N = 10000
 # Stationary.
 theta = c(0, 1, 1)
 
-nu.o = function(n) {rmvnorm(n, c(0,0), matrix(c(1/2, exp(-1)/2, exp(-1)/2, 1/2), nrow = 2, ncol = 2))} 
+o.sims2 = array(0, dim = c(N, 100))
+o.sims.start = rnorm(N, mean = 0, sd = sqrt(1/2))
+for (i in 1:N) {
+  o.sims2[i, ] = ou(o.sims.start[i], 100, theta)
+}
+
+nu.o = function(n) {as.matrix(o.sims2[sample(1:N, n, replace = T),c(1,100)])}
 
 oldpar = c(2,2)
 for (i in 1:10) {
   oldpar = optim(par = oldpar,
-        f = function(theta) q.unit(theta, ou, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = F),
-        method = "CG")$par
+        f = function(theta) q.unit(theta, ou.fast, c(oldpar,1), nu.o, round(i^1.5)*100, 100, exact = F),
+        method = "CG", control = list(trace =6))$par
   print(oldpar)
 }
 
