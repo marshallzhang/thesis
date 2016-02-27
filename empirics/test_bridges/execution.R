@@ -5,7 +5,7 @@ N = 100
 # QQ plot.
 
 # OU process.
-theta = c(0, 1, 1)
+theta = c(0, 1, 2)
 
 o.sims = array(0, dim = c(N, 100))
 o.sims.start = rnorm(N, mean = 0, sd = sqrt(1/2))
@@ -16,25 +16,9 @@ for (i in 1:N) {
 
 nu.o = function(n) {rmvnorm(n, c(0,0), matrix(c(1/2, exp(-1)/2, exp(-1)/2, 1/2), nrow = 2, ncol = 2))} 
 
-o.stationary.approx = timeit(nu.o.sims <- gen.nu.bridge(nu.o, ou, theta, N, 100))
+o.stationary.approx = timeit(nu.o.sims <- gen.nu.bridge(nu.o, ou.fast, theta, N, 100))
 
-o.stationary.exact = timeit(nu.o.sims.exact <- exact.bridges(1, nu.o, N, ou, theta, 100))
-
-# CIR process.
-theta = c(1, 1, 1)
-c.sims = array(0, dim = c(N, 100))
-c.sims.start = rgamma(N, shape = 2, rate = 2)
-basic = timeit(for (i in 1:N) {
-#   print(i)
-  c.sims[i, ] = cir(c.sims.start[i], 100, theta)
-})
-
-nu.c = function(n) { mcmc(c(1, 1), 20 * N + 2000, 2000, everyother = 20, trace = 1000, d.posterior = cir.joint, r.proposal = function(n, current) {rgamma(2, rate = 2, shape = 2)}, special = "gamma") }
-sims = timeit(c.sims2 <- nu.c(N))
-c.stationary.approx = timeit(nu.c.sims <- gen.nu.bridge(nu.c, cir, theta, N, 100))
-
-c.start = nu.c(N)
-c.stationary.exact = timeit(nu.c.sims.exact <- exact.bridges(1, function(n) t(as.matrix(c.start[sample(1:N, n, replace = T),])), N, cir, theta, 100))
+o.stationary.exact = timeit(nu.o.sims.exact <- exact.bridges(1, nu.o, N, ou.fast, theta, 100))
 
 # Plot.
 th.q = qsOU(ppoints(1:N), c(0, 1, 1))

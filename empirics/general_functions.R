@@ -1,7 +1,5 @@
 library(sde)
 library(lattice)
-library(ggplot2)
-library(reshape2)
 library(mvtnorm)
 library(scales)
 library(grid)
@@ -10,6 +8,8 @@ library(NCmisc)
 library(matrixStats)
 library(Ryacas)
 library(psych)
+library(DEoptim)
+library(dfoptim)
 
 # APPROXIMATE BRIDGES
 
@@ -53,7 +53,7 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps, set.start = c(-Inf,
   bridges = array(0, dim = c(N, steps))
   xy = r.nu(N)
   if (N == 1 & all(is.finite(set.start))) {
-    xy = t(matrix(set.start))
+    xy = (matrix(set.start))
   }
   
   for (i in 1:N){
@@ -129,20 +129,59 @@ rho = function(x, M, r.diffusion, theta, steps) {
 
 # DIFFUSIONS
 
+sde.sim.t = function ( t0 =0 , T =1 , X0 =1 , N =100 , delta ,
+                        drift , sigma , sigma.x, df){
+  d1 <- function(t , x) eval( drift )
+  s1 <- function(t , x) eval( sigma )
+  sx <- function(t , x) eval( sigma.x)
+  if ( t0 <0 | T <0)
+    stop( " please use positive times !" )
+  if ( missing( delta )){
+    t <- seq(t0 ,T , length = N +1)
+  } else {
+    t <- c(t0 , t0 + cumsum ( rep ( delta , N )))
+    T <- t[N +1]
+    warning(" T set to = " ,T , "\ n" )
+  }
+  Z <- rt( N, df) / sqrt(df/(df-2))
+  X <- numeric( N +1)
+  Dt <- (T - t0 )/ N
+  sDt <- sqrt( Dt )
+  X [1] <- X0
+  for (i in 2:( N +1)){
+    X[ i] <- X[i -1] + d1( t[i -1] , X[i -1]) * Dt +
+      s1(t[i -1] , X[i -1]) * sDt *Z[i -1] +
+      0.5 * s1( t[i -1] , X [i -1]) * sx(t[i -1] , X[i -1]) *
+      ( Dt *Z[i -1]^2 - Dt )
+  }
+  X <- ts(X , start = t0 , deltat = Dt )
+  invisible(X)
+}
+
 ou = function(start, steps, theta, time = 1) {
   x = sde.sim(T= time, X0 = start, N = steps - 1,
-          model = "OU", theta = theta)
+              model = "OU", theta = theta)
   x
 }
 
 ou.fast = function(start, steps, theta, time = 1) {
-  x = sde.sim(T = time, X0 = start, N = steps - 1,
+  Y <- numeric(steps)
+  Y[1] = start
+  Z = rnorm(steps - 1)
+  Dt <- time / (steps - 1)
+  for (i in 1:(steps - 1)) {
+    Y[i+1] = Y[i] + (theta[1] - theta[2] * Y[i]) * Dt + theta[3] * sqrt(Dt) * Z[i]
+  }
+  as.numeric(Y)
+}
+
+ou.t = function(start, steps, theta, time = 1) {
+  x = sde.sim.t(T = time, X0 = start, N = steps - 1,
               drift = eval(substitute(expression(theta1 -  theta2 * x), list(theta1 = theta[1], theta2 = theta[2]))),
-              drift.x = eval(substitute(expression(-theta2), list(theta2 = theta[2]))),
               sigma = eval(substitute(expression(theta3), list(theta3 = theta[3]))),
-              sigma.x = expression(0),
-              method = "milstein")
+              sigma.x = expression(0))
   as.numeric(x)
+  
 }
 
 cir = function(start, steps, theta, time = 1) {
@@ -230,66 +269,6 @@ compare.diffusions = function(r.dif1, r.dif2, N, start1, start2, steps, theta1, 
   print(ks.test(tran[,steps], norm[,steps]))
 }
 
-multiplot = function(..., plotlist=NULL, file, cols=1, layout=NULL) {
-  library(grid)
-  
-  # Make a list from the ... arguments and plotlist
-  plots <- c(list(...), plotlist)
-  
-  numPlots = length(plots)
-  
-  # If layout is NULL, then use 'cols' to determine layout
-  if (is.null(layout)) {
-    # Make the panel
-    # ncol: Number of columns of plots
-    # nrow: Number of rows needed, calculated from # of cols
-    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
-                     ncol = cols, nrow = ceiling(numPlots/cols))
-  }
-  
-  if (numPlots==1) {
-    print(plots[[1]])
-    
-  } else {
-    # Set up the page
-    grid.newpage()
-    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
-    
-    # Make each plot, in the correct location
-    for (i in 1:numPlots) {
-      # Get the i,j matrix positions of the regions that contain this subplot
-      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
-      
-      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
-                                      layout.pos.col = matchidx$col))
-    }
-  }
-}
-
-grid_arrange_shared_legend = function(...) {
-  plots <- list(...)
-  g <- ggplotGrob(plots[[1]] + theme(legend.position="bottom", legend.key = element_blank(), legend.text.align = 0, legend.title.align = 0.5,legend.text=element_text(size=12)))$grobs
-  legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
-  lheight <- sum(legend$height)
-  grid.arrange(
-    arrangeGrob(grobs = lapply(plots, function(x)
-      x + theme(legend.position="none")), layout_matrix = t(matrix(c(1,2)))),
-    legend,
-    ncol = 1,
-    heights = unit.c(unit(1, "npc") - lheight * 0.5, 0.5 * lheight))
-}
-
 composite = function(f,g) function(...) f(g(...))
 
 vec.seq = composite(t, Vectorize(seq.default, vectorize.args = c("from", "to")))
-
-plot.many = function(data, N, ...){
-  plot(data[1, ], type = "l", col = rgb(0,0,0,1/(N/50)), ...)
-  for (i in 1:N) {
-    lines(data[i, ], col = rgb(0,0,0,1/(N/75)))
-  }
-}
-
-pretty.plot = function(melted.data) {
-  ggplot(data = data.melt) + theme_bw(base_size = 12, base_family = "Helvetica")
-}
