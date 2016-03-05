@@ -56,7 +56,7 @@
 \paperorientation portrait
 \suppress_date false
 \justification true
-\use_refstyle 0
+\use_refstyle 1
 \index Index
 \shortcut idx
 \color #008000
@@ -93,74 +93,126 @@ name "chap:Introduction"
 \end_layout
 
 \begin_layout Section
-From Ex-Post to Ex-Ante
+The Oracle at Delphi
 \end_layout
 
 \begin_layout Standard
-Among the earliest general theories of maximum likelihood estimation (MLE)
- for continuous-time stochastic processes was proposed by 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "feigin-1976"
+key "macauley"
 
 \end_inset
 
- in 1976.
- The study of inference on discrete observations of stochastic processes
- in general begun with 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "rao-1988"
+ wrote that, at the outset of the second Persian invasion of Greece in the
+ early fifth century BCE, the Oracle at Delphi prophesized the following
+ to the people of Sparta:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begingroup     
+\backslash
+fontsize{10pt}{12pt}
+\backslash
+selectfont
+\end_layout
 
 \end_inset
 
-, and was considered in detail for diffusion processes by 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "yoshida-1992"
+
+\end_layout
+
+\begin_layout Quotation
+Hear your fate, O dwellers in Sparta of the wide spaces;
+\end_layout
+
+\begin_layout Quotation
+Either your glorious city must be sacked by the sons of Perses, 
+\end_layout
+
+\begin_layout Quotation
+Or, if it be not so, the whole land of Lacedaemon
+\end_layout
+
+\begin_layout Quotation
+Shall mourn the death of a king of the house of Heracles.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+endgroup
+\end_layout
 
 \end_inset
 
-.
- Given the immense variety of phenomena which are modeled
-\series bold
- 
-\series default
-by continuous-time diffusion processes, and the availability of only discrete
- observations of such processes in the physical world, such theory is both
- important and applicable.
+
 \end_layout
 
 \begin_layout Standard
-This thesis considers an alternative interpretation of the theory of MLE
- on discretely observed data.
- In particular, we examine the problem from an ex-ante perspective.
- What if, instead of having observed the diffusion in question at discrete
- time instances, we were told by an omniscient being that such a diffusion
- would take on certain values at future time instances? It seems that we
- ought to be able to conduct MLE on the to-be observed diffusion as usual.
+Upon receiving this divination, there is no doubt that the Spartans understood
+ that their fortunes would likely deteriorate the course of the war, culminating
+ in the loss of either their capital city or their king (ultimately, King
+ Leonidas, a descendant of Heracles, and three hundred of his men took a
+ legendary last stand at Thermopylae on the basis of this prognostication).
+ But rather than from the observations of data upon which much of modern
+ statistical inference is built, the Spartans learned something about the
+ path of their fortunes from an fundamentally uncertain prophecy—what we
+ might call today a probabilistic forecast.
 \end_layout
 
 \begin_layout Standard
-However, an interesting generalization of the problem is allowed by this
- ex-ante perspective.
- Suppose that instead of being told the values of the process at some future
- times, the omniscient being gave us the true distribution of such values.
- The procedure of MLE is no longer well-defined, given a lack of observed
- data; yet, it seems intuitively true that we have learned something about
- the dynamics governing the process in question.
+Modern-day probabilistic Oracles, though perhaps less prescient than the
+ Oracle at Delphi, can be found in great numbers and in a variety of application
+s.
+ In particular, many of the variables of interest for which these probabilistic
+ forecasts are generated can be modeled as stochastic processes.
+ For example, central banks around the world survey professional forecasters
+ for their expectations of various macroeconomic indicators over time, and
+ report the distribution of their responses.
+ The prices of options imply market-determined distributions over the price
+ of the underlying security at discrete points in time (see 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "breeden-litzenberger-1978"
+
+\end_inset
+
+), and metereological scientists increasingly offer probabilistic forecasts
+ of everything from the path of cyclones to next-day humidity and temperature
+ levels.
 \end_layout
 
 \begin_layout Standard
-The problem of inference on distributional data is highly applicable in
- a variety of instances.
- For example, in economics and finance, we can think of surveys of professional
- forecasters, which return forecasted distributions of macroeconomic indicators
- at discrete points in time, or options markets, in which market-implied
- distributions of an underlying security price at future time instances
- can be backed out from the prices of the associated derivatives.
- The theory and empirical strategies developed in this thesis will be helpful
- in understanding how we can conduct inference in these various settings.
+This thesis answers two questions that can be asked of a given stochastic
+ process when it is conditioned (in some sense to be made precise in the
+ next chapter) to follow a given distribution at discrete future points
+ in time.
+ The first is a question of inference: Can we, given such a conditioning,
+ conduct inference on the parameters underlying the process, and if so,
+ how? The second is a question of imputation: Given a set of parameters,
+ how can we impute the distribution of the process in between the times
+ at which it is conditioned? In intuitive terms, we ask whether and how,
+ given the Delphic prophecy, the Spartans could have learned about the dynamics
+ under which their fortunes would evolve over the course of the war, and
+ how they might have been able to trace out the probabilistic path of their
+ fortunes over time.
+\end_layout
+
+\begin_layout Standard
+We will soon see that these two questions are deeply related, and that the
+ answer to either depends intimately on the other.
 \end_layout
 
 \begin_layout Section
@@ -168,11 +220,30 @@ Contributions and Related Work
 \end_layout
 
 \begin_layout Standard
-In this thesis, we propose a natural generalization of maximum likelihood
- estimation in the context of the problem above, and offer an interpretation
- of such a procedure as the limiting case of MLE under model misspecification.
- We develop a simulation-based inference technique to conduct this generalized
- MLE procedure, building on the work of 
+In the theoretical portion of this thesis, we propose a natural generalization
+ of the theory of maximum likelihood estimation (MLE) over discretely observed
+ data from continuous-time stochastic processes, which begins with 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "rao-1988"
+
+\end_inset
+
+ in general and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "yoshida-1992"
+
+\end_inset
+
+ for the specific case of diffusion processes.
+ In particular, we consider an analog of MLE when conditioning on the distributi
+on of, as opposed to observations of, a diffusion process at discrete points
+ in time.
+ We offer an interpretation of such a procedure as the limiting case of
+ MLE under model misspecification, and develop a simulation-based inference
+ technique to conduct this generalized MLE procedure, building on the work
+ of 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "roberts-stramer-2001,beskos-2006"
@@ -187,11 +258,11 @@ key "bladt-sorensen-2014"
 \end_inset
 
 .
- This is a novel problem and solution to the best of our knowledge.
- Finally, we point out how a particular generalized notion of a diffusion
- bridge arises naturally from a simulation-based inference technique to
- conduct the generalized MLE procedure, and connect the literature surrounding
- the simulation of diffusion bridges (see 
+ This partially answers the question of inference; however, the procedure
+ requires the ability to simulate a particular generalized notion of a diffusion
+ bridge.
+ We therefore connect the literature surrounding the simulation of diffusion
+ bridges (see 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "papa-roberts-2012,bladt-sorensen-2014,bladt-finch-sorenson-2015"
@@ -205,11 +276,26 @@ key "baudoin-2002"
 
 \end_inset
 
-) by proposing a simulation strategy for these generalized bridges.
+) by proposing an approximate and exact simulation strategy for a particular
+ class of generalized bridges, answering the question of imputation and
+ completing our answer to the question of inference.
 \end_layout
 
 \begin_layout Standard
-Empirically, we will do some things that I haven't written up yet.
+In the empirical portion of this thesis, we validate the correctness of
+ the exact generalized bridge sampler and demonstrate that the approximate
+ sampler offers qualitatively high quality samples at a fraction of the
+ computation cost of the exact sampler.
+ We also show that these samplers are robust to a variety of assumptions
+ in the proof of their correctness.
+ Then, we demonstrate that the proposed simulation-based inference technique
+ on distributional data is consistent and also robust to various assumptions.
+ Finally, we use the proposed inference scheme to estimate the parameters
+ underlying the predictions of professional macroeconomic forecasters.
+ Using the estimated parameters, we are therefore able to impute a continuous
+ probabilistic path over the horizon of the forecasts, which as the number
+ of economists surveyed goes to infinity, minimizes its Kullback-Liebler
+ divergence from the forecasts at the relevant discrete points in time.
 \end_layout
 
 \begin_layout Section
@@ -229,7 +315,7 @@ key "baudoin-2002"
 \end_layout
 
 \begin_layout Standard
-With the mathematical underpinnings set, Part 
+With the mathematical underpinnings set, 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "part:2"
@@ -267,7 +353,6 @@ reference "chap:4"
 \end_layout
 
 \begin_layout Standard
-Part 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "part:3"
