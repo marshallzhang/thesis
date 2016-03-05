@@ -422,7 +422,7 @@ key "fitz-pitman-1993"
  can be disintegrated as a mixture of regular conditional measures, 
 \begin_inset Formula 
 \[
-\mathbb{P}=\int_{\Omega_{0,1}}\mathbb{P}(\cdot\mid X_{0}=x,X_{1}=y)\mathbb{P}_{0,1}(dxdy),
+\mathbb{P}=\int_{\mathcal{R}^{2}}\mathbb{P}(\cdot\mid X_{0}=x,X_{1}=y)\mathbb{P}_{0,1}(dxdy),
 \]
 
 \end_inset
@@ -941,36 +941,8 @@ reference "prop:pv-1"
 \end_inset
 
 .
- Note that by definition, under 
-\begin_inset Formula $\mathbb{P}^{\nu}$
-\end_inset
-
-, 
-\begin_inset Formula $Y$
-\end_inset
-
- has law 
-\begin_inset Formula $\nu$
-\end_inset
-
-, and as such 
-\begin_inset Formula $\mathbb{P}^{\nu}=\mathbb{P}$
-\end_inset
-
- if and only if 
-\begin_inset Formula $\nu=\mathbb{P}_{Y}$
-\end_inset
-
-.
- While the characterization in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "prop:pv-1"
-
-\end_inset
-
- is theoretically pleasing, it is not practically useful in working with
- 
+ While this characterization is theoretically pleasing, it is not practically
+ useful in working with 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
@@ -1013,6 +985,41 @@ since the regular conditional probability
 
  exists (which we always assume going forward), will play a key role in
  the chapters to follow.
+ This construction says, in the language of the discussion regarding Markov
+ bridges above, that 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ is a mixture of the regular conditional probabilities 
+\begin_inset Formula $\mathbb{P}(\cdot\mid Y=y)$
+\end_inset
+
+ with respect to a mixing measure 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+ Note that by definition, under 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+, 
+\begin_inset Formula $Y$
+\end_inset
+
+ has law 
+\begin_inset Formula $\nu$
+\end_inset
+
+, and as such 
+\begin_inset Formula $\mathbb{P}^{\nu}=\mathbb{P}$
+\end_inset
+
+ if and only if 
+\begin_inset Formula $\nu=\mathbb{P}_{Y}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
