@@ -277,8 +277,8 @@ key "baudoin-2002"
 \end_inset
 
 ) by proposing an approximate and exact simulation strategy for a particular
- class of generalized bridges, answering the question of imputation and
- completing our answer to the question of inference.
+ class of generalized bridges, jointly answering in full the question of
+ inference and the question of imputation.
 \end_layout
 
 \begin_layout Standard
@@ -289,13 +289,16 @@ In the empirical portion of this thesis, we validate the correctness of
  We also show that these samplers are robust to a variety of assumptions
  in the proof of their correctness.
  Then, we demonstrate that the proposed simulation-based inference technique
- on distributional data is consistent and also robust to various assumptions.
+ on distributional data is consistent and also robust to various assumptions,
+ including the use of an approximate generalized bridge sampler instead
+ of the exact sampler.
  Finally, we use the proposed inference scheme to estimate the parameters
  underlying the predictions of professional macroeconomic forecasters.
  Using the estimated parameters, we are therefore able to impute a continuous
- probabilistic path over the horizon of the forecasts, which as the number
- of economists surveyed goes to infinity, minimizes its Kullback-Liebler
- divergence from the forecasts at the relevant discrete points in time.
+ probabilistic path over the full horizon of the discrete forecasts, which
+ as the number of economists surveyed goes to infinity, minimizes its Kullback-L
+iebler divergence from the distribution of the forecasts at the relevant
+ discrete points in time.
 \end_layout
 
 \begin_layout Section
