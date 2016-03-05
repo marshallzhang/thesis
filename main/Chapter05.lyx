@@ -113,27 +113,50 @@ reference "part:2"
 
 \end_inset
 
- in a controlled simulation environment to demonstrate their correctness.
- First, we show qualitatively that the approximate generalized bridge sampler
- produces high quality samples of generalized bridges, and demonstrate formally
- the correctness of the exact sampling scheme proposed in 
+ in a simulation environment.
+ 
+\end_layout
+
+\begin_layout Standard
+First, we formally demonstrate that the exact generalized bridge sampler
+ proposed in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:4"
 
 \end_inset
 
+ produces samples from the desired target distribution, and is empirically
+ robust to the relaxation of certain assumptions made in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:2"
+
+\end_inset
+
 .
- Then, with a correct sampler in hand, we demonstrate that the MCEM scheme
- proposed in 
+ We also confirm that the approximate sampler does not draw from the true
+ generalized bridge distribution, but note qualitatively that the approximate
+ sample paths are still of high quality.
+ 
+\end_layout
+
+\begin_layout Standard
+Second, we show that the MCEM scheme proposed in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:EM"
 
 \end_inset
 
- converges to the Kullback-Liebler divergence minimizing parameter in a
- variety of situations as expected.
+ converges to the set of Kullback-Liebler divergence minimizing parameters
+ in a variety of scenarios, often very quickly.
+ Furthermore, we demonstrate that the approximate generalized bridge sampler
+ provides samples of a sufficiently high quality that MCEM estimation is
+ not adversely affected.
+ Given that the approximate sampler is one to two orders of magnitude faster
+ than the exact sampler, this is a welcome finding and lends the proposed
+ MCEM scheme increased utility in inference applications.
 \end_layout
 
 \begin_layout Section
@@ -142,37 +165,44 @@ Objects and Methods
 
 \begin_layout Standard
 As usual, we begin by fixing the objects of study.
- We consider two examples of diffusions which satisfy the assumptions outlined
- in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:2"
-
-\end_inset
-
-.
- The first process is an Ornstein-Uhlenbeck (OU) process, which is a solution
- to the SDE 
+ We will focus in this chapter on Lévy processes of the form 
 \begin_inset Formula 
 \begin{equation}
-dO_{t}=-\lambda\left(O_{t}-\mu\right)dt+\sigma dW_{t},\label{eq:ou-sde}
+dX_{t}=-\lambda\left(X_{t}-\mu\right)dt+\sigma dL_{t},\label{eq:ou-sde}
 \end{equation}
 
 \end_inset
 
 for some initial condition on 
-\begin_inset Formula $O_{0}$
+\begin_inset Formula $X_{0}$
 \end_inset
 
- and a Wiener process 
-\begin_inset Formula $W_{t}$
+ and a Lévy process 
+\begin_inset Formula $L$
 \end_inset
 
 .
- OU processes are both theoretically interesting (representing the only
- non-trivial stationary, Gaussian, and Markovian process) and practically
- useful (used to model everything from springs to currency exchange rates—see
- standard physics references or 
+ Solutions to this SDE are known as Lévy-driven Ornstein-Uhlenbeck (OU)
+ processes.
+ When 
+\begin_inset Formula $L$
+\end_inset
+
+ is a Wiener process, 
+\begin_inset Formula $X$
+\end_inset
+
+ is an Itô diffusion satisfying the assumptions outlined in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "chap:2"
+
+\end_inset
+
+; this so-called Gaussian OU process is both theoretically interesting (represen
+ting the only non-trivial stationary, Gaussian, and Markovian process) and
+ practically useful (used to model everything from springs to currency exchange
+ rates—see standard physics references or 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "hirsa-2012"
@@ -180,82 +210,41 @@ key "hirsa-2012"
 \end_inset
 
  for applications in finance).
- The second process we focus on here is a Cox-Ingersoll-Ross (CIR) process,
- which is a solution to the SDE 
-\begin_inset Formula 
-\begin{equation}
-dC_{t}=-\lambda\left(C_{t}-\mu\right)dt+\sigma\sqrt{C_{t}}dW_{t},\label{eq:cir-sde}
-\end{equation}
-
-\end_inset
-
-with some initial condition on 
-\begin_inset Formula $C_{0}$
-\end_inset
-
- and a Wiener process 
-\begin_inset Formula $W_{t}$
-\end_inset
-
-.
- We assume as per the literature that 
-\begin_inset Formula $2\lambda\mu\geq\sigma^{2}$
-\end_inset
-
-, so 
-\begin_inset Formula $C$
-\end_inset
-
- lives on the positive real line.
- With this restriction, CIR processes form the foundation of common short-term
- interest rate and stochastic volatility models (see 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "cir-1985"
-
-\end_inset
-
- and 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "heston-1993"
-
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Standard
-Note that the OU process has invariant Gaussian measure with mean 
-\begin_inset Formula $\mu$
-\end_inset
-
- and variance 
-\begin_inset Formula $\sigma^{2}/2\lambda$
-\end_inset
-
-, while the CIR process has invariant Gamma measure with shape parameter
- 
-\begin_inset Formula $2\lambda\mu/\sigma^{2}$
-\end_inset
-
- and rate parameter 
-\begin_inset Formula $2\lambda/\sigma^{2}$
-\end_inset
-
-.
- In general, we will refer to the parameter vector of either process as
+ In general, we will refer to the parameter vector of such a process as
  
 \begin_inset Formula $\theta=(\mu,\lambda,\sigma)$
 \end_inset
 
+, and the joint law at 
+\begin_inset Formula $t=\{0,1\}$
+\end_inset
+
+ of a solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ou-sde"
+
+\end_inset
+
+ with initial condition 
+\begin_inset Formula $X_{0}\sim F$
+\end_inset
+
+ as 
+\begin_inset Formula $\nu_{\theta}(F,L)$
+\end_inset
+
 .
- 
+ We fix 
+\begin_inset Formula $\theta^{*}=(0,1,1)$
+\end_inset
+
+ as the parameter vector of interest unless otherwise specified.
 \end_layout
 
 \begin_layout Standard
-In all simulations to follow, the relevant process is simulated over the
- time interval 
+In all simulations to be carried out, the relevant process is simulated
+ over the time interval 
 \begin_inset Formula $[0,1]$
 \end_inset
 
@@ -263,175 +252,29 @@ In all simulations to follow, the relevant process is simulated over the
 \begin_inset Formula $\delta=1/100$
 \end_inset
 
-.
- Since both the OU and CIR processes have known transition densities, we
- simulate exact paths.
- All simulations are implemented in R on a 2012 Macbook Pro.
-\end_layout
-
-\begin_layout Section
-Sampling 
-\begin_inset Formula $\nu$
+ using the Euler scheme (for OU processes, this is equivalent to the Milstein
+ scheme).
+ In the following sections, we will repeatedly need to sample from 
+\begin_inset Formula $\nu_{\theta}(F,L)$
 \end_inset
 
--Bridges
-\end_layout
-
-\begin_layout Standard
-Let 
-\begin_inset Formula $O$
-\end_inset
-
- and 
-\begin_inset Formula $C$
-\end_inset
-
- represent stationary solutions to 
+; this can be easily done by simulating an unconstrained solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ou-sde"
 
 \end_inset
 
- and 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:cir-sde"
-
+ with initial condition 
+\begin_inset Formula $X_{0}\sim F$
 \end_inset
 
-, respectively.
- An easy way to validate the correctness of the approximate and exact samplers
- proposed in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:4"
-
-\end_inset
-
- is to simulate unconstrained sample paths of 
-\begin_inset Formula $O$
-\end_inset
-
- and 
-\begin_inset Formula $C$
-\end_inset
-
-, and compare the marginal distributions of these sample paths with generalized
- bridges sampled according to 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:4"
-
-\end_inset
-
- with endpoints drawn from 
-\begin_inset Formula $O_{0,1}$
-\end_inset
-
- and 
-\begin_inset Formula $C_{0,1}$
-\end_inset
-
-.
- Then, the marginal distributions of these generalized bridges at any time
- 
-\begin_inset Formula $t\in[0,1]$
-\end_inset
-
- ought to be the same as the distribution of the unconstrained sample path.
- 
-\end_layout
-
-\begin_layout Standard
-For clarity, we fix in this section 
-\begin_inset Formula $\theta=1,\mu=0,\sigma=1$
-\end_inset
-
- for 
-\begin_inset Formula $O$
-\end_inset
-
-, and 
-\begin_inset Formula $\theta=1,\mu=1,\sigma=1$
-\end_inset
-
- for 
-\begin_inset Formula $C$
-\end_inset
-
-.
- In order to sample 
-\begin_inset Formula $O_{0,1}$
-\end_inset
-
-- or 
-\begin_inset Formula $C_{0,1}$
-\end_inset
-
--bridges, we must be able to sample exactly from 
-\begin_inset Formula $O_{0,1}$
-\end_inset
-
- and 
-\begin_inset Formula $C_{0,1}$
-\end_inset
-
-.
- This is easy; we can simply sample a path of 
-\begin_inset Formula $O$
-\end_inset
-
- or 
-\begin_inset Formula $C$
-\end_inset
-
-, and take its values at times 
+, and taking its values at 
 \begin_inset Formula $t=\{0,1\}$
 \end_inset
 
- as an exact draw from 
-\begin_inset Formula $O_{0,1}$
-\end_inset
-
- or 
-\begin_inset Formula $C_{0,1}$
-\end_inset
-
- respectively.
-\end_layout
-
-\begin_layout Standard
-With this in mind, we present the sample distributions of 
-\begin_inset Formula $O_{0,1}$
-\end_inset
-
--bridges and 
-\begin_inset Formula $C_{0,1}$
-\end_inset
-
--bridges of 
-\begin_inset Formula $O$
-\end_inset
-
- and 
-\begin_inset Formula $C$
-\end_inset
-
- against the empirical distributions of the unconstrained stationary solutions
- in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:joint-invariant"
-
-\end_inset
-
 .
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-The M-H algorithm for the exact sampler is carried out with 
+ The exact generalized bridge sampler uses 
 \begin_inset Formula $M=10$
 \end_inset
 
@@ -443,216 +286,114 @@ The M-H algorithm for the exact sampler is carried out with
 \begin_inset Formula $\hat{\rho}$
 \end_inset
 
-), and no burn-in is used since the proposals are independent of one another.
+) and no burn-in since its proposals are independent of one another, and
+ all optimizations are carried out using the DEoptim (differential evolution
+ optimization) package in R on default settings.
+ The computations in this paper were run on the Odyssey cluster supported
+ by the Research Computing Group in the FAS Division of Science at Harvard
+ University, and the Research Computing Environment supported by the Institute
+ for Quantitative Social Science at Harvard University.
 \end_layout
 
+\begin_layout Section
+Sampling 
+\begin_inset Formula $\nu$
 \end_inset
 
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement th
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename /Users/marshall/Documents/senior/thesis/figures/invariant_densities.pdf
-	width 100col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:joint-invariant"
-
-\end_inset
-
-Q-Q plots comparing 
-\begin_inset Formula $10,000$
-\end_inset
-
- sample paths at 
-\begin_inset Formula $t=1/2$
-\end_inset
-
- of unconstrained stationary Ornstein-Uhlenbeck (left) and Cox-Ingersoll-Ross
- (right) processes to generalized bridges of their joint distributions at
- 
-\begin_inset Formula $t=\{0,1\}$
-\end_inset
-
-, using an approximate (first row) and exact (second row) sampling scheme.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+-Bridges
 \end_layout
 
 \begin_layout Standard
-We first note that the approximate sampler produces marginal distributions
- that are reasonable approximations to the exact distribution, though they
- are slightly thinner-tailed than they should be.
- This is a result of the approximate sampler drawing generalized bridges
- conditioned on the bridges being hit by a hitting diffusion; in this experiment
-, these hitting diffusions tend towards the mean of the marginal initial
- and end distributions, reducing the variance in between.
- Though the exact samples appear to be slightly thin-tailed as well, we
- will demonstrate in 
+In this section, we will test whether the generalized bridge samplers proposed
+ in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "tab:KS-stats"
+reference "chap:4"
 
 \end_inset
 
- that we cannot reject the hypothesis that the exact samples and the unconstrain
-ed diffusion are drawn from the same distribution at any reasonable confidence
- level.
- We also present in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:KS-stats"
-
-\end_inset
-
- analogous simulations for non-stationary solutions to 
+ indeed draw from the true generalized bridge distribution.
+ Note that an unconstrained solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ou-sde"
 
 \end_inset
 
-; in particular, we consider solutions with initial distributions 
-\begin_inset Formula $O_{0}\sim\mathcal{N}(1,1/2)$
+ with initial condition 
+\begin_inset Formula $X_{0}\sim F$
 \end_inset
 
-,
-\begin_inset Formula $O_{0}\sim2\mbox{Bern}-1$
+ can be viewed as a generalized bridge with endpoints equal in distribution
+ to 
+\begin_inset Formula $\nu_{\theta}(F,L)$
 \end_inset
 
-, and 
-\begin_inset Formula $O_{0}\sim\mbox{Expo}(2)$
+; as usual, we will call such a bridge a 
+\begin_inset Formula $\nu_{\theta}(F,L)$
 \end_inset
 
-.
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-As before, we can draw exactly from 
-\begin_inset Formula $O_{0,1}$
-\end_inset
-
- merely by simulating a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:ou-sde"
-
-\end_inset
-
- with the appropriate initial condition, and taking its value at times 
-\begin_inset Formula $t=\{0,1\}$
+-bridge of 
+\begin_inset Formula $X$
 \end_inset
 
 .
- 
-\end_layout
-
+ This insight suggests that we merely need to verify that a 
+\begin_inset Formula $\nu_{\theta}(F,L)$
 \end_inset
 
- 
-\end_layout
+-bridge of 
+\begin_inset Formula $X$
+\end_inset
 
-\begin_layout Standard
+ is equal in distribution to the appropriate unconstrained process.
+ In 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "tab:KS-stats"
 
 \end_inset
 
- confirms for a wide range of unorthodox joint initial/end distributions,
- the exact sampler indeed samples from the true bridge distribution at the
- cost of more computational power.
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-We use 
-\begin_inset Formula $M=1$
-\end_inset
-
- for the exact sampler to minimize simulation time, which does not seem
- to have a significant adverse impact on the quality of the exact samples.
- This is expected due to the exact sampler being having an independent proposal.
-\end_layout
-
-\end_inset
-
- We note that the computing time required to exactly sample an OU process
- with initial distribution 
-\begin_inset Formula $\mathcal{N}(1,1/2)$
-\end_inset
-
- is far higher than any other process considered; this is a result of the
- lower probability of a hitting diffusion
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-This diffusion has an initial distribution with mean 
-\begin_inset Formula $e^{-1}$
-\end_inset
-
- and is mean-reverting towards 
-\begin_inset Formula $0$
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
- intersecting with the bridge.
- The relatively low probability of a hitting diffusion intersection is reflected
- in the large K-S statistic for the approximately sampled bridge, and speaks
- to the idea that the exact sampler must use proportionally more computational
- resources to sample increasingly unlikely bridges.
- It is also worth noting that the K-S statistics presented in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:KS-stats"
-
-\end_inset
-
- represent the most conservative estimates of the deviation from true unconstrai
-ned diffusions—in particular, the marginal distribution of the sampled bridges,
- whether approximate or exact, are the same as the unconstrained diffusion
- at times 
-\begin_inset Formula $t=\{0,1\}$
-\end_inset
-
- by definition, and 
+, we present Kolmogorov-Smirnov statistics comparing the marginal distribution
+ at 
 \begin_inset Formula $t=1/2$
 \end_inset
 
- represents the point in time at which the marginal distributions of these
- bridges have the most freedom to drift from the true distribution.
+ of unconstrained processes to their 
+\begin_inset Formula $\nu_{\theta}(F,L)$
+\end_inset
+
+-bridges of 
+\begin_inset Formula $X$
+\end_inset
+
+ sampled approximately and exactly, as well as the relative running times
+ of the two samplers.
+ In addition to a Gaussian OU process, which satisfies the assumptions of
+ 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "chap:2"
+
+\end_inset
+
+, we also test the generalized bridge samplers for an OU process driven
+ by a standard 
+\begin_inset Formula $\alpha$
+\end_inset
+
+-stable Lévy process 
+\begin_inset Formula $L_{\alpha}$
+\end_inset
+
+, which is not an Itô diffusion (in fact, every increment of this process
+ has infinite variance), and the Wiener process, which does not have finite
+ speed measure.
+ Note that the Wiener process is a Gaussian OU diffusion with 
+\begin_inset Formula $\theta=(0,0,1)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -669,20 +410,15 @@ status open
 
 
 \backslash
-centering
-\end_layout
-
-\begin_layout Plain Layout
-
-
+centering 
 \backslash
-begin{tabular}{@{}llllll@{}} 
+begin{tabular}{@{}clllll@{}} 
 \backslash
 toprule 
 \backslash
-multirow{2}{*}{Process}                 & 
+multirow{2}{*}{Process}                                  & 
 \backslash
-multirow{2}{*}{Initial Condition} & 
+multirow{2}{*}{Initial Dist.} & 
 \backslash
 multicolumn{2}{l}{K-S stat.
  ($
@@ -695,8 +431,8 @@ multicolumn{2}{l}{CPU (rel.)}
 \backslash
  
 \backslash
-cmidrule(l){3-4}                                           &           
-                         & Approx.
+cmidrule(l){3-4}                                                       
+     &                                    & Approx.
                    & Exact                  & Approx.
                   & Exact                 
 \backslash
@@ -706,60 +442,119 @@ cmidrule(l){3-4}                                           &
 \backslash
 midrule 
 \backslash
-multicolumn{1}{l|}{
+multicolumn{1}{c|}{
 \backslash
-multirow{4}{*}{OU}} & $
+multirow{3}{*}{OU (Gaussian)}}       & $
 \backslash
-mathcal{N}(1,1/2)$               & 4.38***                   & 1.79      
-             & 3.13                     & 35.6                  
-\backslash
-
-\backslash
- 
-\backslash
-multicolumn{1}{l|}{}                    & $2
-\backslash
-text{Bern}-1$                   & 2.80***                   & 1.81       
-            & 3.01                     & 12.0                  
+mathcal{N}(0,1/2)$               & 2.17*                     & 1.62      
+             & 2.74                      & 76.7                  
 \backslash
 
 \backslash
  
 \backslash
-multicolumn{1}{l|}{}                    & $
+multicolumn{1}{c|}{}                                     & $2
 \backslash
-text{Expo}(2)$                   & 2.75**                    & 2.13*     
-             & 2.91                     & 11.5                  
+text{Bern}-1$                   & 3.08***                   & 1.11       
+            & 3.35                      & 94.7                  
 \backslash
 
 \backslash
  
 \backslash
-multicolumn{1}{l|}{}                    & Stationary                   
-      & 2.03*                     & 1.46                   & 2.87         
-            & 12.0                  
+multicolumn{1}{c|}{}                                     & $
+\backslash
+text{Expo}$                      & 3.12**                    & 1.95      
+             & 2.94                      & 96.3                  
 \backslash
 
 \backslash
-                                          &                            
-        &                           &                        &         
-                 &                       
+                                                           &           
+                         &                           &                 
+       &                          &                       
 \backslash
 
 \backslash
 [-2.5ex] 
 \backslash
-multicolumn{1}{l|}{CIR}                 & Stationary                   
-      & 2.41**                    & 1.34                   & 2.86         
-            & 10.8                  
+multicolumn{1}{c|}{
+\backslash
+multirow{3}{*}{OU ($
+\backslash
+alpha$-stable)}} & $
+\backslash
+mathcal{N}(0,1/2)$               & 2.30*                     & 1.39      
+             & 3.47                      & 85.9                  
 \backslash
 
 \backslash
  
 \backslash
+multicolumn{1}{c|}{}                                     & $2
+\backslash
+text{Bern}-1$                   & 2.26*                      & 1.58      
+             & 5.08                      & 93.5                  
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{c|}{}                                     & $
+\backslash
+text{Expo}$                      & 3.85***                   & 2.75**    
+             & 4.32                      & 97.5                  
+\backslash
+
+\backslash
+                                                           &           
+                         &                           &                 
+       &                          &                       
+\backslash
+
+\backslash
+[-2.5ex] 
+\backslash
+multicolumn{1}{c|}{
+\backslash
+multirow{3}{*}{Wiener}}             & $
+\backslash
+mathcal{N}(0,1/2)$               & 0.97                      & 0.69      
+             & 4.01                      & 77.8                  
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{c|}{}                                     & $2
+\backslash
+text{Bern}-1$                   & 1.54                     & 0.09        
+           & 3.92                      & 72.2                  
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{c|}{}                                     & $
+\backslash
+text{Expo}$                      & 1.60                      & 0.89      
+             & 4.88                      & 76.2                  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
 bottomrule 
 \backslash
-end{tabular} 
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -859,9 +654,36 @@ Kolmogorov-Smirnov statistics comparing
 \begin_inset Formula $t=1/2$
 \end_inset
 
- of approximately and exactly sampled generalized bridges against the correspond
-ing unconstrained diffusions, as well as the relative running times of sampling
- the bridges against sampling the unconstrained diffusions.
+ of unconstrained solutions 
+\begin_inset Formula $X$
+\end_inset
+
+ to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ou-sde"
+
+\end_inset
+
+ against approximately and exactly sampled 
+\begin_inset Formula $\nu_{\theta^{*}}(F,W)$
+\end_inset
+
+-, 
+\begin_inset Formula $\nu_{\theta^{*}}(F,L_{\alpha})$
+\end_inset
+
+-, and 
+\begin_inset Formula $\nu_{(0,0,1)}(F,W)$
+\end_inset
+
+-bridges of 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ The relative running times of sampling the bridges against sampling the
+ unconstrained processes are also presented.
 \end_layout
 
 \end_inset
@@ -881,18 +703,170 @@ reference "tab:KS-stats"
 
 \end_inset
 
- confirms our knowledge that the approximate sampler does not sample from
- the true distribution; rather, as we know, it samples generalized bridges
- conditional on the bridges being hit by hitting diffusions.
- However, the approximate samples are qualitatively similar to the exact
- samples (see 
+ confirms that for an Itô diffusion, we cannot reject the hypothesis that
+ exact sampler draws from the true distribution at the 
+\begin_inset Formula $95\%$
+\end_inset
+
+ confidence level for a variety of initial distributions.
+ Interestingly, the bridges produced by the exact sampler for the 
+\begin_inset Formula $\alpha$
+\end_inset
+
+-stable OU and Wiener processes are also generally of a high quality, suggesting
+ that this method of simulating generalized bridges is fairly robust to
+ the assumptions made in 
 \begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:joint-invariant"
+LatexCommand eqref
+reference "chap:2"
 
 \end_inset
 
-); recalling that the MCEM algorithm proposed in 
+.
+ As expected, the approximate sampler does not sample from the true distribution
+ (we know this to be true for the Gaussian OU process, since it draws from
+ the true bridge distribution conditional on the bridge being hit by an
+ independent diffusion), and we note that the quality of the approximate
+ sampler is inversely correlated with the computing time required to sample
+ exact bridges.
+ This is intuitive, highlighting a tradeoff between speed and quality, and
+ formally expected: if the approximate sampler produces low quality samples,
+ then the probability of such samples being hit by a hitting diffusion is
+ low.
+ Since the exact sampler accepts sample paths that are less likely to be
+ hit by a hitting diffusion with higher probability, it must spend more
+ time simulating hitting diffusions for any given proposal.
+\end_layout
+
+\begin_layout Standard
+While it is true that the approximate sampler formally does not sample from
+ the true generalized bridge distribution, we show in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:q-q"
+
+\end_inset
+
+ that the approximate and exact samplers for the Gaussian OU bridges produce
+ qualitatively high quality samples.
+ In general, we see that the approximate samples are slightly thinner-tailed
+ than the true distribution—conditional on the approximate samples being
+ hit by a hitting processes (which in this case mean-reverts to 
+\begin_inset Formula $0$
+\end_inset
+
+), we would expect the approximate sample paths to tend toward 
+\begin_inset Formula $0$
+\end_inset
+
+ as well.
+ The lowest quality approximate samples occur when 
+\begin_inset Formula $X_{0}\sim\mbox{Expo}$
+\end_inset
+
+; the fatter tail and skewedness of the 
+\begin_inset Formula $\mbox{Expo}$
+\end_inset
+
+ distribution vis-à-vis the other initial distributions results in sample
+ paths starting from relatively extreme values, reducing the probability
+ of their intersection with a mean-reverting hitting process.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/marshall/Documents/senior/thesis/figures/approx-vs-exact.pdf
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:q-q"
+
+\end_inset
+
+Q-Q plots comparing 
+\begin_inset Formula $10,000$
+\end_inset
+
+ sample paths at 
+\begin_inset Formula $t=1/2$
+\end_inset
+
+ of an unconstrained Gaussian OU process 
+\begin_inset Formula $X$
+\end_inset
+
+ to the corresponding approximate and exact 
+\begin_inset Formula $\nu_{\theta^{*}}(F,W)$
+\end_inset
+
+-bridges of 
+\begin_inset Formula $X$
+\end_inset
+
+, for 
+\begin_inset Formula $F\sim\mathcal{N}(0,1/2),$
+\end_inset
+
+ 
+\begin_inset Formula $F\sim2\mbox{Bern}-1$
+\end_inset
+
+, and 
+\begin_inset Formula $F\sim\mbox{Expo}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In light of the qualitative similarity of the approximate and exact samplers,
+ it is worth noting that the K-S statistics presented in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:KS-stats"
+
+\end_inset
+
+ represent the most liberal estimates of the deviation of the samples from
+ the true distribution—in particular, the marginal distribution of the sampled
+ bridges, whether approximate or exact, are the same as the unconstrained
+ process at times 
+\begin_inset Formula $t=\{0,1\}$
+\end_inset
+
+ by definition, and 
+\begin_inset Formula $t=1/2$
+\end_inset
+
+ represents the point in time at which the marginal distributions of these
+ bridges have the most freedom to deviate from the true distribution.
+ Recalling that the MCEM algorithm proposed in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:EM"
@@ -905,8 +879,8 @@ ely sampled paths at
 \begin_inset Formula $t=1/2$
 \end_inset
 
- represents an overly stringent view on the usability of these samples in
- MCEM.
+ represents an overly stringent view on the usability of the approximate
+ samples in the context of the proposed MCEM algorithm.
  In the next section, we demonstrate that an MCEM algorithm using the approximat
 e bridge sampler produces comparable results to one using the exact bridge
  sampler.
@@ -917,8 +891,8 @@ Inference on Distributional Data
 \end_layout
 
 \begin_layout Standard
-In this section, we verify the correctness of the MCEM algorithm proposed
- in 
+Given the ability to sample from a generalized bridge distribution, in this
+ section, we verify the correctness of the MCEM algorithm proposed in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:EM"
@@ -926,23 +900,61 @@ reference "chap:EM"
 \end_inset
 
 .
- 
-\end_layout
+ As an illustrative example, the iterations of the MCEM algorithm estimating
+ the parameters of a Gaussian solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ou-sde"
 
-\begin_layout Standard
-As a first toy example, we consider stationary OU and CIR processes with
- the parameters from the previous section (importantly, both processes have
- unit diffusion coefficient).
- In particular, we Of course, we know how to draw from the joint initial/end
- distributions of these processes, and so an implementation of the MCEM
- algorithm 
+\end_inset
+
+, conditional on the endpoints of the diffusion being distributed according
+ to 
+\begin_inset Formula $\nu_{\theta^{*}}(\mathcal{N}(0,1/2),W)$
+\end_inset
+
+, are presented in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mcem-stationary"
+
+\end_inset
+
+.
+ Recall that the only 
+\begin_inset Quotes eld
+\end_inset
+
+data
+\begin_inset Quotes erd
+\end_inset
+
+ given to the algorithm is the ability to draw from 
+\begin_inset Formula $\nu_{\theta^{*}}(\mathcal{N}(0,1/2),W)$
+\end_inset
+
+.
+ Since OU-type processes have a constant diffusion coefficient, the correspondin
+g Lamperti transform is simply 
+\begin_inset Formula $\eta_{\theta}(x)=x/\theta$
+\end_inset
+
+, and the requisite functions to perform MCEM can easily be worked out from
+ the results in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:EM"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
 wide true
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -950,31 +962,27 @@ status open
 
 \begin_layout Plain Layout
 
-
+ 
 \backslash
 centering 
 \backslash
-begin{tabular}{@{}cllllllllll@{}} 
+begin{tabular}{@{}clccccccccc@{}} 
 \backslash
 toprule 
 \backslash
 multirow{2}{*}{Iteration} &  & 
 \backslash
-multicolumn{2}{l}{Approx.}                                           & 
+multicolumn{3}{l}{Approx.}                                              
+                                   & 
 \backslash
-multicolumn{2}{l}{Exact}                                              
+multicolumn{3}{l}{Exact}                                               
+                                            
 \backslash
 
 \backslash
  
 \backslash
-cmidrule(lr){3-4}                             &  & 
-\backslash
-multicolumn{1}{c}{$
-\backslash
-hat{
-\backslash
-lambda}$} & 
+cmidrule(lr){3-5}                             &  & 
 \backslash
 multicolumn{1}{c}{$
 \backslash
@@ -992,7 +1000,25 @@ multicolumn{1}{c}{$
 \backslash
 hat{
 \backslash
-mu}$}  
+sigma}$}     & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+mu}$} & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+lambda}$} & 
+\backslash
+multicolumn{1}{c}{$
+\backslash
+hat{
+\backslash
+sigma}$} 
 \backslash
 
 \backslash
@@ -1000,70 +1026,100 @@ mu}$}
 \backslash
 cmidrule(r){1-1} 
 \backslash
-cmidrule(lr){3-6} 0                          &  & 2.00                  
-              & 2.00                            & 2.00                   
-             & 2.00                                                     
+cmidrule(lr){3-8} 0                          &  & 2.00                  
+              & 
+\backslash
+:2.00
+\backslash
+:                            & 
+\backslash
+:2.00
+\backslash
+:                                & 
+\backslash
+:2.00
+\backslash
+:                                & 
+\backslash
+:2.00
+\backslash
+:                               & 
+\backslash
+:2.00
+\backslash
+:                       
+\backslash
+
+\backslash
+ 1                          &  & 0.59                                & 1.94
+                            & 1.10                                & 0.30 
+                               & 1.69                               & 1.15
+                   
+\backslash
+
+\backslash
+ 2                          &  & 0.06                                & 0.95
+                            & 0.97                                & 0.08 
+                               & 0.83                               & 0.90
+    
+\backslash
+
+\backslash
+ 3                          &  & -0.06
+\backslash
+:                               & 1.28                            & 1.07 
+                              & 0.03                               &    
+                               &    
+\backslash
+
+\backslash
+ 4                          &  & 0.18                                & 0.98
+                            & 0.86                                & 0.05 
+                               &                                    &  
+    
+\backslash
+
+\backslash
+ 5                          &  & 0.00                                & 1.03
+                            & 0.95                                & 0.04 
+                               &                                    &  
+ 
+\backslash
+
+\backslash
+ 6                          &  & 0.02                                & 0.94
+                            & 0.88                                & 0.04 
+                               &                                    &  
+ 
+\backslash
+
+\backslash
+ 7                          &  & 0.01                                & 1.33
+                            & 0.96                                & 0.02 
+                               &                                    &  
    
 \backslash
 
 \backslash
- 1                          &  & 1.80                                & 0.21
-                            & 1.10                                & 0.38 
-                                                       
+ 8                          &  & -0.05
+\backslash
+:                               & 0.91                            & 1.02 
+                               & 0.04                                &  
+                                 &  
 \backslash
 
 \backslash
- 2                          &  & 1.45                                & 0.12
-                            & 1.04                                & 0.05 
-                                                       
+ 9                          &  & 0.01                                & 1.01
+                            & 0.99                                & 0.02 
+                               &                                    &  
 \backslash
 
 \backslash
- 3                          &  & 1.21                                & 0.04
-                            & 0.88                                & 0.03 
-                                                         
+ 10                         &  & -0.04
 \backslash
-
-\backslash
- 4                          &  & 1.26                                & 0.00
-                            & 1.02                                & 0.05 
-                                                         
-\backslash
-
-\backslash
- 5                          &  & 1.11                                & 0.00
-                            & 1.00                                & 0.04 
-                                                         
-\backslash
-
-\backslash
- 6                          &  & 1.07                                & 0.00
-                            & 0.95                                & 0.04 
-                                                         
-\backslash
-
-\backslash
- 7                          &  & 1.08                                & 0.00
-                            & 1.04                                & 0.02 
-                                                         
-\backslash
-
-\backslash
- 8                          &  & 1.08                                & 0.01
-                            & 0.98                                & 0.04 
-                                                         
-\backslash
-
-\backslash
- 9                          &  & 1.07                                & 0.01
-                            & 1.04                                & 0.02 
-                                                         
-\backslash
-
-\backslash
- 10                         &  & 1.07                                & 0.00
-                            & 1.03                                & 0.03 
-                                                       
+:                               & 1.04                            & 1.04 
+                               & 0.03                                &  
+                                      
 \backslash
 
 \backslash
@@ -1163,16 +1219,9 @@ name "tab:mcem-stationary"
 
 \end_inset
 
-MCEM iterations for inference on the parameters of an OU process with unit
- diffusion, given the joint distribution at 
-\begin_inset Formula $t=\{0,1\}$
-\end_inset
-
- induced by a stationary solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:ou-sde"
-
+MCEM iterations for inference on the parameters of a Gaussian OU process,
+ given that its endpoints are distributed 
+\begin_inset Formula $\nu_{\theta^{*}}(\mathcal{N}(0,1/2),W)$
 \end_inset
 
 , using approximate and exact generalized bridge samplers.
@@ -1180,12 +1229,11 @@ reference "eq:ou-sde"
 \begin_inset Formula $i$
 \end_inset
 
-th iteration is performed using 
-\begin_inset Formula $100\times\left\lfloor i^{1.5}\right\rfloor $
+th iteration uses 
+\begin_inset Formula $100\times\left\lfloor i^{1.2}\right\rfloor $
 \end_inset
 
- MC samples, and the Fletcher-Reeves conjugate gradient method is used for
- maximization.
+ MC samples.
 \end_layout
 
 \end_inset
@@ -1199,10 +1247,122 @@ th iteration is performed using
 \end_layout
 
 \begin_layout Standard
+We note that MCEM scheme using either the exact or approximate sampler effective
+ly converges after two iterations.
+ As is usual for MCEM schemes, the algorithm produces parameter estimates
+ sampled from some neighborhood of the true parameter value, instead of
+ converging deterministically to such a value.
+ The slightly thinner tails of the sample paths drawn from the approximate
+ sampler near 
+\begin_inset Formula $t=1/2$
+\end_inset
+
+, at least in this case, do not seem to have a significant adverse impact
+ on the quality of the Monte Carlo estimates.
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:diff-diffusions"
+
+\end_inset
+
+, we present a comprehensive evaluation of the ability of the proposed MCEM
+ scheme to estimate the parameter vector for a Gaussian OU diffusion given
+ that the diffusion's endpoints follow a variety of given joint distributions.
+ 
+\end_layout
+
+\begin_layout Standard
+In particular, we consider joint distributions 
+\begin_inset Formula $\nu_{\theta^{*}}(F,W)$
+\end_inset
+
+ for 
+\begin_inset Formula $F\sim\mathcal{N}(0,1/2)$
+\end_inset
+
+, as well 
+\begin_inset Formula $F\sim\hat{\mathcal{N}}(0,1/2)$
+\end_inset
+
+—a discrete distribution consisting of 
+\begin_inset Formula $100$
+\end_inset
+
+ fixed samples from 
+\begin_inset Formula $\mathcal{N}(0,1/2)$
+\end_inset
+
+—and 
+\begin_inset Formula $F\sim2\mbox{Bern}-1$
+\end_inset
+
+.
+ Furthermore, we consider 
+\begin_inset Formula $L=W$
+\end_inset
+
+, as well as the cases when 
+\begin_inset Formula $L$
+\end_inset
+
+ is a standard variance gamma process and a standard normal inverse Gaussian
+ process.
+ In these non-Gaussian cases, the resulting joint distribution 
+\begin_inset Formula $\nu_{\theta^{*}}(F,L)$
+\end_inset
+
+ is not a member of the family of joint distributions that can induced by
+ a Gaussian OU process, and thus the MCEM algorithm will perform maximum
+ likelihood estimation under model misspecification.
+ However, since the form of the drift and diffusion coefficients remains
+ the same, and both the variance gamma and normal inverse Gaussian distributions
+ have finite variance, we expect that the resulting parameter estimates
+ ought to be consistent for 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+; 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:diff-diffusions"
+
+\end_inset
+
+ confirms that this is indeed the case.
+\end_layout
+
+\begin_layout Standard
+Furthermore, we can see from 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:diff-diffusions"
+
+\end_inset
+
+ that the approximate and exact samplers are effectively indistinguishable
+ in the quality of their parameter estimates after 10 MCEM iterations; the
+ only major difference between using the two samplers is that the MCEM scheme
+ using the exact sampler is prohibitively slow.
+ In fact, the computational time used by exact sampling is on the order
+ of two magnitudes longer than the time used by approximate sampling.
+ We conjecture that for all but the most extreme of distributional data
+ (i.e.
+ conditioning a process which mean reverts to zero on an endpoint joint
+ distribution with marginal distributions centered far from zero), an MCEM
+ scheme relying on approximate generalized bridge sampling will provide
+ parameter estimates of sufficiently high quality, especially given the
+ inherent variance of MCEM estimates in the first place.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 wide false
-sideways true
-status collapsed
+sideways false
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1214,274 +1374,247 @@ status open
 \backslash
 centering 
 \backslash
-begin{tabular}{@{}cllllllllllllllllllll@{}} 
+begin{tabular}{@{}cccccccc@{}} 
 \backslash
-cmidrule(r){1-6} 
+toprule 
 \backslash
-cmidrule(l){8-21} 
+multirow{2}{*}{$f$}                                             & 
 \backslash
-multirow{3}{*}{Iteration} &  & 
+multirow{2}{*}{$L$}    & 
 \backslash
-multicolumn{4}{l}{$
+multicolumn{3}{l}{Approx.}                    & 
 \backslash
-mathcal{N}(0,1/2)$}                                                    
-                                                  &  & 
-\backslash
-multicolumn{4}{l}{$2
-\backslash
-text{Bern}-1$}                                                         
-                             &  & 
-\backslash
-multicolumn{4}{l}{$
-\backslash
-text{Expo}(2)$}                          &  & 
-\backslash
-multicolumn{4}{l}{$
-\backslash
-hat{
-\backslash
-mathcal{N}}(0,1/2)$ (100 samples)}                      
+multicolumn{3}{l}{Exact}                                          
 \backslash
 
 \backslash
  
 \backslash
-cmidrule(lr){3-6} 
+cmidrule(lr){3-5}                                                      
+            &                         & $
 \backslash
-cmidrule(lr){8-11} 
+hat{
 \backslash
-cmidrule(lr){13-16} 
+mu}$ & $
 \backslash
-cmidrule(l){18-21}                             &  & 
+hat{
 \backslash
-multicolumn{2}{l}{Approx.}                                           & 
+lambda}$ & $
 \backslash
-multicolumn{2}{l}{Exact}                                             & 
+hat{
+\backslash
+sigma}$ & $
+\backslash
+hat{
+\backslash
+mu}$          & $
+\backslash
+hat{
+\backslash
+lambda}$      & $
+\backslash
+hat{
+\backslash
+sigma}$       
+\backslash
+
+\backslash
+ 
+\backslash
+midrule 
+\backslash
+multicolumn{1}{c|}{
+\backslash
+multirow{6}{*}{$
+\backslash
+mathcal{N}(0,1/2)$}}       & 
+\backslash
+multirow{2}{*}{Wiener} & 0.00        & 0.93            & 0.95           & 0.01
+                 & 0.97                 & 0.96                 
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{c|}{}                                            &      
+                   & (0.02)      & (0.10)          & (0.04)         & (0.10)
+               & (0.04)               & (0.07)               
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{c|}{}                                            & 
+\backslash
+multirow{2}{*}{VG}     & 0.03        & 0.86            & 0.92           & 
+                     &                      &                      
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{c|}{}                                            &      
+                   & (0.07)      & (0.13)          & (0.10)         &     
+                 &                      &                      
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{c|}{}                                            & 
+\backslash
+multirow{2}{*}{NIG}    & 0.05        & 0.93            & 0.95           & 
+                     &                      &                      
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{c|}{}                                            &      
+                   & (0.06)      & (0.07)          & (0.06)         &     
+                 &                      &                      
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{l}{}                                             & 
+\backslash
+multicolumn{1}{l}{}    &             &                 &               
  & 
 \backslash
-multicolumn{2}{l}{Approx.}                                           & 
+multicolumn{1}{l}{} & 
 \backslash
-multicolumn{2}{l}{Exact}                         &  & 
+multicolumn{1}{l}{} & 
 \backslash
-multicolumn{2}{l}{Approx.}   & 
-\backslash
-multicolumn{2}{l}{Exact}     &  & 
-\backslash
-multicolumn{2}{l}{Approx.}                       & 
-\backslash
-multicolumn{2}{l}{Exact}     
+multicolumn{1}{l}{} 
 \backslash
 
 \backslash
  
 \backslash
-cmidrule(lr){3-4} 
+multicolumn{1}{c|}{
 \backslash
-cmidrule(lr){8-9} 
-\backslash
-cmidrule(lr){13-14} 
-\backslash
-cmidrule(lr){18-19}                            &  & 
-\backslash
-multicolumn{1}{c}{$
+multirow{6}{*}{$
 \backslash
 hat{
 \backslash
-lambda}$} & 
+mathcal{N}}(0,1/2)$}} & 
 \backslash
-multicolumn{1}{c}{$
-\backslash
-hat{
-\backslash
-mu}$} & 
-\backslash
-multicolumn{1}{c}{$
-\backslash
-hat{
-\backslash
-lambda}$} & 
-\backslash
-multicolumn{1}{c}{$
-\backslash
-hat{
-\backslash
-mu}$} &  & 
-\backslash
-multicolumn{1}{c}{$
-\backslash
-hat{
-\backslash
-lambda}$} & 
-\backslash
-multicolumn{1}{c}{$
-\backslash
-hat{
-\backslash
-mu}$} & 
-\backslash
-multicolumn{1}{c}{$
-\backslash
-hat{
-\backslash
-lambda}$} & $
-\backslash
-hat{
-\backslash
-mu}$ &  & $
-\backslash
-hat{
-\backslash
-lambda}$ & $
-\backslash
-hat{
-\backslash
-mu}$ & $
-\backslash
-hat{
-\backslash
-lambda}$ & $
-\backslash
-hat{
-\backslash
-mu}$ &  & 
-\backslash
-multicolumn{1}{c}{$
-\backslash
-hat{
-\backslash
-lambda}$} & $
-\backslash
-hat{
-\backslash
-mu}$ & $
-\backslash
-hat{
-\backslash
-lambda}$ & $
-\backslash
-hat{
-\backslash
-mu}$ 
+multirow{2}{*}{Wiener} & 0.02        & 0.95            & 1.00           & 
+                     &                      &                      
 \backslash
 
 \backslash
  
 \backslash
-cmidrule(r){1-1} 
-\backslash
-cmidrule(lr){3-6} 
-\backslash
-cmidrule(lr){8-11} 
-\backslash
-cmidrule(lr){13-16} 
-\backslash
-cmidrule(l){18-21}  0                          &  & 2.00                
-                & 2.00                            & 2.00                 
-               & 2.00                            &  & 2.00               
-                 & 2.00                            & 2.00                
-                & 2.00        &  & 2.00            & 2.00        & 2.00    
-        & 2.00        &  & 2.00                                & 2.00     
-   & 2.00            & 2.00        
+multicolumn{1}{c|}{}                                            &      
+                   & (0.04)      & (0.10)          & (0.05)         &     
+                 &                      &                      
 \backslash
 
 \backslash
- 1                          &  & 1.89                                & 0.46
-                            & 1.30                                & 0.15 
-                           &  & 0.95                                & 1.23
-                            & 0.79                                & -0.03
-       &  & 0.94            & 0.09        & 1.04            & -0.17       &
-  & 1.23                                & 0.36        & 0.99            & 0.04
-        
+ 
+\backslash
+multicolumn{1}{c|}{}                                            & 
+\backslash
+multirow{2}{*}{VG}     & -0.09       & 0.78            & 0.85           & 
+                     &                      &                      
 \backslash
 
 \backslash
- 2                          &  & 1.71                                & 0.25
-                            & 1.23                                & 0.14 
-                           &  & 1.10                                & 1.06
-                            & 0.83                                & -0.09
-       &  & 1.10            & -0.04       & 1.27            & -0.01       &
-  & 1.10                                & 0.05        & 1.04            & 0.04
-        
+ 
+\backslash
+multicolumn{1}{c|}{}                                            &      
+                   & (0.09)      & (0.12)          & (0.10)         &     
+                 &                      &                      
 \backslash
 
 \backslash
- 3                          &  & 1.46                                & 0.16
-                            & 1.19                                & 0.02 
-                           &  & 1.25                                & 1.05
-                            & 1.11                                & 0.01 
-       &  & 1.17            & -0.04       & 1.18            & 0.01        &
-  & 1.09                                & 0.03        & 1.02            & 0.03
-        
+ 
+\backslash
+multicolumn{1}{c|}{}                                            & 
+\backslash
+multirow{2}{*}{NIG}    & 0.02        & 0.89            & 0.95           & 
+                     &                      &                      
 \backslash
 
 \backslash
- 4                          &  & 1.55                                & 0.17
-                            & 1.12                                & 0.01 
-                           &  & 1.17                                & 1.02
-                            & 1.06                                & 0.05 
-       &  & 1.25            & 0.02        & 1.17            & 0.04        &
-  & 1.15                                & 0.02        & 0.99            & 0.03
-        
+ 
+\backslash
+multicolumn{1}{c|}{}                                            &      
+                   & (0.04)      & (0.04)          & (0.04)         &     
+                 &                      &                      
 \backslash
 
 \backslash
- 5                          &  & 1.45                                & 0.13
-                            & 1.07                                & 0.11 
-                           &  & 1.17                                & 1.03
-                            & 1.03                                & 0.01 
-       &  & 1.17            & 0.00        & 1.03            & -0.03       &
-  & 1.14                                & 0.06        & 1.02            & 0.14
-        
+ 
+\backslash
+multicolumn{1}{l}{}                                             & 
+\backslash
+multicolumn{1}{l}{}    &             &                 &               
+ & 
+\backslash
+multicolumn{1}{l}{} & 
+\backslash
+multicolumn{1}{l}{} & 
+\backslash
+multicolumn{1}{l}{} 
 \backslash
 
 \backslash
- 6                          &  & 1.39                                & 0.12
-                            & 1.12                                & 0.09 
-                           &  & 1.15                                & 0.97
-                            & 1.03                                & 0.01 
-       &  & 1.17            & 0.00        & 1.07            & -0.01       &
-  & 1.07                                & 0.06        & 1.00            & 0.09
-        
+ 
+\backslash
+multicolumn{1}{c|}{
+\backslash
+multirow{6}{*}{$2
+\backslash
+text{Bern}-1$}}           & 
+\backslash
+multirow{2}{*}{Wiener} & -0.03       & 0.96            & 0.95           & 
+                     &                      &                      
 \backslash
 
 \backslash
- 7                          &  & 1.42                                & 0.13
-                            & 1.15                                & 0.05 
-                           &  & 1.10                                & 0.99
-                            & 1.07                                & -0.00
-       &  & 1.15            & 0.00        & 1.00            & -0.02       &
-  & 1.10                                & 0.07        & 0.99            & 0.06
-        
+ 
+\backslash
+multicolumn{1}{c|}{}                                            &      
+                   & (0.02)      & (0.11)          & (0.07)         &     
+                 &                      &                      
 \backslash
 
 \backslash
- 8                          &  & 1.45                                & 0.12
-                            & 1.07                                & 0.06 
-                           &  & 1.11                                & 0.98
-                            & 1.07                                & 0.00 
-       &  & 1.10            & 0.00        & 1.25            & 0.04        &
-  & 1.07                                & 0.08        & 1.01            & 0.04
-        
+ 
+\backslash
+multicolumn{1}{c|}{}                                            & 
+\backslash
+multirow{2}{*}{VG}     & 0.00        & 0.85            & 0.88           & 
+                     &                      &                      
 \backslash
 
 \backslash
- 9                          &  & 1.33                                & 0.10
-                            & 1.08                                & 0.00 
-                           &  & 1.09                                & 0.98
-                            & 1.01                                & 0.00 
-       &  & 1.18            & -0.01       & 1.10            & 0.04        &
-  & 1.10                                & 0.09        & 1.05            & 0.02
-        
+ 
+\backslash
+multicolumn{1}{c|}{}                                            &      
+                   & (0.08)      & (0.10)          & (0.03)         &     
+                 &                      &                      
 \backslash
 
 \backslash
- 10                         &  & 1.28                                & 0.08
-                            & 1.07                                & 0.03 
-                           &  & 1.03                                & 0.99
-                            & 1.01                                & 0.01 
-       &  & 1.17            & 0.01        & 1.04            & -0.00       &
-  & 1.09                                & 0.09        & 1.01            & 0.05
-        
+ 
+\backslash
+multicolumn{1}{c|}{}                                            & 
+\backslash
+multirow{2}{*}{NIG}    & 0.00        & 0.91            & 0.96           & 
+                     &                      &                      
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{1}{c|}{}                                            &      
+                   & (0.06)      & (0.10)          & (0.04)         &     
+                 &                      &                      
 \backslash
 
 \backslash
@@ -1614,109 +1747,6 @@ th iteration is performed using
 
 
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Of course, as noted in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:EM"
-
-\end_inset
-
-, diffusions with unit diffusion coefficient are far too restrictive of
- a class of processes to focus on.
- As an example of diffusions with arbitrary coefficient, we consider solutions
- to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:cir-sde"
-
-\end_inset
-
-.
- If 
-\begin_inset Formula $\theta=(\lambda,\mu,\sigma)$
-\end_inset
-
-, we may follow 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:lamperti"
-
-\end_inset
-
- to define a diffusion 
-\begin_inset Formula $Y$
-\end_inset
-
-, which is a Lamperti transformation of 
-\begin_inset Formula $C$
-\end_inset
-
-, by writing
-\begin_inset Formula 
-\[
-Y_{t}=\eta_{\theta}(C_{t})=\frac{2\sqrt{C_{t}}}{\sigma},
-\]
-
-\end_inset
-
- so that 
-\begin_inset Formula $\eta_{\theta}^{-1}(Y_{t})=\frac{\sigma^{2}}{4}Y_{t}^{2}$
-\end_inset
-
-.
- By 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:eta-y"
-
-\end_inset
-
-, 
-\begin_inset Formula $Y$
-\end_inset
-
- is the solution to the SDE 
-\begin_inset Formula 
-\[
-dY_{t}=\left(-\frac{\lambda Y_{t}}{2}-\frac{1}{2Y_{t}}\left(1-\frac{4\lambda\mu}{\sigma^{2}}\right)\right)dt+dW_{t},
-\]
-
-\end_inset
-
-for a Wiener process 
-\begin_inset Formula $W_{t}$
-\end_inset
-
-.
- Then, the necessary expressions to carry out MCEM according to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:general-q"
-
-\end_inset
-
- are
-\begin_inset Formula 
-\begin{eqnarray*}
-s_{\theta}(x) & = & \frac{-\lambda(x-\mu\log x)}{\sigma^{2}}\\
-g_{\theta}(x) & = & \frac{-\lambda(x-\mu\log x)\left(\log\sigma+\frac{1}{2}\log x\right)}{2\sigma^{2}}
-\end{eqnarray*}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{eqnarray*}
-A_{\theta}(Y_{t}) & = & -\frac{\lambda Y_{t}^{2}}{4}-\left(\frac{1}{2}-\frac{2\lambda\mu}{\sigma^{2}}\right)\log Y_{t},\mbox{ and}\\
-(\alpha_{\theta}^{2}+\alpha'_{\theta})(Y_{t}) & = & \left(-\frac{\lambda Y_{t}}{2}-\frac{1}{2Y_{t}}\left(1-\frac{4\lambda\mu}{\sigma^{2}}\right)\right)^{2}-\frac{\lambda}{2}+\frac{1}{2Y_{t}^{2}}\left(1-\frac{4\lambda\mu}{\sigma^{2}}\right).
-\end{eqnarray*}
 
 \end_inset
 

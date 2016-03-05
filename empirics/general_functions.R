@@ -1,15 +1,21 @@
-library(sde)
-library(lattice)
-library(mvtnorm)
-library(scales)
-library(grid)
-library(gridExtra)
-library(NCmisc)
-library(matrixStats)
-library(Ryacas)
-library(psych)
-library(DEoptim)
-library(dfoptim)
+# library(sde)
+# library(lattice)
+# library(mvtnorm)
+# library(scales)
+# library(grid)
+# library(gridExtra)
+# library(NCmisc)
+# library(matrixStats)
+# library(Ryacas)
+# library(psych)
+# library(DEoptim)
+# library(dfoptim)
+# library(stabledist)
+# library(VarianceGamma)
+# library(ghyp)
+# library(Matrix)
+# library(parallel)
+# library(doParallel)
 
 # APPROXIMATE BRIDGES
 
@@ -22,19 +28,20 @@ no.cross = function(x, y) {
   }
 }
 
-gen.nu.helper = function(r.diffusion, theta, start, end, steps, flip = F) {
-    y.1 = r.diffusion(start, steps, theta)
-    y.2 = rev(r.diffusion(end, steps, theta))
+gen.nu.helper = function(r.diffusion, theta, start, end, steps, time = 1, flip = F) {
+    y.1 = r.diffusion(start, steps, theta, time)
+    y.2 = rev(r.diffusion(end, steps, theta, time))
 
     counter = 0
     # If they don't intersect, re-generate.
     while (no.cross(y.1, y.2)) {
       counter = counter + 1
       if (counter > 5000) {
+        print("Too many tries.")
         stop("Too many tries.")
       }
-      y.1 = r.diffusion(start, steps, theta)
-      y.2 = rev(r.diffusion(end, steps, theta))
+      y.1 = r.diffusion(start, steps, theta, time)
+      y.2 = rev(r.diffusion(end, steps, theta, time))
     }
       
     # Otherwise, find where they intersect and create the bridge.  
@@ -48,34 +55,35 @@ gen.nu.helper = function(r.diffusion, theta, start, end, steps, flip = F) {
       }
 }
 
-gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps, set.start = c(-Inf,-Inf)) {
+gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps, set.start = c(-Inf,-Inf), time = 1) {
   
   bridges = array(0, dim = c(N, steps))
   xy = r.nu(N)
   if (N == 1 & all(is.finite(set.start))) {
-    xy = (matrix(set.start))
+    xy = t((matrix(set.start)))
   }
-  
+#   stop(paste(as.character(xy), as.character(r.nu(1)), set.start))
   for (i in 1:N){
   # Generate two independent diffusions, one starting at start and the other at end.
    tryCatch({
-      bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps)
+      bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps, time)
+      stop(as.character(xy))
     }, error = function(e) {
       tryCatch({
-        xy1 = r.nu(200)[200,]
-        bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps)
+        xy1 = r.nu(1)
+        bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps, time)
       }, error = function(e) {
         tryCatch({
-          xy1 = r.nu(200)[200,]
-          bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps)
+          xy1 = r.nu(1)
+          bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps, time)
         }, error = function(e) {
           tryCatch({
-            xy1 = r.nu(200)[200,]
-            bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps)
+            xy1 = r.nu(1)
+            bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps, time)
           }, error = function(e) {
             tryCatch({
-              xy1 = r.nu(200)[200,]
-              bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps)
+              xy1 = r.nu(1)
+              bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps, time)
             }, error = function(e) {
                browser()
                print(c(i, xy[i,1], xy[i,2]))
@@ -90,19 +98,22 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps, set.start = c(-Inf,
 
 # EXACT BRIDGES
 
-exact.bridges = function(M, r.nu, samples, r.diffusion, theta, steps) {
+exact.bridges = function(M, r.nu, samples, r.diffusion, theta,steps, time = 1) {
   bridges = matrix(0, nrow = samples, ncol = 100)
-  bridges[1, ] = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps)
+  start.end = r.nu(1)
+  bridges[1, ] = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, time, set.start = start.end)
   for (i in 2:samples) {
-    tryCatch({
+#       stop("IN THE FOR LOOP")
+#     tryCatch({
       start.end = r.nu(1)
-      proposal.1 = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, set.start = start.end)
-      proposal.2 = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, set.start = start.end)
-    }, error = function(e) {
-      bridges[i, ] = bridges[i-1,]
-    })
-    r = rho(proposal.2, M, r.diffusion, theta, steps) / rho(proposal.1, M, r.diffusion, theta, steps)
+      proposal.1 = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, time, set.start = start.end)
+      proposal.2 = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, time, set.start = start.end)
+#     }, error = function(e) {
+#       bridges[i, ] = bridges[i-1,]
+#     })
+    r = rho(proposal.2, M, r.diffusion, theta, steps, time) / rho(proposal.1, M, r.diffusion, theta, steps, time)
     alpha = min(1, r)
+#     print(c(i, alpha))
 #     print(paste(i,alpha))
     if (runif(1) < alpha) {
       bridges[i,] = proposal.2
@@ -113,15 +124,19 @@ exact.bridges = function(M, r.nu, samples, r.diffusion, theta, steps) {
   bridges
 }
 
-rho = function(x, M, r.diffusion, theta, steps) {
+rho = function(x, M, r.diffusion, theta, steps, time = 1) {
   Ts = array(1, dim = M)
   for (i in 1:M) {
-    init.1 = r.diffusion(x[steps], steps, theta)[steps]
-    hitting = as.vector(r.diffusion(init.1, steps, theta))
+    init.1 = r.diffusion(x[steps], steps, theta, time)[steps]
+    hitting = as.vector(r.diffusion(init.1, steps, theta, time))
     while (no.cross(x, hitting)) {
+      if (Ts[i] > 5000) {
+        Ts[i] = 5000
+        break
+      }
       Ts[i] = Ts[i] + 1
-      init.1 = r.diffusion(x[steps], steps, theta)[steps]
-      hitting = as.vector(r.diffusion(init.1, steps, theta))
+      init.1 = r.diffusion(x[steps], steps, theta, time)[steps]
+      hitting = as.vector(r.diffusion(init.1, steps, theta, time))
     }
   }
   mean(Ts)
@@ -175,13 +190,90 @@ ou.fast = function(start, steps, theta, time = 1) {
   as.numeric(Y)
 }
 
-ou.t = function(start, steps, theta, time = 1) {
-  x = sde.sim.t(T = time, X0 = start, N = steps - 1,
-              drift = eval(substitute(expression(theta1 -  theta2 * x), list(theta1 = theta[1], theta2 = theta[2]))),
-              sigma = eval(substitute(expression(theta3), list(theta3 = theta[3]))),
-              sigma.x = expression(0))
-  as.numeric(x)
-  
+wiener = function(start, steps, theta, time = 1) {
+  Y <- numeric(steps)
+  Y[1] = start
+  Z = rnorm(steps - 1)
+  Dt <- time / (steps - 1)
+  for (i in 1:(steps - 1)) {
+    Y[i+1] = Y[i] + theta[3] * sqrt(Dt) * Z[i]
+  }
+  as.numeric(Y)
+}
+
+ou.stable = function(start, steps, theta, time = 1) {
+  Y <- numeric(steps)
+  Y[1] = start
+  Dt <- time / (steps - 1)
+  Z = rstable(steps - 1, alpha = 1.8, beta = 0, gamma = theta[3] * Dt^(1/1.8), delta = 0)
+  for (i in 1:(steps - 1)) {
+    Y[i+1] = Y[i] + (theta[1] - theta[2] * Y[i]) * Dt + Z[i]
+  }
+  as.numeric(Y)
+}
+
+ou.nig = function(start, steps, theta, time = 1) {
+  Y <- numeric(steps)
+  Y[1] = start
+  Dt <- time / (steps - 1)
+  Z = rghyp(steps - 1, NIG.ad(alpha = 1, delta = 1, beta = 0, mu = 0))
+  for (i in 1:(steps - 1)) {
+    Y[i+1] = Y[i] + (theta[1] - theta[2] * Y[i]) * Dt + sqrt(Dt) *  Z[i]
+  }
+  as.numeric(Y)
+}
+
+ou.vg = function(start, steps, theta, time = 1) {
+  Y <- numeric(steps)
+  Y[1] = start
+  Dt <- time / (steps - 1)
+  Z = rvg(steps - 1, vgC = 0, sigma = 1, theta = 0, nu = 1)
+  for (i in 1:(steps - 1)) {
+    Y[i+1] = Y[i] + (theta[1] - theta[2] * Y[i]) * Dt + sqrt(Dt) *  Z[i]
+  }
+  as.numeric(Y)
+}
+
+hyp = function(start, steps, theta, time = 1) {
+  Y <- numeric(steps)
+  Y[1] = start
+  Z = rnorm(steps - 1)
+  Dt <- time / (steps - 1)
+  for (i in 1:(steps - 1)) {
+    Y[i+1] = Y[i] + 
+      (- (theta[4]^2 / 2) * 
+         (theta[2] * (Y[i] - theta[1])) / (sqrt(theta[3]^2 + (Y[i] - theta[1])^2))
+       ) * Dt + 
+      theta[4] * sqrt(Dt) *  Z[i]
+  }
+  as.numeric(Y)
+}
+
+
+make.joint = function(N, theta, r.diffusion, init, steps = 100, all = T) {
+  sims2 = array(0, dim = c(N, steps))
+  sims.start = init(N)
+  for (i in 1:N) {
+    sims2[i, ] = r.diffusion(sims.start[i], steps, theta)
+  }
+  if (all) {
+    function(n) {(as.matrix(sims2[sample(1:N, n, replace = T),c(1,steps)]))}
+  } else {
+    function(n) {(as.matrix(sims2[sample(1:100, n, replace = T),c(1,steps)]))}
+  }
+}
+
+make.joint.many = function(N, theta, r.diffusion, init, horizons, steps = 100, time = 1, all = T) {
+  sims2 = array(0, dim = c(N, steps))
+  sims.start = init(N)
+  for (i in 1:N) {
+    sims2[i, ] = r.diffusion(sims.start[i], steps, theta, time)
+  }
+  if (all) {
+    function(n) {(as.matrix(sims2[sample(1:N, n, replace = T),c(1/steps,horizons,1) * steps]))}
+  } else {
+    function(n) {(as.matrix(sims2[sample(1:100, n, replace = T),c(1/steps,horizons,1) * steps]))}
+  }
 }
 
 cir = function(start, steps, theta, time = 1) {
@@ -272,3 +364,15 @@ compare.diffusions = function(r.dif1, r.dif2, N, start1, start2, steps, theta1, 
 composite = function(f,g) function(...) f(g(...))
 
 vec.seq = composite(t, Vectorize(seq.default, vectorize.args = c("from", "to")))
+
+trim <- function( x ) {
+  gsub("(^[[:space:]]+|[[:space:]]+$)", "", x)
+}
+
+gen.many = function(M, r.diffusion, start, steps, theta, time = 1) {
+  paths = matrix(0, nrow = M, ncol = steps)  
+  for (i in 1:M) {
+    paths[i, ] = r.diffusion(start, steps, theta, time)
+  }
+  paths
+}

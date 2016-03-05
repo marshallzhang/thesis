@@ -160,7 +160,7 @@ where
 \begin_inset Formula $\mathbf{X}_{\mathcal{T}}=\left\{ \mathbf{X}_{t}\right\} _{t\in\mathcal{T}}$
 \end_inset
 
- be the canonical process over 
+ be the canonical process at times 
 \begin_inset Formula $\mathcal{T}$
 \end_inset
 
@@ -207,8 +207,7 @@ algebra of events observed during
 \begin_layout Standard
 In the next Part, we will study in detail time-homogenous Itô diffusions
  i.e.
- continuous and strongly Markovian diffusion processes (where strongly Markovian
- is to be defined below).
+ continuous and strongly Markovian diffusion processes.
  In particular, we will study processes 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
@@ -249,15 +248,16 @@ with a given initial condition on
 \end_inset
 
  are suitably regular, admitting a weakly unique solution (i.e.
- all solutions have the same finite-dimensional distributions), and an invariant
- measure 
+ all solutions have the same finite-dimensional distributions, or equivalently,
+ that the corresponding Kolmogorov forward equation has a unique solution),
+ and an invariant measure 
 \begin_inset Formula $\Pi$
 \end_inset
 
- induced by such a solution, which can be normalized to a probability density.
- Note, for example, that these assumptions exclude the Wiener process, since
- the Lebesgue measure cannot be normalized to a density.
- We further assume that 
+, which can be normalized to a probability density.
+ Note, for example, that the latter assumption excludes the Wiener process,
+ since the Lebesgue measure cannot be normalized to a density.
+ Finally, we further assume that 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
 
@@ -350,7 +350,7 @@ th element of such a vector due to the overloading of the subscript operator.
 \end_inset
 
  for some set 
-\begin_inset Formula $\mathcal{T}=\{t_{0},\dots,t_{n}\}$
+\begin_inset Formula $\mathcal{T}\subseteq[0,1]$
 \end_inset
 
  is the value of the stochastic process at times 
@@ -377,7 +377,6 @@ th element of such a vector due to the overloading of the subscript operator.
 \end_inset
 
  be the set of real numbers.
- A full list of notation can be found at the end of the thesis.
  Having set our notation, we begin with the theory of Markov measures, focusing
  on one-dimensional processes for expositional clarity.
 \end_layout

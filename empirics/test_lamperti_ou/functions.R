@@ -1,20 +1,13 @@
 # GENERAL
-trans.ou = function(start, steps, theta, time = 1) {
-  x = sde.sim(T = time, X0 = start, N = steps - 1,
-              drift = eval(substitute(expression(
-                (- lambda * ((x * sigma) - mu))/sigma
-                ), list(lambda = theta[2], mu = theta[1]/theta[2], sigma = theta[3]))),
-              drift.x = eval(substitute(expression(
-                - lambda
-                ), list(lambda = theta[2], mu = theta[1]/theta[2], sigma = theta[3]))),
-              drift.xx = eval(substitute(expression(
-                0
-                ), list(lambda = theta[2], mu =theta[1]/theta[2], sigma = theta[3]))),
-              drift.t = expression(0),
-              sigma = expression(1),
-              sigma.x = expression(0),
-              method = "shoji")
-  as.numeric(x)
+trans.ou.fast = function(start, steps, theta, time = 1) {
+  Y <- numeric(steps)
+  Y[1] = start
+  Z = rnorm(steps - 1)
+  Dt <- time / (steps - 1)
+  for (i in 1:(steps - 1)) {
+    Y[i+1] = Y[i] + ((theta[1] / theta[3]) - theta[2] * Y[i]) * Dt + sqrt(Dt) * Z[i]
+  }
+  as.numeric(Y)
 }
 
 gen.nu.bridge.special = function(r.nu, r.diffusion, theta.tilde, theta, M, steps, type) {
@@ -26,17 +19,6 @@ gen.nu.bridge.special = function(r.nu, r.diffusion, theta.tilde, theta, M, steps
   X.dot = raw.bridges.0 - vec.seq(raw.bridges.0[,1], raw.bridges.0[,steps], length.out = steps)
   new.ends = eta(r.nu(M), theta)
   X.dot + vec.seq(new.ends[,1], new.ends[,2], length.out = steps) 
-}
-
-gen.nu.bridge.beskos = function(r.nu, r.diffusion, theta.tilde, theta, M, steps, type) {
-  if (type == "exact") {
-    raw.bridges.0 = exact.bridges(1, function(n) matrix(0, nrow = n, ncol = 2) ,M, r.diffusion, theta.tilde, steps)
-  } else if (type == "approx") {
-    raw.bridges.0 = gen.nu.bridge(function(n) matrix(0, nrow = n, ncol = 2), r.diffusion, theta.tilde, M, steps)
-  }
-  new.ends = eta((r.nu(M)), theta)
-  difference = new.ends
-  raw.bridges.0 + vec.seq(difference[,1], difference[,2], length.out = steps)
 }
 
 q.beskos.known = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact = F) {
@@ -70,18 +52,10 @@ q.beskos.known = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact
   -expectation
 }
 
-q.beskos.unknown = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact = F) {
+q.beskos.unknown.single = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact = F) {
   if (theta[2]<0 |theta[3]<0) {
     return(NA)
   }
-  
-  bridges = if (exact) {
-    gen.nu.bridge.special(r.nu, r.diffusion, theta.tilde, theta, M, steps, "exact")
-  } else {
-    gen.nu.bridge.special(r.nu, r.diffusion, theta.tilde, theta, M, steps, "approx")
-  }
-  
-  us = sample(1:steps, M, replace = T)
   
   expectation = 0
   new.ends = eta(r.nu(M), theta)
@@ -89,47 +63,22 @@ q.beskos.unknown = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exa
   new.ends = eta(r.nu(M), theta)
   expectation = expectation + mean(dnorm(new.ends[,2] - new.ends[,1], 0, 1, log = T))
   new.ends = eta(r.nu(M), theta)
-  expectation = expectation + mean(log(abs(eta.p(eta.inv(new.ends[,100], theta), theta))))
-  expectation = expectation - mean((1/2) * a.2.a.prime(bridges[cbind(1:M, us)], theta))
+  expectation = expectation - mean(log(theta[3]))
   
-  if (is.nan(expectation)) {
-    return(NA)
-  }
-  -expectation
-}
-
-q.bladt.unknown = function(theta, r.diffusion, theta.tilde, r.nu, M, steps, exact = F) {
-  set.seed(3)
-  if (theta[2]<0 |theta[3]<0) {
-    return(NA)
-  }
-  
+  us = sample(1:steps, M, replace = T)
   bridges = if (exact) {
     gen.nu.bridge.special(r.nu, r.diffusion, theta.tilde, theta, M, steps, "exact")
   } else {
     gen.nu.bridge.special(r.nu, r.diffusion, theta.tilde, theta, M, steps, "approx")
   }
   
-  us = sample(1:steps, M, replace = T)
-  
-  expectation = 0
-  expectation = expectation + mean(A(bridges[,100], theta) - A(bridges[,1], theta))
-  expectation = expectation + mean(dnorm(bridges[,100] - bridges[,1], 0, 1, log = T))
-  expectation = expectation + mean(log(abs(eta.p(eta.inv(bridges[,100], theta), theta))))
   expectation = expectation - mean((1/2) * a.2.a.prime(bridges[cbind(1:M, us)], theta))
-  
-#   expectation = 0
-#   expectation = expectation + mean(g(eta.inv(bridges[,100], theta), theta) - g(eta.inv(bridges[,1], theta), theta))
-#   expectation = expectation - (1/2) * mean((bridges[,100] - bridges[,1])^2)
-#   expectation = expectation - log(theta[3])
-#   expectation = expectation - mean((1/2) * a.2.a.prime(bridges[cbind(1:M, us)], theta))
   
   if (is.nan(expectation)) {
     return(NA)
   }
   -expectation
 }
-
 
 eta.inv = function(x, theta) {
   x * theta[3]
@@ -172,18 +121,4 @@ A = function(x, theta) {
   sigma = theta[3]
   
   (lambda / sigma) * (x * mu - ((sigma * x^2)/2))
-}
-
-# BLADT
-s = function(x, theta) {
-  mu = theta[1] / theta[2]
-  lambda = theta[2]
-  sigma = theta[3]
-  
-  (lambda / sigma^2) * (x * mu - ((x^2) /2))
-}
-
-g = function(x, theta) {
-  sigma = theta[3]
-  s(x,theta) * (1/2) * log(sigma)
 }
