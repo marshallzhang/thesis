@@ -94,37 +94,34 @@ name "chap:4"
 
 \end_layout
 
-\begin_layout Section
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridges
-\end_layout
-
 \begin_layout Standard
-To begin, we note that the canonical processes on the measures 
+In this chapter, we will study generalized diffusion bridges and develop
+ methods to sample such a specific case of bridges.
+ In particular, we can understand the canonical process on a Baudoin bridge
+ measures 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- from the previous chapter can be interpreted as diffusions conditioned
- to follow a given law 
+ as a diffusion conditioned to follow a given law 
 \begin_inset Formula $\nu$
 \end_inset
 
- at various time instances.
- These processes can be seen as generalized diffusion bridges, in the sense
- that when 
-\begin_inset Formula $\nu$
+ at times 
+\begin_inset Formula $\mathcal{T}$
 \end_inset
 
- is a product measure of Dirac delta functions, these processes are regular
- diffusion bridges.
+.
+ Such a process is a generalized diffusion bridges in the sense that when
  
-\end_layout
+\begin_inset Formula $\nu$
+\end_inset
 
-\begin_layout Standard
-In this chapter, we will study these generalized diffusion bridges and develop
- methods to sample such bridges.
+ is a product measure of Dirac delta functions, the canonical process on
+ 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ is a regular diffusion bridges.
  In general, we will examine solutions 
 \begin_inset Formula $\mathbf{X}$
 \end_inset
@@ -137,7 +134,7 @@ d\mathbf{X}_{t}=\mu(\mathbf{X}_{t})dt+\Sigma(\mathbf{X}_{t})d\mathbf{W}_{t},\lab
 
 \end_inset
 
-where 
+satisfying the usual assumptions, where 
 \begin_inset Formula $\mu$
 \end_inset
 
@@ -145,20 +142,36 @@ where
 \begin_inset Formula $\Sigma=\sigma(\mathbf{X}_{t})I$
 \end_inset
 
- have known parametric forms and as usual, 
+ have fully known parametric forms and 
 \begin_inset Formula $\mathbf{W}_{t}$
 \end_inset
 
  is a vector of independent Wiener processes.
- Having developed the theory of Baudoin conditionings in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:2"
+\end_layout
 
+\begin_layout Section
+\begin_inset Formula $\nu-$
 \end_inset
 
-, we may present a definition of the particular sort of generalized bridge
- we intend we simulate.
+bridges
+\end_layout
+
+\begin_layout Standard
+We may without loss of generality restrict our attention to Baudoin conditioning
+s of the form 
+\begin_inset Formula $(X_{0,1},\nu)$
+\end_inset
+
+, since the measures we consider are all Markovian.
+ For ease of exposition, we define a 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ below.
 \end_layout
 
 \begin_layout Definition
@@ -190,7 +203,7 @@ reference "eq:basic-sde"
 \end_inset
 
  in one dimension and let 
-\begin_inset Formula $\mathbb{X}$
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
  be the measure it induces.
@@ -211,103 +224,94 @@ bridge of
 \end_inset
 
 conditioning of 
-\begin_inset Formula $\mathbb{X}$
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
 , denoted 
-\begin_inset Formula $\mathbb{X}^{\nu}$
+\begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Standard
-Note that we may fix a Baudoin conditioning of the form 
-\begin_inset Formula $(X_{0,1},\nu)$
+In this chapter, we will repeatedly work with the probability measure 
+\begin_inset Formula $\mathbb{R}=\mathbb{P}\otimes\mathbb{P}$
 \end_inset
 
- without loss of generality since 
-\begin_inset Formula $X$
-\end_inset
-
- is Markov.
- As such, for any 
-\begin_inset Formula $\nu^{*}(dx_{t_{0}}\cdots dx_{t_{n}})$
-\end_inset
-
-, there exist 
-\begin_inset Formula $\nu^{(i)}=(dx_{t_{i-1}}dx_{t_{i}})$
-\end_inset
-
- such that 
-\begin_inset Formula 
-\[
-\mathbb{P}^{\nu^{*}}=\bigotimes_{n=1}^{n}\mathbb{P}^{\nu^{(i)}},
-\]
-
-\end_inset
-
-and thus once a sampler for 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridges is developed, a sampler for 
-\begin_inset Formula $(X_{\mathcal{T}},\nu)$
-\end_inset
-
--bridges for general 
-\begin_inset Formula $\mathcal{T}=\{t_{0},\dots,t_{n}\}$
-\end_inset
-
- follows readily.
- For notational ease in the following sections, we will denote the probability
- measure induced by the stationary solution to 
+ induced by the stationary solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
 
 \end_inset
 
- in two dimensions as 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
-.
- Note that the Baudoin 
+ in two dimensions.
+ Let the Baudoin 
 \begin_inset Formula $(\mathbf{X}_{0},\nu)$
 \end_inset
 
 -conditioning of 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{R}$
 \end_inset
 
- is equal to the measure induced by the solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- in two dimensions for the initial condition 
-\begin_inset Formula $\mathbf{X}_{0}\sim\nu$
+ be denoted 
+\begin_inset Formula $\mathbb{R}^{\nu}$
 \end_inset
 
 .
- Let this measure be denoted by 
+ 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+This notation is a little confusing but I'm not sure how to fix it..
+\end_layout
+
+\end_inset
+
+Note that 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
- as usual.
- 
+ is a measure for a one-dimensional diffusion whose endpoints at 
+\begin_inset Formula $t=\{0,1\}$
+\end_inset
+
+ are conditioned to follow 
+\begin_inset Formula $\nu$
+\end_inset
+
+, while 
+\begin_inset Formula $\mathbb{R}^{\nu}$
+\end_inset
+
+ is a joint measure for a two-dimensional diffusion with independent coordinates
+, for which the starting value is conditioned to follow 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-The theory presented in the previous part gives an easy proposition regarding
- the density of a 
-\begin_inset Formula $\nu-$
+Though 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-2002"
+
 \end_inset
 
-bridge.
+ characterizes in great detail the properties of very general Baudoin bridges,
+ the marginal density of 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ at 
+\begin_inset Formula $t\in(0,1)$
+\end_inset
+
+ in this case merits presentation.
 \end_layout
 
 \begin_layout Proposition
@@ -318,21 +322,21 @@ name "prop:v-bridge-density"
 \end_inset
 
 The marginal density of 
-\begin_inset Formula $\mathbb{X}^{\nu}$
+\begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
  with respect to 
-\begin_inset Formula $\mathbb{X}$
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
  at 
-\begin_inset Formula $t$
+\begin_inset Formula $t\in(0,1)$
 \end_inset
 
  is given by 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{X}_{t}^{\nu}}{d\mathbb{X}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{t}^{*}(x_{0},\cdot)p_{1-t}(\cdot,x_{1})}{c(x_{0},x_{1})}\nu(dx_{0}dx_{1}),
+\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{t}^{*}(x_{0},\cdot)p_{1-t}(\cdot,x_{1})}{c(x_{0},x_{1})}\nu(dx_{0}dx_{1}),
 \]
 
 \end_inset
@@ -346,7 +350,7 @@ where
 \end_inset
 
  are the forward and backward transition densities associated with 
-\begin_inset Formula $\mathbb{X}$
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
  and 
@@ -354,7 +358,7 @@ where
 \end_inset
 
  is the density of 
-\begin_inset Formula $\mathbb{X}_{0,1}$
+\begin_inset Formula $\mathbb{P}_{0,1}$
 \end_inset
 
 .
@@ -363,31 +367,26 @@ where
 
 \begin_layout Proof
 Consider any 
-\begin_inset Formula $t\in[0,1)$
+\begin_inset Formula $t\in(0,1)$
 \end_inset
 
 .
  By 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "thm:density-of-bridge"
+reference "prop:density-of-bridge"
 
 \end_inset
 
 , we know that 
 \begin_inset Formula 
 \[
-\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\mid X_{0}=x,X_{1}=y\right]=\mathbb{E}_{\mathbb{X}}\left[\mathbf{1}_{A}\frac{p_{t}^{*}\left(x,X_{t}\right)p_{1-t}\left(X_{t},y\right)}{c\left(x,y\right)}\right]
+\mathbb{E}_{\mathbb{P}}\left[X_{t}\mid X_{0}=x,X_{1}=y\right]=\mathbb{E}_{\mathbb{P}}\left[X_{t}\frac{p_{t}^{*}\left(x,X_{t}\right)p_{1-t}\left(X_{t},y\right)}{c\left(x,y\right)}\right].
 \]
 
 \end_inset
 
-for arbitrary 
-\begin_inset Formula $A\in\mathcal{F}_{t}$
-\end_inset
-
-.
- Therefore, 
+Therefore, 
 \begin_inset Formula 
 \[
 \eta_{t}^{x,y}=\frac{p_{t}^{*}(x,\cdot)p_{1-t}(\cdot,y)}{c(x,y)}
@@ -400,7 +399,7 @@ is the Radon-Nikodym derivative associated with the Baudoin
 \end_inset
 
 -conditioning on 
-\begin_inset Formula $\mathbb{X}$
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
 .
@@ -415,14 +414,7 @@ reference "prop:pv-density-1"
 \end_layout
 
 \begin_layout Standard
-Of course, 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "prop:v-bridge-density"
-
-\end_inset
-
- reinforces the fact that if 
+Naturally, if 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -431,14 +423,70 @@ reference "prop:v-bridge-density"
 \end_inset
 
  under 
-\begin_inset Formula $\mathbb{X}$
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
 , we have trivially that 
-\begin_inset Formula $\mathbb{X}^{\nu}=\mathbb{X}$
+\begin_inset Formula $\mathbb{P}^{\nu}=\mathbb{P}$
+\end_inset
+
+, and thus 
+\begin_inset Formula $d\mathbb{P}_{t}^{\nu}/d\mathbb{P}_{t}=1$
 \end_inset
 
 .
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prop:v-bridge-density"
+
+\end_inset
+
+ answers from a theoretical standpoint the question of imputation: given
+ a solution to 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:basic-sde"
+
+\end_inset
+
+ whose endpoints are conditioned to follow 
+\begin_inset Formula $\nu$
+\end_inset
+
+, we can precisely find its density at times 
+\begin_inset Formula $t\in(0,1)$
+\end_inset
+
+.
+ However, as has been noted, the transition densities are typically unavailable
+ for all but the simplest diffusions, and integrating over an arbitrary
+ measure 
+\begin_inset Formula $\nu$
+\end_inset
+
+ effectively prevents 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prop:v-bridge-density"
+
+\end_inset
+
+ from being useful in practice.
+ Motivated by the need of our MCEM scheme to sample 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridges, and by intractability of the marginal density of 
+\begin_inset Formula $\mathbb{P}^{\nu}$
+\end_inset
+
+ in the interior of its time domain, we develop a simple method for the
+ approximate simulation of 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridges in the next section.
 \end_layout
 
 \begin_layout Section
@@ -463,7 +511,15 @@ bridge should also be non-trivial, since we are not only conditioning on
 \begin_inset Formula $\left\{ X_{1}=x_{1}\right\} $
 \end_inset
 
-, but rather the event that 
+, but rather the 
+\begin_inset Quotes eld
+\end_inset
+
+event
+\begin_inset Quotes erd
+\end_inset
+
+ that 
 \begin_inset Formula $X_{0}$
 \end_inset
 
@@ -540,7 +596,7 @@ reference "algo:approx-sim"
 
 .
  First, we prove a lemma which says that the canonical process on 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+\begin_inset Formula $\mathbb{R}^{\nu}$
 \end_inset
 
  under time-reversal is the same as canonical process of a Baudoin 
@@ -548,7 +604,7 @@ reference "algo:approx-sim"
 \end_inset
 
 -conditioning of 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{R}$
 \end_inset
 
 .
@@ -575,11 +631,11 @@ The following measures are equal:
 
 \begin_deeper
 \begin_layout aEnumerate (ClassicThesis)
-\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
 \end_inset
 
 , the measure induced by the time-reversed canonical process on 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+\begin_inset Formula $\mathbb{R}^{\nu}$
 \end_inset
 
 ,
@@ -594,14 +650,14 @@ The following measures are equal:
 \end_inset
 
 conditioning of 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{R}$
 \end_inset
 
 , and
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
-\begin_inset Formula $\mathbb{P}^{0}$
+\begin_inset Formula $\mathbb{R}^{0}$
 \end_inset
 
 , the measure induced by a solution to 
@@ -612,7 +668,15 @@ reference "eq:basic-sde"
 \end_inset
 
  with initial distribution 
-\begin_inset Formula $\int p_{1}(\mathbf{x}_{1},\cdot)\nu(d\mathbf{x}_{1})$
+\begin_inset Formula $\int R_{1}(\mathbf{x}_{1},\cdot)\nu(d\mathbf{x}_{1})$
+\end_inset
+
+ where 
+\begin_inset Formula $R_{1}(\mathbf{x},\mathbf{y})$
+\end_inset
+
+ is the transition kernel associated with 
+\begin_inset Formula $\mathbb{R}$
 \end_inset
 
 .
@@ -625,7 +689,7 @@ Let
 \end_inset
 
  be the canonical process on 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+\begin_inset Formula $\mathbb{R}^{\nu}$
 \end_inset
 
  and define 
@@ -636,12 +700,8 @@ Let
 \begin_inset Formula $\mathbf{X}_{t}^{\nu,\leftarrow}=\mathbf{X}_{1-t}^{\nu}$
 \end_inset
 
- , noting that 
-\begin_inset Formula $\mathbf{X}^{\nu,\leftarrow}$
-\end_inset
-
- is the canonical process on 
-\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+ , as the canonical process on 
+\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
 \end_inset
 
 .
@@ -650,7 +710,7 @@ Let
 \end_inset
 
  and 
-\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
 \end_inset
 
  have the same marginal distribution at 
@@ -662,24 +722,23 @@ Let
 \begin_inset Formula $0\leq s<t\leq1$
 \end_inset
 
-.
- First, note that we may write the transition kernel associated with 
-\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+, and note that we may write the transition kernel associated with 
+\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
 \end_inset
 
  as
 \begin_inset Formula 
 \begin{eqnarray}
- &  & \mathbb{P}^{\nu,\leftarrow}(\mathbf{X}_{t}^{\nu,\leftarrow}\in\cdot\mid\mathbf{X}_{s}^{\nu,\leftarrow}=\mathbf{x})\nonumber \\
- & = & \mathbb{P}^{\nu}(\mathbf{X}_{1-t}^{\nu}\in\cdot\mid\mathbf{X}_{1-s}^{\nu}=\mathbf{x})\nonumber \\
- & = & \int\mathbb{P}(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0})\nu(d\mathbf{x}_{0})\label{eq:p-integral-reversal}
+ &  & \mathbb{R}^{\nu,\leftarrow}(\mathbf{X}_{t}^{\nu,\leftarrow}\in\cdot\mid\mathbf{X}_{s}^{\nu,\leftarrow}=\mathbf{x})\nonumber \\
+ & = & \mathbb{R}^{\nu}(\mathbf{X}_{1-t}^{\nu}\in\cdot\mid\mathbf{X}_{1-s}^{\nu}=\mathbf{x})\nonumber \\
+ & = & \int\mathbb{R}(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0})\nu(d\mathbf{x}_{0})\label{eq:p-integral-reversal}
 \end{eqnarray}
 
 \end_inset
 
 where the first equality is by definition and the second equality follows
  from a disintegration of 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+\begin_inset Formula $\mathbb{R}^{\nu}$
 \end_inset
 
  along its initial value.
@@ -690,8 +749,8 @@ where the first equality is by definition and the second equality follows
 symmetry condition, we have
 \begin_inset Formula 
 \begin{eqnarray*}
- &  & \int\mathbb{P}(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0})\nu(d\mathbf{x}_{0})\\
- & = & \int\mathbb{P}(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1})\nu(d\mathbf{x}_{1})
+ &  & \int\mathbb{R}(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0})\nu(d\mathbf{x}_{0})\\
+ & = & \int\mathbb{R}(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1})\nu(d\mathbf{x}_{1})
 \end{eqnarray*}
 
 \end_inset
@@ -706,14 +765,14 @@ reference "eq:p-integral-reversal"
 , gives 
 \begin_inset Formula 
 \begin{eqnarray*}
-\mathbb{P}^{\nu,\leftarrow}(\mathbf{X}_{t}^{\nu,\leftarrow}\in\cdot\mid\mathbf{X}_{s}^{\nu,\leftarrow}=\mathbf{x}) & = & \int\mathbb{P}(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1})\nu(d\mathbf{x}_{1})\\
+\mathbb{R}^{\nu,\leftarrow}(\mathbf{X}_{t}^{\nu,\leftarrow}\in\cdot\mid\mathbf{X}_{s}^{\nu,\leftarrow}=\mathbf{x}) & = & \int\mathbb{R}(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1})\nu(d\mathbf{x}_{1})\\
  & = & \mathbb{Q}(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x})
 \end{eqnarray*}
 
 \end_inset
 
 Thus we see that the transition kernels associated with 
-\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
 \end_inset
 
  and 
@@ -726,7 +785,7 @@ Thus we see that the transition kernels associated with
 
 \begin_layout Proof
 Now, note that since 
-\begin_inset Formula $\pi$
+\begin_inset Formula $\Pi$
 \end_inset
 
  is the invariant measure of 
@@ -734,7 +793,7 @@ Now, note that since
 \end_inset
 
 , 
-\begin_inset Formula $\mathbb{P}_{t}=\pi$
+\begin_inset Formula $\mathbb{R}_{t}=\Pi$
 \end_inset
 
  for any 
@@ -745,11 +804,11 @@ Now, note that since
  So, we have 
 \begin_inset Formula 
 \begin{eqnarray*}
-\mathbb{Q}_{0} & = & \int\mathbb{P}_{0}\left(\cdot\mid\mathbf{X}_{1}=\mathbf{x}_{1}\right)\nu\left(d\mathbf{x}_{1}\right)\\
- & = & \int\pi\left(\mathbf{X}_{0}\in\cdot\mid\mathbf{X}_{1}=\mathbf{x}_{1}\right)\nu\left(d\mathbf{x}_{1}\right)\\
- & = & \int\pi\left(\mathbf{X}_{1}\in\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0}\right)\nu\left(d\mathbf{x}_{0}\right)\\
- & = & \int\mathbb{P}_{1}\left(\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0}\right)\nu\left(d\mathbf{x}_{0}\right)\\
- & = & \mathbb{P}_{1}^{\nu}=\mathbb{P}_{0}^{\nu,\leftarrow}
+\mathbb{Q}_{0} & = & \int\mathbb{R}_{0}\left(\cdot\mid\mathbf{X}_{1}=\mathbf{x}_{1}\right)\nu\left(d\mathbf{x}_{1}\right)\\
+ & = & \int\Pi\left(\mathbf{X}_{0}\in\cdot\mid\mathbf{X}_{1}=\mathbf{x}_{1}\right)\nu\left(d\mathbf{x}_{1}\right)\\
+ & = & \int\Pi\left(\mathbf{X}_{1}\in\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0}\right)\nu\left(d\mathbf{x}_{0}\right)\\
+ & = & \int\mathbb{R}_{1}\left(\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0}\right)\nu\left(d\mathbf{x}_{0}\right)\\
+ & = & \mathbb{R}_{1}^{\nu}=\mathbb{R}_{0}^{\nu,\leftarrow}
 \end{eqnarray*}
 
 \end_inset
@@ -767,7 +826,7 @@ We therefore see that
 \end_inset
 
  and 
-\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
 \end_inset
 
  have the same restriction to 
@@ -775,15 +834,10 @@ We therefore see that
 \end_inset
 
 .
- Since they also have the same transition densities, by 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "thm:markov-construction-thm"
-
-\end_inset
-
-, we have 
-\begin_inset Formula $\mathbb{Q}=\mathbb{P}^{\nu,\leftarrow}$
+ Since they also have the same transition densities, by the fact that time-homog
+enous Markov measures are uniquely determined by a marginal measure and
+ a transition kernel, we have 
+\begin_inset Formula $\mathbb{Q}=\mathbb{R}^{\nu,\leftarrow}$
 \end_inset
 
  as desired.
@@ -791,7 +845,7 @@ reference "thm:markov-construction-thm"
 
 \begin_layout Proof
 Now, we show that 
-\begin_inset Formula $\mathbb{P}^{0}$
+\begin_inset Formula $\mathbb{R}^{0}$
 \end_inset
 
  has the same restriction to 
@@ -814,28 +868,28 @@ reference "eq:basic-sde"
 
 \end_inset
 
-, which induces a measure 
-\begin_inset Formula $\mathbb{P}$
+, which induces the measure 
+\begin_inset Formula $\mathbb{R}$
 \end_inset
 
 .
  Then, we may write the restriction of 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{R}$
 \end_inset
 
  to 
-\begin_inset Formula $t=0,1$
+\begin_inset Formula $t=\{0,1\}$
 \end_inset
 
  as
 \begin_inset Formula 
 \[
-\mathbb{P}_{0,1}=p_{1}\left(\mathbf{x}_{0},\cdot\right)\pi\left(\mathbf{x}_{0}\right)=p_{1}\left(\mathbf{x}_{1},\cdot\right)\pi\left(\mathbf{x}_{1}\right)
+\mathbb{R}_{0,1}=\mathbb{R}_{1}\left(\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0}\right)\Pi\left(\mathbf{x}_{0}\right)=\mathbb{R}_{0}\left(\cdot\mid\mathbf{X}_{1}=\mathbf{x}_{1}\right)\Pi\left(\mathbf{x}_{1}\right)
 \]
 
 \end_inset
 
-by 
+where the second equality is by 
 \begin_inset Formula $\gamma-$
 \end_inset
 
@@ -853,15 +907,15 @@ symmetry.
 \end_inset
 
 , is simply the transition kernel 
-\begin_inset Formula $p_{1}\left(\mathbf{x}_{1},\cdot\right)$
+\begin_inset Formula $R_{1}\left(\mathbf{x}_{1},\cdot\right)$
 \end_inset
 
 .
  Under a Baudoin 
-\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)-$
+\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)$
 \end_inset
 
-conditioning, we know that the law of 
+-conditioning, we know that the law of 
 \begin_inset Formula $\mathbf{X}_{1}$
 \end_inset
 
@@ -874,7 +928,7 @@ conditioning, we know that the law of
 \end_inset
 
  may also be written as 
-\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\nu\left(d\mathbf{x}_{1}\right)$
+\begin_inset Formula $\int R_{1}\left(\mathbf{x}_{1},\cdot\right)\nu\left(d\mathbf{x}_{1}\right)$
 \end_inset
 
 .
@@ -887,11 +941,11 @@ conditioning, we know that the law of
 
 \begin_layout Proof
 Finally, we note that 
-\begin_inset Formula $\mathbb{P}^{0}$
+\begin_inset Formula $\mathbb{R}^{0}$
 \end_inset
 
  has the same transition kernel as 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+\begin_inset Formula $\mathbb{R}^{\nu}$
 \end_inset
 
  since both measures are induced by solutions to the same stochastic differentia
@@ -903,28 +957,26 @@ reference "eq:basic-sde"
 \end_inset
 
 .
- By reversibility, it follows that 
-\begin_inset Formula $\mathbb{P}^{0}$
+ By 
+\begin_inset Formula $\gamma$
+\end_inset
+
+-symmetry, it follows that 
+\begin_inset Formula $\mathbb{R}^{0}$
 \end_inset
 
  has the same transition kernel as 
-\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
 \end_inset
 
 .
- Finally, by another application of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "thm:markov-construction-thm"
-
-\end_inset
-
-, and the equality of 
+ Finally, by another application of the unique construction of Markov measures,
+ and the equality of 
 \begin_inset Formula $\mathbb{Q}$
 \end_inset
 
  and 
-\begin_inset Formula $\mathbb{P}^{\nu,\leftarrow}$
+\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
 \end_inset
 
 , the desired result follows.
@@ -938,9 +990,9 @@ reference "lem:time-reversal"
 
 \end_inset
 
- in hand, we can now prove a theorem relating a particular functional of
- the canonical process on 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+ in hand, we can now prove the central result of this chapter, relating
+ a particular functional of the canonical process on 
+\begin_inset Formula $\mathbb{R}^{\nu}$
 \end_inset
 
  to the 
@@ -988,7 +1040,7 @@ reference "eq:basic-sde"
 \end_inset
 
  and diffusion coefficient 
-\begin_inset Formula $\mbox{diag}(\Sigma,\Sigma)$
+\begin_inset Formula $\Sigma(\mathbf{X}_{t})$
 \end_inset
 
 .
@@ -1089,6 +1141,18 @@ reference "eq:basic-sde"
 
  be an independent stationary solution to the same.
  
+\end_layout
+
+\begin_layout Proof
+We begin by defining two functionals of 
+\begin_inset Formula $\mathbf{X}^{\nu}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{X}^{*}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Proof
@@ -1212,8 +1276,8 @@ on the event
 \begin_inset Formula $\mathbf{p}=(\mathbf{p}^{(1)},\mathbf{p}^{(2)})$
 \end_inset
 
-, let 
-\begin_inset Formula $\tilde{\mathbf{p}}=(\mathbf{p}^{(2)},\mathbf{p}^{(1)})$
+, we define 
+\begin_inset Formula $\overset{\leftrightarrow}{\mathbf{p}}=(\mathbf{p}^{(2)},\mathbf{p}^{(1)})$
 \end_inset
 
 .
@@ -1221,14 +1285,18 @@ on the event
 
 \begin_layout Proof
 Now, define the event 
-\begin_inset Formula 
-\begin{equation}
-\mathscr{B}=\left\{ \mathbf{Y}_{1}=\tilde{\mathbf{Y}}_{0}\right\} \label{eq:bridge-event}
-\end{equation}
-
+\begin_inset Formula $\mathscr{B}$
 \end_inset
 
+ as the event that 
+\begin_inset Formula $\mathbf{Y}_{1}$
+\end_inset
 
+ and 
+\begin_inset Formula $\overset{\leftrightarrow}{\mathbf{Y}}_{0}$
+\end_inset
+
+ are equal as functions on the probability space.
 \end_layout
 
 \begin_layout Proof
@@ -1245,7 +1313,7 @@ We will first show that
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
-, we can write 
+, we know that 
 \begin_inset Formula $\mathscr{B}$
 \end_inset
 
@@ -1253,24 +1321,24 @@ We will first show that
 \begin_inset Formula $\mathscr{R}$
 \end_inset
 
-, as 
-\begin_inset Formula 
-\[
-\mathscr{B}=\left\{ \mathbf{X}_{1}^{*}=\tilde{\mathbf{X}}_{0}^{\nu}\right\} 
-\]
-
+, is the event that 
+\begin_inset Formula $\mathbf{X}_{1}^{*}$
 \end_inset
 
-which says that 
-\begin_inset Formula $\mathscr{B}$
+ and 
+\begin_inset Formula $\overset{\leftrightarrow\:\:\:}{\mathbf{X}_{0}^{\nu}}$
 \end_inset
 
- is the event that 
+ are equal as functions on the probability space, and thus 
 \begin_inset Formula $\mathbf{X}_{1}^{*}$
 \end_inset
 
  is distributed with law 
-\begin_inset Formula $\tilde{\nu}$
+\begin_inset Formula $\overset{\leftrightarrow}{\nu}$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R})$
 \end_inset
 
 .
@@ -1291,7 +1359,7 @@ reference "lem:time-reversal"
 
  (i.e.
  the Baudoin 
-\begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
+\begin_inset Formula $(\mathbf{X}_{1}^{*},\overset{\leftrightarrow}{\nu})$
 \end_inset
 
 -bridge of 
@@ -1299,7 +1367,7 @@ reference "lem:time-reversal"
 \end_inset
 
 ) is equal in distribution to the time-reversed process 
-\begin_inset Formula $\tilde{\mathbf{X}}_{1-t}^{\nu}$
+\begin_inset Formula $\overset{\leftrightarrow\:\:\:\:\:\:\:\:\:}{\mathbf{X}_{1-t}^{\nu}}$
 \end_inset
 
 , which by construction of 

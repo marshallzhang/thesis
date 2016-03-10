@@ -77,21 +77,36 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps, set.start = c(-Inf,
 
 exact.bridges = function(M, r.nu, samples, r.diffusion, theta,steps, time = 1) {
   bridges = matrix(0, nrow = samples, ncol = 100)
-  start.end = r.nu(1)
-  bridges[1, ] = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, time, set.start = start.end)
-  for (i in 2:samples) {
+  if (samples == 1) {
       start.end = r.nu(1)
       proposal.1 = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, time, set.start = start.end)
       proposal.2 = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, time, set.start = start.end)
-    r = rho(proposal.2, M, r.diffusion, theta, steps, time) / rho(proposal.1, M, r.diffusion, theta, steps, time)
-    alpha = min(1, r)
-    if (runif(1) < alpha) {
-      bridges[i,] = proposal.2
-    } else {
-      bridges[i,] = proposal.1
+      r = rho(proposal.2, M, r.diffusion, theta, steps, time) / rho(proposal.1, M, r.diffusion, theta, steps, time)
+      alpha = min(1, r)
+      if (runif(1) < alpha) {
+        proposal.2
+      } else {
+        proposal.1
+      }
+  } else {
+    start.end = r.nu(1)
+    bridges[1, ] = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, time, set.start = start.end)
+    for (i in 2:samples) {
+        start.end = r.nu(1)
+        proposal.1 = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, time, set.start = start.end)
+        proposal.2 = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, time, set.start = start.end)
+      r = rho(proposal.2, M, r.diffusion, theta, steps, time) / rho(proposal.1, M, r.diffusion, theta, steps, time)
+      alpha = min(1, r)
+      if (runif(1) < alpha) {
+        bridges[i,] = proposal.2
+      } else {
+        bridges[i,] = proposal.1
+      }
     }
+    bridges
+    
   }
-  bridges
+  
 }
 
 rho = function(x, M, r.diffusion, theta, steps, time = 1) {
@@ -126,7 +141,7 @@ trans.ou.fast = function(start, steps, theta, time = 1) {
 
 gen.nu.bridge.special = function(r.nu, r.diffusion, theta.tilde, theta, M, steps, type, time = 1) {
   if (type == "exact") {
-    raw.bridges.0 = exact.bridges(1, function(n) eta(r.nu(n), theta.tilde), M, r.diffusion, theta.tilde, steps, set.start = c(-Inf, Inf), time)
+    raw.bridges.0 = exact.bridges(1, function(n) eta(r.nu(n), theta.tilde), M, r.diffusion, theta.tilde, steps, time)
   } else if (type == "approx") {
     raw.bridges.0 = gen.nu.bridge(function(n) eta(r.nu(n), theta.tilde), r.diffusion, theta.tilde, M, steps, set.start = c(-Inf, Inf), time)
   }

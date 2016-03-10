@@ -103,21 +103,17 @@ Objects and Notation
 \end_layout
 
 \begin_layout Standard
-We fix the objects of study and notation at the outset.
- 
-\end_layout
-
-\begin_layout Standard
-From this point on, unless otherwise noted, we always consider the probability
- space 
+We begin by fixing the objects of study and notation.
+ In the theoretical portion of this thesis, unless otherwise noted, we always
+ consider the probability space 
 \begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right),\mathbb{P}\right)$
 \end_inset
 
-, where the sample space will be 
+, where the sample space 
 \begin_inset Formula $\Omega=\mathcal{C}\left(\left[0,1\right],\mathcal{R}^{n}\right)$
 \end_inset
 
-, the space of real-valued continuous functions 
+ is the space of real-valued continuous functions 
 \begin_inset Formula $\omega:\left[0,1\right]\rightarrow\mathcal{R}^{n}$
 \end_inset
 
@@ -291,7 +287,7 @@ where
 \begin_inset Formula $p_{t}$
 \end_inset
 
- is the transition density associated with the diffusion.
+ is the transition kernel associated with the diffusion.
  In general, we will take the density of a given measure to refer to its
  density with respect to the Lebesgue measure unless otherwise noted.
 \end_layout
@@ -975,7 +971,7 @@ since the regular conditional probability
 \end_inset
 
 .
- This observation, which allows us to uniquely construct 
+ This observation allows us to uniquely construct 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
@@ -983,10 +979,8 @@ since the regular conditional probability
 \begin_inset Formula $\eta_{t}^{y}$
 \end_inset
 
- exists (which we always assume going forward), will play a key role in
- the chapters to follow.
- This construction says, in the language of the discussion regarding Markov
- bridges above, that 
+ exists (which we always assume going forward) and says, in the language
+ of the discussion regarding Markov bridges above, that 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
@@ -994,7 +988,7 @@ since the regular conditional probability
 \begin_inset Formula $\mathbb{P}(\cdot\mid Y=y)$
 \end_inset
 
- with respect to a mixing measure 
+ with respect to the mixing measure 
 \begin_inset Formula $\nu$
 \end_inset
 

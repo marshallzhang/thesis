@@ -14,9 +14,13 @@
 \newref{algo}{name=Algorithm~,Name=Algorithm~}
 \newref{lem}{name=Lemma~,Name=Lemma~}
 \newref{fig}{name=Figure~,Name=Figure~}
+\newref{chap}{name=Chapter~,Name=Chapter~}
+\newref{remark}{name=Remark~,Name=Remark~}
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage[labelfont=bf]{caption}
+\MakeRobust{\Call}
+
 
 \makeatletter
 \renewcommand*{\thetable}{\arabic{chapter}.\arabic{table}}
@@ -328,8 +332,8 @@ reference "chap:EM"
 
 \end_inset
 
-, the problem of inference on distributional data is formalized and interpreted
- in the context of maximum liklihood estimation under model misspecification.
+, the problem of inference on distributional data is formalized and some
+ interpretations of the problem and its relation to maximum liklihood estimation.
  An MCEM algorithm generalizing those of 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -344,8 +348,8 @@ key "bladt-sorensen-2014"
 
 \end_inset
 
- to carry out inference on such data is proposed, and the algorithm's need
- for a sampler of a special case of a Baudoin bridge is noted.
+ to carry out inference on distributional data is proposed, and the algorithm's
+ need for a sampler of a special case of a generalized bridge is noted.
  
 \begin_inset Newline newline
 \end_inset
@@ -357,7 +361,7 @@ reference "chap:4"
 
 \end_inset
 
-, a light theoretical treatment of the specific Baudoin bridges of interest
+, a light theoretical treatment of the specific generalized bridges of interest
  is given, and a simple approximate sampler is developed in the spirit of
  
 \begin_inset CommandInset citation
@@ -367,7 +371,7 @@ key "bladt-sorensen-2014"
 \end_inset
 
 .
- A slightly more complex exact sampler is also proposed.
+ An exact sampler is also proposed.
 \end_layout
 
 \begin_layout Part

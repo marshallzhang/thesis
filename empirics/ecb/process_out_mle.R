@@ -1,5 +1,5 @@
-source("/Users/marshall/Documents/senior/thesis/empirics/general_functions.R")
-source("/Users/marshall/Documents/senior/thesis/empirics/ecb/functions.R")
+# source("/Users/marshall/Documents/senior/thesis/empirics/general_functions.R")
+# source("/Users/marshall/Documents/senior/thesis/empirics/ecb/functions.R")
 
 mle = read.csv("/Users/marshall/Documents/senior/thesis/empirics/ecb/out_mle.txt", sep = ",", header = F)
 

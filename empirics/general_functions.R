@@ -1,21 +1,22 @@
-# library(sde)
-# library(lattice)
-# library(mvtnorm)
-# library(scales)
-# library(grid)
-# library(gridExtra)
-# library(NCmisc)
-# library(matrixStats)
-# library(Ryacas)
-# library(psych)
-# library(DEoptim)
-# library(dfoptim)
-# library(stabledist)
-# library(VarianceGamma)
-# library(ghyp)
-# library(Matrix)
-# library(parallel)
-# library(doParallel)
+library(sde)
+library(lattice)
+library(mvtnorm)
+library(scales)
+library(grid)
+library(gridExtra)
+library(NCmisc)
+library(matrixStats)
+library(Ryacas)
+library(psych)
+library(DEoptim)
+library(dfoptim)
+library(stabledist)
+library(VarianceGamma)
+library(ghyp)
+library(Matrix)
+library(parallel)
+library(doParallel)
+library(somebm)
 
 # APPROXIMATE BRIDGES
 
@@ -98,7 +99,7 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps, set.start = c(-Inf,
 
 # EXACT BRIDGES
 
-exact.bridges = function(M, r.nu, samples, r.diffusion, theta,steps, time = 1) {
+exact.bridges = function(M, r.nu, samples, r.diffusion, theta, steps, time = 1) {
   bridges = matrix(0, nrow = samples, ncol = 100)
   start.end = r.nu(1)
   bridges[1, ] = gen.nu.bridge(r.nu, r.diffusion, theta, 1, steps, time, set.start = start.end)
@@ -227,9 +228,10 @@ ou.vg = function(start, steps, theta, time = 1) {
   Y <- numeric(steps)
   Y[1] = start
   Dt <- time / (steps - 1)
-  Z = rvg(steps - 1, vgC = 0, sigma = 1, theta = 0, nu = 1)
+  Z = rnorm(steps - 1)
+  G = rgamma(steps - 1, shape = Dt / 0.1, scale = 1/0.1)
   for (i in 1:(steps - 1)) {
-    Y[i+1] = Y[i] + (theta[1] - theta[2] * Y[i]) * Dt + sqrt(Dt) *  Z[i]
+    Y[i+1] = Y[i] + (theta[1] - theta[2] * Y[i]) * Dt + sqrt(G[i]) *  Z[i]
   }
   as.numeric(Y)
 }
