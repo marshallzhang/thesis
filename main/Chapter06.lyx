@@ -1,0 +1,963 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass classicthesis
+\begin_preamble
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[labelfont=bf]{caption}
+
+\makeatletter
+\renewcommand*{\thetable}{\arabic{chapter}.\arabic{table}}
+\renewcommand*{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\let\c@table\c@figure
+\makeatother 
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+theorems-chap
+\end_modules
+\maintain_unincluded_children false
+\language american
+\language_package default
+\inputencoding default
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Empirical Studies
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:6"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this chapter, we apply the methods developed thus far to model the evolution
+ of conditional expectations of inflation among economists.
+\end_layout
+
+\begin_layout Section
+The ECB's Survey of Professional Forecasters
+\end_layout
+
+\begin_layout Standard
+The European Central Bank (ECB) carries out a quarterly survey of expectations
+ for the rate of inflation among professional economists and institutions,
+ known as the Survey of Professional Forecasters (SPF).
+ Though the format of the SPF has changed over time, in every SPF since
+ 1999Q1, a panel of professional forecasters has been asked to provide their
+ expectations of annualized HICP Euro Area inflation at the end of the current
+ calendar year, the next calendar year, and the calendar year five years
+ ahead.
+ Recent SPFs have also included forecasts for the end of the calendar year
+ after next.
+ The ECB releases the expectations of all surveyed forecasters at every
+ horizon included in the SPF, indexing the forecasts by the forecaster who
+ provided them; in effect, the SPF represents distributional data on the
+ distribution of inflation expectations at discrete future points in time.
+\end_layout
+
+\begin_layout Standard
+The pricing of many financial securities (Treasury inflation-protected securitie
+s, for instance) depends on inflation expectations over time.
+ Given the vast array of inflation-linked securities in the marketplace,
+ the forecast horizons of the SPF may be too coarse to be useful for pricing
+ and other purposes: for instance, we may be interested in the distribution
+ of inflation expectations halfway through a calendar year.
+ This is a natural arena in which we may ask questions of inference and
+ imputation given distributional data.
+\end_layout
+
+\begin_layout Standard
+We formalize the modeling problem as follows.
+ Suppose the expectation 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ for annualized HICP Euro Area inflation at time horizon 
+\begin_inset Formula $t$
+\end_inset
+
+ conditional on today's inflation evolves continuously according to some
+ stochastic process 
+\begin_inset Formula 
+\begin{equation}
+dX_{t}=\mu_{\theta}(X_{t})dt+\sigma_{\theta}(X_{t})dW_{t}\label{eq:cond-inf}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $W$
+\end_inset
+
+ is a Wiener process.
+ We may conceptualize this as a scenario in which we have a uncountable
+ sample space of forecasters, each with her own model for the evolution
+ of inflation over time.
+ For any particular forecaster 
+\begin_inset Formula $\omega$
+\end_inset
+
+, 
+\begin_inset Formula $X_{t}(\omega)$
+\end_inset
+
+ is the conditional expectation for inflation at time horizon 
+\begin_inset Formula $t$
+\end_inset
+
+ of forecaster 
+\begin_inset Formula $\omega$
+\end_inset
+
+ given today's inflation.
+ Note that we are not modeling the evolution of inflation over time; rather,
+ we are modeling the evolution of inflation expectations.
+\end_layout
+
+\begin_layout Standard
+In this chapter, we will examine the 
+\begin_inset Formula $M=68$
+\end_inset
+
+ SPFs conducted by the ECB from 1999Q1 through 2015Q4.
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:summary"
+
+\end_inset
+
+ provides some summary statistics of this dataset.
+ Since the ECB can only ever ask a finite number of forecasters for their
+ inflation expectations, we can understand the distributional data provided
+ in a particular SPF as the empirical distribution induced by discrete observati
+ons of some finite number (between 
+\begin_inset Formula $33$
+\end_inset
+
+ and 
+\begin_inset Formula $62$
+\end_inset
+
+, as seen in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:summary"
+
+\end_inset
+
+) of sample paths of 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering 
+\backslash
+begin{tabular}{@{}lllll@{}} 
+\backslash
+toprule                                     & Mean  & SD   & Min.
+  & Max.
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+midrule Forecasters surveyed                & 103.5 & 7.6  & 94    & 116 
+ 
+\backslash
+
+\backslash
+ Forecasters with complete responses & 44.3  & 6.1  & 33    & 62   
+\backslash
+
+\backslash
+ Inflation at time of SPF (
+\backslash
+%)       & 1.76  & 0.90 & -0.70 & 4.10 
+\backslash
+
+\backslash
+ SD of nearest horizon forecasts (
+\backslash
+%)     & 0.15  & 0.05 & 0.05  & 0.33 
+\backslash
+
+\backslash
+ SD of farthest horizon forecasts (
+\backslash
+%)    & 0.21  & 0.07 & 0.09  & 0.55 
+\backslash
+
+\backslash
+ 
+\backslash
+bottomrule 
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle" width="2cm">
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:summary"
+
+\end_inset
+
+Summary statistics for the 
+\begin_inset Formula $N=68$
+\end_inset
+
+ SPFs conducted by the ECB from 1999Q1 through 2015Q4.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Modeling Inflation Expectations
+\end_layout
+
+\begin_layout Standard
+We begin our study by supposing that 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:cond-inf"
+
+\end_inset
+
+ is specified according to an OU diffusion i.e.
+ has 
+\begin_inset Formula $\mu_{\theta}(x)=-\lambda(x-\mu)$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{\theta}(x)=\sigma$
+\end_inset
+
+ where 
+\begin_inset Formula $\theta=(\mu,\lambda,\sigma)$
+\end_inset
+
+.
+ This is a convenient specification since the transition density of the
+ OU diffusion is available, and thus we are able to check the consistency
+ of the MKLDE obtained through MCEM against the MKLDE obtained through direct
+ maximization of the analytic average log-likelihood.
+ 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+I can outline exactly how to calculate this if needed, not sure if too pedantic.
+\end_layout
+
+\end_inset
+
+For each SPF in our data set, we carry out MKLDE using both the direct maximizat
+ion method and the proposed MCEM scheme, fixing the value of 
+\begin_inset Formula $X$
+\end_inset
+
+ at 
+\begin_inset Formula $t=0$
+\end_inset
+
+ as the annualized HICP Euro Area inflation reported at the most recent
+ month before the quarter that the SPF was distributed (the SPF is usually
+ distributed in the first month of each quarter, so we can assume forecasters
+ are conditioning on the inflation print of the previous month).
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mle-vs-mcem"
+
+\end_inset
+
+ reports the results of both direct maximization and of MCEM on the dataset,
+ when we measure time in quarterly units.
+ We note that the MKLDEs for 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ obtained by MCEM using approximate bridges are effectively indistinguishable
+ from those obtained via direct maximization of the analytic likelihood.
+ On the other hand, the bias is non-trivially positive for the MKLDE of
+ 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, suggesting that the thin-tailedness of the approximate bridges can in
+ fact affect the quality of MKLDEs obtained by MCEM in empirical situations.
+ The computational cost of running MCEM with exact bridges, however, is
+ still high enough that the practitioner will need to weigh the utility
+ of slightly more accurate estimates against significantly longer running
+ times on a case-by-case basis.
+\end_layout
+
+\begin_layout Standard
+The MKLDE for 
+\begin_inset Formula $\mu$
+\end_inset
+
+ aligns closely with intuition: the ECB's inflation targeting policy states
+ that it aims for 
+\begin_inset Quotes eld
+\end_inset
+
+inflation rates of below, but close to, 
+\begin_inset Formula $2\%$
+\end_inset
+
+ in the medium term
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Forecasters on average then, are merely reverting to the medium-term goal
+ of the ECB when reporting their long-term conditional expectations for
+ inflation.
+ The directly obtained MKLDE for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ suggests that the conditional inflation expectations of forecasters revert
+ to the ECB's target inflation rate by 
+\begin_inset Formula $0.2\times(\mbox{Current Inflation}-1.94\%)$
+\end_inset
+
+ every quarter.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+centering 
+\backslash
+begin{tabular}{@{}cccccl@{}} 
+\backslash
+toprule                         & Mean & Bias  &  
+\backslash
+multicolumn{3}{l}{Cov.
+ of bias ($
+\backslash
+times 10^{-2}$)} 
+\backslash
+
+\backslash
+ 
+\backslash
+midrule $
+\backslash
+hat{
+\backslash
+mu}$             & 1.94 & -0.02
+\backslash
+:            & 
+\backslash
+:1.23
+\backslash
+:            &                &                
+\backslash
+
+\backslash
+ $
+\backslash
+hat{
+\backslash
+lambda}$         & 0.23 & 
+\backslash
+;0.06
+\backslash
+:           & -0.51
+\backslash
+:           & 1.10           &                
+\backslash
+
+\backslash
+ $
+\backslash
+hat{
+\backslash
+sigma}$          & 0.17 & 
+\backslash
+;0.00
+\backslash
+:           & -0.56
+\backslash
+:           & 0.50           & 0.24           
+\backslash
+
+\backslash
+ 
+\backslash
+bottomrule 
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle" width="2cm">
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:mle-vs-mcem"
+
+\end_inset
+
+Mean of the MKLDEs obtained by direct maximization of analytic average log-likel
+ihood of an OU diffusion, as well as the bias of MKLDE estimates obtained
+ by MCEM using approximate bridges relative to the directly estimated mean,
+ over 
+\begin_inset Formula $N=68$
+\end_inset
+
+ quarters of ECB inflation forecast responses.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With the ability to find the MKLDE for each of the 
+\begin_inset Formula $N=68$
+\end_inset
+
+ SPFs, we can experiment to see how well the OU diffusion models the evolution
+ of inflation expectations relative to a baseline linear interpolation method.
+ 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+I will outline the exact method of making these baseline linear interpolations.
+\end_layout
+
+\end_inset
+
+ In particular, we attempt to interpolate inflation expectations at horizons
+ of 
+\begin_inset Formula $1-4$
+\end_inset
+
+ quarters and 
+\begin_inset Formula $7-10$
+\end_inset
+
+ quarters, which are available in every SPF in the data set, using the closest
+ neighboring horizons.
+ For example, interpolation of a forecast 
+\begin_inset Formula $2$
+\end_inset
+
+ quarters ahead would use the current value of inflation and the forecast
+ for 
+\begin_inset Formula $6$
+\end_inset
+
+ quarters ahead.
+ Our imputation method is as follows.
+ For each SPF, we estimate the MKLDE once witholding the 
+\begin_inset Formula $1-4$
+\end_inset
+
+ quarter forecast and once withholding the 
+\begin_inset Formula $7-10$
+\end_inset
+
+ quarter forecast.
+ Then, we simulate generalized OU bridges governed by the MKLDE between
+ the closest neighboring horizons, and take the values of these bridges
+ at the time corresponding to the forecast of interest.
+ To evaluate the performance of our imputation method against a linear interpola
+tion, we compute the sample K-L divergence using the estimator of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "perez-cruz-2008"
+
+\end_inset
+
+.
+ In order to use this estimator, we must add normally distributed noise
+ with small variance 
+\begin_inset Formula $(\sigma^{2}\approx0.001)$
+\end_inset
+
+ to the linear interpolations and the true SPF forecasts, so that there
+ are no repeated values.
+ We drop any negative estimates of the K-L divergence, and present the distribut
+ions of the divergences across the SPFs in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:est_kl"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/marshall/Documents/senior/thesis/figures/est_kl.pdf
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:est_kl"
+
+\end_inset
+
+A comparison of the estimated K-L divergences of interpolated inflation
+ expectations at 
+\begin_inset Formula $1-4$
+\end_inset
+
+ month and 
+\begin_inset Formula $7-10$
+\end_inset
+
+ month horizons, using a naïve linear interpolation method and generalized
+ bridge-based imputation.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We see that the generalized OU bridges offer an imputed distribution noticeably
+ closer to the true distribution at the 
+\begin_inset Formula $1-4$
+\end_inset
+
+ month horizon, while the linear interpolation performs comparably at the
+ 
+\begin_inset Formula $7-10$
+\end_inset
+
+ month horizon.
+ More precisely, the mean K-L divergence from the distribution reported
+ in the SPFs at the 
+\begin_inset Formula $1-4$
+\end_inset
+
+ month horizon is 
+\begin_inset Formula $1.10$
+\end_inset
+
+ when used bridge-based imputation and 
+\begin_inset Formula $1.56$
+\end_inset
+
+ when using linear interpolation.
+ However, in general, the K-L divergences remain fairly large: for reference,
+ the standard Gaussian distribution and the standard Exponential distribution
+ are estimated to have K-L divergence of approximately 
+\begin_inset Formula $0.7$
+\end_inset
+
+.
+ The observed K-L divergences of either imputation method therefore appear
+ to suggest that conditional expectations of inflation do not evolve either
+ linearly or according to an OU process over time; this is expected, since
+ there is no reason to think that the conditional expectations should even
+ follow time-homogenous dynamics.
+ 
+\end_layout
+
+\begin_layout Standard
+Nevertheless, the methodology proposed here can provide a useful first step
+ in thinking about the evolution of inflation expectations over time.
+ In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:cont_path"
+
+\end_inset
+
+, we present a visualization of the final product of this thesis.
+ Using the proposed MCEM scheme to estimate the MKLDE, we repeatedly sample
+ generalized bridges between the SPF forecast distributions, whose dynamics
+ are governed by the MKLDE.
+ Examination of this figure reveals that an OU process does seem like a
+ poor fit, especially at short horizons—the up-and-down during the first
+ quarter suggests that the forecasters expected inflation to remain low
+ in the short-term, and rapidly accelerate in the medium-term.
+ The inability to capture dynamics like these leads our generalized OU bridges
+ to mean-revert 
+\begin_inset Quotes eld
+\end_inset
+
+too quickly
+\begin_inset Quotes erd
+\end_inset
+
+, before being forced to come back down to the SPF forecasts for one quarter
+ forward.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+This chapter is pretty poorly written and I'm going to fix it up a lot.
+ I just wanted to show you some of the results.
+ I am also waiting on the MCEM to come back for other diffusion specifications
+ i.e.
+ hyperbolic diffusions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/marshall/Documents/senior/thesis/figures/cont_path.pdf
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:cont_path"
+
+\end_inset
+
+500 sample paths of imputed inflation expectations, where inflation expectations
+ are assumed to follow an OU diffusion.
+ The diffusion is governed by the MKLDE with respect to the SPF forecast
+ horizons, and sample paths are generated as generalized bridges between
+ the SPF forecast distributions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
