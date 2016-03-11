@@ -320,7 +320,7 @@ filename "Chapter02.lyx"
 \end_layout
 
 \begin_layout Part Introduction (ClassicThesis)
-In this part, the central problem of this thesis treated theoretically,
+In this Part, the central problem of this thesis treated theoretically,
  with a focus on simulation-based inference.
 \begin_inset Newline newline
 \end_inset
@@ -402,7 +402,34 @@ filename "Chapter04.lyx"
 \end_layout
 
 \begin_layout Part Introduction (ClassicThesis)
-In this part, the theoretical results 
+The methodology developed in the previous Part is applied in a variety of
+ simulation and empirical settings in this Part.
+\begin_inset Newline newline
+\end_inset
+
+In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:5"
+
+\end_inset
+
+, the generalized bridge samplers and the MCEM scheme are evaluated in a
+ simulation setting, and shown to be correct and robust in a variety of
+ scenarios.
+\begin_inset Newline newline
+\end_inset
+
+In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:6"
+
+\end_inset
+
+, we take theory to practice and demonstrate how the methods developed in
+ this thesis can be used to model the evolution of inflation expectations
+ given probabilistic forecasts at discrete future points in time.
 \end_layout
 
 \begin_layout Part
@@ -419,6 +446,16 @@ Empirical Contribution
 \begin_inset CommandInset include
 LatexCommand include
 filename "Chapter05.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Chapter06.lyx"
 
 \end_inset
 

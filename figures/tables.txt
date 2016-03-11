@@ -54,19 +54,19 @@
 \centering
 \begin{tabular}{@{}clccccccccc@{}}
 \toprule
-\multirow{2}{*}{Iteration} &  & \multicolumn{3}{l}{Approx.}                                                                                 & \multicolumn{3}{l}{Exact}                                                                                           \\ \cmidrule(lr){3-5} 
+\multirow{2}{*}{$i$} &  & \multicolumn{3}{l}{Approx.}                                                                                 & \multicolumn{3}{l}{Exact}                                                                                           \\ \cmidrule(lr){3-5} 
                            &  & \multicolumn{1}{c}{$\hat{\mu}$} & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\sigma}$}     & \multicolumn{1}{c}{$\hat{\mu}$} & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\sigma}$} \\ \cmidrule(r){1-1} \cmidrule(lr){3-8}
-0                          &  & 2.00                                & \:2.00\:                            & \:2.00\:                                & \:2.00\:                                & \:2.00\:                               & \:2.00\:                       \\
-1                          &  & 0.59                                & 1.94                            & 1.10                                & 0.30                                & 1.69                               & 1.15                   \\
-2                          &  & 0.06                                & 0.95                            & 0.97                                & 0.08                                & 0.83                               & 0.90    \\
-3                          &  & -0.06\:                               & 1.28                            & 1.07                               & 0.03                               &                                   &    \\
-4                          &  & 0.18                                & 0.98                            & 0.86                                & 0.05                                &                                    &      \\
-5                          &  & 0.00                                & 1.03                            & 0.95                                & 0.04                                &                                    &   \\
-6                          &  & 0.02                                & 0.94                            & 0.88                                & 0.04                                &                                    &   \\
-7                          &  & 0.01                                & 1.33                            & 0.96                                & 0.02                                &                                    &     \\
-8                          &  & -0.05\:                               & 0.91                            & 1.02                                & 0.04                                &                                   &  \\
-9                          &  & 0.01                                & 1.01                            & 0.99                                & 0.02                                &                                    &  \\
-10                         &  & -0.04\:                               & 1.04                            & 1.04                                & 0.03                                &                                        \\ \bottomrule
+0                          &  & 2.00                                & \:2.00\:                        & \:2.00\:                            & \:2.00\:                            & \:2.00\:                           & \:2.00\:                       \\
+1                          &  & 0.59                                & 1.94                            & 1.10                                & 0.10                                & 0.93                               & 0.89                   \\
+2                          &  & 0.06                                & 0.95                            & 0.97                                & 0.01                                & 0.87                               & 0.88    \\
+3                          &  & -0.06\:                               & 1.28                            & 1.07                               & -0.02\:                            & 0.71                               & 0.88   \\
+4                          &  & 0.18                                & 0.98                            & 0.86                                & -0.10\:                             & 0.97                               & 0.93     \\
+5                          &  & 0.00                                & 1.03                            & 0.95                                & 0.02                                & 0.98                               & 0.98  \\
+6                          &  & 0.02                                & 0.94                            & 0.88                                & 0.04                                & 1.09                               & 0.99  \\
+7                          &  & 0.01                                & 1.33                            & 0.96                                & -0.03\:                                & 1.19                               & 1.06    \\
+8                          &  & -0.05\:                               & 0.91                            & 1.02                                & 0.04                                & 1.01                                  &1.01  \\
+9                          &  & 0.01                                & 1.01                            & 0.99                                & 0.04                                & 1.04                                   & 0.99 \\
+10                         &  & -0.04\:                               & 1.04                            & 1.04                                & 0.01                                & 1.08                             & 1.01          \\ \bottomrule
 \end{tabular}
 
 
@@ -78,28 +78,43 @@
                          & $\hat{\mu}$                 & $\hat{\lambda}$      & $\hat{\sigma}$       & $\hat{\mu}$          & $\hat{\lambda}$      & $\hat{\sigma}$       \\ \midrule
 \emph{OU}              & \multicolumn{1}{l}{}        & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\
 \:\:\:\:Asymptotic               & 0.03                        & 1.11                 & 0.99                 & 0.01                 & 0.97                 & 0.96                 \\
-\:\:\:\:\:\:\:\:Est. Err.                & (0.05)                      & (0.19)               & (0.04)               & (0.10)               & (0.04)               & (0.07)               \\
+\:\:\:\:\:\:\:\:Std. Dev.                & (0.05)                      & (0.19)               & (0.04)               & (0.10)               & (0.04)               & (0.07)               \\
 \:\:\:\:Finite Sample            & -0.03\:                       & 0.95                 & 0.97                 &                      &                      &                      \\
-\:\:\:\:\:\:\:\:Est. Err.                & (0.14)                      & (0.33)               & (0.07)               &                      &                      &                      \\
+\:\:\:\:\:\:\:\:Std. Dev.                & (0.14)                      & (0.33)               & (0.07)               &                      &                      &                      \\
 \emph{Wiener}          & \multicolumn{1}{l}{}        & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\
-\:\:\:\:Asymptotic               & -0.02\:                       & 0.08                 & 1.01                 &                      &                      &                      \\
-\:\:\:\:\:\:\:\:Est. Err.                & (0.05)                      & (0.07)               & (0.02)               &                      &                      &                      \\
-\:\:\:\:Finite Sample            & 0.03                        & 0.10                 & 0.95                 &                      &                      &                      \\
-\:\:\:\:\:\:\:\:Est. Err.                & (0.15)                      & (0.09)               & (0.04)               &                      &                      &                      \\
+\:\:\:\:Asymptotic               & -0.25\:                       & 0.08                 & 1.01                 &                      &                      &                      \\
+\:\:\:\:\:\:\:\:Std. Dev.                & (0.63)                      & (0.07)               & (0.02)               &                      &                      &                      \\
+\:\:\:\:Finite Sample            & 0.30                        & 0.10                 & 0.95                 &                      &                      &                      \\
+\:\:\:\:\:\:\:\:Std. Dev.                & (1.50)                      & (0.09)               & (0.04)               &                      &                      &                      \\
 \emph{Fractional}      &                             &                      &                      & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\
 \:\:\:\:Asymptotic               & 0.03                        & 0.81                 & 1.43                 &                      &                      &                      \\
-\:\:\:\:\:\:\:\:Est. Err.                & (0.05)                      & (0.09)               & (0.05)               &                      &                      &                      \\
+\:\:\:\:\:\:\:\:Std. Dev.                & (0.05)                      & (0.09)               & (0.05)               &                      &                      &                      \\
 \:\:\:\:Finite Sample            & 0.00                        & 0.97                 & 1.36                 &                      &                      &                      \\
-\:\:\:\:\:\:\:\:Est. Err.                & (0.15)                      & (0.15)               & (0.04)               &                      &                      &                      \\ \bottomrule
+\:\:\:\:\:\:\:\:Std. Dev.                & (0.15)                      & (0.15)               & (0.05)               &                      &                      &                      \\ \bottomrule
 \end{tabular}
 
 
 
 \centering
-\begin{tabular}{@{}ccp{-0.25ex}ccl@{}}
+\begin{tabular}{@{}lllll@{}}
 \toprule
-                        & Mean  &  & \multicolumn{3}{l}{Covariance ($\times 10^{-2}$)} \\ \midrule
-$\hat{\mu}-\mu$         & -0.02\:  &  & \:1.23\:            &                &                \\
-$\hat{\lambda}-\lambda$ & \;0.06\: &  & -0.51\:           & 1.10           &                \\
-$\hat{\sigma}-\sigma$   & \;0.00\:  &  & -0.56\:           & 0.50           & 0.24           \\ \bottomrule
+                                    & Mean  & SD   & Min.  & Max. \\ \midrule
+Forecasters surveyed                & 103.5 & 7.6  & 94    & 116  \\
+Forecasters with complete responses & 44.3  & 6.1  & 33    & 62   \\
+Inflation at time of SPF (\%)       & 1.76  & 0.90 & -0.70 & 4.10 \\
+SD of nearest horizon forecasts     & 0.15  & 0.05 & 0.05  & 0.33 \\
+SD of farthest horizon forecasts    & 0.21  & 0.07 & 0.09  & 0.55 \\ \bottomrule
 \end{tabular}
+
+
+\centering
+\begin{tabular}{@{}cccccl@{}}
+\toprule
+                        & Mean & Bias  &  \multicolumn{3}{l}{Covariance of bias ($\times 10^{-2}$)} \\ \midrule
+$\hat{\mu}$             & 1.94 & -0.02\:            & \:1.23\:            &                &                \\
+$\hat{\lambda}$         & 0.23 & \;0.06\:           & -0.51\:           & 1.10           &                \\
+$\hat{\sigma}$          & 0.17 & \;0.00\:           & -0.56\:           & 0.50           & 0.24           \\ \bottomrule
+\end{tabular}
+
+
+

@@ -68,7 +68,6 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps, set.start = c(-Inf,
   # Generate two independent diffusions, one starting at start and the other at end.
    tryCatch({
       bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy[i, 1], xy[i, 2], steps, time)
-      stop(as.character(xy))
     }, error = function(e) {
       tryCatch({
         xy1 = r.nu(1)

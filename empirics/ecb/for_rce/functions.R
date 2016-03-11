@@ -7,8 +7,8 @@ for (year in years) {
   forecasts[[as.character(year)]] = yearly.forecast = vector("list", length(quarters))
   names(forecasts[[as.character(year)]]) = as.character(quarters)
   for (quarter in quarters) {
-#     raw = read.csv(paste("/Users/marshall/Documents/senior/thesis/empirics/data/inflation/", year, "Q", quarter, ".csv", sep = ""), header = T, stringsAsFactors = F)[,-1]
-    raw = read.csv(paste("../../data/inflation/", year, "Q", quarter, ".csv", sep = ""), header = T, stringsAsFactors = F)[,-1]
+    raw = read.csv(paste("/Users/marshall/Documents/senior/thesis/empirics/data/inflation/", year, "Q", quarter, ".csv", sep = ""), header = T, stringsAsFactors = F)[,-1]
+#     raw = read.csv(paste("../../data/inflation/", year, "Q", quarter, ".csv", sep = ""), header = T, stringsAsFactors = F)[,-1]
     horizons = unique(raw$horizon)
     forecasts[[as.character(year)]][[as.character(quarter)]] = vector("list", length(horizons))
     names(forecasts[[as.character(year)]][[as.character(quarter)]]) = as.character(horizons)
@@ -39,8 +39,8 @@ for (year in years) {
 
 # Build forecast matrices.
 
-# current = read.csv(paste("/Users/marshall/Documents/senior/thesis/empirics/data/inflation/actual_inf_all_months.csv", sep = ""), header = T, stringsAsFactors = F)[,-1]
-current = read.csv("../../data/inflation/actual_inf_all_months.csv", header = T, stringsAsFactors = F)
+current = read.csv(paste("/Users/marshall/Documents/senior/thesis/empirics/data/inflation/actual_inf_all_months.csv", sep = ""), header = T, stringsAsFactors = F)[,-1]
+# current = read.csv("../../data/inflation/actual_inf_all_months.csv", header = T, stringsAsFactors = F)
 
 forecast.mats = vector("list", length(years))
 names(forecast.mats) = as.character(years)

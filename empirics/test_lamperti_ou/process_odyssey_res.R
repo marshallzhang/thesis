@@ -1,5 +1,5 @@
 
-ids = c(9) + 1:5 * 9
+ids = c(0) + 1:5 * 9
 ests = matrix(NA, nrow = 100, ncol = 3)
 counter = 1
 for (id in ids) {

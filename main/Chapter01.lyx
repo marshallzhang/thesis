@@ -161,8 +161,8 @@ endgroup
 \end_layout
 
 \begin_layout Standard
-Upon receiving this divination, there is no doubt that the Spartans understood
- that their fortunes would likely deteriorate the course of the war, culminating
+The Spartans, upon receiving this divination, ought to have understood that
+ their fortunes would likely deteriorate over the course of the war, culminating
  in the loss of either their capital city or their king (ultimately, King
  Leonidas, a descendant of Heracles, and three hundred of his men took a
  legendary last stand at Thermopylae on the basis of this prognostication).
@@ -295,13 +295,14 @@ In the empirical portion of this thesis, we validate the correctness of
  parameter and also robust to various assumptions, including the use of
  an approximate generalized bridge sampler instead of the exact sampler.
  Finally, we use the proposed inference scheme to estimate the parameters
- underlying the predictions of professional macroeconomic forecasters.
- Using these estimates, we compare the imputed paths Using the estimated
- parameters, we are therefore able to impute a continuous probabilistic
- path over the full horizon of the discrete forecasts, which as the number
- of economists surveyed goes to infinity, minimizes its Kullback-Liebler
- divergence from the distribution of the forecasts at the relevant discrete
- points in time.
+ governing the evolution of the inflation expectations of professional macroecon
+omic forecasters.
+ Then, we show that a generalized bridge-based imputation scheme can reduce
+ out-of-sample K-L divergence by up to 
+\begin_inset Formula $30\%$
+\end_inset
+
+ relative to a naïve linear interpolation of probabilistic forecasts.
 \end_layout
 
 \begin_layout Section
@@ -338,14 +339,11 @@ reference "chap:EM"
 \end_inset
 
 .
- A procedure for conducting inference is developed and an interpretation
- of such a procedure as being a limited case of MLE on a misspecified model
- is also given.
- An expectation-maximization algorithm is developed to address the problem
- of intractable transition densities for most diffusion processes.
- However, the need to exactly sample generalized diffusion bridges becomes
- apparent if we wish to be able to carry out such an EM algorithm under
- Monte Carlo framework.
+ A procedure for conducting inference is developed and interpretations of
+ such a procedure in relation to MLE are given, and an expectation-maximization
+ algorithm is developed to carry out such inference.
+ However, this algorithm must be implemented in a Monte Carlo framework,
+ and requires the ability to sample a certain class of generalized bridges.
  As such, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -365,8 +363,25 @@ reference "part:3"
 
 \end_inset
 
- will focus on the empirical aspects of the thesis, which I haven't written
- up yet.
+ focuses on putting theory to practice.
+ A variety of simulations are conducted in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:5"
+
+\end_inset
+
+ to demonstrate both the correctness and robustness of the generalized bridge
+ samplers and the MCEM algorithm.
+ In the final chapter of this thesis, 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:6"
+
+\end_inset
+
+, these methods are applied to model inflation expectations of professional
+ forecasters.
 \end_layout
 
 \end_body

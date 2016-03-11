@@ -160,13 +160,35 @@ reference "chap:EM"
  MCEM scheme increased utility in inference applications.
 \end_layout
 
+\begin_layout Standard
+All optimizations are carried out using the DEoptim (differential evolution
+ optimization) package in R on default settings.
+ The computations in this paper were run on the Odyssey cluster supported
+ by the Research Computing Group in the FAS Division of Science at Harvard
+ University, and the Research Computing Environment supported by the Institute
+ for Quantitative Social Science at Harvard University.
+\end_layout
+
 \begin_layout Section
-Objects and Methods
+Sampling 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridges
 \end_layout
 
 \begin_layout Standard
-As usual, we begin by fixing the objects of study.
- We will focus in this chapter on Lévy processes of the form 
+In this section, we will study the approximate and exact generalized bridge
+ samplers proposed in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+.
+ As usual, we begin by fixing the objects of study.
+ We will focus on Lévy processes of the form 
 \begin_inset Formula 
 \begin{equation}
 dX_{t}=-\lambda\left(X_{t}-\mu\right)dt+\sigma dL_{t},\label{eq:ou-sde}
@@ -180,6 +202,10 @@ for some initial condition on
 
  and a Lévy process 
 \begin_inset Formula $L$
+\end_inset
+
+, where 
+\begin_inset Formula $\lambda,\sigma>0$
 \end_inset
 
 .
@@ -287,34 +313,11 @@ reference "eq:ou-sde"
 \begin_inset Formula $\hat{\rho}$
 \end_inset
 
-) and no burn-in since its proposals are independent of one another, and
- all optimizations are carried out using the DEoptim (differential evolution
- optimization) package in R on default settings.
- The computations in this paper were run on the Odyssey cluster supported
- by the Research Computing Group in the FAS Division of Science at Harvard
- University, and the Research Computing Environment supported by the Institute
- for Quantitative Social Science at Harvard University.
-\end_layout
-
-\begin_layout Section
-Sampling 
-\begin_inset Formula $\nu$
-\end_inset
-
--Bridges
+).
 \end_layout
 
 \begin_layout Standard
-In this section, we will test whether the generalized bridge samplers proposed
- in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:4"
-
-\end_inset
-
- indeed draw from the true generalized bridge distribution.
- Note that an unconstrained solution to 
+Now, note that an unconstrained solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ou-sde"
@@ -347,7 +350,15 @@ reference "eq:ou-sde"
 \begin_inset Formula $X$
 \end_inset
 
- is equal in distribution to the appropriate unconstrained process.
+ is equal in distribution to 
+\begin_inset Formula $X$
+\end_inset
+
+ when 
+\begin_inset Formula $X_{0}\sim F$
+\end_inset
+
+.
  In 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -378,7 +389,7 @@ reference "chap:2"
 
 \end_inset
 
-, we also test the generalized bridge samplers for an OU process driven
+, we also test the generalized bridge samplers when the OU process driven
  by a standard 
 \begin_inset Formula $\alpha$
 \end_inset
@@ -390,8 +401,9 @@ reference "chap:2"
 , which is not an Itô diffusion (in fact, every increment of this process
  has infinite variance), and the Wiener process, which does not have finite
  speed measure.
- Note that the Wiener process is a Gaussian OU diffusion with 
-\begin_inset Formula $\theta=(0,0,1)$
+ Note that the Wiener process can be seen as a limiting case of an Gaussian
+ OU diffusion for 
+\begin_inset Formula $\theta\rightarrow(0,0,1)$
 \end_inset
 
 .
@@ -399,9 +411,10 @@ reference "chap:2"
 
 \begin_layout Standard
 \begin_inset Float table
+placement tbh
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -713,7 +726,7 @@ Kolmogorov-Smirnov statistics comparing
 \begin_inset Formula $t=1/2$
 \end_inset
 
- of unconstrained solutions 
+ of solutions 
 \begin_inset Formula $X$
 \end_inset
 
@@ -724,25 +737,13 @@ reference "eq:ou-sde"
 
 \end_inset
 
- against approximately and exactly sampled 
-\begin_inset Formula $\nu_{\theta^{*}}(F,W)$
-\end_inset
-
--, 
-\begin_inset Formula $\nu_{\theta^{*}}(F,L_{\alpha})$
-\end_inset
-
--, and 
-\begin_inset Formula $\nu_{(0,0,1)}(F,W)$
-\end_inset
-
--bridges of 
+ against approximately and exactly generalized bridges of 
 \begin_inset Formula $X$
 \end_inset
 
 .
- The relative running times of sampling the bridges against sampling the
- unconstrained processes are also presented.
+ The running times relative to sampling the unconstrained processes are
+ also presented.
 \end_layout
 
 \end_inset
@@ -810,7 +811,7 @@ reference "fig:q-q"
  qualitatively high quality samples.
  In general, we see that the approximate samples are slightly thinner-tailed
  than the true distribution—conditional on the approximate samples being
- hit by a hitting processes (which in this case mean-reverts to 
+ hit by a hitting process (which in this case mean-reverts to 
 \begin_inset Formula $0$
 \end_inset
 
@@ -891,6 +892,7 @@ Q-Q plots comparing
 \end_inset
 
 .
+ 
 \end_layout
 
 \end_inset
@@ -950,8 +952,12 @@ Inference on Distributional Data
 \end_layout
 
 \begin_layout Standard
-Given the ability to sample from a generalized bridge distribution, in this
- section, we verify the correctness of the MCEM algorithm proposed in 
+Having verified our ability to sample 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridges, in this section, we verify the correctness of the MCEM algorithm
+ proposed in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:EM"
@@ -959,20 +965,113 @@ reference "chap:EM"
 \end_inset
 
 .
- As an illustrative example, the iterations of the MCEM algorithm estimating
- the parameters of a Gaussian solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:ou-sde"
+ We will focus conducting inference for the parameters governing a Gaussian
+ OU process (OU diffusion), due to the prevalence of such processes as discussed
+ above and their analytical tractability with regards to their K-L divergence
+ from other Gaussian processes.
+\end_layout
 
+\begin_layout Standard
+Our simulation strategy rests on the following observation: Consider a general
+ stochastic process 
+\begin_inset Formula $X$
 \end_inset
 
-, conditional on the endpoints of the diffusion being distributed according
- to 
-\begin_inset Formula $\nu_{\theta^{*}}(\mathcal{N}(0,1/2),W)$
+ with initial condition 
+\begin_inset Formula $X_{0}=x_{0}$
 \end_inset
 
-, are presented in 
+ on the interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $\nu_{X}$
+\end_inset
+
+ is set to the distribution of 
+\begin_inset Formula $X$
+\end_inset
+
+ at times 
+\begin_inset Formula $t=\{1/2,1\}$
+\end_inset
+
+, the proposed MCEM scheme under a Gaussian OU model initialized at 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ should converge to parameter which minimizes the K-L divergence of the
+ OU diffusion at 
+\begin_inset Formula $t=\{1/2,1\}$
+\end_inset
+
+ from 
+\begin_inset Formula $\nu_{X}$
+\end_inset
+
+ (note we pick 
+\begin_inset Formula $n=2$
+\end_inset
+
+ for identifiability reasons).
+ If 
+\begin_inset Formula $X$
+\end_inset
+
+ is also an OU diffusion, 
+\begin_inset Formula $\theta$
+\end_inset
+
+ should simply converge to the parameters governing 
+\begin_inset Formula $X$
+\end_inset
+
+; otherwise, so long as 
+\begin_inset Formula $X$
+\end_inset
+
+ is a Gaussian process, the K-L divergence is analytically available and
+ we can compute what the true MKLD parameter ought to be.
+ Note we can draw from any 
+\begin_inset Formula $\nu_{X}$
+\end_inset
+
+ simply by simulating 
+\begin_inset Formula $X$
+\end_inset
+
+ over 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+ and taking its values at 
+\begin_inset Formula $t=\{1/2,1\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As an illustrative example, we choose 
+\begin_inset Formula $\nu=\nu_{X}$
+\end_inset
+
+ where 
+\begin_inset Formula $X$
+\end_inset
+
+ is an OU diffusion governed by parameters 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+, and present the iterations of the MCEM algorithm under a OU diffusion
+ model given 
+\begin_inset Formula $\nu$
+\end_inset
+
+ in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "tab:mcem-stationary"
@@ -980,7 +1079,11 @@ reference "tab:mcem-stationary"
 \end_inset
 
 .
- Recall that the only 
+ The proposed MKLDE should simply converge to 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+, and we wish to emphasize that the only 
 \begin_inset Quotes eld
 \end_inset
 
@@ -989,12 +1092,12 @@ data
 \end_inset
 
  given to the algorithm is the ability to draw from 
-\begin_inset Formula $\nu_{\theta^{*}}(\mathcal{N}(0,1/2),W)$
+\begin_inset Formula $\nu$
 \end_inset
 
 .
- Since OU-type processes have a constant diffusion coefficient, the correspondin
-g Lamperti transform is simply 
+ Since the OU diffusion has a constant diffusion coefficient, the corresponding
+ Lamperti transform is simply 
 \begin_inset Formula $\eta_{\theta}(x)=x/\theta$
 \end_inset
 
@@ -1013,7 +1116,7 @@ reference "chap:EM"
 \begin_inset Float table
 wide true
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1021,7 +1124,7 @@ status open
 
 \begin_layout Plain Layout
 
- 
+
 \backslash
 centering 
 \backslash
@@ -1029,7 +1132,7 @@ begin{tabular}{@{}clccccccccc@{}}
 \backslash
 toprule 
 \backslash
-multirow{2}{*}{Iteration} &  & 
+multirow{2}{*}{$i$} &  & 
 \backslash
 multicolumn{3}{l}{Approx.}                                              
                                    & 
@@ -1090,19 +1193,19 @@ cmidrule(lr){3-8} 0                          &  & 2.00
 \backslash
 :2.00
 \backslash
+:                        & 
+\backslash
+:2.00
+\backslash
 :                            & 
 \backslash
 :2.00
 \backslash
-:                                & 
+:                            & 
 \backslash
 :2.00
 \backslash
-:                                & 
-\backslash
-:2.00
-\backslash
-:                               & 
+:                           & 
 \backslash
 :2.00
 \backslash
@@ -1111,15 +1214,15 @@ cmidrule(lr){3-8} 0                          &  & 2.00
 
 \backslash
  1                          &  & 0.59                                & 1.94
-                            & 1.10                                & 0.30 
-                               & 1.69                               & 1.15
+                            & 1.10                                & 0.10 
+                               & 0.93                               & 0.89
                    
 \backslash
 
 \backslash
  2                          &  & 0.06                                & 0.95
-                            & 0.97                                & 0.08 
-                               & 0.83                               & 0.90
+                            & 0.97                                & 0.01 
+                               & 0.87                               & 0.88
     
 \backslash
 
@@ -1127,58 +1230,63 @@ cmidrule(lr){3-8} 0                          &  & 2.00
  3                          &  & -0.06
 \backslash
 :                               & 1.28                            & 1.07 
-                              & 0.03                               &    
-                               &    
+                              & -0.02
+\backslash
+:                            & 0.71                               & 0.88 
+  
 \backslash
 
 \backslash
  4                          &  & 0.18                                & 0.98
-                            & 0.86                                & 0.05 
-                               &                                    &  
-    
+                            & 0.86                                & -0.10
+\backslash
+:                             & 0.97                               & 0.93
+     
 \backslash
 
 \backslash
  5                          &  & 0.00                                & 1.03
-                            & 0.95                                & 0.04 
-                               &                                    &  
- 
+                            & 0.95                                & 0.02 
+                               & 0.98                               & 0.98
+  
 \backslash
 
 \backslash
  6                          &  & 0.02                                & 0.94
                             & 0.88                                & 0.04 
-                               &                                    &  
- 
+                               & 1.09                               & 0.99
+  
 \backslash
 
 \backslash
  7                          &  & 0.01                                & 1.33
-                            & 0.96                                & 0.02 
-                               &                                    &  
-   
+                            & 0.96                                & -0.03
+\backslash
+:                                & 1.19                               & 1.06
+    
 \backslash
 
 \backslash
  8                          &  & -0.05
 \backslash
 :                               & 0.91                            & 1.02 
-                               & 0.04                                &  
-                                 &  
+                               & 0.04                                & 1.01
+                                  &1.01  
 \backslash
 
 \backslash
  9                          &  & 0.01                                & 1.01
-                            & 0.99                                & 0.02 
-                               &                                    &  
+                            & 0.99                                & 0.04 
+                               & 1.04                                   &
+ 0.99 
 \backslash
 
 \backslash
  10                         &  & -0.04
 \backslash
 :                               & 1.04                            & 1.04 
-                               & 0.03                                &  
-                                      
+                               & 0.01                                & 1.08
+                             & 1.01          
 \backslash
 
 \backslash
@@ -1278,21 +1386,28 @@ name "tab:mcem-stationary"
 
 \end_inset
 
-MCEM iterations for inference on the parameters of a Gaussian OU process,
- given that its endpoints are distributed 
-\begin_inset Formula $\nu_{\theta^{*}}(\mathcal{N}(0,1/2),W)$
-\end_inset
-
-, using approximate and exact generalized bridge samplers.
- The 
+The 
 \begin_inset Formula $i$
 \end_inset
 
-th iteration uses 
+th MCEM iteration (using 
 \begin_inset Formula $100\times\left\lfloor i^{1.2}\right\rfloor $
 \end_inset
 
- MC samples.
+ MC samples) for inference on the parameters of a Gaussian OU process given
+ 
+\begin_inset Formula $\nu_{X}$
+\end_inset
+
+ where 
+\begin_inset Formula $X$
+\end_inset
+
+ is a Gaussian OU process governed by 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -1306,8 +1421,9 @@ th iteration uses
 \end_layout
 
 \begin_layout Standard
-We note that MCEM scheme using either the exact or approximate sampler effective
-ly converges after two iterations.
+We note that MCEM scheme using either the exact or approximate sampler converges
+ quite quickly, with no obvious difference between using one sampler or
+ the other.
  As is usual for MCEM schemes, the algorithm produces parameter estimates
  sampled from some neighborhood of the true parameter value, instead of
  converging deterministically to such a value.
@@ -1321,107 +1437,11 @@ ly converges after two iterations.
 \end_layout
 
 \begin_layout Standard
-In 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:diff-diffusions"
-
-\end_inset
-
-, we present a comprehensive evaluation of the ability of the proposed MCEM
- scheme to estimate the parameter vector for a Gaussian OU diffusion given
- that the diffusion's endpoints follow a variety of given joint distributions.
- 
-\end_layout
-
-\begin_layout Standard
-In particular, we consider joint distributions 
-\begin_inset Formula $\nu_{\theta^{*}}(F,W)$
-\end_inset
-
- for 
-\begin_inset Formula $F\sim\mathcal{N}(0,1/2)$
-\end_inset
-
-, as well 
-\begin_inset Formula $F\sim\hat{\mathcal{N}}(0,1/2)$
-\end_inset
-
-—a discrete distribution consisting of 
-\begin_inset Formula $100$
-\end_inset
-
- fixed samples from 
-\begin_inset Formula $\mathcal{N}(0,1/2)$
-\end_inset
-
-—and 
-\begin_inset Formula $F\sim2\mbox{Bern}-1$
-\end_inset
-
-.
- Furthermore, we consider 
-\begin_inset Formula $L=W$
-\end_inset
-
-, as well as the cases when 
-\begin_inset Formula $L$
-\end_inset
-
- is a standard variance gamma process and a standard normal inverse Gaussian
- process.
- In these non-Gaussian cases, the resulting joint distribution 
-\begin_inset Formula $\nu_{\theta^{*}}(F,L)$
-\end_inset
-
- is not a member of the family of joint distributions that can induced by
- a Gaussian OU process, and thus the MCEM algorithm will perform maximum
- likelihood estimation under model misspecification.
- However, since the form of the drift and diffusion coefficients remains
- the same, and both the variance gamma and normal inverse Gaussian distributions
- have finite variance, we expect that the resulting parameter estimates
- ought to be consistent for 
-\begin_inset Formula $\theta^{*}$
-\end_inset
-
-; 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:diff-diffusions"
-
-\end_inset
-
- confirms that this is indeed the case.
-\end_layout
-
-\begin_layout Standard
-Furthermore, we can see from 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:diff-diffusions"
-
-\end_inset
-
- that the approximate and exact samplers are effectively indistinguishable
- in the quality of their parameter estimates after 10 MCEM iterations; the
- only major difference between using the two samplers is that the MCEM scheme
- using the exact sampler is prohibitively slow.
- In fact, the computational time used by exact sampling is on the order
- of two magnitudes longer than the time used by approximate sampling.
- We conjecture that for all but the most extreme of distributional data
- (i.e.
- conditioning a process which mean reverts to zero on an endpoint joint
- distribution with marginal distributions centered far from zero), an MCEM
- scheme relying on approximate generalized bridge sampling will provide
- parameter estimates of sufficiently high quality, especially given the
- inherent variance of MCEM estimates in the first place.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float table
+placement tbh
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1533,8 +1553,8 @@ multicolumn{1}{l}{}
 \backslash
 :
 \backslash
-:Est.
- Err.
+:Std.
+ Dev.
                 & (0.05)                      & (0.19)               & (0.04)
                & (0.10)               & (0.04)               & (0.07)     
           
@@ -1572,8 +1592,8 @@ multicolumn{1}{l}{}
 \backslash
 :
 \backslash
-:Est.
- Err.
+:Std.
+ Dev.
                 & (0.14)                      & (0.33)               & (0.07)
                &                      &                      &         
              
@@ -1606,7 +1626,7 @@ multicolumn{1}{l}{}
 \backslash
 :
 \backslash
-:Asymptotic               & -0.02
+:Asymptotic               & -0.25
 \backslash
 :                       & 0.08                 & 1.01                 &  
                     &                      &                      
@@ -1629,9 +1649,9 @@ multicolumn{1}{l}{}
 \backslash
 :
 \backslash
-:Est.
- Err.
-                & (0.05)                      & (0.07)               & (0.02)
+:Std.
+ Dev.
+                & (0.63)                      & (0.07)               & (0.02)
                &                      &                      &         
              
 \backslash
@@ -1645,7 +1665,7 @@ multicolumn{1}{l}{}
 \backslash
 :
 \backslash
-:Finite Sample            & 0.03                        & 0.10           
+:Finite Sample            & 0.30                        & 0.10           
       & 0.95                 &                      &                   
    &                      
 \backslash
@@ -1667,9 +1687,9 @@ multicolumn{1}{l}{}
 \backslash
 :
 \backslash
-:Est.
- Err.
-                & (0.15)                      & (0.09)               & (0.04)
+:Std.
+ Dev.
+                & (1.50)                      & (0.09)               & (0.04)
                &                      &                      &         
              
 \backslash
@@ -1718,8 +1738,8 @@ multicolumn{1}{l}{}
 \backslash
 :
 \backslash
-:Est.
- Err.
+:Std.
+ Dev.
                 & (0.05)                      & (0.09)               & (0.05)
                &                      &                      &         
              
@@ -1756,9 +1776,9 @@ multicolumn{1}{l}{}
 \backslash
 :
 \backslash
-:Est.
- Err.
-                & (0.15)                      & (0.15)               & (0.04)
+:Std.
+ Dev.
+                & (0.15)                      & (0.15)               & (0.05)
                &                      &                      &         
              
 \backslash
@@ -1768,7 +1788,11 @@ multicolumn{1}{l}{}
 \backslash
 bottomrule 
 \backslash
-end{tabular} 
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -1860,33 +1884,25 @@ name "tab:diff-diffusions"
 
 \end_inset
 
-MCEM iterations for inference on the parameters of an OU process with unit
- diffusion given the joint distribution at 
-\begin_inset Formula $t=\{0,1\}$
+Mean and standard deviation of 
+\begin_inset Formula $N=10$
 \end_inset
 
- induced by a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:ou-sde"
-
+ MKLDEs obtained after ten iterations of MCEM  on an OU diffusion given
+ 
+\begin_inset Formula $\nu_{X}$
 \end_inset
 
- with various initial conditions and 
-\begin_inset Formula $\lambda=1,\mu=0$
+ or an approximation 
+\begin_inset Formula $\hat{\nu}_{X}$
 \end_inset
 
-, using approximate and exact generalized bridge samplers.
- The 
-\begin_inset Formula $i$
+ for varying 
+\begin_inset Formula $X$
 \end_inset
 
-th iteration is performed using 
-\begin_inset Formula $100\times\left\lfloor i^{1.5}\right\rfloor $
-\end_inset
-
- MC samples, and the Fletcher-Reeves conjugate gradient method is used for
- maximization.
+, using approximate and exact samplers for generalized bridges.
+ 
 \end_layout
 
 \end_inset
@@ -1900,189 +1916,193 @@ th iteration is performed using
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status open
+With a heuristic sense of the dynamics of the MCEM's convergence, we present
+ a comprehensive evaluation of the proposed algorithm to estimate the parameter
+ vector for a Gaussian OU diffusion given a variety of 
+\begin_inset Formula $\nu_{X}$
+\end_inset
 
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:diff-diffusions"
 
-\begin_layout Plain Layout
+\end_inset
 
+.
+\end_layout
+
+\begin_layout Standard
+In particular, we consider 
+\begin_inset Formula $\nu_{X}$
+\end_inset
+
+ when 
+\begin_inset Formula $X$
+\end_inset
+
+ is an OU diffusion governed by 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+, a Wiener process, and a fractional Wiener process.
+ When 
+\begin_inset Formula $X$
+\end_inset
+
+ is equal to an OU diffusion, the MCEM algorithm should converge to 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+, bringing the K-L divergence of the distribution of an OU diffusion at
  
-\backslash
-centering 
-\backslash
-begin{tabular}{@{}ccp{-0.25ex}ccl@{}} 
-\backslash
-toprule                         & Mean  &  & 
-\backslash
-multicolumn{3}{l}{Covariance ($
-\backslash
-times 10^{-2}$)} 
-\backslash
+\begin_inset Formula $t=\{1/2,1\}$
+\end_inset
 
-\backslash
+ from 
+\begin_inset Formula $\nu_{X}$
+\end_inset
+
+ to zero, since we have a correctly specified model.
+ In the latter two cases, the MCEM algorithm can only minimize the K-L divergenc
+e, as it is operating under model misspecification.
+ On the other hand, when 
+\begin_inset Formula $X$
+\end_inset
+
+ is a Wiener process, the K-L divergence is minimized as 
+\begin_inset Formula $\theta\rightarrow(0,0,1)$
+\end_inset
+
+, since the OU diffusion reduces to a Wiener process in such a limit.
+ Finally, when 
+\begin_inset Formula $X_{H}$
+\end_inset
+
+ is a fractional Wiener process with Hurst parameter 
+\begin_inset Formula $H$
+\end_inset
+
+, the K-L divergence of the distribution of an OU diffusion governed by
  
-\backslash
-midrule $
-\backslash
-hat{
-\backslash
-mu}_{MCEM}-
-\backslash
-hat{
-\backslash
-mu}_{MLE}$         & -0.02
-\backslash
-:  &  & 
-\backslash
-:1.23
-\backslash
-:            &                &                
-\backslash
+\begin_inset Formula $\theta$
+\end_inset
 
-\backslash
- $
-\backslash
-hat{
-\backslash
-lambda}_{MCEM}-
-\backslash
-hat{
-\backslash
-lambda}_{MLE}$ & 
-\backslash
-;0.06
-\backslash
-: &  & -0.51
-\backslash
-:           & 1.10           &                
-\backslash
+ at 
+\begin_inset Formula $t=\{1/2,1\}$
+\end_inset
 
-\backslash
- $
-\backslash
-hat{
-\backslash
-sigma}_{MCEM}-
-\backslash
-hat{
-\backslash
-sigma}_{MLE}$   & 
-\backslash
-;0.00
-\backslash
-:  &  & -0.56
-\backslash
-:           & 0.50           & 0.24           
-\backslash
+ from 
+\begin_inset Formula $\nu_{X}$
+\end_inset
 
-\backslash
+ is
+\begin_inset Formula 
+\[
+\frac{1}{2}\left[\mbox{Tr}\left(\Sigma_{O}(\theta)^{-1}\Sigma_{F}(H)\right)+\log\frac{\det\Sigma_{O}(\theta)}{\det\Sigma_{F}(H)}-2\right],
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\begin{eqnarray*}
+\Sigma_{O}(\theta) & = & \frac{\sigma^{2}}{2\lambda}\begin{bmatrix}1-e^{-\lambda} & e^{-\lambda/2}-e^{-3\lambda/2}\\
+e^{-\lambda/2}-e^{-3\lambda/2} & 1-e^{-2\lambda}
+\end{bmatrix}\mbox{ and}\\
+\Sigma_{F}(H) & = & \begin{bmatrix}2^{-2H} & 1/2\\
+1/2 & 1
+\end{bmatrix}
+\end{eqnarray*}
+
+\end_inset
+
+are the covariance matrices of the values of an OU diffusion and a fractional
+ Wiener process with Hurst parameter 
+\begin_inset Formula $H$
+\end_inset
+
+ at times 
+\begin_inset Formula $t=\{1/2,1\}$
+\end_inset
+
+, respectively.
+ We choose 
+\begin_inset Formula $H=0.2$
+\end_inset
+
+ so that the fractional Wiener process that mean reverts (preventing 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ from being bound at 
+\begin_inset Formula $0$
+\end_inset
+
+), and numerically find the K-L divergence minimizing parameter to be 
+\begin_inset Formula $\theta_{MKLD}=(0,0.832\dots,1.450\dots)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In addition to varying 
+\begin_inset Formula $\nu_{X}$
+\end_inset
+
+, we also test the performance of the proposed MCEM scheme when we only
+ have access to finitely many samples from 
+\begin_inset Formula $\nu_{X}$
+\end_inset
+
+.
+ In particular, we compare the MCEM scheme when we can exactly sample from
  
-\backslash
-bottomrule 
-\backslash
-end{tabular}
-\end_layout
+\begin_inset Formula $\nu_{X}$
+\end_inset
+
+ an unlimited number of times (the 
+\begin_inset Quotes eld
+\end_inset
+
+asymptotic
+\begin_inset Quotes erd
+\end_inset
+
+ case) to a 
+\begin_inset Quotes eld
+\end_inset
+
+finite sample
+\begin_inset Quotes erd
+\end_inset
+
+ case, where we resample a fixed 
+\begin_inset Formula $100$
+\end_inset
+
+ samples from 
+\begin_inset Formula $\nu_{X}$
+\end_inset
+
+ repeatedly.
+ By the remarks in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:EM"
 
 \end_inset
 
-
-\end_layout
+, we expect that the MKLDE from the finite sample case should be less efficient,
+ but still consistent for the true MKLD parameter.
+ 
+\begin_inset Marginal
+status collapsed
 
 \begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="1" columns="6">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="left" valignment="middle">
-<column alignment="left" valignment="middle">
-<column alignment="left" valignment="middle">
-<column alignment="left" valignment="middle">
-<column alignment="left" valignment="middle">
-<column alignment="left" valignment="middle" width="2cm">
-<row>
-<cell multirow="3" alignment="left" valignment="middle" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multirow="3" alignment="left" valignment="middle" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:mle-vs-mcem"
-
-\end_inset
-
-Mean and covariance of the bias of parameter estimates using the proposed
- MCEM scheme vis-à-vis MLE on 
-\begin_inset Formula $N=68$
-\end_inset
-
- quarters of ECB inflation forecast responses.
+This is all really clunky.
+ I will try to re-write it so it's more pretty.
 \end_layout
 
 \end_inset
@@ -2090,9 +2110,46 @@ Mean and covariance of the bias of parameter estimates using the proposed
 
 \end_layout
 
+\begin_layout Standard
+The reported standard deviations in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:diff-diffusions"
+
 \end_inset
 
+ capture the efficiency of the MKLDE, the variance inherent in the MCEM
+ algorithm, and the variance of the DEoptim optimization procedure.
+ As such, these standard deviations are far larger than they asymptotically
+ ought to be with a sufficiently large number of MC samples and a sufficiently
+ precise optimization procedure.
+\end_layout
 
+\begin_layout Standard
+In any case, we see that an MCEM scheme using either the approximate and
+ exact samplers is consistent for the true MKLD parameter across all experiments
+, up to a margin of error equal to the standard deviation of the MKLDEs.
+ As expected, the finite sample experiments display lower efficiency but
+ remain consistent, and using the exact sampler produces higher efficiency
+ estimates in general.
+ The approximate sampling scheme also appears to produce some bias in the
+ estimation of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ by producing thinner-tailed marginal distributions than the exact sampler,
+ though given the variability of the MKLDEs, this bias does not appear to
+ be significant.
+ On the other hand, the computational time taken by using exact generalized
+ bridge samples in the MCEM scheme is on the order of two magnitudes longer
+ than the time used by approximate sampling.
+ We conjecture that for all but the most extreme of distributional data
+ (i.e.
+ conditioning a process which mean reverts to zero on a joint distribution
+ with marginal distributions centered far from zero), an MCEM scheme relying
+ on approximate generalized bridge sampling will provide parameter estimates
+ of sufficiently high quality, especially given the variance of MCEM estimates
+ and stochastic optimization methods in the first place.
 \end_layout
 
 \end_body

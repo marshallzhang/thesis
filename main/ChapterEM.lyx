@@ -1336,9 +1336,23 @@ reference "eq:firststepem"
 status open
 
 \begin_layout Plain Layout
-This step is wrong.
- But the simulations work and it seems so intuitive.
- What am I missing?
+I am generally a little confused with the missing data 
+\begin_inset Formula $z$
+\end_inset
+
+ vs.
+ the complete data.
+ In Beskos 2006, the missing data seems to be the whole path already.
+ This is why I get a little hand-wavey here (can we just drop the fixed
+ data 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ if we introduce a complete missing path 
+\begin_inset Formula $z$
+\end_inset
+
+? But I think the final result is intuitive and it works in simulation.
 \end_layout
 
 \end_inset
@@ -1353,7 +1367,7 @@ reference "eq:Deltatn"
  can be re-written as 
 \begin_inset Formula 
 \[
-\Delta(\theta\mid\tilde{\theta})\coloneqq\int\log\left(\frac{P_{\theta}(\mathbf{x},z)}{P_{\tilde{\theta}}(z\mid\mathbf{x})P_{\tilde{\theta}}(\mathbf{x})}\right)\mathbb{P}_{\tilde{\theta}}^{\nu}(dz)
+\Delta(\theta\mid\tilde{\theta})\coloneqq\int\log\left(\frac{P_{\theta}(z)}{P_{\tilde{\theta}}(z)}\right)\mathbb{P}_{\tilde{\theta}}^{\nu}(dz)
 \]
 
 \end_inset
