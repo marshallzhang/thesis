@@ -174,8 +174,7 @@ Upon receiving this divination, there is no doubt that the Spartans understood
 
 \begin_layout Standard
 Modern-day probabilistic Oracles, though perhaps less prescient than the
- Oracle at Delphi, can be found in great numbers and in a variety of application
-s.
+ Oracle at Delphi, can be found in great variety of applications.
  In particular, many of the variables of interest for which these probabilistic
  forecasts are generated can be modeled as stochastic processes.
  For example, central banks around the world survey professional forecasters
@@ -237,13 +236,13 @@ key "yoshida-1992"
 \end_inset
 
  for the specific case of diffusion processes.
- In particular, we consider an analog of MLE when conditioning on the distributi
+ In particular, we propose that a Kullback-Liebler divergence minimizing
+ estimator is the appropriate one to use for inference when given the distributi
 on of, as opposed to observations of, a diffusion process at discrete points
  in time.
- We offer an interpretation of such a procedure as the limiting case of
- MLE under model misspecification, and develop a simulation-based inference
- technique to conduct this generalized MLE procedure, building on the work
- of 
+ We characterize this estimator as a limiting case of MLE from two orthogonal
+ perspectives, and develop a simulation-based inference technique to conduct
+ minimum K-L divergence estimation, building on the work of 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "roberts-stramer-2001,beskos-2006"
@@ -258,9 +257,9 @@ key "bladt-sorensen-2014"
 \end_inset
 
 .
- This partially answers the question of inference; however, the procedure
- requires the ability to simulate a particular generalized notion of a diffusion
- bridge.
+ However, this only partially answers the question of inference, since the
+ proposed procedure requires the ability to simulate a particular generalized
+ notion of a diffusion bridge.
  We therefore connect the literature surrounding the simulation of diffusion
  bridges (see 
 \begin_inset CommandInset citation
@@ -278,7 +277,10 @@ key "baudoin-2002"
 
 ) by proposing an approximate and exact simulation strategy for a particular
  class of generalized bridges, jointly answering in full the question of
- inference and the question of imputation.
+ inference.
+ Simultaneously, these generalized bridge samplers answer the question of
+ imputation by allowing us to draw sample paths of diffusion processes whose
+ endpoints are conditioned to follow a given distribution.
 \end_layout
 
 \begin_layout Standard
@@ -287,18 +289,19 @@ In the empirical portion of this thesis, we validate the correctness of
  sampler offers qualitatively high quality samples at a fraction of the
  computation cost of the exact sampler.
  We also show that these samplers are robust to a variety of assumptions
- in the proof of their correctness.
+ made in the theoretical portion of this thesis.
  Then, we demonstrate that the proposed simulation-based inference technique
- on distributional data is consistent and also robust to various assumptions,
- including the use of an approximate generalized bridge sampler instead
- of the exact sampler.
+ on distributional data is consistent for the K-L divergence minimizing
+ parameter and also robust to various assumptions, including the use of
+ an approximate generalized bridge sampler instead of the exact sampler.
  Finally, we use the proposed inference scheme to estimate the parameters
  underlying the predictions of professional macroeconomic forecasters.
- Using the estimated parameters, we are therefore able to impute a continuous
- probabilistic path over the full horizon of the discrete forecasts, which
- as the number of economists surveyed goes to infinity, minimizes its Kullback-L
-iebler divergence from the distribution of the forecasts at the relevant
- discrete points in time.
+ Using these estimates, we compare the imputed paths Using the estimated
+ parameters, we are therefore able to impute a continuous probabilistic
+ path over the full horizon of the discrete forecasts, which as the number
+ of economists surveyed goes to infinity, minimizes its Kullback-Liebler
+ divergence from the distribution of the forecasts at the relevant discrete
+ points in time.
 \end_layout
 
 \begin_layout Section

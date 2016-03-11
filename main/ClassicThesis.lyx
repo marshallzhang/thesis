@@ -269,7 +269,7 @@ pagenumbering{arabic}
 \end_layout
 
 \begin_layout Part Introduction (ClassicThesis)
-In this part, this work is introduced and theoretical foundations are set
+In this Part, this work is introduced and theoretical foundations are set
  for the remainder of the thesis to build upon.
  
 \begin_inset Newline newline
@@ -282,7 +282,7 @@ reference "chap:Introduction"
 
 \end_inset
 
-, the central problem of this thesis stated informally and the contributions
+, the central problem of this thesis is stated informally and the contributions
  made are outlined.
 \begin_inset Newline newline
 \end_inset

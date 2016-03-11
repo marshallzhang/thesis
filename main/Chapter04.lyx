@@ -12,6 +12,7 @@
 \newref{part}{name=Part~,Name=Part~}
 \newref{algo}{name=Algorithm~,Name=Algorithm~}
 \newref{lem}{name=Lemma~,Name=Lemma~}
+\MakeRobust{\Call}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -235,66 +236,6 @@ conditioning of
 \end_layout
 
 \begin_layout Standard
-In this chapter, we will repeatedly work with the probability measure 
-\begin_inset Formula $\mathbb{R}=\mathbb{P}\otimes\mathbb{P}$
-\end_inset
-
- induced by the stationary solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- in two dimensions.
- Let the Baudoin 
-\begin_inset Formula $(\mathbf{X}_{0},\nu)$
-\end_inset
-
--conditioning of 
-\begin_inset Formula $\mathbb{R}$
-\end_inset
-
- be denoted 
-\begin_inset Formula $\mathbb{R}^{\nu}$
-\end_inset
-
-.
- 
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-This notation is a little confusing but I'm not sure how to fix it..
-\end_layout
-
-\end_inset
-
-Note that 
-\begin_inset Formula $\mathbb{P}^{\nu}$
-\end_inset
-
- is a measure for a one-dimensional diffusion whose endpoints at 
-\begin_inset Formula $t=\{0,1\}$
-\end_inset
-
- are conditioned to follow 
-\begin_inset Formula $\nu$
-\end_inset
-
-, while 
-\begin_inset Formula $\mathbb{R}^{\nu}$
-\end_inset
-
- is a joint measure for a two-dimensional diffusion with independent coordinates
-, for which the starting value is conditioned to follow 
-\begin_inset Formula $\nu$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
 Though 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -302,8 +243,8 @@ key "baudoin-2002"
 
 \end_inset
 
- characterizes in great detail the properties of very general Baudoin bridges,
- the marginal density of 
+ characterizes in great generality the properties of Baudoin bridges, since
+ we are interested in questions of imputation, the marginal density of 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
@@ -311,7 +252,7 @@ key "baudoin-2002"
 \begin_inset Formula $t\in(0,1)$
 \end_inset
 
- in this case merits presentation.
+ in our case merits presentation.
 \end_layout
 
 \begin_layout Proposition
@@ -459,7 +400,7 @@ reference "eq:basic-sde"
 \end_inset
 
 .
- However, as has been noted, the transition densities are typically unavailable
+ However, as has been noted, transition densities are typically unavailable
  for all but the simplest diffusions, and integrating over an arbitrary
  measure 
 \begin_inset Formula $\nu$
@@ -477,7 +418,7 @@ reference "prop:v-bridge-density"
 \begin_inset Formula $\nu$
 \end_inset
 
--bridges, and by intractability of the marginal density of 
+-bridges, and by the intractability of the marginal density of 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
@@ -595,398 +536,91 @@ reference "algo:approx-sim"
 \end_inset
 
 .
- First, we prove a lemma which says that the canonical process on 
-\begin_inset Formula $\mathbb{R}^{\nu}$
-\end_inset
-
- under time-reversal is the same as canonical process of a Baudoin 
-\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)$
-\end_inset
-
--conditioning of 
-\begin_inset Formula $\mathbb{R}$
-\end_inset
-
-.
- This lemma also says that these distributions are also equal to the distributio
-n of a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
+ First, we state a lemma of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
 
 \end_inset
 
- with a particular initial distribution.
+ which will help characterize the behavior of a time-reversed process.
 \end_layout
 
 \begin_layout Lemma
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Lemma 2.2 in"
+key "bladt-sorensen-2014"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
-name "lem:time-reversal"
+name "lem:bladt-lemma"
 
 \end_inset
 
-The following measures are equal:
-\end_layout
-
-\begin_deeper
-\begin_layout aEnumerate (ClassicThesis)
-\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
-\end_inset
-
-, the measure induced by the time-reversed canonical process on 
-\begin_inset Formula $\mathbb{R}^{\nu}$
-\end_inset
-
-,
-\end_layout
-
-\begin_layout aEnumerate (ClassicThesis)
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
-, the Baudoin 
-\begin_inset Formula $(\mathbf{X}_{1},\nu)-$
-\end_inset
-
-conditioning of 
-\begin_inset Formula $\mathbb{R}$
-\end_inset
-
-, and
-\end_layout
-
-\begin_layout aEnumerate (ClassicThesis)
-\begin_inset Formula $\mathbb{R}^{0}$
-\end_inset
-
-, the measure induced by a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- with initial distribution 
-\begin_inset Formula $\int R_{1}(\mathbf{x}_{1},\cdot)\nu(d\mathbf{x}_{1})$
-\end_inset
-
- where 
-\begin_inset Formula $R_{1}(\mathbf{x},\mathbf{y})$
-\end_inset
-
- is the transition kernel associated with 
-\begin_inset Formula $\mathbb{R}$
-\end_inset
-
-.
-\end_layout
-
-\end_deeper
-\begin_layout Proof
-Let 
-\begin_inset Formula $\mathbf{X}^{\nu}$
-\end_inset
-
- be the canonical process on 
-\begin_inset Formula $\mathbb{R}^{\nu}$
-\end_inset
-
- and define 
-\begin_inset Formula $\mathbf{X}^{\nu,\leftarrow}$
-\end_inset
-
- where 
-\begin_inset Formula $\mathbf{X}_{t}^{\nu,\leftarrow}=\mathbf{X}_{1-t}^{\nu}$
-\end_inset
-
- , as the canonical process on 
-\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
-\end_inset
-
-.
- We first show that 
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
-\end_inset
-
- have the same marginal distribution at 
-\begin_inset Formula $t=0$
-\end_inset
-
- and the same transition kernels.
- Fix 
-\begin_inset Formula $0\leq s<t\leq1$
-\end_inset
-
-, and note that we may write the transition kernel associated with 
-\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
-\end_inset
-
- as
-\begin_inset Formula 
-\begin{eqnarray}
- &  & \mathbb{R}^{\nu,\leftarrow}(\mathbf{X}_{t}^{\nu,\leftarrow}\in\cdot\mid\mathbf{X}_{s}^{\nu,\leftarrow}=\mathbf{x})\nonumber \\
- & = & \mathbb{R}^{\nu}(\mathbf{X}_{1-t}^{\nu}\in\cdot\mid\mathbf{X}_{1-s}^{\nu}=\mathbf{x})\nonumber \\
- & = & \int\mathbb{R}(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0})\nu(d\mathbf{x}_{0})\label{eq:p-integral-reversal}
-\end{eqnarray}
-
-\end_inset
-
-where the first equality is by definition and the second equality follows
- from a disintegration of 
-\begin_inset Formula $\mathbb{R}^{\nu}$
-\end_inset
-
- along its initial value.
- By disintegration of the 
-\begin_inset Formula $\gamma-$
-\end_inset
-
-symmetry condition, we have
-\begin_inset Formula 
-\begin{eqnarray*}
- &  & \int\mathbb{R}(\mathbf{X}_{1-t}\in\cdot\mid\mathbf{X}_{1-s}=\mathbf{x},\mathbf{X}_{0}=\mathbf{x}_{0})\nu(d\mathbf{x}_{0})\\
- & = & \int\mathbb{R}(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1})\nu(d\mathbf{x}_{1})
-\end{eqnarray*}
-
-\end_inset
-
-which, substituting into 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:p-integral-reversal"
-
-\end_inset
-
-, gives 
-\begin_inset Formula 
-\begin{eqnarray*}
-\mathbb{R}^{\nu,\leftarrow}(\mathbf{X}_{t}^{\nu,\leftarrow}\in\cdot\mid\mathbf{X}_{s}^{\nu,\leftarrow}=\mathbf{x}) & = & \int\mathbb{R}(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x},\mathbf{X}_{1}=\mathbf{x}_{1})\nu(d\mathbf{x}_{1})\\
- & = & \mathbb{Q}(\mathbf{X}_{t}\in\cdot\mid\mathbf{X}_{s}=\mathbf{x})
-\end{eqnarray*}
-
-\end_inset
-
-Thus we see that the transition kernels associated with 
-\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
- are equal.
- 
-\end_layout
-
-\begin_layout Proof
-Now, note that since 
-\begin_inset Formula $\Pi$
-\end_inset
-
- is the invariant measure of 
-\begin_inset Formula $\mathbf{X}$
-\end_inset
-
-, 
-\begin_inset Formula $\mathbb{R}_{t}=\Pi$
-\end_inset
-
- for any 
-\begin_inset Formula $t\in[0,1]$
-\end_inset
-
-.
- So, we have 
-\begin_inset Formula 
-\begin{eqnarray*}
-\mathbb{Q}_{0} & = & \int\mathbb{R}_{0}\left(\cdot\mid\mathbf{X}_{1}=\mathbf{x}_{1}\right)\nu\left(d\mathbf{x}_{1}\right)\\
- & = & \int\Pi\left(\mathbf{X}_{0}\in\cdot\mid\mathbf{X}_{1}=\mathbf{x}_{1}\right)\nu\left(d\mathbf{x}_{1}\right)\\
- & = & \int\Pi\left(\mathbf{X}_{1}\in\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0}\right)\nu\left(d\mathbf{x}_{0}\right)\\
- & = & \int\mathbb{R}_{1}\left(\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0}\right)\nu\left(d\mathbf{x}_{0}\right)\\
- & = & \mathbb{R}_{1}^{\nu}=\mathbb{R}_{0}^{\nu,\leftarrow}
-\end{eqnarray*}
-
-\end_inset
-
-where the third equality is by 
-\begin_inset Formula $\gamma-$
-\end_inset
-
-symmetry.
-\end_layout
-
-\begin_layout Proof
-We therefore see that 
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
-\end_inset
-
- have the same restriction to 
-\begin_inset Formula $t=0$
-\end_inset
-
-.
- Since they also have the same transition densities, by the fact that time-homog
-enous Markov measures are uniquely determined by a marginal measure and
- a transition kernel, we have 
-\begin_inset Formula $\mathbb{Q}=\mathbb{R}^{\nu,\leftarrow}$
-\end_inset
-
- as desired.
-\end_layout
-
-\begin_layout Proof
-Now, we show that 
-\begin_inset Formula $\mathbb{R}^{0}$
-\end_inset
-
- has the same restriction to 
-\begin_inset Formula $t=0$
-\end_inset
-
- as 
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
-.
- First, consider the stationary solution 
-\begin_inset Formula $\mathbf{X}$
+Consider a solution 
+\begin_inset Formula $X$
 \end_inset
 
  to 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand formatted
 reference "eq:basic-sde"
 
 \end_inset
 
-, which induces the measure 
-\begin_inset Formula $\mathbb{R}$
+ in one dimension with initial condition 
+\begin_inset Formula $X_{0}=b$
+\end_inset
+
+, and let 
+\begin_inset Formula $X^{\leftarrow}$
+\end_inset
+
+ be the time-reversed process 
+\begin_inset Formula $X_{t}^{\leftarrow}=X_{1-t}$
 \end_inset
 
 .
- Then, we may write the restriction of 
-\begin_inset Formula $\mathbb{R}$
+ Then, 
+\begin_inset Formula $X^{\leftarrow}$
+\end_inset
+
+ is equal in distribution to a stationary solution 
+\begin_inset Formula $X^{*}$
 \end_inset
 
  to 
-\begin_inset Formula $t=\{0,1\}$
-\end_inset
-
- as
-\begin_inset Formula 
-\[
-\mathbb{R}_{0,1}=\mathbb{R}_{1}\left(\cdot\mid\mathbf{X}_{0}=\mathbf{x}_{0}\right)\Pi\left(\mathbf{x}_{0}\right)=\mathbb{R}_{0}\left(\cdot\mid\mathbf{X}_{1}=\mathbf{x}_{1}\right)\Pi\left(\mathbf{x}_{1}\right)
-\]
-
-\end_inset
-
-where the second equality is by 
-\begin_inset Formula $\gamma-$
-\end_inset
-
-symmetry.
- Then, the measure induced by 
-\begin_inset Formula $\mathbf{X}$
-\end_inset
-
- at time 
-\begin_inset Formula $t=0$
-\end_inset
-
-, conditional on 
-\begin_inset Formula $\mathbf{X}_{1}=\mathbf{x}_{1}$
-\end_inset
-
-, is simply the transition kernel 
-\begin_inset Formula $R_{1}\left(\mathbf{x}_{1},\cdot\right)$
-\end_inset
-
-.
- Under a Baudoin 
-\begin_inset Formula $\left(\mathbf{X}_{1},\nu\right)$
-\end_inset
-
--conditioning, we know that the law of 
-\begin_inset Formula $\mathbf{X}_{1}$
-\end_inset
-
- is 
-\begin_inset Formula $\nu$
-\end_inset
-
-, and thus 
-\begin_inset Formula $\mathbb{Q}_{0}$
-\end_inset
-
- may also be written as 
-\begin_inset Formula $\int R_{1}\left(\mathbf{x}_{1},\cdot\right)\nu\left(d\mathbf{x}_{1}\right)$
-\end_inset
-
-.
- By construction, we see that 
-\begin_inset Formula $\mathbb{P}_{0}^{0}=\mathbb{Q}_{0}$
-\end_inset
-
- as desired.
-\end_layout
-
-\begin_layout Proof
-Finally, we note that 
-\begin_inset Formula $\mathbb{R}^{0}$
-\end_inset
-
- has the same transition kernel as 
-\begin_inset Formula $\mathbb{R}^{\nu}$
-\end_inset
-
- since both measures are induced by solutions to the same stochastic differentia
-l equation, 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand formatted
 reference "eq:basic-sde"
 
 \end_inset
 
-.
- By 
-\begin_inset Formula $\gamma$
-\end_inset
-
--symmetry, it follows that 
-\begin_inset Formula $\mathbb{R}^{0}$
-\end_inset
-
- has the same transition kernel as 
-\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
+ in one dimension conditional on 
+\begin_inset Formula $X_{1}^{*}=b$
 \end_inset
 
 .
- Finally, by another application of the unique construction of Markov measures,
- and the equality of 
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbb{R}^{\nu,\leftarrow}$
-\end_inset
-
-, the desired result follows.
 \end_layout
 
 \begin_layout Standard
 With 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "lem:time-reversal"
+reference "lem:bladt-lemma"
 
 \end_inset
 
@@ -1040,7 +674,7 @@ reference "eq:basic-sde"
 \end_inset
 
  and diffusion coefficient 
-\begin_inset Formula $\Sigma(\mathbf{X}_{t})$
+\begin_inset Formula $\Sigma(\mathbf{X}_{t})=\sigma(\mathbf{X}_{t})I$
 \end_inset
 
 .
@@ -1101,11 +735,7 @@ reference "eq:basic-sde"
 \end_inset
 
  in one dimension with initial distribution 
-\begin_inset Formula $\int p_{1}(\mathbf{x}_{1}^{\left(1\right)},\cdot)\tilde{\nu}(d\mathbf{x}_{1})$
-\end_inset
-
-, where 
-\begin_inset Formula $\tilde{\nu}\left(dxdy\right):=\nu\left(dydx\right)$
+\begin_inset Formula $p_{1}(Z_{1},\cdot)$
 \end_inset
 
 .
@@ -1116,11 +746,7 @@ Let
 \begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
- and 
-\begin_inset Formula $\bar{\mathbf{X}}^{\nu}$
-\end_inset
-
- be independent solutions to 
+ be a solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
@@ -1131,20 +757,12 @@ reference "eq:basic-sde"
 \begin_inset Formula $\mathbf{X}_{0}^{\nu}\sim\nu$
 \end_inset
 
- and 
-\begin_inset Formula $\bar{\mathbf{X}}_{0}^{\nu}=\tilde{\mathbf{X}}_{0}^{\nu}$
-\end_inset
-
 , and let 
 \begin_inset Formula $\mathbf{X}^{*}$
 \end_inset
 
  be an independent stationary solution to the same.
- 
-\end_layout
-
-\begin_layout Proof
-We begin by defining two functionals of 
+ We begin by defining two functionals of 
 \begin_inset Formula $\mathbf{X}^{\nu}$
 \end_inset
 
@@ -1156,11 +774,11 @@ We begin by defining two functionals of
 \end_layout
 
 \begin_layout Proof
-Set the stopping times 
+We begin by setting the stopping times 
 \begin_inset Formula $\rho^{(i)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,(i)}=\mathbf{X}_{t}^{*,(i)}\}$
 \end_inset
 
-, and define a stochastic process 
+, and defining a stochastic process 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
@@ -1188,42 +806,15 @@ on the event
 \begin_inset Formula $\mathscr{R}=\mathscr{R}^{(1)}\cup\mathscr{R}^{(2)}$
 \end_inset
 
-.
- Denote the measure induced by 
+, and note that the coordinates of 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
- by 
-\begin_inset Formula $\mathbb{Y}$
-\end_inset
-
-, note that the coordinates of 
-\begin_inset Formula $\mathbf{Y}$
-\end_inset
-
- are independent by construction.
- We may therefore write 
-\begin_inset Formula $\mathbb{Y}=\mathbb{Y}^{\left(1\right)}\times\mathbb{Y}^{\left(2\right)}$
-\end_inset
-
- where 
-\begin_inset Formula $\mathbb{Y}^{\left(i\right)}$
-\end_inset
-
- is the measure induced by the 
-\begin_inset Formula $i$
-\end_inset
-
-th coordinate of 
-\begin_inset Formula $\mathbf{Y}$
-\end_inset
-
-.
- 
+ are mutually independent.
 \end_layout
 
 \begin_layout Proof
-Similarly, set the stopping times 
+Similarly, we set the stopping times 
 \begin_inset Formula $\tau^{(i)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,(i)}=\mathbf{X}_{1-t}^{\nu,(\setminus i)}\}$
 \end_inset
 
@@ -1255,16 +846,7 @@ on the event
 \begin_inset Formula $\mathscr{T}=\mathscr{T}^{(1)}\cup\mathscr{T}^{(2)}$
 \end_inset
 
-, and note that 
-\begin_inset Formula $\mathscr{T}$
-\end_inset
-
- is also equal to 
-\begin_inset Formula $\mathscr{T}^{(1)}\cap\mathscr{T}^{(2)}$
-\end_inset
-
- by construction.
- Denote the measure induced by 
+, and denote the measure induced by 
 \begin_inset Formula $\mathbf{Z}$
 \end_inset
 
@@ -1272,35 +854,41 @@ on the event
 \begin_inset Formula $\mathbb{Z}$
 \end_inset
 
-, and for any pair 
+.
+ For notational ease throughout this proof, for any pair 
 \begin_inset Formula $\mathbf{p}=(\mathbf{p}^{(1)},\mathbf{p}^{(2)})$
 \end_inset
 
 , we define 
-\begin_inset Formula $\overset{\leftrightarrow}{\mathbf{p}}=(\mathbf{p}^{(2)},\mathbf{p}^{(1)})$
+\begin_inset Formula $\overleftrightarrow{\mathbf{p}}=(\mathbf{p}^{(2)},\mathbf{p}^{(1)})$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Proof
-Now, define the event 
+Now, let 
 \begin_inset Formula $\mathscr{B}$
 \end_inset
 
- as the event that 
-\begin_inset Formula $\mathbf{Y}_{1}$
+ be the event that 
+\begin_inset Formula $\mathbf{Y}_{1}=\overleftrightarrow{\mathbf{Y}_{0}}$
 \end_inset
 
- and 
-\begin_inset Formula $\overset{\leftrightarrow}{\mathbf{Y}}_{0}$
+ i.e.
+ the 
+\begin_inset Formula $\sigma$
 \end_inset
 
- are equal as functions on the probability space.
+-algebra generated from 
+\begin_inset Formula $\{\omega\in\Omega\mid\mathbf{Y}_{1}(\omega)=\overleftrightarrow{\mathbf{Y}_{0}(\omega)}\}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Proof
-We will first show that 
+We first show that 
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
 \end_inset
 
@@ -1322,34 +910,18 @@ We will first show that
 \end_inset
 
 , is the event that 
-\begin_inset Formula $\mathbf{X}_{1}^{*}$
-\end_inset
-
- and 
-\begin_inset Formula $\overset{\leftrightarrow\:\:\:}{\mathbf{X}_{0}^{\nu}}$
-\end_inset
-
- are equal as functions on the probability space, and thus 
-\begin_inset Formula $\mathbf{X}_{1}^{*}$
-\end_inset
-
- is distributed with law 
-\begin_inset Formula $\overset{\leftrightarrow}{\nu}$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R})$
+\begin_inset Formula $\mathbf{X}_{1}^{*}=\overleftrightarrow{\mathbf{X}_{0}^{\nu}}$
 \end_inset
 
 .
- By 
+ Then, by 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "lem:time-reversal"
+reference "lem:bladt-lemma"
 
 \end_inset
 
-, we therefore know that 
+, 
 \begin_inset Formula $\mathbf{X}^{*}$
 \end_inset
 
@@ -1357,17 +929,8 @@ reference "lem:time-reversal"
 \begin_inset Formula $\mathscr{B}$
 \end_inset
 
- (i.e.
- the Baudoin 
-\begin_inset Formula $(\mathbf{X}_{1}^{*},\overset{\leftrightarrow}{\nu})$
-\end_inset
-
--bridge of 
-\begin_inset Formula $\mathbf{X}^{*}$
-\end_inset
-
-) is equal in distribution to the time-reversed process 
-\begin_inset Formula $\overset{\leftrightarrow\:\:\:\:\:\:\:\:\:}{\mathbf{X}_{1-t}^{\nu}}$
+ is equal in distribution to the time-reversed process 
+\begin_inset Formula $\overleftrightarrow{\mathbf{X}_{1-t}^{\nu}}$
 \end_inset
 
 , which by construction of 
@@ -1386,19 +949,11 @@ We now show that
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
 \end_inset
 
- is also equal to the measure induced by a 
+ is also equal to the measure induced by two related 
 \begin_inset Formula $\nu$
 \end_inset
 
--bridge of 
-\begin_inset Formula $X$
-\end_inset
-
- and a 
-\begin_inset Formula $\tilde{\nu}$
-\end_inset
-
--bridge of 
+-bridges of 
 \begin_inset Formula $X$
 \end_inset
 
@@ -1407,16 +962,79 @@ We now show that
 \begin_inset Formula $\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R})$
 \end_inset
 
- by writing 
+ by writing
 \begin_inset Formula 
-\begin{eqnarray*}
-\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R}) & = & \int\mathbb{Y}(\cdot\mid\mathscr{R},\mathbf{Y}_{1}=\tilde{\mathbf{Y}}_{0},\mathbf{Y}_{0}=\mathbf{y}_{0})\nu(d\mathbf{y}_{0})\\
- & = & \int\mathbb{Y}(\cdot\mid\mathscr{R},\mathbf{Y}_{0,1}^{(2)}=\tilde{\mathbf{Y}}_{0,1}^{(1)},\mathbf{Y}_{0,1}^{(1)}=\mathbf{y}_{0,1}^{(1)})\nu(d\mathbf{y}_{0,1}^{(1)})
-\end{eqnarray*}
+\begin{align}
+\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R}) & =\int\mathbb{Y}(\cdot\mid\mathscr{R},\mathbf{Y}_{1}=\overleftrightarrow{\mathbf{Y}_{0}},\mathbf{Y}_{0}=\mathbf{y}_{0})\nu(d\mathbf{y}_{0})\nonumber \\
+ & =\int\mathbb{Y}(\cdot\mid\mathscr{R},\mathbf{Y}_{0,1}^{(2)}=\overleftrightarrow{\mathbf{Y}_{0,1}^{(1)}},\mathbf{Y}_{0,1}^{(1)}=\mathbf{y}_{0,1}^{(1)})\nu(d\mathbf{y}_{0,1}^{(1)}).\label{eq:disintY}
+\end{align}
 
 \end_inset
 
-As such, we can understand 
+ We arrive at the the first equality by disintegrating 
+\begin_inset Formula $\mathbb{Y}$
+\end_inset
+
+ along the 
+\begin_inset Formula $\sigma$
+\end_inset
+
+-algebra generated by 
+\begin_inset Formula $\mathbf{Y}_{0}$
+\end_inset
+
+ and conditioning on 
+\begin_inset Formula $\mathscr{B}$
+\end_inset
+
+.
+ To arrive at the second equality, we merely need to note that for any 
+\begin_inset Formula $\omega\in\Omega$
+\end_inset
+
+, if 
+\begin_inset Formula $\mathbf{Y}_{1}^{(1)}(\omega)$
+\end_inset
+
+ is set to equal 
+\begin_inset Formula $\mathbf{Y}_{0}^{(2)}(\omega)$
+\end_inset
+
+, then 
+\begin_inset Formula $\mathbf{Y}_{0}(\omega)=\mathbf{Y}_{0,1}^{(1)}(\omega)$
+\end_inset
+
+ by definition (the same argument holds for 
+\begin_inset Formula $\mathbf{Y}_{1}$
+\end_inset
+
+); intuitively, the joint distribution of 
+\begin_inset Formula $\mathbf{Y}_{0}$
+\end_inset
+
+ should be the same as the joint distribution of the endpoints of 
+\begin_inset Formula $\mathbf{Y}^{(1)}$
+\end_inset
+
+, if 
+\begin_inset Formula $\mathbf{Y}_{1}^{(1)}$
+\end_inset
+
+ is forced to be equal to 
+\begin_inset Formula $\mathbf{Y}_{0}^{(2)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:disintY"
+
+\end_inset
+
+ reveals that we can understand 
 \begin_inset Formula $\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R})$
 \end_inset
 
@@ -1428,7 +1046,7 @@ As such, we can understand
 \begin_inset Formula $\mathbb{Y}$
 \end_inset
 
- conditional on the coordinates of 
+, conditional on the coordinates of 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
@@ -1437,7 +1055,7 @@ As such, we can understand
 \end_inset
 
  and 
-\begin_inset Formula $\mathbf{Y}_{1}^{(2)}=\tilde{\mathbf{Y}}_{0}^{(1)}$
+\begin_inset Formula $\mathbf{Y}_{0,1}^{(2)}=(\mathbf{Y}_{1}^{(1)},\mathbf{Y}_{0}^{(1)})$
 \end_inset
 
 .
@@ -1453,65 +1071,38 @@ bridge of
 \begin_inset Formula $X$
 \end_inset
 
- and a related, time-reversed 
-\begin_inset Formula $\tilde{\nu}-$
+ and a related, time- and coordinate-reversed 
+\begin_inset Formula $\nu$
 \end_inset
 
-bridge of 
+-bridge of 
 \begin_inset Formula $X$
 \end_inset
 
 , where each of the bridges is hit by the respective coordinate of an independen
-t Baudoin 
-\begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
+t diffusion 
+\begin_inset Formula $\mathbf{X}^{*}$
 \end_inset
 
--bridge of 
-\begin_inset Formula $\mathbf{X}^{*}$
+ conditioned such that 
+\begin_inset Formula $\mathbf{X}_{1}^{*}=\mathbf{Y}_{1}$
 \end_inset
 
 .
- Recall by 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "lem:time-reversal"
-
-\end_inset
-
-, a Baudoin 
-\begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
-\end_inset
-
--bridge of 
-\begin_inset Formula $\mathbf{X}^{*}$
-\end_inset
-
- is equal in distribution to the stationary solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- in two dimensions with initial distribution 
-\begin_inset Formula $\int p_{1}\left(\mathbf{x}_{1},\cdot\right)\tilde{\nu}\left(d\mathbf{x}_{1}\right)$
-\end_inset
-
- where 
-\begin_inset Formula $p_{t}\left(\mathbf{x},\cdot\right)$
-\end_inset
-
- is the transition kernel associated with 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- in two dimensions.
 \end_layout
 
 \begin_layout Proof
+\begin_inset Marginal
+status collapsed
+
+\begin_layout Plain Layout
+I'm jumping back and forth between the measure and the process here, though
+ you can always identify the measure with the canonical process, so maybe
+ that's okay?
+\end_layout
+
+\end_inset
+
 To complete the proof, it suffices to demonstrate that the restriction of
  
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
@@ -1525,31 +1116,27 @@ bridge of
 \begin_inset Formula $X$
 \end_inset
 
- subject to some conditions, and the restriction of 
-\begin_inset Formula $\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$
+ subject to the appropriate conditions, since the first coordinate of 
+\begin_inset Formula $\mathbf{Z}$
 \end_inset
 
- to its first coordinate is the measure induced by 
+ is equal to 
 \begin_inset Formula $Z$
 \end_inset
 
-.
+ by definition.
 \end_layout
 
 \begin_layout Proof
-Since the coordinates of a Baudoin 
-\begin_inset Formula $(\mathbf{X}_{1}^{*},\tilde{\nu})$
-\end_inset
-
--bridge of 
+Since the coordinates of 
 \begin_inset Formula $\mathbf{X}^{*}$
 \end_inset
 
- are mutually independent, and the coordinates of 
+ and 
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
- are also mutually independent, we may marginalize over the second coordinate
+ are all mutually independent, we marginalize over the second coordinate
  to find that 
 \begin_inset Formula $\mathbb{Y}^{\left(1\right)}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
 \end_inset
@@ -1562,7 +1149,42 @@ bridge of
 \begin_inset Formula $X$
 \end_inset
 
-, conditional on this bridge being hit by an independent solution to 
+, conditional on the bridge being hit by an independent solution 
+\begin_inset Formula $X^{*}$
+\end_inset
+
+ to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ in one dimension with 
+\begin_inset Formula $X_{1}^{*}=b$
+\end_inset
+
+, where 
+\begin_inset Formula $b$
+\end_inset
+
+ is the value of the bridge at 
+\begin_inset Formula $t=1$
+\end_inset
+
+.
+ By 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "lem:bladt-lemma"
+
+\end_inset
+
+, 
+\begin_inset Formula $X^{*}$
+\end_inset
+
+ is simply an independent solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
@@ -1570,46 +1192,37 @@ reference "eq:basic-sde"
 \end_inset
 
  in one dimension with initial distribution 
-\begin_inset Formula $\int p_{1}(\mathbf{x}_{1}^{\left(1\right)},\cdot)\tilde{\nu}(d\mathbf{x}_{1})$
+\begin_inset Formula $p_{1}(b,\cdot)$
 \end_inset
 
  where 
 \begin_inset Formula $p_{t}\left(x,\cdot\right)$
 \end_inset
 
- is the transition kernel associated with 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- in one dimension.
- 
-\end_layout
-
-\begin_layout Proof
-Finally, we simply note that 
-\begin_inset Formula $\mathbf{X}^{\nu}$
-\end_inset
-
- and 
-\begin_inset Formula $\bar{\mathbf{X}}^{\nu}$
-\end_inset
-
- are equal in distribution, and by the strong Markov property the first
- coordinate of 
-\begin_inset Formula $\mathbf{Z}$
-\end_inset
-
- is equal in distribution to 
-\begin_inset Formula $Z$
-\end_inset
-
- and the theorem follows.
+ is the associated transition kernel, and the theorem follows.
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "thm:approx-sim"
+
+\end_inset
+
+ is highly intuitive, in that it says an approximate 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridge of 
+\begin_inset Formula $X$
+\end_inset
+
+ is simply a approximate diffusion bridge between 
+\begin_inset Formula $(a,b)\sim\nu$
+\end_inset
+
+.
+ In particular, 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:approx-sim"
@@ -1652,7 +1265,11 @@ reference "eq:basic-sde"
 \end_inset
 
  with a particular initial distribution, which we call the hitting diffusion.
- Naturally, the higher the probability of the bridge and a hitting diffusion
+ 
+\end_layout
+
+\begin_layout Standard
+Naturally, the higher the probability of the bridge and a hitting diffusion
  intersecting, the closer 
 \begin_inset Formula $Z$
 \end_inset
@@ -1662,70 +1279,12 @@ reference "eq:basic-sde"
 \end_inset
 
 bridge.
- In particular, define 
-\begin_inset Formula $I_{X,Y}$
+ We explore the nature of the approximation in the next section, as it will
+ prove to be useful in constructing an exact 
+\begin_inset Formula $\nu$
 \end_inset
 
- as the event that a 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge 
-\begin_inset Formula $X$
-\end_inset
-
- and an independent hitting diffusion 
-\begin_inset Formula $Y$
-\end_inset
-
- intersect, i.e.
- for some 
-\begin_inset Formula $t\in\left[0,1\right]$
-\end_inset
-
-, 
-\begin_inset Formula $X_{t}=Y_{t}$
-\end_inset
-
-.
- Then, the density 
-\begin_inset Formula $\hat{f}$
-\end_inset
-
- of an approximate 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge can be written in terms of the density 
-\begin_inset Formula $f$
-\end_inset
-
- of an exact 
-\begin_inset Formula $\nu-$
-\end_inset
-
-bridge as
-\begin_inset Formula 
-\begin{equation}
-\hat{f}\left(x\right)=f\left(y\right)\frac{\mbox{Pr}(I_{x,Y})}{\mbox{Pr}(I_{X,Y})}\label{eq:approx-exact-rel}
-\end{equation}
-
-\end_inset
-
-where, for 
-\begin_inset Formula $x,y\in\Omega$
-\end_inset
-
-, assuming the densities exist.
- The proof of this fact can be found 
-\begin_inset CommandInset citation
-LatexCommand citet
-before "below Theorem 2.1. in"
-key "bladt-sorensen-2014"
-
-\end_inset
-
-.
+-bridge sampler; for now, we give a simulation strategy based on 
 \end_layout
 
 \begin_layout Standard
@@ -1740,7 +1299,7 @@ reference "thm:approx-sim"
 
 \end_inset
 
- also suggests a natural method in the spirit of 
+ also suggests an intuitive extension of the method proposed in 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "bladt-sorensen-2014"
@@ -1756,7 +1315,7 @@ bridges, given a method
 diffusion(
 \series bold
 
-\begin_inset Formula $\mu,\sigma,\nu,N$
+\begin_inset Formula $x_{0},\mu,\sigma,N$
 \end_inset
 
 )
@@ -1770,16 +1329,12 @@ reference "eq:basic-sde"
 
 \end_inset
 
- with initial distribution 
-\begin_inset Formula $\mathbf{X}_{0}\sim\nu$
+ with initial condition 
+\begin_inset Formula $X_{0}=x_{0}$
 \end_inset
 
- at times 
-\begin_inset Formula $i=0,1\dots,N$
-\end_inset
-
- and step size 
-\begin_inset Formula $1/N$
+ observed at times 
+\begin_inset Formula $i=\{0,1/N\dots,1\}$
 \end_inset
 
  (see 
@@ -1790,7 +1345,11 @@ key "kloeden-1992"
 \end_inset
 
  for examples of such methods).
- We define a crossing of the discrete stochastic processes 
+ We define 
+\begin_inset Formula $\delta=1/N$
+\end_inset
+
+, a crossing of the discrete series of observations 
 \begin_inset Formula $\hat{\mathbf{X}}$
 \end_inset
 
@@ -1798,23 +1357,28 @@ key "kloeden-1992"
 \begin_inset Formula $\hat{\mathbf{Y}}$
 \end_inset
 
- as when either the event 
+ as the event 
 \begin_inset Formula 
-\[
-\left\{ \hat{\mathbf{X}}_{\delta i}\geq\hat{\mathbf{Y}}_{\delta\left(N-i\right)}\right\} \cap\left\{ \hat{\mathbf{X}}_{\delta\left(i+1\right)}\leq\hat{\mathbf{Y}}_{\delta\left(N-\left(i+1\right)\right)}\right\} 
-\]
+\begin{eqnarray*}
+\left\{ \hat{\mathbf{X}}_{\delta i}\geq\hat{\mathbf{Y}}_{\delta\left(N-i\right)}\right\}  & \cap & \left\{ \hat{\mathbf{X}}_{\delta\left(i+1\right)}\leq\hat{\mathbf{Y}}_{\delta\left(N-\left(i+1\right)\right)}\right\} \\
+ & \cup\\
+\left\{ \hat{\mathbf{X}}_{\delta i}^{\nu,\left(1\right)}\leq\hat{\mathbf{Y}}_{\delta\left(N-i\right)}\right\}  & \cap & \left\{ \hat{\mathbf{X}}_{\delta\left(i+1\right)}\geq\hat{\mathbf{Y}}_{\delta\left(N-\left(i+1\right)\right)}\right\} ,
+\end{eqnarray*}
 
 \end_inset
 
-or 
-\begin_inset Formula 
-\[
-\left\{ \hat{\mathbf{X}}_{\delta i}^{\nu,\left(1\right)}\leq\hat{\mathbf{Y}}_{\delta\left(N-i\right)}\right\} \cap\left\{ \hat{\mathbf{X}}_{\delta\left(i+1\right)}\geq\hat{\mathbf{Y}}_{\delta\left(N-\left(i+1\right)\right)}\right\} 
-\]
+and present our approximate 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridge in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "algo:approx-sim"
 
 \end_inset
 
-occurs.
+.
 \end_layout
 
 \begin_layout Standard
@@ -1860,9 +1424,20 @@ nu-$bridge}{$
 \backslash
 mu, 
 \backslash
-sigma, 
+sigma, N$} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-nu, N$} 
+State{
+\backslash
+textbf{draw} $(a,b) 
+\backslash
+sim 
+\backslash
+nu$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1873,19 +1448,36 @@ State{$
 \backslash
 hat{
 \backslash
-mathbf{X}}^
-\backslash
-nu 
+mathbf{X}}^{(1)} 
 \backslash
 gets$ 
 \backslash
-Call{diffusion}{$
+Call{diffusion}{$a, 
 \backslash
 mu, 
 \backslash
-sigma, 
+sigma, N$}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-nu, N$}}
+State{$
+\backslash
+hat{
+\backslash
+mathbf{X}}^{(2)} 
+\backslash
+gets$ 
+\backslash
+Call{reverse}{
+\backslash
+Call{diffusion}{$b, 
+\backslash
+mu, 
+\backslash
+sigma, N$}}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1896,15 +1488,22 @@ While{$
 \backslash
 hat{
 \backslash
-mathbf{X}}^{
-\backslash
-nu,(1)}$ and  $
+mathbf{X}}^{(1)}$ and  $
 \backslash
 hat{
 \backslash
-mathbf{X}}^{
+mathbf{X}}^{(2)}$ do not cross} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-nu,(2)}$ do not cross} 
+State{
+\backslash
+textbf{draw} $(a,b)$ from $
+\backslash
+nu$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1915,19 +1514,36 @@ State{$
 \backslash
 hat{
 \backslash
-mathbf{X}}^
-\backslash
-nu 
+mathbf{X}}^{(1)} 
 \backslash
 gets$ 
 \backslash
-Call{diffusion}{$
+Call{diffusion}{$a, 
 \backslash
 mu, 
 \backslash
-sigma, 
+sigma, N$}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-nu, N$}}
+State{$
+\backslash
+hat{
+\backslash
+mathbf{X}}^{(2)} 
+\backslash
+gets$ 
+\backslash
+Call{reverse}{
+\backslash
+Call{diffusion}{$b, 
+\backslash
+mu, 
+\backslash
+sigma, N$}}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1949,17 +1565,11 @@ If{$
 \backslash
 hat{
 \backslash
-mathbf{X}}^{
-\backslash
-nu,(1)}_0 
-\backslash
-geq 
+mathbf{X}}^{(1)}_0 > 
 \backslash
 hat{
 \backslash
-mathbf{X}}^{
-\backslash
-nu,(2)}_1$}
+mathbf{X}}^{(2)}_1$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1976,7 +1586,7 @@ min
 \backslash
 {i
 \backslash
-in 1,
+in 0,
 \backslash
 dots,N 
 \backslash
@@ -1984,9 +1594,7 @@ mid
 \backslash
 hat{
 \backslash
-mathbf{X}}^{
-\backslash
-nu,(1)}_{
+mathbf{X}}^{(1)}_{
 \backslash
 delta i} 
 \backslash
@@ -1994,11 +1602,9 @@ leq
 \backslash
 hat{
 \backslash
-mathbf{X}}^{
+mathbf{X}}^{(2)}_{
 \backslash
-nu,(2)}_{
-\backslash
-delta (N-i)}
+delta i}
 \backslash
 }$}
 \end_layout
@@ -2024,7 +1630,7 @@ min
 \backslash
 {i
 \backslash
-in 1,
+in 0,
 \backslash
 dots,N 
 \backslash
@@ -2032,9 +1638,7 @@ mid
 \backslash
 hat{
 \backslash
-mathbf{X}}^{
-\backslash
-nu,(1)}_{
+mathbf{X}}^{(1)}_{
 \backslash
 delta i} 
 \backslash
@@ -2042,11 +1646,9 @@ geq
 \backslash
 hat{
 \backslash
-mathbf{X}}^{
+mathbf{X}}^{(2)}_{
 \backslash
-nu,(2)}_{
-\backslash
-delta (N-i)}
+delta i}
 \backslash
 }$}
 \end_layout
@@ -2066,9 +1668,7 @@ EndIf
 
 
 \backslash
-State{$Z_{
-\backslash
-delta i} 
+State{$Z 
 \backslash
 gets 
 \backslash
@@ -2076,9 +1676,7 @@ begin{cases}
 \backslash
 hat{
 \backslash
-mathbf{X}}^{
-\backslash
-nu,(1)}_{
+mathbf{X}}^{(1)}_{
 \backslash
 delta i}, 
 \backslash
@@ -2094,11 +1692,9 @@ tau - 1
 \backslash
 hat{
 \backslash
-mathbf{X}}^{
+mathbf{X}}^{(2)}_{
 \backslash
-nu,(2)}_{
-\backslash
-delta (N-i)}, 
+delta i}, 
 \backslash
 text{ for } i=
 \backslash
@@ -2119,9 +1715,7 @@ end{cases}$}
 \backslash
 State 
 \backslash
-Return $Z_{
-\backslash
-delta i}$
+Return $Z$
 \end_layout
 
 \begin_layout Plain Layout
@@ -2170,16 +1764,14 @@ bridges
 In 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "chap:EM"
+reference "chap:5"
 
 \end_inset
 
 , we present some evidence that the quality of the approximate simulation
- scheme proposed above is quite high in many common situations.
+ scheme proposed above is quite high in a variety of situations.
  However, an exact simulation scheme is desirable for completeness, and
- the derivation of such a scheme can also hint at a quantification of precisely
- how approximate the simulation strategy presented above is.
- 
+ so we present one such scheme here.
 \end_layout
 
 \begin_layout Standard
@@ -2249,8 +1841,8 @@ key "bladt-sorensen-2014"
 \end_inset
 
  is the proposal.
- However, this ratio is difficult to compute analytically, and by a result
- of 
+ However, this ratio is difficult to compute analytically, and leveraging
+ a result of 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "andrieu-roberts"
@@ -2273,15 +1865,15 @@ key "bladt-sorensen-2014"
 \end_layout
 
 \begin_layout Standard
-Now, we note that to sample an exact 
+Following the approximate sampler, sampling an exact 
 \begin_inset Formula $\nu$
 \end_inset
 
--bridge, we merely need to sample 
+-bridge simply requires us to first sample 
 \begin_inset Formula $(a,b)\sim\nu$
 \end_inset
 
-, and simulate an exact diffusion bridge from 
+ and then simulate an exact diffusion bridge from 
 \begin_inset Formula $a$
 \end_inset
 
@@ -2301,7 +1893,49 @@ key "bladt-sorensen-2014"
 \begin_inset Formula $\nu$
 \end_inset
 
--bridge sampler.
+-bridge sampler, letting 
+\noun on
+hitting
+\noun default
+(
+\begin_inset Formula $b$
+\end_inset
+
+) return discrete observations from a solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ with initial condition 
+\begin_inset Formula $p_{1}(b,\cdot)$
+\end_inset
+
+, and 
+\noun on
+approximate diffusion bridge(
+\begin_inset Formula $a,b,\mu,\sigma,N)$
+\end_inset
+
+
+\noun default
+ be the approximate sampler of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
+
+\end_inset
+
+ for a diffusion bridge from 
+\begin_inset Formula $a$
+\end_inset
+
+ to 
+\begin_inset Formula $b$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2319,7 +1953,7 @@ Simulation of Exact
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridges
+bridge
 \end_layout
 
 \end_inset
@@ -2405,18 +2039,16 @@ EndFor
 \backslash
 State 
 \backslash
-Return{$
+Return{
 \backslash
-frac{1}{M} 
-\backslash
-sum^{M}_{i=1} T_{i}$}
+Call{mean}{$T_i$}}
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-EndFunction 
+EndFunction
 \end_layout
 
 \begin_layout Plain Layout
@@ -2429,13 +2061,11 @@ EndFunction
 \backslash
 Function{exact $
 \backslash
-nu$-bridges}{$
+nu$-bridge}{$
 \backslash
 mu, 
 \backslash
-sigma, 
-\backslash
-nu, N, M$, samples}
+sigma, N, M$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2444,20 +2074,9 @@ nu, N, M$, samples}
 \backslash
 State{$
 \backslash
-mathbf{X} 
+hat{
 \backslash
-gets $ 
-\backslash
-Call{list}{samples}}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-State{$
-\backslash
-mathbf{X}^{(1)} 
+mathbf{X}}^{(1)} 
 \backslash
 gets$ 
 \backslash
@@ -2476,60 +2095,27 @@ nu, N$}}
 
 
 \backslash
-For{$i=2,
+State{$
 \backslash
-dots,$ samples}
-\end_layout
-
-\begin_layout Plain Layout
-
-
+hat{
 \backslash
-State{
-\backslash
-textbf{draw} $(a,b)
-\backslash
-sim
-\backslash
-nu$}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-State{$X^{} 
+mathbf{X}}^{(2)} 
 \backslash
 gets$ 
 \backslash
-Call{approximate $
+Call{approximate diffusion bridge}{$
 \backslash
-nu$-bridge}{$
+hat{
 \backslash
-mu, 
+mathbf{X}}^{(1)}_0, 
 \backslash
-sigma, 
+hat{
 \backslash
-delta_{a,b}, N$}}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-State{$X^{2} 
-\backslash
-gets$ 
-\backslash
-Call{approximate $
-\backslash
-nu$-bridge}{$
+mathbf{X}}^{(1)}_1, 
 \backslash
 mu, 
 \backslash
-sigma, 
-\backslash
-delta_{a,b}, N$}}
+sigma, N$}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2552,11 +2138,19 @@ cfrac{
 \backslash
 hat{
 \backslash
-rho}(X^{2},M)}{
+rho}(
 \backslash
 hat{
 \backslash
-rho}(X^{1},M)}
+mathbf{X}}^{(2)},M)}{
+\backslash
+hat{
+\backslash
+rho}(
+\backslash
+hat{
+\backslash
+mathbf{X}}^{(1)},M)}
 \backslash
 right
 \backslash
@@ -2567,65 +2161,19 @@ right
 
 
 \backslash
-If{
-\backslash
-Call{unif}{0,1} $< 
-\backslash
-alpha$}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-State{$
-\backslash
-mathbf{X}^{(i)} 
-\backslash
-gets X^{2}$}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-Else
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-State{$
-\backslash
-mathbf{X}^{(i)} 
-\backslash
-gets X^{1}$}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-EndIf
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-EndFor
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
 State 
 \backslash
 Return $
 \backslash
-mathbf{X}$
+hat{
+\backslash
+mathbf{X}}^{(2)}$ with probability $
+\backslash
+alpha$, $
+\backslash
+hat{
+\backslash
+mathbf{X}}^{(1)}$ otherwise
 \end_layout
 
 \begin_layout Plain Layout
@@ -2692,38 +2240,8 @@ reference "algo:exact-sim"
 \begin_inset Formula $1/\mbox{Pr}(I_{x,Y})$
 \end_inset
 
-, and 
-\noun on
-hitting
-\noun default
-(
-\begin_inset Formula $b$
-\end_inset
-
-) returns a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- in one dimension over 
-\begin_inset Formula $[t,2t]$
-\end_inset
-
- with initial distribution 
-\begin_inset Formula $p_{1}(b,\cdot)$
-\end_inset
-
- (see 
-\begin_inset CommandInset citation
-LatexCommand citet
-before "Section 2.3 in"
-key "bladt-sorensen-2014"
-
-\end_inset
-
- for the details of the hitting diffusion).
+.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -2735,7 +2253,15 @@ exact
 
 bridge 
 \noun default
-is precisely the method we needed to implement the MCEM algorithm proposed
+is a sampler of the canonical process on a Baudoin 
+\begin_inset Formula $(X_{0,1},\nu)$
+\end_inset
+
+ conditioning of 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, and precisely the method we need to implement the MCEM algorithm proposed
  in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -2744,9 +2270,20 @@ reference "algo:mcem"
 \end_inset
 
 .
- With all the necessary ingredients, we can now move on to evaluating these
- methods in a simulation setting, and putting theory to practice with data
- in the next part.
+ It thereby completes our answer to the question of inference on distributional
+ data, and provides a simulation-based answer to the intractability of result
+ stated in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prop:v-bridge-density"
+
+\end_inset
+
+, allowing us to impute the distribution of a diffusion process given the
+ distribution of its endpoints.
+ In the next Part, we put theory to practice as we evaluate and apply the
+ methods developed in this Part in a variety of simulation and empirical
+ settings.
 \end_layout
 
 \end_body

@@ -160,19 +160,7 @@ where
 \begin_inset Formula $\mathcal{T}$
 \end_inset
 
-, 
-\begin_inset Formula $\mathcal{F}_{\mathcal{T}}=\sigma\left(\left\{ \mathbf{X}_{t}\left(\omega\right):t\in\mathcal{T},\omega\in\Omega\right\} \right)$
-\end_inset
-
- be the 
-\begin_inset Formula $\sigma-$
-\end_inset
-
-algebra of events observed during 
-\begin_inset Formula $\mathcal{T}$
-\end_inset
-
-, and 
+ and 
 \begin_inset Formula $\mathbb{P}_{\mathcal{T}}$
 \end_inset
 
@@ -198,6 +186,8 @@ algebra of events observed during
 \end_inset
 
 , to be made clear by context.
+ In general, we will take the density of a given measure to refer to its
+ density with respect to the Lebesgue measure unless otherwise noted.
 \end_layout
 
 \begin_layout Standard
@@ -211,7 +201,7 @@ In the next Part, we will study in detail time-homogenous Itô diffusions
  of the form 
 \begin_inset Formula 
 \[
-\mathbf{X}_{t}-\mathbf{X}_{0}=\int_{0}^{t}\mu(\mathbf{X}_{s})ds+\int_{0}^{t}\sigma(\mathbf{X}_{s})d\mathbf{W}_{s},
+\mathbf{X}_{t}-\mathbf{X}_{0}=\int_{0}^{t}\mu(\mathbf{X}_{s})ds+\int_{0}^{t}\Sigma(\mathbf{X}_{s})d\mathbf{W}_{s},
 \]
 
 \end_inset
@@ -225,7 +215,7 @@ for a vector of independent Wiener processes
  stochastic differential equation (SDE)
 \begin_inset Formula 
 \[
-d\mathbf{X}_{t}=\mu(\mathbf{X}_{t})dt+\sigma(\mathbf{X}_{t})d\mathbf{W}_{t},
+d\mathbf{X}_{t}=\mu(\mathbf{X}_{t})dt+\Sigma(\mathbf{X}_{t})d\mathbf{W}_{t},
 \]
 
 \end_inset
@@ -240,45 +230,19 @@ with a given initial condition on
 \end_inset
 
  and 
-\begin_inset Formula $\sigma$
+\begin_inset Formula $\Sigma$
 \end_inset
 
  are suitably regular, admitting a weakly unique solution (i.e.
- all solutions have the same finite-dimensional distributions), and an invariant
- measure 
-\begin_inset Formula $\Pi$
-\end_inset
-
-, which can be normalized to a probability density.
- Note, for example, that the latter assumption excludes the Wiener process,
- since the Lebesgue measure cannot be normalized to a density.
- Finally, we further assume that 
-\begin_inset Formula $\mathbf{X}$
-\end_inset
-
- is 
-\begin_inset Formula $\gamma$
-\end_inset
-
--symmetric in the sense of 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "silverstein-1974"
-
-\end_inset
-
-, so that there exists a function 
-\begin_inset Formula $\gamma$
-\end_inset
-
- such that for any 
-\begin_inset Formula $\mathbf{x},\mathbf{y}$
-\end_inset
-
- in the state space,
+ all solutions have the same finite-dimensional distributions), and finite
+ speed measure.
+ Note, for example, that the latter assumption excludes the Wiener process.
+ Finally, we assume that any one dimesional diffusion considered is balanced,
+ i.e.
+ 
 \begin_inset Formula 
 \[
-\gamma(\mathbf{x})p_{t}(\mathbf{x},\mathbf{y})=\gamma(\mathbf{y})p_{t}(\mathbf{y},\mathbf{x}),
+p_{t}(x,y)m(x)=p_{t}(y,x)m(y),
 \]
 
 \end_inset
@@ -287,9 +251,12 @@ where
 \begin_inset Formula $p_{t}$
 \end_inset
 
- is the transition kernel associated with the diffusion.
- In general, we will take the density of a given measure to refer to its
- density with respect to the Lebesgue measure unless otherwise noted.
+ and 
+\begin_inset Formula $m$
+\end_inset
+
+ are the transition kernel and speed measure associated with the diffusion.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -313,7 +280,7 @@ We denote probability measures by capital letters
 
  will be denoted in boldface, and note that a vector may also be a random
  variable.
- In general, for vectors of countable length, 
+ In general 
 \begin_inset Formula $\mathbf{x}^{(i)}$
 \end_inset
 
@@ -321,9 +288,14 @@ We denote probability measures by capital letters
 \begin_inset Formula $i$
 \end_inset
 
-th element of such a vector due to the overloading of the subscript operator.
- Subscripts will be used to denote elements of vectors or sets of uncountable
- length i.e.
+th element of a vector 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ of countable length due to the overloading of the subscript operator for
+ time indices.
+ Subscripts will be used to denote elements of sets of uncountable length
+ i.e.
  
 \begin_inset Formula $X_{t}$
 \end_inset
@@ -344,7 +316,11 @@ th element of such a vector due to the overloading of the subscript operator.
 \begin_inset Formula $\mathcal{T}\subseteq[0,1]$
 \end_inset
 
- is the value of the stochastic process at times 
+ is the value of 
+\begin_inset Formula $X$
+\end_inset
+
+ at times 
 \begin_inset Formula $\mathcal{T}$
 \end_inset
 
@@ -354,7 +330,7 @@ th element of such a vector due to the overloading of the subscript operator.
 \begin_inset Formula $X_{0,1}$
 \end_inset
 
- to denote the value of 
+ will denote the value of 
 \begin_inset Formula $X$
 \end_inset
 

@@ -163,7 +163,11 @@ where
 \end_inset
 
  at a collection of times 
-\begin_inset Formula $\mathcal{T}=\{0<t_{1}<\cdots<t_{n}=1\}$
+\begin_inset Formula $\mathcal{T}=\{t_{1}<\cdots<t_{n}=1\}$
+\end_inset
+
+ where 
+\begin_inset Formula $t_{1}>0$
 \end_inset
 
 .
@@ -379,11 +383,7 @@ We refer to
 \end_inset
 
  as distributional data, in juxtaposition to the observed data that is given
- in the context of MLE, and let 
-\begin_inset Formula $v$
-\end_inset
-
- be its.
+ in the context of MLE.
  Then, the problem of inference on distributional data is as follows: What,
  if anything can we say about 
 \begin_inset Formula $\theta$
@@ -393,7 +393,7 @@ We refer to
 \begin_inset Formula $X_{\mathcal{T}}\sim\nu$
 \end_inset
 
-? 
+?
 \end_layout
 
 \begin_layout Subsection
@@ -751,14 +751,14 @@ The MKLDE given an approximation
 
 .
  Then, for 
-\begin_inset Formula $X_{\mathcal{T}}^{(N),(1)},\dots,X_{\mathcal{T}}^{(N),(N)}$
+\begin_inset Formula $X_{\mathcal{T}}^{(N,1)},\dots,X_{\mathcal{T}}^{(N,N)}$
 \end_inset
 
  drawn from 
 \begin_inset Formula $\hat{\nu}^{(N)}$
 \end_inset
 
-, by standard arguments demonstrating the consistency of plug-in bootstrap
+, by standard results demonstrating the consistency of plug-in bootstrap
  estimators (see 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -772,7 +772,7 @@ status open
 
 \begin_layout Plain Layout
 Some really ugly notation here.
- Will fix.
+ Will try to fix.
 \end_layout
 
 \end_inset
@@ -780,7 +780,7 @@ Some really ugly notation here.
  
 \begin_inset Formula 
 \begin{eqnarray*}
-\int\log P_{\theta,\mathcal{T}}(\mathbf{x})\hat{\nu}^{(N)}(d\mathbf{x}) & = & \frac{1}{N}\sum_{i=1}^{N}\log P_{\theta,\mathcal{T}}(X_{\mathcal{T}}^{(N),(i)})\\
+\int\log P_{\theta,\mathcal{T}}(\mathbf{x})\hat{\nu}^{(N)}(d\mathbf{x}) & = & \frac{1}{N}\sum_{i=1}^{N}\log P_{\theta,\mathcal{T}}(X_{\mathcal{T}}^{(N,i)})\\
  & \xrightarrow{p} & \Lambda_{\theta}(\nu)
 \end{eqnarray*}
 
@@ -797,7 +797,15 @@ key "kim-pollard-1990"
 
 \end_inset
 
-), the MKLDE is asymptotically consistent as 
+), the MKLDE given 
+\begin_inset Formula $\hat{\nu}^{(N)}$
+\end_inset
+
+ is asymptotically consistent for the MKLDE given 
+\begin_inset Formula $\nu$
+\end_inset
+
+ as 
 \begin_inset Formula $N\rightarrow\infty$
 \end_inset
 
@@ -839,8 +847,8 @@ This remark is important in that it says we do not need perfect access to
 status open
 
 \begin_layout Plain Layout
-Some of these remarks are a little sketchy, but I don't have the technical
- background to make them better.
+Some of these remarks are a little sketchy, but I don't think have the technical
+ background to make them more precise.
 \end_layout
 
 \end_inset
@@ -889,7 +897,7 @@ Consider a sequence of random variables
 
  i.i.d.
  draws 
-\begin_inset Formula $X_{\mathcal{T}}^{(m),(1)},\dots,X_{\mathcal{T}}^{(m),(N)}$
+\begin_inset Formula $X_{\mathcal{T}}^{(m,1)},\dots,X_{\mathcal{T}}^{(m,N)}$
 \end_inset
 
  from 
@@ -900,7 +908,7 @@ Consider a sequence of random variables
  Then, by the continuous mapping theorem, 
 \begin_inset Formula 
 \[
-\frac{1}{N}\sum_{i=1}^{N}\log P_{\theta,\mathcal{T}}(X_{\mathcal{T}}^{(m),(i)})\xrightarrow{p}\log P_{\theta,\mathcal{T}}(\bar{\mathbf{x}}).
+\frac{1}{N}\sum_{i=1}^{N}\log P_{\theta,\mathcal{T}}(X_{\mathcal{T}}^{(m,i)})\xrightarrow{p}\log P_{\theta,\mathcal{T}}(\bar{\mathbf{x}}).
 \]
 
 \end_inset
@@ -996,8 +1004,17 @@ reference "eq:mklde"
 \begin_inset Formula $\nu$
 \end_inset
 
-, and can be understood as performing MLE under model misspecification with
- infinite data.
+ can be understood as performing MLE under model misspecification with infinite
+ data (furthermore, we may bootstrap from a sufficiently good approximation
+ to 
+\begin_inset Formula $\nu$
+\end_inset
+
+ if we don't have perfect access to 
+\begin_inset Formula $\nu$
+\end_inset
+
+).
  This interpretation is intuitively pleasing, and together with the observation
  that the MKLDE reduces to the MLE in the limit for a sequence of laws of
  
@@ -1006,6 +1023,7 @@ reference "eq:mklde"
 
  tending to a degenerate measure, the proposed estimator seems to be a reasonabl
 e one.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1024,9 +1042,9 @@ However, given the unavailability of a transition density for most diffusion
 \end_inset
 
 .
- Therefore, at this point, solving for the MKLDE is practically impossible
- from an analytic standpoint; as such, the next section will develop a simulatio
-n-based strategy for finding the MKLDE.
+ Therefore, solving for the MKLDE is impossible from an analytic standpoint;
+ as such, the next section will develop a simulation-based strategy for
+ finding the MKLDE.
 \end_layout
 
 \begin_layout Section
@@ -1111,6 +1129,30 @@ key "roberts-stramer-2001,beskos-2006,bladt-sorensen-2014"
  large number of iterations.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+I think there is some identifiability condition that needs to hold.
+ For instance, if 
+\begin_inset Formula $\nu$
+\end_inset
+
+ is a one dimensional distribution, MKLDE will not converge in the case
+ of an OU process since the parameters are not identified.
+ Not sure if it's just the case that 
+\begin_inset Formula $n\geq2$
+\end_inset
+
+ or if it's something more specific.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 The Case of Unit Diffusion Coefficient
 \end_layout
@@ -1127,9 +1169,10 @@ reference "eq:sde-with-theta"
 
 \end_inset
 
- being equal to unity for intuition.
- Under this strong assumption, we will derive an EM algorithm that will
- maximize 
+ being equal to unity so that we may focus deriving the general shape of
+ what a simulation-strategy should look like.
+ In particular, in this subsection, we will derive an EM algorithm that
+ will maximize 
 \begin_inset Formula $\Lambda_{\theta}(\nu)$
 \end_inset
 
@@ -1572,7 +1615,7 @@ key "bladt-sorensen-2014"
 \begin_inset Formula 
 \begin{eqnarray*}
 Y_{t}^{*}(\theta,\tilde{\theta}) & = & Z_{t}(\tilde{\theta})+\frac{(t_{i}-t)(H_{\tilde{\theta}\rightarrow\theta}(Z_{t_{i-1}}(\tilde{\theta}))-Z_{t_{i-1}}(\tilde{\theta}))}{t_{i}-t_{i-1}}+\\
- &  & \frac{(t-t_{i-1})(H_{\tilde{\theta}\rightarrow\theta}(Z_{t_{i}}(\tilde{\theta}))-Z_{t_{i}}(\tilde{\theta}))}{t_{i}-t_{i-1}},
+ &  & \frac{(t-t_{i-1})(H_{\tilde{\theta}\rightarrow\theta}(Z_{t_{i}}(\tilde{\theta}))-Z_{t_{i}}(\tilde{\theta}))}{t_{i}-t_{i-1}}.
 \end{eqnarray*}
 
 \end_inset
@@ -1652,7 +1695,7 @@ recalling that
 Q(\theta\mid\tilde{\theta}) & = & \mathbb{E}_{\nu_{n}}\left[A_{\theta}(\eta_{\theta}(X_{t_{n}}))\right]-A_{\theta}(\eta_{\theta}(x_{0}))-\nonumber \\
  &  & \sum_{i=1}^{n}\mathbb{E}_{\nu_{i}}\left[\log(\sigma_{\theta}(X_{t_{i}}))\right]-\nonumber \\
  &  & \frac{1}{2}\sum_{i=1}^{n}\mathbb{E}_{\nu_{i-1,i}}\left[(\eta_{\theta}(X_{t_{i}})-\eta_{\theta}(X_{t_{i-1}}))^{2}/(t_{i}-t_{i-1})\right]-\nonumber \\
- &  & \frac{1}{2}\sum_{i=1}^{n}(t_{i}-t_{i-1})\mathbb{E}_{\mathbb{P}_{\tilde{\theta}}^{\nu},U}\left[\left(\alpha_{\theta}^{2}+\alpha_{\theta}^{'}\right)\left(Y_{U}^{*}(\theta,\tilde{\theta})\right)\right].\label{eq:final-q-1}
+ &  & \frac{1}{2}\sum_{i=1}^{n}(t_{i}-t_{i-1})\mathbb{E}_{\mathbb{P}_{\tilde{\theta}}^{\nu},U_{i}}\left[\left(\alpha_{\theta}^{2}+\alpha_{\theta}^{'}\right)\left(Y_{U_{i}}^{*}(\theta,\tilde{\theta})\right)\right].\label{eq:final-q-1}
 \end{eqnarray}
 
 \end_inset
@@ -1669,8 +1712,8 @@ th coordinate of
 \begin_inset Formula $\nu$
 \end_inset
 
- and 
-\begin_inset Formula $v_{i,j}$
+, 
+\begin_inset Formula $\nu_{i,j}$
 \end_inset
 
  is the joint distribution of the 
@@ -1682,7 +1725,7 @@ th coordinate of
 \end_inset
 
 , and 
-\begin_inset Formula $U$
+\begin_inset Formula $U_{i}$
 \end_inset
 
  is an independent uniform random variable on 
@@ -1706,7 +1749,7 @@ reference "eq:final-q"
 \begin_inset Formula $\mathcal{T}$
 \end_inset
 
-, and standard Monte Carlo integration results.
+, and by standard Monte Carlo integration results.
  
 \begin_inset Float algorithm
 wide false
@@ -1717,11 +1760,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-MCEM for M
-\begin_inset Formula $\Lambda^{\nu}$
-\end_inset
-
-E on Distributional Data
+MCEM for the MKLDE Given Distributional Data
 \end_layout
 
 \end_inset
@@ -2185,29 +2224,27 @@ key "wei-tanner-1990"
 \begin_inset Formula $[0,1]$
 \end_inset
 
- to compute the last term: due to the Markov property, for any realization
- of 
-\begin_inset Formula $U$
+ to compute the final term of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:final-q-1"
+
 \end_inset
 
- , we may merely find the 
-\begin_inset Formula $i$
+: due to the Markov property, for any realization of 
+\begin_inset Formula $U_{i}$
 \end_inset
 
- such that 
-\begin_inset Formula $t_{i-1}<U<t_{i}$
+ , we merely need to take the value at 
+\begin_inset Formula $U\mod t_{i-1}$
 \end_inset
 
-, and take the value of a Baudoin 
+ of a Baudoin 
 \begin_inset Formula $(X_{0,t_{i}-t_{i-1}},\nu_{i})$
 \end_inset
 
--bridge on 
+-bridge simulated on 
 \begin_inset Formula $[0,t_{i}-t_{i-1}]$
-\end_inset
-
- at 
-\begin_inset Formula $U\mod t_{i-1}$
 \end_inset
 
 .
@@ -2215,13 +2252,18 @@ key "wei-tanner-1990"
 \begin_inset Formula $\nu$
 \end_inset
 
- at every possible point in the algorithm as as form of variance reduction.
+ at every possible point in the algorithm as a simple method of Monte Carlo
+ variance reduction.
 \end_layout
 
 \begin_layout Standard
 We have thus partially answered the question of inference on distributional
  data.
- Given that 
+ There is in fact a meaningful estimate of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ when we are given that 
 \begin_inset Formula $X_{\mathcal{T}}$
 \end_inset
 
@@ -2229,7 +2271,7 @@ We have thus partially answered the question of inference on distributional
 \begin_inset Formula $\nu$
 \end_inset
 
-, we can find the value of 
+: this is precisely the value of 
 \begin_inset Formula $\theta$
 \end_inset
 
@@ -2241,7 +2283,7 @@ We have thus partially answered the question of inference on distributional
 \begin_inset Formula $\nu$
 \end_inset
 
- using 
+, and we can find such a value using 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "algo:mcem"
@@ -2262,16 +2304,12 @@ reference "algo:mcem"
 \begin_inset Formula $\theta$
 \end_inset
 
-, we must be able to impute the distribution of 
+, we must be able to draw from the imputed distribution of 
 \begin_inset Formula $X$
 \end_inset
 
  conditional on 
-\begin_inset Formula $X_{0,\Delta}$
-\end_inset
-
- being distributed according to 
-\begin_inset Formula $\nu$
+\begin_inset Formula $X_{0,\Delta}\sim\nu$
 \end_inset
 
 .
