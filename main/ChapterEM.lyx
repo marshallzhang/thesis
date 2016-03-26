@@ -401,43 +401,6 @@ Characterizing an Estimator
 \end_layout
 
 \begin_layout Standard
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-I think I am getting my 
-\begin_inset Quotes eld
-\end_inset
-
-laws
-\begin_inset Quotes erd
-\end_inset
-
-, 
-\begin_inset Quotes eld
-\end_inset
-
-measures
-\begin_inset Quotes erd
-\end_inset
-
-, and 
-\begin_inset Quotes eld
-\end_inset
-
-random variables
-\begin_inset Quotes erd
-\end_inset
-
- mixed up throughout this section..
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 We first note that the problem of discretely observed data can be heuristically
  understood as a limiting case of the problem of distributional data.
  In particular, we can fix some data 
@@ -772,18 +735,7 @@ key "horowitz-2002"
 
 \end_inset
 
-),
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-Some really ugly notation here.
- Will try to fix.
-\end_layout
-
-\end_inset
-
- 
+), 
 \begin_inset Formula 
 \begin{eqnarray*}
 \int\log P_{\theta,\mathcal{T}}(\mathbf{x})\hat{\nu}^{(N)}(d\mathbf{x}) & = & \frac{1}{N}\sum_{i=1}^{N}\log P_{\theta,\mathcal{T}}(X_{\mathcal{T}}^{(N,i)})\\
@@ -849,17 +801,6 @@ This remark is important in that it says we do not need perfect access to
 \end_inset
 
  for a sufficiently large sample size.
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-Some of these remarks are a little sketchy, but I don't think have the technical
- background to make them more precise.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1135,30 +1076,6 @@ key "roberts-stramer-2001,beskos-2006,bladt-sorensen-2014"
  large number of iterations.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-I think there is some identifiability condition that needs to hold.
- For instance, if 
-\begin_inset Formula $\nu$
-\end_inset
-
- is a one dimensional distribution, MKLDE will not converge in the case
- of an OU process since the parameters are not identified.
- Not sure if it's just the case that 
-\begin_inset Formula $n\geq2$
-\end_inset
-
- or if it's something more specific.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 The Case of Unit Diffusion Coefficient
 \end_layout
@@ -1258,21 +1175,6 @@ reference "eq:sde-with-theta"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Proof
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-I am in the middle of changing this proof up substantially.
- I think the result is intuitive (and correct according to simulations),
- but I think my original proof was technically wrong.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Proof
@@ -1694,19 +1596,7 @@ recalling that
 
  under a Lamperti transformation fixed, which allows the EM algorithm to
  converge properly.
- 
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-I've read and re-read Bladt/Beskos many times and I just can't really get
- my hands on what the point of all of this is (the two papers give different
- explanations too)...
-\end_layout
-
-\end_inset
-
-We note that we can equivalently write 
+ We note that we can equivalently write 
 \end_layout
 
 \begin_layout Standard

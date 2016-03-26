@@ -243,7 +243,7 @@ We formalize the problem as follows.
 \begin_inset Formula $X$
 \end_inset
 
- follows some model 
+ evolves according to some model 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -252,16 +252,7 @@ We formalize the problem as follows.
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is that under 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
-, 
-\begin_inset Formula $X$
-\end_inset
-
- must have finite-dimensional distributions which are absolutely continuous
- with respect to the Gaussian measure).
+ is that the Gaussian measure is absolutely continuous to it).
  With this setup, the data provided in any particular SPF are discrete observati
 ons of some finite number of sample paths of 
 \begin_inset Formula $X$
@@ -478,17 +469,21 @@ Simple Inference on Inflation Expectations
 \end_layout
 
 \begin_layout Standard
-In this brief section, we verify that the MCEM algorithm consistently estimates
- the MKLDE in an empirical setting.
+In this brief section, we verify that the proposed MCEM algorithm consistently
+ estimates the MKLDE in an empirical setting.
  In particular, we posit a probability model 
-\begin_inset Formula $\mathbb{Q}$
+\begin_inset Formula $\mathbb{Q}_{\theta}$
 \end_inset
 
  under which 
 \begin_inset Formula $X$
 \end_inset
 
- is an OU diffusion.
+ is an OU diffusion governed by 
+\begin_inset Formula $\theta=(\mu,\lambda,\sigma)$
+\end_inset
+
+.
  This is an economically sensible model, consistent with the mean reversion
  implicit in ECB's inflation targeting policy of aiming for 
 \begin_inset Quotes eld
@@ -518,7 +513,7 @@ n density of the OU diffusion is analytically tractable.
 
  be the set of forecasters with complete responses.
  Then, the average log-likelihood of the data under 
-\begin_inset Formula $\mathbb{Q}$
+\begin_inset Formula $\mathbb{Q}_{\theta}$
 \end_inset
 
  is
@@ -737,8 +732,8 @@ Mean of the
 \begin_inset Formula $\theta^{*}=\arg\max\bar{\ell}(\theta)$
 \end_inset
 
-, as well as the bias of MKLDE estimates obtained by MCEM using approximate
- bridges relative to 
+, as well as the bias of MKLDE estimates, obtained by MCEM using approximate
+ bridges, relative to 
 \begin_inset Formula $\theta^{*}$
 \end_inset
 
@@ -778,7 +773,7 @@ ion of
 \end_inset
 
  under 
-\begin_inset Formula $\mathbb{Q}$
+\begin_inset Formula $\mathbb{Q}_{\theta}$
 \end_inset
 
  at 
@@ -852,8 +847,8 @@ In the final original section of this thesis, we study the dynamics of the
  at arbitrary horizons? In particular, we estimate parameters for a model
  with intractable log-likelihood, and show that a generalized bridge-based
  imputation method reduces mean out-of-sample estimated K-L divergence of
- interpolations from the truth noticeably vis-à-vis a naïve linear interpolation
- scheme.
+ interpolations from the truth noticeably vis-à-vis a baseline linear interpolat
+ion scheme.
  
 \end_layout
 
@@ -872,12 +867,8 @@ To begin, we consider a particular SPF containing forecasts from a finite
 \begin_inset Formula $(n+1)$
 \end_inset
 
--dimensional empirical distribution induced by these forecasts and the inflation
- print 
-\begin_inset Formula $X_{t_{0}}$
-\end_inset
-
- at 
+-dimensional empirical distribution induced by these forecasts and the fixed
+ inflation print at 
 \begin_inset Formula $t_{0}$
 \end_inset
 
@@ -926,7 +917,7 @@ To begin, we consider a particular SPF containing forecasts from a finite
 \end_inset
 
 .
- A natural imputation method, then, for the distribution of 
+ A natural imputation method for the distribution of 
 \begin_inset Formula $X$
 \end_inset
 
@@ -1090,10 +1081,66 @@ key "perez-cruz-2008"
 \end_inset
 
 .
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:cv"
+
+\end_inset
+
+ intuitively visualizes the cross-validation process; the left side depicts
+ the original SPF dataset, while the right side depicts the removal of the
+ marginal distribution at 
+\begin_inset Formula $t_{2}=8$
+\end_inset
+
+ and a new imputed marginal distribution at that time.
+ The K-L divergence of the grayed-out marginal distribution and the imputed
+ distribution is estimated as described.
 \end_layout
 
 \begin_layout Standard
-As a reference point, we will also consider a naïve linear interpolation
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/marshall/Documents/senior/thesis/figures/cross_v_intuition.pdf
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:cv"
+
+\end_inset
+
+A visualization of the cross-validation method for assessing imputation
+ strategy performance.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As a reference point, we will also consider a baseline linear interpolation
  method.
  In particular, a linear interpolation of the forecasts 
 \begin_inset Formula $X_{t}$
@@ -1233,7 +1280,7 @@ name "fig:est_kl"
 
 \end_inset
 
-A boxplot of the estimated out-of-sample K-L divergences of imputed inflation
+Boxplots of the estimated out-of-sample K-L divergences of imputed inflation
  expectations from the distribution of 
 \begin_inset Formula $X$
 \end_inset
@@ -1246,13 +1293,25 @@ A boxplot of the estimated out-of-sample K-L divergences of imputed inflation
 \begin_inset Formula $1-4$
 \end_inset
 
- month and 
+ quarter (left) and 
 \begin_inset Formula $7-10$
 \end_inset
 
- month horizons, using generalized bridge-based imputation with an OU and
- hyperbolic diffusion model, as well as a naïve linear interpolation method.
+ quarter (right) horizons, using generalized bridge-based imputation with
+ an OU and hyperbolic diffusion model, as well as a baseline linear interpolatio
+n method.
  Means are labeled with a black square and their numerical value.
+ Any negative estimates of K-L divergence and any SPFs for which the MCEM
+ algorithm to estimate MKLDEs did not converge are dropped (as such, the
+ estimates for 
+\begin_inset Formula $52$
+\end_inset
+
+ out of 
+\begin_inset Formula $68$
+\end_inset
+
+ SPFs are plotted).
 \end_layout
 
 \end_inset
@@ -1301,16 +1360,7 @@ reference "fig:est_kl"
 \end_inset
 
  quarters respectively.
- We drop any negative estimates of K-L divergence and any SPFs for which
- the MCEM algorithm to estimate MKLDEs did not converge (totaling to 
-\begin_inset Formula $16$
-\end_inset
-
- of the 
-\begin_inset Formula $68$
-\end_inset
-
- SPFs).
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1340,7 +1390,7 @@ e estimates, the effect size qualitatively appears to be non-negligible.
 \end_inset
 
  with unit variance is estimated to be approximately 
-\begin_inset Formula $1.0$
+\begin_inset Formula $1$
 \end_inset
 
 .
@@ -1394,40 +1444,28 @@ reference "fig:cont_path"
 
 \end_inset
 
-.
- This figure reveals that the time-inhomogenous dynamics of inflation expectatio
-ns do in fact prevent either the OU or hyperbolic diffusions from being
- a good model, especially at short horizons: an up-and-down path during
- the first quarter is noticeable, suggesting that the forecasters expected
- inflation to remain low in the short-term, and rapidly accelerate in the
- medium-term.
- The inability to capture dynamics like these leads our generalized bridges
- to mean-revert towards the inflation target of 
-\begin_inset Formula $\approx2\%$
-\end_inset
-
- 
-\begin_inset Quotes eld
-\end_inset
-
-too quickly
-\begin_inset Quotes erd
-\end_inset
-
- early on, before being forced to return to the relatively low inflation
- forecasts for one quarter ahead.
+ for the most recent available SPF (2015Q4).
+ This figure highlights the differences between constant and linear mean
+ reversion when far from the mean for the hyperbolic and OU diffusions respectiv
+ely.
+ In particular, the shortcomings of the OU model's time-homogeneity are
+ laid bare: the imputed paths revert to the inflation target far too quickly
+ initially before being forced down to the relatively low inflation expectations
+ at the end of the 2016Q1.
+ This suggests that the forecasters expected inflation to remain low in
+ the short-term, and rapidly accelerate in the medium-term, and that time-inhomo
+geneity is an important feature of inflation expectations.
  However, these issues represent problems of model selection and not of
- methodology.
- 
+ methodology; 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:cont_path"
 
 \end_inset
 
- represents the synthesis of the methods developed here to conduct inference
- on and imputation of distributional data; as such, it is a fitting way
- to close the original portion of this thesis.
+, representing the synthesis of the methodology developed here to perform
+ inference on and imputation of distributional data, is a fitting way to
+ close the original portion of this thesis.
 \end_layout
 
 \begin_layout Standard
@@ -1488,7 +1526,7 @@ name "fig:cont_path"
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- respectively.
+ respectively, using the 2015Q4 SPF.
 \end_layout
 
 \end_inset

@@ -641,26 +641,11 @@ reference "eq:ou-sde"
 \begin_inset Formula $X_{0}\sim F$
 \end_inset
 
- can be viewed as a generalized bridge of a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:ou-sde"
-
-\end_inset
-
- conditional on its endpoints being distributed according to 
+ can be equivalently viewed as its own 
 \begin_inset Formula $\nu_{\theta}(F,L)$
 \end_inset
 
-; as usual, we will call such a bridge a 
-\begin_inset Formula $\nu_{\theta}(F,L)$
-\end_inset
-
--bridge of 
-\begin_inset Formula $X$
-\end_inset
-
-.
+-bridge.
  This insight suggests that we merely need to verify that a 
 \begin_inset Formula $\nu_{\theta}(F,L)$
 \end_inset
@@ -716,7 +701,11 @@ reference "chap:2"
 \end_inset
 
 , we also test the correctness of the samplers for an OU process driven
- by a standard 
+ by
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+a standard 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -724,9 +713,16 @@ reference "chap:2"
 \begin_inset Formula $L_{\alpha}$
 \end_inset
 
-, which is not an Itô diffusion, and the Wiener process, which does not
- have finite speed measure.
- Note the Wiener process is a limiting case of the Gaussian OU process when
+, which is not an Itô diffusion, and 
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+the Wiener process, which does not have finite speed measure.
+ 
+\end_layout
+
+\begin_layout Standard
+Note the Wiener process is a limiting case of the Gaussian OU process when
  
 \begin_inset Formula $\theta\rightarrow(0,0,1)$
 \end_inset
@@ -762,7 +758,7 @@ reference "chap:2"
 
 .
  As expected, the approximate sampler does not sample from the true distribution
- (we know this to be true for the Gaussian OU process, since 
+: We know this to be true for the Gaussian OU process, since 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:approx-sim"
@@ -770,9 +766,9 @@ reference "thm:approx-sim"
 \end_inset
 
  says that the approximate sampler draws from the true bridge distribution
- conditional on the bridge being hit by an independent hitting diffusion),
- and we note that the quality of the approximate sampler is inversely correlated
- with the computing time required to sample exact bridges.
+ conditional on the bridge being hit by an independent hitting diffusion.
+ We further note that the quality of the approximate sampler is inversely
+ correlated with the computing time required to sample exact bridges.
  This intuitively highlights a tradeoff between speed and quality, and is
  formally expected: if the approximate sampler produces low quality samples,
  then the probability of such samples being hit by a hitting diffusion is
@@ -867,9 +863,9 @@ reference "fig:q-q"
  that the approximate and exact samplers for the Gaussian OU bridges produce
  qualitatively high quality samples.
  In general, we see that the approximate samples are slightly thinner-tailed
- than the true distribution as expected, since conditional on the approximate
- samples being hit by a hitting process (which in this case mean-reverts
- to 
+ than the true distribution: This is expected, since conditional on the
+ approximate samples being hit by a hitting process (which in this case
+ mean-reverts to 
 \begin_inset Formula $0$
 \end_inset
 
@@ -888,7 +884,7 @@ reference "fig:q-q"
 
  distribution vis-à-vis the other initial distributions result in some sample
  paths starting from relatively extreme values, reducing the probability
- of their intersection with a mean-reverting hitting process.
+ of their intersection with a mean reverting hitting process.
 \end_layout
 
 \begin_layout Standard
@@ -901,33 +897,36 @@ reference "tab:KS-stats"
 \end_inset
 
  represent the most liberal estimates of the deviation of the samples from
- the true distribution—in particular, 
+ the true distribution.
+ In particular, 
 \begin_inset Formula $t=1/2$
 \end_inset
 
  represents the point in time at which the marginal distributions of these
  bridges have the most freedom to deviate from the true distribution (in
- constrast, the marginal distribution of the sampled bridges, whether approximat
-e or exact, are the same as the unconstrained process at times 
+ contrast, the marginal distribution of the sampled bridges, whether approximate
+ or exact, are the same as the unconstrained process at times 
 \begin_inset Formula $\mathcal{T}=\{0,1\}$
 \end_inset
 
  by definition).
- Recalling that the MCEM algorithm proposed in 
+ The K-S statistics presented here are therefore an overly stringent view
+ of the usability of the approximate sample paths in the MCEM algorithm
+ proposed in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:EM"
 
 \end_inset
 
- involves taking an expectation of an integral over an entire generalized
- bridge sample path, the K-S test on the marginal distribution of our approximat
-ely sampled paths at 
+.
+ In particular, the proposed MCEM algorithm depends on an integral over
+ an entire generalized bridge path, and not only on the value of a bridge
+ at 
 \begin_inset Formula $t=1/2$
 \end_inset
 
- represents an overly stringent view on the usability of the approximate
- samples in the context of the proposed MCEM algorithm.
+.
  In the next section, we will demonstrate that an MCEM algorithm using the
  approximate bridge sampler produces comparable results to one using the
  exact bridge sampler.
@@ -954,8 +953,8 @@ reference "chap:EM"
  We show that the MCEM scheme converges to the Kullback-Liebler divergence
  minimizing parameter in a variety of settings, often very quickly.
  Furthermore, we demonstrate that the approximate generalized bridge sampler
- provides samples of a sufficiently high quality that MCEM estimation is
- not adversely affected.
+ provides samples of a sufficiently high quality that convergence is not
+ adversely affected.
  Given that the approximate sampler is one to two orders of magnitude faster
  than the exact sampler (as seen in 
 \begin_inset CommandInset ref
@@ -969,23 +968,13 @@ reference "tab:KS-stats"
 \end_layout
 
 \begin_layout Standard
-We will focus in this section on conducting inference on the parameters
- governing a Gaussian OU process (OU diffusion), due to the prevalence of
- such processes as discussed above and their analytical tractability with
- regards to the K-L divergence of their finite-dimensional distributions
- from those of other Gaussian processes.
-\end_layout
-
-\begin_layout Standard
-Our simulation strategy rests on the following observation: Consider a stochasti
-c process 
-\begin_inset Formula $X$
+The theoretical setting for this section is as follows.
+ Suppose we have an unknown true probability model 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
- (this process can be completely general, as long as it has finite-dimensional
- distributions that are absolutely continuous with respect to the finite-dimensi
-onal distributions of the model we wish to use) and initial condition 
-\begin_inset Formula $X_{0}=x_{0}$
+ admitting its canonical process 
+\begin_inset Formula $X$
 \end_inset
 
  on the interval 
@@ -993,12 +982,37 @@ onal distributions of the model we wish to use) and initial condition
 \end_inset
 
 .
- Let 
-\begin_inset Formula $\nu_{X}$
+ Further suppose we wish to model 
+\begin_inset Formula $X$
 \end_inset
 
- be the distribution of 
+ under an alternative probability model 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
+\end_inset
+
+, which is absolutely continuous with respect to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ for any 
+\begin_inset Formula $\theta$
+\end_inset
+
+ in the parameter space.
+ 
+\begin_inset Formula $X_{0}=x_{0}$
+\end_inset
+
+ is fixed in either model, and we let 
+\begin_inset Formula $\nu_{\mathbb{P}}$
+\end_inset
+
+ be the known distribution of 
 \begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
  at times 
@@ -1010,22 +1024,60 @@ onal distributions of the model we wish to use) and initial condition
 \end_inset
 
  for identifiability reasons.
- If the proposed MCEM scheme is used to conduct inference on the parameters
- underlying a Gaussian OU model initialized at 
-\begin_inset Formula $x_{0}$
+ 
+\end_layout
+
+\begin_layout Standard
+In this section, we will focus on the family of models 
+\begin_inset Formula $\{\mathbb{Q}_{\theta}\}$
 \end_inset
 
- conditional on 
-\begin_inset Formula $\nu_{X}$
+ under which 
+\begin_inset Formula $X$
 \end_inset
 
-, the resulting estimates should converge to the parameters which minimize
- the K-L divergence of the distribution of an OU diffusion at 
+ is a Gaussian OU process (OU diffusion).
+ This is due to the prevalence of such processes as discussed above and
+ the analytical tractability of the K-L divergence of their finite-dimensional
+ distributions from those of other Gaussian processes.
+\end_layout
+
+\begin_layout Standard
+Our simulation strategy rests on the following observation: If we can simulate
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ on the interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+, we can take its values at 
 \begin_inset Formula $\mathcal{T}$
 \end_inset
 
+ as samples from 
+\begin_inset Formula $\nu_{\mathbb{P}}$
+\end_inset
+
+; then, the proposed MCEM scheme given 
+\begin_inset Formula $\nu_{\mathbb{P}}$
+\end_inset
+
+ should converge to the 
+\begin_inset Formula $\theta$
+\end_inset
+
+ which minimizes the K-L divergence of 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
+\end_inset
+
  from 
-\begin_inset Formula $\nu_{X}$
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
 .
@@ -1033,37 +1085,40 @@ onal distributions of the model we wish to use) and initial condition
 \begin_inset Formula $X$
 \end_inset
 
- is also an OU diffusion, 
-\begin_inset Formula $\theta$
+ is an OU diffusion with parameters 
+\begin_inset Formula $\theta^{*}$
 \end_inset
 
- should simply converge to the parameters governing 
-\begin_inset Formula $X$
+ under 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
-; otherwise, so long as 
-\begin_inset Formula $X$
-\end_inset
-
- is a Gaussian process, the K-L divergence is analytically available and
- admits the computation of the true MKLDE.
- Note we can draw from any 
-\begin_inset Formula $\nu_{X}$
-\end_inset
-
- simply by simulating 
-\begin_inset Formula $X$
-\end_inset
-
- over 
-\begin_inset Formula $[0,1]$
-\end_inset
-
- and taking its values at 
-\begin_inset Formula $\mathcal{T}$
+, this K-L divergence minimizing parameter is simply 
+\begin_inset Formula $\theta^{*}$
 \end_inset
 
 .
+ Otherwise, so long as 
+\begin_inset Formula $X$
+\end_inset
+
+ is a Gaussian process under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, the K-L divergence of any finite-dimensional distribution of 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
+\end_inset
+
+ from the corresponding distribution of 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ is analytically available for any 
+\begin_inset Formula $\theta$
+\end_inset
+
+ in the parameter space.
 \end_layout
 
 \begin_layout Standard
@@ -1383,7 +1438,7 @@ One illustrative replication of an MCEM scheme (using
 \end_inset
 
  MC samples) to estimate the MKLDE of a Gaussian OU process given 
-\begin_inset Formula $\nu_{X}$
+\begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
  where 
@@ -1391,7 +1446,11 @@ One illustrative replication of an MCEM scheme (using
 \end_inset
 
  is a Gaussian OU process governed by 
-\begin_inset Formula $\theta^{*}$
+\begin_inset Formula $\theta^{*}=(0,1,1)$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
 .
@@ -1409,10 +1468,10 @@ One illustrative replication of an MCEM scheme (using
 
 \begin_layout Standard
 As a first illustrative example, we choose 
-\begin_inset Formula $\nu_{X}$
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
- where 
+ such that 
 \begin_inset Formula $X$
 \end_inset
 
@@ -1420,12 +1479,17 @@ As a first illustrative example, we choose
 \begin_inset Formula $\theta^{*}=(0,1,1)$
 \end_inset
 
-, and present the iterations of a single replication of the proposed MCEM
- algorithm for estimating the MKLDE of an OU diffusion given 
-\begin_inset Formula $\nu_{X}$
+ under 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
- in 
+.
+ The expectation-maximization iterations of a single replication of the
+ proposed MCEM algorithm given 
+\begin_inset Formula $\nu_{\mathbb{P}}$
+\end_inset
+
+ are presented in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "tab:mcem-stationary"
@@ -1433,23 +1497,18 @@ reference "tab:mcem-stationary"
 \end_inset
 
 .
- The MKLDE is obviously 
-\begin_inset Formula $\theta^{*}$
-\end_inset
-
-, and as such we expect the samples from the MCEM to simply converge to
- 
+ As noted above, we expect the MCEM estimates to converge to 
 \begin_inset Formula $\theta^{*}$
 \end_inset
 
 .
  Since the OU diffusion has a constant diffusion coefficient, the corresponding
- Lamperti transform is simply 
+ Lamperti transform is 
 \begin_inset Formula $\eta_{\theta}(x)=x/\theta$
 \end_inset
 
-, and the requisite functions to perform MCEM can easily be worked out from
- the results in 
+, and the requisite functions for MCEM are readily available from the results
+ in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:EM"
@@ -1457,19 +1516,7 @@ reference "chap:EM"
 \end_inset
 
 .
- We also wish to emphasize that the only 
-\begin_inset Quotes eld
-\end_inset
-
-data
-\begin_inset Quotes erd
-\end_inset
-
- given to the algorithm is the ability to draw from 
-\begin_inset Formula $\nu_{X}$
-\end_inset
-
-.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1497,6 +1544,50 @@ key "wei-tanner-1990"
 \end_layout
 
 \begin_layout Standard
+With a heuristic sense of the dynamics of the MCEM algorithm's convergence,
+ we present a comprehensive evaluation of the ability of the proposed algorithm
+ to estimate the parameters governing a Gaussian OU diffusion given a variety
+ of 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:diff-diffusions"
+
+\end_inset
+
+.
+ In particular, we consider true probability models 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ under which 
+\begin_inset Formula $X$
+\end_inset
+
+ is
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+an OU diffusion governed by 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+a Wiener process, and 
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+a fractional Wiener process.
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 placement t
 wide false
@@ -1519,7 +1610,9 @@ toprule
 \backslash
 multirow{2}{*}{
 \backslash
-parbox{2cm}{Process 
+parbox{2cm}{$
+\backslash
+mathbb{P}$ 
 \backslash
 & Sample Size}} & 
 \backslash
@@ -1593,9 +1686,11 @@ multicolumn{1}{l}{}
 \backslash
 :$
 \backslash
-nu_X$               & 0.03                        & 1.11                 &
- 0.99                 & 0.01                 & 0.97                 & 0.96 
-                
+nu_
+\backslash
+mathbb{P}$               & 0.03                        & 1.11            
+     & 0.99                 & 0.01                 & 0.97                 &
+ 0.96                 
 \backslash
 
 \backslash
@@ -1635,7 +1730,9 @@ nu_X$               & 0.03                        & 1.11                 &
 \backslash
 hat{
 \backslash
-nu}_X$            & -0.03
+nu}_
+\backslash
+mathbb{P}$            & -0.03
 \backslash
 :                       & 0.95                 & 0.97                 &  
                     &                      &                      
@@ -1694,7 +1791,9 @@ multicolumn{1}{l}{}
 \backslash
 :$
 \backslash
-nu_X$               & -0.25
+nu_
+\backslash
+mathbb{P}$               & -0.25
 \backslash
 :                       & 0.08                 & 1.01                 &  
                     &                      &                      
@@ -1737,9 +1836,11 @@ nu_X$               & -0.25
 \backslash
 hat{
 \backslash
-nu}_X$            & 0.30                        & 0.10                 & 0.95
-                 &                      &                      &       
-               
+nu}_
+\backslash
+mathbb{P}$            & 0.30                        & 0.10               
+  & 0.95                 &                      &                      &
+                      
 \backslash
 
 \backslash
@@ -1790,9 +1891,11 @@ multicolumn{1}{l}{}
 \backslash
 :$
 \backslash
-nu_X$               & 0.03                        & 0.81                 &
- 1.43                 &                      &                      &   
-                   
+nu_
+\backslash
+mathbb{P}$               & 0.03                        & 0.81            
+     & 1.43                 &                      &                    
+  &                      
 \backslash
 
 \backslash
@@ -1832,9 +1935,11 @@ nu_X$               & 0.03                        & 0.81                 &
 \backslash
 hat{
 \backslash
-nu}_X$             & 0.00                        & 0.97                 &
- 1.36                 &                      &                      &   
-                   
+nu}_
+\backslash
+mathbb{P}$             & 0.00                        & 0.97              
+   & 1.36                 &                      &                      &
+                      
 \backslash
 
 \backslash
@@ -1967,11 +2072,11 @@ Mean and standard deviation of the MKLDEs obtained from
 \end_inset
 
  replications of MCEM on an OU diffusion given either 
-\begin_inset Formula $\nu_{X}$
+\begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
  or the empirical distribution 
-\begin_inset Formula $\hat{\nu}_{X}$
+\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
  induced by 
@@ -1979,11 +2084,11 @@ Mean and standard deviation of the MKLDEs obtained from
 \end_inset
 
  samples from 
-\begin_inset Formula $\nu_{X}$
+\begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
  for varying 
-\begin_inset Formula $X$
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
 , using approximate and exact generalized bridge samplers.
@@ -2000,54 +2105,38 @@ Mean and standard deviation of the MKLDEs obtained from
 \end_layout
 
 \begin_layout Standard
-With a heuristic sense of the dynamics of the MCEM algorithm's convergence,
- we present a comprehensive evaluation of the ability of the proposed algorithm
- to estimate the parameters governing a Gaussian OU diffusion given a variety
- of 
-\begin_inset Formula $\nu_{X}$
-\end_inset
-
- in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:diff-diffusions"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-In particular, we consider 
-\begin_inset Formula $\nu_{X}$
-\end_inset
-
- when 
+When 
 \begin_inset Formula $X$
 \end_inset
 
- is an OU diffusion governed by 
-\begin_inset Formula $\theta^{*}$
+ is an OU diffusion under 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
-, a Wiener process, and a fractional Wiener process.
- When 
-\begin_inset Formula $X$
-\end_inset
-
- is equal to an OU diffusion, as noted above, the MCEM algorithm should
- simply converge to 
+, as noted above, the MCEM algorithm should simply converge to 
 \begin_inset Formula $\theta^{*}$
 \end_inset
 
  since it operates under a correctly specified model.
  In the latter two cases, model misspecification means that the MCEM algorithm
- can only minimize the K-L divergence to some non-zero quantity.
+ can only minimize the K-L divergence of 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
+\end_inset
+
+ from 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ to some non-zero quantity.
  When 
 \begin_inset Formula $X$
 \end_inset
 
- is a Wiener process, the K-L divergence is minimized as 
+ is a Wiener process under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, the K-L divergence is minimized as 
 \begin_inset Formula $\lambda\rightarrow0,\sigma\rightarrow1$
 \end_inset
 
@@ -2065,17 +2154,24 @@ In particular, we consider
 \begin_inset Formula $H$
 \end_inset
 
-, the K-L divergence of the distribution of an OU diffusion governed by
- 
-\begin_inset Formula $\theta$
+ under 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
- at 
-\begin_inset Formula $t=\{1/2,1\}$
+, the K-L divergence of the restriction of 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
 \end_inset
 
- from 
-\begin_inset Formula $\nu_{X}$
+ to 
+\begin_inset Formula $\mathcal{T}=\{1/2,1\}$
+\end_inset
+
+ from the restriction of 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ to 
+\begin_inset Formula $\mathcal{T}=\{1/2,1\}$
 \end_inset
 
  can be found to be
@@ -2131,12 +2227,12 @@ ely
 
 \begin_layout Standard
 In addition to varying 
-\begin_inset Formula $\nu_{X}$
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
 , we also test the performance of the proposed MCEM scheme when we only
  have access to a fixed and finite set of samples from 
-\begin_inset Formula $\nu_{X}$
+\begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
 , as is often the case in the real world (think of some set of predictions
@@ -2147,15 +2243,15 @@ In addition to varying
 \end_inset
 
  samples from 
-\begin_inset Formula $\nu_{X}$
+\begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
 , taking the empirical distribution 
-\begin_inset Formula $\hat{\nu}_{X}$
+\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
  of the samples as a plug-in estimate for 
-\begin_inset Formula $\nu_{X}$
+\begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
 .
@@ -2167,12 +2263,12 @@ reference "chap:EM"
 \end_inset
 
 , we expect that the MKLDE from the distributional data 
-\begin_inset Formula $\hat{\nu}_{X}$
+\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
  should be less efficient than when we have access to the true distributional
  data 
-\begin_inset Formula $\nu_{X}$
+\begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
 , but still consistent for the true MKLD parameter.
@@ -2242,13 +2338,14 @@ t.
 
 \begin_layout Standard
 We conjecture that for all but the most extreme of distributional data (i.e.
- conditioning a process which mean reverts to zero on a joint distribution
- with marginal distributions centered far from zero), an MCEM scheme relying
- on approximate generalized bridge sampling will provide parameter estimates
- of sufficiently high quality for practical purposes, especially given the
- variance of MCEM estimates and stochastic optimization methods in the first
- place, while providing vast computational advantages over an exact sampling
- scheme.
+ conditioning a process displaying strong mean reversion on marginal distributio
+ns centered far from the mean), an MCEM scheme relying on approximate generalize
+d bridge sampling will provide parameter estimates of sufficiently high
+ quality for practical purposes.
+ In particular, we hold that using approximate sample paths offers vast
+ computational gains vis-à-vis exact paths, and results in bias which can
+ be small relative to the variance resulting from MCEM estimates and stochastic
+ optimization methods in the first place.
  With this in mind, we move now to the penultimate chapter of this thesis,
  in which we apply the methods developed thus far to distributional data
  from the real world.

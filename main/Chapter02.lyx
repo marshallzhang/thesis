@@ -444,7 +444,8 @@ where
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
-, and note that the canonical process on 
+.
+ Note that the canonical process on 
 \begin_inset Formula $\mathbb{P}^{x,y}$
 \end_inset
 
@@ -458,6 +459,19 @@ where
 
  and 
 \begin_inset Formula $t=1$
+\end_inset
+
+.
+ Moreover, 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ can be understood as the mixture of 
+\begin_inset Formula $\mathbb{P}^{x,y}$
+\end_inset
+
+ with respect to the mixing measure 
+\begin_inset Formula $\mathbb{P}_{0,1}$
 \end_inset
 
 .
@@ -759,8 +773,8 @@ From this point on, we will always assume that the tuples
 
  we encounter satisfy the conditions above.
  The next result demonstrates the existence and uniqueness of a measure
- which satisfies intuitive notions of what the conditioning of a measure
- on the law of a random variable ought to look like.
+ which satisfies intuitive notions of what it means to condition a measure
+ on the law of a random variable.
  Moreover, it characterizes such a conditioned measure as the convex diversity
  minimizing measure with respect to a family of related probability measures.
 \end_layout
@@ -932,18 +946,17 @@ reference "prop:pv-1"
 
 \end_inset
 
- is a central result which shows that of the measures under which the law
- of 
+ is a central result, and shows that of the measures which are sufficiently
+ similar to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ and under which the law of 
 \begin_inset Formula $Y$
 \end_inset
 
  is 
 \begin_inset Formula $\nu$
-\end_inset
-
-, and which are absolutely continuous and sufficiently alike with respect
- to 
-\begin_inset Formula $\mathbb{P}$
 \end_inset
 
 , the convex diversity minimizing measure is precisely the measure which
@@ -961,7 +974,8 @@ reference "prop:pv-1"
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
-; as such, Baudoin points out that 
+.
+ Fortunately, Baudoin points out that 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
@@ -998,8 +1012,8 @@ since the regular conditional probability
 \begin_inset Formula $\eta_{t}^{y}$
 \end_inset
 
- exists (which we always assume going forward) and says, in the language
- of the discussion regarding Markov bridges above, that 
+ exists (which we always assume going forward).
+ In the language of the discussion regarding Markov bridges above, 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
 
@@ -1111,8 +1125,8 @@ For any
 \end_layout
 
 \begin_layout Standard
-With the necessary theoretical foundations set, we move now to the main
- part of this thesis.
+With the necessary theoretical foundations set, we move now to the original
+ portion of this thesis.
 \end_layout
 
 \end_body

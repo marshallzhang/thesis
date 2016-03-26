@@ -1092,17 +1092,6 @@ t diffusion
 \end_layout
 
 \begin_layout Proof
-\begin_inset Marginal
-status collapsed
-
-\begin_layout Plain Layout
-I'm jumping back and forth between the measure and the process here, though
- you can always identify the measure with the canonical process, so maybe
- that's okay?
-\end_layout
-
-\end_inset
-
 To complete the proof, it suffices to demonstrate that the restriction of
  
 \begin_inset Formula $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$

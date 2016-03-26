@@ -98,9 +98,9 @@ The Oracle at Delphi
 \end_layout
 
 \begin_layout Standard
-At the outset of the second Persian invasion of Greece in the early fifth
- century BCE, the Oracle at Delphi prophesized the following to the people
- of Sparta 
+On the eve of the second Persian invasion of Greece in the early fifth century
+ BCE, the Oracle at Delphi prophesized the following to the people of Sparta
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "macauley"
@@ -165,13 +165,14 @@ endgroup
 \begin_layout Standard
 The Spartans, upon receiving this divination, ought to have understood that
  their fortunes would likely deteriorate over the course of the war, culminating
- in the loss of either their capital city or their king (ultimately, King
- Leonidas, a descendant of Heracles, and three hundred of his men were driven
- to take a legendary last stand at Thermopylae on the basis of this prophecy).
- But rather than from the observations of data upon which much of modern
- statistical inference is built, the Spartans learned something about the
- path of their fortunes from an fundamentally uncertain prognostication—what
- we might call today a probabilistic forecast.
+ in the loss of either their capital city or their king (King Leonidas,
+ a descendant of Heracles, and three hundred of his men were driven to take
+ a legendary last stand at Thermopylae on the basis of this prophecy).
+ It seems that the people of Sparta learned something that day about the
+ path of their fortunes over time, not from the observations of data upon
+ which much of modern statistical inference is built, but rather from an
+ fundamentally uncertain prognostication—what we might call today a probabilisti
+c forecast.
 \end_layout
 
 \begin_layout Standard
@@ -207,9 +208,8 @@ reference "fig:dist-data"
  presents a intuitive visualization of two possible sets of distributional
  data, where the value axis can represent any numeric value from a stock
  price to a humidity reading.
- It ought to be kept in mind that the depicted marginal distributions are
- linked by some copula, since a distributional datum is a joint distribution
- with a dependence structure over time.
+ It ought to be kept in mind that the depicted marginal distributions may
+ be linked by some dependence structure over time.
 \end_layout
 
 \begin_layout Standard
@@ -259,10 +259,10 @@ This thesis answers two questions that can be asked of a stochastic process
  on distributional data i.e.
  when it is conditioned to follow a given distribution at discrete future
  points in time.
- The first is a question of inference: Can we, given distributional data,
- learn about the parameters governing the dynamics of a particular stochastic
- process, and if so, how? The second is a question of imputation: Given
- a fully specified stochastic process, how can we impute the distribution
+ The first is a question of inference: Can we, given distributional data
+ and a parameterized stochastic model, learn about the parameters governing
+ its dynamics? The second is a question of imputation: Can we, given distributio
+nal data and a fully specified stochastic process, impute the distribution
  of the process in between the times at which it is conditioned? In intuitive
  terms, we ask whether and how, given the Delphic prophecy, the Spartans
  could have learned about the dynamics under which their fortunes would
@@ -281,9 +281,10 @@ Contributions and Related Work
 \end_layout
 
 \begin_layout Standard
-In the theoretical portion of this thesis, we propose a natural generalization
- of the theory of maximum likelihood estimation (MLE) over discretely observed
- data from continuous-time stochastic processes, which begins with 
+In the theoretical portion of this thesis, we propose a novel and natural
+ generalization of the theory of maximum likelihood estimation (MLE) over
+ discretely observed data from continuous-time stochastic processes.
+ This theory begins with 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "rao-1988"
@@ -303,8 +304,9 @@ key "yoshida-1992"
 on of, as opposed to observations of, a diffusion process at discrete points
  in time.
  We characterize this estimator as a limiting case of MLE from two orthogonal
- perspectives, and develop a simulation-based inference technique to conduct
- minimum K-L divergence estimation, building on the work of 
+ perspectives.
+ We also develop a simulation-based inference technique to conduct minimum
+ K-L divergence estimation, building on the work of 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "roberts-stramer-2001,beskos-2006"
@@ -345,7 +347,8 @@ key "baudoin-2002"
 \end_inset
 
 ) by proposing an approximate and exact simulation strategy for a particular
- class of generalized bridges, answering in full the question of inference.
+ class of generalized bridges.
+ This answers in full the question of inference.
  Simultaneously, these generalized bridge samplers answer the question of
  imputation by allowing us to draw sample paths of diffusion processes whose
  endpoints are conditioned to follow a given distribution.
@@ -353,23 +356,22 @@ key "baudoin-2002"
 
 \begin_layout Standard
 In the empirical portion of this thesis, we validate the correctness of
- the exact generalized bridge sampler and demonstrate that the approximate
- sampler offers qualitatively high quality samples at a fraction of the
- computation cost of the exact sampler.
+ the exact generalized bridge sampler.
+ We further demonstrate that the approximate sampler offers qualitatively
+ high quality samples at a fraction of the computation cost of the exact
+ sampler.
  We also show that these samplers are robust to a variety of assumptions
  made in the theoretical portion of this thesis.
- Then, we demonstrate that the proposed simulation-based inference technique
- on distributional data is consistent for the K-L divergence minimizing
- parameter and also robust to various assumptions, including the use of
- an approximate generalized bridge sampler instead of the exact sampler.
+ Then, we demonstrate empirically that the proposed simulation-based inference
+ technique on distributional data is consistent for the K-L divergence minimizin
+g parameter and also robust to various assumptions made in its derivation.
  Taking theory to practice, we use the proposed inference scheme to estimate
- the parameters governing the evolution of the inflation expectations of
- professional macroeconomic forecasters for diffusions with and without
- analytically tractable transition densities.
+ the parameters governing the evolution of inflation expectations for diffusions
+ with and without analytically tractable transition densities.
  Finally, we show that using generalized bridges to impute distributions
  between probabilistic forecasts can reduce out-of-sample K-L divergence
  from the true distribution of forecasts by up to a third relative to a
- naïve linear interpolation scheme.
+ baseline linear interpolation scheme.
 \end_layout
 
 \begin_layout Section
@@ -429,7 +431,7 @@ reference "chap:4"
 \end_layout
 
 \begin_layout Standard
-In the next two chapters of this thesis, theory is taken to practice.
+Theory is then taken to practice.
  A variety of simulations are conducted in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -437,22 +439,8 @@ reference "chap:5"
 
 \end_inset
 
- to demonstrate both the correctness and robustness of the generalized bridge
- samplers proposed in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:4"
-
-\end_inset
-
- and the MCEM algorithm proposed in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:EM"
-
-\end_inset
-
-.
+ to demonstrate both the correctness and robustness of the proposed generalized
+ bridge samplers and MCEM algorithm.
  In 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -462,6 +450,17 @@ reference "chap:6"
 
 , these methods are applied to model the inflation expectations of professional
  forecasters.
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:7"
+
+\end_inset
+
+, we conclude and outline future directions for research.
 \end_layout
 
 \end_body

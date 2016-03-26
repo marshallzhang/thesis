@@ -33,10 +33,10 @@ est.div = function(Ps, Qs) {
   div
 }
 
-Ps = rnorm(10000,0,1)
-Qs = c(rnorm(5000,2,1), rnorm(5000,-2,1))
+Ps = rnorm(1000,0,1)
+Qs = c(rnorm(500,2,1), rnorm(500,-2,1))
 
-print(est.div(Ps, Qs) - 1)
+print(est.div(Qs, Ps) - 1)
 est.div(trues[["1999"]][["4"]]), linears[["1999"]][["4"]])
 
 # Turn forecast mats into linear interpolation.
@@ -321,7 +321,7 @@ c = pretty.plot(kl.divs) + geom_boxplot(aes(x=cond, y= kl)) +
               scale_y_continuous(breaks = seq(0,6,0.5)) + 
               coord_cartesian(ylim=c(0,6))+
               theme(legend.position = "none") + 
-            ggtitle("1-4 Month Horizon")
+            ggtitle("1-4 Quarter Horizon")
 
 f = pretty.plot(f.kl.divs) + geom_boxplot(aes(x=cond, y= kl)) + 
               xlab("") + 
@@ -330,7 +330,7 @@ f = pretty.plot(f.kl.divs) + geom_boxplot(aes(x=cond, y= kl)) +
               scale_y_continuous(breaks = seq(0,6,0.5)) + 
               theme(legend.position = "none") + 
               coord_cartesian(ylim=c(0,6))+
-            ggtitle("7-10 Month Horizon")
+            ggtitle("7-10 Quarter Horizon")
 
 multiplot(c, f, cols = 2)
 

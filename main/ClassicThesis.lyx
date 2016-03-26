@@ -15,7 +15,7 @@
 \newref{lem}{name=Lemma~,Name=Lemma~}
 \newref{fig}{name=Figure~,Name=Figure~}
 \newref{chap}{name=Chapter~,Name=Chapter~}
-\newref{remark}{name=Remark~,Name=Remark~}
+\newref{rem}{name=Remark~,Name=Remark~}
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage[labelfont=bf]{caption}
@@ -146,33 +146,6 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
-filename "Titlepage.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "Titleback.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Newpage cleardoublepage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
 filename "Dedication.lyx"
 
 \end_inset
@@ -185,26 +158,6 @@ filename "Dedication.lyx"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "Abstract.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Newpage cleardoublepage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Acknowledgments.lyx"
@@ -231,7 +184,46 @@ pagestyle{scrheadings}
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Titlepage.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage cleardoublepage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Abstract.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage cleardoublepage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
 filename "Contents.lyx"
@@ -241,14 +233,14 @@ filename "Contents.lyx"
 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset Newpage cleardoublepage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -264,7 +256,7 @@ pagenumbering{arabic}
 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
 filename "Chapter01.lyx"
@@ -281,15 +273,27 @@ filename "Chapter02.lyx"
 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "Chapter05.lyx"
+filename "ChapterEM.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "Chapter04.lyx"
 
 \end_inset
 
 
 \end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Chapter05.lyx"
 
 \end_inset
 
@@ -300,6 +304,16 @@ filename "Chapter05.lyx"
 \begin_inset CommandInset include
 LatexCommand include
 filename "Chapter06.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Chapter07.lyx"
 
 \end_inset
 
@@ -320,23 +334,6 @@ filename "Bibliography.lyx"
 
 \begin_inset Note Comment
 status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "ChapterEM.lyx"
-
-\end_inset
-
-
-\begin_inset CommandInset include
-LatexCommand include
-filename "Chapter04.lyx"
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Part
 Appendix
