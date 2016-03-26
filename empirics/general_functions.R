@@ -85,7 +85,7 @@ gen.nu.bridge = function(r.nu, r.diffusion, theta, N, steps, set.start = c(-Inf,
               xy1 = r.nu(1)
               bridges[i, ] =gen.nu.helper(r.diffusion, theta, xy1[1], xy1[2], steps, time)
             }, error = function(e) {
-               browser()
+               stop("Error!!")
                print(c(i, xy[i,1], xy[i,2]))
             })
           })
@@ -235,7 +235,7 @@ ou.vg = function(start, steps, theta, time = 1) {
   as.numeric(Y)
 }
 
-hyp = function(start, steps, theta, time = 1) {
+hyp.fast = function(start, steps, theta, time = 1) {
   Y <- numeric(steps)
   Y[1] = start
   Z = rnorm(steps - 1)

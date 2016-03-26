@@ -33,8 +33,8 @@ est.div = function(Ps, Qs) {
   div
 }
 
-Ps = rnorm(50,0,1)
-Qs = c(rnorm(25,2,1), rnorm(25,-2,1))
+Ps = rnorm(10000,0,1)
+Qs = c(rnorm(5000,2,1), rnorm(5000,-2,1))
 
 print(est.div(Ps, Qs) - 1)
 est.div(trues[["1999"]][["4"]]), linears[["1999"]][["4"]])

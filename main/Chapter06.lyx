@@ -239,16 +239,39 @@ We formalize the problem as follows.
 \end_inset
 
  given current inflation.
- The only constraint we place on this process is that it must have finite-dimens
-ional distributions which are absolutely continuous with respect to the
- Gaussian measure; it is otherwise unknown to us.
- Under this setup, the data provided in any particular SPF are discrete
- observations of some finite number of sample paths of 
+ Furthermore, we suppose 
 \begin_inset Formula $X$
 \end_inset
 
+ follows some model 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ that is entirely unknown to us (the only constraint for this section that
+ we place on 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ is that under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, 
+\begin_inset Formula $X$
+\end_inset
+
+ must have finite-dimensional distributions which are absolutely continuous
+ with respect to the Gaussian measure).
+ With this setup, the data provided in any particular SPF are discrete observati
+ons of some finite number of sample paths of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
 .
- 
 \end_layout
 
 \begin_layout Standard
@@ -451,28 +474,21 @@ Summary statistics for the
 \end_layout
 
 \begin_layout Section
-Inference on and Imputation of Inflation Expectations
+Simple Inference on Inflation Expectations
 \end_layout
 
 \begin_layout Standard
-In this section, we study the dynamics of the evolution of inflation expectation
-s in the ECB SPFs since 1999Q1 and apply the methods developed in this thesis
- to impute inflation expectations over time.
- In particular, we first verify for a model with analytically available
- transition density that our MCEM algorithm converges to the MKLDE as obtained
- by direct maximization of the log-likelihood.
- Then, we estimate parameters for a model with intractable log-likelihood,
- and show that imputation through the simulation of generalized bridges
- reduces out-of-sample estimated K-L divergence of the interpolated distribution
-s from the truth noticeably vis-à-vis a naïve linear interpolation scheme.
-\end_layout
+In this brief section, we verify that the MCEM algorithm consistently estimates
+ the MKLDE in an empirical setting.
+ In particular, we posit a probability model 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
 
-\begin_layout Standard
-To begin, we suppose that we wish to attempt to model 
+ under which 
 \begin_inset Formula $X$
 \end_inset
 
- as an OU diffusion.
+ is an OU diffusion.
  This is an economically sensible model, consistent with the mean reversion
  implicit in ECB's inflation targeting policy of aiming for 
 \begin_inset Quotes eld
@@ -492,7 +508,7 @@ key "targeting"
 .
  Moreover, this is a mathematically convenient specification since the transitio
 n density of the OU diffusion is analytically tractable.
- In particular, consider a particular SPF questionnaire, and let 
+ In particular, we consider a particular SPF questionnaire, and let 
 \begin_inset Formula $\mathcal{T}=\{t_{1},\dots,t_{n}\}$
 \end_inset
 
@@ -501,7 +517,11 @@ n density of the OU diffusion is analytically tractable.
 \end_inset
 
  be the set of forecasters with complete responses.
- Then, the average log-likelihood of the data is
+ Then, the average log-likelihood of the data under 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ is
 \begin_inset Formula 
 \[
 \bar{\ell}(\theta)=\frac{1}{|\mathcal{O}|}\sum_{\omega\in\mathcal{O}}\sum_{i=1}^{n}\mathcal{N}(X_{t_{i}}(\omega);\mu+(X_{t_{i-1}}(\omega)-\mu)e^{-\lambda t},\sigma^{2}(1-e^{-2\lambda t})/2\lambda),
@@ -753,16 +773,20 @@ reference "rem:bootstrap"
 
 , which can be easily found through numerical optimization procedures, is
  the parameter that asymptotically minimizes the K-L divergence of the distribut
-ion of an OU process at 
-\begin_inset Formula $\mathcal{T}$
+ion of 
+\begin_inset Formula $X$
 \end_inset
 
- from the distribution of 
-\begin_inset Formula $X$
+ under 
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
  at 
 \begin_inset Formula $\mathcal{T}$
+\end_inset
+
+ from its distribution under 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
 .
@@ -809,11 +833,15 @@ reference "tab:mle-vs-mcem"
  times on a case-by-case basis.
 \end_layout
 
+\begin_layout Section
+Putting It All Together
+\end_layout
+
 \begin_layout Standard
-With the consistency of the MKLDE from MCEM verified when modeling this
- particular set of empirical data with an OU diffusion, we move now answering
- a question of imputation: What can we say, given a finite number of sample
- paths of 
+In the final original section of this thesis, we study the dynamics of the
+ evolution of inflation expectations in the ECB SPFs since 1999Q1 and synthesize
+ the methods developed in this thesis by answering the following question:
+ What can we say, given a finite number of sample paths of 
 \begin_inset Formula $X$
 \end_inset
 
@@ -821,12 +849,17 @@ With the consistency of the MKLDE from MCEM verified when modeling this
 \begin_inset Formula $X$
 \end_inset
 
- at arbitrary horizons?
+ at arbitrary horizons? In particular, we estimate parameters for a model
+ with intractable log-likelihood, and show that a generalized bridge-based
+ imputation method reduces mean out-of-sample estimated K-L divergence of
+ interpolations from the truth noticeably vis-à-vis a naïve linear interpolation
+ scheme.
+ 
 \end_layout
 
 \begin_layout Standard
-Formally, consider a particular SPF containing the forecasts at every time
- 
+To begin, we consider a particular SPF containing forecasts from a finite
+ set of forecasters at every time 
 \begin_inset Formula $t\in\mathcal{T}=\{0<t_{1},\dots,t_{n}\}$
 \end_inset
 
@@ -836,25 +869,72 @@ Formally, consider a particular SPF containing the forecasts at every time
 \end_inset
 
  be the 
-\begin_inset Formula $n$
+\begin_inset Formula $(n+1)$
 \end_inset
 
--dimensional empirical distribution induced by these forecasts (noting that
- the dependence structure of this distribution is given by the indexing
- of forecasts at different horizons to particular forecasters).
- A natural imputation method, fixing a parameterized model for 
-\begin_inset Formula $X$
+-dimensional empirical distribution induced by these forecasts and the inflation
+ print 
+\begin_inset Formula $X_{t_{0}}$
 \end_inset
 
- and its MKLDE 
+ at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+, the month before the SPF was administered (noting that the dependence
+ structure of this distribution is given by the indexing of forecasts at
+ different horizons to particular forecasters).
+ Now, fix a parameterized model 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
+\end_inset
+
+, and suppose we have the MKLDE 
 \begin_inset Formula $\theta^{*}$
 \end_inset
 
- given 
-\begin_inset Formula $\hat{\nu}$
+ of the distribution of 
+\begin_inset Formula $X$
 \end_inset
 
-, is to simulate 
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
+\end_inset
+
+ at 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+ from its distribution under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+.
+ In other words, 
+\begin_inset Formula $\mathbb{Q}_{\theta^{*}}$
+\end_inset
+
+ is the model that achieves the minimum K-L divergence from 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ at 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+ for any 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ A natural imputation method, then, for the distribution of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ at arbitrary horizons is to simulate 
 \begin_inset Formula $\hat{\nu}$
 \end_inset
 
@@ -862,82 +942,223 @@ Formally, consider a particular SPF containing the forecasts at every time
 \begin_inset Formula $X$
 \end_inset
 
- when it is governed by 
-\begin_inset Formula $\theta^{*}$
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta^{*}}$
 \end_inset
 
-.
- These simulated bridges are samples from the distribution of 
+; in some sense, these bridges represent the best guess we can make using
+ the family of models 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
+\end_inset
+
+ for the distribution of 
 \begin_inset Formula $X$
 \end_inset
 
- when it evolves according to 
-\begin_inset Formula $\theta^{*}$
+ under 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
-, conditional on 
-\begin_inset Formula $X$
-\end_inset
-
- being distributed according to 
+ given 
 \begin_inset Formula $\hat{\nu}$
 \end_inset
 
- at 
-\begin_inset Formula $\mathcal{T}$
-\end_inset
-
 .
+ 
 \end_layout
 
 \begin_layout Standard
-For notational convenience, we let 
-\begin_inset Formula $\hat{\nu}_{-t_{i}}$
+We cross-validate the proposed imputation method as follows, setting 
+\begin_inset Formula $\hat{\nu}$
 \end_inset
 
- denote the 
-\begin_inset Formula $(n-1)$
-\end_inset
-
--dimensional empirical distribution induced by the forecasts at all horizons
- except 
+ to be the marginal distribution of forecasts at horizon 
 \begin_inset Formula $t_{i}$
 \end_inset
 
+, and 
+\begin_inset Formula $\hat{\nu}_{-t_{i}}$
+\end_inset
+
+ to be the 
+\begin_inset Formula $n$
+\end_inset
+
+-dimensional distribution of the forecasts at all horizons except 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ for notational convenience.
+ First, we estimate the MKLDE 
+\begin_inset Formula $\theta_{-t_{i}}^{*}$
+\end_inset
+
+ for 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
+\end_inset
+
+ given 
+\begin_inset Formula $\hat{\nu}_{-t_{i}}$
+\end_inset
+
+.
+ Then, we draw samples of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta_{-t_{i}}^{*}}$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ given 
+\begin_inset Formula $\hat{\nu}_{-t_{i}}$
+\end_inset
+
+, and compare the empirical imputed distribution versus the true empirical
+ distribution 
+\begin_inset Formula $\hat{\nu}_{t_{i}}$
+\end_inset
+
+.
+ In particular, we will estimate the Kullback-Liebler divergence of the
+ imputed distributions from 
+\begin_inset Formula $\hat{\nu}_{t_{i}}$
+\end_inset
+
+ using the estimator of 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Theorem 1 in"
+key "perez-cruz-2008"
+
+\end_inset
+
+: this estimator is consistent for the K-L divergence of the distribution
+ of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta_{-t_{i}}^{*}}$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ from the distribution of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ (
+\begin_inset Formula $\hat{\nu}_{t_{i}}$
+\end_inset
+
+ asymptotically pointwise approaches the latter).
+ In order to use this estimator, we add small normally distributed noise
+ 
+\begin_inset Formula $(\sigma^{2}\approx10^{-4})$
+\end_inset
+
+ to prevent any repeated numbers in the forecasts that induce 
+\begin_inset Formula $\hat{\nu}_{t_{i}}$
+\end_inset
+
+.
+ Furthermore, since 
+\begin_inset Formula $n\geq3$
+\end_inset
+
+ for all SPFs in our dataset, we consider 
+\begin_inset Formula $i\in\{1,2\}$
+\end_inset
+
 .
 \end_layout
 
 \begin_layout Standard
-Suppose, given a model for 
-\begin_inset Formula $X$
+As a reference point, we will also consider a naïve linear interpolation
+ method.
+ In particular, a linear interpolation of the forecasts 
+\begin_inset Formula $X_{t}$
 \end_inset
 
-, 
+ of a particular forecaster at times 
+\begin_inset Formula $t\in\mathcal{T}=\{0<t_{1},\dots,t_{n}\}$
+\end_inset
+
+ is the function 
+\begin_inset Formula 
+\[
+\tilde{X}_{t}=\frac{(t_{i}-t)X_{t_{i-1}}+(t-t_{i-1})X_{t_{i}}}{t_{i}-t_{i-1}}
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $t_{i-1}\leq t\leq t_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $i=2,\dots,n$
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
-Though the case of an OU model is useful as an illustrative example, the
- development of an MCEM algorithm was motivated by the fact that there are
- a wide range of diffusions for which transition densities are not analytically
- available.
- As such, we suppose that instead of having the dynamics of an OU diffusion,
- 
+Moreover, though the case of an OU model was useful earlier as an illustrative
+ example, the development of an MCEM algorithm was motivated by the fact
+ that there are a wide range of diffusions for which transition densities
+ are not analytically available.
+ As such, in addition to a model 
+\begin_inset Formula $\mathbb{Q}_{\theta}^{OU}$
+\end_inset
+
+ under which 
+\begin_inset Formula $X$
+\end_inset
+
+ is an OU diffusion, we consider a model 
+\begin_inset Formula $\mathbb{Q}_{\theta}^{HYP}$
+\end_inset
+
+ under which 
 \begin_inset Formula $X$
 \end_inset
 
  evolves according to 
 \begin_inset Formula 
 \[
-dX_{t}=\frac{-\lambda(X_{t}-\mu)dt}{\sqrt{\delta^{2}+(X_{t}-\mu)^{2}}}+\sigma dW_{t}.
+dX_{t}=\frac{-\lambda(X_{t}-\mu)dt}{\sqrt{\delta^{2}+(X_{t}-\mu)^{2}}}+\sigma dW_{t},
 \]
 
 \end_inset
 
-
+i.e.
+ a model under which 
 \begin_inset Formula $X$
 \end_inset
 
- is therefore a hyperbolic diffusion, first proposed by 
+ is a hyperbolic diffusion.
+ This type of diffusion was first proposed by 
 \begin_inset CommandInset citation
 LatexCommand citet
 before "Eq. 6.2 in"
@@ -945,7 +1166,7 @@ key "barndorff-1978"
 
 \end_inset
 
-, who notes such a diffusion has stationary distribution 
+, who noted such a diffusion has stationary distribution 
 \begin_inset Formula 
 \[
 f(x)=\frac{e^{-\frac{2\lambda}{\sigma^{2}}\sqrt{\delta^{2}+(x-\mu)^{2}}}}{2\delta K_{1}(2\delta\lambda/\sigma^{2})},
@@ -987,114 +1208,6 @@ reference "chap:2"
 \end_layout
 
 \begin_layout Standard
-INSERT HYPERBOLIC RESULTS
-\end_layout
-
-\begin_layout Standard
-With the ability to find the MKLDE for each of the 
-\begin_inset Formula $N=68$
-\end_inset
-
- SPFs, we can experiment to see how well the OU diffusion models the evolution
- of inflation expectations relative to a baseline linear interpolation method.
- In particular, we attempt to interpolate inflation expectations at horizons
- of 
-\begin_inset Formula $1-4$
-\end_inset
-
- quarters and 
-\begin_inset Formula $7-10$
-\end_inset
-
- quarters, which are available in every SPF in the data set, using the closest
- neighboring horizons.
- For example, interpolation of a forecast 
-\begin_inset Formula $2$
-\end_inset
-
- quarters ahead would use the current value of inflation and the forecast
- for 
-\begin_inset Formula $6$
-\end_inset
-
- quarters ahead.
- Our imputation method is as follows.
- For each SPF, we estimate the MKLDE once witholding the 
-\begin_inset Formula $1-4$
-\end_inset
-
- quarter forecast and once withholding the 
-\begin_inset Formula $7-10$
-\end_inset
-
- quarter forecast.
- Then, we simulate generalized OU bridges governed by the MKLDE between
- the closest neighboring horizons, and take the values of these bridges
- at the time corresponding to the forecast of interest.
- To evaluate the performance of our imputation method against a linear interpola
-tion, we compute the sample K-L divergence using the estimator of 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "perez-cruz-2008"
-
-\end_inset
-
-.
- In order to use this estimator, we must add normally distributed noise
- with small variance 
-\begin_inset Formula $(\sigma^{2}\approx0.001)$
-\end_inset
-
- to the linear interpolations and the true SPF forecasts, so that there
- are no repeated values.
- We drop any negative estimates of the K-L divergence, and present the distribut
-ions of the divergences across the SPFs in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:est_kl"
-
-\end_inset
-
-.
- We also consider the scenario when 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:cond-inf"
-
-\end_inset
-
- is specified according to a hyperbolic diffusion, i.e.
- has
-\begin_inset Formula 
-\begin{eqnarray*}
-\mu_{\theta}(x) & = & -\frac{\lambda}{\sqrt{\delta^{2}+(x-\mu)^{2}}}(x-\mu)\mbox{ and}\\
-\sigma_{\theta}(x) & = & \sigma.
-\end{eqnarray*}
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
--\frac{\sigma^{2}\lambda}{2\sqrt{\delta^{2}+(x-\mu)^{2}}}(x-\mu)
-\]
-
-\end_inset
-
-We note the resulting process has linear drift dynamics similar to an OU
- process when 
-\begin_inset Formula $X_{t}-\mu$
-\end_inset
-
- is small, and displays constant drift for large 
-\begin_inset Formula $|X_{t}-\mu|$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1120,9 +1233,13 @@ name "fig:est_kl"
 
 \end_inset
 
-A comparison of the estimated out-of-sample K-L divergences of imputed inflation
- expectations from the true distribution of 
+A boxplot of the estimated out-of-sample K-L divergences of imputed inflation
+ expectations from the distribution of 
 \begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
 \end_inset
 
  at 
@@ -1133,8 +1250,9 @@ A comparison of the estimated out-of-sample K-L divergences of imputed inflation
 \begin_inset Formula $7-10$
 \end_inset
 
- month horizons, using a naïve linear interpolation method and generalized
- bridge-based imputation.
+ month horizons, using generalized bridge-based imputation with an OU and
+ hyperbolic diffusion model, as well as a naïve linear interpolation method.
+ Means are labeled with a black square and their numerical value.
 \end_layout
 
 \end_inset
@@ -1148,66 +1266,147 @@ A comparison of the estimated out-of-sample K-L divergences of imputed inflation
 \end_layout
 
 \begin_layout Standard
-We see that the generalized OU bridges offer an imputed distribution noticeably
- closer to the true distribution at the 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:est_kl"
+
+\end_inset
+
+ presents the estimated K-L divergences of the imputed distributions at
+ 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ from the true distributions for each SPF in the data set, for a generalized
+ bridge-based imputation scheme using hyperbolic processes, and the linear
+ interpolation method outlined above.
+ In all SPFs considered, 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ are time horizons between 
 \begin_inset Formula $1-4$
 \end_inset
 
- month horizon, while the linear interpolation performs comparably at the
- 
+ and 
 \begin_inset Formula $7-10$
 \end_inset
 
- month horizon.
- More precisely, the mean K-L divergence from the distribution reported
- in the SPFs at the 
-\begin_inset Formula $1-4$
+ quarters respectively.
+ We drop any negative estimates of K-L divergence and any SPFs for which
+ the MCEM algorithm to estimate MKLDEs did not converge (totaling to 
+\begin_inset Formula $16$
 \end_inset
 
- month horizon is 
-\begin_inset Formula $1.10$
+ of the 
+\begin_inset Formula $68$
 \end_inset
 
- when used bridge-based imputation and 
-\begin_inset Formula $1.56$
+ SPFs).
+\end_layout
+
+\begin_layout Standard
+We see that the generalized bridge-based method offers an imputed distribution
+ noticeably closer to the true distribution at both horizons considered.
+ In particular, the mean and median estimated K-L divergence of the imputed
+ distributions from the true distribution using generalized bridges are
+ lower (in some cases by almost up to 
+\begin_inset Formula $30\%$
 \end_inset
 
- when using linear interpolation.
+) than the same statistics using linear interpolation.
+ The hyperbolic and OU diffusions appear to perform comparably; this is
+ expected since the parameter estimates for the hyperbolic diffusion result
+ in an implied stationary distribution only slightly fatter-tailed than
+ the stationary OU distribution.
+ While asymptotics are not available for the distribution of these K-L divergenc
+e estimates, the effect size qualitatively appears to be non-negligible.
  However, in general, the K-L divergences remain fairly large: for reference,
- the standard Gaussian distribution and the standard Exponential distribution
- are estimated to have K-L divergence of approximately 
-\begin_inset Formula $0.7$
+ the K-L divergence of a standard Gaussian distribution from an even mixture
+ of Gaussian distributions centered at 
+\begin_inset Formula $-2$
+\end_inset
+
+ and 
+\begin_inset Formula $2$
+\end_inset
+
+ with unit variance is estimated to be approximately 
+\begin_inset Formula $1.0$
 \end_inset
 
 .
- The observed K-L divergences of either imputation method therefore appear
- to suggest that conditional expectations of inflation do not evolve either
- linearly or according to an OU process over time; this is expected, since
- there is no reason to think that the conditional expectations should even
- follow time-homogenous dynamics.
+ The estimated K-L divergences of either imputation method therefore appear
+ to suggest that conditional expectations of inflation are not well-modeled
+ by the selected Itô diffusions, and even less so by a piecewise linear
+ function; this is not entirely surprisingly, since there is no reason to
+ think that conditional inflation expectations should even follow time-homogenou
+s dynamics.
+ Nevertheless, the methodology proposed here can provide a useful first
+ step modeling the evolution of stochastic processes, conditional on their
+ distribution at discrete points in time.
  
 \end_layout
 
 \begin_layout Standard
-Nevertheless, the methodology proposed here can provide a useful first step
- in thinking about the evolution of inflation expectations over time.
- In 
+We conclude this chapter with a visualization of the final product of this
+ thesis.
+ Using the proposed MCEM scheme to infer the MKLDE of 
+\begin_inset Formula $\mathbb{Q}_{\theta}^{OU}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{Q}_{\theta}^{HYP}$
+\end_inset
+
+ given 
+\begin_inset Formula $\hat{\nu}$
+\end_inset
+
+, we plot repeated samples of 
+\begin_inset Formula $\hat{\nu}$
+\end_inset
+
+-bridges of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta^{*}}^{OU}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{Q}_{\theta^{*}}^{HYP}$
+\end_inset
+
+ in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:cont_path"
 
 \end_inset
 
-, we present a visualization of the final product of this thesis.
- Using the proposed MCEM scheme to estimate the MKLDE, we repeatedly sample
- generalized bridges between the SPF forecast distributions, whose dynamics
- are governed by the MKLDE.
- Examination of this figure reveals that an OU process does seem like a
- poor fit, especially at short horizons—the up-and-down during the first
- quarter suggests that the forecasters expected inflation to remain low
- in the short-term, and rapidly accelerate in the medium-term.
- The inability to capture dynamics like these leads our generalized OU bridges
- to mean-revert 
+.
+ This figure reveals that the time-inhomogenous dynamics of inflation expectatio
+ns do in fact prevent either the OU or hyperbolic diffusions from being
+ a good model, especially at short horizons: an up-and-down path during
+ the first quarter is noticeable, suggesting that the forecasters expected
+ inflation to remain low in the short-term, and rapidly accelerate in the
+ medium-term.
+ The inability to capture dynamics like these leads our generalized bridges
+ to mean-revert towards the inflation target of 
+\begin_inset Formula $\approx2\%$
+\end_inset
+
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1215,26 +1414,20 @@ too quickly
 \begin_inset Quotes erd
 \end_inset
 
-, before being forced to come back down to the SPF forecasts for one quarter
- forward.
+ early on, before being forced to return to the relatively low inflation
+ forecasts for one quarter ahead.
+ However, these issues represent problems of model selection and not of
+ methodology.
  
-\end_layout
-
-\begin_layout Standard
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-This chapter is pretty poorly written and I'm going to fix it up a lot.
- I just wanted to show you some of the results.
- I am also waiting on the MCEM to come back for other diffusion specifications
- i.e.
- hyperbolic diffusions.
-\end_layout
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:cont_path"
 
 \end_inset
 
-
+ represents the synthesis of the methods developed here to conduct inference
+ on and imputation of distributional data; as such, it is a fitting way
+ to close the original portion of this thesis.
 \end_layout
 
 \begin_layout Standard
@@ -1263,11 +1456,39 @@ name "fig:cont_path"
 
 \end_inset
 
-500 sample paths of imputed inflation expectations, where inflation expectations
- are assumed to follow an OU diffusion.
- The diffusion is governed by the MKLDE with respect to the SPF forecast
- horizons, and sample paths are generated as generalized bridges between
- the SPF forecast distributions.
+500 sample paths of 
+\begin_inset Formula $\hat{\nu}$
+\end_inset
+
+-bridges of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta^{*}}^{OU}$
+\end_inset
+
+ (top) and 
+\begin_inset Formula $\mathbb{Q}_{\theta^{*}}^{HYP}$
+\end_inset
+
+ (bottom), where 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+ is the MKLDE of 
+\begin_inset Formula $\mathbb{Q}_{\theta}^{OU}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{Q}_{\theta}^{HYP}$
+\end_inset
+
+ from 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ respectively.
 \end_layout
 
 \end_inset
