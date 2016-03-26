@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      5263,        169]
-NotebookOptionsPosition[      4820,        149]
-NotebookOutlinePosition[      5178,        165]
-CellTagsIndexPosition[      5135,        162]
+NotebookDataLength[      7925,        254]
+NotebookOptionsPosition[      7373,        230]
+NotebookOutlinePosition[      7727,        246]
+CellTagsIndexPosition[      7684,        243]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -145,10 +145,91 @@ Cell[BoxData[
  CellChangeTimes->{{3.666359992528571*^9, 3.6663601624659233`*^9}, 
    3.66636027192894*^9, {3.66636034926803*^9, 3.66636035582932*^9}, 
    3.6663818911902733`*^9, {3.6663819236187277`*^9, 3.666381951079309*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", 
+  RowBox[{"KL", "[", 
+   RowBox[{"\[Lambda]", ",", "\[Sigma]", ",", "h"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.666648414392959*^9, 3.666648417981103*^9}, {
+  3.6666485155546618`*^9, 3.666648516881216*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      SuperscriptBox["\[ExponentialE]", "\[Lambda]"]}], ")"}], " ", 
+    SuperscriptBox["\[Sigma]", "2"]}]], 
+  RowBox[{
+   SuperscriptBox["2", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     RowBox[{"2", " ", "h"}]}]], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"2", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "-", 
+           RowBox[{
+            SuperscriptBox["4", "h"], " ", 
+            SuperscriptBox["\[ExponentialE]", 
+             RowBox[{"\[Lambda]", "/", "2"}]]}], "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "+", 
+              SuperscriptBox["4", "h"]}], ")"}], " ", 
+            SuperscriptBox["\[ExponentialE]", "\[Lambda]"]}]}], ")"}], " ", 
+         "\[Lambda]"}], "-", 
+        RowBox[{
+         SuperscriptBox["4", "h"], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "1"}], "+", 
+           SuperscriptBox["\[ExponentialE]", "\[Lambda]"]}], ")"}], " ", 
+         SuperscriptBox["\[Sigma]", "2"]}]}], ")"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["4", "h"], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], "+", 
+        SuperscriptBox["\[ExponentialE]", "\[Lambda]"]}], ")"}], " ", 
+      SuperscriptBox["\[Sigma]", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox["4", "h"], " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"-", "2"}], " ", "\[Lambda]"}]], " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "1"}], "+", 
+             SuperscriptBox["\[ExponentialE]", "\[Lambda]"]}], ")"}], "2"], 
+          " ", 
+          SuperscriptBox["\[Sigma]", "4"]}], 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "4"}], "+", 
+            SuperscriptBox["4", "h"]}], ")"}], " ", 
+          SuperscriptBox["\[Lambda]", "2"]}]]}], "]"}]}]}], 
+    ")"}]}]}]], "Output",
+ CellChangeTimes->{{3.666648418649537*^9, 3.666648424679368*^9}, 
+   3.666648517349203*^9}]
 }, Open  ]]
 },
 WindowSize->{718, 855},
-WindowMargins->{{116, Automatic}, {-70, Automatic}},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
 FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (October 9, \
 2015)",
 StyleDefinitions->"Default.nb"
@@ -169,7 +250,11 @@ Cell[2273, 77, 525, 16, 51, "Input"],
 Cell[2801, 95, 908, 24, 66, "Input"],
 Cell[CellGroupData[{
 Cell[3734, 123, 593, 11, 28, "Input"],
-Cell[4330, 136, 474, 10, 62, "Output"]
+Cell[4330, 136, 474, 10, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4841, 151, 256, 5, 28, "Input"],
+Cell[5100, 158, 2257, 69, 143, "Output"]
 }, Open  ]]
 }
 ]

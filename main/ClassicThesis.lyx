@@ -27,6 +27,10 @@
 \renewcommand*{\thefigure}{\arabic{chapter}.\arabic{figure}}
 \let\c@table\c@figure
 \makeatother 
+
+\areaset[current]{\dimexpr\textwidth+\marginparwidth+\marginparsep}{\textheight}
+\setlength{\marginparwidth}{-3.3em}
+\setlength{\marginparsep}{-3.3em}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -208,15 +212,7 @@ filename "Acknowledgments.lyx"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Newpage cleardoublepage
-\end_inset
-
-
-\end_layout
-
 \end_inset
 
 
@@ -235,7 +231,7 @@ pagestyle{scrheadings}
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Contents.lyx"
@@ -245,14 +241,14 @@ filename "Contents.lyx"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Newpage cleardoublepage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset ERT
 status open
 
@@ -268,41 +264,7 @@ pagenumbering{arabic}
 
 \end_layout
 
-\begin_layout Part Introduction (ClassicThesis)
-In this Part, this work is introduced and theoretical foundations are set
- for the remainder of the thesis to build upon.
- 
-\begin_inset Newline newline
-\end_inset
-
-In 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:Introduction"
-
-\end_inset
-
-, the central problem of this thesis is stated informally and the contributions
- made are outlined.
-\begin_inset Newline newline
-\end_inset
-
-In 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:2"
-
-\end_inset
-
-, the mathematical objects of focus in this thesis are given, and an overview
- of the theory of Markov and generalized bridges is presented.
-\end_layout
-
-\begin_layout Part
-Preliminaries
-\end_layout
-
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Chapter01.lyx"
@@ -319,133 +281,15 @@ filename "Chapter02.lyx"
 
 \end_layout
 
-\begin_layout Part Introduction (ClassicThesis)
-In this Part, the central problem of this thesis treated theoretically,
- with a focus on simulation-based inference.
-\begin_inset Newline newline
-\end_inset
-
-In 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:EM"
-
-\end_inset
-
-, the problem of inference on distributional data is formalized and some
- interpretations of the problem and its relation to maximum liklihood estimation.
- An MCEM algorithm generalizing those of 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "beskos-2006"
-
-\end_inset
-
- and 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bladt-sorensen-2014"
-
-\end_inset
-
- to carry out inference on distributional data is proposed, and the algorithm's
- need for a sampler of a special case of a generalized bridge is noted.
- 
-\begin_inset Newline newline
-\end_inset
-
-Accordingly, in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:4"
-
-\end_inset
-
-, a light theoretical treatment of the specific generalized bridges of interest
- is given, and a simple approximate sampler is developed in the spirit of
- 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bladt-sorensen-2014"
-
-\end_inset
-
-.
- An exact sampler is also proposed.
-\end_layout
-
-\begin_layout Part
-\begin_inset CommandInset label
-LatexCommand label
-name "part:2"
-
-\end_inset
-
-Theoretical Contribution
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "ChapterEM.lyx"
-
-\end_inset
-
-
-\begin_inset CommandInset include
-LatexCommand include
-filename "Chapter04.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Part Introduction (ClassicThesis)
-The methodology developed in the previous Part is applied in a variety of
- simulation and empirical settings in this Part.
-\begin_inset Newline newline
-\end_inset
-
-In 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:5"
-
-\end_inset
-
-, the generalized bridge samplers and the MCEM scheme are evaluated in a
- simulation setting, and shown to be correct and robust in a variety of
- scenarios.
-\begin_inset Newline newline
-\end_inset
-
-In 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:6"
-
-\end_inset
-
-, we take theory to practice and demonstrate how the methods developed in
- this thesis can be used to model the evolution of inflation expectations
- given probabilistic forecasts at discrete future points in time.
-\end_layout
-
-\begin_layout Part
-\begin_inset CommandInset label
-LatexCommand label
-name "part:3"
-
-\end_inset
-
-Empirical Contribution
-\end_layout
-
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "Chapter05.lyx"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -476,6 +320,23 @@ filename "Bibliography.lyx"
 
 \begin_inset Note Comment
 status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "ChapterEM.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+filename "Chapter04.lyx"
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Part
 Appendix

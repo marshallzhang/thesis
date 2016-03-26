@@ -31,7 +31,7 @@ bridges = t(bridges)
 bridges = as.data.frame(bridges)
 melted = melt(bridges, id = "V501")
 
-pdf(file = "/Users/marshall/Documents/senior/thesis/figures/est_kl.pdf", width= 10, height = 5, #' see how it looks at this size
+pdf(file = "/Users/marshall/Documents/senior/thesis/figures/cont_path.pdf", width= 10, height = 5, #' see how it looks at this size
     useDingbats=F)
 pretty.plot(melted) + geom_line(aes(x=V501, y = value, group = variable), alpha = 0.05) + 
               xlab("Quarters Elapsed") + 
@@ -39,6 +39,6 @@ pretty.plot(melted) + geom_line(aes(x=V501, y = value, group = variable), alpha 
               ylab("Inflation (%)") + 
               scale_y_continuous(breaks = seq(0,3,0.5)) + 
               theme(legend.position = "none") + 
-            ggtitle("Imputed Path of Inflation Based on 2015Q4 SPF")
+            ggtitle("Imputed Path of Inflation Expectations Based on 2015Q4 SPF")
 
 dev.off()

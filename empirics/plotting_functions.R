@@ -9,7 +9,7 @@ plot.many = function(data, N, ...){
 }
 
 pretty.plot = function(melted.data) {
-  ggplot(data = data.melt) + theme_bw(base_size = 12, base_family = "Helvetica")
+  ggplot(data = melted.data) + theme_bw(base_size = 12, base_family = "Helvetica")
 }
 
 multiplot = function(..., plotlist=NULL, file, cols=1, layout=NULL) {

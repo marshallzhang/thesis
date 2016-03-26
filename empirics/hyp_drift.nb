@@ -1,0 +1,198 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5208,        189]
+NotebookOptionsPosition[      4548,        160]
+NotebookOutlinePosition[      4908,        176]
+CellTagsIndexPosition[      4865,        173]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"drift", "[", 
+   RowBox[{
+   "x_", ",", "\[Mu]_", ",", "\[Lambda]_", ",", "\[Delta]_", ",", 
+    "\[Sigma]_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["\[Lambda]", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{
+      RowBox[{"\[Delta]", "^", "2"}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"x", "-", "\[Mu]"}], ")"}], "^", "2"}]}], "]"}]], "*", 
+   RowBox[{"(", 
+    RowBox[{"x", "-", "\[Mu]"}], ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"drift", "[", 
+     RowBox[{
+      RowBox[{"x", "*", "\[Sigma]"}], ",", "\[Mu]", ",", "\[Lambda]", ",", 
+      "\[Delta]", ",", "\[Sigma]"}], "]"}], "/", "\[Sigma]"}], ",", "x"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.667762007843173*^9, 3.667762055118086*^9}, {
+  3.667762164781412*^9, 3.667762191190609*^9}, {3.667762398900845*^9, 
+  3.667762401004034*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    RowBox[{"\[Lambda]", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "\[Mu]"}], "+", 
+        RowBox[{"x", " ", "\[Sigma]"}]}], ")"}], "2"]}], 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["\[Delta]", "2"], "+", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "\[Mu]"}], "+", 
+          RowBox[{"x", " ", "\[Sigma]"}]}], ")"}], "2"]}], ")"}], 
+     RowBox[{"3", "/", "2"}]]]}], "+", 
+  FractionBox["\[Lambda]", 
+   SqrtBox[
+    RowBox[{
+     SuperscriptBox["\[Delta]", "2"], "+", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "\[Mu]"}], "+", 
+        RowBox[{"x", " ", "\[Sigma]"}]}], ")"}], "2"]}]]]}]], "Output",
+ CellChangeTimes->{{3.667762178793571*^9, 3.667762192243121*^9}, 
+   3.667762401837216*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"odrift", "[", 
+   RowBox[{"x_", ",", "\[Mu]_", ",", "\[Lambda]_", ",", "\[Sigma]_"}], "]"}], 
+  ":=", 
+  RowBox[{
+   RowBox[{"-", "\[Lambda]"}], "*", 
+   RowBox[{"(", 
+    RowBox[{"x", "-", "\[Mu]"}], ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"odrift", "[", 
+     RowBox[{
+      RowBox[{"x", "*", "\[Sigma]"}], ",", "\[Mu]", ",", "\[Lambda]", ",", 
+      "\[Sigma]"}], "]"}], "/", "\[Sigma]"}], ",", "x"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6677621985456543`*^9, 3.667762240834916*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", "\[Lambda]"}]], "Output",
+ CellChangeTimes->{{3.667762227274249*^9, 3.667762241123785*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Integrate", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"odrift", "[", 
+     RowBox[{
+      RowBox[{"x", "*", "\[Sigma]"}], ",", "\[Mu]", ",", "\[Lambda]", ",", 
+      "\[Sigma]"}], "]"}], "/", "\[Sigma]"}], ",", "x"}], "]"}]], "Input",
+ CellChangeTimes->{{3.667762494648711*^9, 3.667762517898693*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"\[Lambda]", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"x", " ", "\[Mu]"}], "-", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["x", "2"], " ", "\[Sigma]"}], "2"]}], ")"}]}], 
+  "\[Sigma]"]], "Output",
+ CellChangeTimes->{{3.66776250418473*^9, 3.667762518424244*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Integrate", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"drift", "[", 
+     RowBox[{
+      RowBox[{"x", "*", "\[Sigma]"}], ",", "\[Mu]", ",", "\[Lambda]", ",", 
+      "\[Delta]", ",", "\[Sigma]"}], "]"}], "/", "\[Sigma]"}], ",", "x"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.667762524136359*^9, 3.6677625367473*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"\[Lambda]", " ", 
+   SqrtBox[
+    RowBox[{
+     SuperscriptBox["\[Delta]", "2"], "+", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[Mu]", "-", 
+        RowBox[{"x", " ", "\[Sigma]"}]}], ")"}], "2"]}]]}], 
+  SuperscriptBox["\[Sigma]", "2"]]], "Output",
+ CellChangeTimes->{3.6677625371154947`*^9}]
+}, Open  ]]
+},
+WindowSize->{960, 1035},
+WindowMargins->{{Automatic, -241}, {900, Automatic}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (October 9, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 898, 26, 71, "Input"],
+Cell[1481, 50, 905, 30, 61, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2423, 85, 576, 16, 46, "Input"],
+Cell[3002, 103, 119, 2, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3158, 110, 323, 8, 28, "Input"],
+Cell[3484, 120, 320, 10, 60, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3841, 135, 340, 9, 28, "Input"],
+Cell[4184, 146, 348, 11, 93, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

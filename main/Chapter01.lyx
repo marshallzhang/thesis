@@ -11,6 +11,7 @@
 \newref{part}{name=Part~,Name=Part~}
 \newref{algo}{name=Algorithm~,Name=Algorithm~}
 \newref{lem}{name=Lemma~,Name=Lemma~}
+\newref{fig}{name=Figure~,Name=Figure~}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -97,15 +98,16 @@ The Oracle at Delphi
 \end_layout
 
 \begin_layout Standard
+At the outset of the second Persian invasion of Greece in the early fifth
+ century BCE, the Oracle at Delphi prophesized the following to the people
+ of Sparta 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "macauley"
 
 \end_inset
 
- wrote that, at the outset of the second Persian invasion of Greece in the
- early fifth century BCE, the Oracle at Delphi prophesized the following
- to the people of Sparta:
+:
 \end_layout
 
 \begin_layout Standard
@@ -164,49 +166,109 @@ endgroup
 The Spartans, upon receiving this divination, ought to have understood that
  their fortunes would likely deteriorate over the course of the war, culminating
  in the loss of either their capital city or their king (ultimately, King
- Leonidas, a descendant of Heracles, and three hundred of his men took a
- legendary last stand at Thermopylae on the basis of this prognostication).
+ Leonidas, a descendant of Heracles, and three hundred of his men were driven
+ to take a legendary last stand at Thermopylae on the basis of this prophecy).
  But rather than from the observations of data upon which much of modern
  statistical inference is built, the Spartans learned something about the
- path of their fortunes from an fundamentally uncertain prophecy—what we
- might call today a probabilistic forecast.
+ path of their fortunes from an fundamentally uncertain prognostication—what
+ we might call today a probabilistic forecast.
 \end_layout
 
 \begin_layout Standard
-Modern-day probabilistic Oracles, though perhaps less prescient than the
- Oracle at Delphi, can be found in great variety of applications.
- In particular, many of the variables of interest for which these probabilistic
- forecasts are generated can be modeled as stochastic processes.
- For example, central banks around the world survey professional forecasters
- for their expectations of various macroeconomic indicators over time, and
- report the distribution of their responses.
- The prices of options imply market-determined distributions over the price
- of the underlying security at discrete points in time (see 
+Probabilistic oracles today, though perhaps less prescient than the Oracle
+ at Delphi, make forecasts in a great variety of domains.
+ Moreover, many of the variables over which these probabilistic forecasts
+ are generated can be modeled as stochastic processes.
+ For example, central banks around the world regularly report the distribution
+ of expectations of professional forecasters for various macroeconomic indicator
+s over time.
+ The prices of options imply market-determined distributions over the prices
+ of other securities on discrete future dates (see 
 \begin_inset CommandInset citation
 LatexCommand citet
+before "Section II in"
 key "breeden-litzenberger-1978"
 
 \end_inset
 
 ), and metereological scientists increasingly offer probabilistic forecasts
- of everything from the path of cyclones to next-day humidity and temperature
+ of everything from the path of cyclones to future humidity and temperature
  levels.
+ If these forecasts reflect the truth, we can understand them as data on
+ the future distribution of a particular stochastic process, or what we
+ will refer to as distributional data.
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:dist-data"
+
+\end_inset
+
+ presents a intuitive visualization of two possible sets of distributional
+ data, where the value axis can represent any numeric value from a stock
+ price to a humidity reading.
+ It ought to be kept in mind that the depicted marginal distributions are
+ linked by some copula, since a distributional datum is a joint distribution
+ with a dependence structure over time.
 \end_layout
 
 \begin_layout Standard
-This thesis answers two questions that can be asked of a given stochastic
- process when it is conditioned (in some sense to be made precise in the
- next chapter) to follow a given distribution at discrete future points
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/marshall/Documents/senior/thesis/figures/intuition_ed.pdf
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dist-data"
+
+\end_inset
+
+An intuitive depiction of two sets of four-dimensional distributional data,
+ where the marginal distributions of the data are shown at discrete points
  in time.
- The first is a question of inference: Can we, given such a conditioning,
- conduct inference on the parameters underlying the process, and if so,
- how? The second is a question of imputation: Given a set of parameters,
- how can we impute the distribution of the process in between the times
- at which it is conditioned? In intuitive terms, we ask whether and how,
- given the Delphic prophecy, the Spartans could have learned about the dynamics
- under which their fortunes would evolve over the course of the war, and
- how they might have been able to trace out the probabilistic path of their
- fortunes over time.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This thesis answers two questions that can be asked of a stochastic process
+ when it is conditioned, in some sense to be made precise in the next chapter,
+ on distributional data i.e.
+ when it is conditioned to follow a given distribution at discrete future
+ points in time.
+ The first is a question of inference: Can we, given distributional data,
+ learn about the parameters governing the dynamics of a particular stochastic
+ process, and if so, how? The second is a question of imputation: Given
+ a fully specified stochastic process, how can we impute the distribution
+ of the process in between the times at which it is conditioned? In intuitive
+ terms, we ask whether and how, given the Delphic prophecy, the Spartans
+ could have learned about the dynamics under which their fortunes would
+ take a turn for the worse over the course of the war, and how they might
+ have been able to trace out the probabilistic path of their fortunes from
+ the day the prophecy was given to the fateful battle at Thermopylae.
 \end_layout
 
 \begin_layout Standard
@@ -236,7 +298,7 @@ key "yoshida-1992"
 \end_inset
 
  for the specific case of diffusion processes.
- In particular, we propose that a Kullback-Liebler divergence minimizing
+ In particular, we propose that a Kullback-Liebler (K-L) divergence minimizing
  estimator is the appropriate one to use for inference when given the distributi
 on of, as opposed to observations of, a diffusion process at discrete points
  in time.
@@ -264,7 +326,14 @@ key "bladt-sorensen-2014"
  bridges (see 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "papa-roberts-2012,bladt-sorensen-2014,bladt-finch-sorenson-2015"
+key "papa-roberts-2012,bladt-sorensen-2014"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-finch-sorenson-2015"
 
 \end_inset
 
@@ -276,8 +345,7 @@ key "baudoin-2002"
 \end_inset
 
 ) by proposing an approximate and exact simulation strategy for a particular
- class of generalized bridges, jointly answering in full the question of
- inference.
+ class of generalized bridges, answering in full the question of inference.
  Simultaneously, these generalized bridge samplers answer the question of
  imputation by allowing us to draw sample paths of diffusion processes whose
  endpoints are conditioned to follow a given distribution.
@@ -294,15 +362,14 @@ In the empirical portion of this thesis, we validate the correctness of
  on distributional data is consistent for the K-L divergence minimizing
  parameter and also robust to various assumptions, including the use of
  an approximate generalized bridge sampler instead of the exact sampler.
- Finally, we use the proposed inference scheme to estimate the parameters
- governing the evolution of the inflation expectations of professional macroecon
-omic forecasters.
- Then, we show that a generalized bridge-based imputation scheme can reduce
- out-of-sample K-L divergence by up to 
-\begin_inset Formula $30\%$
-\end_inset
-
- relative to a naïve linear interpolation of probabilistic forecasts.
+ Taking theory to practice, we use the proposed inference scheme to estimate
+ the parameters governing the evolution of the inflation expectations of
+ professional macroeconomic forecasters for diffusions with and without
+ analytically tractable transition densities.
+ Finally, we show that using generalized bridges to impute distributions
+ between probabilistic forecasts can reduce out-of-sample K-L divergence
+ from the true distribution of forecasts by up to a third relative to a
+ naïve linear interpolation scheme.
 \end_layout
 
 \begin_layout Section
@@ -322,14 +389,22 @@ key "baudoin-2002"
 \end_layout
 
 \begin_layout Standard
-With the mathematical underpinnings set, 
+With the mathematical underpinnings set, we present the theoretical portion
+ of this thesis in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "part:2"
+reference "chap:EM"
 
 \end_inset
 
- will focus on the theoretical aspects of the thesis.
+ and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+.
  The general problem of conducting inference on data in the form of distribution
 s is introduced and formalized in 
 \begin_inset CommandInset ref
@@ -339,31 +414,22 @@ reference "chap:EM"
 \end_inset
 
 .
- A procedure for conducting inference is developed and interpretations of
- such a procedure in relation to MLE are given, and an expectation-maximization
- algorithm is developed to carry out such inference.
- However, this algorithm must be implemented in a Monte Carlo framework,
- and requires the ability to sample a certain class of generalized bridges.
- As such, in 
+ A procedure for conducting inference is proposed and interpretations of
+ such a procedure in relation to MLE are given; then, a Monte Carlo expectation-
+maximization (MCEM) algorithm to carry out such inference is developed.
+ It is noted that a sampler of generalized diffusion bridges is required
+ to implement this algorithm, and in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:4"
 
 \end_inset
 
-, a simulation strategy for approximate and exact generalized diffusion
- bridges of this sort is given, as well as the marginal density of such
- a bridge.
+, we present approximate and exact versions of such a sampling scheme.
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "part:3"
-
-\end_inset
-
- focuses on putting theory to practice.
+In the next two chapters of this thesis, theory is taken to practice.
  A variety of simulations are conducted in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -372,15 +438,29 @@ reference "chap:5"
 \end_inset
 
  to demonstrate both the correctness and robustness of the generalized bridge
- samplers and the MCEM algorithm.
- In the final chapter of this thesis, 
+ samplers proposed in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+ and the MCEM algorithm proposed in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:EM"
+
+\end_inset
+
+.
+ In 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:6"
 
 \end_inset
 
-, these methods are applied to model inflation expectations of professional
+, these methods are applied to model the inflation expectations of professional
  forecasters.
 \end_layout
 

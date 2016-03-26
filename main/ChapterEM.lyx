@@ -716,6 +716,12 @@ Having an understanding of the MKLDE as a limit in terms of samples from
 \end_layout
 
 \begin_layout Remark
+\begin_inset CommandInset label
+LatexCommand label
+name "rem:bootstrap"
+
+\end_inset
+
 The MKLDE given an approximation 
 \begin_inset Formula $\hat{\nu}$
 \end_inset
@@ -1255,6 +1261,21 @@ reference "eq:sde-with-theta"
 \end_layout
 
 \begin_layout Proof
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+I am in the middle of changing this proof up substantially.
+ I think the result is intuitive (and correct according to simulations),
+ but I think my original proof was technically wrong.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
 Let 
 \begin_inset Formula $X$
 \end_inset
@@ -1278,8 +1299,8 @@ reference "eq:em-equation"
  as 
 \begin_inset Formula 
 \begin{eqnarray}
-\Lambda_{\theta}(\nu)-\Lambda_{\tilde{\theta}}(\nu) & = & \int\log P_{\theta}(\mathbf{x})\nu(d\mathbf{x})-\Lambda_{\tilde{\theta}}(\nu)\nonumber \\
- & = & \int\log\int P_{\theta}(\mathbf{x},z)dz\nu(d\mathbf{x})-\Lambda_{\tilde{\theta}}(\nu),\label{eq:firststepem}
+\Lambda_{\theta}(\nu)-\Lambda_{\tilde{\theta}}(\nu) & = & \int\log P_{\theta,\mathcal{T}}(\mathbf{x})\nu(d\mathbf{x})-\Lambda_{\tilde{\theta}}(\nu)\nonumber \\
+ & = & \int\log\int P_{\theta,\mathcal{T}}(\mathbf{x}\mid z)P_{\theta,\mathcal{T}^{c}}(z)dz\nu(d\mathbf{x})-\Lambda_{\tilde{\theta}}(\nu),\label{eq:firststepem}
 \end{eqnarray}
 
 \end_inset
@@ -1322,9 +1343,17 @@ reference "eq:firststepem"
 \begin_layout Proof
 \begin_inset Formula 
 \begin{align}
-\Lambda_{\theta}(\nu)-\Lambda_{\tilde{\theta}}(\nu) & \geq\iint\log\left(\frac{P_{\theta}(\mathbf{x},z)}{P_{\tilde{\theta}}(z\mid\mathbf{x})}\right)P_{\tilde{\theta}}(z\mid\mathbf{x})dz\nu(d\mathbf{x})-\Lambda_{\tilde{\theta}}(\nu)\nonumber \\
+\Lambda_{\theta}(\nu)-\Lambda_{\tilde{\theta}}(\nu) & \geq\iint\log\left(\frac{P_{\theta}(\mathbf{x},z)}{P_{\tilde{\theta},\mathcal{T}^{c}}(z\mid\mathbf{x})}\right)P_{\tilde{\theta},\mathcal{T}^{c}}(z\mid\mathbf{x})dz\nu(d\mathbf{x})-\Lambda_{\tilde{\theta}}(\nu)\nonumber \\
  & =\iint\log\left(\frac{P_{\theta}(\mathbf{x},z)}{P_{\tilde{\theta}}(z\mid\mathbf{x})P_{\tilde{\theta}}(\mathbf{x})}\right)\mathbb{P}_{\tilde{\theta}}(dz\mid\mathbf{x})\nu(d\mathbf{x}).\label{eq:Deltatn}
 \end{align}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\iint\log\left(\frac{P_{\theta}(z)}{P_{\tilde{\theta}}(z)}\right)P_{\tilde{\theta}}(z\mid\mathbf{x})\nu(\mathbf{x})=\int\log\left(\frac{P_{\theta}(z)}{P_{\tilde{\theta}}(z)}\right)\mathbb{P}_{\tilde{\theta}}^{\nu}(dz)
+\]
 
 \end_inset
 
@@ -1332,31 +1361,6 @@ reference "eq:firststepem"
 \end_layout
 
 \begin_layout Proof
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-I am generally a little confused with the missing data 
-\begin_inset Formula $z$
-\end_inset
-
- vs.
- the complete data.
- In Beskos 2006, the missing data seems to be the whole path already.
- This is why I get a little hand-wavey here (can we just drop the fixed
- data 
-\begin_inset Formula $\mathbf{x}$
-\end_inset
-
- if we introduce a complete missing path 
-\begin_inset Formula $z$
-\end_inset
-
-? But I think the final result is intuitive and it works in simulation.
-\end_layout
-
-\end_inset
-
 Assuming suitable regularity conditions, note that 
 \begin_inset CommandInset ref
 LatexCommand eqref
@@ -1567,16 +1571,6 @@ reference "eq:simple-q"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-I've read and re-read Bladt/Beskos many times and I just can't really get
- my hands on what we're really doing in a formal sense here..
-\end_layout
-
-\end_inset
-
 However, 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -1700,7 +1694,19 @@ recalling that
 
  under a Lamperti transformation fixed, which allows the EM algorithm to
  converge properly.
- We note that we can equivalently write 
+ 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+I've read and re-read Bladt/Beskos many times and I just can't really get
+ my hands on what the point of all of this is (the two papers give different
+ explanations too)...
+\end_layout
+
+\end_inset
+
+We note that we can equivalently write 
 \end_layout
 
 \begin_layout Standard

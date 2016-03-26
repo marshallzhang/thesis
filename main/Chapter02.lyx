@@ -98,14 +98,19 @@ name "chap:2"
 
 \end_layout
 
+\begin_layout Standard
+In this chapter, we describe the setting in which the theoretical results
+ of this thesis are stated, and review the existing theory upon which the
+ original results presented in the following chapters will build.
+\end_layout
+
 \begin_layout Section
 Objects and Notation
 \end_layout
 
 \begin_layout Standard
-We begin by fixing the objects of study and notation.
- In the theoretical portion of this thesis, unless otherwise noted, we always
- consider the probability space 
+We first fix the main objects of study and notation.
+ We will work on the probability space 
 \begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right),\mathbb{P}\right)$
 \end_inset
 
@@ -132,13 +137,13 @@ We begin by fixing the objects of study and notation.
 
 .
  The canonical process 
-\begin_inset Formula $\mathbf{X}=\left\{ \mathbf{X}_{t}\right\} _{t\in\left[0,1\right]}$
+\begin_inset Formula $X=\left\{ X_{t}\right\} _{t\in\left[0,1\right]}$
 \end_inset
 
  is defined to be such that 
 \begin_inset Formula 
 \[
-\mathbf{X}_{t}\left(\omega\right)\coloneqq\omega\left(t\right),
+X_{t}\left(\omega\right)\coloneqq\omega\left(t\right),
 \]
 
 \end_inset
@@ -153,7 +158,7 @@ where
 \end_inset
 
 , let 
-\begin_inset Formula $\mathbf{X}_{\mathcal{T}}=\left\{ \mathbf{X}_{t}\right\} _{t\in\mathcal{T}}$
+\begin_inset Formula $X_{\mathcal{T}}=\left\{ X_{t}\right\} _{t\in\mathcal{T}}$
 \end_inset
 
  be the canonical process at times 
@@ -169,7 +174,7 @@ where
 \end_inset
 
  to 
-\begin_inset Formula $\Omega_{\mathcal{T}}\coloneqq\left\{ \mathbf{X}_{t}\left(\omega\right):t\in\mathcal{T},\omega\in\Omega\right\} $
+\begin_inset Formula $\Omega_{\mathcal{T}}\coloneqq\left\{ X_{t}\left(\omega\right):t\in\mathcal{T},\omega\in\Omega\right\} $
 \end_inset
 
 .
@@ -191,23 +196,32 @@ where
 \end_layout
 
 \begin_layout Standard
-In the next Part, we will study in detail time-homogenous Itô diffusions
- i.e.
- continuous and strongly Markovian diffusion processes.
+In the next Part, we will study in detail time-homogenous univariate Itô
+ diffusions i.e.
+ continuous and strongly Markovian diffusion processes (see standard references
+ like 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Chapter 5 in"
+key "oksendal"
+
+\end_inset
+
+ for details).
  In particular, we will study processes 
-\begin_inset Formula $\mathbf{X}$
+\begin_inset Formula $X$
 \end_inset
 
  of the form 
 \begin_inset Formula 
 \[
-\mathbf{X}_{t}-\mathbf{X}_{0}=\int_{0}^{t}\mu(\mathbf{X}_{s})ds+\int_{0}^{t}\Sigma(\mathbf{X}_{s})d\mathbf{W}_{s},
+X_{t}-X_{0}=\int_{0}^{t}\mu(X_{s})ds+\int_{0}^{t}\sigma(X_{s})dW_{s},
 \]
 
 \end_inset
 
 for a vector of independent Wiener processes 
-\begin_inset Formula $\mathbf{W}$
+\begin_inset Formula $W$
 \end_inset
 
  where the second integral is one in the sense of Itô.
@@ -215,13 +229,13 @@ for a vector of independent Wiener processes
  stochastic differential equation (SDE)
 \begin_inset Formula 
 \[
-d\mathbf{X}_{t}=\mu(\mathbf{X}_{t})dt+\Sigma(\mathbf{X}_{t})d\mathbf{W}_{t},
+dX_{t}=\mu(X_{t})dt+\sigma(X_{t})dW_{t},
 \]
 
 \end_inset
 
 with a given initial condition on 
-\begin_inset Formula $\mathbf{X}_{0}$
+\begin_inset Formula $X_{0}$
 \end_inset
 
 .
@@ -230,16 +244,15 @@ with a given initial condition on
 \end_inset
 
  and 
-\begin_inset Formula $\Sigma$
+\begin_inset Formula $\sigma$
 \end_inset
 
  are suitably regular, admitting a weakly unique solution (i.e.
  all solutions have the same finite-dimensional distributions), and finite
  speed measure.
  Note, for example, that the latter assumption excludes the Wiener process.
- Finally, we assume that any one dimesional diffusion considered is balanced,
- i.e.
- 
+ Finally, we assume that any one dimesional diffusion considered satisfies
+ the balance condition 
 \begin_inset Formula 
 \[
 p_{t}(x,y)m(x)=p_{t}(y,x)m(y),
@@ -256,7 +269,15 @@ where
 \end_inset
 
  are the transition kernel and speed measure associated with the diffusion.
- 
+ We refer the reader to 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "pp. 5-6 in"
+key "bladt-sorensen-2014"
+
+\end_inset
+
+ for a detailed discussion of these conditions.
 \end_layout
 
 \begin_layout Standard
@@ -264,7 +285,7 @@ We denote probability measures by capital letters
 \begin_inset Formula $\mathbb{P},\mathbb{Q},\dots$
 \end_inset
 
- in blackboard boldface with few exceptions.
+ in blackboard boldface.
  Random variables will be denoted by capital letters 
 \begin_inset Formula $X,Y,\dots$
 \end_inset
@@ -344,8 +365,9 @@ th element of a vector
 \end_inset
 
  be the set of real numbers.
- Having set our notation, we begin with the theory of Markov bridges, focusing
- on one-dimensional processes for expositional clarity.
+ Having set our notation, we now review some existing theory related to
+ stochastic bridges which will form the foundation of the novel theoretical
+ results to be presented in the following chapters.
 \end_layout
 
 \begin_layout Section
@@ -353,10 +375,11 @@ Markov and Generalized Bridges
 \end_layout
 
 \begin_layout Standard
-We start by introducing the notion of a Markov bridge, pointing the reader
- towards references like 
+In this section, we introduce the notion of a Markov bridge, pointing the
+ reader towards references like 
 \begin_inset CommandInset citation
 LatexCommand citet
+before "Section 1 in"
 key "leonard-2014"
 
 \end_inset
@@ -383,6 +406,7 @@ First, we briefly study Markov bridges.
  Under fairly general conditions (see 
 \begin_inset CommandInset citation
 LatexCommand citet
+before "Proposition 4 in"
 key "fitz-pitman-1993"
 
 \end_inset
@@ -463,6 +487,23 @@ where
 \end_layout
 
 \begin_layout Proposition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Theorem 1.9 in"
+key "leonard-2014"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset label
 LatexCommand label
 name "prop:density-of-bridge"
@@ -635,7 +676,7 @@ A Baudoin
 \begin_inset Formula $\mathcal{R}^{n}$
 \end_inset
 
- representing the functionals being conditioned,
+ representing the functionals being conditioned and
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
@@ -675,7 +716,7 @@ such that, for
 \begin_inset Formula $\mathbb{P}_{Y}$
 \end_inset
 
-, and
+ and
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
@@ -718,8 +759,9 @@ From this point on, we will always assume that the tuples
 
  we encounter satisfy the conditions above.
  The next result demonstrates the existence and uniqueness of a measure
- which satisfies intuitive notions of a Baudoin conditioning of a measure
- ought to look like, and characterizes such a measure as the convex diversity
+ which satisfies intuitive notions of what the conditioning of a measure
+ on the law of a random variable ought to look like.
+ Moreover, it characterizes such a conditioned measure as the convex diversity
  minimizing measure with respect to a family of related probability measures.
 \end_layout
 
@@ -769,7 +811,7 @@ for any bounded random variable
 \begin_inset Formula $\mathbb{E}_{\mathbb{P}^{\nu}}[X\mid Y]=\mathbb{E}_{\mathbb{P}}[X\mid Y]$
 \end_inset
 
-, and
+ and
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
@@ -890,7 +932,8 @@ reference "prop:pv-1"
 
 \end_inset
 
- is a central result that says of the measures under which the law of 
+ is a central result which shows that of the measures under which the law
+ of 
 \begin_inset Formula $Y$
 \end_inset
 
@@ -964,7 +1007,7 @@ since the regular conditional probability
 \begin_inset Formula $\mathbb{P}(\cdot\mid Y=y)$
 \end_inset
 
- with respect to the mixing measure 
+ with respect to some mixing measure 
 \begin_inset Formula $\nu$
 \end_inset
 

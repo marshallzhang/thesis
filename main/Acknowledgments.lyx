@@ -77,93 +77,6 @@ status open
 
 
 \backslash
-pdfbookmark[1]{Acknowledgments}{acknowledgments}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align right
-
-\shape slanted
-We have seen that computer programming is an art, 
-\begin_inset Newline newline
-\end_inset
-
- because it applies accumulated knowledge to the world, 
-\begin_inset Newline newline
-\end_inset
-
- because it requires skill and ingenuity, and especially 
-\begin_inset Newline newline
-\end_inset
-
- because it produces objects of beauty.
-
-\shape default
- 
-\begin_inset Newline newline
-\end_inset
-
- 
-\begin_inset VSpace medskip
-\end_inset
-
- --- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-defcitealias{knuth:1974}{Donald E.
- Knuth}
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-citetalias{knuth:1974}
-\end_layout
-
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "knuth:1974"
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
 begingroup
 \end_layout
 
@@ -199,43 +112,56 @@ Acknowledgments
 \end_layout
 
 \begin_layout Standard
-Many thanks to all who already sent me a postcard!
+I would like to begin by thanking my advisor Neil Shephard not only for
+ his support throughout the process of writing this thesis, but also for
+ the tremendous impact he has had on me during my undergraduate career at
+ Harvard.
+ Neil's teaching over the years inspired in me a deep interest in the relationsh
+ip between statistics, mathematics, and economics; the influence of the
+ ideas he exposed me to on my personal and intellectual growth could hardly
+ be overstated.
 \end_layout
 
 \begin_layout Standard
-Regarding the typography and other help, many thanks go to Marco Kuhlmann,
- Philipp Lehman, Lothar Schlesier, Jim Young, Lorenzo Pantieri and Enrico
- Gregorio
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Member of GuIT (Gruppo Italiano Utilizzatori di TeX
-\begin_inset space \space{}
-\end_inset
-
-e LaTeX)
-\end_layout
-
-\end_inset
-
-, Jörg Sommer, Joachim Köstler, Daniel Gottschlag, Denis Aydin, Paride Legovini,
- Steffen Prochnow, Nicolas Repp, Hinrich Harms, Roland Winkler, Jörg Weber,
- Henri Menke, Claus Lahiri, Clemens Niederberger, Stefano Bragaglia, Jörn
- Hees, and the whole LaTeX-community for support, ideas and some great software.
+I would also like to thank Scott Kominers for showing me what really goes
+ into great research, and giving me an opportunity to feel just how exhilarating
+ it could be to wrangle with ideas that I was truly excited about.
+ I am also grateful to Natesh Pillai for several helpful discussions relating
+ to this thesis, and to my mentors at the firms I have worked at over my
+ summers for making tangible the links between what I was learning in school
+ and the world as it really is.
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
+I would also like to acknowledge the Odyssey cluster supported by the Research
+ Computing Group in the FAS Division of Science at Harvard University, and
+ the Research Computing Environment supported by the Institute for Quantitative
+ Social Science at Harvard University, on which the computations in this
+ thesis were performed.
 \end_layout
 
 \begin_layout Standard
-The LyX port was initially done by Nicholas Mariette in March 2009 and continued
- by Ivo Pletikosić in 2011.
- Thank you very much for your work and contributions to the original style.
+Next, I would like to thank my blockmates Ramon Galvan and Anita Lo for
+ being the best of friends since our very first day at Harvard.
+ Our countless conversations in the dining hall have had and continue to
+ have a profound impact on how I see the world.
+ I would also like to thank James Ho for setting out with me on adventures
+ from the top of Mount Baker, through the depths of Dotonbori, to the bottom
+ of the Florida Bay.
+ Last but certainly not least, I also want to thank Alice Zhao, without
+ whom I may have never returned to the second lecture of the class that
+ began my journey to this thesis, and without whom the second half of college
+ would have been a very different two years indeed.
+\end_layout
+
+\begin_layout Standard
+Finally, I would like to sincerely thank my parents for always doing everything
+ in their power to allow me to explore my interests without limit.
+ The absolutely caring and nurturing environment in which I grew up is the
+ major reason that I and my little brother are where we are today, and I
+ hope it will also be what leads Jack to one day, if he chooses, write a
+ thesis that far surpasses this one.
+ 
 \end_layout
 
 \begin_layout Standard

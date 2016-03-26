@@ -1,5 +1,3 @@
-Ps = rnorm(10000,0,1)
-Qs = rexp(10000,1)
 
 est = function(x, xs) {
   xs = sort(xs)
@@ -28,14 +26,17 @@ est.div = function(Ps, Qs) {
   for (i in 2:(length(Ps) - 1)) {
     diff =  log((est(Ps[i], Ps) - est(Ps[i] - ep, Ps)) / (est(Ps[i], Qs) - est(Ps[i] - ep, Qs))) / (n - 2)
     if (!is.finite(diff)) {
-      return(div)
+      next
     }
     div = div + diff
   }
   div
 }
 
-print(est.div(Qs, Ps) - 1)
+Ps = rnorm(50,0,1)
+Qs = c(rnorm(25,2,1), rnorm(25,-2,1))
+
+print(est.div(Ps, Qs) - 1)
 est.div(trues[["1999"]][["4"]]), linears[["1999"]][["4"]])
 
 # Turn forecast mats into linear interpolation.
@@ -104,11 +105,62 @@ mean(ous.true.kl, na.rm = T)
 sd(ous.true.kl, na.rm = T)
 hist(ous.true.kl)
 
+hyp.thetas = matrix(NA, ncol = 4, nrow = 68)
+hyp = linears
+counter = 1
+for (year in years) {
+  print(year)
+  for (quarter in quarters) {
+    print(quarter)
+    if (year == 2010 & quarter == 4) {
+      next
+    }
+    if (year == 2014 & quarter == 2) {
+      next
+    }
+    if (year == 2015 & quarter == 4) {
+      next
+    }
+    for (i in 1:length(linears[[as.character(year)]][[as.character(quarter)]])) {
+      mat = forecast.mats[[as.character(year)]][[as.character(quarter)]]
+      horizons = as.numeric(colnames(mat))
+      points = mat[i,c(1,3)]
+      sigma = thetas[[as.character(year)]][[as.character(quarter)]][3]
+      real.mu = thetas[[as.character(year)]][[as.character(quarter)]][1]/thetas[[as.character(year)]][[as.character(quarter)]][2]
+      coefs = coef(fit.hypuv(mat[,ncol(mat)], symmetric = T, mu = real.mu, opt.pars = c(lambda = T, alpha.bar = T, mu = F, sigma = T, gamma = F), silent =T), type = "alpha.delta")
+      theta = c(coefs$mu, coefs$alpha, coefs$delta, sigma)
+      hyp.thetas[counter, ] = theta
+      hyp[[as.character(year)]][[as.character(quarter)]][i] = gen.nu.bridge(function(n) rep(0,n), hyp.fast, theta, 1, 100, set.start = points, time = horizons[3] - horizons[1])[, 100 * horizons[2] / horizons[3]]
+    }
+    print(theta)
+    counter = counter + 1
+  }
+}
 
-kl.divs = data.frame(linear = linear.true.kl, ou = ous.true.kl)
+hyp.true.kl = array(NA, 68)
+counter = 1
+for (year in years) {
+  for (quarter in quarters) {
+    l = length(trues[[as.character(year)]][[as.character(quarter)]])
+    kl = est.div(trues[[as.character(year)]][[as.character(quarter)]] + rnorm(l, 0, 0.01), hyp[[as.character(year)]][[as.character(quarter)]]+ rnorm(l, 0, 0.01))
+    print(kl)
+    hyp.true.kl[counter] = kl - 1
+    counter = counter + 1
+  }
+}
+hyp.true.kl[hyp.true.kl < 0 ] = NA
+hyp.true.kl[which(hyp.thetas[,2] > 30)] = NA
+hyp.true.kl[38] = NA
+mean(hyp.true.kl, na.rm = T)
+sd(hyp.true.kl, na.rm = T)
+hist(hyp.true.kl)
+
+
+
+kl.divs = data.frame(linear = linear.true.kl, ou = ous.true.kl, hyp = hyp.true.kl)
 kl.divs = kl.divs[complete.cases(kl.divs), ]
-kl.divs = data.frame(cond = factor(rep(c("Linear Interpolation", "Gen. OU Bridge"), each = nrow(kl.divs))),
-                     kl = c(kl.divs[,1], kl.divs[,2]))
+kl.divs = data.frame(cond = factor(rep(c("Linear Interpolation", "Gen. Bridge (OU)", "Gen. Bridge (Hyp.)"), each = nrow(kl.divs))),
+                     kl = c(kl.divs[,1], kl.divs[,2], kl.divs[,3]))
 pretty.plot(kl.divs) + geom_boxplot(aes(x=cond, y= kl))
 
 
@@ -196,19 +248,80 @@ mean(f.ous.true.kl, na.rm = T)
 sd(f.ous.true.kl, na.rm = T)
 hist(f.ous.true.kl)
 
-f.kl.divs = data.frame(linear = f.linear.true.kl, ou = f.ous.true.kl)
+
+
+
+f.hyp = linears
+counter = 1
+for (year in years) {
+  print(year)
+  for (quarter in quarters) {
+    print(quarter)
+    if (year == 2010 & quarter == 4) {
+      next
+    }
+    if (year == 2014 & quarter == 2) {
+      next
+    }
+    if (year == 2015 & quarter == 4) {
+      next
+    }
+    for (i in 1:length(linears[[as.character(year)]][[as.character(quarter)]])) {
+      mat = forecast.mats[[as.character(year)]][[as.character(quarter)]]
+      horizons = as.numeric(colnames(mat))
+      n = length(horizons)
+      points = mat[i,c(n-2,n)]
+      theta = hyp.thetas[counter, ]
+      f.hyp[[as.character(year)]][[as.character(quarter)]][i] = gen.nu.bridge(function(n) rep(0,n), hyp.fast, theta, 1, 100, set.start = points, time = horizons[n] - horizons[n-2])[, 100 * (horizons[n-1] - horizons[n-2]) / (horizons[n] - horizons[n-2])]
+    }
+    print(theta)
+    counter = counter + 1
+  }
+}
+
+f.hyp.true.kl = array(NA, 68)
+counter = 1
+for (year in years) {
+  for (quarter in quarters) {
+    l = length(trues[[as.character(year)]][[as.character(quarter)]])
+    kl = est.div(trues[[as.character(year)]][[as.character(quarter)]] + rnorm(l, 0, 0.01), f.hyp[[as.character(year)]][[as.character(quarter)]]+ rnorm(l, 0, 0.01))
+    print(kl)
+    f.hyp.true.kl[counter] = kl - 1
+    counter = counter + 1
+  }
+}
+f.hyp.true.kl[f.hyp.true.kl < 0 ] = NA
+f.hyp.true.kl[which(hyp.thetas[,2] > 30)] = NA
+f.hyp.true.kl[38] = NA
+mean(f.hyp.true.kl, na.rm = T)
+sd(f.hyp.true.kl, na.rm = T)
+hist(f.hyp.true.kl)
+
+
+
+
+
+
+
+
+
+
+
+
+
+f.kl.divs = data.frame(linear = f.linear.true.kl, ou = f.ous.true.kl, hyp = f.hyp.true.kl)
 f.kl.divs = f.kl.divs[complete.cases(f.kl.divs), ]
-f.kl.divs = data.frame(cond = factor(rep(c("Linear Interpolation", "Gen. OU Bridge"), each = nrow(f.kl.divs))),
-                     kl = c(f.kl.divs[,1], f.kl.divs[,2]))
+f.kl.divs = data.frame(cond = factor(rep(c("Linear Interpolation", "Gen. Bridge (OU)", "Gen. Bridge (Hyp.)"), each = nrow(f.kl.divs))),
+                     kl = c(f.kl.divs[,1], f.kl.divs[,2], f.kl.divs[,3]))
 
 c = pretty.plot(kl.divs) + geom_boxplot(aes(x=cond, y= kl)) + 
               xlab("") + 
   theme(text = element_text(size=12), axis.text.x = element_text(size = 12)) + 
               ylab("Estimated K-L Divergence") + 
               scale_y_continuous(breaks = seq(0,6,0.5)) + 
-              coord_cartesian(ylim=c(-0.5,6))+
+              coord_cartesian(ylim=c(0,6))+
               theme(legend.position = "none") + 
-            ggtitle("1-4mo Horizon")
+            ggtitle("1-4 Month Horizon")
 
 f = pretty.plot(f.kl.divs) + geom_boxplot(aes(x=cond, y= kl)) + 
               xlab("") + 
@@ -216,12 +329,12 @@ f = pretty.plot(f.kl.divs) + geom_boxplot(aes(x=cond, y= kl)) +
               ylab("Estimated K-L Divergence") + 
               scale_y_continuous(breaks = seq(0,6,0.5)) + 
               theme(legend.position = "none") + 
-              coord_cartesian(ylim=c(-0.5,6))+
-            ggtitle("7-10mo Horizon")
+              coord_cartesian(ylim=c(0,6))+
+            ggtitle("7-10 Month Horizon")
 
 multiplot(c, f, cols = 2)
 
-pdf(file = "/Users/marshall/Documents/senior/thesis/figures/est_kl.pdf", width= 10, height = 5, #' see how it looks at this size
+pdf(file = "/Users/marshall/Documents/senior/thesis/figures/est_kl.pdf", width= 13, height = 6.5, #' see how it looks at this size
     useDingbats=F)
 multiplot(c, f, cols = 2)
 dev.off()

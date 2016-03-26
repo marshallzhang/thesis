@@ -4,10 +4,21 @@
 \begin_header
 \textclass classicthesis
 \begin_preamble
+\usepackage{algorithm,algpseudocode}
+\newref{prop}{name=Proposition~,Name=Proposition~}
+\newref{prob}{name=Problem~,Name=Problem~}
+\newref{thm}{name=Theorem~,Name=Theorem~}
+\newref{chap}{name=Chapter~,Name=Chapter~}
+\newref{part}{name=Part~,Name=Part~}
+\newref{tab}{name=Table~,Name=Table~}
+\newref{algo}{name=Algorithm~,Name=Algorithm~}
+\newref{chap}{name=Chapter~,Name=Chapter~}
+\newref{lem}{name=Lemma~,Name=Lemma~}
+\newref{fig}{name=Figure~,Name=Figure~}
+\newref{rem}{name=Remark~,Name=Remark~}
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage[labelfont=bf]{caption}
-
 \makeatletter
 \renewcommand*{\thetable}{\arabic{chapter}.\arabic{table}}
 \renewcommand*{\thefigure}{\arabic{chapter}.\arabic{figure}}
@@ -36,7 +47,7 @@ theorems-chap
 \font_tt_scale 100
 \graphics default
 \default_output_format default
-\output_sync 0
+\output_sync 1
 \bibtex_command default
 \index_command default
 \paperfontsize default
@@ -85,7 +96,7 @@ theorems-chap
 \begin_body
 
 \begin_layout Chapter
-Empirical Studies
+An Empirical Application
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:6"
@@ -96,96 +107,173 @@ name "chap:6"
 \end_layout
 
 \begin_layout Standard
-In this chapter, we apply the methods developed thus far to model the evolution
- of conditional expectations of inflation among economists.
+In this chapter, we apply the methods developed in this thesis to model
+ the evolution of conditional expectations of inflation among professional
+ economic forecasters.
 \end_layout
 
 \begin_layout Section
-The ECB's Survey of Professional Forecasters
+The Survey of Professional Forecasters
 \end_layout
 
 \begin_layout Standard
-The European Central Bank (ECB) carries out a quarterly survey of expectations
- for the rate of inflation among professional economists and institutions,
- known as the Survey of Professional Forecasters (SPF).
- Though the format of the SPF has changed over time, in every SPF since
- 1999Q1, a panel of professional forecasters has been asked to provide their
- expectations of annualized HICP Euro Area inflation at the end of the current
- calendar year, the next calendar year, and the calendar year five years
- ahead.
+We introduce the data we intend to explore and formalize the modeling problem
+ in this section.
+ The European Central Bank (ECB), along with other major central banks around
+ the world, carries out a quarterly survey of expectations for the rate
+ of inflation among professional economists and institutions, known as the
+ Survey of Professional Forecasters (SPF).
+ We refer the reader to ECB publications such as 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "ecb-review"
+
+\end_inset
+
+ for a detailed review of the ECB's SPF.
+ Though the format of the SPF has evolved over time, in every SPF since
+ the first quarter of 1999 (1999Q1), a panel of professional forecasters
+ has been asked to provide their expectations of annualized HICP Euro Area
+ inflation at the end of the current calendar year, the next calendar year,
+ and the calendar year five years ahead.
  Recent SPFs have also included forecasts for the end of the calendar year
  after next.
- The ECB releases the expectations of all surveyed forecasters at every
- horizon included in the SPF, indexing the forecasts by the forecaster who
- provided them; in effect, the SPF represents distributional data on the
- distribution of inflation expectations at discrete future points in time.
+ The ECB reports the expectations of all surveyed forecasters at every horizon
+ included in the SPF questionnaire, indexing the forecasts by the forecaster
+ who provided them.
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:ecb_intuition"
+
+\end_inset
+
+ visualizes SPFs from two contrasting macroeconomic regimes to give an intuitive
+ sense of the shape of the data.
 \end_layout
 
 \begin_layout Standard
-The pricing of many financial securities (Treasury inflation-protected securitie
-s, for instance) depends on inflation expectations over time.
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/marshall/Documents/senior/thesis/figures/ecb_intuition_ed_tall_vector.pdf
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ecb_intuition"
+
+\end_inset
+
+The marginal distribution of inflation forecasts at the horizons included
+ in the 2008Q2 (left) and 2009Q4 (right) SPFs.
+ The black dot indicates the inflation rate as of the month before the SPF
+ was administered.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The prices of many financial securities (inflation-indexed bonds, for instance;
+ see 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Eq. 2 in"
+key "woodward-1990"
+
+\end_inset
+
+) depend on inflation expectations over time.
  Given the vast array of inflation-linked securities in the marketplace,
- the forecast horizons of the SPF may be too coarse to be useful for pricing
- and other purposes: for instance, we may be interested in the distribution
- of inflation expectations halfway through a calendar year.
+ the forecast horizons of the SPF may be too coarse to be useful for practical
+ purposes: for instance, we may be interested in the distribution of inflation
+ expectations halfway through a calendar year.
  This is a natural arena in which we may ask questions of inference and
  imputation given distributional data.
 \end_layout
 
 \begin_layout Standard
-We formalize the modeling problem as follows.
- Suppose the expectation 
-\begin_inset Formula $X_{t}$
+We formalize the problem as follows.
+ Suppose we have an uncountable sample space 
+\begin_inset Formula $\Omega$
 \end_inset
 
- for annualized HICP Euro Area inflation at time horizon 
-\begin_inset Formula $t$
+ of forecasters, each with her own model for the evolution of HICP Euro
+ Area inflation over time given current inflation.
+ We define the inflation expectation process 
+\begin_inset Formula $X=\{X_{t}\}$
 \end_inset
 
- conditional on today's inflation evolves continuously according to some
- stochastic process 
-\begin_inset Formula 
-\begin{equation}
-dX_{t}=\mu_{\theta}(X_{t})dt+\sigma_{\theta}(X_{t})dW_{t}\label{eq:cond-inf}
-\end{equation}
-
-\end_inset
-
-where 
-\begin_inset Formula $W$
-\end_inset
-
- is a Wiener process.
- We may conceptualize this as a scenario in which we have a uncountable
- sample space of forecasters, each with her own model for the evolution
- of inflation over time.
- For any particular forecaster 
-\begin_inset Formula $\omega$
-\end_inset
-
-, 
+ where 
 \begin_inset Formula $X_{t}(\omega)$
 \end_inset
 
- is the conditional expectation for inflation at time horizon 
+ is 
+\begin_inset Formula $\Omega\ni\omega$
+\end_inset
+
+'s conditional expectation for inflation at time horizon 
 \begin_inset Formula $t$
 \end_inset
 
- of forecaster 
-\begin_inset Formula $\omega$
+ given current inflation.
+ The only constraint we place on this process is that it must have finite-dimens
+ional distributions which are absolutely continuous with respect to the
+ Gaussian measure; it is otherwise unknown to us.
+ Under this setup, the data provided in any particular SPF are discrete
+ observations of some finite number of sample paths of 
+\begin_inset Formula $X$
 \end_inset
 
- given today's inflation.
- Note that we are not modeling the evolution of inflation over time; rather,
- we are modeling the evolution of inflation expectations.
+.
+ 
 \end_layout
 
 \begin_layout Standard
-In this chapter, we will examine the 
+We are interested in what a particular SPF can tell us about the underlying
+ dynamics of the evolution of inflation expectations, and how we can impute
+ the distribution of 
+\begin_inset Formula $X$
+\end_inset
+
+ at horizons not included in the SPF questionnaire.
+ The latter question can be intuitively understood as asking what the forecaster
+s would have said if we had surveyed them for their inflation expectations
+ at an arbitrary horizon.
+ In the following section, we will work with the 
 \begin_inset Formula $M=68$
 \end_inset
 
- SPFs conducted by the ECB from 1999Q1 through 2015Q4.
+ SPFs conducted by the ECB from 1999Q1 through 2015Q4, obtained at 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "spf-site"
+
+\end_inset
+
+.
  
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -194,30 +282,6 @@ reference "tab:summary"
 \end_inset
 
  provides some summary statistics of this dataset.
- Since the ECB can only ever ask a finite number of forecasters for their
- inflation expectations, we can understand the distributional data provided
- in a particular SPF as the empirical distribution induced by discrete observati
-ons of some finite number (between 
-\begin_inset Formula $33$
-\end_inset
-
- and 
-\begin_inset Formula $62$
-\end_inset
-
-, as seen in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:summary"
-
-\end_inset
-
-) of sample paths of 
-\begin_inset Formula $X$
-\end_inset
-
-.
- 
 \end_layout
 
 \begin_layout Standard
@@ -370,10 +434,10 @@ name "tab:summary"
 \end_inset
 
 Summary statistics for the 
-\begin_inset Formula $N=68$
+\begin_inset Formula $68$
 \end_inset
 
- SPFs conducted by the ECB from 1999Q1 through 2015Q4.
+ ECB SPFs administered from 1999Q1 through 2015Q4.
 \end_layout
 
 \end_inset
@@ -387,129 +451,103 @@ Summary statistics for the
 \end_layout
 
 \begin_layout Section
-Modeling Inflation Expectations
+Inference on and Imputation of Inflation Expectations
 \end_layout
 
 \begin_layout Standard
-We begin our study by supposing that 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:cond-inf"
-
-\end_inset
-
- is specified according to an OU diffusion i.e.
- has 
-\begin_inset Formula $\mu_{\theta}(x)=-\lambda(x-\mu)$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma_{\theta}(x)=\sigma$
-\end_inset
-
- where 
-\begin_inset Formula $\theta=(\mu,\lambda,\sigma)$
-\end_inset
-
-.
- This is a convenient specification since the transition density of the
- OU diffusion is available, and thus we are able to check the consistency
- of the MKLDE obtained through MCEM against the MKLDE obtained through direct
- maximization of the analytic average log-likelihood.
- 
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-I can outline exactly how to calculate this if needed, not sure if too pedantic.
+In this section, we study the dynamics of the evolution of inflation expectation
+s in the ECB SPFs since 1999Q1 and apply the methods developed in this thesis
+ to impute inflation expectations over time.
+ In particular, we first verify for a model with analytically available
+ transition density that our MCEM algorithm converges to the MKLDE as obtained
+ by direct maximization of the log-likelihood.
+ Then, we estimate parameters for a model with intractable log-likelihood,
+ and show that imputation through the simulation of generalized bridges
+ reduces out-of-sample estimated K-L divergence of the interpolated distribution
+s from the truth noticeably vis-à-vis a naïve linear interpolation scheme.
 \end_layout
 
-\end_inset
-
-For each SPF in our data set, we carry out MKLDE using both the direct maximizat
-ion method and the proposed MCEM scheme, fixing the value of 
+\begin_layout Standard
+To begin, we suppose that we wish to attempt to model 
 \begin_inset Formula $X$
 \end_inset
 
- at 
-\begin_inset Formula $t=0$
-\end_inset
-
- as the annualized HICP Euro Area inflation reported at the most recent
- month before the quarter that the SPF was distributed (the SPF is usually
- distributed in the first month of each quarter, so we can assume forecasters
- are conditioning on the inflation print of the previous month).
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:mle-vs-mcem"
-
-\end_inset
-
- reports the results of both direct maximization and of MCEM on the dataset,
- when we measure time in quarterly units.
- We note that the MKLDEs for 
-\begin_inset Formula $\mu$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma$
-\end_inset
-
- obtained by MCEM using approximate bridges are effectively indistinguishable
- from those obtained via direct maximization of the analytic likelihood.
- On the other hand, the bias is non-trivially positive for the MKLDE of
- 
-\begin_inset Formula $\lambda$
-\end_inset
-
-, suggesting that the thin-tailedness of the approximate bridges can in
- fact affect the quality of MKLDEs obtained by MCEM in empirical situations.
- The computational cost of running MCEM with exact bridges, however, is
- still high enough that the practitioner will need to weigh the utility
- of slightly more accurate estimates against significantly longer running
- times on a case-by-case basis.
-\end_layout
-
-\begin_layout Standard
-The MKLDE for 
-\begin_inset Formula $\mu$
-\end_inset
-
- aligns closely with intuition: the ECB's inflation targeting policy states
- that it aims for 
+ as an OU diffusion.
+ This is an economically sensible model, consistent with the mean reversion
+ implicit in ECB's inflation targeting policy of aiming for 
 \begin_inset Quotes eld
 \end_inset
 
-inflation rates of below, but close to, 
-\begin_inset Formula $2\%$
-\end_inset
-
- in the medium term
+inflation rates of below, but close to, 2% in the medium term
 \begin_inset Quotes erd
 \end_inset
 
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "targeting"
+
+\end_inset
+
 .
- Forecasters on average then, are merely reverting to the medium-term goal
- of the ECB when reporting their long-term conditional expectations for
- inflation.
- The directly obtained MKLDE for 
-\begin_inset Formula $\lambda$
+ Moreover, this is a mathematically convenient specification since the transitio
+n density of the OU diffusion is analytically tractable.
+ In particular, consider a particular SPF questionnaire, and let 
+\begin_inset Formula $\mathcal{T}=\{t_{1},\dots,t_{n}\}$
 \end_inset
 
- suggests that the conditional inflation expectations of forecasters revert
- to the ECB's target inflation rate by 
-\begin_inset Formula $0.2\times(\mbox{Current Inflation}-1.94\%)$
+ be the set of horizons included in the SPF and 
+\begin_inset Formula $\mathcal{O}\subseteq\Omega$
 \end_inset
 
- every quarter.
+ be the set of forecasters with complete responses.
+ Then, the average log-likelihood of the data is
+\begin_inset Formula 
+\[
+\bar{\ell}(\theta)=\frac{1}{|\mathcal{O}|}\sum_{\omega\in\mathcal{O}}\sum_{i=1}^{n}\mathcal{N}(X_{t_{i}}(\omega);\mu+(X_{t_{i-1}}(\omega)-\mu)e^{-\lambda t},\sigma^{2}(1-e^{-2\lambda t})/2\lambda),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\mathcal{N}(x;\mu,\sigma^{2})$
+\end_inset
+
+ is the Gaussian density with mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and variance 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $X_{t_{i}}(\omega)$
+\end_inset
+
+ is forecaster 
+\begin_inset Formula $\omega$
+\end_inset
+
+'s expectation of inflation at horizon 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+.
+ We set 
+\begin_inset Formula $X_{t_{0}}$
+\end_inset
+
+ to the annualized HICP Euro Area inflation reported at the end of the most
+ recent month before the quarter that the SPF was distributed (the SPF is
+ usually distributed in the first month of each quarter, so we can assume
+ forecasters are conditioning on the inflation print of the previous month).
  
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
+placement b
 wide false
 sideways false
 status open
@@ -526,7 +564,9 @@ centering
 \backslash
 begin{tabular}{@{}cccccl@{}} 
 \backslash
-toprule                         & Mean & Bias  &  
+toprule                         & Mean of $
+\backslash
+theta^*$ & Bias (MCEM Est.)  &  
 \backslash
 multicolumn{3}{l}{Cov.
  of bias ($
@@ -539,9 +579,7 @@ times 10^{-2}$)}
 \backslash
 midrule $
 \backslash
-hat{
-\backslash
-mu}$             & 1.94 & -0.02
+mu$             & 1.94 & -0.02
 \backslash
 :            & 
 \backslash
@@ -553,9 +591,7 @@ mu}$             & 1.94 & -0.02
 \backslash
  $
 \backslash
-hat{
-\backslash
-lambda}$         & 0.23 & 
+lambda$         & 0.23 & 
 \backslash
 ;0.06
 \backslash
@@ -567,9 +603,7 @@ lambda}$         & 0.23 &
 \backslash
  $
 \backslash
-hat{
-\backslash
-sigma}$          & 0.17 & 
+sigma$          & 0.17 & 
 \backslash
 ;0.00
 \backslash
@@ -679,14 +713,20 @@ name "tab:mle-vs-mcem"
 
 \end_inset
 
-Mean of the MKLDEs obtained by direct maximization of analytic average log-likel
-ihood of an OU diffusion, as well as the bias of MKLDE estimates obtained
- by MCEM using approximate bridges relative to the directly estimated mean,
- over 
-\begin_inset Formula $N=68$
+Mean of the 
+\begin_inset Formula $\theta^{*}=\arg\max\bar{\ell}(\theta)$
 \end_inset
 
- quarters of ECB inflation forecast responses.
+, as well as the bias of MKLDE estimates obtained by MCEM using approximate
+ bridges relative to 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+, over 
+\begin_inset Formula $68$
+\end_inset
+
+ ECB SPFs.
 \end_layout
 
 \end_inset
@@ -700,22 +740,263 @@ ihood of an OU diffusion, as well as the bias of MKLDE estimates obtained
 \end_layout
 
 \begin_layout Standard
+By 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "rem:bootstrap"
+
+\end_inset
+
+, 
+\begin_inset Formula $\arg\max\bar{\ell}(\theta)$
+\end_inset
+
+, which can be easily found through numerical optimization procedures, is
+ the parameter that asymptotically minimizes the K-L divergence of the distribut
+ion of an OU process at 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+ from the distribution of 
+\begin_inset Formula $X$
+\end_inset
+
+ at 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+.
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mle-vs-mcem"
+
+\end_inset
+
+ reports the mean 
+\begin_inset Formula $\arg\max\bar{\ell}(\theta)$
+\end_inset
+
+ and bias of the MKLDEs obtained through MCEM on the SPFs in our dataset,
+ measuring time in quarterly units.
+ We note that the MKLDEs for 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ obtained by MCEM using approximate bridges are effectively indistinguishable
+ from those obtained via direct maximization of the analytic likelihood.
+ Moreover, the MKLDE for 
+\begin_inset Formula $\mu$
+\end_inset
+
+ aligns closely with intuition: Forecasters appear to be, on average, reverting
+ to the medium-term inflation target of the ECB when reporting their medium-term
+ conditional expectations for inflation.
+ On the other hand, the bias is non-trivially positive for the MKLDE of
+ 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, suggesting that the thin-tailedness of the approximate bridges can in
+ fact affect the quality of MKLDEs obtained by MCEM in empirical situations.
+ The computational cost of running MCEM with exact bridges, however, is
+ still high enough that the practitioner will need to weigh the utility
+ of slightly more accurate estimates against significantly longer running
+ times on a case-by-case basis.
+\end_layout
+
+\begin_layout Standard
+With the consistency of the MKLDE from MCEM verified when modeling this
+ particular set of empirical data with an OU diffusion, we move now answering
+ a question of imputation: What can we say, given a finite number of sample
+ paths of 
+\begin_inset Formula $X$
+\end_inset
+
+ observed at discrete time points, about the distribution of 
+\begin_inset Formula $X$
+\end_inset
+
+ at arbitrary horizons?
+\end_layout
+
+\begin_layout Standard
+Formally, consider a particular SPF containing the forecasts at every time
+ 
+\begin_inset Formula $t\in\mathcal{T}=\{0<t_{1},\dots,t_{n}\}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\hat{\nu}$
+\end_inset
+
+ be the 
+\begin_inset Formula $n$
+\end_inset
+
+-dimensional empirical distribution induced by these forecasts (noting that
+ the dependence structure of this distribution is given by the indexing
+ of forecasts at different horizons to particular forecasters).
+ A natural imputation method, fixing a parameterized model for 
+\begin_inset Formula $X$
+\end_inset
+
+ and its MKLDE 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+ given 
+\begin_inset Formula $\hat{\nu}$
+\end_inset
+
+, is to simulate 
+\begin_inset Formula $\hat{\nu}$
+\end_inset
+
+-bridges of 
+\begin_inset Formula $X$
+\end_inset
+
+ when it is governed by 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+.
+ These simulated bridges are samples from the distribution of 
+\begin_inset Formula $X$
+\end_inset
+
+ when it evolves according to 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+, conditional on 
+\begin_inset Formula $X$
+\end_inset
+
+ being distributed according to 
+\begin_inset Formula $\hat{\nu}$
+\end_inset
+
+ at 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For notational convenience, we let 
+\begin_inset Formula $\hat{\nu}_{-t_{i}}$
+\end_inset
+
+ denote the 
+\begin_inset Formula $(n-1)$
+\end_inset
+
+-dimensional empirical distribution induced by the forecasts at all horizons
+ except 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Suppose, given a model for 
+\begin_inset Formula $X$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Standard
+Though the case of an OU model is useful as an illustrative example, the
+ development of an MCEM algorithm was motivated by the fact that there are
+ a wide range of diffusions for which transition densities are not analytically
+ available.
+ As such, we suppose that instead of having the dynamics of an OU diffusion,
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ evolves according to 
+\begin_inset Formula 
+\[
+dX_{t}=\frac{-\lambda(X_{t}-\mu)dt}{\sqrt{\delta^{2}+(X_{t}-\mu)^{2}}}+\sigma dW_{t}.
+\]
+
+\end_inset
+
+
+\begin_inset Formula $X$
+\end_inset
+
+ is therefore a hyperbolic diffusion, first proposed by 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Eq. 6.2 in"
+key "barndorff-1978"
+
+\end_inset
+
+, who notes such a diffusion has stationary distribution 
+\begin_inset Formula 
+\[
+f(x)=\frac{e^{-\frac{2\lambda}{\sigma^{2}}\sqrt{\delta^{2}+(x-\mu)^{2}}}}{2\delta K_{1}(2\delta\lambda/\sigma^{2})},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $K_{1}$
+\end_inset
+
+ is the modified Bessel function of the third kind with index 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ Hyperbolic diffusions are Itô diffusions with finite speed measure, and
+ thus satisfy the assumptions made in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:2"
+
+\end_inset
+
+; however, they do not admit a tractable transition density.
+ We can see by inspection that this model incorporates linear mean-reverting
+ drift dynamics, similar to those of an OU process, when 
+\begin_inset Formula $|X_{t}-\mu|$
+\end_inset
+
+ is small, and constant mean-reverting drift when 
+\begin_inset Formula $|X_{t}-\mu|$
+\end_inset
+
+ is large.
+ Since the hyperbolic diffusion, like the OU process, has constant diffusion
+ coefficient, its Lamperti transform and the requisite functions for performing
+ MCEM are easy to find.
+\end_layout
+
+\begin_layout Standard
+INSERT HYPERBOLIC RESULTS
+\end_layout
+
+\begin_layout Standard
 With the ability to find the MKLDE for each of the 
 \begin_inset Formula $N=68$
 \end_inset
 
  SPFs, we can experiment to see how well the OU diffusion models the evolution
  of inflation expectations relative to a baseline linear interpolation method.
- 
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-I will outline the exact method of making these baseline linear interpolations.
-\end_layout
-
-\end_inset
-
  In particular, we attempt to interpolate inflation expectations at horizons
  of 
 \begin_inset Formula $1-4$
@@ -775,6 +1056,42 @@ reference "fig:est_kl"
 \end_inset
 
 .
+ We also consider the scenario when 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:cond-inf"
+
+\end_inset
+
+ is specified according to a hyperbolic diffusion, i.e.
+ has
+\begin_inset Formula 
+\begin{eqnarray*}
+\mu_{\theta}(x) & = & -\frac{\lambda}{\sqrt{\delta^{2}+(x-\mu)^{2}}}(x-\mu)\mbox{ and}\\
+\sigma_{\theta}(x) & = & \sigma.
+\end{eqnarray*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-\frac{\sigma^{2}\lambda}{2\sqrt{\delta^{2}+(x-\mu)^{2}}}(x-\mu)
+\]
+
+\end_inset
+
+We note the resulting process has linear drift dynamics similar to an OU
+ process when 
+\begin_inset Formula $X_{t}-\mu$
+\end_inset
+
+ is small, and displays constant drift for large 
+\begin_inset Formula $|X_{t}-\mu|$
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -785,7 +1102,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/marshall/Documents/senior/thesis/figures/est_kl.pdf
+	filename /Users/marshall/Documents/senior/thesis/figures/est_kl_ed.pdf
 	width 100col%
 
 \end_inset
@@ -803,8 +1120,12 @@ name "fig:est_kl"
 
 \end_inset
 
-A comparison of the estimated K-L divergences of interpolated inflation
- expectations at 
+A comparison of the estimated out-of-sample K-L divergences of imputed inflation
+ expectations from the true distribution of 
+\begin_inset Formula $X$
+\end_inset
+
+ at 
 \begin_inset Formula $1-4$
 \end_inset
 
