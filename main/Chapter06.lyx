@@ -252,7 +252,7 @@ We formalize the problem as follows.
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is that the Gaussian measure is absolutely continuous to it).
+ is that it is absolutely continuous with respect to the Gaussian measure).
  With this setup, the data provided in any particular SPF are discrete observati
 ons of some finite number of sample paths of 
 \begin_inset Formula $X$
@@ -505,6 +505,10 @@ key "targeting"
 n density of the OU diffusion is analytically tractable.
  In particular, we consider a particular SPF questionnaire, and let 
 \begin_inset Formula $\mathcal{T}=\{t_{1},\dots,t_{n}\}$
+\end_inset
+
+ where 
+\begin_inset Formula $t_{1}>0$
 \end_inset
 
  be the set of horizons included in the SPF and 
@@ -815,13 +819,16 @@ reference "tab:mle-vs-mcem"
  aligns closely with intuition: Forecasters appear to be, on average, reverting
  to the medium-term inflation target of the ECB when reporting their medium-term
  conditional expectations for inflation.
- On the other hand, the bias is non-trivially positive for the MKLDE of
  
+\end_layout
+
+\begin_layout Standard
+On the other hand, the bias is non-trivially positive for the MKLDE of 
 \begin_inset Formula $\lambda$
 \end_inset
 
 , suggesting that the thin-tailedness of the approximate bridges can in
- fact affect the quality of MKLDEs obtained by MCEM in empirical situations.
+ fact affect the quality of MCEM convergence in empirical situations.
  The computational cost of running MCEM with exact bridges, however, is
  still high enough that the practitioner will need to weigh the utility
  of slightly more accurate estimates against significantly longer running
@@ -844,18 +851,22 @@ In the final original section of this thesis, we study the dynamics of the
 \begin_inset Formula $X$
 \end_inset
 
- at arbitrary horizons? In particular, we estimate parameters for a model
- with intractable log-likelihood, and show that a generalized bridge-based
- imputation method reduces mean out-of-sample estimated K-L divergence of
- interpolations from the truth noticeably vis-à-vis a baseline linear interpolat
-ion scheme.
- 
+ at arbitrary horizons? In particular, we propose a generalized bridge-based
+ imputation scheme for distributional data.
+ We show such a scheme reduces mean out-of-sample estimated K-L divergence
+ of interpolations from the truth vis-à-vis a baseline linear interpolation
+ for the ECB SPF dataset, using models with tractable and intractable log-likeli
+hood.
 \end_layout
 
 \begin_layout Standard
 To begin, we consider a particular SPF containing forecasts from a finite
  set of forecasters at every time 
-\begin_inset Formula $t\in\mathcal{T}=\{0<t_{1},\dots,t_{n}\}$
+\begin_inset Formula $t\in\mathcal{T}=\{t_{1},\dots,t_{n}\}$
+\end_inset
+
+ where 
+\begin_inset Formula $t_{1}>0$
 \end_inset
 
 .
@@ -869,55 +880,135 @@ To begin, we consider a particular SPF containing forecasts from a finite
 
 -dimensional empirical distribution induced by these forecasts and the fixed
  inflation print at 
-\begin_inset Formula $t_{0}$
+\begin_inset Formula $t_{0}=0$
 \end_inset
 
 , the month before the SPF was administered (noting that the dependence
  structure of this distribution is given by the indexing of forecasts at
  different horizons to particular forecasters).
- Now, fix a parameterized model 
-\begin_inset Formula $\mathbb{Q}_{\theta}$
+ Recall that the forecasts contained in the SPF can be understood as samples
+ from 
+\begin_inset Formula $X_{\mathcal{T}}$
 \end_inset
 
-, and suppose we have the MKLDE 
+ under the true but unknown model 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, and let 
+\begin_inset Formula $\mathbb{P}_{X_{\mathcal{T}}}$
+\end_inset
+
+ be the distribution of 
+\begin_inset Formula $X_{\mathcal{T}}$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/marshall/Documents/senior/thesis/figures/imputation_scheme.pdf
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:imputation"
+
+\end_inset
+
+A schematic depiction of the proposed imputation method, in which the MCEM
+ algorithm for estimating the MKLDE and the generalized bridge samplers
+ developed in previous chapters are used to approximate the law of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ with samples from 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta^{*}}^{\nu}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ is enclosed in a grey box, highlighting that we do not have access to 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ but rather only the law of 
+\begin_inset Formula $X_{\mathcal{T}}$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, fix a parameterized family of models 
+\begin_inset Formula $\{\mathbb{Q}_{\theta}\}$
+\end_inset
+
+.
+ Suppose we have the parameter 
 \begin_inset Formula $\theta^{*}$
 \end_inset
 
- of the distribution of 
-\begin_inset Formula $X$
+ that minimizes the K-L divergence of the distribution of 
+\begin_inset Formula $X_{\mathcal{T}}$
 \end_inset
 
  under 
 \begin_inset Formula $\mathbb{Q}_{\theta}$
 \end_inset
 
- at 
-\begin_inset Formula $\mathcal{T}$
-\end_inset
-
- from its distribution under 
-\begin_inset Formula $\mathbb{P}$
+ from its true distribution 
+\begin_inset Formula $\mathbb{P}_{X_{\mathcal{T}}}$
 \end_inset
 
 .
- In other words, 
-\begin_inset Formula $\mathbb{Q}_{\theta^{*}}$
-\end_inset
-
- is the model that achieves the minimum K-L divergence from 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- at 
-\begin_inset Formula $\mathcal{T}$
-\end_inset
-
- for any 
-\begin_inset Formula $\theta$
-\end_inset
-
-.
- A natural imputation method for the distribution of 
+ We posit that a reasonable guess for the law of 
 \begin_inset Formula $X$
 \end_inset
 
@@ -925,8 +1016,54 @@ To begin, we consider a particular SPF containing forecasts from a finite
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- at arbitrary horizons is to simulate 
-\begin_inset Formula $\hat{\nu}$
+ when only given 
+\begin_inset Formula $\mathbb{P}_{X_{\mathcal{T}}}$
+\end_inset
+
+ is the law of 
+\begin_inset Formula $X$
+\end_inset
+
+ under the 
+\begin_inset Formula $(X_{\mathcal{T}},\mathbb{P}_{X_{\mathcal{T}}})$
+\end_inset
+
+-conditioning of 
+\begin_inset Formula $\mathbb{Q}_{\theta^{*}}$
+\end_inset
+
+.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+A theoretical justification of this statement is a pressing direction for
+ future research.
+\end_layout
+
+\end_inset
+
+ It follows that a natural imputation method for the distribution of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ at arbitrary horizons, schematized in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:imputation"
+
+\end_inset
+
+, is to first estimate the MKLDE 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+, then simulate 
+\begin_inset Formula $\mathbb{P}_{X_{\mathcal{T}}}$
 \end_inset
 
 -bridges of 
@@ -937,166 +1074,77 @@ To begin, we consider a particular SPF containing forecasts from a finite
 \begin_inset Formula $\mathbb{Q}_{\theta^{*}}$
 \end_inset
 
-; in some sense, these bridges represent the best guess we can make using
- the family of models 
-\begin_inset Formula $\mathbb{Q}_{\theta}$
-\end_inset
-
- for the distribution of 
-\begin_inset Formula $X$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- given 
+; in the case of inflation forecasts, we use 
 \begin_inset Formula $\hat{\nu}$
 \end_inset
 
-.
- 
-\end_layout
-
-\begin_layout Standard
-We cross-validate the proposed imputation method as follows, setting 
-\begin_inset Formula $\hat{\nu}$
-\end_inset
-
- to be the marginal distribution of forecasts at horizon 
-\begin_inset Formula $t_{i}$
-\end_inset
-
-, and 
-\begin_inset Formula $\hat{\nu}_{-t_{i}}$
-\end_inset
-
- to be the 
-\begin_inset Formula $n$
-\end_inset
-
--dimensional distribution of the forecasts at all horizons except 
-\begin_inset Formula $t_{i}$
-\end_inset
-
- for notational convenience.
- First, we estimate the MKLDE 
-\begin_inset Formula $\theta_{-t_{i}}^{*}$
-\end_inset
-
- for 
-\begin_inset Formula $X$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{Q}_{\theta}$
-\end_inset
-
- given 
-\begin_inset Formula $\hat{\nu}_{-t_{i}}$
-\end_inset
-
-.
- Then, we draw samples of 
-\begin_inset Formula $X$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{Q}_{\theta_{-t_{i}}^{*}}$
-\end_inset
-
- at 
-\begin_inset Formula $t_{i}$
-\end_inset
-
- given 
-\begin_inset Formula $\hat{\nu}_{-t_{i}}$
-\end_inset
-
-, and compare the empirical imputed distribution versus the true empirical
- distribution 
-\begin_inset Formula $\hat{\nu}_{t_{i}}$
-\end_inset
-
-.
- In particular, we will estimate the Kullback-Liebler divergence of the
- imputed distributions from 
-\begin_inset Formula $\hat{\nu}_{t_{i}}$
-\end_inset
-
- using the estimator of 
-\begin_inset CommandInset citation
-LatexCommand citet
-before "Theorem 1 in"
-key "perez-cruz-2008"
-
-\end_inset
-
-: this estimator is consistent for the K-L divergence of the distribution
- of 
-\begin_inset Formula $X$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{Q}_{\theta_{-t_{i}}^{*}}$
-\end_inset
-
- at 
-\begin_inset Formula $t_{i}$
-\end_inset
-
- from the distribution of 
-\begin_inset Formula $X$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- at 
-\begin_inset Formula $t_{i}$
-\end_inset
-
- (
-\begin_inset Formula $\hat{\nu}_{t_{i}}$
-\end_inset
-
- asymptotically pointwise approaches the latter).
- In order to use this estimator, we add small normally distributed noise
- 
-\begin_inset Formula $(\sigma^{2}\approx10^{-4})$
-\end_inset
-
- to prevent any repeated numbers in the forecasts that induce 
-\begin_inset Formula $\hat{\nu}_{t_{i}}$
-\end_inset
-
-.
- Furthermore, since 
-\begin_inset Formula $n\geq3$
-\end_inset
-
- for all SPFs in our dataset, we consider 
-\begin_inset Formula $i\in\{1,2\}$
+ as a plug-in estimate for 
+\begin_inset Formula $\mathbb{P}_{X_{\mathcal{T}}}$
 \end_inset
 
 .
  
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "fig:cv"
+reference "fig:imputation"
 
 \end_inset
 
- intuitively visualizes the cross-validation process; the left side depicts
- the original SPF dataset, while the right side depicts the removal of the
- marginal distribution at 
-\begin_inset Formula $t_{2}=8$
+ highlights how the questions of inference and imputation on distributional
+ data, and by extension the MCEM algorithm and the generalized bridge samplers
+ developed in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:EM"
+
 \end_inset
 
- and a new imputed marginal distribution at that time.
- The K-L divergence of the grayed-out marginal distribution and the imputed
- distribution is estimated as described.
+ and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+, are intimately related.
+\end_layout
+
+\begin_layout Standard
+We cross-validate the proposed imputation method as follows, setting
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+\begin_inset Formula $\hat{\nu}_{t_{i}}$
+\end_inset
+
+ to be the empirical distribution induced by the forecasts at 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+\begin_inset Formula $\hat{\nu}_{-t_{i}}$
+\end_inset
+
+ to be the the 
+\begin_inset Formula $n$
+\end_inset
+
+-dimensional empirical distribution of the forecasts at all horizons except
+ 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+, and
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+\begin_inset Formula $X_{-t_{i}}\coloneqq X_{\mathcal{T}\setminus t_{i}}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1127,6 +1175,10 @@ name "fig:cv"
 
 A visualization of the cross-validation method for assessing imputation
  strategy performance.
+ The left graphic depicts data from a particular SPF.
+ The right graphic depicts an imputed distribution, in black, superimposed
+ on the original true distribution, to be used to validate the imputated
+ distribution, in gray.
 \end_layout
 
 \end_inset
@@ -1140,21 +1192,170 @@ A visualization of the cross-validation method for assessing imputation
 \end_layout
 
 \begin_layout Standard
-As a reference point, we will also consider a baseline linear interpolation
- method.
+First, we estimate the MKLDE 
+\begin_inset Formula $\theta_{-t_{i}}^{*}$
+\end_inset
+
+ for 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
+\end_inset
+
+ given 
+\begin_inset Formula $\hat{\nu}_{-t_{i}}$
+\end_inset
+
+.
+ Then, we draw samples of 
+\begin_inset Formula $X_{t_{i}}$
+\end_inset
+
+ under the Baudoin-
+\begin_inset Formula $(X_{-t_{i}},\hat{\nu}_{-t_{i}})$
+\end_inset
+
+ conditioning of 
+\begin_inset Formula $\mathbb{Q}_{\theta_{-t_{i}}^{*}}$
+\end_inset
+
+ to induce an empirical imputed distribution 
+\begin_inset Formula $\tilde{\nu}_{t_{i}}$
+\end_inset
+
+.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The Baudoin-
+\begin_inset Formula $(X_{\mathcal{T}\setminus t_{i}},\hat{\nu}_{-t_{i}})$
+\end_inset
+
+ conditioning of 
+\begin_inset Formula $\mathbb{Q}_{\theta_{-t_{i}}^{*}}$
+\end_inset
+
+ is only a valid Baudoin conditioning in some limiting sense.
+ In particular, 
+\begin_inset Formula $\hat{\nu}_{-t_{i}}$
+\end_inset
+
+ is not absolutely continuous to the law of 
+\begin_inset Formula $X_{\mathcal{T}\mathcal{\setminus}t_{i}}$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta_{-t_{i}}^{*}}$
+\end_inset
+
+; however, 
+\begin_inset Formula $\hat{\nu}_{-t_{i}}$
+\end_inset
+
+ converges pointwise to the law of 
+\begin_inset Formula $X_{\mathcal{T}\setminus t_{i}}$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, which by assumption is.
+\end_layout
+
+\end_inset
+
+ Finally, we use 
+\begin_inset Formula $\tilde{\nu}_{t_{i}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\nu}_{t_{i}}$
+\end_inset
+
+ to consistently estimate the Kullback-Liebler divergence of the law of
+ 
+\begin_inset Formula $X_{t_{i}}$
+\end_inset
+
+ under the Baudoin-
+\begin_inset Formula $(X_{-t_{i}},\mathbb{P}_{X_{-t_{i}}})$
+\end_inset
+
+ conditioning of 
+\begin_inset Formula $\mathbb{Q}_{\theta_{-t_{i}}^{*}}$
+\end_inset
+
+ from its law under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ using the estimator of 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Theorem 1 in"
+key "perez-cruz-2008"
+
+\end_inset
+
+.
+ Since forecasters often give the same forecasts for inflation at a particular
+ horizon, and the Pérez-Cruz estimator requires an empirical distribution
+ function induced by unique samples, we add small normally distributed noise
+ 
+\begin_inset Formula $(\sigma^{2}\approx10^{-4})$
+\end_inset
+
+ to the forecasts that induce 
+\begin_inset Formula $\hat{\nu}_{t_{i}}$
+\end_inset
+
+.
+ Furthermore, since 
+\begin_inset Formula $n\geq3$
+\end_inset
+
+ for all SPFs in our dataset, we consider 
+\begin_inset Formula $i\in\{1,2\}$
+\end_inset
+
+.
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:cv"
+
+\end_inset
+
+ intuitively visualizes the cross-validation process; the left side depicts
+ the original SPF dataset, while the right side depicts the removal of the
+ marginal distribution at 
+\begin_inset Formula $t_{2}=8$
+\end_inset
+
+ and a new imputed marginal distribution at that time.
+ The K-L divergence of the imputed distribution from the grayed-out marginal
+ distribution is estimated as described.
+\end_layout
+
+\begin_layout Standard
+We set a linear interpolation scheme as our baseline.
  In particular, a linear interpolation of the forecasts 
 \begin_inset Formula $X_{t}$
 \end_inset
 
  of a particular forecaster at times 
-\begin_inset Formula $t\in\mathcal{T}=\{0<t_{1},\dots,t_{n}\}$
+\begin_inset Formula $t\in\mathcal{T}$
 \end_inset
 
  is the function 
 \begin_inset Formula 
-\[
-\tilde{X}_{t}=\frac{(t_{i}-t)X_{t_{i-1}}+(t-t_{i-1})X_{t_{i}}}{t_{i}-t_{i-1}}
-\]
+\begin{equation}
+\tilde{X}_{t}=\frac{(t_{i}-t)X_{t_{i-1}}+(t-t_{i-1})X_{t_{i}}}{t_{i}-t_{i-1}}\label{eq:lininterp}
+\end{equation}
 
 \end_inset
 
@@ -1193,9 +1394,9 @@ Moreover, though the case of an OU model was useful earlier as an illustrative
 
  evolves according to 
 \begin_inset Formula 
-\[
-dX_{t}=\frac{-\lambda(X_{t}-\mu)dt}{\sqrt{\delta^{2}+(X_{t}-\mu)^{2}}}+\sigma dW_{t},
-\]
+\begin{equation}
+dX_{t}=\frac{-\lambda(X_{t}-\mu)dt}{\sqrt{\delta^{2}+(X_{t}-\mu)^{2}}}+\sigma dW_{t},\label{eq:hypdiff}
+\end{equation}
 
 \end_inset
 
@@ -1225,7 +1426,7 @@ where
 \begin_inset Formula $K_{1}$
 \end_inset
 
- is the modified Bessel function of the third kind with index 
+ is a modified Bessel function of the third kind with index 
 \begin_inset Formula $1$
 \end_inset
 
@@ -1239,12 +1440,19 @@ reference "chap:2"
 \end_inset
 
 ; however, they do not admit a tractable transition density.
- We can see by inspection that this model incorporates linear mean-reverting
- drift dynamics, similar to those of an OU process, when 
+ We can see by inspection of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:hypdiff"
+
+\end_inset
+
+ that this model incorporates linear mean reverting drift dynamics, similar
+ to those of an OU process, when 
 \begin_inset Formula $|X_{t}-\mu|$
 \end_inset
 
- is small, and constant mean-reverting drift when 
+ is small, and constant mean reverting drift when 
 \begin_inset Formula $|X_{t}-\mu|$
 \end_inset
 
@@ -1256,6 +1464,7 @@ reference "chap:2"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement tb
 wide false
 sideways false
 status open
@@ -1302,13 +1511,9 @@ Boxplots of the estimated out-of-sample K-L divergences of imputed inflation
 n method.
  Means are labeled with a black square and their numerical value.
  Any negative estimates of K-L divergence and any SPFs for which the MCEM
- algorithm to estimate MKLDEs did not converge are dropped (as such, the
- estimates for 
+ algorithm to estimate MKLDEs did not converge are dropped (estimates for
+ the remaining 
 \begin_inset Formula $52$
-\end_inset
-
- out of 
-\begin_inset Formula $68$
 \end_inset
 
  SPFs are plotted).
@@ -1340,9 +1545,16 @@ reference "fig:est_kl"
 \begin_inset Formula $t_{2}$
 \end_inset
 
- from the true distributions for each SPF in the data set, for a generalized
- bridge-based imputation scheme using hyperbolic processes, and the linear
- interpolation method outlined above.
+ from the true distributions for each SPF in the data set, for the generalized
+ bridge-based imputation scheme and the linear interpolation method outlined
+ in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:lininterp"
+
+\end_inset
+
+.
  In all SPFs considered, 
 \begin_inset Formula $t_{1}$
 \end_inset
@@ -1377,11 +1589,19 @@ We see that the generalized bridge-based method offers an imputed distribution
  expected since the parameter estimates for the hyperbolic diffusion result
  in an implied stationary distribution only slightly fatter-tailed than
  the stationary OU distribution.
- While asymptotics are not available for the distribution of these K-L divergenc
-e estimates, the effect size qualitatively appears to be non-negligible.
- However, in general, the K-L divergences remain fairly large: for reference,
- the K-L divergence of a standard Gaussian distribution from an even mixture
- of Gaussian distributions centered at 
+ Moreover, if the ECB is doing its job, inflation should not be deviating
+ from the medium-term inflation target substantially, and so the difference
+ in mean reversion dynamics between the two processes should be fairly small.
+ 
+\end_layout
+
+\begin_layout Standard
+While asymptotics are not available for the distribution of these K-L divergence
+ estimates, the effect size of using a generalized bridge-based imputation
+ scheme qualitatively appears to be non-negligible.
+ However, in general, the magnitude of the K-L divergences remain fairly
+ large: for reference, the K-L divergence of a standard Gaussian distribution
+ from an even mixture of Gaussian distributions centered at 
 \begin_inset Formula $-2$
 \end_inset
 
@@ -1404,68 +1624,6 @@ s dynamics.
  step modeling the evolution of stochastic processes, conditional on their
  distribution at discrete points in time.
  
-\end_layout
-
-\begin_layout Standard
-We conclude this chapter with a visualization of the final product of this
- thesis.
- Using the proposed MCEM scheme to infer the MKLDE of 
-\begin_inset Formula $\mathbb{Q}_{\theta}^{OU}$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbb{Q}_{\theta}^{HYP}$
-\end_inset
-
- given 
-\begin_inset Formula $\hat{\nu}$
-\end_inset
-
-, we plot repeated samples of 
-\begin_inset Formula $\hat{\nu}$
-\end_inset
-
--bridges of 
-\begin_inset Formula $X$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{Q}_{\theta^{*}}^{OU}$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbb{Q}_{\theta^{*}}^{HYP}$
-\end_inset
-
- in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:cont_path"
-
-\end_inset
-
- for the most recent available SPF (2015Q4).
- This figure highlights the differences between constant and linear mean
- reversion when far from the mean for the hyperbolic and OU diffusions respectiv
-ely.
- In particular, the shortcomings of the OU model's time-homogeneity are
- laid bare: the imputed paths revert to the inflation target far too quickly
- initially before being forced down to the relatively low inflation expectations
- at the end of the 2016Q1.
- This suggests that the forecasters expected inflation to remain low in
- the short-term, and rapidly accelerate in the medium-term, and that time-inhomo
-geneity is an important feature of inflation expectations.
- However, these issues represent problems of model selection and not of
- methodology; 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:cont_path"
-
-\end_inset
-
-, representing the synthesis of the methodology developed here to perform
- inference on and imputation of distributional data, is a fitting way to
- close the original portion of this thesis.
 \end_layout
 
 \begin_layout Standard
@@ -1537,6 +1695,66 @@ name "fig:cont_path"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+We conclude this chapter with a visualization of the final product of this
+ thesis.
+ Using the proposed MCEM scheme to infer the MKLDE of 
+\begin_inset Formula $\mathbb{Q}_{\theta}^{OU}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{Q}_{\theta}^{HYP}$
+\end_inset
+
+ given 
+\begin_inset Formula $\hat{\nu}$
+\end_inset
+
+, we plot repeated samples of 
+\begin_inset Formula $\hat{\nu}$
+\end_inset
+
+-bridges of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta^{*}}^{OU}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{Q}_{\theta^{*}}^{HYP}$
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:cont_path"
+
+\end_inset
+
+ for the most recently conducted SPF (2015Q4).
+ This figure highlights the differences in behavior of the two diffusions
+ when far from the mean.
+ In particular, the shortcomings of the time-homogenous OU model's linear
+ mean reversion are laid bare: the imputed paths revert to the inflation
+ target far too quickly initially before being forced down to the relatively
+ low inflation expectations at the end of the 2016Q1.
+ Time-inhomogeneity appears to be an important feature of inflation expectations
+ as of 2015Q4, with expected inflation remaining low in the short-term,
+ and rapidly accelerating in the medium-term.
+ However, this is a problem of model selection and not of methodology; 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:cont_path"
+
+\end_inset
+
+, representing the synthesis of the methods developed here to perform inference
+ and imputation on the forecasts of modern-day macroeconomic oracles, is
+ a fitting way to close the original portion of this thesis.
 \end_layout
 
 \end_body

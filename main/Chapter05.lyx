@@ -140,9 +140,8 @@ reference "chap:2"
 
  on the nature of the stochastic process to be bridged.
  We also confirm that the approximate sampler does not formally draw from
- the true generalized bridge distribution, but note qualitatively that the
- approximate sample paths are still of high quality.
- 
+ the true generalized bridge distribution, but note that the approximate
+ sample paths are still qualitatively similar to exact sample paths.
 \end_layout
 
 \begin_layout Standard
@@ -196,10 +195,11 @@ reference "chap:2"
 
 \end_inset
 
-; this so-called Gaussian OU process is both theoretically interesting (represen
-ting the only non-trivial stationary, Gaussian, and Markovian process) and
- used in practice to model a wide range of processes from the movement of
- springs to interest rates—see standard physics references or 
+; this so-called Gaussian OU process, or OU diffusion, is both theoretically
+ interesting (representing the only non-trivial stationary, Gaussian, and
+ Markovian process) and used in practice to model a wide range of processes
+ from the movement of springs to interest rates—see standard physics references
+ or 
 \begin_inset CommandInset citation
 LatexCommand citet
 before "Section 1.2 in"
@@ -690,10 +690,15 @@ reference "tab:KS-stats"
 \begin_inset Formula $99.9\%$
 \end_inset
 
- confidence levels respectively.
+ confidence levels respectively; a significant K-S statistic says that we
+ may reject the null hypothesis that the samples being compared are drawn
+ from the same distribution at the appropriate confidence level.
  In addition to evaluating the correctness of the proposed generalized bridge
- samplers for a Gaussian OU process, which satisfies the assumptions of
- 
+ samplers for a Gaussian OU process with 
+\begin_inset Formula $\theta=(0,1,1)$
+\end_inset
+
+, which satisfies the assumptions of 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:2"
@@ -713,6 +718,10 @@ a standard
 \begin_inset Formula $L_{\alpha}$
 \end_inset
 
+ with 
+\begin_inset Formula $\theta=(0,1,1)$
+\end_inset
+
 , which is not an Itô diffusion, and 
 \end_layout
 
@@ -728,6 +737,37 @@ Note the Wiener process is a limiting case of the Gaussian OU process when
 \end_inset
 
 .
+ For each process, we evaluate the quality of the sampled bridges for 
+\begin_inset Formula $F$
+\end_inset
+
+ equal to
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+\begin_inset Formula $\mathcal{N}(0,1/2)$
+\end_inset
+
+, the stationary distribution of a Gaussian OU process with 
+\begin_inset Formula $\theta=(0,1,1)$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+\begin_inset Formula $2\mbox{Bern}-1$
+\end_inset
+
+, a discrete distribution, and
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+\begin_inset Formula $\mbox{Expo}$
+\end_inset
+
+, a distribution with relatively heavy tails (where the log-density decays
+ linearly instead of quadratically like the Gaussian distribution).
 \end_layout
 
 \begin_layout Standard
@@ -737,45 +777,94 @@ reference "tab:KS-stats"
 
 \end_inset
 
- confirms that for an Itô diffusion, we cannot reject the hypothesis that
- exact sampler draws from the true distribution at the 
+ confirms that for an Itô diffusion, we cannot reject the null hypothesis
+ that exact sampler draws from the true distribution at the 
 \begin_inset Formula $95\%$
 \end_inset
 
  confidence level for a variety of initial distributions.
- Interestingly, the bridges produced by the exact sampler for the 
-\begin_inset Formula $\alpha$
-\end_inset
-
--stable OU and Wiener processes are also generally of a high quality, suggesting
- that this method of simulating generalized bridges is fairly robust to
- the assumptions made in 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "chap:2"
-
-\end_inset
-
-.
- As expected, the approximate sampler does not sample from the true distribution
-: We know this to be true for the Gaussian OU process, since 
+ On the other hand, we can reject the null hypothesis for the approximate
+ sampler; this is expected, since 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:approx-sim"
 
 \end_inset
 
- says that the approximate sampler draws from the true bridge distribution
- conditional on the bridge being hit by an independent hitting diffusion.
- We further note that the quality of the approximate sampler is inversely
- correlated with the computing time required to sample exact bridges.
+ says explicitly that the approximate sampler for an Itô diffusion draws
+ generalized bridges conditional on such bridges being hit by an independent
+ hitting diffusion.
+ 
+\end_layout
+
+\begin_layout Standard
+We note that the quality of the approximate sampler is inversely correlated
+ with the computing time required to sample exact bridges.
  This intuitively highlights a tradeoff between speed and quality, and is
- formally expected: if the approximate sampler produces low quality samples,
- then the probability of such samples being hit by a hitting diffusion is
- low.
+ also formally expected: If the approximate sampler produces low quality
+ samples, then the probability of such samples being hit by a hitting diffusion
+ is low.
  Since the exact sampler accepts sample paths that are less likely to be
  hit by a hitting diffusion with higher probability, it must spend more
  time simulating hitting diffusions for any given proposal.
+\end_layout
+
+\begin_layout Standard
+The bridges produced by the exact sampler for the 
+\begin_inset Formula $\alpha$
+\end_inset
+
+-stable OU and Wiener processes also appear to be generally of a high quality,
+ suggesting that the proposed method is fairly robust to the assumptions
+ made in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:2"
+
+\end_inset
+
+.
+ It is only in the extreme case of a 
+\begin_inset Formula $\mbox{Expo}$
+\end_inset
+
+ initial distribution and an 
+\begin_inset Formula $\alpha$
+\end_inset
+
+-stable Lévy-driven OU process that the exact sampler fails to draw from
+ the true bridge distribution at 
+\begin_inset Formula $t=1/2$
+\end_inset
+
+.
+ We conjecture that the infinite variance of the innovations of the process
+ and the relatively heavy tail of the initial distribution dramatically
+ reduce the probability of intersection with a mean-reverting hitting process.
+ In particular, our choice of 
+\begin_inset Formula $M=10$
+\end_inset
+
+ Monte Carlo samples for estimating the hitting probability may result in
+ Metropolis-Hastings acceptance ratios that are too coarse to produce exact
+ paths in a finite sample scenario.
+\end_layout
+
+\begin_layout Standard
+Unexpectedly, the approximate sampler appears to sample from the true bridge
+ distribution when the underlying process is a Wiener process, which does
+ not have finite speed measure.
+ We do not have a theoretically justified explanation for this phenomenon;
+ however, we see this result as further evidence that the assumptions made
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:2"
+
+\end_inset
+
+ regarding the sorts of processes that can be bridged may be relaxed in
+ future research.
 \end_layout
 
 \begin_layout Standard
@@ -861,7 +950,7 @@ reference "fig:q-q"
 \end_inset
 
  that the approximate and exact samplers for the Gaussian OU bridges produce
- qualitatively high quality samples.
+ qualitatively similar samples.
  In general, we see that the approximate samples are slightly thinner-tailed
  than the true distribution: This is expected, since conditional on the
  approximate samples being hit by a hitting process (which in this case
@@ -869,22 +958,46 @@ reference "fig:q-q"
 \begin_inset Formula $0$
 \end_inset
 
-), we would expect the approximate sample paths to tend toward 
+), the approximate sample paths should tend toward 
 \begin_inset Formula $0$
 \end_inset
 
  as well.
- The lowest quality approximate samples occur when 
-\begin_inset Formula $X_{0}\sim\mbox{Expo}$
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:q-q"
+
 \end_inset
 
-; the fatter tail and skewedness of the 
-\begin_inset Formula $\mbox{Expo}$
+ reveals to the eye that 
+\begin_inset Formula $F\sim\mbox{Expo}$
 \end_inset
 
- distribution vis-à-vis the other initial distributions result in some sample
- paths starting from relatively extreme values, reducing the probability
- of their intersection with a mean reverting hitting process.
+ results in the lowest quality samples, whether from the approximate or
+ exact sampler (corroborating the high K-S statistics observed in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:KS-stats"
+
+\end_inset
+
+).
+ The values around 
+\begin_inset Formula $3.5$
+\end_inset
+
+ which deviate substantially from the true distribution can be understood
+ as coming from the sample paths which were initialized at extreme values,
+ but which have since mean reverted towards 
+\begin_inset Formula $0$
+\end_inset
+
+.
+ We hypothesize that intuitively, the exact sampler has difficulty correcting
+ these paths because the coarse estimates used for the M-H acceptance ratios
+ cannot capture the low probability of intersection with a mean reverting
+ hitting process, as described above.
 \end_layout
 
 \begin_layout Standard
@@ -954,7 +1067,7 @@ reference "chap:EM"
  minimizing parameter in a variety of settings, often very quickly.
  Furthermore, we demonstrate that the approximate generalized bridge sampler
  provides samples of a sufficiently high quality that convergence is not
- adversely affected.
+ adversely affected up to Monte Carlo variation.
  Given that the approximate sampler is one to two orders of magnitude faster
  than the exact sampler (as seen in 
 \begin_inset CommandInset ref
@@ -990,11 +1103,11 @@ The theoretical setting for this section is as follows.
 \begin_inset Formula $\mathbb{Q}_{\theta}$
 \end_inset
 
-, which is absolutely continuous with respect to 
+, to which 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- for any 
+ is absolutely continuous for any 
 \begin_inset Formula $\theta$
 \end_inset
 
@@ -1016,10 +1129,14 @@ The theoretical setting for this section is as follows.
 \end_inset
 
  at times 
-\begin_inset Formula $\mathcal{T}=\{0<t_{1},\dots,t_{n}\}$
+\begin_inset Formula $\mathcal{T}=\{t_{1},\dots,t_{n}\}$
 \end_inset
 
-, where we choose 
+, where 
+\begin_inset Formula $t_{1}>0$
+\end_inset
+
+ and we choose 
 \begin_inset Formula $n\geq2$
 \end_inset
 
@@ -1036,7 +1153,7 @@ In this section, we will focus on the family of models
 \begin_inset Formula $X$
 \end_inset
 
- is a Gaussian OU process (OU diffusion).
+ is a Gaussian OU process.
  This is due to the prevalence of such processes as discussed above and
  the analytical tractability of the K-L divergence of their finite-dimensional
  distributions from those of other Gaussian processes.
@@ -1520,15 +1637,22 @@ reference "chap:EM"
 \end_layout
 
 \begin_layout Standard
-We note that MCEM scheme using either the exact or approximate sampler converges
- quite quickly, with no obvious difference between using one sampler or
- the other.
+We qualitatively note from 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mcem-stationary"
+
+\end_inset
+
+ that the MCEM scheme using either the exact or approximate bridge sampler
+ converges quite quickly, with no obvious difference between using one sampler
+ or the other up to Monte Carlo variation.
  As is usual for MCEM schemes, the algorithm produces parameter estimates
  sampled from some neighborhood of the true parameter value as described
  in 
 \begin_inset CommandInset citation
 LatexCommand citet
-before "Section 3.1. in"
+before "Section 3.1 in"
 key "wei-tanner-1990"
 
 \end_inset
@@ -1541,6 +1665,18 @@ key "wei-tanner-1990"
 
 , at least in this case, do not seem to have a significant adverse impact
  on the quality of the Monte Carlo estimates.
+ We conjecture that this is because the MCEM scheme depends not only on
+ the quality of the sample path near 
+\begin_inset Formula $t=1/2$
+\end_inset
+
+ but rather over the entire interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+.
+ Furthermore, the Monte Carlo variation renders any bias, if it exists,
+ undetectable to the naked eye.
 \end_layout
 
 \begin_layout Standard
@@ -1610,11 +1746,10 @@ toprule
 \backslash
 multirow{2}{*}{
 \backslash
-parbox{2cm}{$
+parbox{2cm}{Model 
 \backslash
-mathbb{P}$ 
-\backslash
-& Sample Size}} & 
+& Dist.
+ Data}} & 
 \backslash
 multicolumn{1}{l}{Approx.} & 
 \backslash
@@ -2117,7 +2252,11 @@ When
 \begin_inset Formula $\theta^{*}$
 \end_inset
 
- since it operates under a correctly specified model.
+ since the family of probability models 
+\begin_inset Formula $\{\mathbb{Q}_{\theta}\}$
+\end_inset
+
+ is correctly specified.
  In the latter two cases, model misspecification means that the MCEM algorithm
  can only minimize the K-L divergence of 
 \begin_inset Formula $\mathbb{Q}_{\theta}$
@@ -2275,19 +2414,34 @@ reference "chap:EM"
 \end_layout
 
 \begin_layout Standard
-It is worth pointing out before we examine the results in 
+It is worth pointing out before we examine in detail the results in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "tab:diff-diffusions"
 
 \end_inset
 
- carefully that the reported standard deviations capture the variability
- stemming from the lower bound on the variance of any estimator, the variance
- inherent in the Monte Carlo nature of the MCEM algorithm, and the variance
- of the stochastic optimization procedure.
- As such, these standard deviations are far larger than they asymptotically
- ought to be with a sufficiently large number of MC samples and a sufficiently
+ that the reported standard deviations capture the variability stemming
+ from 
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+the lower bound on the variance of any estimator, 
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+the variance inherent in the Monte Carlo nature of the MCEM algorithm, and
+ 
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+the variance of the stochastic optimization procedure.
+ 
+\end_layout
+
+\begin_layout Standard
+As such, the reported standard deviations are far larger than they asymptoticall
+y ought to be with a sufficiently large number of MC samples and a sufficiently
  precise optimization procedure.
 \end_layout
 
@@ -2337,7 +2491,8 @@ t.
 \end_layout
 
 \begin_layout Standard
-We conjecture that for all but the most extreme of distributional data (i.e.
+We hypothesize that for all but the most extreme of distributional data
+ (i.e.
  conditioning a process displaying strong mean reversion on marginal distributio
 ns centered far from the mean), an MCEM scheme relying on approximate generalize
 d bridge sampling will provide parameter estimates of sufficiently high
@@ -2347,8 +2502,8 @@ d bridge sampling will provide parameter estimates of sufficiently high
  be small relative to the variance resulting from MCEM estimates and stochastic
  optimization methods in the first place.
  With this in mind, we move now to the penultimate chapter of this thesis,
- in which we apply the methods developed thus far to distributional data
- from the real world.
+ in which we apply the methods examined here to distributional data from
+ the real world.
 \end_layout
 
 \end_body

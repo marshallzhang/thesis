@@ -176,15 +176,15 @@ c forecast.
 \end_layout
 
 \begin_layout Standard
-Probabilistic oracles today, though perhaps less prescient than the Oracle
+Modern probabilistic oracles, though perhaps less prescient than the Oracle
  at Delphi, make forecasts in a great variety of domains.
  Moreover, many of the variables over which these probabilistic forecasts
  are generated can be modeled as stochastic processes.
- For example, central banks around the world regularly report the distribution
- of expectations of professional forecasters for various macroeconomic indicator
-s over time.
- The prices of options imply market-determined distributions over the prices
- of other securities on discrete future dates (see 
+ For example, the distribution of expectations of professional forecasters
+ for various macroeconomic indicators over time are regularly reported by
+ central banks around the world.
+ Market-determined distributions over the prices of securities at discrete
+ future dates are implied by corresponding option prices (see 
 \begin_inset CommandInset citation
 LatexCommand citet
 before "Section II in"
@@ -197,7 +197,15 @@ key "breeden-litzenberger-1978"
  levels.
  If these forecasts reflect the truth, we can understand them as data on
  the future distribution of a particular stochastic process, or what we
- will refer to as distributional data.
+ will refer to as 
+\begin_inset Quotes eld
+\end_inset
+
+distributional data
+\begin_inset Quotes erd
+\end_inset
+
+ going forward.
  
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -239,8 +247,8 @@ name "fig:dist-data"
 \end_inset
 
 An intuitive depiction of two sets of four-dimensional distributional data,
- where the marginal distributions of the data are shown at discrete points
- in time.
+ where the four marginal distributions of the data are shown at discrete
+ points in time.
 \end_layout
 
 \end_inset
@@ -256,19 +264,33 @@ An intuitive depiction of two sets of four-dimensional distributional data,
 \begin_layout Standard
 This thesis answers two questions that can be asked of a stochastic process
  when it is conditioned, in some sense to be made precise in the next chapter,
- on distributional data i.e.
- when it is conditioned to follow a given distribution at discrete future
- points in time.
- The first is a question of inference: Can we, given distributional data
- and a parameterized stochastic model, learn about the parameters governing
- its dynamics? The second is a question of imputation: Can we, given distributio
-nal data and a fully specified stochastic process, impute the distribution
- of the process in between the times at which it is conditioned? In intuitive
- terms, we ask whether and how, given the Delphic prophecy, the Spartans
- could have learned about the dynamics under which their fortunes would
- take a turn for the worse over the course of the war, and how they might
- have been able to trace out the probabilistic path of their fortunes from
- the day the prophecy was given to the fateful battle at Thermopylae.
+ to follow a given distribution at discrete future points in time i.e.
+ when it is conditioned on distributional data.
+ The first question is one of inference:
+\end_layout
+
+\begin_layout Quote
+Can we, given distributional data and a parameterized probability model,
+ learn about the parameters governing the dynamics of the associated stochastic
+ process? 
+\end_layout
+
+\begin_layout Standard
+The second is one of imputation:
+\end_layout
+
+\begin_layout Quote
+Can we, given distributional data and a fully specified stochastic process,
+ impute the distribution of the process in between the times at which it
+ is conditioned?
+\end_layout
+
+\begin_layout Standard
+In intuitive terms, we ask whether and how, given the Delphic prophecy,
+ the Spartans could have learned about the dynamics under which their fortunes
+ would take a turn for the worse over the course of the war, and how they
+ might have been able to trace out the probabilistic path of their fortunes
+ from the day the prophecy was given to the fateful battle at Thermopylae.
 \end_layout
 
 \begin_layout Standard
@@ -299,10 +321,11 @@ key "yoshida-1992"
 \end_inset
 
  for the specific case of diffusion processes.
- In particular, we propose that a Kullback-Liebler (K-L) divergence minimizing
- estimator is the appropriate one to use for inference when given the distributi
-on of, as opposed to observations of, a diffusion process at discrete points
- in time.
+ In particular, we propose that an estimator that minimizes K-L divergence
+ is the appropriate one to use for inference when given the distribution
+ of a diffusion process at discrete points in time.
+ This is in contrast to the MLE, which is appropriate when given discrete
+ observations of such a process.
  We characterize this estimator as a limiting case of MLE from two orthogonal
  perspectives.
  We also develop a simulation-based inference technique to conduct minimum
@@ -346,8 +369,8 @@ key "baudoin-2002"
 
 \end_inset
 
-) by proposing an approximate and exact simulation strategy for a particular
- class of generalized bridges.
+) by proposing simulation strategies for approximate and exact generalized
+ bridges.
  This answers in full the question of inference.
  Simultaneously, these generalized bridge samplers answer the question of
  imputation by allowing us to draw sample paths of diffusion processes whose
@@ -357,21 +380,23 @@ key "baudoin-2002"
 \begin_layout Standard
 In the empirical portion of this thesis, we validate the correctness of
  the exact generalized bridge sampler.
- We further demonstrate that the approximate sampler offers qualitatively
- high quality samples at a fraction of the computation cost of the exact
- sampler.
- We also show that these samplers are robust to a variety of assumptions
- made in the theoretical portion of this thesis.
+ We further demonstrate that the approximate sampler offers samples that
+ are qualitatively similar to the exact sampler, at a fraction of the computatio
+n cost.
  Then, we demonstrate empirically that the proposed simulation-based inference
  technique on distributional data is consistent for the K-L divergence minimizin
-g parameter and also robust to various assumptions made in its derivation.
+g parameter.
+ Moreover, we show that both the generalized bridge samplers and the inference
+ technique are robust to various theoretical assumptions made in their derivatio
+ns.
  Taking theory to practice, we use the proposed inference scheme to estimate
  the parameters governing the evolution of inflation expectations for diffusions
  with and without analytically tractable transition densities.
- Finally, we show that using generalized bridges to impute distributions
- between probabilistic forecasts can reduce out-of-sample K-L divergence
- from the true distribution of forecasts by up to a third relative to a
- baseline linear interpolation scheme.
+ Finally, we propose an imputation scheme for distributional data based
+ on the simulation of generalized bridges.
+ We show that such a scheme, when applied to distributions of inflation
+ expectations, reduces the K-L divergence of the imputed distributions by
+ up to a third relative to a linear interpolation.
 \end_layout
 
 \begin_layout Section
@@ -431,7 +456,21 @@ reference "chap:4"
 \end_layout
 
 \begin_layout Standard
-Theory is then taken to practice.
+Theory is then taken to practice in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:5"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:6"
+
+\end_inset
+
+.
  A variety of simulations are conducted in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -448,8 +487,8 @@ reference "chap:6"
 
 \end_inset
 
-, these methods are applied to model the inflation expectations of professional
- forecasters.
+, these methods are synthesized and applied to model the inflation expectations
+ of professional forecasters.
 \end_layout
 
 \begin_layout Standard

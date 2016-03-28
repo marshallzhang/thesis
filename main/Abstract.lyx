@@ -74,9 +74,9 @@ Abstract
 \end_layout
 
 \begin_layout Standard
-This thesis investigates a novel (to the best of our knowledge) and natural
- generalization of the theory of maximum likelihood estimation over discretely
- observed data from continuous-time stochastic processes.
+This thesis investigates a novel and natural generalization of the theory
+ of maximum likelihood estimation over discretely observed data from continuous-
+time stochastic processes.
  In particular, we propose a Kullback-Liebler divergence minimizing estimator
  as the appropriate estimator for inference when given distributional data
  i.e.
@@ -89,16 +89,17 @@ ximization algorithm to carry out inference on distributional data.
  We also develop approximate and exact samplers for a certain class of generaliz
 ed diffusion bridges.
  These samplers are not only of independent interest, but also necessary
- for implementing the expectation-maximization algorithm.
+ for implementing the simulation-based expectation-maximization algorithm.
 \end_layout
 
 \begin_layout Standard
-Empirically, we validate the correctness of the proposed methods and demonstrate
+We empirically validate the correctness of the proposed methods and demonstrate
  their robustness to various assumptions made in their derivation.
- Finally, we use the methods developed to impute distributions between probabili
-stic forecasts of inflation expectations, and show this imputation scheme
- reduces mean out-of-sample Kullback-Liebler divergence from the truth by
- up to a third relative to a baseline imputation scheme.
+ Finally, we synthesize the methods developed to propose an imputation scheme
+ for probabilistic forecasts.
+ We then show this imputation scheme, when applied to forecasts of inflation
+ expectations, reduces mean out-of-sample Kullback-Liebler divergence from
+ the truth by up to a third relative to a linear interpolation scheme.
 \end_layout
 
 \end_body

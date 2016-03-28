@@ -126,12 +126,16 @@ We first fix the main objects of study and notation.
 \begin_inset Formula $\sigma$
 \end_inset
 
--algebra.
+-algebra 
+\begin_inset Formula $\mathcal{B}(\Omega)$
+\end_inset
+
+.
  
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- will be a probability measure on 
+ is a probability measure on 
 \begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right)\right)$
 \end_inset
 
@@ -196,8 +200,8 @@ where
 \end_layout
 
 \begin_layout Standard
-In the next Part, we will study in detail time-homogenous univariate Itô
- diffusions i.e.
+In the following chapters, we will study in detail time-homogenous univariate
+ Itô diffusions i.e.
  continuous and strongly Markovian diffusion processes (see standard references
  like 
 \begin_inset CommandInset citation
@@ -394,16 +398,17 @@ key "baudoin-2002"
 
  with respect to generalized bridge measures, objects which will feature
  heavily in the chapters to follow.
+ None of the theory discussed in this section is original to this thesis.
 \end_layout
 
 \begin_layout Standard
-First, we briefly study Markov bridges.
+First, we briefly study the well-known properties of Markov bridges.
  Fix 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
  as a Markov measure.
- Under fairly general conditions (see 
+ Under fairly general conditions, like those laid out in 
 \begin_inset CommandInset citation
 LatexCommand citet
 before "Proposition 4 in"
@@ -411,7 +416,7 @@ key "fitz-pitman-1993"
 
 \end_inset
 
-), 
+, 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -435,7 +440,19 @@ where
 \begin_inset Formula $h$
 \end_inset
 
--transforms.
+-transforms (see 
+\begin_inset CommandInset citation
+LatexCommand citet
+before "Section 45 in"
+key "rogers"
+
+\end_inset
+
+ for a treatment of Doob's 
+\begin_inset Formula $h$
+\end_inset
+
+-transform in the case of diffusion processes).
  We refer to such a measure as the bridge measure 
 \begin_inset Formula $\mathbb{P}^{x,y}$
 \end_inset
@@ -598,25 +615,14 @@ where
 
 \begin_layout Standard
 The idea of a bridge measure has been expanded upon significantly in the
- literature.
- One natural generalization arises from conditioning on one or more functionals
- of a reference process, instead of simply its start and end values (see
- 
+ literature (see, for instance, 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "alili-2002"
+key "alili-2002,baudoin-coutin-2007"
 
 \end_inset
 
-), while another line of research involves studying bridges of non-Markovian
- processes (see 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "baudoin-coutin-2007"
-
-\end_inset
-
- and 
+, and 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "sottinen-yazigi-2014"
@@ -624,18 +630,23 @@ key "sottinen-yazigi-2014"
 \end_inset
 
 ).
- An orthogonal dimension of generalization, and the one of particular interest
- to this thesis, was proposed in 
+ A generalization of particular interest to this thesis was first proposed
+ by 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "baudoin-2002"
 
 \end_inset
 
-.
- Instead of conditioning on the value of the functionals of a process, Baudoin
- introduced the notion of conditioning the functionals of a process on their
- law.
+; rather than conditioning a process on the value of its endpoints, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "baudoin-2002"
+
+\end_inset
+
+ formalizes the sense in which arbitrary functionals of a process can be
+ conditioned on their law.
  We consolidate and present some of the major results of Baudoin below,
  working on the usual probability space.
  First, we define a Baudoin conditioning.
@@ -670,7 +681,11 @@ A Baudoin
 \begin_inset Formula $(Y,\nu)$
 \end_inset
 
--conditioning on the usual probability space is a tuple 
+-conditioning on the usual probability space 
+\begin_inset Formula $(\Omega,\mathcal{B}(\Omega),\mathbb{P})$
+\end_inset
+
+ is a tuple 
 \begin_inset Formula $(Y,\nu)$
 \end_inset
 
@@ -775,7 +790,7 @@ From this point on, we will always assume that the tuples
  The next result demonstrates the existence and uniqueness of a measure
  which satisfies intuitive notions of what it means to condition a measure
  on the law of a random variable.
- Moreover, it characterizes such a conditioned measure as the convex diversity
+ Moreover, it says that such a conditioned measure is the convex diversity
  minimizing measure with respect to a family of related probability measures.
 \end_layout
 
@@ -969,7 +984,11 @@ reference "prop:pv-1"
 \end_inset
 
 .
- While this characterization is theoretically pleasing, it is not practically
+ 
+\end_layout
+
+\begin_layout Standard
+While this characterization is theoretically pleasing, it is not practically
  useful in working with 
 \begin_inset Formula $\mathbb{P}^{\nu}$
 \end_inset
@@ -1126,7 +1145,8 @@ For any
 
 \begin_layout Standard
 With the necessary theoretical foundations set, we move now to the original
- portion of this thesis.
+ portion of this thesis, and formalize the problem of inference on distributiona
+l data.
 \end_layout
 
 \end_body
