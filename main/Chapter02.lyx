@@ -272,7 +272,8 @@ where
 \begin_inset Formula $m$
 \end_inset
 
- are the transition kernel and speed measure associated with the diffusion.
+ are the transition density and density of the speed measure associated
+ with the diffusion.
  We refer the reader to 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -305,22 +306,7 @@ We denote probability measures by capital letters
 
  will be denoted in boldface, and note that a vector may also be a random
  variable.
- In general 
-\begin_inset Formula $\mathbf{x}^{(i)}$
-\end_inset
-
- will denote the 
-\begin_inset Formula $i$
-\end_inset
-
-th element of a vector 
-\begin_inset Formula $\mathbf{x}$
-\end_inset
-
- of countable length due to the overloading of the subscript operator for
- time indices.
- Subscripts will be used to denote elements of sets of uncountable length
- i.e.
+ Subscripts will used to index by time i.e.
  
 \begin_inset Formula $X_{t}$
 \end_inset
@@ -350,7 +336,7 @@ th element of a vector
 \end_inset
 
 .
- Often, we will suppress the set braces for subscripts for clarity, i.e.
+ Often, we will suppress set braces in subscripts for clarity, i.e.
  
 \begin_inset Formula $X_{0,1}$
 \end_inset
@@ -364,6 +350,16 @@ th element of a vector
 \end_inset
 
 .
+ In general, 
+\begin_inset Formula $\mathbf{x}^{(i)}$
+\end_inset
+
+ will denote the 
+\begin_inset Formula $i$
+\end_inset
+
+th element of vectors of countable length to avoid the overloading of the
+ subscript operator.
  Finally, let 
 \begin_inset Formula $\mathcal{R}$
 \end_inset
@@ -388,7 +384,7 @@ key "leonard-2014"
 
 \end_inset
 
- for a in-depth exposition of the subject.
+ for an in-depth exposition of the subject.
  Then, we will summarize the relevant results of 
 \begin_inset CommandInset citation
 LatexCommand citet

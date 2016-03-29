@@ -96,8 +96,8 @@ name "chap:4"
 \end_layout
 
 \begin_layout Standard
-In this chapter, we will study generalized diffusion bridges and develop
- methods to sample approximate and exact generalized bridges.
+In this chapter, we study generalized diffusion bridges and develop methods
+ to sample approximate and exact generalized bridges.
  
 \end_layout
 
@@ -134,8 +134,15 @@ satisfying the usual assumptions, where
 \begin_inset Formula $\sigma$
 \end_inset
 
- are fully specified (unlike the previous chapter, where the drift and diffusion
- were only known up to some parameters) and 
+ are fully specified (unlike 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:sde-with-theta"
+
+\end_inset
+
+ in the previous chapter, where the drift and diffusion were only known
+ up to some parameters) and 
 \begin_inset Formula $W_{t}$
 \end_inset
 
@@ -149,7 +156,7 @@ satisfying the usual assumptions, where
 \end_inset
 
  on the usual probability space, fix 
-\begin_inset Formula $\mathcal{T}\subseteq\mathcal{R}^{+}$
+\begin_inset Formula $\mathcal{T}\subseteq[0,1]$
 \end_inset
 
  as a set of times, and let 
@@ -184,7 +191,8 @@ status open
 
 \begin_layout Plain Layout
 This statement is more precisely made in some limiting sense, since the
- product of Dirac delta measures is not absolutely continuous to 
+ product measure of Dirac delta measures is not absolutely continuous to
+ 
 \begin_inset Formula $\mathbb{P}_{\mathcal{T}}$
 \end_inset
 
@@ -192,8 +200,9 @@ This statement is more precisely made in some limiting sense, since the
 \begin_inset Formula $X$
 \end_inset
 
- is an Itô diffusion, but can be the limit of a sequence of probability
- measures which satisfy such a condition.
+ is an Itô diffusion.
+ However, the product measure of Dirac delta measures can be the limit of
+ a sequence of probability measures which satisfy such a condition.
 \end_layout
 
 \end_inset
@@ -202,11 +211,11 @@ This statement is more precisely made in some limiting sense, since the
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is Markovian, we may without loss of generality set 
+ is Markovian, we may, without loss of generality, set 
 \begin_inset Formula $\mathcal{T}=\{0,1\}$
 \end_inset
 
-, and restrict our attention to Baudoin conditionings of the form 
+ and restrict our attention to Baudoin conditionings of the form 
 \begin_inset Formula $(X_{0,1},\nu)$
 \end_inset
 
@@ -234,7 +243,7 @@ reference "eq:basic-sde"
 
 \end_inset
 
- in one dimension and let 
+ and let 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -267,8 +276,8 @@ conditioning of
 \end_layout
 
 \begin_layout Standard
-Baudoin bridges are well-characterized in highly general settings and we
- therefore defer to 
+Baudoin bridges are well-characterized in highly general settings; we therefore
+ defer to 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "baudoin-2002"
@@ -296,7 +305,7 @@ key "baudoin-2002"
 \begin_inset Formula $t\in(0,1)$
 \end_inset
 
- merits presentation.
+ merits brief presentation.
 \end_layout
 
 \begin_layout Proposition
@@ -314,7 +323,7 @@ The marginal density of
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- at 
+ at some 
 \begin_inset Formula $t\in(0,1)$
 \end_inset
 
@@ -444,7 +453,7 @@ reference "eq:basic-sde"
 \end_inset
 
 .
- However, as has been noted, transition densities are typically unavailable
+ However, as previously noted, transition densities are typically unavailable
  for all but the simplest diffusions, and needing to integrate these densities
  over an arbitrary measure 
 \begin_inset Formula $\nu$
@@ -487,7 +496,7 @@ In this section, we propose a sampler of approximate
 \begin_inset Formula $\nu$
 \end_inset
 
--bridges and make the notion of 
+-bridges and make precise the notion of what it means to be an 
 \begin_inset Quotes eld
 \end_inset
 
@@ -495,8 +504,7 @@ approximate
 \begin_inset Quotes erd
 \end_inset
 
- precise.
- 
+ bridge.
 \end_layout
 
 \begin_layout Standard
@@ -559,15 +567,11 @@ key "bladt-sorensen-2014"
 
 \end_inset
 
- to 
+ to a original result for the simulation of 
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridges, and by extension develop an approximate 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridge sampler.
+bridges.
 \end_layout
 
 \begin_layout Standard
@@ -579,13 +583,20 @@ The general idea of the proposed sampler is to simulate two diffusion processes,
 .
  If the second process, when reversed in time, intersects with the first,
  we may weld together the processes (one running forward in time, the other
- running backwards) into a diffusion with endpoints distributed according
+ running backward) into a diffusion with endpoints distributed according
  to 
 \begin_inset Formula $\nu$
 \end_inset
 
 .
- This intuitive construction is formalized in 
+ This intuitive construction is visualized 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:bridge-intuit"
+
+\end_inset
+
+ and formalized in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:approx-sim"
@@ -593,7 +604,64 @@ reference "thm:approx-sim"
 \end_inset
 
 .
- First, we state a lemma of 
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/marshall/Documents/senior/thesis/figures/gen_bridges.pdf
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:bridge-intuit"
+
+\end_inset
+
+A visualization of the approximate 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridge simulation strategy we propose in this chapter.
+ The left graphic depicts two diffusion processes with some joint initial
+ distribution (whose marginals are depicted).
+ One is simulated forward in time and one is simulated backward in time.
+ The right graphic depicts how we can join the two processes (in gray) to
+ create an approximate 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridge (in black).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First, we state a lemma of 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "bladt-sorensen-2014"
@@ -1359,7 +1427,8 @@ key "bladt-sorensen-2014"
 
 \end_inset
 
-, in that it says an approximate 
+.
+ In particular, it says that an approximate 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -1389,7 +1458,7 @@ key "bladt-sorensen-2014"
 \end_inset
 
 .
- In particular, we suppose we have a method 
+ Suppose we have a method 
 \noun on
 diffusion(
 \series bold
@@ -1483,10 +1552,9 @@ reference "algo:approx-sim"
 
 \begin_layout Standard
 \begin_inset Float algorithm
-placement t
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1913,7 +1981,7 @@ where
 \end_inset
 
  is a hitting diffusion.
- The proof of this fact can be found in 
+ This fact is proven in 
 \begin_inset CommandInset citation
 LatexCommand citet
 before "below Theorem 2.1. in"
@@ -1941,9 +2009,7 @@ where
 \end_inset
 
  is an independent approximate diffusion bridge proposal.
- The intuition for this ratio is as follows.
- First, an approximate diffusion bridge is a diffusion bridge conditioned
- on being hit by a hitting diffusion (this is the result of 
+ The intuition for this ratio is as follows: First, as 
 \begin_inset CommandInset citation
 LatexCommand citet
 before "Theorem 2.1 in"
@@ -1951,7 +2017,8 @@ key "bladt-sorensen-2014"
 
 \end_inset
 
- that 
+ show, an approximate diffusion bridge is a diffusion bridge conditioned
+ on being hit by a hitting diffusion (this is the result of that 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:approx-sim"
@@ -2009,120 +2076,7 @@ key "bladt-sorensen-2014"
 \begin_inset Formula $\alpha$
 \end_inset
 
-.
-\end_layout
-
-\begin_layout Standard
-Now, we present an adaptation of this strategy to develop an exact 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridge sampler.
- We simply use the observation that our scheme for sampling an approximate
- 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridge can be reduced to
-\end_layout
-
-\begin_layout aEnumerate (ClassicThesis)
-drawing 
-\begin_inset Formula $(a,b)\sim\nu$
-\end_inset
-
-, then 
-\end_layout
-
-\begin_layout aEnumerate (ClassicThesis)
-sampling a diffusion bridge from 
-\begin_inset Formula $a$
-\end_inset
-
- to 
-\begin_inset Formula $b$
-\end_inset
-
- using 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bladt-sorensen-2014"
-
-\end_inset
-
-'s approximate sampler.
- 
-\end_layout
-
-\begin_layout Standard
-Sampling an exact 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridge then, can be achieved simply by drawing 
-\begin_inset Formula $(a,b)\sim\nu$
-\end_inset
-
-, and sampling an exact diffusion bridge from 
-\begin_inset Formula $a$
-\end_inset
-
- to 
-\begin_inset Formula $b$
-\end_inset
-
-.
- We assume we have the methods
-\end_layout
-
-\begin_layout aEnumerate (ClassicThesis)
-
-\noun on
-hitting
-\noun default
-(
-\begin_inset Formula $b$
-\end_inset
-
-) return discrete observations from a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- with initial condition 
-\begin_inset Formula $p_{1}(b,\cdot)$
-\end_inset
-
-, and 
-\end_layout
-
-\begin_layout aEnumerate (ClassicThesis)
-
-\noun on
-approximate diffusion bridge(
-\begin_inset Formula $a,b,\mu,\sigma,N)$
-\end_inset
-
-
-\noun default
- be the approximate sampler of 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bladt-sorensen-2014"
-
-\end_inset
-
- for a diffusion bridge from 
-\begin_inset Formula $a$
-\end_inset
-
- to 
-\begin_inset Formula $b$
-\end_inset
-
-.
+ to develop their exact diffusion bridge sampler.
 \end_layout
 
 \begin_layout Standard
@@ -2130,7 +2084,7 @@ key "bladt-sorensen-2014"
 placement t
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -2403,6 +2357,126 @@ name "algo:exact-sim"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Now, we present an adaptation of this strategy to develop an exact 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridge sampler.
+ We simply use the observation that our scheme for sampling an approximate
+ 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridge can be reduced to
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+drawing 
+\begin_inset Formula $(a,b)\sim\nu$
+\end_inset
+
+, then 
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+sampling an approximate diffusion bridge from 
+\begin_inset Formula $a$
+\end_inset
+
+ to 
+\begin_inset Formula $b$
+\end_inset
+
+ using 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
+
+\end_inset
+
+'s approximate sampler.
+ 
+\end_layout
+
+\begin_layout Standard
+Sampling an exact 
+\begin_inset Formula $\nu$
+\end_inset
+
+-bridge then, can be achieved simply by drawing 
+\begin_inset Formula $(a,b)\sim\nu$
+\end_inset
+
+, and sampling an exact diffusion bridge from 
+\begin_inset Formula $a$
+\end_inset
+
+ to 
+\begin_inset Formula $b$
+\end_inset
+
+ using 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
+
+\end_inset
+
+'s exact sampler.
+ We assume we have the methods
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+
+\noun on
+hitting
+\noun default
+(
+\begin_inset Formula $b$
+\end_inset
+
+) return discrete observations from a solution to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:basic-sde"
+
+\end_inset
+
+ with initial condition 
+\begin_inset Formula $p_{1}(b,\cdot)$
+\end_inset
+
+, and 
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+
+\noun on
+approximate diffusion bridge(
+\begin_inset Formula $a,b,\mu,\sigma,N)$
+\end_inset
+
+
+\noun default
+ be the approximate sampler of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "bladt-sorensen-2014"
+
+\end_inset
+
+ for a diffusion bridge from 
+\begin_inset Formula $a$
+\end_inset
+
+ to 
+\begin_inset Formula $b$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard

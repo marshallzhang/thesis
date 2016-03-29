@@ -98,8 +98,8 @@ name "chap:EM"
 
 \begin_layout Standard
 In this chapter, we state and formalize the problem of inference on distribution
-al data, and develop a Monte Carlo expectation-maximization algorithm to
- conduct inference on such data.
+al data, and develop a novel Monte Carlo expectation-maximization algorithm
+ to conduct inference on such data.
 \end_layout
 
 \begin_layout Section
@@ -123,12 +123,12 @@ The Discretely Observed Data Problem
 \end_layout
 
 \begin_layout Standard
-To begin, we review the discretely observed data problem.
- Inference on diffusion processes observed at discrete points in time is
- a topic of interest for many statisticians, in large part due to the prevalence
- of diffusion processes in modeling a wide range of phenomena, and the simultane
-ous unavailability of continuous observations from such processes in the
- real world.
+To begin, we review the problem of inference on diffusion processes observed
+ at discrete points in time.
+ This is a topic of interest for many statisticians, in large part due to
+ the prevalence of diffusion processes in modeling a wide range of phenomena,
+ and the simultaneous unavailability of continuous observations from such
+ processes in the real world.
  Consider a solution to the one-dimensional stochastic differential equation
 \begin_inset Formula 
 \begin{equation}
@@ -146,7 +146,11 @@ where
 \end_inset
 
  is a Wiener process, and 
-\begin_inset Formula $\mu_{\theta},\sigma_{\theta}$
+\begin_inset Formula $\mu_{\theta}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{\theta}$
 \end_inset
 
  have known parametric forms up to 
@@ -163,7 +167,7 @@ where
 \end_inset
 
 .
- Suppose that we observe values 
+ Suppose that we observe fixed values 
 \begin_inset Formula $\bar{\mathbf{x}}=\{\bar{x}_{t_{1}},\dots,\bar{x}_{t_{n}}\}\in\mathcal{X}^{n}$
 \end_inset
 
@@ -279,7 +283,8 @@ We now present the central problem of this thesis.
 \begin_inset Formula $\bar{\mathbf{x}}$
 \end_inset
 
- not as observed data, but as the values that 
+ not as data that has already been observed, but rather as the values that
+ 
 \begin_inset Formula $X$
 \end_inset
 
@@ -288,9 +293,9 @@ We now present the central problem of this thesis.
 \end_inset
 
  (perhaps as prophesized by an omniscient Oracle).
- Modulo philosophical and technical subtleties, the problem has not changed
- materially: we ought to be able to conduct likelihood-based inference using
- 
+ Modulo philosophical and measure-theoretic subtleties, the problem has
+ not changed materially: we ought to be able to conduct likelihood-based
+ inference using 
 \begin_inset Formula $\ell(\theta\mid\bar{\mathbf{x}}),$
 \end_inset
 
@@ -328,8 +333,8 @@ This ex-ante perspective allows, however, for a generalization of interest
 \begin_inset Formula $\nu$
 \end_inset
 
- as distributional data, in juxtaposition to the observed data is that given
- in the context of MLE.
+ as distributional data, in juxtaposition with the observed data that is
+ given in the context of MLE.
 \end_layout
 
 \begin_layout Standard
@@ -342,8 +347,8 @@ reference "fig:mle-intuition"
 \end_inset
 
 .
- The fixed data depicted on the left intuitively should help us learn about
- the dynamics of 
+ The fixed data depicted on the left should help us learn about the dynamics
+ of 
 \begin_inset Formula $X$
 \end_inset
 
@@ -492,7 +497,7 @@ reference "eq:sde-with-theta"
 \end_layout
 
 \begin_layout Subsection
-Characterizing an Estimator
+Proposing and Characterizing an Estimator
 \end_layout
 
 \begin_layout Standard
@@ -509,14 +514,14 @@ d estimator given discretely observed data.
 \end_layout
 
 \begin_layout Standard
-We first note that the problem of discretely observed data can be understood
- as a limiting case of the problem of distributional data.
+We first note that the problem of discretely observed data is a limiting
+ case of the problem of distributional data.
  In particular, we can fix some data 
 \begin_inset Formula $\bar{\mathbf{x}}\in\mathcal{X}^{n}$
 \end_inset
 
 .
- Then, intuitively, if 
+ If 
 \begin_inset Formula $\nu^{(m)}$
 \end_inset
 
@@ -527,6 +532,10 @@ We first note that the problem of discretely observed data can be understood
 
  and which converge (in some sense) to the Dirac delta measure 
 \begin_inset Formula $\delta_{\bar{\mathbf{x}}}$
+\end_inset
+
+, then as 
+\begin_inset Formula $m\rightarrow\infty$
 \end_inset
 
 , any estimator for 
@@ -541,16 +550,12 @@ We first note that the problem of discretely observed data can be understood
 \begin_inset Formula $\bar{\mathbf{x}}$
 \end_inset
 
- as 
-\begin_inset Formula $m\rightarrow\infty$
-\end_inset
-
 .
- One estimator for 
+ A natural estimator for 
 \begin_inset Formula $\theta$
 \end_inset
 
- that seems like it ought to satisfy this criterion is 
+ that satisfies this criterion is 
 \begin_inset Formula 
 \begin{equation}
 \hat{\theta}=\arg\max_{\theta\in\Theta}\int\log Q_{\theta,\mathcal{T}}(\mathbf{x})\nu(d\mathbf{x}).\label{eq:mklde}
@@ -593,7 +598,7 @@ key "akaike-1973"
 \end_inset
 
 .
- To see this, simply write 
+ To see this, we write 
 \begin_inset Formula 
 \begin{eqnarray*}
 D(\nu\:||\:\mathbb{Q}_{\theta,X_{\mathcal{T}}}) & = & \mathbb{E}_{\nu}\left[\log\frac{d\nu}{d\mathbb{Q}_{\theta,X_{\mathcal{T}}}}\right]\\
@@ -620,7 +625,10 @@ reference "eq:mklde"
 \end_inset
 
 .
- We now present two remarks, which
+\end_layout
+
+\begin_layout Standard
+We now present two remarks, which
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
@@ -629,11 +637,11 @@ characterize the MKLDE as a limiting case of traditional maximum likelihood
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
-show that the MKLDE given a particular approximation to 
+show that the MKLDE, given a particular approximation to 
 \begin_inset Formula $\nu$
 \end_inset
 
- asymptotically converges to the MKLDE given 
+, asymptotically converges to the MKLDE, given 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -658,7 +666,7 @@ The MLE given discretely observed data at times
  under model misspecification converges in probability to the MKLDE as the
  sample size grows.
  For consider 
-\begin_inset Formula $X_{\mathcal{T}}^{(1)},\dots,X_{\mathcal{T}}^{(N)}$
+\begin_inset Formula $X^{(1)},\dots,X^{(N)}$
 \end_inset
 
 , 
@@ -670,8 +678,32 @@ The MLE given discretely observed data at times
 \begin_inset Formula $\nu$
 \end_inset
 
-.
- By a result of 
+, which we can understand as the true probability model.
+ If we wish to model 
+\begin_inset Formula $\nu$
+\end_inset
+
+ using the family of misspecified probability models 
+\begin_inset Formula $\mathcal{Q}$
+\end_inset
+
+ restricted to 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+, the likelihood of 
+\begin_inset Formula $\{X^{(i)}\}_{i=1,\dots,N}$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+\frac{1}{N}\sum_{i=1}^{N}\log Q_{\theta,\mathcal{T}}(X^{(i)}).
+\]
+
+\end_inset
+
+By a result of 
 \begin_inset CommandInset citation
 LatexCommand citet
 before "Theorem 2.2 in"
@@ -682,7 +714,7 @@ key "white-1982"
 , 
 \begin_inset Formula 
 \[
-\arg\max_{\theta\in\Theta}\frac{1}{N}\sum_{i=1}^{N}\log Q_{\theta,\mathcal{T}}(X_{\mathcal{T}}^{(i)})\xrightarrow{p}\arg\min_{\theta\in\Theta}\mathbb{E}_{\nu}\left[\log\frac{d\nu}{d\mathbb{Q}_{\theta,X_{\mathcal{T}}}}\right]
+\arg\max_{\theta\in\Theta}\frac{1}{N}\sum_{i=1}^{N}\log Q_{\theta,\mathcal{T}}(X^{(i)})\xrightarrow{p}\arg\min_{\theta\in\Theta}\mathbb{E}_{\nu}\left[\log\frac{d\nu}{d\mathbb{Q}_{\theta,X_{\mathcal{T}}}}\right]
 \]
 
 \end_inset
@@ -701,12 +733,12 @@ key "akaike-1973"
 , 
 \begin_inset Formula 
 \[
-\arg\max_{\theta\in\Theta}\frac{1}{N}\sum_{i=1}^{N}\log Q_{\theta,\mathcal{T}}(X_{\mathcal{T}}^{(i)})\xrightarrow{p}\arg\max_{\theta\in\Theta}\Lambda_{\theta}(\nu).
+\arg\max_{\theta\in\Theta}\frac{1}{N}\sum_{i=1}^{N}\log Q_{\theta,\mathcal{T}}(X^{(i)})\xrightarrow{p}\arg\max_{\theta\in\Theta}\Lambda_{\theta}(\nu),
 \]
 
 \end_inset
 
-
+which is the MKLDE.
 \end_layout
 
 \begin_layout Standard
@@ -774,7 +806,15 @@ reference "rem:misspecification"
 
  pointwise almost surely).
  If 
-\begin_inset Formula $\nu\not\in\{\mathbb{Q}_{\mathcal{T}}:\mathbb{Q}\in\mathcal{Q}\}$
+\begin_inset Formula $\nu$
+\end_inset
+
+ is not an element, restricted to 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+, of 
+\begin_inset Formula $\mathcal{Q}$
 \end_inset
 
 , it must be the case that we have misspecified our probability model.
@@ -798,9 +838,8 @@ reference "rem:misspecification"
 \end_layout
 
 \begin_layout Standard
-Having an understanding of the MKLDE as a limit in terms of sample size
- is useful because in the real world, few probabilistic forecasts offer
- a functional form for 
+However, few probabilistic forecasts in the real world offer a functional
+ form for 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -810,9 +849,8 @@ Having an understanding of the MKLDE as a limit in terms of sample size
 \begin_inset Formula $\nu$
 \end_inset
 
- (think, for example, of a group of forecasters giving forecasts for the
- value of some future variable), and we now remark on the consistency of
- the MKLDE when perfect access to 
+, and we now remark on the consistency of the MKLDE when perfect access
+ to 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -852,8 +890,40 @@ Let
 \end_inset
 
 .
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The MKLDE given 
+\begin_inset Formula $\hat{\nu}^{(N)}$
+\end_inset
+
+ is not rigorously well-defined, since 
+\begin_inset Formula $\hat{\nu}^{(N)}$
+\end_inset
+
+ is not absolutely continuous with respect to any element of 
+\begin_inset Formula $\mathcal{Q}$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $\hat{\nu}^{(N)}$
+\end_inset
+
+ converges pointwise almost surely to 
+\begin_inset Formula $\nu$
+\end_inset
+
+, which is.
+ So, we abuse some technical conditions here and in the remainder of the
+ thesis when dealing with empirical distributions.
+\end_layout
+
+\end_inset
+
  For consider 
-\begin_inset Formula $X_{\mathcal{T}}^{(N,1)},\dots,X_{\mathcal{T}}^{(N,N)}$
+\begin_inset Formula $X^{(N),(1)},\dots,X^{(N),(N)}$
 \end_inset
 
  drawn from 
@@ -865,6 +935,7 @@ Let
  estimators (see 
 \begin_inset CommandInset citation
 LatexCommand citet
+before "Section 1 in"
 key "horowitz-2002"
 
 \end_inset
@@ -872,7 +943,8 @@ key "horowitz-2002"
 ), 
 \begin_inset Formula 
 \begin{eqnarray*}
-\int\log P_{\theta,\mathcal{T}}(\mathbf{x})\hat{\nu}^{(N)}(d\mathbf{x}) & = & \frac{1}{N}\sum_{i=1}^{N}\log Q_{\theta,\mathcal{T}}(X_{\mathcal{T}}^{(N,i)})\\
+\Lambda_{\theta}(\hat{\nu}) & = & \int\log P_{\theta,\mathcal{T}}(\mathbf{x})\hat{\nu}^{(N)}(d\mathbf{x})\\
+ & = & \frac{1}{N}\sum_{i=1}^{N}\log Q_{\theta,\mathcal{T}}(X^{(N,i)})\\
  & \xrightarrow{p} & \Lambda_{\theta}(\nu)
 \end{eqnarray*}
 
@@ -885,6 +957,7 @@ and by a loose application of the
  continuous mapping theorem (see 
 \begin_inset CommandInset citation
 LatexCommand citet
+before "Theorem 2.7 in"
 key "kim-pollard-1990"
 
 \end_inset
@@ -905,8 +978,7 @@ key "kim-pollard-1990"
 \end_layout
 
 \begin_layout Standard
-This remark is important in that it says we do not need perfect access to
- 
+This remark show we do not need perfect access to 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -914,22 +986,8 @@ This remark is important in that it says we do not need perfect access to
 \begin_inset Formula $\theta$
 \end_inset
 
-; rather, and luckily for this thesis, the MKLDE from bootstrapping an approxima
-tion to 
-\begin_inset Formula $\nu$
-\end_inset
-
- diverges from the MKLDE given 
-\begin_inset Formula $\nu$
-\end_inset
-
- with probability zero asymptotically.
- In other words, though we can only ever draw finitely many samples from
- 
-\begin_inset Formula $\nu$
-\end_inset
-
- in the real world, the simulation-based inference techniques to be presented
+.
+ In particular, the simulation-based inference techniques to be presented
  below can still offer consistent (though perhaps less efficient) estimates
  of 
 \begin_inset Formula $\theta$
@@ -939,25 +997,26 @@ tion to
 \begin_inset Formula $\hat{\nu}$
 \end_inset
 
- as a plug-in for 
+ as a plug-in estimate for 
 \begin_inset Formula $\nu$
 \end_inset
 
-.
- 
-\begin_inset Formula $\Lambda_{\theta}(\hat{\nu})$
+; this is important because we can only ever draw finitely many samples
+ from 
+\begin_inset Formula $\nu$
 \end_inset
 
- is this scenario is therefore a function of fixed data, since 
+ in practice.
+ In this scenario, the 
+\begin_inset Formula $\arg\max_{\theta\in\Theta}\Lambda_{\theta}(\hat{\nu})$
+\end_inset
+
+ can be understood as a traditional estimator i.e.
+ a function of fixed data, since 
 \begin_inset Formula $\hat{\nu}$
 \end_inset
 
- is constructed from a set of observations drawn from 
-\begin_inset Formula $\nu$
-\end_inset
-
-; as such, the MKLDE can be understood as a traditional estimator when we
- only have finitely many samples from 
+ is constructed from a finite set of observations drawn from 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -965,14 +1024,14 @@ tion to
 \end_layout
 
 \begin_layout Standard
-These remarks together give an account of why the estimator defined in 
+Together, these remarks describe why 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:mklde"
 
 \end_inset
 
- is a statistically meaningful and useful estimator for 
+ is a statistically meaningful estimator for 
 \begin_inset Formula $\theta$
 \end_inset
 
@@ -998,7 +1057,7 @@ reference "eq:mklde"
 \begin_inset Formula $\nu$
 \end_inset
 
- over a parameterized family of probability models 
+ over any parameterized family of probability models 
 \begin_inset Formula $\mathcal{Q}$
 \end_inset
 
@@ -1024,8 +1083,13 @@ reference "eq:mklde"
 \end_inset
 
 .
- However, given the unavailability of a transition density for most diffusion
- processes, it quickly becomes clear that 
+ 
+\end_layout
+
+\begin_layout Standard
+While we have shown that the MKDLE is meaningful, given the unavailability
+ of a transition density for most diffusion processes, it quickly becomes
+ clear that 
 \begin_inset Formula $\Lambda_{\nu}(\theta)$
 \end_inset
 
@@ -1040,8 +1104,8 @@ reference "eq:mklde"
 
 .
  Solving for the MKLDE is therefore impossible in general from an analytic
- standpoint; as such, the next section will develop a simulation-based strategy
- for finding the MKLDE.
+ standpoint; the next section addresses this issue by developing a simulation-ba
+sed strategy for finding the MKLDE.
 \end_layout
 
 \begin_layout Section
@@ -1060,10 +1124,10 @@ key "pedersen-1995"
 \end_inset
 
 .
- The key insight is that were the continuous path of the data available,
- the likelihood function would be given by Girsanov's formula; however,
- with only discrete observations, the likelihood function is in general
- intractable.
+ The key insight is the following: if the continuous path of the data were
+ available, the likelihood function would be given by Girsanov's formula.
+ However, with only discrete observations, the likelihood function is, in
+ general, intractable.
  This framing of the problem suggests that it can be considered a problem
  of missing data, and 
 \begin_inset CommandInset citation
@@ -1074,15 +1138,15 @@ key "roberts-stramer-2001,elerian-chib-shephard-2001"
 
 , and others simultaneously realized that simulation of diffusion bridges
  could be leveraged to supply such data.
- A method of particular interest is that of 
+ The method of 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "beskos-2006"
 
 \end_inset
 
-, where an Monte Carlo expectation-maximization (MCEM) algorithm following
- 
+ is of particular interest to this thesis.
+ Following 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "dempster-1977"
@@ -1096,8 +1160,16 @@ key "wei-tanner-1990"
 
 \end_inset
 
- is proposed, using the Exact Algorithm for the simulation of diffusion
- bridges developed in 
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "beskos-2006"
+
+\end_inset
+
+ propose a Monte Carlo expectation-maximization (MCEM) algorithm, using
+ the Exact Algorithm for the simulation of diffusion bridges developed in
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "beskos-roberts-2005"
@@ -1116,13 +1188,13 @@ key "roberts-stramer-2001,beskos-2006,bladt-sorensen-2014"
 \end_inset
 
  to propose a simulation-based method to find the MKLDE.
- As noted above, even writing out 
+ As noted above, 
 \begin_inset Formula $\Lambda_{\nu}(\theta)$
 \end_inset
 
-, let alone maximizing it analytically, is impossible in general.
- However, noting the close parallels between MLE on discretely observed
- data and MKLDE on distributional data, we develop in this section a Monte
+ cannot be maximized analytically.
+ However, we use the close parallels between MLE on discretely observed
+ data and MKLDE on distributional data to develop in this section a Monte
  Carlo expectation-maximization algorithm which converges to the MKLDE.
 \end_layout
 
@@ -1144,14 +1216,14 @@ reference "eq:sde-with-theta"
 
  being equal to unity so that we may focus deriving the general shape of
  a simulation strategy.
- In particular, in this subsection, we will derive an EM algorithm that
- maximizes 
+ In particular, we will derive a novel EM algorithm that maximizes 
 \begin_inset Formula $\Lambda_{\theta}(\nu)$
 \end_inset
 
 , in a manner analagous to the EM algorithm of 
 \begin_inset CommandInset citation
 LatexCommand citet
+before "Section 8 in"
 key "beskos-2006"
 
 \end_inset
@@ -1165,9 +1237,9 @@ key "beskos-2006"
 \end_inset
 
 .
- We first prove the central result of this chapter, which will allow us
- to derive such an algorithm, recalling that the likelihood of a continuous
- path of a solution to 
+ We first prove the central result of this chapter, which gives such an
+ EM algorithm, keeping in mind that the likelihood of a continuous path
+ of a solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:sde-with-theta"
@@ -1197,15 +1269,7 @@ Fix an parameter estimate
 \end_inset
 
  satisfying the usual requirements.
- Then, 
-\begin_inset Formula 
-\begin{equation}
-\arg\max_{\theta\in\Theta}\Lambda_{\theta}(\nu)-\Lambda_{\tilde{\theta}}(\nu)=\arg\max_{\theta\in\Theta}\mathbb{E}_{\mathbb{Q}_{\tilde{\theta}}^{\nu}}\left[\log Q_{\theta}(X)\right],\label{eq:em-equation}
-\end{equation}
-
-\end_inset
-
-where 
+ If 
 \begin_inset Formula $\mathbb{Q}_{\tilde{\theta}}^{\nu}$
 \end_inset
 
@@ -1220,40 +1284,50 @@ reference "eq:sde-with-theta"
 
 \end_inset
 
- governed by parameter 
+ with constant initial condition and unit diffusion coefficient governed
+ by 
 \begin_inset Formula $\tilde{\theta}$
 \end_inset
 
- with initial condition 
-\begin_inset Formula $X_{0}=x_{0}$
+, then 
+\begin_inset Formula 
+\begin{equation}
+\arg\max_{\theta\in\Theta}\Lambda_{\theta}(\nu)-\Lambda_{\tilde{\theta}}(\nu)=\arg\max_{\theta\in\Theta}\mathbb{E}_{\mathbb{Q}_{\tilde{\theta}}^{\nu}}\left[\log Q_{\theta}(X)\right]\label{eq:em-equation}
+\end{equation}
+
 \end_inset
 
-, and 
-\begin_inset Formula $X$
+gives an iteration of an expectation-maximization algorithm that converges
+ to the MKLDE.
+ In particular, repeated iterations of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:em-equation"
+
 \end_inset
 
- is a random path distributed according to 
-\begin_inset Formula $\mathbb{Q}_{\tilde{\theta}}^{\nu}$
+ converge to the parameter 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+ such that 
+\begin_inset Formula $\mathbb{Q}_{\theta^{*},X_{\mathcal{T}}}$
+\end_inset
+
+ has the smallest K-L divergence from 
+\begin_inset Formula $\nu$
+\end_inset
+
+ of any 
+\begin_inset Formula $\mathbb{Q}_{\theta}\in\mathcal{Q}$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Proof
-Let 
-\begin_inset Formula $X$
-\end_inset
-
- be a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:sde-with-theta"
-
-\end_inset
-
- with constant initial condition as usual.
- We begin by re-expressing the objective function on the left hand side
- of 
+We begin by re-expressing the objective function on the left hand side of
+ 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:em-equation"
@@ -1264,7 +1338,7 @@ reference "eq:em-equation"
 \begin_inset Formula 
 \begin{eqnarray}
 \Lambda_{\theta}(\nu)-\Lambda_{\tilde{\theta}}(\nu) & = & \int\log P_{\theta,\mathcal{T}}(\mathbf{x})\nu(d\mathbf{x})-\Lambda_{\tilde{\theta}}(\nu)\nonumber \\
- & = & \int\log\int P_{\theta,\mathcal{T}}(\mathbf{x}\mid z)P_{\theta,\mathcal{T}^{c}}(z)dz\nu(d\mathbf{x})-\Lambda_{\tilde{\theta}}(\nu),\label{eq:firststepem}
+ & = & \int\log\int P_{\theta,\mathcal{T}}(\mathbf{x}\mid z)P_{\theta}(z)dz\nu(d\mathbf{x})-\Lambda_{\tilde{\theta}}(\nu),\label{eq:firststepem}
 \end{eqnarray}
 
 \end_inset
@@ -1282,14 +1356,15 @@ to be missing data representing the path of
 \end_inset
 
  on 
-\begin_inset Formula $t\in[0,1]$
+\begin_inset Formula $[0,1]$
 \end_inset
 
 .
- Then, following standard arguments in the derivation of EM algorithms (see
- 
+ Then, in a similar fashion to standard arguments in the derivation of the
+ EM algorithm (see, for instance, 
 \begin_inset CommandInset citation
 LatexCommand citet
+before "Section 3.1 in"
 key "borman-2006"
 
 \end_inset
@@ -1307,46 +1382,33 @@ reference "eq:firststepem"
 \begin_layout Proof
 \begin_inset Formula 
 \begin{align}
-\Lambda_{\theta}(\nu)-\Lambda_{\tilde{\theta}}(\nu) & \geq\iint\log\left(\frac{P_{\theta}(\mathbf{x},z)}{P_{\tilde{\theta},\mathcal{T}^{c}}(z\mid\mathbf{x})}\right)P_{\tilde{\theta},\mathcal{T}^{c}}(z\mid\mathbf{x})dz\nu(d\mathbf{x})-\Lambda_{\tilde{\theta}}(\nu)\nonumber \\
- & =\iint\log\left(\frac{P_{\theta}(\mathbf{x},z)}{P_{\tilde{\theta}}(z\mid\mathbf{x})P_{\tilde{\theta}}(\mathbf{x})}\right)\mathbb{P}_{\tilde{\theta}}(dz\mid\mathbf{x})\nu(d\mathbf{x}).\label{eq:Deltatn}
+\Lambda_{\theta}(\nu)-\Lambda_{\tilde{\theta}}(\nu) & \geq\iint\log\left(\frac{P_{\theta,\mathcal{T}}(\mathbf{x}\mid z)P_{\theta}(z)}{P_{\tilde{\theta}}(z\mid\mathbf{x})}\right)P_{\tilde{\theta}}(z\mid\mathbf{x})dz\nu(d\mathbf{x})-\Lambda_{\tilde{\theta}}(\nu)\nonumber \\
+ & =\iint\log\left(\frac{P_{\theta,\mathcal{T}}(\mathbf{x}\mid z)P_{\theta}(z)}{P_{\tilde{\theta}}(z\mid\mathbf{x})P_{\tilde{\theta},\mathcal{T}}(\mathbf{x})}\right)P_{\tilde{\theta}}(z\mid\mathbf{x})dz\nu(d\mathbf{x}).\label{eq:Deltatn}
 \end{align}
 
 \end_inset
 
-
-\begin_inset Formula 
-\[
-\iint\log\left(\frac{P_{\theta}(z)}{P_{\tilde{\theta}}(z)}\right)P_{\tilde{\theta}}(z\mid\mathbf{x})\nu(\mathbf{x})=\int\log\left(\frac{P_{\theta}(z)}{P_{\tilde{\theta}}(z)}\right)\mathbb{P}_{\tilde{\theta}}^{\nu}(dz)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-Assuming suitable regularity conditions, note that 
+We define the quantity in 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:Deltatn"
 
 \end_inset
 
- can be re-written as 
-\begin_inset Formula 
-\[
-\Delta(\theta\mid\tilde{\theta})\coloneqq\int\log\left(\frac{P_{\theta}(z)}{P_{\tilde{\theta}}(z)}\right)\mathbb{P}_{\tilde{\theta}}^{\nu}(dz)
-\]
-
+ as 
+\begin_inset Formula $\Delta(\theta\mid\tilde{\theta})$
 \end_inset
 
-by the definition of a Baudoin conditioning.
- Now, let 
-\begin_inset Formula $Q(\theta\mid\tilde{\theta})\coloneqq\Lambda^{\nu}(\tilde{\theta})+\Delta(\theta\mid\tilde{\theta})\leq\Lambda^{\nu}(\theta)$
+, and let 
+\begin_inset Formula $Q(\theta\mid\tilde{\theta})\coloneqq\Lambda_{\tilde{\theta}}(\nu)+\Delta(\theta\mid\tilde{\theta})\leq\Lambda_{\theta}(\nu)$
 \end_inset
 
 .
- Once again, by standard arguments, any 
+ It can be shown by standard arguments that 
+\begin_inset Formula $Q(\tilde{\theta}\mid\tilde{\theta})=\Lambda_{\tilde{\theta}}(\nu$
+\end_inset
+
+), and so any 
 \begin_inset Formula $\theta$
 \end_inset
 
@@ -1361,13 +1423,40 @@ by the definition of a Baudoin conditioning.
 .
  To maximize this increase, it suffices to solve for
 \begin_inset Formula 
-\[
-\arg\max_{\theta\in\Theta}Q(\theta\mid\tilde{\theta})=\arg\max_{\theta\in\Theta}\mathbb{E}_{\mathbb{P}_{\tilde{\theta}}^{\nu}}\left[\log P_{\theta}(X)\right],
-\]
+\begin{eqnarray*}
+\arg\max_{\theta\in\Theta}Q(\theta\mid\tilde{\theta}) & = & \arg\max_{\theta\in\Theta}\iint\log\left(\frac{Q_{\theta,\mathcal{T}}(\mathbf{x}\mid z)Q_{\theta}(z)}{Q_{\tilde{\theta}}(z\mid\mathbf{x})Q_{\tilde{\theta},\mathcal{T}}(\mathbf{x})}\right)Q_{\tilde{\theta}}(z\mid\mathbf{x})dz\nu(d\mathbf{x})\\
+ & = & \arg\max_{\theta\in\Theta}\iint\log Q_{\theta}(z)Q_{\tilde{\theta}}(z\mid\mathbf{x})dz\nu(d\mathbf{x})\\
+ & = & \arg\max_{\theta\in\Theta}\int\log Q_{\theta}(z)\mathbb{Q}_{\tilde{\theta}}^{\nu}(dz).
+\end{eqnarray*}
 
 \end_inset
 
-and the theorem follows as desired.
+The first equality follows from dropping terms that are constant with respect
+ to 
+\begin_inset Formula $\theta$
+\end_inset
+
+, including 
+\begin_inset Formula $Q_{\theta,\mathcal{T}}(\mathbf{x}\mid z)$
+\end_inset
+
+ since the full path 
+\begin_inset Formula $z$
+\end_inset
+
+ is fixed.
+ The second equality follows from the assumption of some regularity conditions
+ that allow the order of integration to be switched, and from the definition
+ of a Baudoin conditioning.
+ As in any EM algorithm, repeated iterations of 
+\begin_inset Formula $\arg\max_{\theta\in\Theta}Q(\theta\mid\tilde{\theta})$
+\end_inset
+
+ will converge to 
+\begin_inset Formula $\arg\max_{\theta\in\Theta}\Lambda_{\theta}(\nu)$
+\end_inset
+
+, which is preceisely the MKLDE.
 \end_layout
 
 \begin_layout Standard
@@ -1402,7 +1491,7 @@ where the expectation is taken over diffusion bridges
  This equation underlies the EM algorithm of 
 \begin_inset CommandInset citation
 LatexCommand citet
-before "Eq. 24 in"
+before "Eq. 24"
 key "beskos-2006"
 
 \end_inset
@@ -1480,10 +1569,10 @@ The restriction of the diffusion coefficient to unity makes the
  function presented above almost useless for practical purposes.
  In this section, we relax this assumption and derive an EM algorithm suitable
  for general use.
- Our general strategy is to first transform a diffusion with general diffusion
- coefficient to one with unit diffusion coefficient.
+ Our strategy to deal with a diffusion with general diffusion coefficient
+ is to first transform it into one with unit diffusion coefficient.
  Then, we derive the continuous log-likelihood of such a transformed process,
- and plug this likelihood into 
+ and substitute this likelihood into 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:em-equation"
@@ -1522,7 +1611,7 @@ for appropriate but otherwise arbitrary
 \begin_inset Formula $Y_{t}(\theta)=\eta_{\theta}(X_{t})$
 \end_inset
 
-, by Ito's lemma, 
+, by Itô's lemma, 
 \begin_inset Formula $Y$
 \end_inset
 
@@ -1543,8 +1632,9 @@ where
 \end_inset
 
 The Lamperti transform is therefore a continuous transformation that reduces
- the diffusion coefficient of any SDE to unity; in conjunction with the
- change of variables formula, it seems like a trivial task to adapt 
+ the diffusion coefficient of any diffusion to unity; in conjunction with
+ the change of variables formula, it seems like a trivial task to adapt
+ 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:simple-q"
@@ -1558,6 +1648,7 @@ reference "eq:simple-q"
 However, 
 \begin_inset CommandInset citation
 LatexCommand citet
+before "top of p. 25"
 key "bladt-sorensen-2014"
 
 \end_inset
@@ -1580,18 +1671,18 @@ key "bladt-sorensen-2014"
  
 \begin_inset CommandInset citation
 LatexCommand citet
-before "p. 25 in"
+before "Section 4.1 in"
 key "bladt-sorensen-2014"
 
 \end_inset
 
  for details of their implementation.
- For each 
-\begin_inset Formula $i=1,\dots,n$
+ We consider 
+\begin_inset Formula $t_{i-1}\leq t\leq t_{i}$
 \end_inset
 
- we consider 
-\begin_inset Formula $t_{i-1}\leq t\leq t_{i}$
+ for each 
+\begin_inset Formula $i=1,\dots,n$
 \end_inset
 
 .
@@ -1703,7 +1794,7 @@ recalling that
 \end_layout
 
 \begin_layout Standard
-we note that we can equivalently write 
+we can equivalently write 
 \begin_inset Formula 
 \begin{eqnarray}
 Q(\theta\mid\tilde{\theta}) & = & \mathbb{E}_{\nu_{n}}\left[A_{\theta}(\eta_{\theta}(X_{t_{n}}))\right]-A_{\theta}(\eta_{\theta}(x_{0}))-\nonumber \\
@@ -1732,6 +1823,98 @@ reference "eq:final-q"
 
 , and from standard Monte Carlo integration results.
  
+\end_layout
+
+\begin_layout Standard
+While 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:final-q-1"
+
+\end_inset
+
+ remains hopelessly intractable, it immediately suggests a MCEM scheme,
+ assuming we have a way of sampling 
+\begin_inset Formula $X$
+\end_inset
+
+ under Baudoin bridge measure 
+\begin_inset Formula $\mathbb{Q}_{\theta}^{\nu}$
+\end_inset
+
+.
+ Suppose for the moment we do: the function 
+\noun on
+exact baudoin-bridge
+\noun default
+(
+\series bold
+\noun on
+
+\begin_inset Formula $\theta,\nu,M,\Delta$
+\end_inset
+
+
+\series default
+\noun default
+) will return discrete observations at 
+\begin_inset Formula $\{0,\delta,\dots,M\delta\}$
+\end_inset
+
+ for 
+\begin_inset Formula $\delta=\Delta/M$
+\end_inset
+
+ of an exact diffusion under the Baudoin 
+\begin_inset Formula $(X_{0,\Delta},\nu)$
+\end_inset
+
+-conditioning of 
+\begin_inset Formula $\mathbb{Q}_{[0,\Delta]}$
+\end_inset
+
+, where 
+\begin_inset Formula $\Delta\in(0,1]$
+\end_inset
+
+.
+ Further suppose we have a function 
+\noun on
+sample(
+\begin_inset Formula $\nu,N$
+\end_inset
+
+)
+\noun default
+ which returns 
+\begin_inset Formula $N$
+\end_inset
+
+ samples from 
+\begin_inset Formula $\nu$
+\end_inset
+
+ in a 
+\begin_inset Formula $N\times n$
+\end_inset
+
+ array.
+ Then, 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "algo:mcem"
+
+\end_inset
+
+ presents an MCEM algorithm which, given 
+\begin_inset Formula $\nu$
+\end_inset
+
+, converges to the MKLDE.
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float algorithm
 wide false
 sideways false
@@ -2116,85 +2299,7 @@ name "algo:mcem"
 \end_layout
 
 \begin_layout Standard
-While 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:final-q-1"
-
-\end_inset
-
- remains hopelessly intractable, it immediately suggests a Monte Carlo EM
- (MCEM) scheme, assuming we have a way of sampling from the Baudoin bridge
- measure 
-\begin_inset Formula $\mathbb{Q}_{\theta}^{\nu}$
-\end_inset
-
-.
- Suppose for the moment we do: the function 
-\noun on
-exact baudoin-bridge
-\noun default
-(
-\series bold
-\noun on
-
-\begin_inset Formula $\theta,\nu,M,\Delta$
-\end_inset
-
-
-\series default
-\noun default
-) will return discrete observations at 
-\begin_inset Formula $\{0,\delta,\dots,M\delta\}$
-\end_inset
-
- for 
-\begin_inset Formula $\delta=\Delta/M$
-\end_inset
-
- of an exact diffusion following the Baudoin 
-\begin_inset Formula $(X_{0,\Delta},\nu)$
-\end_inset
-
--conditioning of 
-\begin_inset Formula $\mathbb{Q}_{[0,\Delta]}$
-\end_inset
-
-.
- We also suppose we have a function 
-\noun on
-sample(
-\begin_inset Formula $\nu,N$
-\end_inset
-
-)
-\noun default
- which returns 
-\begin_inset Formula $N$
-\end_inset
-
- samples from 
-\begin_inset Formula $\nu$
-\end_inset
-
- in a 
-\begin_inset Formula $N\times n$
-\end_inset
-
- matrix.
- Then, 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "algo:mcem"
-
-\end_inset
-
- presents an MCEM algorithm which, given 
-\begin_inset Formula $\nu$
-\end_inset
-
-, converges to the MKLDE.
- We note that there is no need to simulate an entire bridge over 
+We note that there is no need to simulate an entire bridge over 
 \begin_inset Formula $[0,1]$
 \end_inset
 
@@ -2231,13 +2336,13 @@ reference "eq:final-q-1"
 \end_layout
 
 \begin_layout Standard
-We have thus partially answered the question of inference on distributional
+Thus, we have partially answered the question of inference on distributional
  data.
- There is in fact a meaningful estimate of 
+ There is, in fact, a meaningful estimate of 
 \begin_inset Formula $\theta$
 \end_inset
 
- when we are given that 
+ given 
 \begin_inset Formula $X_{\mathcal{T}}$
 \end_inset
 
@@ -2250,21 +2355,26 @@ We have thus partially answered the question of inference on distributional
 \end_inset
 
  which minimizes the K-L divergence of 
-\begin_inset Formula $\mathbb{Q}_{\theta,\mathcal{T}}$
+\begin_inset Formula $\mathbb{Q}_{\theta,X_{\mathcal{T}}}$
 \end_inset
 
  from 
 \begin_inset Formula $\nu$
 \end_inset
 
-, and we can find such a value using 
+ when we fix a family of potentially misspecified probability models 
+\begin_inset Formula $\{\mathbb{Q}_{\theta}\}$
+\end_inset
+
+.
+ 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "algo:mcem"
 
 \end_inset
 
-.
+ finds such a value.
  Moreover, by 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -2272,7 +2382,7 @@ reference "rem:bootstrap"
 
 \end_inset
 
-, when we only have a finite number of sample from 
+, when we only have a finite number of samples from 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -2285,8 +2395,11 @@ reference "rem:bootstrap"
 \end_inset
 
 .
- However, to implement this MCEM scheme, we must have a way to sample from
- the Baudoin 
+ However, to implement this MCEM scheme, we must have a way to sample 
+\begin_inset Formula $X$
+\end_inset
+
+ under the Baudoin 
 \begin_inset Formula $(X_{0,\Delta},\nu)$
 \end_inset
 
@@ -2294,7 +2407,8 @@ reference "rem:bootstrap"
 \begin_inset Formula $\mathbb{Q}_{[0,\Delta]}$
 \end_inset
 
-; in other words, for known 
+.
+ In other words, for known 
 \begin_inset Formula $\theta$
 \end_inset
 
@@ -2311,7 +2425,7 @@ reference "rem:bootstrap"
 \end_inset
 
 .
- We turn to this question in the next chapter.
+ We turn to this question in the following chapter.
 \end_layout
 
 \end_body

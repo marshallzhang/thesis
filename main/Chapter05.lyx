@@ -1554,7 +1554,7 @@ One illustrative replication of an MCEM scheme (using
 \begin_inset Formula $100\times\left\lfloor i^{1.2}\right\rfloor $
 \end_inset
 
- MC samples) to estimate the MKLDE of a Gaussian OU process given 
+ MC samples) to estimate the MKLDE for a Gaussian OU process given 
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
@@ -2206,7 +2206,7 @@ Mean and standard deviation of the MKLDEs obtained from
 \begin_inset Formula $100$
 \end_inset
 
- replications of MCEM on an OU diffusion given either 
+ replications of MCEM for an OU diffusion, given either 
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
@@ -2222,7 +2222,7 @@ Mean and standard deviation of the MKLDEs obtained from
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
- for varying 
+, for varying 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 

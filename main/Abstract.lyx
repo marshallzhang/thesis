@@ -77,27 +77,28 @@ Abstract
 This thesis investigates a novel and natural generalization of the theory
  of maximum likelihood estimation over discretely observed data from continuous-
 time stochastic processes.
- In particular, we propose a Kullback-Liebler divergence minimizing estimator
- as the appropriate estimator for inference when given distributional data
- i.e.
+ We propose a Kullback-Liebler divergence minimizing estimator as the appropriat
+e estimator for inference when given distributional data i.e.
  when given the distribution of, as opposed to observations of, a diffusion
  process at discrete points in time.
  Examples of such data include the probabilistic forecasts frequently made
- in macroeconomics or meteorology.
+ in macroeconomics or meteorology; to the best of our knowledge, we are
+ the first to propose inferential techniques on data of this sort.
  We characterize the proposed estimator and develop a Monte Carlo expectation-ma
-ximization algorithm to carry out inference on distributional data.
- We also develop approximate and exact samplers for a certain class of generaliz
-ed diffusion bridges.
+ximization algorithm which converges to the associated estimate.
+ We also develop the first approximate and exact samplers for a class of
+ generalized diffusion bridges.
  These samplers are not only of independent interest, but also necessary
  for implementing the simulation-based expectation-maximization algorithm.
 \end_layout
 
 \begin_layout Standard
-We empirically validate the correctness of the proposed methods and demonstrate
- their robustness to various assumptions made in their derivation.
- Finally, we synthesize the methods developed to propose an imputation scheme
+We empirically confirm the correctness of the proposed methods through simulatio
+n and demonstrate their robustness to various assumptions made in their
+ derivation.
+ Then, we synthesize the methods developed to propose an imputation scheme
  for probabilistic forecasts.
- We then show this imputation scheme, when applied to forecasts of inflation
+ Finally, we show this imputation scheme, when applied to forecasts of inflation
  expectations, reduces mean out-of-sample Kullback-Liebler divergence from
  the truth by up to a third relative to a linear interpolation scheme.
 \end_layout
