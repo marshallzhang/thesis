@@ -130,15 +130,16 @@ reference "chap:4"
 \end_inset
 
  produces samples from the desired target distribution.
- Furthermore, we show that both samplers are robust to the specific conditions
- imposed in 
+ Furthermore, we show that both the approximate and exact samplers are robust
+ to the specific conditions imposed on the nature of the stochastic process
+ to be bridged in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:2"
 
 \end_inset
 
- on the nature of the stochastic process to be bridged.
+.
  We also confirm that the approximate sampler does not formally draw from
  the true generalized bridge distribution, but note that the approximate
  sample paths are still qualitatively similar to exact sample paths.
@@ -156,7 +157,7 @@ reference "chap:4"
  characterize a generalized bridge sampler for the specific case of Itô
  diffusions with finite speed measure, we will consider a more general class
  of processes in this section to demonstrate the broad applicability of
- the proposed sampling method.
+ the proposed generalized bridge samplers.
  In particular, we will focus on Lévy processes of the form 
 \begin_inset Formula 
 \begin{equation}
@@ -195,11 +196,11 @@ reference "chap:2"
 
 \end_inset
 
-; this so-called Gaussian OU process, or OU diffusion, is both theoretically
+.
+ This so-called Gaussian OU process, or OU diffusion, is both theoretically
  interesting (representing the only non-trivial stationary, Gaussian, and
- Markovian process) and used in practice to model a wide range of processes
- from the movement of springs to interest rates—see standard physics references
- or 
+ Markovian process) and practically useful as a model for a wide range of
+ processes (see 
 \begin_inset CommandInset citation
 LatexCommand citet
 before "Section 1.2 in"
@@ -207,7 +208,7 @@ key "hirsa-2012"
 
 \end_inset
 
- for applications in finance, for instance.
+ for applications in finance, for instance).
  In general, we will refer to the parameter vector of such a process as
  
 \begin_inset Formula $\theta=(\mu,\lambda,\sigma)$
@@ -287,7 +288,7 @@ reference "eq:ou-sde"
 placement t
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -295,11 +296,11 @@ status open
 
 \begin_layout Plain Layout
 
- 
+
 \backslash
 centering 
 \backslash
-begin{tabular}{@{}llllll@{}} 
+begin{tabular}{@{}lllllll@{}} 
 \backslash
 toprule 
 \backslash
@@ -312,7 +313,7 @@ parbox{2cm}{Process
 multicolumn{2}{l}{K-S stat.
  ($
 \backslash
-times 10^{-2}$)} & 
+times 10^{-2}$)} && 
 \backslash
 multicolumn{2}{l}{CPU (rel.)} 
 \backslash
@@ -320,8 +321,10 @@ multicolumn{2}{l}{CPU (rel.)}
 \backslash
  
 \backslash
-cmidrule(l){2-3}                                     & Approx.
-                   & Exact                  & Approx.
+cmidrule(l){2-3} 
+\backslash
+cmidrule(l){5-6}                                    & Approx.
+                   & Exact                  && Approx.
                   & Exact                 
 \backslash
 
@@ -331,7 +334,7 @@ cmidrule(l){2-3}                                     & Approx.
 midrule 
 \backslash
 emph{OU (Gaussian)}             &                           &          
-              &                          &                       
+              &&                          &                       
 \backslash
 
 \backslash
@@ -346,7 +349,7 @@ emph{OU (Gaussian)}             &                           &
 :$
 \backslash
 mathcal{N}(0,1/2)$               & 2.17*                     & 1.62      
-             & 2.74                      & 76.7                  
+     &        & 2.74                      & 76.7                  
 \backslash
 
 \backslash
@@ -361,7 +364,7 @@ mathcal{N}(0,1/2)$               & 2.17*                     & 1.62
 :$2
 \backslash
 text{Bern}-1$                   & 3.08***                   & 1.11       
-            & 3.35                      & 94.7                  
+     &       & 3.35                      & 94.7                  
 \backslash
 
 \backslash
@@ -376,7 +379,7 @@ text{Bern}-1$                   & 3.08***                   & 1.11
 :$
 \backslash
 text{Expo}$                      & 3.12**                    & 1.95      
-             & 2.94                      & 96.3                  
+       &      & 2.94                      & 96.3                  
 \backslash
 
 \backslash
@@ -385,7 +388,7 @@ text{Expo}$                      & 3.12**                    & 1.95
 emph{OU ($
 \backslash
 alpha$-stable)}             &                           &              
-          &                          &                       
+        &  &                          &                       
 \backslash
 
 \backslash
@@ -400,7 +403,7 @@ alpha$-stable)}             &                           &
 :$
 \backslash
 mathcal{N}(0,1/2)$               & 2.30*                     & 1.39      
-             & 3.47                      & 85.9                  
+         &    & 3.47                      & 85.9                  
 \backslash
 
 \backslash
@@ -415,7 +418,7 @@ mathcal{N}(0,1/2)$               & 2.30*                     & 1.39
 :$2
 \backslash
 text{Bern}-1$                   & 2.26*                      & 1.58      
-             & 5.08                      & 93.5                  
+         &    & 5.08                      & 93.5                  
 \backslash
 
 \backslash
@@ -430,14 +433,14 @@ text{Bern}-1$                   & 2.26*                      & 1.58
 :$
 \backslash
 text{Expo}$                      & 3.85***                   & 2.75**    
-             & 4.32                      & 97.5                  
+           &  & 4.32                      & 97.5                  
 \backslash
 
 \backslash
  
 \backslash
 emph{Wiener}             &                           &                 
-       &                          &                       
+       &               &           &                       
 \backslash
 
 \backslash
@@ -452,7 +455,7 @@ emph{Wiener}             &                           &
 :$
 \backslash
 mathcal{N}(0,1/2)$               & 0.97                      & 0.69      
-             & 4.01                      & 77.8                  
+            & & 4.01                      & 77.8                  
 \backslash
 
 \backslash
@@ -467,7 +470,7 @@ mathcal{N}(0,1/2)$               & 0.97                      & 0.69
 :$2
 \backslash
 text{Bern}-1$                   & 1.54                     & 0.09        
-           & 3.92                      & 72.2                  
+           && 3.92                      & 72.2                  
 \backslash
 
 \backslash
@@ -482,7 +485,7 @@ text{Bern}-1$                   & 1.54                     & 0.09
 :$
 \backslash
 text{Expo}$                      & 1.60                      & 0.89      
-             & 4.88                      & 76.2                  
+            & & 4.88                      & 76.2                  
 \backslash
 
 \backslash
@@ -591,7 +594,7 @@ name "tab:KS-stats"
 
 \end_inset
 
-Kolmogorov-Smirnov statistics comparing 
+Kolmogorov-Smirnov (K-S) statistics comparing 
 \begin_inset Formula $10,000$
 \end_inset
 
@@ -617,6 +620,19 @@ reference "eq:ou-sde"
 .
  The running times relative to sampling the unconstrained processes are
  also presented.
+ 
+\begin_inset Formula $*,**,***$
+\end_inset
+
+ denote statistically significant K-S statistics at the 
+\begin_inset Formula $95\%,99\%,$
+\end_inset
+
+ and 
+\begin_inset Formula $99.9\%$
+\end_inset
+
+ confidence levels.
 \end_layout
 
 \end_inset
@@ -654,7 +670,7 @@ reference "eq:ou-sde"
 \begin_inset Formula $X$
 \end_inset
 
- is equal in distribution to 
+ is equal in distribution to the unconstrained process 
 \begin_inset Formula $X$
 \end_inset
 
@@ -679,21 +695,16 @@ reference "tab:KS-stats"
 \begin_inset Formula $\nu_{\theta}(F,L)$
 \end_inset
 
--bridges sampled approximately and exactly, as well as the relative running
- times of the two samplers.
- One, two, and three asterisks represent K-S statistics that are significant
- at the 
-\begin_inset Formula $95\%,99\%,$
-\end_inset
+-bridges sampled approximately and exactly.
+ The relative running times of the two samplers are also given.
+ A significant K-S statistic says that we may reject the null hypothesis
+ that the samples being compared are drawn from the same distribution at
+ some appropriate confidence level.
+ 
+\end_layout
 
- and 
-\begin_inset Formula $99.9\%$
-\end_inset
-
- confidence levels respectively; a significant K-S statistic says that we
- may reject the null hypothesis that the samples being compared are drawn
- from the same distribution at the appropriate confidence level.
- In addition to evaluating the correctness of the proposed generalized bridge
+\begin_layout Standard
+In addition to evaluating the correctness of the proposed generalized bridge
  samplers for a Gaussian OU process with 
 \begin_inset Formula $\theta=(0,1,1)$
 \end_inset
@@ -705,12 +716,11 @@ reference "chap:2"
 
 \end_inset
 
-, we also test the correctness of the samplers for an OU process driven
- by
+, we also test the correctness of the samplers for 
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
-a standard 
+an OU process driven by a standard 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -778,7 +788,7 @@ reference "tab:KS-stats"
 \end_inset
 
  confirms that for an Itô diffusion, we cannot reject the null hypothesis
- that exact sampler draws from the true distribution at the 
+ that the exact sampler draws from the true distribution at the 
 \begin_inset Formula $95\%$
 \end_inset
 
@@ -802,10 +812,10 @@ We note that the quality of the approximate sampler is inversely correlated
  with the computing time required to sample exact bridges.
  This intuitively highlights a tradeoff between speed and quality, and is
  also formally expected: If the approximate sampler produces low quality
- samples, then the probability of such samples being hit by a hitting diffusion
+ samples, then their probability of intersection with a hitting diffusion
  is low.
- Since the exact sampler accepts sample paths that are less likely to be
- hit by a hitting diffusion with higher probability, it must spend more
+ Since the exact sampler accepts, with high probability, sample paths that
+ are less likely to intersect with a hitting diffusion, it must spend more
  time simulating hitting diffusions for any given proposal.
 \end_layout
 
@@ -814,7 +824,7 @@ The bridges produced by the exact sampler for the
 \begin_inset Formula $\alpha$
 \end_inset
 
--stable OU and Wiener processes also appear to be generally of a high quality,
+-stable OU and Wiener processes also appear to be generally of high quality,
  suggesting that the proposed method is fairly robust to the assumptions
  made in 
 \begin_inset CommandInset ref
@@ -824,7 +834,7 @@ reference "chap:2"
 \end_inset
 
 .
- It is only in the extreme case of a 
+ It is only in the extreme case of an 
 \begin_inset Formula $\mbox{Expo}$
 \end_inset
 
@@ -840,7 +850,7 @@ reference "chap:2"
 .
  We conjecture that the infinite variance of the innovations of the process
  and the relatively heavy tail of the initial distribution dramatically
- reduce the probability of intersection with a mean-reverting hitting process.
+ reduce the probability of intersection with a mean reverting hitting process.
  In particular, our choice of 
 \begin_inset Formula $M=10$
 \end_inset
@@ -854,7 +864,7 @@ reference "chap:2"
 Unexpectedly, the approximate sampler appears to sample from the true bridge
  distribution when the underlying process is a Wiener process, which does
  not have finite speed measure.
- We do not have a theoretically justified explanation for this phenomenon;
+ We do not have a theoretically grounded explanation for this phenomenon;
  however, we see this result as further evidence that the assumptions made
  in 
 \begin_inset CommandInset ref
@@ -906,8 +916,12 @@ Q-Q plots comparing
 \begin_inset Formula $X$
 \end_inset
 
+ governed by 
+\begin_inset Formula $\theta=(0,1,1)$
+\end_inset
+
  to the corresponding approximate and exact 
-\begin_inset Formula $\nu_{\theta^{*}}(F,W)$
+\begin_inset Formula $\nu_{\theta}(F,W)$
 \end_inset
 
 -bridges of 
@@ -970,7 +984,7 @@ reference "fig:q-q"
 
 \end_inset
 
- reveals to the eye that 
+ reveals that 
 \begin_inset Formula $F\sim\mbox{Expo}$
 \end_inset
 
@@ -994,10 +1008,10 @@ reference "tab:KS-stats"
 \end_inset
 
 .
- We hypothesize that intuitively, the exact sampler has difficulty correcting
- these paths because the coarse estimates used for the M-H acceptance ratios
- cannot capture the low probability of intersection with a mean reverting
- hitting process, as described above.
+ We hypothesize that the exact sampler has difficulty correcting these paths
+ because the coarse estimates used for the M-H acceptance ratios cannot
+ capture their low probability of intersection with a mean reverting hitting
+ process, as described above.
 \end_layout
 
 \begin_layout Standard
@@ -1009,8 +1023,7 @@ reference "tab:KS-stats"
 
 \end_inset
 
- represent the most liberal estimates of the deviation of the samples from
- the true distribution.
+ represent the most liberal estimates of deviation from the true distribution.
  In particular, 
 \begin_inset Formula $t=1/2$
 \end_inset
@@ -1042,7 +1055,8 @@ reference "chap:EM"
 .
  In the next section, we will demonstrate that an MCEM algorithm using the
  approximate bridge sampler produces comparable results to one using the
- exact bridge sampler.
+ exact bridge sampler, and demonstrate the consistency of the proposed MCEM
+ algorithm more generally.
 \end_layout
 
 \begin_layout Section
@@ -1065,9 +1079,9 @@ reference "chap:EM"
 .
  We show that the MCEM scheme converges to the Kullback-Liebler divergence
  minimizing parameter in a variety of settings, often very quickly.
- Furthermore, we demonstrate that the approximate generalized bridge sampler
- provides samples of a sufficiently high quality that convergence is not
- adversely affected up to Monte Carlo variation.
+ Furthermore, we demonstrate that using an approximate generalized bridge
+ sampler does not seem to adversely affect convergence up to Monte Carlo
+ variation.
  Given that the approximate sampler is one to two orders of magnitude faster
  than the exact sampler (as seen in 
 \begin_inset CommandInset ref
@@ -1076,17 +1090,17 @@ reference "tab:KS-stats"
 
 \end_inset
 
-), this is a welcome finding and lends the proposed MCEM scheme increased
- utility in inference applications.
+), this is a welcome finding that dramatically increases the utility of
+ the proposed MCEM scheme in inference applications.
 \end_layout
 
 \begin_layout Standard
-The theoretical setting for this section is as follows.
- Suppose we have an unknown true probability model 
+The theoretical setting for this section is as follows: Suppose we have
+ an unknown true probability model 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- admitting its canonical process 
+ admitting a canonical process 
 \begin_inset Formula $X$
 \end_inset
 
@@ -1099,8 +1113,8 @@ The theoretical setting for this section is as follows.
 \begin_inset Formula $X$
 \end_inset
 
- under an alternative probability model 
-\begin_inset Formula $\mathbb{Q}_{\theta}$
+ under a family of alternative probability models 
+\begin_inset Formula $\mathcal{Q}=\{\mathbb{Q}_{\theta}\mid\theta\in\Theta\}$
 \end_inset
 
 , to which 
@@ -1108,10 +1122,10 @@ The theoretical setting for this section is as follows.
 \end_inset
 
  is absolutely continuous for any 
-\begin_inset Formula $\theta$
+\begin_inset Formula $\theta\in\Theta$
 \end_inset
 
- in the parameter space.
+.
  
 \begin_inset Formula $X_{0}=x_{0}$
 \end_inset
@@ -1120,7 +1134,7 @@ The theoretical setting for this section is as follows.
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
- be the known distribution of 
+ be the known law of 
 \begin_inset Formula $X$
 \end_inset
 
@@ -1146,7 +1160,7 @@ The theoretical setting for this section is as follows.
 
 \begin_layout Standard
 In this section, we will focus on the family of models 
-\begin_inset Formula $\{\mathbb{Q}_{\theta}\}$
+\begin_inset Formula $\mathcal{Q}$
 \end_inset
 
  under which 
@@ -1189,11 +1203,15 @@ Our simulation strategy rests on the following observation: If we can simulate
 \begin_inset Formula $\theta$
 \end_inset
 
- which minimizes the K-L divergence of 
+ which minimizes the K-L divergence of the law of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
 \begin_inset Formula $\mathbb{Q}_{\theta}$
 \end_inset
 
- from 
+ from its law under 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -1202,7 +1220,7 @@ Our simulation strategy rests on the following observation: If we can simulate
 \begin_inset Formula $X$
 \end_inset
 
- is an OU diffusion with parameters 
+ is an OU diffusion with parameter 
 \begin_inset Formula $\theta^{*}$
 \end_inset
 
@@ -1224,18 +1242,14 @@ Our simulation strategy rests on the following observation: If we can simulate
 \end_inset
 
 , the K-L divergence of any finite-dimensional distribution of 
-\begin_inset Formula $\mathbb{Q}_{\theta}$
+\begin_inset Formula $\mathbb{Q}_{\theta}\in\mathcal{Q}$
 \end_inset
 
  from the corresponding distribution of 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is analytically available for any 
-\begin_inset Formula $\theta$
-\end_inset
-
- in the parameter space.
+ is analytically available.
 \end_layout
 
 \begin_layout Standard
@@ -1262,7 +1276,14 @@ In all simulations to be carried out, the relevant process is simulated
 \begin_inset Formula $M=10$
 \end_inset
 
- as before, and all optimizations are carried out using the R package DEoptim
+ as before, and all optimizations are carried out using the 
+\family typewriter
+R
+\family default
+ package 
+\family typewriter
+DEoptim
+\family default
  (differential evolution optimization) developed by 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -1288,18 +1309,22 @@ status open
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
 centering 
 \backslash
-begin{tabular}{@{}clccccccccc@{}} 
+begin{tabular}{@{}clcccccccccc@{}} 
 \backslash
 toprule 
 \backslash
 multirow{2}{*}{$i$} &  & 
 \backslash
 multicolumn{3}{l}{Approx.}                                              
-                                   & 
+                                   && 
 \backslash
 multicolumn{3}{l}{Exact}                                               
                                             
@@ -1308,7 +1333,9 @@ multicolumn{3}{l}{Exact}
 \backslash
  
 \backslash
-cmidrule(lr){3-5}                             &  & 
+cmidrule(lr){3-5}
+\backslash
+cmidrule(lr){7-9}                             &  & 
 \backslash
 multicolumn{1}{c}{$
 \backslash
@@ -1326,7 +1353,7 @@ multicolumn{1}{c}{$
 \backslash
 hat{
 \backslash
-sigma}$}     & 
+sigma}$}  &   & 
 \backslash
 multicolumn{1}{c}{$
 \backslash
@@ -1352,7 +1379,7 @@ sigma}$}
 \backslash
 cmidrule(r){1-1} 
 \backslash
-cmidrule(lr){3-8} 0                          &  & 2.00                  
+cmidrule(lr){3-9} 0                          &  & 2.00                  
               & 
 \backslash
 :2.00
@@ -1361,7 +1388,7 @@ cmidrule(lr){3-8} 0                          &  & 2.00
 \backslash
 :2.00
 \backslash
-:                            & 
+:                            && 
 \backslash
 :2.00
 \backslash
@@ -1378,15 +1405,15 @@ cmidrule(lr){3-8} 0                          &  & 2.00
 
 \backslash
  1                          &  & 0.59                                & 1.94
-                            & 1.10                                & 0.10 
-                               & 0.93                               & 0.89
+                            & 1.10                                && 0.10
+                                & 0.93                               & 0.89
                    
 \backslash
 
 \backslash
  2                          &  & 0.06                                & 0.95
-                            & 0.97                                & 0.01 
-                               & 0.87                               & 0.88
+                            & 0.97                                && 0.01
+                                & 0.87                               & 0.88
     
 \backslash
 
@@ -1394,7 +1421,7 @@ cmidrule(lr){3-8} 0                          &  & 2.00
  3                          &  & -0.06
 \backslash
 :                               & 1.28                            & 1.07 
-                              & -0.02
+                             & & -0.02
 \backslash
 :                            & 0.71                               & 0.88 
   
@@ -1402,7 +1429,7 @@ cmidrule(lr){3-8} 0                          &  & 2.00
 
 \backslash
  4                          &  & 0.18                                & 0.98
-                            & 0.86                                & -0.10
+                            & 0.86                                && -0.10
 \backslash
 :                             & 0.97                               & 0.93
      
@@ -1410,21 +1437,21 @@ cmidrule(lr){3-8} 0                          &  & 2.00
 
 \backslash
  5                          &  & 0.00                                & 1.03
-                            & 0.95                                & 0.02 
-                               & 0.98                               & 0.98
+                            & 0.95                                && 0.02
+                                & 0.98                               & 0.98
   
 \backslash
 
 \backslash
  6                          &  & 0.02                                & 0.94
-                            & 0.88                                & 0.04 
-                               & 1.09                               & 0.99
+                            & 0.88                                && 0.04
+                                & 1.09                               & 0.99
   
 \backslash
 
 \backslash
  7                          &  & 0.01                                & 1.33
-                            & 0.96                                & -0.03
+                            & 0.96                                && -0.03
 \backslash
 :                                & 1.19                               & 1.06
     
@@ -1434,22 +1461,22 @@ cmidrule(lr){3-8} 0                          &  & 2.00
  8                          &  & -0.05
 \backslash
 :                               & 0.91                            & 1.02 
-                               & 0.04                                & 1.01
+                             &  & 0.04                                & 1.01
                                   &1.01  
 \backslash
 
 \backslash
  9                          &  & 0.01                                & 1.01
-                            & 0.99                                & 0.04 
-                               & 1.04                                   &
- 0.99 
+                            & 0.99                                && 0.04
+                                & 1.04                                  
+ & 0.99 
 \backslash
 
 \backslash
  10                         &  & -0.04
 \backslash
 :                               & 1.04                            & 1.04 
-                               & 0.01                                & 1.08
+                             &  & 0.01                                & 1.08
                              & 1.01          
 \backslash
 
@@ -1458,7 +1485,7 @@ cmidrule(lr){3-8} 0                          &  & 2.00
 \backslash
 bottomrule 
 \backslash
-end{tabular} 
+end{tabular}
 \end_layout
 
 \end_inset
@@ -1646,7 +1673,7 @@ reference "tab:mcem-stationary"
 
  that the MCEM scheme using either the exact or approximate bridge sampler
  converges quite quickly, with no obvious difference between using one sampler
- or the other up to Monte Carlo variation.
+ over the other, up to Monte Carlo variation.
  As is usual for MCEM schemes, the algorithm produces parameter estimates
  sampled from some neighborhood of the true parameter value as described
  in 
@@ -1658,25 +1685,14 @@ key "wei-tanner-1990"
 \end_inset
 
 , instead of converging deterministically to such a value.
- The slightly thinner tails of the sample paths drawn from the approximate
- sampler near 
+ Though we expect the slightly thinner tails of the sample paths drawn from
+ the approximate sampler near 
 \begin_inset Formula $t=1/2$
 \end_inset
 
-, at least in this case, do not seem to have a significant adverse impact
- on the quality of the Monte Carlo estimates.
- We conjecture that this is because the MCEM scheme depends not only on
- the quality of the sample path near 
-\begin_inset Formula $t=1/2$
-\end_inset
-
- but rather over the entire interval 
-\begin_inset Formula $[0,1]$
-\end_inset
-
-.
- Furthermore, the Monte Carlo variation renders any bias, if it exists,
- undetectable to the naked eye.
+ to result in potentially low-quality Monte Carlo estimates, the Monte Carlo
+ variation in this experiment renders any bias undetectable to the naked
+ eye.
 \end_layout
 
 \begin_layout Standard
@@ -2321,16 +2337,15 @@ When
 
 \end_inset
 
-where 
+where
 \begin_inset Formula 
-\begin{eqnarray*}
-\Sigma_{O}(\theta) & = & \frac{\sigma^{2}}{2\lambda}\begin{bmatrix}1-e^{-\lambda} & e^{-\lambda/2}-e^{-3\lambda/2}\\
+\[
+\Sigma_{O}(\theta)=\frac{\sigma^{2}}{2\lambda}\begin{bmatrix}1-e^{-\lambda} & e^{-\lambda/2}-e^{-3\lambda/2}\\
 e^{-\lambda/2}-e^{-3\lambda/2} & 1-e^{-2\lambda}
-\end{bmatrix}\mbox{ and}\\
-\Sigma_{F}(H) & = & \begin{bmatrix}2^{-2H} & 1/2\\
+\end{bmatrix},\Sigma_{F}(H)=\begin{bmatrix}2^{-2H} & 1/2\\
 1/2 & 1
 \end{bmatrix}
-\end{eqnarray*}
+\]
 
 \end_inset
 
@@ -2376,7 +2391,7 @@ In addition to varying
 
 , as is often the case in the real world (think of some set of predictions
  made by a group of people).
- In particular, we consider the case when we bootstrap from a fixed set
+ In particular, we consider the case where we bootstrap from a fixed set
  of 
 \begin_inset Formula $100$
 \end_inset
@@ -2401,11 +2416,11 @@ reference "chap:EM"
 
 \end_inset
 
-, we expect that the MKLDE from the distributional data 
+, we expect the MKLDE from the distributional data 
 \begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
- should be less efficient than when we have access to the true distributional
+ to be less efficient than if we were to have access to the true distributional
  data 
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
@@ -2478,9 +2493,9 @@ reference "tab:diff-diffusions"
 \end_inset
 
 ; we conjecture that this is due to the thinner-tailed marginal distributions
- that the approximate sampler produces relative to the exact sampler; however,
- given the variability of the MKLDEs, this bias does not appear to be significan
-t.
+ that the approximate sampler produces relative to those of the exact sampler;
+ however, given the variability of the MKLDEs, this bias does not appear
+ to be significant.
  On the other hand, the computational time taken by an MCEM scheme relying
  on exact generalized bridge samples is at least an order of a magnitude
  longer than the time needed for MCEM using approximate sampling, which

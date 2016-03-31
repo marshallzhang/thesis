@@ -125,7 +125,9 @@ This thesis considers the novel (to the best of our knowledge) problem of
 \end_layout
 
 \begin_layout Standard
-Future directions for research abound.
+Future directions for research abound, especially given the novel nature
+ of the problem.
+ We highlight some potential lines of exploration here.
  Most pressingly, a formal investigation into the properties of the imputation
  scheme proposed in 
 \begin_inset CommandInset ref
@@ -159,8 +161,8 @@ reference "chap:EM"
 \end_layout
 
 \begin_layout Standard
-A third theoretical avenue of research comes from the simulation results
- presented in 
+A third potential avenue of research comes from the simulation results presented
+ in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:5"
@@ -172,7 +174,7 @@ reference "chap:5"
  We conjecture based on simulations for Wiener bridges that in particular,
  the restriction of diffusions to those with finite speed measure considered
  in this thesis is overly strict.
- Perhaps a sampler (potentially more 
+ A sampler (potentially more 
 \begin_inset Quotes eld
 \end_inset
 

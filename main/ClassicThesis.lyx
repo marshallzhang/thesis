@@ -264,6 +264,9 @@ filename "Chapter01.lyx"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
 filename "Chapter02.lyx"

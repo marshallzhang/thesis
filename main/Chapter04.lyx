@@ -134,7 +134,7 @@ satisfying the usual assumptions, where
 \begin_inset Formula $\sigma$
 \end_inset
 
- are fully specified (unlike 
+ are fully specified (this is unlike 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:sde-with-theta"
@@ -143,7 +143,7 @@ reference "eq:sde-with-theta"
 
  in the previous chapter, where the drift and diffusion were only known
  up to some parameters) and 
-\begin_inset Formula $W_{t}$
+\begin_inset Formula $W$
 \end_inset
 
  is a Wiener process.
@@ -152,7 +152,7 @@ reference "eq:sde-with-theta"
 \end_inset
 
  induces the probability measure 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
  on the usual probability space, fix 
@@ -163,8 +163,12 @@ reference "eq:sde-with-theta"
 \begin_inset Formula $\nu$
 \end_inset
 
- be a probability measure that is absolutely continuous to 
-\begin_inset Formula $\mathbb{P}_{\mathcal{T}}$
+ be a probability measure that is absolutely continuous to the law of 
+\begin_inset Formula $X_{\mathcal{T}}$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
 .
@@ -173,12 +177,12 @@ reference "eq:sde-with-theta"
 \end_inset
 
 -conditioning of 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
  is a generalized diffusion bridge measure, in the sense that the canonical
  process on 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+\begin_inset Formula $\mathbb{Q}^{\nu}$
 \end_inset
 
  is a regular diffusion bridge when 
@@ -187,13 +191,13 @@ reference "eq:sde-with-theta"
 
  is the product of Dirac delta measures.
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 This statement is more precisely made in some limiting sense, since the
  product measure of Dirac delta measures is not absolutely continuous to
  
-\begin_inset Formula $\mathbb{P}_{\mathcal{T}}$
+\begin_inset Formula $\mathbb{Q}_{\mathcal{T}}$
 \end_inset
 
  when 
@@ -208,7 +212,7 @@ This statement is more precisely made in some limiting sense, since the
 \end_inset
 
  Since 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
  is Markovian, we may, without loss of generality, set 
@@ -244,7 +248,7 @@ reference "eq:basic-sde"
 \end_inset
 
  and let 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
  be the measure it induces.
@@ -265,11 +269,11 @@ bridge of
 \end_inset
 
 conditioning of 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
 , denoted 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+\begin_inset Formula $\mathbb{Q}^{\nu}$
 \end_inset
 
 .
@@ -298,7 +302,7 @@ key "baudoin-2002"
 \end_inset
 
 , the marginal density of 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+\begin_inset Formula $\mathbb{Q}^{\nu}$
 \end_inset
 
  at some 
@@ -316,11 +320,11 @@ name "prop:v-bridge-density"
 \end_inset
 
 The marginal density of 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+\begin_inset Formula $\mathbb{Q}^{\nu}$
 \end_inset
 
  with respect to 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
  at some 
@@ -330,21 +334,21 @@ The marginal density of
  is given by 
 \begin_inset Formula 
 \[
-\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathbb{R}^{2}}\frac{p_{t}^{*}(x_{0},\cdot)p_{1-t}(\cdot,x_{1})}{c(x_{0},x_{1})}\nu(dx_{0}dx_{1}),
+\frac{d\mathbb{Q}_{t}^{\nu}}{d\mathbb{Q}_{t}}=\int_{\mathcal{R}^{2}}\frac{q_{t}^{*}(x_{0},\cdot)q_{1-t}(\cdot,x_{1})}{c(x_{0},x_{1})}\nu(dx_{0}dx_{1}),
 \]
 
 \end_inset
 
 where 
-\begin_inset Formula $p$
+\begin_inset Formula $q$
 \end_inset
 
  and 
-\begin_inset Formula $p*$
+\begin_inset Formula $q^{*}$
 \end_inset
 
  are the forward and backward transition densities associated with 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
  and 
@@ -352,7 +356,7 @@ where
 \end_inset
 
  is the density of 
-\begin_inset Formula $\mathbb{P}_{0,1}$
+\begin_inset Formula $\mathbb{Q}_{0,1}$
 \end_inset
 
 .
@@ -368,14 +372,14 @@ Consider any
  By 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "prop:density-of-bridge"
+reference "thm:density-of-bridge"
 
 \end_inset
 
 , we know that 
 \begin_inset Formula 
 \[
-\mathbb{E}_{\mathbb{P}}\left[X_{t}\mid X_{0}=x,X_{1}=y\right]=\mathbb{E}_{\mathbb{P}}\left[X_{t}\frac{p_{t}^{*}\left(x,X_{t}\right)p_{1-t}\left(X_{t},y\right)}{c\left(x,y\right)}\right].
+\mathbb{E}_{\mathbb{Q}}\left[X_{t}\mid X_{0}=x,X_{1}=y\right]=\mathbb{E}_{\mathbb{Q}}\left[X_{t}\frac{q_{t}^{*}\left(x,X_{t}\right)q_{1-t}\left(X_{t},y\right)}{c\left(x,y\right)}\right].
 \]
 
 \end_inset
@@ -383,7 +387,7 @@ reference "prop:density-of-bridge"
 Therefore, 
 \begin_inset Formula 
 \[
-\eta_{t}^{x,y}=\frac{p_{t}^{*}(x,\cdot)p_{1-t}(\cdot,y)}{c(x,y)}
+\eta_{t}^{x,y}=\frac{q_{t}^{*}(x,\cdot)q_{1-t}(\cdot,y)}{c(x,y)}
 \]
 
 \end_inset
@@ -393,7 +397,7 @@ is the Radon-Nikodym derivative associated with the Baudoin
 \end_inset
 
 -conditioning on 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
 .
@@ -408,7 +412,13 @@ reference "prop:pv-density-1"
 \end_layout
 
 \begin_layout Standard
-Naturally, if 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prop:v-bridge-density"
+
+\end_inset
+
+ reveals that if 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -417,18 +427,14 @@ Naturally, if
 \end_inset
 
  under 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
-, we have trivially that 
-\begin_inset Formula $\mathbb{P}^{\nu}=\mathbb{P}$
+, 
+\begin_inset Formula $d\mathbb{Q}_{t}^{\nu}/d\mathbb{Q}_{t}=1$
 \end_inset
 
-, and thus 
-\begin_inset Formula $d\mathbb{P}_{t}^{\nu}/d\mathbb{P}_{t}=1$
-\end_inset
-
-.
+, as expected.
  
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -454,12 +460,7 @@ reference "eq:basic-sde"
 
 .
  However, as previously noted, transition densities are typically unavailable
- for all but the simplest diffusions, and needing to integrate these densities
- over an arbitrary measure 
-\begin_inset Formula $\nu$
-\end_inset
-
- prevents 
+ for all but the simplest diffusions, preventing 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "prop:v-bridge-density"
@@ -472,11 +473,10 @@ reference "prop:v-bridge-density"
 \end_inset
 
 -bridges, and by the intractability of the marginal density of 
-\begin_inset Formula $\mathbb{P}^{\nu}$
+\begin_inset Formula $\mathbb{Q}^{\nu}$
 \end_inset
 
- in the interior of its time domain, we develop methods for the simulation
- of 
+, we develop methods for the simulation of 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -641,9 +641,10 @@ A visualization of the approximate
 -bridge simulation strategy we propose in this chapter.
  The left graphic depicts two diffusion processes with some joint initial
  distribution (whose marginals are depicted).
- One is simulated forward in time and one is simulated backward in time.
- The right graphic depicts how we can join the two processes (in gray) to
- create an approximate 
+ One process is simulated forward in time and other is simulated backward
+ in time.
+ The right graphic depicts how we can join the two processes (now in red)
+ to create an approximate 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -977,6 +978,15 @@ on the event
 \end_inset
 
  are mutually independent.
+ Let 
+\begin_inset Formula $\mathbb{Y}$
+\end_inset
+
+ be the measure induced by 
+\begin_inset Formula $\mathbf{Y}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Proof
@@ -1412,7 +1422,6 @@ bridge.
 \end_layout
 
 \begin_layout Standard
-Moreover, 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:approx-sim"
@@ -1452,7 +1461,6 @@ reference "thm:approx-sim"
  proposed in 
 \begin_inset CommandInset citation
 LatexCommand citet
-before "p. 5 in"
 key "bladt-sorensen-2014"
 
 \end_inset
@@ -1499,11 +1507,11 @@ key "kloeden-1992"
 \end_inset
 
 , and a crossing of the discrete series of observations 
-\begin_inset Formula $\{\mathbf{X}_{t}\}_{t\in\mathcal{T}}$
+\begin_inset Formula $\mathbf{X}=\{\mathbf{X}_{t}\}_{t\in\mathcal{T}}$
 \end_inset
 
  and 
-\begin_inset Formula $\{\mathbf{Y}_{t}\}_{t\in\mathcal{T}}$
+\begin_inset Formula $\mathbf{Y}=\{\mathbf{Y}_{t}\}_{t\in\mathcal{T}}$
 \end_inset
 
  as the event that there exists an 
@@ -1554,7 +1562,7 @@ reference "algo:approx-sim"
 \begin_inset Float algorithm
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1898,8 +1906,8 @@ reference "chap:5"
 \end_inset
 
 , we will present some evidence that the approximate simulation scheme proposed
- above qualitatively appears to sample from the true distribution in a variety
- of situations.
+ above qualitatively appears to produce samples that are qualitatively similar
+ to exact samples in a variety of situations.
  However, an exact simulation scheme is still desirable.
  In this section, we outline the method by which 
 \begin_inset CommandInset citation
@@ -2018,7 +2026,7 @@ key "bladt-sorensen-2014"
 \end_inset
 
  show, an approximate diffusion bridge is a diffusion bridge conditioned
- on being hit by a hitting diffusion (this is the result of that 
+ on being hit by a hitting diffusion (this is the result that 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:approx-sim"
@@ -2365,8 +2373,7 @@ Now, we present an adaptation of this strategy to develop an exact
 \end_inset
 
 -bridge sampler.
- We simply use the observation that our scheme for sampling an approximate
- 
+ We use the observation that our scheme for sampling an approximate 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -2410,7 +2417,7 @@ Sampling an exact
 \begin_inset Formula $(a,b)\sim\nu$
 \end_inset
 
-, and sampling an exact diffusion bridge from 
+, then sampling an exact diffusion bridge from 
 \begin_inset Formula $a$
 \end_inset
 
@@ -2438,7 +2445,7 @@ hitting
 \begin_inset Formula $b$
 \end_inset
 
-) return discrete observations from a solution to 
+), which returns discrete observations from a solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
@@ -2459,9 +2466,9 @@ approximate diffusion bridge(
 \begin_inset Formula $a,b,\mu,\sigma,N)$
 \end_inset
 
-
+,
 \noun default
- be the approximate sampler of 
+ which is the approximate sampler of 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "bladt-sorensen-2014"
@@ -2508,7 +2515,7 @@ hitting
  As outlined in 
 \begin_inset CommandInset citation
 LatexCommand citet
-before "bottom of p. 12 in"
+before "Section 2.3 in"
 key "bladt-sorensen-2014"
 
 \end_inset

@@ -210,8 +210,8 @@ key "woodward-1990"
  the forecast horizons of the SPF may be too coarse to be useful for practical
  purposes: for instance, we may be interested in the distribution of inflation
  expectations halfway through a calendar year.
- This is a natural arena in which we may ask questions of inference and
- imputation given distributional data.
+ Thus, this is a natural arena in which we may ask questions of inference
+ and imputation given distributional data.
 \end_layout
 
 \begin_layout Standard
@@ -503,7 +503,7 @@ key "targeting"
 .
  Moreover, this is a mathematically convenient specification since the transitio
 n density of the OU diffusion is analytically tractable.
- In particular, we consider a particular SPF questionnaire, and let 
+ We consider a particular SPF questionnaire, and let 
 \begin_inset Formula $\mathcal{T}=\{t_{1},\dots,t_{n}\}$
 \end_inset
 
@@ -511,7 +511,7 @@ n density of the OU diffusion is analytically tractable.
 \begin_inset Formula $t_{1}>0$
 \end_inset
 
- be the set of horizons included in the SPF and 
+ be the set of horizons measured in quarters included in the SPF and 
 \begin_inset Formula $\mathcal{O}\subseteq\Omega$
 \end_inset
 
@@ -829,8 +829,8 @@ On the other hand, the bias is non-trivially positive for the MKLDE of
 
 , suggesting that the thin-tailedness of the approximate bridges can in
  fact affect the quality of MCEM convergence in empirical situations.
- The computational cost of running MCEM with exact bridges, however, is
- still high enough that the practitioner will need to weigh the utility
+ The computational cost of running MCEM with exact bridges, however, can
+ still be high enough that the practitioner will need to weigh the utility
  of slightly more accurate estimates against significantly longer running
  times on a case-by-case basis.
 \end_layout
@@ -840,10 +840,10 @@ Putting It All Together
 \end_layout
 
 \begin_layout Standard
-In the final original section of this thesis, we study the dynamics of the
- evolution of inflation expectations in the ECB SPFs since 1999Q1 and synthesize
- the methods developed in this thesis by answering the following question:
- What can we say, given a finite number of sample paths of 
+In the final original section of this thesis, we study the dynamics of inflation
+ expectations in the ECB SPFs since 1999Q1 and synthesize the methods developed
+ in this thesis by answering the following question: What can we say, given
+ a finite number of sample paths of 
 \begin_inset Formula $X$
 \end_inset
 
@@ -1276,8 +1276,8 @@ The Baudoin-
 \begin_inset Formula $\hat{\nu}_{t_{i}}$
 \end_inset
 
- to consistently estimate the Kullback-Liebler divergence of the law of
- 
+ to consistently estimate the out-of-sample Kullback-Liebler divergence
+ of the law of 
 \begin_inset Formula $X_{t_{i}}$
 \end_inset
 
@@ -1303,9 +1303,15 @@ key "perez-cruz-2008"
 
 .
  Since forecasters often give the same forecasts for inflation at a particular
- horizon, and the Pérez-Cruz estimator requires an empirical distribution
- function induced by unique samples, we add small normally distributed noise
- 
+ horizon, and the 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "perez-cruz-2008"
+
+\end_inset
+
+ estimator requires an empirical distribution function induced by unique
+ samples, we add arbitrarily small normally distributed noise 
 \begin_inset Formula $(\sigma^{2}\approx10^{-4})$
 \end_inset
 
@@ -1342,16 +1348,17 @@ reference "fig:cv"
 \end_layout
 
 \begin_layout Standard
-We set a linear interpolation scheme as our baseline.
- In particular, a linear interpolation of the forecasts 
-\begin_inset Formula $X_{t}$
+To put the performance of our proposed imputation scheme into context, we
+ set a linear interpolation scheme as our baseline.
+ In particular, a linear interpolation 
+\begin_inset Formula $\tilde{X}_{t}$
 \end_inset
 
- of a particular forecaster at times 
-\begin_inset Formula $t\in\mathcal{T}$
+ of the forecasts 
+\begin_inset Formula $\{X_{t_{i}}\}_{t_{i}\in\mathcal{T}}$
 \end_inset
 
- is the function 
+ of a particular forecaster is the function 
 \begin_inset Formula 
 \begin{equation}
 \tilde{X}_{t}=\frac{(t_{i}-t)X_{t_{i-1}}+(t-t_{i-1})X_{t_{i}}}{t_{i}-t_{i-1}}\label{eq:lininterp}
@@ -1368,14 +1375,30 @@ for
 \end_inset
 
 .
+ This scheme is not simply a straw man; its non-parametric nature makes
+ it an extremely robust imputation method, and it is simple to implement.
  
 \end_layout
 
 \begin_layout Standard
-Moreover, though the case of an OU model was useful earlier as an illustrative
- example, the development of an MCEM algorithm was motivated by the fact
- that there are a wide range of diffusions for which transition densities
- are not analytically available.
+In order for a complex scheme like the one proposed in this chapter to be
+ seen as a viable alternative for imputation, it must offer meaningful improveme
+nts over linear interpolation.
+ Our prior belief is that our scheme can in fact do this.
+ For instance, inflation expectations are likely state-dependent: Central
+ banks are wary of overshooting their inflation targets, and thus can be
+ expected to deploy monetaery policy to ease the velocity of inflation movements
+ as inflation approaches the target.
+ A linear interpolation will not capture this expected deceleration in inflation
+ expectations while various Itô diffusions, including the OU diffusion,
+ may be able to.
+\end_layout
+
+\begin_layout Standard
+Though the case of an OU model was useful in the previous section as an
+ illustrative example, the development of an MCEM algorithm was motivated
+ by the fact that there are a wide range of diffusions for which transition
+ densities are not analytically available.
  As such, in addition to a model 
 \begin_inset Formula $\mathbb{Q}_{\theta}^{OU}$
 \end_inset
@@ -1463,76 +1486,9 @@ reference "eq:hypdiff"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-placement tb
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename /Users/marshall/Documents/senior/thesis/figures/est_kl_ed.pdf
-	width 100col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:est_kl"
-
-\end_inset
-
-Boxplots of the estimated out-of-sample K-L divergences of imputed inflation
- expectations from the distribution of 
-\begin_inset Formula $X$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- at 
-\begin_inset Formula $1-4$
-\end_inset
-
- quarter (left) and 
-\begin_inset Formula $7-10$
-\end_inset
-
- quarter (right) horizons, using generalized bridge-based imputation with
- an OU and hyperbolic diffusion model, as well as a baseline linear interpolatio
-n method.
- Means are labeled with a black square and their numerical value.
- Any negative estimates of K-L divergence and any SPFs for which the MCEM
- algorithm to estimate MKLDEs did not converge are dropped (estimates for
- the remaining 
-\begin_inset Formula $52$
-\end_inset
-
- SPFs are plotted).
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "fig:est_kl"
+reference "tab:wilcoxon"
 
 \end_inset
 
@@ -1568,7 +1524,7 @@ reference "eq:lininterp"
 \end_inset
 
  and 
-\begin_inset Formula $7-10$
+\begin_inset Formula $5-8$
 \end_inset
 
  quarters respectively.
@@ -1576,50 +1532,434 @@ reference "eq:lininterp"
 \end_layout
 
 \begin_layout Standard
-We see that the generalized bridge-based method offers an imputed distribution
- noticeably closer to the true distribution at both horizons considered.
- In particular, the mean and median estimated K-L divergence of the imputed
- distributions from the true distribution using generalized bridges are
- lower (in some cases by almost up to 
-\begin_inset Formula $30\%$
-\end_inset
+\begin_inset Float table
+placement t
+wide false
+sideways false
+status open
 
-) than the same statistics using linear interpolation.
- The hyperbolic and OU diffusions appear to perform comparably; this is
- expected since the parameter estimates for the hyperbolic diffusion result
- in an implied stationary distribution only slightly fatter-tailed than
- the stationary OU distribution.
- Moreover, if the ECB is doing its job, inflation should not be deviating
- from the medium-term inflation target substantially, and so the difference
- in mean reversion dynamics between the two processes should be fairly small.
- 
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
 \end_layout
 
-\begin_layout Standard
-While asymptotics are not available for the distribution of these K-L divergence
- estimates, the effect size of using a generalized bridge-based imputation
- scheme qualitatively appears to be non-negligible.
- However, in general, the magnitude of the K-L divergences remain fairly
- large: for reference, the K-L divergence of a standard Gaussian distribution
- from an even mixture of Gaussian distributions centered at 
-\begin_inset Formula $-2$
+\begin_layout Plain Layout
+
+
+\backslash
+centering 
+\backslash
+begin{tabular}{@{}lccccm{0.1em}cc@{}} 
+\backslash
+toprule 
+\backslash
+multirow{2}{*}{Horizon 
+\backslash
+& Imputation Scheme} & 
+\backslash
+multirow{2}{*}{Mean} & 
+\backslash
+multirow{2}{*}{Median} & 
+\backslash
+multicolumn{2}{c}{Wilc.
+ $p$ vs.}  & & 
+\backslash
+multicolumn{2}{c}{Sign $p$ vs.} 
+\backslash
+
+\backslash
+ 
+\backslash
+cmidrule(l){4-5} 
+\backslash
+cmidrule(l){7-8}                                                       
+      &         &                 & LI   & OU  & & LI   & OU           
+      
+\backslash
+
+\backslash
+ 
+\backslash
+midrule 
+\backslash
+emph{1-4 Quarter Horizon}                                  &         & 
+                &      &     & &      &                 
+\backslash
+
+\backslash
+ 
+\backslash
+:
+\backslash
+:
+\backslash
+:
+\backslash
+:Linear Interpolation (LI)                           & 1.43    & 1.29    
+        &      &     & &      &                    
+\backslash
+
+\backslash
+ 
+\backslash
+:
+\backslash
+:
+\backslash
+:
+\backslash
+:Gen.
+ Bridge (OU)                                    & 1.14    & 0.95         
+   & 0.01 &     & & 0.08 &                    
+\backslash
+
+\backslash
+ 
+\backslash
+:
+\backslash
+:
+\backslash
+:
+\backslash
+:Gen.
+ Bridge (Hyp.)                                  & 1.18    & 0.96          
+  & 0.00 & 0.61& & 0.14 & 0.85                  
+\backslash
+
+\backslash
+ 
+\backslash
+emph{5-8 Quarter Horizon}                                  &         & 
+                &      &     & &      &                 
+\backslash
+
+\backslash
+ 
+\backslash
+:
+\backslash
+:
+\backslash
+:
+\backslash
+:Linear Interpolation (LI)                           & 0.96    & 0.81    
+        &      &     & &      &                
+\backslash
+
+\backslash
+ 
+\backslash
+:
+\backslash
+:
+\backslash
+:
+\backslash
+:Gen.
+ Bridge (OU)                                    & 0.70    & 0.78         
+   & 0.04 &     & & 0.23 &                  
+\backslash
+
+\backslash
+ 
+\backslash
+:
+\backslash
+:
+\backslash
+:
+\backslash
+:Gen.
+ Bridge (Hyp.)                                  & 0.74    & 0.61          
+  & 0.01 & 0.15& & 0.09 & 0.32                
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+bottomrule 
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="6">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle">
+<column alignment="left" valignment="middle" width="2cm">
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:wilcoxon"
+
+\end_inset
+
+Mean and median out-of-sample estimated K-L divergences of imputed inflation
+ expectations from the distribution of 
+\begin_inset Formula $X$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ for various horizons and imputation schemes, across 
+\begin_inset Formula $52$
+\end_inset
+
+ SPFs (any SPFs for which MCEM did not converge were dropped).
+ K-L divergences were estimated using the 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "perez-cruz-2008"
+
+\end_inset
+
+ estimator.
+ If 
+\begin_inset Formula $X$
 \end_inset
 
  and 
-\begin_inset Formula $2$
+\begin_inset Formula $Y$
 \end_inset
 
- with unit variance is estimated to be approximately 
-\begin_inset Formula $1$
+ are the true K-L divergences under the row and column imputation schemes,
+ Wilcoxon 
+\begin_inset Formula $p$
+\end_inset
+
+-values (Wilcox.
+ 
+\begin_inset Formula $p$
+\end_inset
+
+) and sign 
+\begin_inset Formula $p$
+\end_inset
+
+-values (Sign 
+\begin_inset Formula $p$
+\end_inset
+
+) are obtained from the Wilcoxon signed-rank test and the sign test respectively
+, under the alternative hypothesis that 
+\begin_inset Formula $P(X-Y<0)>1/2$
 \end_inset
 
 .
- The estimated K-L divergences of either imputation method therefore appear
- to suggest that conditional expectations of inflation are not well-modeled
- by the selected Itô diffusions, and even less so by a piecewise linear
- function; this is not entirely surprisingly, since there is no reason to
- think that conditional inflation expectations should even follow time-homogenou
-s dynamics.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+MOTIVATE IT A BIT MORE Exploratory data analysis suggests that the paired
+ differences of K-L divergences between the various imputation schemes deviate
+ substantially from normality; 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:wilcoxon"
+
+\end_inset
+
+ therefore presents the 
+\begin_inset Formula $p$
+\end_inset
+
+-values from a Wilcoxon signed-rank test for whether the paired differences
+ are centered at zero.
+ However, these paired differences also display some amount of skew.
+ Given the relatively small sample size (
+\begin_inset Formula $52$
+\end_inset
+
+ paired differences), it is not clear whether this skewness materially violates
+ the symmetry assumption underlying the Wilcoxon signed-rank test; as such,
+ we also present 
+\begin_inset Formula $p$
+\end_inset
+
+-values obtained from the sign test, whose very few assumptions can be confirmed
+ to be satisfied by our data.
+\end_layout
+
+\begin_layout Standard
+We see that the generalized bridge-based methods offer qualitatively large
+ reductions (on the order of 
+\begin_inset Formula $20-30\%$
+\end_inset
+
+) in the mean and median of out-of-sample estimated K-L divergences vis-à-vis
+ a linear interpolation scheme, at both horizons considered.
+ The Wilcoxon signed-rank test reveals that the improvements over the linear
+ interpolation scheme offered by our generalized bridge-based methods are
+ statistically significant at the 
+\begin_inset Formula $95\%$
+\end_inset
+
+, and sometimes 
+\begin_inset Formula $99\%$
+\end_inset
+
+, level.
+ The sign test, on the other hand, reveals significant differences only
+ at the 
+\begin_inset Formula $90\%$
+\end_inset
+
+ level; however, we ought to keep in mind that the sign test is an extremely
+ conservative test that discards any information about the magnitude of
+ the K-L divergence reductions.
+ The qualitatively large effect sizes and array of small 
+\begin_inset Formula $p$
+\end_inset
+
+-values even from low power tests, combined with our prior that linear evolution
+ should not fully capture the complex dynamics of inflation expectations,
+ results in our fairly strong belief that bridge-based imputation does in
+ fact offer better imputations of inflation expectations than linear interpolati
+on.
+ MAKE A LIST
+\end_layout
+
+\begin_layout Standard
+We do not qualitatively or formally detect any meaningful difference between
+ bridge-based imputation under a hyperbolic or OU diffusion.
+ This is not unexpected; the parameter estimates for the hyperbolic diffusion
+ result in an implied stationary distribution only slightly fatter-tailed
+ than the stationary OU distribution.
+ Moreover, if the ECB faithful to its inflation target, inflation should
+ not be deviating from 
+\begin_inset Formula $2\%$
+\end_inset
+
+ substantially, and so the differences in mean reversion dynamics between
+ the two processes when they are far from their mean should be small.
+\end_layout
+
+\begin_layout Standard
+Though the reduction in K-L divergence is non-trivial and statistically
+ significant when using bridge-based imputation over linear interpolation,
+ the magnitude of the K-L divergences remains large.
+ For reference, the K-L divergence of a standard Gaussian distribution from
+ an even mixture of Gaussian distributions centered at 
+\begin_inset Formula $-3/2$
+\end_inset
+
+ and 
+\begin_inset Formula $3/2$
+\end_inset
+
+ with unit variance is estimated to be in the neighborhood of 
+\begin_inset Formula $0.60$
+\end_inset
+
+.
+ This is about the same as the lowest achieved estimated K-L divergence
+ from the truth in our experiments.
+ The estimated K-L divergences here therefore appear to suggest that conditional
+ expectations of inflation are not particularly well-modeled by the selected
+ Itô diffusions, and even less so by a piecewise linear function; this is
+ not entirely surprisingly, since for instance, there is no reason to think
+ that conditional inflation expectations should follow time-homogenous dynamics.
  Nevertheless, the methodology proposed here can provide a useful first
  step modeling the evolution of stochastic processes, conditional on their
  distribution at discrete points in time.
@@ -1699,7 +2039,14 @@ name "fig:cont_path"
 
 \begin_layout Standard
 We conclude this chapter with a visualization of the final product of this
- thesis.
+ thesis in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:cont_path"
+
+\end_inset
+
+.
  Using the proposed MCEM scheme to infer the MKLDE of 
 \begin_inset Formula $\mathbb{Q}_{\theta}^{OU}$
 \end_inset
@@ -1728,13 +2075,6 @@ We conclude this chapter with a visualization of the final product of this
 \begin_inset Formula $\mathbb{Q}_{\theta^{*}}^{HYP}$
 \end_inset
 
- in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:cont_path"
-
-\end_inset
-
  for the most recently conducted SPF (2015Q4).
  This figure highlights the differences in behavior of the two diffusions
  when far from the mean.
@@ -1745,7 +2085,8 @@ reference "fig:cont_path"
  Time-inhomogeneity appears to be an important feature of inflation expectations
  as of 2015Q4, with expected inflation remaining low in the short-term,
  and rapidly accelerating in the medium-term.
- However, this is a problem of model selection and not of methodology; 
+ However, this is a problem of model selection and not of methodology; as
+ such, 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:cont_path"
@@ -1754,7 +2095,7 @@ reference "fig:cont_path"
 
 , representing the synthesis of the methods developed here to perform inference
  and imputation on the forecasts of modern-day macroeconomic oracles, is
- a fitting way to close the original portion of this thesis.
+ a fitting conclusion to the original portion of this thesis.
 \end_layout
 
 \end_body

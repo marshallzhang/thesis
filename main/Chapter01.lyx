@@ -170,7 +170,7 @@ The Spartans, upon receiving this divination, ought to have understood that
  a legendary last stand at Thermopylae on the basis of this prophecy).
  It seems that the people of Sparta learned something that day about the
  path of their fortunes over time, not from the observations of data upon
- which much of modern statistical inference is built, but rather from an
+ which much of modern statistical inference is built, but rather from a
  fundamentally uncertain prognostication—what we today might call a probabilisti
 c forecast.
 \end_layout
@@ -183,11 +183,11 @@ Modern probabilistic oracles, though perhaps less prescient than the Oracle
  For example, the distribution of expectations of professional forecasters
  for various macroeconomic indicators over time are regularly reported by
  central banks around the world.
- Metereological scientists increasingly offer probabilistic forecasts of
- everything from the path of cyclones to future humidity and temperature
- levels, and market-determined distributions over the prices of securities
- on future dates are implied by the prices of options which expire on those
- dates (see 
+ Meteorologists increasingly offer probabilistic forecasts of everything
+ from the path of cyclones to future humidity and temperature levels, and
+ market-determined distributions over the prices of securities on future
+ dates are implied by the prices of options which expire on those dates
+ (see 
 \begin_inset CommandInset citation
 LatexCommand citet
 before "Section II in"
@@ -198,7 +198,7 @@ key "breeden-litzenberger-1978"
 ).
  If these forecasts reflect the truth, we can understand them as data on
  the future distribution of a particular stochastic process, or what we
- will refer to as distributional data going forward.
+ will refer to as distributional data.
  
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -206,52 +206,11 @@ reference "fig:dist-data"
 
 \end_inset
 
- presents a intuitive visualization of two possible sets of distributional
- data, where the value axis can represent any numeric value from the price
- of a bond to a humidity reading.
+ presents a intuitive visualization of a distributional datum, where the
+ value axis might represent any numeric value from the price of a bond to
+ a humidity reading.
  It ought to be kept in mind that the depicted marginal distributions may
  be linked by some dependence structure over time.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename /Users/marshall/Documents/senior/thesis/figures/intuition_ed.pdf
-	width 100col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:dist-data"
-
-\end_inset
-
-An intuitive depiction of two sets of four-dimensional distributional data,
- where the four marginal distributions of the data are shown at discrete
- points in time.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -303,9 +262,45 @@ How is the market pricing the distribution of a stock price between dates
 \begin_layout Standard
 Though simple to pose, it is not clear what the mathematically rigorous
  answers to general questions like these are.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /Users/marshall/Documents/senior/thesis/figures/intuition_ed.pdf
+	width 50col%
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dist-data"
+
+\end_inset
+
+An intuitive depiction of a distributional datum.
+ This particular distributional datum is a four-dimensional joint distribution,
+ and the four marginal distributions of the data are shown at discrete points
+ in time.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
 This thesis rather focuses on answering two specific questions that can
  be asked of a stochastic process when it is conditioned, in some sense
  to be made precise in the next chapter, to follow a given distribution
@@ -329,15 +324,16 @@ Can we, given distributional data and a fully specified stochastic process,
 \end_layout
 
 \begin_layout Standard
-We will soon see that the questions of inference and imputation are deeply
- related, and that the answer to either depends intimately on the other.
- The resulting methods together allow us to give a well-defined answer to
- the general questions about inflation, temperature, and stock prices posed
- above.
- These sorts of questions abound, and thus the potential applications of
- the methods proposed here are important and wide in scope.
+We will soon see that these questions of inference and imputation are deeply
+ related, and that the solution to either depends intimately on the other.
+ The answers to these specific questions allow us to formulate a well-defined
+ response to the broad questions about inflation, weather, and stock prices
+ posed above.
+ These sorts of intuitive questions abound; by extension, the potential
+ applications of the methods proposed here are both wide in scope and great
+ in utility.
  For instance, one might imagine that knowing the market-implied distribution
- of future stock prices can be immensely valuable.
+ of future stock prices could be immensely valuable.
  Moreover, references to inference and imputation on distributional data
  in the context of stochastic processes are sparse, if they appear at all,
  in the literature.
@@ -352,8 +348,8 @@ Contributions and Related Work
 
 \begin_layout Standard
 In the theoretical portion of this thesis, we propose a novel and natural
- generalization of the theory of maximum likelihood estimation (MLE) over
- discretely observed data from continuous-time stochastic processes.
+ generalization of the theory of maximum likelihood estimation over discretely
+ observed data from continuous-time stochastic processes.
  This theory begins with 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -373,20 +369,13 @@ key "yoshida-1992"
  minimizes K-L divergence for inference when given the distribution of a
  diffusion process at discrete points in time.
  This is in contrast to the maximum likelihood estimator, which is used
- when given discrete observations of such a process.
+ for inference when given discrete observations of such a process.
  We characterize this estimator as a limiting case of the maximum likelihood
- estimator, and develop a novel simulation-based inference technique to
- conduct minimum K-L divergence estimation, building on the work of 
+ estimator, and develop a novel Monte Carlo expectation-maximization algorithm
+ to conduct minimum K-L divergence estimation, building on the work of 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "roberts-stramer-2001,beskos-2006"
-
-\end_inset
-
-, and 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bladt-sorensen-2014"
+key "beskos-2006"
 
 \end_inset
 
@@ -398,18 +387,11 @@ key "bladt-sorensen-2014"
 However, this only partially answers the question of inference, since the
  proposed procedure requires the ability to simulate a particular generalized
  notion of a diffusion bridge.
- We therefore connect the literature surrounding the simulation of diffusion
- bridges (see 
+ We therefore connect the literature on the simulation of diffusion bridges
+ (see 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "papa-roberts-2012,bladt-sorensen-2014"
-
-\end_inset
-
-, and 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "bladt-finch-sorenson-2015"
+key "bladt-sorensen-2014"
 
 \end_inset
 
@@ -420,8 +402,8 @@ key "baudoin-2002"
 
 \end_inset
 
-) by proposing simulation strategies for approximate and exact generalized
- bridges.
+) by proposing approximate and exact simulation strategies for a particular
+ class of generalized bridges.
  This answers in full the question of inference.
  Simultaneously, we answer the question of imputation, having gained the
  ability to draw sample paths of diffusion processes whose endpoints are
@@ -429,11 +411,11 @@ key "baudoin-2002"
 \end_layout
 
 \begin_layout Standard
-In the empirical portion of this thesis, we validate the correctness of
- the exact generalized bridge sampler.
+In the empirical portion of this thesis, we confirm the correctness of the
+ exact generalized bridge sampler.
  We further demonstrate that the approximate sampler offers samples that
- are qualitatively similar to the exact sampler, at a fraction of the computatio
-n cost.
+ are qualitatively similar to those of the exact sampler at a fraction of
+ the computation cost.
  Then, we confirm empirically that the proposed simulation-based inference
  technique on distributional data is consistent for the K-L divergence minimizin
 g parameter.
@@ -449,9 +431,10 @@ Then, taking theory to practice, we use the proposed inference scheme to
  for diffusions with and without analytically tractable transition densities.
  Finally, we propose an imputation scheme for distributional data based
  on the simulation of generalized bridges.
- We show that such a scheme, when applied to distributions of inflation
- expectations, reduces the K-L divergence of the imputed distributions by
- up to a third relative to a linear interpolation.
+ We show that such a scheme, when applied to probabilistic forecasts of
+ inflation expectations, reduces the out-of-sample K-L divergence of the
+ imputed distributions from the true distributions in a practically meaningful
+ and statistically significant way relative to linear interpolation.
 \end_layout
 
 \begin_layout Section
@@ -494,14 +477,15 @@ reference "chap:EM"
 
 \end_inset
 
- introduces and formalizes the general problem of conducting inference on
- data in the form of distributions.
- We propose an estimator for conducting inference and offer interpretations
- of the resulting estimate in relation to the maximum likelihood estimate;
- then, we develop a Monte Carlo expectation-maximization algorithm which
- converges to the so-called minimum K-L divergence estimate.
- We note that a sampler for generalized diffusion bridges is required to
- implement this algorithm, and in 
+ introduces and formalizes the problem of conducting inference on data in
+ the form of distributions.
+ We propose an estimator for the parameters governing a diffusion process
+ when given distributional data and offer interpretations of the resulting
+ estimate in relation to the maximum likelihood estimate; then, we develop
+ a Monte Carlo expectation-maximization algorithm which converges to the
+ so-called minimum K-L divergence estimate.
+ We point out that a sampler for generalized diffusion bridges is required
+ to implement this algorithm, and in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:4"
@@ -535,7 +519,7 @@ reference "chap:5"
 \end_inset
 
  to demonstrate both the correctness and robustness of the proposed generalized
- bridge samplers and MCEM algorithm.
+ bridge samplers and the Monte Carlo expectation-maximization algorithm.
  In 
 \begin_inset CommandInset ref
 LatexCommand formatted
