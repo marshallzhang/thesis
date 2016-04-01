@@ -72,25 +72,27 @@
 
 
 \centering
-\begin{tabular}{@{}lcccccc@{}}
+\begin{tabular}{@{}lccccccc@{}}
 \toprule
-\multirow{2}{*}{\parbox{2cm}{Process \& Sample Size}} & \multicolumn{1}{l}{Approx.} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{3}{l}{Exact}                                          \\ \cmidrule(lr){2-4}
-                         & $\hat{\mu}$                 & $\hat{\lambda}$      & $\hat{\sigma}$       & $\hat{\mu}$          & $\hat{\lambda}$      & $\hat{\sigma}$       \\ \midrule
-\emph{OU}              & \multicolumn{1}{l}{}        & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\
-\:\:\:\:Asymptotic               & 0.03                        & 1.11                 & 0.99                 & 0.01                 & 0.97                 & 0.96                 \\
-\:\:\:\:\:\:\:\:Std. Dev.                & (0.05)                      & (0.19)               & (0.04)               & (0.10)               & (0.04)               & (0.07)               \\
-\:\:\:\:Finite Sample            & -0.03\:                       & 0.95                 & 0.97                 &                      &                      &                      \\
-\:\:\:\:\:\:\:\:Std. Dev.                & (0.14)                      & (0.33)               & (0.07)               &                      &                      &                      \\
-\emph{Wiener}          & \multicolumn{1}{l}{}        & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\
-\:\:\:\:Asymptotic               & -0.25\:                       & 0.08                 & 1.01                 &                      &                      &                      \\
-\:\:\:\:\:\:\:\:Std. Dev.                & (0.63)                      & (0.07)               & (0.02)               &                      &                      &                      \\
-\:\:\:\:Finite Sample            & 0.30                        & 0.10                 & 0.95                 &                      &                      &                      \\
-\:\:\:\:\:\:\:\:Std. Dev.                & (1.50)                      & (0.09)               & (0.04)               &                      &                      &                      \\
-\emph{Fractional}      &                             &                      &                      & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\
-\:\:\:\:Asymptotic               & 0.03                        & 0.81                 & 1.43                 &                      &                      &                      \\
-\:\:\:\:\:\:\:\:Std. Dev.                & (0.05)                      & (0.09)               & (0.05)               &                      &                      &                      \\
-\:\:\:\:Finite Sample            & 0.00                        & 0.97                 & 1.36                 &                      &                      &                      \\
-\:\:\:\:\:\:\:\:Std. Dev.                & (0.15)                      & (0.15)               & (0.05)               &                      &                      &                      \\ \bottomrule
+\multirow{2}{*}{\parbox{2cm}{Model \& Dist. Data}} & \multicolumn{3}{l}{Approx.} && \multicolumn{3}{l}{Exact}                                          \\ \cmidrule(lr){2-4} \cmidrule(lr){5-8}
+                         & $\hat{\mu}$                 & $\hat{\lambda}$      & $\hat{\sigma}$       & & $\hat{\mu}$          & $\hat{\lambda}$      & $\hat{\sigma}$       \\ \midrule
+\emph{OU}              & \multicolumn{1}{c}{\emph{0.00}}        & \multicolumn{1}{c}{\emph{1.00}} & \multicolumn{1}{c}{\emph{1.00}} && \multicolumn{1}{c}{\emph{0.00}} & \multicolumn{1}{c}{\emph{1.00}} & \multicolumn{1}{c}{\emph{1.00}} \\
+\:\:\:\:$\nu_\mathbb{P}$               & 0.00                        & 1.00                 & 0.98              &   & -0.00\:                 & 1.00                 & 0.97                 \\
+\:\:\:\:\:\:\:\:Std. Dev.                & (0.05)                      & (0.18)               & (0.04)           &    & (0.06)               & (0.26)               & (0.06)               \\
+\:\:\:\:$\hat{\nu}_\mathbb{P}$            & 0.01                       & 1.02                & 0.98               &  &        0.00              &    1.03                  &  1.00                    \\
+\:\:\:\:\:\:\:\:Std. Dev.                & (0.13)                      & (0.38)               & (0.09)             &  &   (0.05)                   &  (0.35)                    & (0.10)                     \\
+			&&&&&&& \\	
+\emph{Wiener}              & \multicolumn{1}{c}{\emph{0.00}}        & \multicolumn{1}{c}{\emph{0.00}} & \multicolumn{1}{c}{\emph{1.00}} && \multicolumn{1}{c}{\emph{0.00}} & \multicolumn{1}{c}{\emph{0.00}} & \multicolumn{1}{c}{\emph{1.00}} \\
+\:\:\:\:$\nu_\mathbb{P}$               & -0.01\:                       & 0.08                 & 1.00           &      & 0.00                     & 0.06                     &  0.99                    \\
+\:\:\:\:\:\:\:\:Std. Dev.                & (21.0)                      & (0.05)               & (0.03)          &     & (1.83)                      & (0.05)                     &    (0.04)                  \\
+\:\:\:\:$\hat{\nu}_\mathbb{P}$            & 0.02                        & 0.15                 & 1.00            &     &    0.01                  &      0.18                &     1.01                 \\
+\:\:\:\:\:\:\:\:Std. Dev.                & (3.89)                      & (0.17)               & (0.06)            &   & (3.63)                     & (0.17)                      &  (0.06)                     \\
+			&&&&&&& \\
+\emph{Fractional}              & \multicolumn{1}{c}{\emph{0.00}}        & \multicolumn{1}{c}{\emph{0.83}} & \multicolumn{1}{c}{\emph{1.45}} && \multicolumn{1}{c}{\emph{0.00}} & \multicolumn{1}{c}{\emph{0.83}} & \multicolumn{1}{c}{\emph{1.45}} \\
+\:\:\:\:$\nu_\mathbb{P}$               & 0.00                        & 0.81                 & 1.43                & &         -0.01\:             &       0.79               &  1.41                    \\
+\:\:\:\:\:\:\:\:Std. Dev.                & (0.08)                      & (0.17)               & (0.06)             &  &        (0.15)              &    (0.19)                  &   (0.06)                   \\
+\:\:\:\:$\hat{\nu}_\mathbb{P}$            & -0.04\:                       & 0.86                 & 1.45             &    &            0.00          &       0.84               &       1.43               \\
+\:\:\:\:\:\:\:\:Std. Dev.                & (0.22)                      & (0.30)               & (0.13)              & &      (0.25)                &   (0.26)                   & (0.09)                     \\ \bottomrule
 \end{tabular}
 
 

@@ -1731,12 +1731,15 @@ an OU diffusion governed by
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
-a Wiener process, and 
+a standard Wiener process, and 
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
-a fractional Wiener process.
- 
+a fractional Wiener process with Hurst parameter 
+\begin_inset Formula $H=0.2$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1752,11 +1755,15 @@ status open
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
 centering 
 \backslash
-begin{tabular}{@{}lcccccc@{}} 
+begin{tabular}{@{}lccccccc@{}} 
 \backslash
 toprule 
 \backslash
@@ -1767,11 +1774,7 @@ parbox{2cm}{Model
 & Dist.
  Data}} & 
 \backslash
-multicolumn{1}{l}{Approx.} & 
-\backslash
-multicolumn{1}{l}{} & 
-\backslash
-multicolumn{1}{l}{} & 
+multicolumn{3}{l}{Approx.} && 
 \backslash
 multicolumn{3}{l}{Exact}                                          
 \backslash
@@ -1779,7 +1782,9 @@ multicolumn{3}{l}{Exact}
 \backslash
  
 \backslash
-cmidrule(lr){2-4}                          & $
+cmidrule(lr){2-4} 
+\backslash
+cmidrule(lr){5-8}                          & $
 \backslash
 hat{
 \backslash
@@ -1791,7 +1796,7 @@ lambda}$      & $
 \backslash
 hat{
 \backslash
-sigma}$       & $
+sigma}$       & & $
 \backslash
 hat{
 \backslash
@@ -1813,17 +1818,29 @@ midrule
 \backslash
 emph{OU}              & 
 \backslash
-multicolumn{1}{l}{}        & 
+multicolumn{1}{c}{
 \backslash
-multicolumn{1}{l}{} & 
+emph{0.00}}        & 
 \backslash
-multicolumn{1}{l}{} & 
+multicolumn{1}{c}{
 \backslash
-multicolumn{1}{l}{} & 
+emph{1.00}} & 
 \backslash
-multicolumn{1}{l}{} & 
+multicolumn{1}{c}{
 \backslash
-multicolumn{1}{l}{} 
+emph{1.00}} && 
+\backslash
+multicolumn{1}{c}{
+\backslash
+emph{0.00}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+emph{1.00}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+emph{1.00}} 
 \backslash
 
 \backslash
@@ -1839,9 +1856,10 @@ multicolumn{1}{l}{}
 \backslash
 nu_
 \backslash
-mathbb{P}$               & 0.03                        & 1.11            
-     & 0.99                 & 0.01                 & 0.97                 &
- 0.96                 
+mathbb{P}$               & 0.00                        & 1.00            
+     & 0.98              &   & -0.00
+\backslash
+:                 & 1.00                 & 0.97                 
 \backslash
 
 \backslash
@@ -1863,9 +1881,9 @@ mathbb{P}$               & 0.03                        & 1.11
 \backslash
 :Std.
  Dev.
-                & (0.05)                      & (0.19)               & (0.04)
-               & (0.10)               & (0.04)               & (0.07)     
-          
+                & (0.05)                      & (0.18)               & (0.04)
+           &    & (0.06)               & (0.26)               & (0.06)    
+           
 \backslash
 
 \backslash
@@ -1883,10 +1901,9 @@ hat{
 \backslash
 nu}_
 \backslash
-mathbb{P}$            & -0.03
-\backslash
-:                       & 0.95                 & 0.97                 &  
-                    &                      &                      
+mathbb{P}$            & 0.01                       & 1.02                &
+ 0.98               &  &        0.00              &    1.03               
+   &  1.00                    
 \backslash
 
 \backslash
@@ -1908,27 +1925,43 @@ mathbb{P}$            & -0.03
 \backslash
 :Std.
  Dev.
-                & (0.14)                      & (0.33)               & (0.07)
-               &                      &                      &         
-             
+                & (0.13)                      & (0.38)               & (0.09)
+             &  &   (0.05)                   &  (0.35)                   
+ & (0.10)                     
 \backslash
 
 \backslash
- 
+ 			&&&&&&& 
 \backslash
-emph{Wiener}          & 
+
 \backslash
-multicolumn{1}{l}{}        & 
+	 
 \backslash
-multicolumn{1}{l}{} & 
+emph{Wiener}              & 
 \backslash
-multicolumn{1}{l}{} & 
+multicolumn{1}{c}{
 \backslash
-multicolumn{1}{l}{} & 
+emph{0.00}}        & 
 \backslash
-multicolumn{1}{l}{} & 
+multicolumn{1}{c}{
 \backslash
-multicolumn{1}{l}{} 
+emph{0.00}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+emph{1.00}} && 
+\backslash
+multicolumn{1}{c}{
+\backslash
+emph{0.00}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+emph{0.00}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+emph{1.00}} 
 \backslash
 
 \backslash
@@ -1944,10 +1977,11 @@ multicolumn{1}{l}{}
 \backslash
 nu_
 \backslash
-mathbb{P}$               & -0.25
+mathbb{P}$               & -0.01
 \backslash
-:                       & 0.08                 & 1.01                 &  
-                    &                      &                      
+:                       & 0.08                 & 1.00           &      & 0.00
+                     & 0.06                     &  0.99                  
+  
 \backslash
 
 \backslash
@@ -1969,9 +2003,9 @@ mathbb{P}$               & -0.25
 \backslash
 :Std.
  Dev.
-                & (0.63)                      & (0.07)               & (0.02)
-               &                      &                      &         
-             
+                & (21.0)                      & (0.05)               & (0.03)
+          &     & (1.83)                      & (0.05)                   
+  &    (0.04)                  
 \backslash
 
 \backslash
@@ -1989,9 +2023,9 @@ hat{
 \backslash
 nu}_
 \backslash
-mathbb{P}$            & 0.30                        & 0.10               
-  & 0.95                 &                      &                      &
-                      
+mathbb{P}$            & 0.02                        & 0.15               
+  & 1.00            &     &    0.01                  &      0.18          
+      &     1.01                 
 \backslash
 
 \backslash
@@ -2013,22 +2047,43 @@ mathbb{P}$            & 0.30                        & 0.10
 \backslash
 :Std.
  Dev.
-                & (1.50)                      & (0.09)               & (0.04)
-               &                      &                      &         
-             
+                & (3.89)                      & (0.17)               & (0.06)
+            &   & (3.63)                     & (0.17)                    
+  &  (0.06)                     
+\backslash
+
+\backslash
+ 			&&&&&&& 
 \backslash
 
 \backslash
  
 \backslash
-emph{Fractional}      &                             &                  
-    &                      & 
+emph{Fractional}              & 
 \backslash
-multicolumn{1}{l}{} & 
+multicolumn{1}{c}{
 \backslash
-multicolumn{1}{l}{} & 
+emph{0.00}}        & 
 \backslash
-multicolumn{1}{l}{} 
+multicolumn{1}{c}{
+\backslash
+emph{0.83}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+emph{1.45}} && 
+\backslash
+multicolumn{1}{c}{
+\backslash
+emph{0.00}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+emph{0.83}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+emph{1.45}} 
 \backslash
 
 \backslash
@@ -2044,9 +2099,10 @@ multicolumn{1}{l}{}
 \backslash
 nu_
 \backslash
-mathbb{P}$               & 0.03                        & 0.81            
-     & 1.43                 &                      &                    
-  &                      
+mathbb{P}$               & 0.00                        & 0.81            
+     & 1.43                & &         -0.01
+\backslash
+:             &       0.79               &  1.41                    
 \backslash
 
 \backslash
@@ -2068,9 +2124,9 @@ mathbb{P}$               & 0.03                        & 0.81
 \backslash
 :Std.
  Dev.
-                & (0.05)                      & (0.09)               & (0.05)
-               &                      &                      &         
-             
+                & (0.08)                      & (0.17)               & (0.06)
+             &  &        (0.15)              &    (0.19)                 
+ &   (0.06)                   
 \backslash
 
 \backslash
@@ -2088,9 +2144,11 @@ hat{
 \backslash
 nu}_
 \backslash
-mathbb{P}$             & 0.00                        & 0.97              
-   & 1.36                 &                      &                      &
-                      
+mathbb{P}$            & -0.04
+\backslash
+:                       & 0.86                 & 1.45             &    & 
+           0.00          &       0.84               &       1.43          
+     
 \backslash
 
 \backslash
@@ -2112,9 +2170,9 @@ mathbb{P}$             & 0.00                        & 0.97
 \backslash
 :Std.
  Dev.
-                & (0.15)                      & (0.15)               & (0.05)
-               &                      &                      &         
-             
+                & (0.22)                      & (0.30)               & (0.13)
+              & &      (0.25)                &   (0.26)                  
+ & (0.09)                     
 \backslash
 
 \backslash
@@ -2219,7 +2277,7 @@ name "tab:diff-diffusions"
 \end_inset
 
 Mean and standard deviation of the MKLDEs obtained from 
-\begin_inset Formula $100$
+\begin_inset Formula $50$
 \end_inset
 
  replications of MCEM for an OU diffusion, given either 
@@ -2238,11 +2296,13 @@ Mean and standard deviation of the MKLDEs obtained from
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
-, for varying 
+, for varying true models 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
 , using approximate and exact generalized bridge samplers.
+ The true K-L divergence minimizing parameters are indicated in italics
+ for each true model.
 \end_layout
 
 \end_inset
@@ -2269,16 +2329,20 @@ When
 \end_inset
 
  since the family of probability models 
-\begin_inset Formula $\{\mathbb{Q}_{\theta}\}$
+\begin_inset Formula $\mathcal{Q}$
 \end_inset
 
  is correctly specified.
  In the latter two cases, model misspecification means that the MCEM algorithm
- can only minimize the K-L divergence of 
+ can only minimize the K-L divergence of the law of 
+\begin_inset Formula $X_{\mathcal{T}}$
+\end_inset
+
+ under 
 \begin_inset Formula $\mathbb{Q}_{\theta}$
 \end_inset
 
- from 
+ from its law under 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -2313,20 +2377,16 @@ When
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
-, the K-L divergence of the restriction of 
+, the K-L divergence of the law of 
+\begin_inset Formula $X_{1/2,1}$
+\end_inset
+
+ under 
 \begin_inset Formula $\mathbb{Q}_{\theta}$
 \end_inset
 
- to 
-\begin_inset Formula $\mathcal{T}=\{1/2,1\}$
-\end_inset
-
- from the restriction of 
+ from its law under 
 \begin_inset Formula $\mathbb{P}$
-\end_inset
-
- to 
-\begin_inset Formula $\mathcal{T}=\{1/2,1\}$
 \end_inset
 
  can be found to be
@@ -2389,8 +2449,7 @@ In addition to varying
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
-, as is often the case in the real world (think of some set of predictions
- made by a group of people).
+.
  In particular, we consider the case where we bootstrap from a fixed set
  of 
 \begin_inset Formula $100$
@@ -2409,23 +2468,47 @@ In addition to varying
 \end_inset
 
 .
- By the remarks in 
+ As noted in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:EM"
 
 \end_inset
 
-, we expect the MKLDE from the distributional data 
+, 
+\begin_inset Formula $(X_{\mathcal{T}},\hat{\nu}_{\mathbb{P}})$
+\end_inset
+
+ is not a valid Baudoin conditioning since 
 \begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
- to be less efficient than if we were to have access to the true distributional
- data 
+ is not absolutely continuous to the law of 
+\begin_inset Formula $X_{\mathcal{T}}$
+\end_inset
+
+ under any element of 
+\begin_inset Formula $\mathcal{Q}$
+\end_inset
+
+; however, since the MKLDE given 
+\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
+\end_inset
+
+ asymptotically converges to the MKLDE given 
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
-, but still consistent for the true MKLD parameter.
+, we heuristically expect the MCEM scheme given 
+\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
+\end_inset
+
+ to still produce consistent (though perhaps less efficient) estimates for
+ the MKLDE given 
+\begin_inset Formula $\nu_{\mathbb{P}}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2484,23 +2567,42 @@ reference "tab:diff-diffusions"
 \end_inset
 
 .
- As expected, the finite sample experiments display lower efficiency but
- remain consistent, and we also see that using the exact sampler produces
- higher efficiency estimates in general.
- Using the approximate sampling scheme appears to create some bias in the
- estimation of 
+ 
+\end_layout
+
+\begin_layout Standard
+As hypothesized, the finite sample experiments using 
+\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
+\end_inset
+
+ as a plug-in estimator for 
+\begin_inset Formula $\nu_{\mathbb{P}}$
+\end_inset
+
+ display lower efficiency but remain consistent despite the violation of
+ technical conditions on the absolute continuity of 
+\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
+\end_inset
+
+ with respect to the elements of 
+\begin_inset Formula $\mathcal{Q}$
+\end_inset
+
+.
+ The biased MCEM estimates we expected when using an approximate sampling
+ scheme appear in the estimation of 
 \begin_inset Formula $\lambda$
 \end_inset
 
 ; we conjecture that this is due to the thinner-tailed marginal distributions
- that the approximate sampler produces relative to those of the exact sampler;
- however, given the variability of the MKLDEs, this bias does not appear
+ that the approximate sampler produces relative to those of the exact sampler.
+ However, given the variability of the MKLDEs, this bias does not appear
  to be significant.
  On the other hand, the computational time taken by an MCEM scheme relying
  on exact generalized bridge samples is at least an order of a magnitude
  longer than the time needed for MCEM using approximate sampling, which
  itself is already non-trivial (on the order of five hours for the experiments
- shown here, mostly due to the numerous evaluations of an objective function
+ shown here, mostly due to the numerous evaluations of the objective function
  needed for stochastic optimization).
  
 \end_layout
@@ -2514,8 +2616,8 @@ d bridge sampling will provide parameter estimates of sufficiently high
  quality for practical purposes.
  In particular, we hold that using approximate sample paths offers vast
  computational gains vis-à-vis exact paths, and results in bias which can
- be small relative to the variance resulting from MCEM estimates and stochastic
- optimization methods in the first place.
+ be small relative to the variance resulting from Monte Carlo estimates
+ and stochastic optimization methods in the first place.
  With this in mind, we move now to the penultimate chapter of this thesis,
  in which we apply the methods examined here to distributional data from
  the real world.

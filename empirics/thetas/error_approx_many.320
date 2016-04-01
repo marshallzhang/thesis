@@ -1,0 +1,63 @@
+Loading required package: MASS
+Loading required package: stats4
+Loading required package: fda
+Loading required package: splines
+Loading required package: Matrix
+
+Attaching package: 'fda'
+
+The following object is masked from 'package:graphics':
+
+    matplot
+
+Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
+sde 2.0.14
+Companion package to the book
+'Simulation and Inference for Stochastic Differential Equations With R Examples'
+Iacus, Springer NY, (2008)
+To check the errata corrige of the book, type vignette("sde.errata")
+matrixStats v0.50.1 (2015-12-14) successfully loaded. See ?matrixStats for help.
+
+Attaching package: 'psych'
+
+The following objects are masked from 'package:scales':
+
+    alpha, rescale
+
+
+DEoptim package
+Differential Evolution algorithm in R
+Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
+
+Loading required package: DistributionUtils
+Loading required package: RUnit
+Loading required package: GeneralizedHyperbolic
+Loading required package: numDeriv
+Loading required package: gplots
+
+Attaching package: 'gplots'
+
+The following object is masked from 'package:stats':
+
+    lowess
+
+
+Attaching package: 'ghyp'
+
+The following objects are masked from 'package:GeneralizedHyperbolic':
+
+    dghyp, dgig, pghyp, pgig, qghyp, qgig, qqghyp, rghyp, rgig
+
+Loading required package: foreach
+Loading required package: iterators
+Error in checkForRemoteErrors(val) : 
+  30 nodes produced errors; first error: cannot open the connection
+Calls: DEoptim2 ... clusterApply -> staticClusterApply -> checkForRemoteErrors
+Execution halted

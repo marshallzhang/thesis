@@ -117,16 +117,15 @@ This thesis considers the novel (to the best of our knowledge) problem of
  observations, of a stochastic process at discrete points in time.
  This is a generalization of the classical problem of inference on discrete
  observations that has been well-studied in the literature.
- We develop inference strategies when given distributional data and methods
- to impute the distribution of a fully specified diffusion conditional on
- such data.
+ We develop inference strategies when given distributional data and the
+ first samplers for a particular class of generalized bridges.
  Simulations and empirical studies demonstrate the correctness of the methods
  described and their broad applicability.
 \end_layout
 
 \begin_layout Standard
 Future directions for research abound, especially given the novel nature
- of the problem.
+ of the central problem in this thesis.
  We highlight some potential lines of exploration here.
  Most pressingly, a formal investigation into the properties of the imputation
  scheme proposed in 
@@ -158,6 +157,8 @@ reference "chap:EM"
 \end_inset
 
  and set the results of this thesis on firmer theoretical ground.
+ Such characterizations ought to come fairly easily from existing results,
+ given the close links between MKLDE and MLE.
 \end_layout
 
 \begin_layout Standard

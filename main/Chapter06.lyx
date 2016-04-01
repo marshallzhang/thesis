@@ -210,7 +210,7 @@ key "woodward-1990"
  the forecast horizons of the SPF may be too coarse to be useful for practical
  purposes: for instance, we may be interested in the distribution of inflation
  expectations halfway through a calendar year.
- Thus, this is a natural arena in which we may ask questions of inference
+ Thus emerges a natural arena in which we may ask questions of inference
  and imputation given distributional data.
 \end_layout
 
@@ -759,10 +759,10 @@ Mean of the
 \end_layout
 
 \begin_layout Standard
-By 
+By the comments in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "rem:bootstrap"
+reference "chap:EM"
 
 \end_inset
 
@@ -771,20 +771,16 @@ reference "rem:bootstrap"
 \end_inset
 
 , which can be easily found through numerical optimization procedures, is
- the parameter that asymptotically minimizes the K-L divergence of the distribut
-ion of 
-\begin_inset Formula $X$
+ the parameter that asymptotically minimizes the K-L divergence of the law
+ of 
+\begin_inset Formula $X_{\mathcal{T}}$
 \end_inset
 
  under 
 \begin_inset Formula $\mathbb{Q}_{\theta}$
 \end_inset
 
- at 
-\begin_inset Formula $\mathcal{T}$
-\end_inset
-
- from its distribution under 
+ from its law under 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -816,10 +812,13 @@ reference "tab:mle-vs-mcem"
 \begin_inset Formula $\mu$
 \end_inset
 
- aligns closely with intuition: Forecasters appear to be, on average, reverting
- to the medium-term inflation target of the ECB when reporting their medium-term
- conditional expectations for inflation.
- 
+ aligns closely with intuition: Forecasters appear to, on average, expect
+ the reversion of inflation to the medium-term inflation target of the ECB:
+ just under 
+\begin_inset Formula $2\%$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -828,7 +827,7 @@ On the other hand, the bias is non-trivially positive for the MKLDE of
 \end_inset
 
 , suggesting that the thin-tailedness of the approximate bridges can in
- fact affect the quality of MCEM convergence in empirical situations.
+ fact affect the quality of MCEM estimates in empirical situations.
  The computational cost of running MCEM with exact bridges, however, can
  still be high enough that the practitioner will need to weigh the utility
  of slightly more accurate estimates against significantly longer running
@@ -840,10 +839,9 @@ Putting It All Together
 \end_layout
 
 \begin_layout Standard
-In the final original section of this thesis, we study the dynamics of inflation
- expectations in the ECB SPFs since 1999Q1 and synthesize the methods developed
- in this thesis by answering the following question: What can we say, given
- a finite number of sample paths of 
+In the final original section of this thesis, we synthesize the methods
+ developed in this thesis by answering the following question: What can
+ we say, given a finite number of sample paths of 
 \begin_inset Formula $X$
 \end_inset
 
@@ -852,7 +850,8 @@ In the final original section of this thesis, we study the dynamics of inflation
 \end_inset
 
  at arbitrary horizons? In particular, we propose a generalized bridge-based
- imputation scheme for distributional data.
+ imputation scheme for distributional data and a stochastic model known
+ up to its parameters.
  We show such a scheme reduces mean out-of-sample estimated K-L divergence
  of interpolations from the truth vis-à-vis a baseline linear interpolation
  for the ECB SPF dataset, using models with tractable and intractable log-likeli
@@ -899,7 +898,7 @@ To begin, we consider a particular SPF containing forecasts from a finite
 \begin_inset Formula $\mathbb{P}_{X_{\mathcal{T}}}$
 \end_inset
 
- be the distribution of 
+ be the law of 
 \begin_inset Formula $X_{\mathcal{T}}$
 \end_inset
 
@@ -1034,7 +1033,7 @@ Now, fix a parameterized family of models
 
 .
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 A theoretical justification of this statement is a pressing direction for
@@ -1074,7 +1073,7 @@ reference "fig:imputation"
 \begin_inset Formula $\mathbb{Q}_{\theta^{*}}$
 \end_inset
 
-; in the case of inflation forecasts, we use 
+; here, we use 
 \begin_inset Formula $\hat{\nu}$
 \end_inset
 
@@ -1226,48 +1225,6 @@ First, we estimate the MKLDE
 \end_inset
 
 .
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-The Baudoin-
-\begin_inset Formula $(X_{\mathcal{T}\setminus t_{i}},\hat{\nu}_{-t_{i}})$
-\end_inset
-
- conditioning of 
-\begin_inset Formula $\mathbb{Q}_{\theta_{-t_{i}}^{*}}$
-\end_inset
-
- is only a valid Baudoin conditioning in some limiting sense.
- In particular, 
-\begin_inset Formula $\hat{\nu}_{-t_{i}}$
-\end_inset
-
- is not absolutely continuous to the law of 
-\begin_inset Formula $X_{\mathcal{T}\mathcal{\setminus}t_{i}}$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{Q}_{\theta_{-t_{i}}^{*}}$
-\end_inset
-
-; however, 
-\begin_inset Formula $\hat{\nu}_{-t_{i}}$
-\end_inset
-
- converges pointwise to the law of 
-\begin_inset Formula $X_{\mathcal{T}\setminus t_{i}}$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
-, which by assumption is.
-\end_layout
-
-\end_inset
-
  Finally, we use 
 \begin_inset Formula $\tilde{\nu}_{t_{i}}$
 \end_inset
@@ -1851,9 +1808,20 @@ key "perez-cruz-2008"
 \end_layout
 
 \begin_layout Standard
-MOTIVATE IT A BIT MORE Exploratory data analysis suggests that the paired
- differences of K-L divergences between the various imputation schemes deviate
- substantially from normality; 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:wilcoxon"
+
+\end_inset
+
+ also presents 
+\begin_inset Formula $p$
+\end_inset
+
+-values from tests on the paired differences of the K-L divergences between
+ the various imputation schemes.
+ Exploratory data analysis suggests that the paired differences of K-L divergenc
+es deviate substantially from normality; 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "tab:wilcoxon"
@@ -1877,7 +1845,7 @@ reference "tab:wilcoxon"
 \begin_inset Formula $p$
 \end_inset
 
--values obtained from the sign test, whose very few assumptions can be confirmed
+-values obtained from the sign test, whose few assumptions can be confirmed
  to be satisfied by our data.
 \end_layout
 
@@ -1908,16 +1876,31 @@ We see that the generalized bridge-based methods offer qualitatively large
  level; however, we ought to keep in mind that the sign test is an extremely
  conservative test that discards any information about the magnitude of
  the K-L divergence reductions.
- The qualitatively large effect sizes and array of small 
+ As a result of
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+the qualitatively large reduction in K-L divergence under a generalized
+ bridge-based imputation scheme vis-à-vis linear interpolation,
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+the array of relatively small 
 \begin_inset Formula $p$
 \end_inset
 
--values even from low power tests, combined with our prior that linear evolution
- should not fully capture the complex dynamics of inflation expectations,
- results in our fairly strong belief that bridge-based imputation does in
+-values even from low power tests like the sign test, and
+\end_layout
+
+\begin_layout aEnumerate (ClassicThesis)
+our prior that linear evolution should not fully capture the complex dynamics
+ of inflation expectations,
+\end_layout
+
+\begin_layout Standard
+we update to a fairly strong belief that bridge-based imputation does in
  fact offer better imputations of inflation expectations than linear interpolati
 on.
- MAKE A LIST
 \end_layout
 
 \begin_layout Standard

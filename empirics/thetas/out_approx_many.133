@@ -1,0 +1,1977 @@
+[1] "Making nu."
+[1] "Starting DEoptim."
+Iteration: 1 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 2 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 3 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 4 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 5 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 6 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 7 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 8 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 9 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 10 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 11 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 12 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 13 bestvalit: 2.067633 bestmemit:    0.121622    0.374468    0.989118
+Iteration: 14 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 15 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 16 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 17 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 18 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 19 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 20 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 21 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 22 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 23 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 24 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 25 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 26 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 27 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 28 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 29 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 30 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 31 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 32 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 33 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 34 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 35 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 36 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 37 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 38 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 39 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 40 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 41 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 42 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 43 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 44 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 45 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 46 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 47 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 48 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 49 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 50 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 51 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 52 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 53 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 54 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 55 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 56 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 57 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 58 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 59 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 60 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 61 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 62 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 63 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 64 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 65 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 66 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 67 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 68 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 69 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 70 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 71 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 72 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 73 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 74 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 75 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 76 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 77 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 78 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 79 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 80 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 81 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 82 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 83 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 84 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 85 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 86 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 87 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 88 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 89 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 90 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 91 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 92 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 93 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 94 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 95 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 96 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 97 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 98 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 99 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 100 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 101 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 102 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 103 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 104 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 105 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 106 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 107 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 108 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 109 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 110 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 111 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 112 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 113 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 114 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 115 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 116 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 117 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 118 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 119 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 120 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 121 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 122 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 123 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 124 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 125 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 126 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 127 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 128 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 129 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 130 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 131 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 132 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 133 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 134 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 135 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 136 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 137 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 138 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 139 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 140 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 141 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 142 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 143 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 144 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 145 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 146 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 147 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 148 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 149 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 150 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 151 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 152 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 153 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 154 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 155 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 156 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 157 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 158 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 159 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 160 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 161 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 162 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 163 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 164 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 165 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 166 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 167 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 168 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 169 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 170 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 171 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 172 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 173 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 174 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 175 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 176 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 177 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 178 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 179 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 180 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 181 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 182 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 183 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 184 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 185 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 186 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 187 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 188 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 189 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 190 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 191 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 192 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 193 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 194 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 195 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 196 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 197 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 198 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 199 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+Iteration: 200 bestvalit: 1.967500 bestmemit:   -0.065879    0.220273    1.007556
+       par1        par2        par3 
+-0.06587919  0.22027322  1.00755639 
+Iteration: 1 bestvalit: 2.241199 bestmemit:    0.070093    1.068395    1.586302
+Iteration: 2 bestvalit: 2.239989 bestmemit:   -0.602254    0.629036    1.160931
+Iteration: 3 bestvalit: 2.199467 bestmemit:    0.420180    0.315789    1.185616
+Iteration: 4 bestvalit: 2.147257 bestmemit:    0.080254    0.910278    1.225994
+Iteration: 5 bestvalit: 2.147257 bestmemit:    0.080254    0.910278    1.225994
+Iteration: 6 bestvalit: 2.147257 bestmemit:    0.080254    0.910278    1.225994
+Iteration: 7 bestvalit: 2.117709 bestmemit:   -0.013612    0.478224    1.175990
+Iteration: 8 bestvalit: 2.117709 bestmemit:   -0.013612    0.478224    1.175990
+Iteration: 9 bestvalit: 2.117709 bestmemit:   -0.013612    0.478224    1.175990
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 10 bestvalit: 2.117709 bestmemit:   -0.013612    0.478224    1.175990
+Iteration: 11 bestvalit: 2.117709 bestmemit:   -0.013612    0.478224    1.175990
+Iteration: 12 bestvalit: 2.117709 bestmemit:   -0.013612    0.478224    1.175990
+Iteration: 13 bestvalit: 2.117709 bestmemit:   -0.013612    0.478224    1.175990
+Iteration: 14 bestvalit: 2.117709 bestmemit:   -0.013612    0.478224    1.175990
+Iteration: 15 bestvalit: 2.117709 bestmemit:   -0.013612    0.478224    1.175990
+Iteration: 16 bestvalit: 2.117709 bestmemit:   -0.013612    0.478224    1.175990
+Iteration: 17 bestvalit: 2.100291 bestmemit:   -0.017460    0.641487    1.194772
+Iteration: 18 bestvalit: 2.100291 bestmemit:   -0.017460    0.641487    1.194772
+Iteration: 19 bestvalit: 2.100291 bestmemit:   -0.017460    0.641487    1.194772
+Iteration: 20 bestvalit: 2.100291 bestmemit:   -0.017460    0.641487    1.194772
+Iteration: 21 bestvalit: 2.100291 bestmemit:   -0.017460    0.641487    1.194772
+Iteration: 22 bestvalit: 2.100291 bestmemit:   -0.017460    0.641487    1.194772
+Iteration: 23 bestvalit: 2.100291 bestmemit:   -0.017460    0.641487    1.194772
+Iteration: 24 bestvalit: 2.100291 bestmemit:   -0.017460    0.641487    1.194772
+Iteration: 25 bestvalit: 2.098316 bestmemit:    0.078125    0.015133    1.073576
+Iteration: 26 bestvalit: 2.098316 bestmemit:    0.078125    0.015133    1.073576
+Iteration: 27 bestvalit: 2.098316 bestmemit:    0.078125    0.015133    1.073576
+Iteration: 28 bestvalit: 2.098316 bestmemit:    0.078125    0.015133    1.073576
+Iteration: 29 bestvalit: 2.047163 bestmemit:   -0.172166    0.187971    0.944629
+[1] "Too many tries."
+Iteration: 30 bestvalit: 2.047163 bestmemit:   -0.172166    0.187971    0.944629
+Iteration: 31 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 32 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+[1] "Too many tries."
+Iteration: 33 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 34 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 35 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 36 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 37 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 38 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 39 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 40 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 41 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+[1] "Too many tries."
+Iteration: 42 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 43 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 44 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+[1] "Too many tries."
+Iteration: 45 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 46 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 47 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+[1] "Too many tries."
+Iteration: 48 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 49 bestvalit: 2.039752 bestmemit:   -0.014038    0.482242    1.053890
+Iteration: 50 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+Iteration: 51 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+Iteration: 52 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+[1] "Too many tries."
+Iteration: 53 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+Iteration: 54 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+Iteration: 55 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+Iteration: 56 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+Iteration: 57 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+Iteration: 58 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+Iteration: 59 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+Iteration: 60 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+Iteration: 61 bestvalit: 2.035513 bestmemit:    0.031578    0.268873    1.105534
+Iteration: 62 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 63 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 64 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 65 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 66 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 67 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+[1] "Too many tries."
+Iteration: 68 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 69 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+[1] "Too many tries."
+Iteration: 70 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+[1] "Too many tries."
+Iteration: 71 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+[1] "Too many tries."
+Iteration: 72 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 73 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 74 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+[1] "Too many tries."
+Iteration: 75 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 76 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 77 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 78 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+[1] "Too many tries."
+Iteration: 79 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 80 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+[1] "Too many tries."
+Iteration: 81 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 82 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 83 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 84 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+[1] "Too many tries."
+Iteration: 85 bestvalit: 2.004591 bestmemit:   -0.092843    0.337979    1.105018
+Iteration: 86 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 87 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 88 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 89 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 90 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 91 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 92 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 93 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 94 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 95 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 96 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 97 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 98 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 99 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 100 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 101 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 102 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 103 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 104 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 105 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 106 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 107 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 108 bestvalit: 1.988809 bestmemit:   -0.060242    0.242548    1.027278
+Iteration: 109 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 110 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 111 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 112 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 113 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 114 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 115 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 116 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 117 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 118 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 119 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 120 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 121 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 122 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 123 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 124 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 125 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 126 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 127 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 128 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 129 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 130 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 131 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 132 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 133 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 134 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 135 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 136 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 137 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 138 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 139 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 140 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 141 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 142 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 143 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 144 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 145 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 146 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 147 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 148 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 149 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 150 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 151 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 152 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 153 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 154 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 155 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 156 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 157 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 158 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 159 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 160 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 161 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 162 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 163 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 164 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 165 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 166 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 167 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 168 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 169 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 170 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 171 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 172 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 173 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 174 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 175 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 176 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 177 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 178 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+Iteration: 179 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 180 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 181 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 182 bestvalit: 1.975839 bestmemit:    0.135118    0.242548    1.027278
+Iteration: 183 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 184 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 185 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 186 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 187 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 188 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 189 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 190 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+[1] "Too many tries."
+Iteration: 191 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 192 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 193 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 194 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+[1] "Too many tries."
+Iteration: 195 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 196 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+[1] "Too many tries."
+Iteration: 197 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 198 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+[1] "Too many tries."
+Iteration: 199 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+Iteration: 200 bestvalit: 1.966961 bestmemit:   -0.049885    0.095461    0.974591
+       par1        par2        par3 
+-0.04988545  0.09546104  0.97459071 
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 1 bestvalit: 2.179063 bestmemit:    0.054426    0.756476    1.253429
+[1] "Too many tries."
+Iteration: 2 bestvalit: 2.179063 bestmemit:    0.054426    0.756476    1.253429
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 3 bestvalit: 2.179063 bestmemit:    0.054426    0.756476    1.253429
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 4 bestvalit: 2.179063 bestmemit:    0.054426    0.756476    1.253429
+[1] "Too many tries."
+Iteration: 5 bestvalit: 2.179063 bestmemit:    0.054426    0.756476    1.253429
+Iteration: 6 bestvalit: 2.179063 bestmemit:    0.054426    0.756476    1.253429
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 7 bestvalit: 2.150751 bestmemit:    0.193479    0.568525    1.165742
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 8 bestvalit: 2.150751 bestmemit:    0.193479    0.568525    1.165742
+Iteration: 9 bestvalit: 2.149918 bestmemit:    0.104763    0.274660    1.132306
+[1] "Too many tries."
+Iteration: 10 bestvalit: 2.136332 bestmemit:   -0.152520    0.374507    1.106890
+[1] "Too many tries."
+Iteration: 11 bestvalit: 2.136332 bestmemit:   -0.152520    0.374507    1.106890
+[1] "Too many tries."
+Iteration: 12 bestvalit: 2.136332 bestmemit:   -0.152520    0.374507    1.106890
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 13 bestvalit: 2.101945 bestmemit:    0.104763    0.274660    1.073585
+[1] "Too many tries."
+Iteration: 14 bestvalit: 2.101945 bestmemit:    0.104763    0.274660    1.073585
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 15 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+Iteration: 16 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+Iteration: 17 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 18 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 19 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 20 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 21 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 22 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+Iteration: 23 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+Iteration: 24 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 25 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 26 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 27 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 28 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 29 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 30 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 31 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+Iteration: 32 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+Iteration: 33 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 34 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 35 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+Iteration: 36 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+Iteration: 37 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 38 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+Iteration: 39 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 40 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 41 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 42 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 43 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 44 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 45 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+Iteration: 46 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 47 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 48 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+Iteration: 49 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+Iteration: 50 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 51 bestvalit: 2.091285 bestmemit:    0.082632    0.159076    1.097834
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 52 bestvalit: 2.084883 bestmemit:   -0.098510    0.077275    0.928154
+[1] "Too many tries."
+Iteration: 53 bestvalit: 2.084883 bestmemit:   -0.098510    0.077275    0.928154
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 54 bestvalit: 2.084883 bestmemit:   -0.098510    0.077275    0.928154
+Iteration: 55 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 56 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 57 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 58 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 59 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 60 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 61 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 62 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 63 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 64 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 65 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 66 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 67 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 68 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 69 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 70 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 71 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 72 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 73 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 74 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 75 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 76 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 77 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 78 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 79 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 80 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 81 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 82 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 83 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 84 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 85 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 86 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 87 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 88 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 89 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 90 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 91 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 92 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 93 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 94 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 95 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 96 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 97 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 98 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 99 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 100 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 101 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 102 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 103 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+Iteration: 104 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 105 bestvalit: 2.074027 bestmemit:   -0.001596    0.178300    0.934363
+[1] "Too many tries."
+Iteration: 106 bestvalit: 2.073568 bestmemit:    0.037573    0.204701    1.099077
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 107 bestvalit: 2.073568 bestmemit:    0.037573    0.204701    1.099077
+[1] "Too many tries."
+Iteration: 108 bestvalit: 2.073568 bestmemit:    0.037573    0.204701    1.099077
+[1] "Too many tries."
+Iteration: 109 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+Iteration: 110 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+Iteration: 111 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 112 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+Iteration: 113 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 114 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 115 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 116 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+Iteration: 117 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+Iteration: 118 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 119 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+Iteration: 120 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 121 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+Iteration: 122 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+Iteration: 123 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+Iteration: 124 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+Iteration: 125 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 126 bestvalit: 2.072086 bestmemit:    0.155001    0.265293    0.968784
+[1] "Too many tries."
+Iteration: 127 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 128 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 129 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 130 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 131 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 132 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 133 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 134 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 135 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 136 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 137 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 138 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 139 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 140 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 141 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 142 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 143 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 144 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 145 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 146 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 147 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 148 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 149 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 150 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 151 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 152 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 153 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 154 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 155 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 156 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 157 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 158 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 159 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 160 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 161 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 162 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 163 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 164 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 165 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 166 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 167 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 168 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 169 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 170 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 171 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 172 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 173 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 174 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 175 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 176 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 177 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 178 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 179 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 180 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 181 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 182 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 183 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 184 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 185 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 186 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 187 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 188 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 189 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 190 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 191 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 192 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 193 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+Iteration: 194 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 195 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 196 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 197 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 198 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+Iteration: 199 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 200 bestvalit: 2.061065 bestmemit:   -0.079188    0.328611    1.034021
+       par1        par2        par3 
+-0.07918762  0.32861117  1.03402090 
+Iteration: 1 bestvalit: 2.224957 bestmemit:    0.046474    0.709373    1.213254
+Iteration: 2 bestvalit: 2.185778 bestmemit:    0.067131    0.040928    1.203207
+Iteration: 3 bestvalit: 2.185778 bestmemit:    0.067131    0.040928    1.203207
+Iteration: 4 bestvalit: 2.185778 bestmemit:    0.067131    0.040928    1.203207
+Iteration: 5 bestvalit: 2.144342 bestmemit:   -0.102722    0.001976    1.134797
+Iteration: 6 bestvalit: 2.144342 bestmemit:   -0.102722    0.001976    1.134797
+Iteration: 7 bestvalit: 2.144342 bestmemit:   -0.102722    0.001976    1.134797
+[1] "Too many tries."
+Iteration: 8 bestvalit: 2.144342 bestmemit:   -0.102722    0.001976    1.134797
+Iteration: 9 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 10 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+[1] "Too many tries."
+Iteration: 11 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 12 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 13 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 14 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 15 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 16 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 17 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+[1] "Too many tries."
+Iteration: 18 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 19 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 20 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 21 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+[1] "Too many tries."
+Iteration: 22 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 23 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 24 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 25 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 26 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+[1] "Too many tries."
+Iteration: 27 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 28 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 29 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 30 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 31 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 32 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 33 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 34 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 35 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 36 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 37 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 38 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 39 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 40 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 41 bestvalit: 2.101260 bestmemit:   -0.102722    0.001976    0.929272
+Iteration: 42 bestvalit: 2.081768 bestmemit:    0.065346    0.010006    1.024467
+Iteration: 43 bestvalit: 2.081768 bestmemit:    0.065346    0.010006    1.024467
+Iteration: 44 bestvalit: 2.081768 bestmemit:    0.065346    0.010006    1.024467
+Iteration: 45 bestvalit: 2.081768 bestmemit:    0.065346    0.010006    1.024467
+Iteration: 46 bestvalit: 2.081768 bestmemit:    0.065346    0.010006    1.024467
+Iteration: 47 bestvalit: 2.065248 bestmemit:   -0.013506    0.056268    1.023822
+Iteration: 48 bestvalit: 2.065248 bestmemit:   -0.013506    0.056268    1.023822
+Iteration: 49 bestvalit: 2.065248 bestmemit:   -0.013506    0.056268    1.023822
+Iteration: 50 bestvalit: 2.065248 bestmemit:   -0.013506    0.056268    1.023822
+Iteration: 51 bestvalit: 2.065248 bestmemit:   -0.013506    0.056268    1.023822
+Iteration: 52 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 53 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 54 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 55 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+Iteration: 56 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 57 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 58 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 59 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 60 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 61 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 62 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 63 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 64 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 65 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 66 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+Iteration: 67 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 68 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+Iteration: 69 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 70 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 71 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+Iteration: 72 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 73 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 74 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 75 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 76 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 77 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 78 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 79 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 80 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 81 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 82 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+Iteration: 83 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 84 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+Iteration: 85 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+Iteration: 86 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 87 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+Iteration: 88 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 89 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 90 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 91 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 92 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 93 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 94 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 95 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 96 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 97 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 98 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+Iteration: 99 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 100 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 101 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 102 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+[1] "Too many tries."
+Iteration: 103 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 104 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 105 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 106 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 107 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 108 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 109 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 110 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 111 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 112 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 113 bestvalit: 2.063709 bestmemit:    0.057862    0.069453    0.999173
+Iteration: 114 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 115 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 116 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 117 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 118 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 119 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 120 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 121 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 122 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 123 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 124 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 125 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 126 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 127 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 128 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 129 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 130 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 131 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 132 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 133 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 134 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 135 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 136 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 137 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 138 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 139 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 140 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 141 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 142 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 143 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 144 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 145 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 146 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 147 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 148 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 149 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 150 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 151 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 152 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 153 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 154 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 155 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 156 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 157 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 158 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 159 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 160 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 161 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 162 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 163 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 164 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 165 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 166 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 167 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 168 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 169 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 170 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 171 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 172 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 173 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 174 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 175 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 176 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 177 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 178 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 179 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 180 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 181 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 182 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 183 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 184 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 185 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 186 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 187 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 188 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 189 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 190 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 191 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 192 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 193 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 194 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 195 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 196 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+Iteration: 197 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 198 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 199 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+Iteration: 200 bestvalit: 2.039800 bestmemit:    0.057862    0.069453    0.983391
+      par1       par2       par3 
+0.05786233 0.06945306 0.98339116 
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 1 bestvalit: 2.228018 bestmemit:   -0.095477    0.989233    1.400018
+[1] "Too many tries."
+Iteration: 2 bestvalit: 2.228018 bestmemit:   -0.095477    0.989233    1.400018
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 3 bestvalit: 2.168194 bestmemit:    0.259254    0.315819    1.148655
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 4 bestvalit: 2.147009 bestmemit:   -0.132704    0.615968    1.117694
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 5 bestvalit: 2.147009 bestmemit:   -0.132704    0.615968    1.117694
+Iteration: 6 bestvalit: 2.147009 bestmemit:   -0.132704    0.615968    1.117694
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 7 bestvalit: 2.147009 bestmemit:   -0.132704    0.615968    1.117694
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 8 bestvalit: 2.147009 bestmemit:   -0.132704    0.615968    1.117694
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 9 bestvalit: 2.137662 bestmemit:    0.100524    0.014743    1.091993
+Iteration: 10 bestvalit: 2.137662 bestmemit:    0.100524    0.014743    1.091993
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 11 bestvalit: 2.137662 bestmemit:    0.100524    0.014743    1.091993
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 12 bestvalit: 2.137662 bestmemit:    0.100524    0.014743    1.091993
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 13 bestvalit: 2.137662 bestmemit:    0.100524    0.014743    1.091993
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 14 bestvalit: 2.137662 bestmemit:    0.100524    0.014743    1.091993
+[1] "Too many tries."
+Iteration: 15 bestvalit: 2.137662 bestmemit:    0.100524    0.014743    1.091993
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 16 bestvalit: 2.137662 bestmemit:    0.100524    0.014743    1.091993
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 17 bestvalit: 2.126999 bestmemit:   -0.061522    0.244713    1.103884
+[1] "Too many tries."
+Iteration: 18 bestvalit: 2.126999 bestmemit:   -0.061522    0.244713    1.103884
+Iteration: 19 bestvalit: 2.126999 bestmemit:   -0.061522    0.244713    1.103884
+[1] "Too many tries."
+Iteration: 20 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 21 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+Iteration: 22 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+Iteration: 23 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 24 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+Iteration: 25 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+Iteration: 26 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+Iteration: 27 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 28 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+Iteration: 29 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+Iteration: 30 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 31 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+Iteration: 32 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+Iteration: 33 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+Iteration: 34 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 35 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+Iteration: 36 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 37 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 38 bestvalit: 2.085024 bestmemit:   -0.071492    0.000331    0.900950
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 39 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 40 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+Iteration: 41 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+Iteration: 42 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+Iteration: 43 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 44 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+Iteration: 45 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 46 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+Iteration: 47 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+Iteration: 48 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 49 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 50 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 51 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+Iteration: 52 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 53 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+Iteration: 54 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+Iteration: 55 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 56 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+Iteration: 57 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+Iteration: 58 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+Iteration: 59 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+Iteration: 60 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 61 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 62 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 63 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+Iteration: 64 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 65 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+Iteration: 66 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+Iteration: 67 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 68 bestvalit: 2.082818 bestmemit:   -0.094888    0.139305    1.011445
+[1] "Too many tries."
+Iteration: 69 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 70 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 71 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 72 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 73 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 74 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+Iteration: 75 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+Iteration: 76 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 77 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 78 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+Iteration: 79 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 80 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+Iteration: 81 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 82 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 83 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 84 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 85 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 86 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 87 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+Iteration: 88 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 89 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 90 bestvalit: 2.074170 bestmemit:    0.036148    0.111925    1.067701
+[1] "Too many tries."
+Iteration: 91 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 92 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 93 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 94 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 95 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 96 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 97 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 98 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 99 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 100 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 101 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 102 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 103 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 104 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 105 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 106 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 107 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 108 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 109 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 110 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 111 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 112 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 113 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 114 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 115 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 116 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 117 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 118 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 119 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 120 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 121 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 122 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 123 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 124 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 125 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 126 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 127 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 128 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 129 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 130 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 131 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 132 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 133 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 134 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 135 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 136 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 137 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 138 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 139 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 140 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 141 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 142 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 143 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 144 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 145 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 146 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 147 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 148 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 149 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 150 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 151 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 152 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 153 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 154 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 155 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 156 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 157 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 158 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 159 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 160 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 161 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 162 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 163 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 164 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 165 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 166 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 167 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 168 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 169 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 170 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 171 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 172 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 173 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 174 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 175 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 176 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 177 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 178 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 179 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 180 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 181 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 182 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 183 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 184 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 185 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 186 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 187 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 188 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 189 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 190 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 191 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 192 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 193 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 194 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 195 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 196 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 197 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 198 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 199 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 200 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 201 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 202 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 203 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 204 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 205 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 206 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 207 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 208 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 209 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 210 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 211 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 212 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 213 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 214 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 215 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 216 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 217 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 218 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 219 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 220 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 221 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 222 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 223 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 224 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 225 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 226 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 227 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 228 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 229 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 230 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 231 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 232 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 233 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 234 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 235 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 236 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 237 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 238 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 239 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 240 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 241 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 242 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 243 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 244 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 245 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 246 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 247 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 248 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 249 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 250 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 251 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 252 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 253 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 254 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 255 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 256 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 257 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 258 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 259 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 260 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 261 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 262 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 263 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 264 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 265 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 266 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 267 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 268 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 269 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 270 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 271 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 272 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 273 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 274 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 275 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 276 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 277 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 278 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 279 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 280 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 281 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 282 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 283 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 284 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 285 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 286 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 287 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 288 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 289 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 290 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 291 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 292 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 293 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+Iteration: 294 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 295 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 296 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+Iteration: 297 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 298 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 299 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 300 bestvalit: 2.066481 bestmemit:   -0.073799    0.000760    0.907718
+         par1          par2          par3 
+-0.0737987687  0.0007600105  0.9077181231 

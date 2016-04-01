@@ -1,0 +1,897 @@
+[1] "Making nu."
+[1] "Starting DEoptim."
+Iteration: 1 bestvalit: 2.490094 bestmemit:    0.440279    0.301933    1.371556
+Iteration: 2 bestvalit: 2.490094 bestmemit:    0.440279    0.301933    1.371556
+Iteration: 3 bestvalit: 2.490094 bestmemit:    0.440279    0.301933    1.371556
+Iteration: 4 bestvalit: 2.475524 bestmemit:    0.101484    0.854054    1.646205
+Iteration: 5 bestvalit: 2.441044 bestmemit:    0.440279    1.233089    1.427895
+Iteration: 6 bestvalit: 2.441044 bestmemit:    0.440279    1.233089    1.427895
+Iteration: 7 bestvalit: 2.441044 bestmemit:    0.440279    1.233089    1.427895
+Iteration: 8 bestvalit: 2.441044 bestmemit:    0.440279    1.233089    1.427895
+Iteration: 9 bestvalit: 2.441044 bestmemit:    0.440279    1.233089    1.427895
+Iteration: 10 bestvalit: 2.430344 bestmemit:    0.141107    0.908775    1.439312
+Iteration: 11 bestvalit: 2.430344 bestmemit:    0.141107    0.908775    1.439312
+Iteration: 12 bestvalit: 2.430344 bestmemit:    0.141107    0.908775    1.439312
+Iteration: 13 bestvalit: 2.428398 bestmemit:    0.440279    1.233089    1.651182
+Iteration: 14 bestvalit: 2.426013 bestmemit:    0.028968    0.801451    1.687464
+Iteration: 15 bestvalit: 2.426013 bestmemit:    0.028968    0.801451    1.687464
+Iteration: 16 bestvalit: 2.425790 bestmemit:    0.157882    0.848439    1.430930
+Iteration: 17 bestvalit: 2.425790 bestmemit:    0.157882    0.848439    1.430930
+Iteration: 18 bestvalit: 2.425790 bestmemit:    0.157882    0.848439    1.430930
+Iteration: 19 bestvalit: 2.425790 bestmemit:    0.157882    0.848439    1.430930
+Iteration: 20 bestvalit: 2.425790 bestmemit:    0.157882    0.848439    1.430930
+Iteration: 21 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 22 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 23 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 24 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 25 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 26 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 27 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 28 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 29 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 30 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 31 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 32 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 33 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 34 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 35 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 36 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 37 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 38 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 39 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 40 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 41 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 42 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 43 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 44 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 45 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 46 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 47 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 48 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 49 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 50 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 51 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 52 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 53 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 54 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 55 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 56 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 57 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 58 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 59 bestvalit: 2.403118 bestmemit:    0.148636    1.039046    1.460131
+Iteration: 60 bestvalit: 2.402598 bestmemit:    0.212755    1.026385    1.457256
+Iteration: 61 bestvalit: 2.402598 bestmemit:    0.212755    1.026385    1.457256
+Iteration: 62 bestvalit: 2.402598 bestmemit:    0.212755    1.026385    1.457256
+Iteration: 63 bestvalit: 2.402598 bestmemit:    0.212755    1.026385    1.457256
+Iteration: 64 bestvalit: 2.402598 bestmemit:    0.212755    1.026385    1.457256
+Iteration: 65 bestvalit: 2.402598 bestmemit:    0.212755    1.026385    1.457256
+Iteration: 66 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 67 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 68 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 69 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 70 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 71 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 72 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 73 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 74 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 75 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 76 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 77 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 78 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 79 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 80 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 81 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 82 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 83 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 84 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 85 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 86 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 87 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 88 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 89 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 90 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 91 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 92 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 93 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 94 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 95 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 96 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 97 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 98 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 99 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+Iteration: 100 bestvalit: 2.368081 bestmemit:    0.205423    0.789578    1.364351
+     par1      par2      par3 
+0.2054226 0.7895780 1.3643513 
+Iteration: 1 bestvalit: 2.477826 bestmemit:   -0.282952    0.474524    1.307203
+Iteration: 2 bestvalit: 2.477826 bestmemit:   -0.282952    0.474524    1.307203
+Iteration: 3 bestvalit: 2.477826 bestmemit:   -0.282952    0.474524    1.307203
+Iteration: 4 bestvalit: 2.477826 bestmemit:   -0.282952    0.474524    1.307203
+Iteration: 5 bestvalit: 2.465461 bestmemit:   -0.373883    0.433437    1.299233
+Iteration: 6 bestvalit: 2.465461 bestmemit:   -0.373883    0.433437    1.299233
+Iteration: 7 bestvalit: 2.465461 bestmemit:   -0.373883    0.433437    1.299233
+Iteration: 8 bestvalit: 2.465461 bestmemit:   -0.373883    0.433437    1.299233
+Iteration: 9 bestvalit: 2.465461 bestmemit:   -0.373883    0.433437    1.299233
+Iteration: 10 bestvalit: 2.459996 bestmemit:   -0.356205    1.304538    1.556192
+Iteration: 11 bestvalit: 2.459996 bestmemit:   -0.356205    1.304538    1.556192
+Iteration: 12 bestvalit: 2.423055 bestmemit:    0.152599    0.771379    1.425640
+Iteration: 13 bestvalit: 2.423055 bestmemit:    0.152599    0.771379    1.425640
+Iteration: 14 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 15 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 16 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 17 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 18 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 19 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 20 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 21 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 22 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 23 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 24 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 25 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 26 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 27 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 28 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 29 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 30 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 31 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 32 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 33 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 34 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 35 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 36 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 37 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 38 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 39 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 40 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 41 bestvalit: 2.403740 bestmemit:    0.098512    0.474524    1.448084
+Iteration: 42 bestvalit: 2.366808 bestmemit:    0.218612    1.006255    1.552421
+Iteration: 43 bestvalit: 2.366808 bestmemit:    0.218612    1.006255    1.552421
+Iteration: 44 bestvalit: 2.366808 bestmemit:    0.218612    1.006255    1.552421
+Iteration: 45 bestvalit: 2.366808 bestmemit:    0.218612    1.006255    1.552421
+Iteration: 46 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 47 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 48 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 49 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 50 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 51 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 52 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 53 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 54 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 55 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 56 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 57 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 58 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 59 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 60 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 61 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 62 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 63 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 64 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 65 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 66 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 67 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 68 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 69 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 70 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 71 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 72 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 73 bestvalit: 2.366772 bestmemit:   -0.022266    0.329867    1.175495
+Iteration: 74 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 75 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 76 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 77 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 78 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 79 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 80 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 81 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 82 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 83 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 84 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 85 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 86 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 87 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 88 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 89 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 90 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 91 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 92 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 93 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 94 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 95 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 96 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 97 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 98 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 99 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+Iteration: 100 bestvalit: 2.319830 bestmemit:    0.015387    0.580031    1.346744
+      par1       par2       par3 
+0.01538705 0.58003092 1.34674376 
+Iteration: 1 bestvalit: 2.510286 bestmemit:   -0.528663    1.472310    1.779303
+Iteration: 2 bestvalit: 2.510286 bestmemit:   -0.528663    1.472310    1.779303
+Iteration: 3 bestvalit: 2.510286 bestmemit:   -0.528663    1.472310    1.779303
+Iteration: 4 bestvalit: 2.510286 bestmemit:   -0.528663    1.472310    1.779303
+Iteration: 5 bestvalit: 2.510286 bestmemit:   -0.528663    1.472310    1.779303
+Iteration: 6 bestvalit: 2.498496 bestmemit:    0.334169    1.221758    1.457759
+Iteration: 7 bestvalit: 2.484489 bestmemit:   -0.158128    0.840740    1.425887
+Iteration: 8 bestvalit: 2.484489 bestmemit:   -0.158128    0.840740    1.425887
+Iteration: 9 bestvalit: 2.484489 bestmemit:   -0.158128    0.840740    1.425887
+Iteration: 10 bestvalit: 2.484489 bestmemit:   -0.158128    0.840740    1.425887
+Iteration: 11 bestvalit: 2.484489 bestmemit:   -0.158128    0.840740    1.425887
+Iteration: 12 bestvalit: 2.484489 bestmemit:   -0.158128    0.840740    1.425887
+Iteration: 13 bestvalit: 2.484489 bestmemit:   -0.158128    0.840740    1.425887
+Iteration: 14 bestvalit: 2.484489 bestmemit:   -0.158128    0.840740    1.425887
+Iteration: 15 bestvalit: 2.484489 bestmemit:   -0.158128    0.840740    1.425887
+Iteration: 16 bestvalit: 2.484489 bestmemit:   -0.158128    0.840740    1.425887
+Iteration: 17 bestvalit: 2.459428 bestmemit:   -0.219143    0.420535    1.279102
+Iteration: 18 bestvalit: 2.459428 bestmemit:   -0.219143    0.420535    1.279102
+Iteration: 19 bestvalit: 2.459428 bestmemit:   -0.219143    0.420535    1.279102
+Iteration: 20 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 21 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 22 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 23 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 24 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 25 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 26 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 27 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 28 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 29 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+[1] "Too many tries."
+Iteration: 30 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 31 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 32 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+Iteration: 33 bestvalit: 2.458801 bestmemit:    0.257504    1.193716    1.572916
+[1] "Too many tries."
+Iteration: 34 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+[1] "Too many tries."
+Iteration: 35 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 36 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 37 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 38 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 39 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 40 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 41 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 42 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 43 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 44 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 45 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 46 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 47 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 48 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 49 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+[1] "Too many tries."
+Iteration: 50 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 51 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 52 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 53 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 54 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 55 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 56 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 57 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 58 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 59 bestvalit: 2.454363 bestmemit:    0.070015    0.840740    1.425887
+Iteration: 60 bestvalit: 2.450546 bestmemit:    0.106079    0.840740    1.425887
+Iteration: 61 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 62 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 63 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 64 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 65 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 66 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 67 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+[1] "Too many tries."
+Iteration: 68 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+[1] "Too many tries."
+Iteration: 69 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 70 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 71 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 72 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 73 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 74 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 75 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 76 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 77 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 78 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 79 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 80 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+[1] "Too many tries."
+Iteration: 81 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 82 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 83 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 84 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 85 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 86 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 87 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 88 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 89 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 90 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 91 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 92 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 93 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 94 bestvalit: 2.444691 bestmemit:   -0.170499    0.854566    1.496767
+Iteration: 95 bestvalit: 2.442885 bestmemit:    0.023335    0.478672    1.423818
+Iteration: 96 bestvalit: 2.442885 bestmemit:    0.023335    0.478672    1.423818
+Iteration: 97 bestvalit: 2.442885 bestmemit:    0.023335    0.478672    1.423818
+Iteration: 98 bestvalit: 2.442885 bestmemit:    0.023335    0.478672    1.423818
+Iteration: 99 bestvalit: 2.442885 bestmemit:    0.023335    0.478672    1.423818
+Iteration: 100 bestvalit: 2.442885 bestmemit:    0.023335    0.478672    1.423818
+      par1       par2       par3 
+0.02333518 0.47867162 1.42381801 
+Iteration: 1 bestvalit: 2.524873 bestmemit:   -0.500638    1.518440    1.619780
+Iteration: 2 bestvalit: 2.524873 bestmemit:   -0.500638    1.518440    1.619780
+Iteration: 3 bestvalit: 2.514519 bestmemit:   -0.321928    0.450674    1.444313
+Iteration: 4 bestvalit: 2.505454 bestmemit:    0.019605    0.967190    1.508827
+Iteration: 5 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+Iteration: 6 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+[1] "Too many tries."
+Iteration: 7 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+Iteration: 8 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+Iteration: 9 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+Iteration: 10 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+Iteration: 11 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+Iteration: 12 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+Iteration: 13 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+Iteration: 14 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+Iteration: 15 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+Iteration: 16 bestvalit: 2.464947 bestmemit:    0.019605    1.067993    1.508827
+Iteration: 17 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 18 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 19 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 20 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 21 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 22 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 23 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 24 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 25 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 26 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 27 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 28 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 29 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 30 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 31 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 32 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 33 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 34 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 35 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 36 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 37 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 38 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 39 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 40 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 41 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 42 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 43 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 44 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+[1] "Too many tries."
+Iteration: 45 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 46 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 47 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 48 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 49 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 50 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 51 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 52 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 53 bestvalit: 2.446594 bestmemit:   -0.109122    0.781170    1.305718
+Iteration: 54 bestvalit: 2.446308 bestmemit:   -0.013202    0.379951    1.161020
+Iteration: 55 bestvalit: 2.446308 bestmemit:   -0.013202    0.379951    1.161020
+Iteration: 56 bestvalit: 2.446308 bestmemit:   -0.013202    0.379951    1.161020
+[1] "Too many tries."
+Iteration: 57 bestvalit: 2.446308 bestmemit:   -0.013202    0.379951    1.161020
+Iteration: 58 bestvalit: 2.446308 bestmemit:   -0.013202    0.379951    1.161020
+Iteration: 59 bestvalit: 2.446308 bestmemit:   -0.013202    0.379951    1.161020
+Iteration: 60 bestvalit: 2.443869 bestmemit:    0.038634    0.576233    1.313356
+Iteration: 61 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 62 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 63 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 64 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 65 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 66 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 67 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 68 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 69 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 70 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 71 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 72 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 73 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 74 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+[1] "Too many tries."
+Iteration: 75 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 76 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 77 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 78 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 79 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 80 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 81 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 82 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 83 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 84 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 85 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 86 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 87 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 88 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 89 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 90 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 91 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 92 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 93 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 94 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 95 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 96 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 97 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 98 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 99 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 100 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 101 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 102 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 103 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 104 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 105 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 106 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 107 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 108 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 109 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 110 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 111 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 112 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 113 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 114 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 115 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 116 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 117 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 118 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 119 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 120 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 121 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+[1] "Too many tries."
+Iteration: 122 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 123 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 124 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 125 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 126 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 127 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 128 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 129 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 130 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 131 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 132 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 133 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 134 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 135 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 136 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 137 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 138 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 139 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 140 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 141 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 142 bestvalit: 2.439440 bestmemit:    0.099299    0.629260    1.399688
+Iteration: 143 bestvalit: 2.436395 bestmemit:    0.053095    0.842042    1.392194
+Iteration: 144 bestvalit: 2.436395 bestmemit:    0.053095    0.842042    1.392194
+Iteration: 145 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 146 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 147 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 148 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 149 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 150 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 151 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 152 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 153 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 154 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 155 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 156 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 157 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 158 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 159 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 160 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 161 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 162 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 163 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 164 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 165 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 166 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 167 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 168 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 169 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 170 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 171 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 172 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 173 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 174 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 175 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 176 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 177 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 178 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 179 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 180 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 181 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 182 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 183 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 184 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 185 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 186 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 187 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 188 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 189 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 190 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 191 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 192 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 193 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 194 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 195 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 196 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+[1] "Too many tries."
+Iteration: 197 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 198 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 199 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+Iteration: 200 bestvalit: 2.429235 bestmemit:   -0.109122    0.611873    1.305718
+      par1       par2       par3 
+-0.1091216  0.6118732  1.3057185 
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 1 bestvalit: 2.491415 bestmemit:   -0.088345    0.920806    1.506131
+Iteration: 2 bestvalit: 2.491415 bestmemit:   -0.088345    0.920806    1.506131
+Iteration: 3 bestvalit: 2.491415 bestmemit:   -0.088345    0.920806    1.506131
+Iteration: 4 bestvalit: 2.482026 bestmemit:    0.024437    0.920806    1.506131
+Iteration: 5 bestvalit: 2.482026 bestmemit:    0.024437    0.920806    1.506131
+Iteration: 6 bestvalit: 2.482026 bestmemit:    0.024437    0.920806    1.506131
+Iteration: 7 bestvalit: 2.482026 bestmemit:    0.024437    0.920806    1.506131
+Iteration: 8 bestvalit: 2.479695 bestmemit:   -0.029802    1.039590    1.394332
+Iteration: 9 bestvalit: 2.479695 bestmemit:   -0.029802    1.039590    1.394332
+[1] "Too many tries."
+Iteration: 10 bestvalit: 2.479695 bestmemit:   -0.029802    1.039590    1.394332
+Iteration: 11 bestvalit: 2.478760 bestmemit:   -0.050257    0.862194    1.364047
+Iteration: 12 bestvalit: 2.478760 bestmemit:   -0.050257    0.862194    1.364047
+Iteration: 13 bestvalit: 2.478760 bestmemit:   -0.050257    0.862194    1.364047
+Iteration: 14 bestvalit: 2.478760 bestmemit:   -0.050257    0.862194    1.364047
+Iteration: 15 bestvalit: 2.478760 bestmemit:   -0.050257    0.862194    1.364047
+Iteration: 16 bestvalit: 2.478760 bestmemit:   -0.050257    0.862194    1.364047
+Iteration: 17 bestvalit: 2.478760 bestmemit:   -0.050257    0.862194    1.364047
+Iteration: 18 bestvalit: 2.474488 bestmemit:   -0.152148    1.146668    1.559497
+Iteration: 19 bestvalit: 2.474488 bestmemit:   -0.152148    1.146668    1.559497
+Iteration: 20 bestvalit: 2.474488 bestmemit:   -0.152148    1.146668    1.559497
+Iteration: 21 bestvalit: 2.474488 bestmemit:   -0.152148    1.146668    1.559497
+Iteration: 22 bestvalit: 2.474488 bestmemit:   -0.152148    1.146668    1.559497
+Iteration: 23 bestvalit: 2.474488 bestmemit:   -0.152148    1.146668    1.559497
+Iteration: 24 bestvalit: 2.474488 bestmemit:   -0.152148    1.146668    1.559497
+Iteration: 25 bestvalit: 2.474488 bestmemit:   -0.152148    1.146668    1.559497
+Iteration: 26 bestvalit: 2.474488 bestmemit:   -0.152148    1.146668    1.559497
+Iteration: 27 bestvalit: 2.474488 bestmemit:   -0.152148    1.146668    1.559497
+Iteration: 28 bestvalit: 2.474488 bestmemit:   -0.152148    1.146668    1.559497
+Iteration: 29 bestvalit: 2.474281 bestmemit:    0.068544    0.644706    1.270804
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 30 bestvalit: 2.468984 bestmemit:    0.005078    0.748930    1.385748
+Iteration: 31 bestvalit: 2.468984 bestmemit:    0.005078    0.748930    1.385748
+[1] "Too many tries."
+Iteration: 32 bestvalit: 2.468984 bestmemit:    0.005078    0.748930    1.385748
+Iteration: 33 bestvalit: 2.468655 bestmemit:   -0.107642    0.862194    1.364047
+Iteration: 34 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 35 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 36 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 37 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 38 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 39 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 40 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 41 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 42 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 43 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 44 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 45 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 46 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 47 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 48 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 49 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 50 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+[1] "Too many tries."
+Iteration: 51 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 52 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 53 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 54 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 55 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 56 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 57 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 58 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 59 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 60 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 61 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 62 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+[1] "Too many tries."
+Iteration: 63 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 64 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 65 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 66 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 67 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 68 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 69 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 70 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 71 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 72 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 73 bestvalit: 2.460676 bestmemit:    0.063413    1.008850    1.496665
+Iteration: 74 bestvalit: 2.459066 bestmemit:    0.178738    1.182165    1.516719
+[1] "Too many tries."
+Iteration: 75 bestvalit: 2.459066 bestmemit:    0.178738    1.182165    1.516719
+Iteration: 76 bestvalit: 2.459066 bestmemit:    0.178738    1.182165    1.516719
+Iteration: 77 bestvalit: 2.459066 bestmemit:    0.178738    1.182165    1.516719
+[1] "Too many tries."
+Iteration: 78 bestvalit: 2.459066 bestmemit:    0.178738    1.182165    1.516719
+Iteration: 79 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 80 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 81 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 82 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 83 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 84 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 85 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 86 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 87 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 88 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 89 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 90 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 91 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 92 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 93 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 94 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 95 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 96 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 97 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 98 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 99 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 100 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 101 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 102 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 103 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+[1] "Too many tries."
+Iteration: 104 bestvalit: 2.457180 bestmemit:    0.089639    1.008850    1.496665
+Iteration: 105 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 106 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+[1] "Too many tries."
+Iteration: 107 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+[1] "Too many tries."
+Iteration: 108 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 109 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+[1] "Too many tries."
+Iteration: 110 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+[1] "Too many tries."
+Iteration: 111 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 112 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 113 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 114 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 115 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+[1] "Too many tries."
+Iteration: 116 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 117 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 118 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 119 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 120 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 121 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 122 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 123 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 124 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 125 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 126 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 127 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 128 bestvalit: 2.452762 bestmemit:    0.043881    0.761668    1.376678
+Iteration: 129 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 130 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 131 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 132 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 133 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 134 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 135 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 136 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+[1] "Too many tries."
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 137 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 138 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 139 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 140 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 141 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 142 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 143 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 144 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 145 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 146 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 147 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 148 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 149 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 150 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 151 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 152 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 153 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 154 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 155 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 156 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 157 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+[1] "Too many tries."
+Iteration: 158 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 159 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 160 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 161 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 162 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 163 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 164 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 165 bestvalit: 2.452089 bestmemit:    0.028668    0.826565    1.468595
+Iteration: 166 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 167 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 168 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 169 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 170 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+[1] "Too many tries."
+Iteration: 171 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+[1] "Too many tries."
+Iteration: 172 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 173 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 174 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 175 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 176 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 177 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 178 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 179 bestvalit: 2.450570 bestmemit:   -0.145812    0.848978    1.409488
+Iteration: 180 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 181 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 182 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 183 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 184 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 185 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 186 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 187 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 188 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 189 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 190 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 191 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 192 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 193 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 194 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 195 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 196 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 197 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 198 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 199 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 200 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 201 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+[1] "Too many tries."
+Iteration: 202 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 203 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+[1] "Too many tries."
+Iteration: 204 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 205 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 206 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+[1] "Too many tries."
+Iteration: 207 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+[1] "Too many tries."
+Iteration: 208 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 209 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 210 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 211 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 212 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 213 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 214 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 215 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 216 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 217 bestvalit: 2.448920 bestmemit:    0.020341    0.919629    1.391295
+Iteration: 218 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 219 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 220 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 221 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 222 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 223 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 224 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 225 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+[1] "Too many tries."
+Iteration: 226 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 227 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 228 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 229 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 230 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 231 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 232 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 233 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 234 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 235 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 236 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 237 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 238 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 239 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+[1] "Too many tries."
+Iteration: 240 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 241 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 242 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 243 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 244 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 245 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 246 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 247 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 248 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 249 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+[1] "Too many tries."
+Iteration: 250 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 251 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 252 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 253 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 254 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 255 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 256 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 257 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 258 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 259 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 260 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 261 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 262 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 263 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 264 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 265 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 266 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 267 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 268 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 269 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 270 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 271 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 272 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 273 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 274 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 275 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 276 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 277 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 278 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 279 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 280 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 281 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 282 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 283 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 284 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 285 bestvalit: 2.448881 bestmemit:    0.050852    1.042758    1.446824
+Iteration: 286 bestvalit: 2.446017 bestmemit:    0.006118    0.656348    1.387336
+[1] "Too many tries."
+Iteration: 287 bestvalit: 2.446017 bestmemit:    0.006118    0.656348    1.387336
+Iteration: 288 bestvalit: 2.446017 bestmemit:    0.006118    0.656348    1.387336
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 289 bestvalit: 2.446017 bestmemit:    0.006118    0.656348    1.387336
+Iteration: 290 bestvalit: 2.446017 bestmemit:    0.006118    0.656348    1.387336
+[1] "Too many tries."
+[1] "Too many tries."
+Iteration: 291 bestvalit: 2.443950 bestmemit:   -0.116434    0.713225    1.369792
+Iteration: 292 bestvalit: 2.443950 bestmemit:   -0.116434    0.713225    1.369792
+Iteration: 293 bestvalit: 2.443950 bestmemit:   -0.116434    0.713225    1.369792
+Iteration: 294 bestvalit: 2.443950 bestmemit:   -0.116434    0.713225    1.369792
+Iteration: 295 bestvalit: 2.443950 bestmemit:   -0.116434    0.713225    1.369792
+Iteration: 296 bestvalit: 2.443950 bestmemit:   -0.116434    0.713225    1.369792
+Iteration: 297 bestvalit: 2.443950 bestmemit:   -0.116434    0.713225    1.369792
+Iteration: 298 bestvalit: 2.443950 bestmemit:   -0.116434    0.713225    1.369792
+Iteration: 299 bestvalit: 2.443950 bestmemit:   -0.116434    0.713225    1.369792
+Iteration: 300 bestvalit: 2.443950 bestmemit:   -0.116434    0.713225    1.369792
+      par1       par2       par3 
+-0.1164339  0.7132246  1.3697922 
