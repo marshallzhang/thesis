@@ -1,200 +1,57 @@
-%% LyX 2.1.4 created this file.  For more info, see http://www.lyx.org/.
-%% Do not edit unless you really know what you are doing.
-\documentclass[american,fontsize=11pt,paper=a4,twoside,openright,titlepage,numbers=noenddot,headinclude,BCOR=5mm,footinclude=true,cleardoublepage=empty]{scrreprt}
-\usepackage[T1]{fontenc}
-\setcounter{secnumdepth}{2}
-\usepackage{array}
-\usepackage{refstyle}
-\usepackage{rotfloat}
-\usepackage{multirow}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{graphicx}
-\usepackage[numbers]{natbib}
-
-\makeatletter
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
-
-\AtBeginDocument{\providecommand\partref[1]{\ref{part:#1}}}
-\AtBeginDocument{\providecommand\chapref[1]{\ref{chap:#1}}}
-\AtBeginDocument{\providecommand\figref[1]{\ref{fig:#1}}}
-\AtBeginDocument{\providecommand\tabref[1]{\ref{tab:#1}}}
-%% Because html converters don't know tabularnewline
-\providecommand{\tabularnewline}{\\}
-\RS@ifundefined{subref}
-  {\def\RSsubtxt{section~}\newref{sub}{name = \RSsubtxt}}
-  {}
-\RS@ifundefined{thmref}
-  {\def\RSthmtxt{theorem~}\newref{thm}{name = \RSthmtxt}}
-  {}
-\RS@ifundefined{lemref}
-  {\def\RSlemtxt{lemma~}\newref{lem}{name = \RSlemtxt}}
-  {}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
-% Classic Thesis Style loader
-\makeatother
-\input{classicthesis-config.tex}
-\makeatletter
-% use Latin Modern instead of Computer Modern sans serif
-\renewcommand{\sfdefault}{lmss}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
-\usepackage{algorithm,algpseudocode}
-\newref{prop}{name=Proposition~,Name=Proposition~}
-\newref{prob}{name=Problem~,Name=Problem~}
-\newref{thm}{name=Theorem~,Name=Theorem~}
-\newref{chap}{name=Chapter~,Name=Chapter~}
-\newref{part}{name=Part~,Name=Part~}
-\newref{tab}{name=Table~,Name=Table~}
-\newref{algo}{name=Algorithm~,Name=Algorithm~}
-\newref{lem}{name=Lemma~,Name=Lemma~}
-\newref{fig}{name=Figure~,Name=Figure~}
-\usepackage{array}
-\usepackage{booktabs}
-\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
-
-\makeatother
-
-\usepackage{babel}
-\begin{document}
 
 \chapter{Simulation Studies\label{chap:5}}
 
-In this chapter, we study the methods proposed in \partref{2} in
-a controlled simulation environment to demonstrate their correctness.
-First, we demonstrate the correctness of the generalized bridge sampling
-scheme proposed in \chapref{4}, and show that the approximate scheme
-produces samples of generalized bridges that are extremely close in
-distribution to the exact sampler. Then, with a correct sampler in
-hand, we demonstrate that the MCEM scheme proposed in \chapref{EM}
-converges to the Kullback-Liebler divergence minimizing parameter
-in a variety of situations as expected.
+This chapter focuses on studying the methods proposed in the previous
+two chapters in a simulation environment. 
 
 
-\section{Objects and Methods}
+\section{Sampling $\nu$-bridges}
 
-As usual, we begin by fixing the objects of study. We shall consider
-two examples of diffusions which satisfy the assumptions outlined
-in \chapref{2}. The first process is an Ornstein-Uhlenbeck (OU) process,
-which is a solution to the SDE 
+In this first section, we demonstrate that the exact generalized bridge
+sampler proposed in \chapref{4} produces samples from the desired
+target distribution. Furthermore, we show that both the approximate
+and exact samplers are robust to the specific conditions imposed on
+the nature of the stochastic process to be bridged in \chapref{2}.
+We also confirm that the approximate sampler does not formally draw
+from the true generalized bridge distribution, but note that the approximate
+sample paths are still qualitatively similar to exact sample paths.
+
+As usual, we first fix the objects of study. Though the theoretical
+results in \chapref{4} characterize a generalized bridge sampler
+for the specific case of Itô diffusions with finite speed measure,
+we will consider a more general class of processes in this section
+to demonstrate the broad applicability of the proposed generalized
+bridge samplers. In particular, we will focus on Lévy processes of
+the form 
 \begin{equation}
-dO_{t}=-\lambda\left(O_{t}-\mu\right)dt+\sigma dW_{t},\label{eq:ou-sde}
+dX_{t}=-\lambda\left(X_{t}-\mu\right)dt+\sigma dL_{t},\label{eq:ou-sde}
 \end{equation}
-for some initial condition on $O_{0}$ and a Wiener process $W_{t}$.
-OU processes are both theoretically appealing (representing the only
-non-trivial stationary, Gaussian, and Markovian process) and practically
-useful (used to model everything from springs to currency exchange
-rates\textemdash see standard physics references or \citet{hirsa-2012}
-for applications in finance). The second process we shall focus on
-here is a Cox-Ingersoll-Ross (CIR) process, which is a solution to
-the SDE 
-\begin{equation}
-dC_{t}=-\lambda\left(C_{t}-\mu\right)dt+\sigma\sqrt{C_{t}}dW_{t},\label{eq:cir-sde}
-\end{equation}
-with some initial condition on $C_{0}$ and a Wiener process $W_{t}$.
-We assume as per the literature that $2\theta\mu\geq\sigma^{2}$,
-so $C$ lives on the positive real line. With this restriction, CIR
-processes form the foundation of common short-term interest rate and
-stochastic volatility models (see \citet{cir-1985} and \citet{heston-1993}).
+for some initial condition on $X_{0}$ and Lévy process $L$, where
+$\lambda,\sigma>0$. Solutions to this SDE are known as Lévy-driven
+Ornstein-Uhlenbeck (OU) processes. When $L$ is a Wiener process,
+$X$ is an Itô diffusion satisfying the assumptions outlined in \chapref{2}.
+This so-called Gaussian OU process, or OU diffusion, is both theoretically
+interesting (representing the only non-trivial stationary, Gaussian,
+and Markovian process) and practically useful as a model for a wide
+range of processes (see \citet[Section 1.2 in][]{hirsa-2012} for
+applications in finance, for instance). In general, we will refer
+to the parameter vector of such a process as $\theta=(\mu,\lambda,\sigma)$,
+and the joint law at $\mathcal{T}=\{0,1\}$ of a solution to (\ref{eq:ou-sde})
+with initial condition $X_{0}\sim F$ as $\nu_{\theta}(F,L)$. 
 
-In general, we will refer to the parameter vector of either process
-as $\theta$, with superscripts when needed for clarity. Note that
-the OU process has a well-known invariant measure $\Pi_{\theta}^{O}$,
-which is a Gaussian measure with mean $\mu$ and variance $\sigma^{2}/2\lambda$,
-while the CIR process has a well-known invariant measure $\Pi_{\theta}^{C}$,
-which is a Gamma measure with shape parameter $2\lambda\mu/\sigma^{2}$
-and rate parameter $2\lambda/\sigma^{2}$. Both these measures have
-Lebesgue densities. 
+In all simulations to be carried out, the relevant process is simulated
+over the time interval $[0,1]$ with step size $\delta=1/100$ using
+the Euler-Maruyama scheme. In this section, we will repeatedly need
+to sample from $\nu_{\theta}(F,L)$; this can be easily done by simulating
+an unconstrained solution to (\ref{eq:ou-sde}) with initial condition
+$X_{0}\sim F$, and taking its values at $\mathcal{T}=\{0,1\}$. The
+exact generalized bridge sampler uses $M=10$ (the number of $T$-values
+simulated in order to calculate $\hat{\rho}$).
 
-In all simulations to follow, the relevant process is simulated over
-the time interval $[0,1]$ with a step size $\delta=1/100$. Since
-both the OU and CIR processes have known transition densities, we
-simulate exact paths. All simulations are implemented in R on a 2012
-Macbook Pro.
+\begin{table}[t]
+\centering \begin{tabular}{@{}lllllll@{}} \toprule \multirow{2}{*}{\parbox{2cm}{Process \& Initial Dist.}} & \multicolumn{2}{l}{K-S stat. ($\times 10^{-2}$)} && \multicolumn{2}{l}{CPU (rel.)} \\ \cmidrule(l){2-3} \cmidrule(l){5-6}                                    & Approx.                   & Exact                  && Approx.                  & Exact                 \\ \midrule \emph{OU (Gaussian)}             &                           &                        &&                          &                       \\ \:\:\:\:$\mathcal{N}(0,1/2)$               & 2.17*                     & 1.62           &        & 2.74                      & 76.7                  \\ \:\:\:\:$2\text{Bern}-1$                   & 3.08***                   & 1.11            &       & 3.35                      & 94.7                  \\ \:\:\:\:$\text{Expo}$                      & 3.12**                    & 1.95             &      & 2.94                      & 96.3                  \\ \emph{OU ($\alpha$-stable)}             &                           &                      &  &                          &                       \\ \:\:\:\:$\mathcal{N}(0,1/2)$               & 2.30*                     & 1.39               &    & 3.47                      & 85.9                  \\ \:\:\:\:$2\text{Bern}-1$                   & 2.26*                      & 1.58               &    & 5.08                      & 93.5                  \\ \:\:\:\:$\text{Expo}$                      & 3.85***                   & 2.75**               &  & 4.32                      & 97.5                  \\ \emph{Wiener}             &                           &                        &               &           &                       \\ \:\:\:\:$\mathcal{N}(0,1/2)$               & 0.97                      & 0.69                  & & 4.01                      & 77.8                  \\ \:\:\:\:$2\text{Bern}-1$                   & 1.54                     & 0.09                   && 3.92                      & 72.2                  \\ \:\:\:\:$\text{Expo}$                      & 1.60                      & 0.89                  & & 4.88                      & 76.2                  \\
+\bottomrule \end{tabular}
 
-
-\section{Sampling $\nu$-Bridges}
-
-Let $O$ and $C$ represent stationary solutions to (\ref{eq:ou-sde})
-and (\ref{eq:cir-sde}), respectively. An easy way to validate the
-correctness of the approximate and exact samplers proposed in \chapref{4}
-is to simulate unconstrained sample paths of $O$ and $C$, and compare
-the marginal distributions of these sample paths with generalized
-bridges sampled according to \chapref{4} with endpoints drawn from
-$O_{0,1}$ and $C_{0,1}$. Then, the marginal distributions of these
-generalized bridges at any time $t\in[0,1]$ ought to be the same
-as the distribution of the unconstrained sample path. 
-
-For clarity, we fix in this section $\theta=1,\mu=0,\sigma=1$ for
-$O$, and $\theta=1,\mu=1,\sigma=1$ for $C$. In order to sample
-$O_{0,1}$- or $C_{0,1}$-bridges, we must be able to sample exactly
-from $O_{0,1}$ and $C_{0,1}$. This is easy; we can simply sample
-a path of $O$ or $C$, and take its values at times $t=\{0,1\}$
-as an exact draw from $O_{0,1}$ or $C_{0,1}$ respectively.
-
-With this in mind, we present the sample distributions of $O_{0,1}$-bridges
-and $C_{0,1}$-bridges of $O$ and $C$ against the empirical distributions
-of the unconstrained stationary solutions in \figref{joint-invariant}.
-The M-H algorithm for the exact sampler is carried out with $M=10$
-(the number of $T$-values simulated in order to calculate $\hat{\rho}$),
-and no burn-in is used since the proposals are independent of one
-another.
-
-\begin{figure}[h]
-\includegraphics[width=1\columnwidth]{/Users/marshall/Documents/senior/thesis/figures/invariant_densities}
-
-\caption{\label{fig:joint-invariant}Q-Q plots comparing $10,000$ sample paths
-at $t=1/2$ of unconstrained stationary Ornstein-Uhlenbeck (left)
-and Cox-Ingersoll-Ross (right) processes to those of their $\nu$-bridges,
-using an approximate (first row) and exact (second row) sampling scheme.}
-\end{figure}
-
-
-We first note that the approximate sampler produces marginal distributions
-that are reasonable approximations to the exact sampler, though slightly
-thinner-tailed than they should be. This is a result of the approximate
-sampler drawing $\nu$-bridges conditioned on the bridges being hit
-by a hitting diffusion; in this experiment, these hitting diffusions
-tend towards the mean of the marginal initial and end distributions,
-reducing the variance in-between. Though the exact samples appear
-to be slightly thin-tailed as well, we will demonstrate in \tabref{KS-stats}
-that we cannot reject the hypothesis that the exact samples and the
-unconstrained diffusion are drawn from the same distribution at any
-reasonable confidence level. We also present in \tabref{KS-stats}
-analogous simulations for non-stationary solutions to (\ref{eq:ou-sde});
-in particular, we consider solutions with initial distributions $X_{0}\sim\mathcal{N}(1,1/2)$,$X_{0}\sim2\mbox{Bern}-1$,
-and $X_{0}\sim\mbox{Expo}(2)$. As before, we can draw exactly from
-$O_{0,1}$ merely by simulating a solution to (\ref{eq:ou-sde}) with
-the appropriate initial condition, and taking its value at times $t=\{0,1\}$. 
-
-\tabref{KS-stats} confirms for a wide range of unorthodox joint initial/end
-distributions, the exact sampler indeed samples from the true bridge
-distribution at the cost of more computational power. We use $M=1$
-for the exact sampler to minimize computational cost, which does not
-seem to have a significant adverse impact on the quality of the exact
-samples. We note that the computing time required to exactly sample
-an OU process with initial distribution $\mathcal{N}(1,1/2)$ is far
-higher than any other process considered; this is a result of the
-lower probability of a hitting diffusion (which has an initial distribution
-with mean $e^{-1}$ and mean-reverts towards $0$) intersecting with
-the bridge. This relatively low probability of a hitting diffusion
-intersection is reflected in the large K-S statistic for the approximately
-sampled bridge, and speaks to the idea that to ``make up'' for a
-poor approximate sampler, an exact sampler must use more computational
-power. It is also worth noting that the K-S statistics presented in
-\tabref{KS-stats} represent the most conservative estimates of the
-deviation from true unconstrained diffusions\textemdash in particular,
-the marginal distribution of the sampled bridges, whether approximate
-or exact, are the same as the unconstrained diffusion at times $t=\{0,1\}$
-by definition, and $t=1/2$ represents the point in time at which
-the marginal distributions of these bridges have the most freedom
-to drift from the true distribution.
-
-\begin{table}
-\begin{tabular}{@{}llllll@{}} \toprule \multirow{2}{*}{Process}                 & \multirow{2}{*}{Initial Condition} & \multicolumn{2}{l}{K-S stat. ($\times 10^{-2}$)} & \multicolumn{2}{l}{CPU (rel.)} \\ \cmidrule(l){3-4}                                           &                                    & Approx.                   & Exact                  & Approx.                  & Exact                 \\ \midrule \multicolumn{1}{l|}{\multirow{4}{*}{OU}} & $\mathcal{N}(1,1/2)$               & 4.38***                   & 1.79                   & 3.13                     & 35.6                  \\ \multicolumn{1}{l|}{}                    & $2\text{Bern}-1$                   & 2.80***                   & 1.81                   & 3.01                     & 12.0                  \\ \multicolumn{1}{l|}{}                    & $\text{Expo}(2)$                   & 2.75**                    & 2.13*                  & 2.91                     & 11.5                  \\ \multicolumn{1}{l|}{}                    & Stationary                         & 2.03*                     & 1.46                   & 2.87                     & 12.0                  \\                                          &                                    &                           &                        &                          &                       \\[-2.5ex] \multicolumn{1}{l|}{CIR}                 & Stationary                         & 2.41**                    & 1.34                   & 2.86                     & 10.8                  \\ \bottomrule \end{tabular} 
 
 \begin{centering}
 \begin{tabular}{lllll>{\raggedright}m{2cm}}
@@ -202,39 +59,194 @@ to drift from the true distribution.
 \end{tabular}
 \par\end{centering}
 
-\caption{\label{tab:KS-stats}Kolmogorov-Smirnov statistics comparing $10,000$
-sample paths at $t=1/2$ of approximately and exactly sampled generalized
-bridges against the corresponding unconstrained diffusions, as well
-as the relative running times of sampling the bridges against sampling
-the unconstrained diffusions.}
+\caption{\label{tab:KS-stats}Kolmogorov-Smirnov (K-S) statistics comparing
+$10,000$ sample paths at $t=1/2$ of solutions $X$ to (\ref{eq:ou-sde})
+against approximately and exactly generalized bridges of $X$. The
+running times relative to sampling the unconstrained processes are
+also presented. $*,**,***$ denote statistically significant K-S statistics
+at the $95\%,99\%,$ and $99.9\%$ confidence levels.}
 \end{table}
 
 
-Somewhat unfortunately for our approximate sampler (which is roughly
-an order of magnitude faster than our exact sampler), we are able
-to reject the hypothesis that it samples from the unconstrained diffusion
-at $t=1/2$ for every initial condition examined, at the $95\%$ confidence
-level. However, recall that the MCEM algorithm proposed in \chapref{EM}
-involves taking an expectation of an integral over an entire diffusion
-bridge sample path, and so the K-S test on the marginal distribution
-of our sampled paths at $t=1/2$ represents an overly stringent view
-on the quality of these samples. In the next section, we shall experiment
-with our MCEM algorithm and demonstrate that.....
+Now, note that an unconstrained solution to (\ref{eq:ou-sde}) with
+initial condition $X_{0}\sim F$ can be equivalently viewed as its
+own $\nu_{\theta}(F,L)$-bridge. This insight suggests that we merely
+need to verify that a $\nu_{\theta}(F,L)$-bridge of $X$ is equal
+in distribution to the unconstrained process $X$ when $X_{0}\sim F$.
+In \tabref{KS-stats}, we present Kolmogorov-Smirnov (K-S) statistics
+comparing the marginal distribution at $t=1/2$ of unconstrained processes
+to their $\nu_{\theta}(F,L)$-bridges sampled approximately and exactly.
+The relative running times of the two samplers are also given. A significant
+K-S statistic says that we may reject the null hypothesis that the
+samples being compared are drawn from the same distribution at some
+appropriate confidence level. 
+
+In addition to evaluating the correctness of the proposed generalized
+bridge samplers for a Gaussian OU process with $\theta=(0,1,1)$,
+which satisfies the assumptions of \chapref{2}, we also test the
+correctness of the samplers for 
+\begin{aenumerate}
+\item an OU process driven by a standard $\alpha$-stable Lévy process $L_{\alpha}$
+with $\theta=(0,1,1)$, which is not an Itô diffusion, and 
+\item the Wiener process, which does not have finite speed measure. 
+\end{aenumerate}
+Note the Wiener process is a limiting case of the Gaussian OU process
+when $\theta\rightarrow(0,0,1)$. For each process, we evaluate the
+quality of the sampled bridges for $F$ equal to
+\begin{aenumerate}
+\item $\mathcal{N}(0,1/2)$, the stationary distribution of a Gaussian OU
+process with $\theta=(0,1,1)$,
+\item $2\mbox{Bern}-1$, a discrete distribution, and
+\item $\mbox{Expo}$, a distribution with relatively heavy tails (where
+the log-density decays linearly instead of quadratically like the
+Gaussian distribution).
+\end{aenumerate}
+\tabref{KS-stats} confirms that for the OU diffusion, we cannot reject
+the null hypothesis that the exact sampler draws from the true distribution
+at the $95\%$ confidence level for a variety of initial distributions.
+On the other hand, we can reject the null hypothesis for the approximate
+sampler at the same confidence level; this is expected, since \thmref{approx-sim}
+says explicitly that the approximate sampler for an Itô diffusion
+draws generalized bridges conditional on such bridges being hit by
+an independent hitting diffusion. 
+
+We note that the quality of the approximate sampler is inversely correlated
+with the computing time required to sample exact bridges. This intuitively
+highlights a tradeoff between speed and quality, and is also formally
+expected: If the approximate sampler produces low quality samples,
+then their probability of intersection with a hitting diffusion is
+low. Since the exact sampler accepts, with high probability, sample
+paths that are less likely to intersect with a hitting diffusion,
+it must spend more time simulating hitting diffusions for any given
+proposal.
+
+The bridges produced by the exact sampler for the $\alpha$-stable
+OU and Wiener processes also appear to be generally of high quality,
+suggesting that the proposed method is fairly robust to the assumptions
+made in \chapref{2}. It is only in the extreme case of an $\mbox{Expo}$
+initial distribution and an $\alpha$-stable Lévy-driven OU process
+that the exact sampler fails to draw from the true bridge distribution
+at $t=1/2$. We conjecture that the infinite variance of the innovations
+of the process and the relatively heavy tail of the initial distribution
+dramatically reduce the probability of intersection with a mean reverting
+hitting process. In particular, our choice of $M=10$ Monte Carlo
+samples for estimating the hitting probability may result in Metropolis-Hastings
+acceptance ratios that are too coarse to produce exact paths in a
+finite sample scenario.
+
+Unexpectedly, both the approximate and exact samplers appear to sample
+from the true bridge distribution when the underlying process is a
+Wiener process, which does not have finite speed measure. We do not
+have a theoretically grounded explanation for this phenomenon; however,
+we see this result as further evidence that the assumptions made in
+\chapref{2} regarding the sorts of processes that can be bridged
+may be relaxed in future research.
+
+\begin{figure}[t]
+\includegraphics[width=1\columnwidth]{/Users/marshall/Documents/senior/thesis/figures/approx-vs-exact}
+
+\caption{\label{fig:q-q}Q-Q plots comparing $10,000$ sample paths at $t=1/2$
+of an unconstrained Gaussian OU process $X$ governed by $\theta=(0,1,1)$
+to the corresponding approximate and exact $\nu_{\theta}(F,W)$-bridges
+of $X$, for $F\sim\mathcal{N}(0,1/2),$ $F\sim2\mbox{Bern}-1$, and
+$F\sim\mbox{Expo}$. }
+\end{figure}
 
 
-\section{Inference on Distributional Data}
+While it is true that the approximate sampler does not formally sample
+from the true generalized bridge distribution, we show in \figref{q-q}
+that the approximate and exact samplers for the Gaussian OU bridges
+produce qualitatively similar samples. In general, we see that the
+approximate samples are slightly thinner-tailed than the true distribution:
+This is expected, since conditional on the approximate samples being
+hit by a hitting process (which in this case mean-reverts to $0$),
+the approximate sample paths should tend toward $0$ as well. \figref{q-q}
+reveals that $F\sim\mbox{Expo}$ results in the lowest quality samples,
+whether from the approximate or exact sampler (corroborating the high
+K-S statistics observed in \tabref{KS-stats}). The values around
+$3.5$ which deviate substantially from the true distribution can
+be understood as coming from the sample paths which were initialized
+at extreme values, but which have since mean reverted towards $0$.
+We hypothesize that the exact sampler has difficulty correcting these
+paths because the coarse estimates used for the M-H acceptance ratios
+cannot capture their low probability of intersection with a mean reverting
+hitting process, as described above.
 
-In this section, we verify the correctness of the MCEM algorithm proposed
-in \chapref{EM}. 
+In light of the qualitative similarity of the approximate and exact
+samplers, it is worth noting that the K-S statistics presented in
+\tabref{KS-stats} represent the most liberal estimates of deviation
+from the true distribution. In particular, $t=1/2$ represents the
+point in time at which the marginal distributions of these bridges
+have the most freedom to deviate from the true distribution (in contrast,
+the marginal distribution of the sampled bridges, whether approximate
+or exact, are the same as the unconstrained process at times $\mathcal{T}=\{0,1\}$
+by definition). The K-S statistics presented here are therefore an
+overly stringent view of the utility of the approximate sample paths
+in the MCEM algorithm proposed in \chapref{EM}. In particular, the
+proposed MCEM algorithm depends on an integral over an entire generalized
+bridge path, and not only on the value of a bridge at $t=1/2$. In
+the next section, we will demonstrate that an MCEM algorithm using
+the approximate bridge sampler produces comparable results to one
+using the exact bridge sampler, and demonstrate the correctness of
+the proposed MCEM algorithm more generally.
 
-As a first toy example, we consider stationary OU and CIR processes
-with the parameters from the previous section (importantly, both processes
-have unit diffusion coefficient). In particular, we Of course, we
-know how to draw from the joint initial/end distributions of these
-processes, and so an implementation of the MCEM algorithm 
 
-\begin{table*}
-\centering \begin{tabular}{@{}cllllllllll@{}} \toprule \multirow{2}{*}{Iteration} &  & \multicolumn{2}{l}{Approx.}                                           & \multicolumn{2}{l}{Exact}                                              \\ \cmidrule(lr){3-4}                             &  & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\mu}$} & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\mu}$}  \\ \cmidrule(r){1-1} \cmidrule(lr){3-6} 0                          &  & 2.00                                & 2.00                            & 2.00                                & 2.00                                                        \\ 1                          &  & 1.80                                & 0.21                            & 1.10                                & 0.38                                                        \\ 2                          &  & 1.45                                & 0.12                            & 1.04                                & 0.05                                                        \\ 3                          &  & 1.21                                & 0.04                            & 0.88                                & 0.03                                                          \\ 4                          &  & 1.26                                & 0.00                            & 1.02                                & 0.05                                                          \\ 5                          &  & 1.11                                & 0.00                            & 1.00                                & 0.04                                                          \\ 6                          &  & 1.07                                & 0.00                            & 0.95                                & 0.04                                                          \\ 7                          &  & 1.08                                & 0.00                            & 1.04                                & 0.02                                                          \\ 8                          &  & 1.08                                & 0.01                            & 0.98                                & 0.04                                                          \\ 9                          &  & 1.07                                & 0.01                            & 1.04                                & 0.02                                                          \\ 10                         &  & 1.07                                & 0.00                            & 1.03                                & 0.03                                                        \\ \bottomrule \end{tabular} 
+\section{Simulation-Based Inference on Distributional Data}
+
+Having verified our ability to sample $\nu$-bridges, we verify in
+this section the correctness of the MCEM algorithm proposed in \chapref{EM}.
+We show that the MCEM scheme converges to the Kullback-Liebler divergence
+minimizing parameter in a variety of settings, often very quickly.
+Furthermore, we demonstrate that using an approximate generalized
+bridge sampler does not seem to adversely affect convergence up to
+Monte Carlo variation. Given that the approximate sampler is one to
+two orders of magnitude faster than the exact sampler (as seen in
+\tabref{KS-stats}), this is a welcome finding that dramatically increases
+the utility of the proposed MCEM scheme in inference applications.
+
+The theoretical setting for this section is as follows: Suppose we
+have an true but unknown probability model $\mathbb{P}$ admitting
+a canonical process $X$ on the interval $[0,1]$. Further suppose
+we wish to model $X$ under a family of alternative probability models
+$\mathcal{Q}=\{\mathbb{Q}_{\theta}\mid\theta\in\Theta\}$, where $\mathbb{P}$
+is absolutely continuous to any element of $\mathcal{Q}$. $X_{0}=x_{0}$
+is fixed in either model, and we let $\nu_{\mathbb{P}}$ be the known
+law of $X$ under $\mathbb{P}$ at times $\mathcal{T}=\{t_{1},\dots,t_{n}\}$,
+where $t_{1}>0$ and we choose $n\geq2$ for identifiability reasons. 
+
+In this section, we will focus on the family of models $\mathcal{Q}$
+under which $X$ is a Gaussian OU process. This is due to the prevalence
+of such processes as discussed above and the analytical tractability
+of the K-L divergence of their finite-dimensional distributions from
+those of other Gaussian processes.
+
+Our simulation strategy rests on the following observation: If we
+can simulate $X$ under $\mathbb{P}$ on the interval $[0,1]$, we
+can take its values at $\mathcal{T}$ as samples from $\nu_{\mathbb{P}}$;
+then, the proposed MCEM scheme given $\nu_{\mathbb{P}}$ should converge
+to the $\theta$ which minimizes the K-L divergence of the law of
+$X$ under $\mathbb{Q}_{\theta}$ from its law under $\mathbb{P}$.
+If $X$ is an OU diffusion with parameter $\theta^{*}$ under $\mathbb{P}$,
+this K-L divergence minimizing parameter is simply $\theta^{*}$.
+Otherwise, so long as $X$ is a Gaussian process under $\mathbb{P}$,
+the K-L divergence of any finite-dimensional distribution of $\mathbb{Q}_{\theta}\in\mathcal{Q}$
+from the corresponding distribution of $\mathbb{P}$ is analytically
+available.
+
+In all simulations to be carried out, the relevant process is simulated
+over the time interval $[0,1]$ with step size $\delta=1/100$ using
+the Euler-Maruyama scheme. $\mathcal{T}$ is fixed to be $\{1/2,1\}$.
+The exact generalized bridge sampler uses $M=10$ as before, and all
+optimizations are carried out using the \texttt{R} package \texttt{DEoptim}
+(differential evolution optimization) developed by \citet{deoptim}
+on default settings and optimization strategy 6. Ten expectation-maximization
+iterations in every replication of the MCEM algorithm are performed.
+We will refer to MCEM schemes using exactly sampled bridges and approximately
+sampled bridges as exact MCEM and approximate MCEM respectively.
+
+\begin{table*}[t]
+
+\centering \begin{tabular}{@{}clcccccccccc@{}} \toprule \multirow{2}{*}{$i$} &  & \multicolumn{3}{l}{Approx.}                                                                                 && \multicolumn{3}{l}{Exact}                                                                                           \\ \cmidrule(lr){3-5}\cmidrule(lr){7-9}                             &  & \multicolumn{1}{c}{$\hat{\mu}$} & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\sigma}$}  &   & \multicolumn{1}{c}{$\hat{\mu}$} & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\sigma}$} \\ \cmidrule(r){1-1} \cmidrule(lr){3-9} 0                          &  & 2.00                                & \:2.00\:                        & \:2.00\:                            && \:2.00\:                            & \:2.00\:                           & \:2.00\:                       \\ 1                          &  & 0.59                                & 1.94                            & 1.10                                && 0.10                                & 0.93                               & 0.89                   \\ 2                          &  & 0.06                                & 0.95                            & 0.97                                && 0.01                                & 0.87                               & 0.88    \\ 3                          &  & -0.06\:                               & 1.28                            & 1.07                              & & -0.02\:                            & 0.71                               & 0.88   \\ 4                          &  & 0.18                                & 0.98                            & 0.86                                && -0.10\:                             & 0.97                               & 0.93     \\ 5                          &  & 0.00                                & 1.03                            & 0.95                                && 0.02                                & 0.98                               & 0.98  \\ 6                          &  & 0.02                                & 0.94                            & 0.88                                && 0.04                                & 1.09                               & 0.99  \\ 7                          &  & 0.01                                & 1.33                            & 0.96                                && -0.03\:                                & 1.19                               & 1.06    \\ 8                          &  & -0.05\:                               & 0.91                            & 1.02                              &  & 0.04                                & 1.01                                  &1.01  \\ 9                          &  & 0.01                                & 1.01                            & 0.99                                && 0.04                                & 1.04                                   & 0.99 \\ 10                         &  & -0.04\:                               & 1.04                            & 1.04                              &  & 0.01                                & 1.08                             & 1.01          \\ \bottomrule \end{tabular}
 
 \begin{centering}
 \begin{tabular}{lllll>{\raggedright}m{2cm}}
@@ -242,18 +254,101 @@ processes, and so an implementation of the MCEM algorithm
 \end{tabular}
 \par\end{centering}
 
-\caption{\label{tab:mcem-stationary}MCEM iterations for inference on the parameters
-of an OU process with unit diffusion, given the joint distribution
-at $t=\{0,1\}$ induced by a stationary solution to (\ref{eq:ou-sde}),
-using approximate and exact generalized bridge samplers. The $i$th
-iteration is performed using $100\times\left\lfloor i^{1.5}\right\rfloor $
-MC samples, and the Fletcher-Reeves conjugate gradient method is used
-for maximization.}
+\caption{\label{tab:mcem-stationary}One illustrative replication of exact
+and approximate MCEM (using $100\times\left\lfloor i^{1.2}\right\rfloor $
+MC samples) to estimate the MKLDE for a Gaussian OU process given
+$\nu_{\mathbb{P}}$ where $X$ is a Gaussian OU process governed by
+$\theta^{*}=(0,1,1)$ under $\mathbb{P}$.}
 \end{table*}
 
 
-\begin{sidewaystable}
-\centering \begin{tabular}{@{}cllllllllllllllllllll@{}} \cmidrule(r){1-6} \cmidrule(l){8-21} \multirow{3}{*}{Iteration} &  & \multicolumn{4}{l}{$\mathcal{N}(0,1/2)$}                                                                                                      &  & \multicolumn{4}{l}{$2\text{Bern}-1$}                                                                                      &  & \multicolumn{4}{l}{$\text{Expo}(2)$}                          &  & \multicolumn{4}{l}{$\hat{\mathcal{N}}(0,1/2)$ (100 samples)}                      \\ \cmidrule(lr){3-6} \cmidrule(lr){8-11} \cmidrule(lr){13-16} \cmidrule(l){18-21}                             &  & \multicolumn{2}{l}{Approx.}                                           & \multicolumn{2}{l}{Exact}                                             &  & \multicolumn{2}{l}{Approx.}                                           & \multicolumn{2}{l}{Exact}                         &  & \multicolumn{2}{l}{Approx.}   & \multicolumn{2}{l}{Exact}     &  & \multicolumn{2}{l}{Approx.}                       & \multicolumn{2}{l}{Exact}     \\ \cmidrule(lr){3-4} \cmidrule(lr){8-9} \cmidrule(lr){13-14} \cmidrule(lr){18-19}                            &  & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\mu}$} & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\mu}$} &  & \multicolumn{1}{c}{$\hat{\lambda}$} & \multicolumn{1}{c}{$\hat{\mu}$} & \multicolumn{1}{c}{$\hat{\lambda}$} & $\hat{\mu}$ &  & $\hat{\lambda}$ & $\hat{\mu}$ & $\hat{\lambda}$ & $\hat{\mu}$ &  & \multicolumn{1}{c}{$\hat{\lambda}$} & $\hat{\mu}$ & $\hat{\lambda}$ & $\hat{\mu}$ \\ \cmidrule(r){1-1} \cmidrule(lr){3-6} \cmidrule(lr){8-11} \cmidrule(lr){13-16} \cmidrule(l){18-21}  0                          &  & 2.00                                & 2.00                            & 2.00                                & 2.00                            &  & 2.00                                & 2.00                            & 2.00                                & 2.00        &  & 2.00            & 2.00        & 2.00            & 2.00        &  & 2.00                                & 2.00        & 2.00            & 2.00        \\ 1                          &  & 1.89                                & 0.46                            & 1.30                                & 0.15                            &  & 0.95                                & 1.23                            & 0.79                                & -0.03       &  & 0.94            & 0.09        & 1.04            & -0.17       &  & 1.23                                & 0.36        & 0.99            & 0.04        \\ 2                          &  & 1.71                                & 0.25                            & 1.23                                & 0.14                            &  & 1.10                                & 1.06                            & 0.83                                & -0.09       &  & 1.10            & -0.04       & 1.27            & -0.01       &  & 1.10                                & 0.05        & 1.04            & 0.04        \\ 3                          &  & 1.46                                & 0.16                            & 1.19                                & 0.02                            &  & 1.25                                & 1.05                            & 1.11                                & 0.01        &  & 1.17            & -0.04       & 1.18            & 0.01        &  & 1.09                                & 0.03        & 1.02            & 0.03        \\ 4                          &  & 1.55                                & 0.17                            & 1.12                                & 0.01                            &  & 1.17                                & 1.02                            & 1.06                                & 0.05        &  & 1.25            & 0.02        & 1.17            & 0.04        &  & 1.15                                & 0.02        & 0.99            & 0.03        \\ 5                          &  & 1.45                                & 0.13                            & 1.07                                & 0.11                            &  & 1.17                                & 1.03                            & 1.03                                & 0.01        &  & 1.17            & 0.00        & 1.03            & -0.03       &  & 1.14                                & 0.06        & 1.02            & 0.14        \\ 6                          &  & 1.39                                & 0.12                            & 1.12                                & 0.09                            &  & 1.15                                & 0.97                            & 1.03                                & 0.01        &  & 1.17            & 0.00        & 1.07            & -0.01       &  & 1.07                                & 0.06        & 1.00            & 0.09        \\ 7                          &  & 1.42                                & 0.13                            & 1.15                                & 0.05                            &  & 1.10                                & 0.99                            & 1.07                                & -0.00       &  & 1.15            & 0.00        & 1.00            & -0.02       &  & 1.10                                & 0.07        & 0.99            & 0.06        \\ 8                          &  & 1.45                                & 0.12                            & 1.07                                & 0.06                            &  & 1.11                                & 0.98                            & 1.07                                & 0.00        &  & 1.10            & 0.00        & 1.25            & 0.04        &  & 1.07                                & 0.08        & 1.01            & 0.04        \\ 9                          &  & 1.33                                & 0.10                            & 1.08                                & 0.00                            &  & 1.09                                & 0.98                            & 1.01                                & 0.00        &  & 1.18            & -0.01       & 1.10            & 0.04        &  & 1.10                                & 0.09        & 1.05            & 0.02        \\ 10                         &  & 1.28                                & 0.08                            & 1.07                                & 0.03                            &  & 1.03                                & 0.99                            & 1.01                                & 0.01        &  & 1.17            & 0.01        & 1.04            & -0.00       &  & 1.09                                & 0.09        & 1.01            & 0.05        \\ \bottomrule \end{tabular}
+As a first illustrative example, we choose $\mathbb{P}$ such that
+$X$ is an OU diffusion governed by the parameters $\theta^{*}=(0,1,1)$
+under $\mathbb{P}$. The expectation-maximization iterations of a
+single replication of the proposed MCEM algorithm given $\nu_{\mathbb{P}}$
+are presented in \tabref{mcem-stationary}. As noted above, we expect
+the MCEM estimates to converge to $\theta^{*}$. Since the OU diffusion
+has a constant diffusion coefficient, the corresponding Lamperti transform
+is $\eta_{\theta}(x)=x/\theta$, and the requisite functions for MCEM
+are readily available from the results in \chapref{EM}. 
+
+We qualitatively note from \tabref{mcem-stationary} that the exact
+and approximate MCEM schemes converge quite quickly, with no obvious
+difference between the schemes up to Monte Carlo variation. As is
+usual for MCEM, the algorithm produces parameter estimates sampled
+from some neighborhood of the true parameter value as described in
+\citet[Section 3.1 in][]{wei-tanner-1990}, instead of converging
+deterministically to such a value. Though we expected the slightly
+thinner tails of the sample paths drawn in approximate MCEM to result
+in some deterioration of the quality of the Monte Carlo estimates,
+the Monte Carlo variation in this experiment renders any bias undetectable
+to the eye.
+
+With a heuristic sense of the dynamics of the MCEM algorithm's convergence,
+we present a comprehensive evaluation of the ability of the proposed
+algorithm to estimate the parameters governing a Gaussian OU diffusion
+given a variety of $\mathbb{P}$ in \tabref{diff-diffusions}. In
+particular, we consider true probability models $\mathbb{P}$ under
+which $X$ is
+\begin{aenumerate}
+\item an OU diffusion governed by $\theta^{*}$, 
+\item a standard Wiener process, and 
+\item a fractional Wiener process with Hurst parameter $H=0.2$.
+\end{aenumerate}
+When $X$ is an OU diffusion under $\mathbb{P}$, as noted above,
+the MCEM algorithm should simply converge to $\theta^{*}$ since the
+family of probability models $\mathcal{Q}$ is correctly specified.
+In the latter two cases, model misspecification means that the MCEM
+algorithm can only minimize the K-L divergence of the law of $X_{\mathcal{T}}$
+under $\mathbb{Q}_{\theta}$ from its law under $\mathbb{P}$ to some
+non-zero quantity. When $X$ is a Wiener process under $\mathbb{P}$,
+the K-L divergence is minimized as $\lambda\rightarrow0,\sigma\rightarrow1$,
+since the OU diffusion reduces to a Wiener process in such a limit
+(note $\mu$ in this case is not well-defined). Finally, when $X$
+is a fractional Wiener process with Hurst parameter $H$ under $\mathbb{P}$,
+the K-L divergence of the law of $X_{1/2,1}$ under $\mathbb{Q}_{\theta}$
+from its law under $\mathbb{P}$ can be found to be
+\[
+\frac{1}{2}\left[\mbox{Tr}\left(\Sigma_{O}(\theta)^{-1}\Sigma_{F}(H)\right)+\log\frac{\det\Sigma_{O}(\theta)}{\det\Sigma_{F}(H)}-2\right],
+\]
+where
+\[
+\Sigma_{O}(\theta)=\frac{\sigma^{2}}{2\lambda}\begin{bmatrix}1-e^{-\lambda} & e^{-\lambda/2}-e^{-3\lambda/2}\\
+e^{-\lambda/2}-e^{-3\lambda/2} & 1-e^{-2\lambda}
+\end{bmatrix},\Sigma_{F}(H)=\begin{bmatrix}2^{-2H} & 1/2\\
+1/2 & 1
+\end{bmatrix}
+\]
+are the covariance matrices of the values of an OU diffusion and a
+fractional Wiener process with Hurst parameter $H$ at times $\mathcal{T}=\{1/2,1\}$,
+respectively. We choose $H=0.2$ so that the fractional Wiener process
+that mean reverts (preventing $\lambda$ from binding at $0$), and
+numerically find the K-L divergence minimizing parameter to be approximately
+$(0.00,0.83,1.45)$.
+
+In addition to varying $\mathbb{P}$, we also test the performance
+of the proposed MCEM scheme when we only have access to a finite set
+of samples from $\nu_{\mathbb{P}}$. In particular, we draw $100$
+samples from $\nu_{\mathbb{P}}$ in each relevant experiment, and
+take the resulting empirical distribution $\hat{\nu}_{\mathbb{P}}$
+of the samples as a plug-in estimate for $\nu_{\mathbb{P}}$. As noted
+in \chapref{EM}, $(X_{\mathcal{T}},\hat{\nu}_{\mathbb{P}})$ is not
+a valid Baudoin conditioning since $\hat{\nu}_{\mathbb{P}}$ is not
+absolutely continuous to the law of $X_{\mathcal{T}}$ under any element
+of $\mathcal{Q}$; however, since the MKLDE given $\hat{\nu}_{\mathbb{P}}$
+is consistent for the MKLDE given $\nu_{\mathbb{P}}$, we heuristically
+expect the MCEM scheme given $\hat{\nu}_{\mathbb{P}}$ to still produce
+accurate (though perhaps less efficient) estimates for the MKLDE given
+$\nu_{\mathbb{P}}$.
+
+It is worth pointing out before we examine in detail the results in
+\tabref{diff-diffusions} that the reported standard deviations capture
+the variability stemming from 
+
+\begin{table}[H]
+
+\centering \begin{tabular}{@{}lccccccc@{}} \toprule \multirow{2}{*}{\parbox{2cm}{Model \& Dist. Data}} & \multicolumn{3}{l}{Approx.} && \multicolumn{3}{l}{Exact}                                          \\ \cmidrule(lr){2-4} \cmidrule(lr){6-8}                          & $\hat{\mu}$                 & $\hat{\lambda}$      & $\hat{\sigma}$       & & $\hat{\mu}$          & $\hat{\lambda}$      & $\hat{\sigma}$       \\ \midrule \emph{OU}              & \multicolumn{1}{c}{\emph{0.00}}        & \multicolumn{1}{c}{\emph{1.00}} & \multicolumn{1}{c}{\emph{1.00}} && \multicolumn{1}{c}{\emph{0.00}} & \multicolumn{1}{c}{\emph{1.00}} & \multicolumn{1}{c}{\emph{1.00}} \\ \:\:\:\:$\nu_\mathbb{P}$               & 0.00                        & 1.00                 & 0.98              &   & -0.00\:                 & 1.00                 & 0.97                 \\ \:\:\:\:\:\:\:\:Std. Dev.                & (0.05)                      & (0.18)               & (0.04)           &    & (0.06)               & (0.26)               & (0.06)               \\ \:\:\:\:$\hat{\nu}_\mathbb{P}$            & 0.01                       & 1.02                & 0.98               &  &        0.00              &    1.03                  &  1.00                    \\ \:\:\:\:\:\:\:\:Std. Dev.                & (0.13)                      & (0.38)               & (0.09)             &  &   (0.05)                   &  (0.35)                    & (0.10)                     \\ 			&&&&&&& \\	 \emph{Wiener}              & \multicolumn{1}{c}{\emph{0.00}}        & \multicolumn{1}{c}{\emph{0.00}} & \multicolumn{1}{c}{\emph{1.00}} && \multicolumn{1}{c}{\emph{0.00}} & \multicolumn{1}{c}{\emph{0.00}} & \multicolumn{1}{c}{\emph{1.00}} \\ \:\:\:\:$\nu_\mathbb{P}$               & -0.13\:                       & 0.08                 & 1.00           &      & 0.00                     & 0.06                     &  0.99                    \\ \:\:\:\:\:\:\:\:Std. Dev.                & (21.0)                      & (0.05)               & (0.03)          &     & (1.83)                      & (0.05)                     &    (0.04)                  \\ \:\:\:\:$\hat{\nu}_\mathbb{P}$            & 0.13                        & 0.15                 & 1.00            &     &    0.05                  &      0.18                &     1.01                 \\ \:\:\:\:\:\:\:\:Std. Dev.                & (3.89)                      & (0.17)               & (0.06)            &   & (3.63)                     & (0.17)                      &  (0.06)                     \\ 			&&&&&&& \\ \emph{Fractional}              & \multicolumn{1}{c}{\emph{0.00}}        & \multicolumn{1}{c}{\emph{0.83}} & \multicolumn{1}{c}{\emph{1.45}} && \multicolumn{1}{c}{\emph{0.00}} & \multicolumn{1}{c}{\emph{0.83}} & \multicolumn{1}{c}{\emph{1.45}} \\ \:\:\:\:$\nu_\mathbb{P}$               & 0.00                        & 0.81                 & 1.43                & &         -0.01\:             &       0.79               &  1.41                    \\ \:\:\:\:\:\:\:\:Std. Dev.                & (0.08)                      & (0.17)               & (0.06)             &  &        (0.15)              &    (0.19)                  &   (0.06)                   \\ \:\:\:\:$\hat{\nu}_\mathbb{P}$            & -0.04\:                       & 0.86                 & 1.45             &    &            0.00          &       0.84               &       1.43               \\ \:\:\:\:\:\:\:\:Std. Dev.                & (0.22)                      & (0.30)               & (0.13)              & &      (0.25)                &   (0.26)                   & (0.09)                     \\ \bottomrule \end{tabular}
+
 
 \begin{centering}
 \begin{tabular}{lllll>{\raggedright}m{2cm}}
@@ -261,13 +356,75 @@ for maximization.}
 \end{tabular}
 \par\end{centering}
 
-\caption{\label{tab:diff-diffusions}MCEM iterations for inference on the parameters
-of an OU process with unit diffusion given the joint distribution
-at $t=\{0,1\}$ induced by a solution to (\ref{eq:ou-sde}) with various
-initial conditions and $\lambda=1,\mu=0$, using approximate and exact
-generalized bridge samplers. The $i$th iteration is performed using
-$100\times\left\lfloor i^{1.5}\right\rfloor $ MC samples, and the
-Fletcher-Reeves conjugate gradient method is used for maximization.}
-\end{sidewaystable}
+\caption{\label{tab:diff-diffusions}Mean and standard deviation of the MKLDEs
+obtained from $50$ replications of approximate and exact MCEM for
+an OU diffusion, given either $\nu_{\mathbb{P}}$ or the empirical
+distribution $\hat{\nu}_{\mathbb{P}}$ induced by $100$ samples from
+$\nu_{\mathbb{P}}$, for varying true models $\mathbb{P}$. The true
+K-L divergence minimizing parameters are indicated in italics for
+each $\mathbb{P}$.}
+\end{table}
 
-\end{document}
+\begin{aenumerate}
+\item the lower bound on the variance of any estimator, 
+\item the variance inherent in the Monte Carlo nature of the MCEM algorithm,
+and 
+\item the variance of the stochastic optimization procedure. 
+\end{aenumerate}
+As such, the reported standard deviations are larger than they asymptotically
+ought to be with a sufficiently large number of MC samples and a sufficiently
+precise optimization procedure.
+
+\tabref{diff-diffusions} reveals that both the approximate and exact
+MCEM schemes appear to be remarkably accurate for the true minimum
+K-L divergence parameter across all experiments, up to a margin of
+error equal to the standard deviation of the MKLDEs. We note that
+the standard deviation of $\hat{\mu}$ for the Wiener process is in
+some cases quite large; this is a result of $\mu$ not being well-defined
+when $\lambda=0$. The Wiener process is also the only process for
+which the mean MKLDE is greater than a standard deviation away from
+the true parameter value; this is because the parameter space of an
+OU process is restricted to $\lambda>0$, so estimates for $\lambda$
+when $\lambda=0$ will inevitably be biased positively. It is not
+clear to us why the estimates for $\lambda$ across all experiments
+seem to be much more variable than the estimates for $\mu$ or $\sigma$.
+We conjecture that this is a result of continuous diffusion paths
+over a compact interval containing infinite information about $\sigma$,
+while only containing finite information about the drift parameters
+$\mu$ and $\lambda$ (see \citet{nielsen-shephard-2002}); perhaps
+in the case of an OU process, it is $\lambda$ in particular for which
+information is sparse.
+
+Furthermore, \tabref{diff-diffusions} demonstrates the robustness
+of the proposed MCEM scheme to various assumptions. We note that the
+finite sample experiments using $\hat{\nu}_{\mathbb{P}}$ as a plug-in
+estimator for $\nu_{\mathbb{P}}$ display lower efficiency but remain
+accurate despite the violation of technical conditions on the absolute
+continuity of $\hat{\nu}_{\mathbb{P}}$ with respect to the elements
+of $\mathcal{Q}$. Furthermore, the biased estimates we expected under
+approximate MCEM do not appear up to Monte Carlo variation; we hypothesize
+that this is due to the approximate sample paths being of high quality
+over a sufficiently high proportion of the interval $[0,1]$. 
+
+With the unbiased estimates of approximate MCEM in mind, \tabref{diff-diffusions}
+also shows that the exact MCEM scheme also does not appear to have
+obviously less variability than the approximate scheme. Furthermore,
+as seen in \tabref{KS-stats}, the computational time taken by an
+exact MCEM scheme is at least an order of a magnitude greater than
+the time needed for approximate MCEM, which itself is already non-trivial
+(on the order of five hours for the experiments shown here, mostly
+due to the numerous evaluations of the objective function needed for
+stochastic optimization). 
+
+We hypothesize that for all but the most extreme of distributional
+data (i.e. conditioning a process displaying strong mean reversion
+on marginal distributions centered far from the mean), approximate
+MCEM will provide parameter estimates of sufficiently high quality
+for practical purposes. In particular, we hold that using approximate
+sample paths offers vast computational gains vis-à-vis exact paths,
+and results in bias which is most likely small relative to the variance
+resulting from Monte Carlo estimates and stochastic optimization methods. 
+
+We move now to the penultimate chapter of this thesis, in which we
+apply the methods examined here to distributional data from the real
+world.
