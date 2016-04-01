@@ -1387,6 +1387,7 @@ reference "algo:approx-sim"
 
 \begin_layout Standard
 \begin_inset Float algorithm
+placement tb
 wide false
 sideways false
 status open

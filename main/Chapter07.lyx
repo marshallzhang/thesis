@@ -107,8 +107,8 @@ name "chap:7"
 \end_layout
 
 \begin_layout Standard
-We end this thesis by briefly reviewing the contributions made and suggesting
- future directions for research.
+We conclude by briefly reviewing the contributions made and suggesting future
+ directions for research.
 \end_layout
 
 \begin_layout Standard
@@ -162,8 +162,8 @@ reference "chap:EM"
 \end_layout
 
 \begin_layout Standard
-A third potential avenue of research comes from the simulation results presented
- in 
+A third avenue of research comes from the simulation results presented in
+ 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:5"
@@ -193,10 +193,9 @@ Empirically, an area ripe for an application of the methods proposed in
  from options markets: Having access to the market-determined distribution
  of prices at arbitrary horizons would be incredibly valuable for practitioners
  and academics alike.
- Notwithstanding the various trading strategies that could immediately result,
- evaluating the efficiency of options markets in pricing the distributional
- features of asset prices over time would be a particular area of academic
- interest.
+ Notwithstanding the trading strategies that could immediately result, evaluatin
+g the efficiency of options markets in pricing the distributional features
+ of asset prices over time would be a particular area of academic interest.
 \end_layout
 
 \end_body

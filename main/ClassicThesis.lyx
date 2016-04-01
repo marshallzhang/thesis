@@ -20,7 +20,7 @@
 \usepackage{booktabs}
 \usepackage[labelfont=bf]{caption}
 \MakeRobust{\Call}
-\renewcommand{\floatpagefraction}{.8}%
+\renewcommand{\floatpagefraction}{.9}%
 
 \makeatletter
 \renewcommand*{\thetable}{\arabic{chapter}.\arabic{table}}

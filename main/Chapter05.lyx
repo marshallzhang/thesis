@@ -1739,11 +1739,219 @@ a fractional Wiener process with Hurst parameter
 \end_layout
 
 \begin_layout Standard
+When 
+\begin_inset Formula $X$
+\end_inset
+
+ is an OU diffusion under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, as noted above, the MCEM algorithm should simply converge to 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+ since the family of probability models 
+\begin_inset Formula $\mathcal{Q}$
+\end_inset
+
+ is correctly specified.
+ In the latter two cases, model misspecification means that the MCEM algorithm
+ can only minimize the K-L divergence of the law of 
+\begin_inset Formula $X_{\mathcal{T}}$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
+\end_inset
+
+ from its law under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ to some non-zero quantity.
+ When 
+\begin_inset Formula $X$
+\end_inset
+
+ is a Wiener process under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, the K-L divergence is minimized as 
+\begin_inset Formula $\lambda\rightarrow0,\sigma\rightarrow1$
+\end_inset
+
+, since the OU diffusion reduces to a Wiener process in such a limit (note
+ 
+\begin_inset Formula $\mu$
+\end_inset
+
+ in this case is not well-defined).
+ Finally, when 
+\begin_inset Formula $X$
+\end_inset
+
+ is a fractional Wiener process with Hurst parameter 
+\begin_inset Formula $H$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, the K-L divergence of the law of 
+\begin_inset Formula $X_{1/2,1}$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbb{Q}_{\theta}$
+\end_inset
+
+ from its law under 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+ can be found to be
+\begin_inset Formula 
+\[
+\frac{1}{2}\left[\mbox{Tr}\left(\Sigma_{O}(\theta)^{-1}\Sigma_{F}(H)\right)+\log\frac{\det\Sigma_{O}(\theta)}{\det\Sigma_{F}(H)}-2\right],
+\]
+
+\end_inset
+
+where
+\begin_inset Formula 
+\[
+\Sigma_{O}(\theta)=\frac{\sigma^{2}}{2\lambda}\begin{bmatrix}1-e^{-\lambda} & e^{-\lambda/2}-e^{-3\lambda/2}\\
+e^{-\lambda/2}-e^{-3\lambda/2} & 1-e^{-2\lambda}
+\end{bmatrix},\Sigma_{F}(H)=\begin{bmatrix}2^{-2H} & 1/2\\
+1/2 & 1
+\end{bmatrix}
+\]
+
+\end_inset
+
+are the covariance matrices of the values of an OU diffusion and a fractional
+ Wiener process with Hurst parameter 
+\begin_inset Formula $H$
+\end_inset
+
+ at times 
+\begin_inset Formula $\mathcal{T}=\{1/2,1\}$
+\end_inset
+
+, respectively.
+ We choose 
+\begin_inset Formula $H=0.2$
+\end_inset
+
+ so that the fractional Wiener process that mean reverts (preventing 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ from binding at 
+\begin_inset Formula $0$
+\end_inset
+
+), and numerically find the K-L divergence minimizing parameter to be approximat
+ely 
+\begin_inset Formula $(0.00,0.83,1.45)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In addition to varying 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+, we also test the performance of the proposed MCEM scheme when we only
+ have access to a finite set of samples from 
+\begin_inset Formula $\nu_{\mathbb{P}}$
+\end_inset
+
+.
+ In particular, we draw 
+\begin_inset Formula $100$
+\end_inset
+
+ samples from 
+\begin_inset Formula $\nu_{\mathbb{P}}$
+\end_inset
+
+ in each relevant experiment, and take the resulting empirical distribution
+ 
+\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
+\end_inset
+
+ of the samples as a plug-in estimate for 
+\begin_inset Formula $\nu_{\mathbb{P}}$
+\end_inset
+
+.
+ As noted in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:EM"
+
+\end_inset
+
+, 
+\begin_inset Formula $(X_{\mathcal{T}},\hat{\nu}_{\mathbb{P}})$
+\end_inset
+
+ is not a valid Baudoin conditioning since 
+\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
+\end_inset
+
+ is not absolutely continuous to the law of 
+\begin_inset Formula $X_{\mathcal{T}}$
+\end_inset
+
+ under any element of 
+\begin_inset Formula $\mathcal{Q}$
+\end_inset
+
+; however, since the MKLDE given 
+\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
+\end_inset
+
+ is consistent for the MKLDE given 
+\begin_inset Formula $\nu_{\mathbb{P}}$
+\end_inset
+
+, we heuristically expect the MCEM scheme given 
+\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
+\end_inset
+
+ to still produce accurate (though perhaps less efficient) estimates for
+ the MKLDE given 
+\begin_inset Formula $\nu_{\mathbb{P}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+It is worth pointing out before we examine in detail the results in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:diff-diffusions"
+
+\end_inset
+
+ that the reported standard deviations capture the variability stemming
+ from 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
-placement t
+placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -2316,214 +2524,6 @@ Mean and standard deviation of the MKLDEs obtained from
 
 \end_layout
 
-\begin_layout Standard
-When 
-\begin_inset Formula $X$
-\end_inset
-
- is an OU diffusion under 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
-, as noted above, the MCEM algorithm should simply converge to 
-\begin_inset Formula $\theta^{*}$
-\end_inset
-
- since the family of probability models 
-\begin_inset Formula $\mathcal{Q}$
-\end_inset
-
- is correctly specified.
- In the latter two cases, model misspecification means that the MCEM algorithm
- can only minimize the K-L divergence of the law of 
-\begin_inset Formula $X_{\mathcal{T}}$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{Q}_{\theta}$
-\end_inset
-
- from its law under 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- to some non-zero quantity.
- When 
-\begin_inset Formula $X$
-\end_inset
-
- is a Wiener process under 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
-, the K-L divergence is minimized as 
-\begin_inset Formula $\lambda\rightarrow0,\sigma\rightarrow1$
-\end_inset
-
-, since the OU diffusion reduces to a Wiener process in such a limit (note
- 
-\begin_inset Formula $\mu$
-\end_inset
-
- in this case is not well-defined).
- Finally, when 
-\begin_inset Formula $X$
-\end_inset
-
- is a fractional Wiener process with Hurst parameter 
-\begin_inset Formula $H$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
-, the K-L divergence of the law of 
-\begin_inset Formula $X_{1/2,1}$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{Q}_{\theta}$
-\end_inset
-
- from its law under 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- can be found to be
-\begin_inset Formula 
-\[
-\frac{1}{2}\left[\mbox{Tr}\left(\Sigma_{O}(\theta)^{-1}\Sigma_{F}(H)\right)+\log\frac{\det\Sigma_{O}(\theta)}{\det\Sigma_{F}(H)}-2\right],
-\]
-
-\end_inset
-
-where
-\begin_inset Formula 
-\[
-\Sigma_{O}(\theta)=\frac{\sigma^{2}}{2\lambda}\begin{bmatrix}1-e^{-\lambda} & e^{-\lambda/2}-e^{-3\lambda/2}\\
-e^{-\lambda/2}-e^{-3\lambda/2} & 1-e^{-2\lambda}
-\end{bmatrix},\Sigma_{F}(H)=\begin{bmatrix}2^{-2H} & 1/2\\
-1/2 & 1
-\end{bmatrix}
-\]
-
-\end_inset
-
-are the covariance matrices of the values of an OU diffusion and a fractional
- Wiener process with Hurst parameter 
-\begin_inset Formula $H$
-\end_inset
-
- at times 
-\begin_inset Formula $\mathcal{T}=\{1/2,1\}$
-\end_inset
-
-, respectively.
- We choose 
-\begin_inset Formula $H=0.2$
-\end_inset
-
- so that the fractional Wiener process that mean reverts (preventing 
-\begin_inset Formula $\lambda$
-\end_inset
-
- from binding at 
-\begin_inset Formula $0$
-\end_inset
-
-), and numerically find the K-L divergence minimizing parameter to be approximat
-ely 
-\begin_inset Formula $(0.00,0.83,1.45)$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-In addition to varying 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
-, we also test the performance of the proposed MCEM scheme when we only
- have access to a finite set of samples from 
-\begin_inset Formula $\nu_{\mathbb{P}}$
-\end_inset
-
-.
- In particular, we draw 
-\begin_inset Formula $100$
-\end_inset
-
- samples from 
-\begin_inset Formula $\nu_{\mathbb{P}}$
-\end_inset
-
- in each relevant experiment, and take the resulting empirical distribution
- 
-\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
-\end_inset
-
- of the samples as a plug-in estimate for 
-\begin_inset Formula $\nu_{\mathbb{P}}$
-\end_inset
-
-.
- As noted in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "chap:EM"
-
-\end_inset
-
-, 
-\begin_inset Formula $(X_{\mathcal{T}},\hat{\nu}_{\mathbb{P}})$
-\end_inset
-
- is not a valid Baudoin conditioning since 
-\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
-\end_inset
-
- is not absolutely continuous to the law of 
-\begin_inset Formula $X_{\mathcal{T}}$
-\end_inset
-
- under any element of 
-\begin_inset Formula $\mathcal{Q}$
-\end_inset
-
-; however, since the MKLDE given 
-\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
-\end_inset
-
- is consistent for the MKLDE given 
-\begin_inset Formula $\nu_{\mathbb{P}}$
-\end_inset
-
-, we heuristically expect the MCEM scheme given 
-\begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
-\end_inset
-
- to still produce accurate (though perhaps less efficient) estimates for
- the MKLDE given 
-\begin_inset Formula $\nu_{\mathbb{P}}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-It is worth pointing out before we examine in detail the results in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:diff-diffusions"
-
-\end_inset
-
- that the reported standard deviations capture the variability stemming
- from 
-\end_layout
-
 \begin_layout aEnumerate (ClassicThesis)
 the lower bound on the variance of any estimator, 
 \end_layout
@@ -2625,14 +2625,14 @@ key "nielsen-shephard-2002"
 \end_layout
 
 \begin_layout Standard
+Furthermore, 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "tab:diff-diffusions"
 
 \end_inset
 
- also demonstrates the robustness of the proposed MCEM scheme to various
- assumptions.
+ demonstrates the robustness of the proposed MCEM scheme to various assumptions.
  We note that the finite sample experiments using 
 \begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
