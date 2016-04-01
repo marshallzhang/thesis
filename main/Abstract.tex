@@ -1,0 +1,28 @@
+
+\chapter*{Abstract}
+
+This thesis investigates a novel and natural generalization of the
+theory of maximum likelihood estimation over discretely observed data
+from continuous-time stochastic processes. We propose a Kullback-Liebler
+divergence minimizing estimator for inference when given distributional
+data i.e. when given the distribution of, as opposed to observations
+of, a diffusion process at discrete points in time. Examples of such
+data include the probabilistic forecasts frequently made in macroeconomics
+or meteorology; to the best of our knowledge, we are the first to
+propose inferential techniques on stochastic processes when given
+data of this sort. We characterize the proposed estimator and develop
+a Monte Carlo expectation-maximization algorithm which converges to
+the associated estimate. We also develop the first approximate and
+exact samplers for a class of generalized diffusion bridges. These
+samplers are not only of independent interest, but also necessary
+for implementing the simulation-based expectation-maximization algorithm.
+
+Empirically, we confirm the correctness of the proposed methods through
+simulation and demonstrate their robustness to various assumptions
+made in their derivation. Then, we synthesize the methods developed
+in this thesis to propose a generalized bridge-based imputation scheme
+for probabilistic forecasts, and apply this scheme to forecasts of
+inflation expectations. We show that generalized bridge-based imputation
+produces practically meaningful and statistically significant reductions
+in out-of-sample Kullback-Liebler divergence from the true distribution
+of forecasts relative to a linear interpolation scheme.

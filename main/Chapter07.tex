@@ -1,0 +1,53 @@
+
+\chapter{Conclusions and Future Directions\label{chap:7}}
+
+We conclude by briefly reviewing the contributions made and suggesting
+future directions for research.
+
+This thesis considers the novel (to the best of our knowledge) problem
+of statistical inference when given the distribution, instead of particular
+observations, of a stochastic process at discrete points in time.
+This is a generalization of the classical problem of inference on
+discrete observations that has been well-studied in the literature.
+We develop novel inference strategies when given distributional data
+and the first samplers for a particular class of generalized bridges.
+Simulations and empirical studies demonstrate the correctness of the
+methods described and their broad applicability.
+
+Future directions for research abound, especially given the novel
+problem of this thesis. We highlight some potential lines of exploration
+here. Most pressingly, a formal investigation into the properties
+of the imputation scheme proposed in \chapref{6} is needed to justify
+its use. It seems intuitive that a model which minimizes its K-L divergence
+from a true but unknown model, conditioned on the available distributional
+data from the true model, is our best guess at the underlying truth;
+however, no attempt is made in this thesis to formalize this thought.
+Since we imagine most applications of the methods presented in this
+paper will involve distributional data and a stochastic model specified
+only up to its parameters, rigorously justifying the proposed imputation
+scheme is of utmost importance.
+
+Of equal urgency is a rigorous characterization of the properties
+of the MKLDE. This would complement the mathematical remarks made
+in \chapref{EM} and set the results of this thesis on firmer theoretical
+ground. Such characterizations ought to come fairly easily from existing
+results, given the close links between MKLDE and MLE.
+
+A third avenue of research comes from the simulation results presented
+in \chapref{5}, showing that the generalized bridge samplers appeared
+to be empirically robust against the relaxation of a variety of assumptions
+in their derivation. We conjecture based on simulations for Wiener
+bridges that in particular, the restriction of diffusions to those
+with finite speed measure considered in this thesis is overly strict.
+Perhaps a sampler (potentially more ``approximate'', in some sense,
+than the sampler proposed here) for more general diffusions is not
+too far from reach.
+
+Empirically, an area ripe for an application of the methods proposed
+in this thesis is the modeling of asset prices based on distributional
+data from options markets: Having access to the market-determined
+distribution of prices at arbitrary horizons would be incredibly valuable
+for practitioners and academics alike. Notwithstanding the trading
+strategies that could immediately result, evaluating the efficiency
+of options markets in pricing the distributional features of asset
+prices over time would be a particular area of academic interest.

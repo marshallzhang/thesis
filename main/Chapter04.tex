@@ -1,0 +1,398 @@
+
+\chapter{The Simulation of Generalized Bridges\label{chap:4}}
+
+In this chapter, we develop methods to sample approximate and exact
+generalized bridges. 
+
+
+\section{$\nu-$bridges}
+
+First, we introduce the notion of a $\nu$-bridge. Consider the solution
+$X$ to the stochastic differential equation
+\begin{equation}
+dX_{t}=\mu(X_{t})dt+\sigma(X_{t})dW_{t},\label{eq:basic-sde}
+\end{equation}
+satisfying the usual assumptions, where $\mu$ and $\sigma$ are fully
+specified (this is unlike (\ref{eq:sde-with-theta}) in the previous
+chapter, where the drift and diffusion were only known up to some
+parameters) and $W$ is a Wiener process. Suppose $X$ induces the
+probability measure $\mathbb{Q}$ on the usual probability space,
+fix $\mathcal{T}\subseteq[0,1]$ as a set of times, and let $\nu$
+be a distribution that is absolutely continuous to the law of $X_{\mathcal{T}}$
+under $\mathbb{Q}$. Then, we can understand the Baudoin $(X_{\mathcal{T}},\nu)$-conditioning
+of $\mathbb{Q}$ as a generalized diffusion bridge measure, in the
+sense that the canonical process on $\mathbb{Q}^{\nu}$ is a regular
+diffusion bridge when $\nu$ is the product of Dirac delta measures.\footnote{This statement is more precisely made in some limiting sense, since
+the product measure of Dirac delta measures is not absolutely continuous
+to $\mathbb{Q}_{\mathcal{T}}$ when $X$ is an Itô diffusion. However,
+the product measure of Dirac delta measures can be the limit of a
+sequence of probability measures which satisfy such a condition.} Since $\mathbb{Q}$ is Markovian, we may, without loss of generality,
+set $\mathcal{T}=\{0,1\}$ and restrict our attention to Baudoin conditionings
+of the form $(X_{0,1},\nu)$. Then, a $\nu$-bridge of $X$ is defined
+as follows.
+\begin{defn}
+Let $\nu_{0}$ be the marginal distribution of $\nu$ at $t=0$. Then,
+let $X$ be a solution to (\ref{eq:basic-sde}) with $X_{0}\sim\nu_{0}$,
+and let $\mathbb{Q}$ be the measure it induces. The $\nu-$bridge
+of $X$ is the canonical process under the Baudoin $(X_{0,1},\nu)-$conditioning
+of $\mathbb{Q}$, denoted $\mathbb{Q}^{\nu}$.
+\end{defn}
+Baudoin bridges are well-characterized in highly general settings;
+we therefore defer to \citet{baudoin-2002} for a theoretical treatment
+of their properties. In this chapter, we instead focus on simulating
+$\nu$-bridges, motivated by our MCEM scheme's need to sample from
+paths under Baudoin bridge measures.
+
+
+\section{Approximate Simulation of $\nu$-Bridges}
+
+In this section, we propose a sampler of approximate $\nu$-bridges
+and make precise the notion of what it means to be an ``approximate''
+bridge.
+
+A substantial literature surrounds the simulation of diffusion bridges
+since naïve simulation attempts will have a unacceptably high rejection
+probability when attempting to hit the desired endpoint (which, after
+all, is a measure zero event). One can imagine that simulating a $\nu-$bridge
+should also be non-trivial, since we are not simply conditioning on
+the measure zero event of $\left\{ X_{1}=x_{1}\right\} $, but rather
+the ``event'' that $X_{0}$ and $X_{1}$ follow some joint distribution.
+
+An overview of the recent literature in simulating traditional diffusion
+bridges can be found in \citet{papa-roberts-2012}. A particular method
+of interest is that of \citet{bladt-sorensen-2014}, where an intuitively
+simple and computationally inexpensive procedure is used to simulate
+approximate diffusion bridges. In this section, we generalize the
+theorem of \citet[Theorem 2.1 in][]{bladt-sorensen-2014} to an original
+result for the simulation of $\nu-$bridges.
+
+The general idea of the proposed sampler is to simulate two diffusion
+processes, with their initial conditions jointly distributed according
+to $\nu$. If the second process, when reversed in time, intersects
+with the first, we may weld together the processes (one running forward
+in time, the other running backward) into a diffusion with endpoints
+distributed according to $\nu$. This intuitive construction is visualized
+in \figref{bridge-intuit} and formalized in \thmref{approx-sim}. 
+
+\begin{figure}[t]
+\includegraphics[width=1\columnwidth]{/Users/marshall/Documents/senior/thesis/figures/gen_bridges}
+
+\caption{\label{fig:bridge-intuit}A visualization of the approximate $\nu$-bridge
+simulation strategy we propose in this chapter. The left graphic depicts
+two diffusion processes with some joint initial distribution (whose
+marginals are depicted). One process is simulated forward in time
+and other is simulated backward in time. The right graphic depicts
+how we can join the two processes (now in red) to create an approximate
+$\nu$-bridge (in black).}
+\end{figure}
+
+
+First, we state a lemma of \citet{bladt-sorensen-2014} which will
+help characterize the behavior of a time-reversed process.
+\begin{lem}[{\citet[Lemma 2.2 in][]{bladt-sorensen-2014}}]
+\label{lem:bladt-lemma}Consider a solution $X$ to \eqref{basic-sde}
+with initial condition $X_{0}=b$, and let $X^{\leftarrow}$ be the
+time-reversed process $X_{t}^{\leftarrow}=X_{1-t}$. Then, $X^{\leftarrow}$
+is equal in distribution to a stationary solution $X^{*}$ to (\ref{eq:basic-sde})
+conditional on $X_{1}^{*}=b$. Equivalently, $X^{\leftarrow}$ is
+equal in distribution to a solution to (\ref{eq:basic-sde}) with
+initial condition $X_{0}\sim p_{1}(b,\cdot)$ where $p_{t}$ is the
+associated transition kernel.
+\end{lem}
+With \lemref{bladt-lemma} in hand, we can now prove the central result
+of this chapter, which constructs an approximate $\nu$-bridge of
+$X$ from unconstrained versions of $X$, and makes precise the sense
+in which such a bridge is approximate. For expository convenience,
+we refer to a vector of $m$ independent solutions to (\ref{eq:basic-sde})
+as an $m$-dimensional solution to the same, and set $\inf\varnothing\coloneqq\infty$.
+Furthermore, recall that we denote the $i$th element of the vector
+$\mathbf{X}$ with $\mathbf{X}^{(i)}$.
+\begin{thm}
+\label{thm:approx-sim}Let $\mathbf{X}^{\nu}$ be a $2$-dimensional
+solution to (\ref{eq:basic-sde}) with initial condition $\mathbf{X}^{\nu}\sim\nu$.
+Let $\tau=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,\left(1\right)}=\mathbf{X}_{1-t}^{\nu,\left(2\right)}\}$.
+Define a process $Z$ as 
+\[
+Z_{t}=\begin{cases}
+\mathbf{X}_{t}^{\nu,\left(1\right)} & \mbox{if }0\leq t\leq\tau\\
+\mathbf{X}_{1-t}^{\nu,\left(2\right)} & \mbox{if }\tau<t\leq1
+\end{cases}
+\]
+on the event $\{\tau<1\}$ and $Z=\mathbf{X}^{\nu,\left(1\right)}$
+otherwise.
+
+Then, the measure induced by $Z$ conditional on $\{\tau<1\}$ is
+equal to the measure induced by a $\nu-$bridge of a solution to (\ref{eq:basic-sde}),
+conditional on such a bridge being hit by an independent stationary
+solution to (\ref{eq:basic-sde}) with initial distribution $p_{1}(Z_{1},\cdot)$.\end{thm}
+\begin{proof}
+Let $\mathbf{X}^{*}$ be an independent $2$-dimensional stationary
+solution to (\ref{eq:basic-sde}). We begin by defining two functionals
+of $\mathbf{X}^{\nu}$ and $\mathbf{X}^{*}$.
+
+First, we set the stopping times $\rho^{(i)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,(i)}=\mathbf{X}_{t}^{*,(i)}\}$,
+and define a stochastic process $\mathbf{Y}$ such that 
+\[
+\mathbf{Y}_{t}^{(i)}=\begin{cases}
+\mathbf{X}_{t}^{\nu,(i)} & \mbox{if }0\leq t\leq\rho^{(i)}\\
+\mathbf{X}_{t}^{*,(i)} & \mbox{if }\rho^{\left(i\right)}<t\leq1
+\end{cases}
+\]
+on the event $\mathscr{R}^{(i)}=\{\rho^{(i)}<1\}$ and $\mathbf{Y}^{(i)}=\mathbf{X}^{\nu,(i)}$
+otherwise. Let $\mathscr{R}=\mathscr{R}^{(1)}\cup\mathscr{R}^{(2)}$,
+and note that the coordinates of $\mathbf{Y}$ are mutually independent.
+Let $\mathbb{Y}$ be the measure induced by $\mathbf{Y}$.
+
+Similarly, we set the stopping times $\tau^{(i)}=\inf\{t\in[0,1)\mid\mathbf{X}_{t}^{\nu,(i)}=\mathbf{X}_{1-t}^{\nu,(\setminus i)}\}$,
+and define a stochastic process $\mathbf{Z}$ such that
+\[
+\mathbf{Z}_{t}^{(i)}=\begin{cases}
+\mathbf{X}_{t}^{\nu,(i)} & \mbox{if }0\leq t\leq\tau^{(i)}\\
+\mathbf{X}_{1-t}^{\nu,(\setminus i)} & \mbox{if }\tau^{(i)}<t\leq1
+\end{cases}
+\]
+on the event $\mathscr{T}^{(i)}=\{\tau^{(i)}<1\}$ and $\mathbf{Z}^{(i)}=\mathbf{X}^{\nu,(1)}$
+otherwise. Let $\mathscr{T}=\mathscr{T}^{(1)}\cup\mathscr{T}^{(2)}$,
+and denote the measure induced by $\mathbf{Z}$ as $\mathbb{Z}$.
+For notational ease throughout this proof, for any pair $\mathbf{p}=(\mathbf{p}^{(1)},\mathbf{p}^{(2)})$,
+we define $\overleftrightarrow{\mathbf{p}}=(\mathbf{p}^{(2)},\mathbf{p}^{(1)})$.
+
+Now, let $\mathscr{B}$ be the event that $\mathbf{Y}_{1}=\overleftrightarrow{\mathbf{Y}_{0}}$
+i.e. the event $\{\omega\in\Omega\mid\mathbf{Y}_{1}(\omega)=\overleftrightarrow{\mathbf{Y}_{0}(\omega)}\}$.
+
+We first show that $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
+is equal to $\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$. By definition
+of $\mathbf{Y}$, we know that $\mathscr{B}$, conditional on $\mathscr{R}$,
+is the event that $\mathbf{X}_{1}^{*}=\overleftrightarrow{\mathbf{X}_{0}^{\nu}}$.
+Then, by \lemref{bladt-lemma}, $\mathbf{X}^{*}$ conditional on $\mathscr{B}$
+is equal in distribution to the time-reversed process $\overleftrightarrow{\mathbf{X}_{1-t}^{\nu}}$,
+which by construction of $\mathbf{Z}$ and the strong Markov property
+gives that $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)=\mathbb{Z}\left(\cdot\mid\mathscr{T}\right)$.
+
+We now show that $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
+is also equal to the measure induced by two related $\nu$-bridges
+of $X$, subject to some conditions. In particular, we note that we
+may disintegrate $\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R})$
+by writing
+\begin{align}
+\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R}) & =\int\mathbb{Y}(\cdot\mid\mathscr{R},\mathbf{Y}_{1}=\overleftrightarrow{\mathbf{Y}_{0}},\mathbf{Y}_{0}=\mathbf{y}_{0})\nu(d\mathbf{y}_{0})\nonumber \\
+ & =\int\mathbb{Y}(\cdot\mid\mathscr{R},\mathbf{Y}_{0,1}^{(2)}=\overleftrightarrow{\mathbf{Y}_{0,1}^{(1)}},\mathbf{Y}_{0,1}^{(1)}=\mathbf{y}_{0,1}^{(1)})\nu(d\mathbf{y}_{0,1}^{(1)}).\label{eq:disintY}
+\end{align}
+We arrive at the the first equality by disintegrating $\mathbb{Y}$
+along the $\sigma$-algebra generated by $\mathbf{Y}_{0}$ and conditioning
+on $\mathscr{B}$. To arrive at the second equality, we merely need
+to note that for any $\omega\in\Omega$, if $\mathbf{Y}_{1}^{(1)}(\omega)$
+is set to equal $\mathbf{Y}_{0}^{(2)}(\omega)$, then $\mathbf{Y}_{0}(\omega)=\mathbf{Y}_{0,1}^{(1)}(\omega)$
+by definition (the same argument holds for $\mathbf{Y}_{1}$); intuitively,
+if $\mathbf{Y}_{1}^{(1)}$ is equal to $\mathbf{Y}_{0}^{(2)}$, the
+joint distribution of $\mathbf{Y}_{0}$ should be the same as the
+joint distribution of the endpoints of $\mathbf{Y}^{(1)}$.
+
+(\ref{eq:disintY}) reveals that we can understand $\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R})$
+as the Baudoin $(\mathbf{Y}_{0,1}^{(1)},\nu$)-conditioning of $\mathbb{Y}$,
+conditional on $\mathbf{Y}_{0,1}^{(2)}=(\mathbf{Y}_{1}^{(1)},\mathbf{Y}_{0}^{(1)})$
+and the coordinates of $\mathbf{Y}$ being hit by the respective coordinates
+of $\mathbf{X}^{*}$. Then, $\mathbb{Y}(\cdot\mid\mathscr{B}\cap\mathscr{R})$
+is the measure induced by a $\nu-$bridge of $X$ and a related, time-
+and coordinate-reversed $\nu$-bridge of $X$, where each of the bridges
+is hit by the respective coordinate of an independent diffusion $\mathbf{X}^{*}$
+conditioned such that $\mathbf{X}_{1}^{*}=\mathbf{Y}_{1}$.
+
+To complete the proof, it suffices to demonstrate that the restriction
+of $\mathbb{Y}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$ to
+its first coordinate is a $\nu-$bridge of $X$ subject to the appropriate
+conditions, since the first coordinate of $\mathbf{Z}$ is equal to
+$Z$ by definition.
+
+Since the coordinates of $\mathbf{X}^{*}$ and $\mathbf{Y}$ are all
+mutually independent, we integrate over the second coordinate to find
+that $\mathbb{Y}^{\left(1\right)}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
+is the measure induced by a $\nu-$bridge of $X$, conditional on
+the bridge being hit by an independent stationary solution $X^{*}$
+to (\ref{eq:basic-sde}) with $X_{1}^{*}=b$, where $b$ is the value
+of the bridge at $t=1$. By \lemref{bladt-lemma}, $X^{*}$ is therefore
+an independent solution to (\ref{eq:basic-sde}) with initial distribution
+$p_{1}(b,\cdot)$, and the theorem follows.
+\end{proof}
+\thmref{approx-sim} says that $Z$ is an approximation to a $\nu-$bridge
+of $X$ in the sense that if $\tau<1$, $Z$ is a $\nu-$bridge of
+$X$ conditional on $Z$ being hit by an independent solution to (\ref{eq:basic-sde})
+with a particular initial distribution (we call the latter process
+a hitting diffusion). This implies that the higher the probability
+of the bridge and a hitting diffusion intersecting, the closer $Z$
+will be to being an exact $\nu-$bridge. 
+
+\thmref{approx-sim} is a natural generalization of the main result
+of \citet[Theorem 2.1 in][]{bladt-sorensen-2014}. In particular,
+it says that an approximate $\nu$-bridge is simply an approximate
+diffusion bridge between $(a,b)\sim\nu$. We can therefore use \thmref{approx-sim}
+to simulate approximate $\nu$-bridges by directly extending the approximate
+diffusion bridge sampler proposed in \citet{bladt-sorensen-2014}.
+Suppose we have a method \noun{diffusion(}\textbf{\noun{$x_{0},\mu,\sigma,N$)}}\noun{
+}for simulating observations at $\mathcal{T}=\{0,1/N,\dots,1\}$ of
+a solution to (\ref{eq:basic-sde}) with initial condition $X_{0}=x_{0}$
+(see \citet[Chapter 10 in][]{kloeden-1992} for examples of such methods).
+We define $\delta\coloneqq1/N$, and a crossing of the discrete series
+of observations $\mathbf{X}=\{\mathbf{X}_{t}\}_{t\in\mathcal{T}}$
+and $\mathbf{Y}=\{\mathbf{Y}_{t}\}_{t\in\mathcal{T}}$ as the event
+that there exists an $t\in\mathcal{T}$ such that
+\begin{aenumerate}
+\item $\mathbf{X}_{t}\geq\mathbf{Y}_{1-t}$ and $\mathbf{X}_{t+\delta}\leq\mathbf{Y}_{1-t-\delta}$,
+or
+\item $\mathbf{X}_{t}\leq\mathbf{Y}_{1-t}$ and $\mathbf{X}_{t+\delta}\geq\mathbf{Y}_{1-t-\delta}$.
+\end{aenumerate}
+The resulting approximate $\nu$-bridge sampler is presented in \algoref{approx-sim}.
+
+\begin{algorithm}[tb]
+\caption{Approximate $\nu-$bridge Sampler}
+
+
+\begin{algorithmic}[1] 
+\Function{approximate $\nu-$bridge}{$\mu, \sigma, N$} 
+\State{\textbf{draw} $(a,b) \sim \nu$}
+\State{$\mathbf{X}^{(1)} \gets$ \Call{diffusion}{$a, \mu, \sigma, N$}}
+\State{$\mathbf{X}^{(2)} \gets$ \Call{reverse}{\Call{diffusion}{$b, \mu, \sigma, N$}}}
+\While{$\mathbf{X}^{(1)}$ and  $\mathbf{X}^{(2)}$ do not cross} 
+\State{\textbf{draw} $(a,b)$ from $\nu$}
+\State{$\mathbf{X}^{(1)} \gets$ \Call{diffusion}{$a, \mu, \sigma, N$}}
+\State{$\mathbf{X}^{(2)} \gets$ \Call{reverse}{\Call{diffusion}{$b, \mu, \sigma, N$}}}
+\EndWhile
+
+\If{$\mathbf{X}^{(1)}_0 > \mathbf{X}^{(2)}_1$}
+\State{$\tau \gets \min \{t\in \mathcal{T} \mid \mathbf{X}^{(1)}_{t} \leq \mathbf{X}^{(2)}_{t}\}$}
+\Else
+\State{$\tau \gets \min \{t\in \mathcal{T} \mid \mathbf{X}^{(1)}_{t} \geq \mathbf{X}^{(2)}_{t}\}$}
+\EndIf
+
+\State{$Z \gets \begin{cases} \mathbf{X}^{(1)}_{t}, \text{ for } t=0,1/N,\dots,\tau - 1/N \\ \mathbf{X}^{(2)}_{t}, \text{ for } i=\tau,\dots,1 \end{cases}$}
+
+\State \Return $Z$
+\EndFunction 
+\end{algorithmic}
+
+\label{algo:approx-sim}
+\end{algorithm}
+
+
+
+\section{Exact Simulation of $\nu-$bridges}
+
+In \chapref{5}, we will present some evidence that the approximate
+simulation scheme proposed above produces samples that are qualitatively
+similar to exact samples in a variety of situations. However, an exact
+simulation scheme is still desirable. In this section, we outline
+the method by which \citet{bladt-sorensen-2014} extend their approximate
+diffusion bridge sampler to an exact sampler, and then present an
+easy modification of this strategy to our approximate $\nu$-bridge
+sampler.
+
+We begin with a brief review of \citet[Section 2.3 in][]{bladt-sorensen-2014}'s
+derivation of an exact diffusion bridge sampler. First, note if
+\begin{aenumerate}
+\item $\hat{f}(x)$ is the density of an approximate diffusion bridge, 
+\item $f(x)$ is the density of an exact diffusion bridge, and 
+\item $I_{x,y}$ is the event that $x,y\in\Omega$ intersect i.e. there
+exists some $t$ such that $x_{t}=y_{t}$, then
+\end{aenumerate}
+\[
+\hat{f}(x)=f(x)\frac{\mbox{Pr}(I_{x,Y})}{\mbox{Pr}(I_{X,Y})},
+\]
+
+
+where $Y$ is a hitting diffusion. This fact is proven in \citet[below Theorem 2.1. in][]{bladt-sorensen-2014}.
+As such, the acceptance ratio in an Metropolis-Hastings (M-H) scheme
+to sample exact diffusion bridges using approximate diffusion bridge
+proposals should be 
+\begin{equation}
+\alpha(X^{(i-1)},X^{'})\coloneqq\frac{\mbox{Pr}(I_{X^{(i-1)},Y})}{\mbox{Pr}(I_{X^{'},Y})},\label{eq:acceptance}
+\end{equation}
+where $X^{(i-1)}$ is an approximate diffusion bridge and $X'$ is
+an independent approximate diffusion bridge proposal. The intuition
+for this ratio is as follows: First, as \citet[Theorem 2.1 in][]{bladt-sorensen-2014}
+show, an approximate diffusion bridge is a diffusion bridge conditioned
+on intersecting with a hitting diffusion (this is the result that
+\thmref{approx-sim} generalizes). An M-H scheme with $\alpha$ as
+defined in (\ref{eq:acceptance}) accepts, with high probability,
+proposals that are not likely to intersect with a hitting diffusion.
+As such, the M-H acceptance step effectively counteracts the proliferation
+of diffusion bridges that are likely to intersect with hitting diffusions
+when using an approximate sampler.
+
+While seemingly simple, (\ref{eq:acceptance}) is in fact unavailable
+analytically. Leveraging a result of \citet[Section 2.2 in][]{andrieu-roberts},
+\citet{bladt-sorensen-2014} instead use unbiased estimates of $\mbox{Pr}(I_{x,Y})$
+to compute an estimate for the acceptance ratio $\alpha$ to develop
+their exact diffusion bridge sampler.
+
+\begin{algorithm}[t]
+\caption{Exact $\nu-$bridge Sampler}
+
+
+\begin{algorithmic}[1] 
+\Function{$\hat{\rho}$}{$x,M$}
+\For{$i=1,\dots,M$}
+\State{$T_{i} \gets 1$}
+\While{\Call{hitting}{$x_{1}$} and $x$ do not cross}
+\State{$T_{i} \gets T_{i}+1$}
+\EndWhile
+\EndFor
+\State \Return{\Call{mean}{$T_i$}}
+\EndFunction
+
+\Function{exact $\nu$-bridge}{$\mu, \sigma, N, M$}
+\State{$\hat{\mathbf{X}}^{(1)} \gets$ \Call{approximate $\nu$-bridge}{$\mu, \sigma, \nu, N$}}
+\State{$\hat{\mathbf{X}}^{(2)} \gets$ \Call{approximate diffusion bridge}{$\hat{\mathbf{X}}^{(1)}_0, \hat{\mathbf{X}}^{(1)}_1, \mu, \sigma, N$}}
+\State{$\alpha \gets \min{\left\{1,\cfrac{\hat{\rho}(\hat{\mathbf{X}}^{(2)},M)}{\hat{\rho}(\hat{\mathbf{X}}^{(1)},M)}\right\}}$}
+\State \Return $\hat{\mathbf{X}}^{(2)}$ with probability $\alpha$, $\hat{\mathbf{X}}^{(1)}$ otherwise
+\EndFunction 
+
+
+\end{algorithmic}
+
+\label{algo:exact-sim}
+\end{algorithm}
+
+
+Now, we present an adaptation of this strategy to develop an exact
+$\nu$-bridge sampler. We use the observation that our scheme for
+sampling an approximate $\nu$-bridge can be reduced to
+\begin{aenumerate}
+\item drawing $(a,b)\sim\nu$, then 
+\item sampling an approximate diffusion bridge from $a$ to $b$ using \citet{bladt-sorensen-2014}'s
+approximate sampler. 
+\end{aenumerate}
+Sampling an exact $\nu$-bridge then, can be achieved simply by drawing
+$(a,b)\sim\nu$, then sampling an exact diffusion bridge from $a$
+to $b$ using \citet{bladt-sorensen-2014}'s exact sampler. We assume
+we have the methods
+\begin{aenumerate}
+\item \noun{hitting}($b$), which returns discrete observations from a solution
+to (\ref{eq:basic-sde}) with initial condition $p_{1}(b,\cdot)$,
+and 
+\item \noun{approximate diffusion bridge($a,b,\mu,\sigma,N)$,} which is
+the approximate sampler of \citet{bladt-sorensen-2014} for a diffusion
+bridge from $a$ to $b$.
+\end{aenumerate}
+\noun{hitting}($b$) is simple to implement due to the observation
+that a diffusion on $[0,1]$ with initial condition $p_{1}(b,\cdot)$
+is equal in distribution to the same diffusion over $[1,2]$ with
+initial condition $b$. As outlined in \citet[Section 2.3 in][]{bladt-sorensen-2014},
+the function $\hat{\rho}\left(x,M\right)$ in \algoref{exact-sim}
+is an unbiased Monte Carlo estimate for the expectation of a geometric
+distribution with probability of success $\mbox{Pr}(I_{x,Y})$ i.e.
+an unbiased estimate for $1/\mbox{Pr}(I_{x,Y})$.
+
+With\noun{ exact $\nu-$bridge}, we end the original theoretical portion
+of this thesis. \algoref{exact-sim} is a sampler of the canonical
+process on a Baudoin $(X_{0,1},\nu)$-conditioning of $\mathbb{Q}$.
+This algorithm, after some trivial generalizations (for instance,
+simulating a path over intervals other than $[0,1]$), is precisely
+the method we need to implement the MCEM algorithm proposed in \algoref{mcem}.
+It thereby completes our answer to the question of inference on distributional
+data, allowing us to sample from an arbitrary Baudoin bridge measure.
+Furthermore, it answers in full the question of imputation when given
+distributional data and a fully specified stochastic process: we may
+simply simulate the process between the distributional data on which
+it is conditioned. In the next two chapters, we put theory to practice
+as we evaluate and apply the methods developed thus far in a variety
+of simulation and empirical settings.

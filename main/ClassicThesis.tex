@@ -1,0 +1,166 @@
+%% LyX 2.1.4 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[american,fontsize=11pt,paper=a4,twoside,openright,titlepage,numbers=noenddot,headinclude,BCOR=5mm,footinclude=true,cleardoublepage=empty]{scrreprt}
+\usepackage[T1]{fontenc}
+\setcounter{secnumdepth}{2}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage{refstyle}
+\usepackage{float}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[numbers]{natbib}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+
+\AtBeginDocument{\providecommand\figref[1]{\ref{fig:#1}}}
+\AtBeginDocument{\providecommand\chapref[1]{\ref{chap:#1}}}
+\AtBeginDocument{\providecommand\propref[1]{\ref{prop:#1}}}
+\AtBeginDocument{\providecommand\algoref[1]{\ref{algo:#1}}}
+\AtBeginDocument{\providecommand\thmref[1]{\ref{thm:#1}}}
+\AtBeginDocument{\providecommand\eqref[1]{\ref{eq:#1}}}
+\AtBeginDocument{\providecommand\lemref[1]{\ref{lem:#1}}}
+\AtBeginDocument{\providecommand\tabref[1]{\ref{tab:#1}}}
+\newcommand{\noun}[1]{\textsc{#1}}
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}[chapter]
+\providecommand{\algorithmname}{Algorithm}
+\floatname{algorithm}{\protect\algorithmname}
+\RS@ifundefined{subref}
+  {\def\RSsubtxt{section~}\newref{sub}{name = \RSsubtxt}}
+  {}
+\RS@ifundefined{thmref}
+  {\def\RSthmtxt{theorem~}\newref{thm}{name = \RSthmtxt}}
+  {}
+\RS@ifundefined{lemref}
+  {\def\RSlemtxt{lemma~}\newref{lem}{name = \RSlemtxt}}
+  {}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+% Classic Thesis Style loader
+\makeatother
+\input{classicthesis-config.tex}
+\makeatletter
+% use Latin Modern instead of Computer Modern sans serif
+\renewcommand{\sfdefault}{lmss}
+\theoremstyle{plain}
+\ifx\thechapter\undefined
+\newtheorem{thm}{\protect\theoremname}
+\else
+\newtheorem{thm}{\protect\theoremname}[chapter]
+\fi
+  \theoremstyle{definition}
+  \newtheorem{defn}[thm]{\protect\definitionname}
+  \theoremstyle{plain}
+  \newtheorem{prop}[thm]{\protect\propositionname}
+  \theoremstyle{remark}
+  \newtheorem{rem}[thm]{\protect\remarkname}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{\protect\lemmaname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{algorithm,algpseudocode}
+\newref{prop}{name=Proposition~,Name=Proposition~}
+\newref{prob}{name=Problem~,Name=Problem~}
+\newref{thm}{name=Theorem~,Name=Theorem~}
+\newref{chap}{name=Chapter~,Name=Chapter~}
+\newref{part}{name=Part~,Name=Part~}
+\newref{tab}{name=Table~,Name=Table~}
+\newref{algo}{name=Algorithm~,Name=Algorithm~}
+\newref{lem}{name=Lemma~,Name=Lemma~}
+\newref{fig}{name=Figure~,Name=Figure~}
+\newref{chap}{name=Chapter~,Name=Chapter~}
+\newref{rem}{name=Remark~,Name=Remark~}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[labelfont=bf]{caption}
+\MakeRobust{\Call}
+\renewcommand{\floatpagefraction}{.9}%
+
+\makeatletter
+\renewcommand*{\thetable}{\arabic{chapter}.\arabic{table}}
+\renewcommand*{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\let\c@table\c@figure
+\makeatother 
+
+\areaset[current]{\dimexpr\textwidth+\marginparwidth+\marginparsep}{\textheight}
+\setlength{\marginparwidth}{-3.3em}
+\setlength{\marginparsep}{-3.3em}
+
+\makeatother
+
+\usepackage{babel}
+  \providecommand{\definitionname}{Definition}
+  \providecommand{\lemmaname}{Lemma}
+  \providecommand{\propositionname}{Proposition}
+  \providecommand{\remarkname}{Remark}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+\frenchspacing
+\raggedbottom
+\pagenumbering{roman}
+\pagestyle{plain}
+
+\begin{comment}
+\include{Dedication}
+
+\cleardoublepage{}
+\end{comment}
+
+
+\include{Titlepage}
+
+\cleardoublepage{}\include{Acknowledgments}\cleardoublepage{}\pagestyle{scrheadings}
+
+\include{Abstract}
+
+\cleardoublepage{}
+
+\include{Contents}
+
+\cleardoublepage{}
+
+\pagenumbering{arabic}
+
+\include{Chapter01}
+
+\include{Chapter02}
+
+\include{ChapterEM}\include{Chapter04}
+
+\include{Chapter05}
+
+\include{Chapter06}
+
+\include{Chapter07}
+
+\cleardoublepage{}\include{Bibliography}%
+\begin{comment}
+
+\part{Appendix}
+
+\include{Chapter0A}
+
+\cleardoublepage{}
+
+\cleardoublepage{}
+
+\include{Colophon}
+
+\cleardoublepage{}
+
+\include{Declaration}
+\end{comment}
+
+\end{document}
