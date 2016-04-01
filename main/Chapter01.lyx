@@ -252,7 +252,7 @@ Given the distribution of temperature in Boston a week from now, what is
 \end_inset
 
 How is the market pricing the distribution of a stock price between dates
- on which the associated options expire?
+ on which the stock's associated options expire?
 \begin_inset Quotes erd
 \end_inset
 
@@ -334,7 +334,7 @@ We will soon see that these questions of inference and imputation are deeply
  response to the broad questions about inflation, weather, and stock prices
  posed above.
  These sorts of broad questions abound; by extension, the potential applications
- of the methods proposed here are both widely applicable and acutely important.
+ of the methods proposed here are both wide in scope and acute in importance.
  For instance, one might imagine that knowing the market-implied distribution
  of future stock prices could be immensely valuable.
  Moreover, references to inference and imputation on distributional data
@@ -369,8 +369,8 @@ key "yoshida-1992"
 
  for the specific case of diffusion processes.
  In particular, we propose that it is appropriate to use an estimator that
- minimizes K-L divergence for inference when given the distribution of a
- diffusion process at discrete points in time.
+ minimizes Kullback-Liebler (K-L) divergence for inference when given the
+ distribution of a diffusion process at discrete points in time.
  This is in contrast to the maximum likelihood estimator, which is used
  for inference when given discrete observations of such a process.
  We characterize this estimator as a limiting case of the maximum likelihood
@@ -419,13 +419,12 @@ In the empirical portion of this thesis, we confirm the correctness of the
  We further demonstrate that the approximate sampler offers samples that
  are qualitatively similar to those of the exact sampler at a fraction of
  the computation cost.
- Then, we confirm empirically that the proposed simulation-based inference
- technique on distributional data is accurate for the K-L divergence minimizing
+ Then, we show empirically that the proposed simulation-based inference
+ technique on distributional data is unbiased for the K-L divergence minimizing
  parameter.
  Moreover, we show that both the generalized bridge samplers and the inference
  technique are robust to various theoretical assumptions made in their derivatio
 ns.
- 
 \end_layout
 
 \begin_layout Standard

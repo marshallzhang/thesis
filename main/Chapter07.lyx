@@ -96,7 +96,7 @@ theorems-chap
 \begin_body
 
 \begin_layout Chapter
-Conclusions
+Conclusions and Future Directions
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:7"
@@ -117,15 +117,15 @@ This thesis considers the novel (to the best of our knowledge) problem of
  observations, of a stochastic process at discrete points in time.
  This is a generalization of the classical problem of inference on discrete
  observations that has been well-studied in the literature.
- We develop inference strategies when given distributional data and the
- first samplers for a particular class of generalized bridges.
+ We develop novel inference strategies when given distributional data and
+ the first samplers for a particular class of generalized bridges.
  Simulations and empirical studies demonstrate the correctness of the methods
  described and their broad applicability.
 \end_layout
 
 \begin_layout Standard
-Future directions for research abound, especially given the novel nature
- of the central problem in this thesis.
+Future directions for research abound, especially given the novel problem
+ of this thesis.
  We highlight some potential lines of exploration here.
  Most pressingly, a formal investigation into the properties of the imputation
  scheme proposed in 
@@ -148,7 +148,7 @@ reference "chap:6"
 
 \begin_layout Standard
 Of equal urgency is a rigorous characterization of the properties of the
- MKLDE in the context of distributional data.
+ MKLDE.
  This would complement the mathematical remarks made in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -175,7 +175,7 @@ reference "chap:5"
  We conjecture based on simulations for Wiener bridges that in particular,
  the restriction of diffusions to those with finite speed measure considered
  in this thesis is overly strict.
- A sampler (potentially more 
+ Perhaps a sampler (potentially more 
 \begin_inset Quotes eld
 \end_inset
 

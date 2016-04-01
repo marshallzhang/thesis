@@ -74,7 +74,7 @@
 \centering
 \begin{tabular}{@{}lccccccc@{}}
 \toprule
-\multirow{2}{*}{\parbox{2cm}{Model \& Dist. Data}} & \multicolumn{3}{l}{Approx.} && \multicolumn{3}{l}{Exact}                                          \\ \cmidrule(lr){2-4} \cmidrule(lr){5-8}
+\multirow{2}{*}{\parbox{2cm}{Model \& Dist. Data}} & \multicolumn{3}{l}{Approx.} && \multicolumn{3}{l}{Exact}                                          \\ \cmidrule(lr){2-4} \cmidrule(lr){6-8}
                          & $\hat{\mu}$                 & $\hat{\lambda}$      & $\hat{\sigma}$       & & $\hat{\mu}$          & $\hat{\lambda}$      & $\hat{\sigma}$       \\ \midrule
 \emph{OU}              & \multicolumn{1}{c}{\emph{0.00}}        & \multicolumn{1}{c}{\emph{1.00}} & \multicolumn{1}{c}{\emph{1.00}} && \multicolumn{1}{c}{\emph{0.00}} & \multicolumn{1}{c}{\emph{1.00}} & \multicolumn{1}{c}{\emph{1.00}} \\
 \:\:\:\:$\nu_\mathbb{P}$               & 0.00                        & 1.00                 & 0.98              &   & -0.00\:                 & 1.00                 & 0.97                 \\

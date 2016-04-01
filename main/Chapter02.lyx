@@ -131,15 +131,6 @@ We first fix the main objects of study and notation.
 \end_inset
 
 .
- 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- is a probability measure on 
-\begin_inset Formula $\left(\Omega,\mathcal{B}\left(\Omega\right)\right)$
-\end_inset
-
-.
  As usual, 
 \begin_inset Formula $\Omega$
 \end_inset
@@ -197,7 +188,7 @@ where
 \begin_layout Standard
 In the following chapters, we will study in detail time-homogenous univariate
  Itô diffusions i.e.
- continuous and strongly Markovian diffusion processes (see standard references
+ continuous and strongly Markovian stochastic processes (see standard references
  like 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -411,7 +402,7 @@ key "rogers"
 \begin_inset Formula $h$
 \end_inset
 
--transform in the case of continuous-time processes).
+-transform for continuous-time processes).
  We refer to such a measure as the bridge measure 
 \begin_inset Formula $\mathbb{P}^{x,y}$
 \end_inset
@@ -435,19 +426,6 @@ key "rogers"
 
  and 
 \begin_inset Formula $t=1$
-\end_inset
-
-.
- Moreover, 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- can be seen as a mixture of 
-\begin_inset Formula $\mathbb{P}^{x,y}$
-\end_inset
-
- with respect to the mixing measure 
-\begin_inset Formula $\mathbb{P}_{0,1}$
 \end_inset
 
 .
@@ -598,16 +576,16 @@ such that, if the law of
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
-for any 
+for 
 \begin_inset Formula $t\in[0,1)$
 \end_inset
 
- there exists a process 
-\begin_inset Formula $\eta_{t}^{y}$
+ and 
+\begin_inset Formula $y\in\mathcal{R}^{k}$
 \end_inset
 
- for all 
-\begin_inset Formula $y\in\mathcal{R}^{k}$
+, there exists a process 
+\begin_inset Formula $\eta_{t}^{y}$
 \end_inset
 
  such that for any 
@@ -616,10 +594,6 @@ for any
 
 -measurable and bounded random variable 
 \begin_inset Formula $Z$
-\end_inset
-
- and any 
-\begin_inset Formula $y$
 \end_inset
 
 , 
@@ -637,8 +611,8 @@ From this point on, we will always assume that the tuples
 
  we encounter satisfy the conditions above.
  The next result demonstrates the existence and uniqueness of a measure
- which satisfies intuitive notions of what it means to condition a measure
- on the law of a random variable.
+ which satisfies intuitive notions of what it means to be conditioned on
+ the law of a random variable.
  Moreover, it says that such a conditioned measure is the convex diversity
  minimizing measure with respect to a family of related probability measures.
 \end_layout

@@ -96,8 +96,8 @@ name "chap:4"
 \end_layout
 
 \begin_layout Standard
-In this chapter, we study generalized diffusion bridges and develop methods
- to sample approximate and exact generalized bridges.
+In this chapter, we develop methods to sample approximate and exact generalized
+ bridges.
  
 \end_layout
 
@@ -163,7 +163,7 @@ reference "eq:sde-with-theta"
 \begin_inset Formula $\nu$
 \end_inset
 
- be a probability measure that is absolutely continuous to the law of 
+ be a distribution that is absolutely continuous to the law of 
 \begin_inset Formula $X_{\mathcal{T}}$
 \end_inset
 
@@ -172,7 +172,7 @@ reference "eq:sde-with-theta"
 \end_inset
 
 .
- Then, the Baudoin 
+ Then, we can understand the Baudoin 
 \begin_inset Formula $(X_{\mathcal{T}},\nu)$
 \end_inset
 
@@ -180,7 +180,7 @@ reference "eq:sde-with-theta"
 \begin_inset Formula $\mathbb{Q}$
 \end_inset
 
- is a generalized diffusion bridge measure, in the sense that the canonical
+ as a generalized diffusion bridge measure, in the sense that the canonical
  process on 
 \begin_inset Formula $\mathbb{Q}^{\nu}$
 \end_inset
@@ -237,17 +237,34 @@ This statement is more precisely made in some limiting sense, since the
 
 \begin_layout Definition
 Let 
+\begin_inset Formula $\nu_{0}$
+\end_inset
+
+ be the marginal distribution of 
+\begin_inset Formula $\nu$
+\end_inset
+
+ at 
+\begin_inset Formula $t=0$
+\end_inset
+
+.
+ Then, let 
 \begin_inset Formula $X$
 \end_inset
 
- be the stationary solution to 
+ be a solution to 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:basic-sde"
 
 \end_inset
 
- and let 
+ with 
+\begin_inset Formula $X_{0}\sim\nu_{0}$
+\end_inset
+
+, and let 
 \begin_inset Formula $\mathbb{Q}$
 \end_inset
 
@@ -260,11 +277,7 @@ bridge of
 \begin_inset Formula $X$
 \end_inset
 
- is the stochastic process on 
-\begin_inset Formula $t\in[0,1]$
-\end_inset
-
- that induces the Baudoin 
+ is the canonical process under the Baudoin 
 \begin_inset Formula $(X_{0,1},\nu)-$
 \end_inset
 
@@ -293,7 +306,7 @@ key "baudoin-2002"
 \begin_inset Formula $\nu$
 \end_inset
 
--bridges, motivated by our MCEM scheme's need for repeated samples from
+-bridges, motivated by our MCEM scheme's need to sample from paths under
  Baudoin bridge measures.
 \end_layout
 
@@ -330,8 +343,8 @@ A substantial literature surrounds the simulation of diffusion bridges since
 \begin_inset Formula $\nu-$
 \end_inset
 
-bridge should also be non-trivial, since we are not only conditioning on
- the measure zero event of 
+bridge should also be non-trivial, since we are not simply conditioning
+ on the measure zero event of 
 \begin_inset Formula $\left\{ X_{1}=x_{1}\right\} $
 \end_inset
 
@@ -381,7 +394,7 @@ key "bladt-sorensen-2014"
 
 \end_inset
 
- to a original result for the simulation of 
+ to an original result for the simulation of 
 \begin_inset Formula $\nu-$
 \end_inset
 
@@ -403,7 +416,7 @@ The general idea of the proposed sampler is to simulate two diffusion processes,
 \end_inset
 
 .
- This intuitive construction is visualized 
+ This intuitive construction is visualized in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:bridge-intuit"
@@ -593,7 +606,7 @@ reference "lem:bladt-lemma"
 \begin_inset Formula $X$
 \end_inset
 
- from unconstrained verisons of 
+ from unconstrained versions of 
 \begin_inset Formula $X$
 \end_inset
 
@@ -1111,8 +1124,8 @@ Since the coordinates of
 \begin_inset Formula $\mathbf{Y}$
 \end_inset
 
- are all mutually independent, we marginalize over the second coordinate
- to find that 
+ are all mutually independent, we integrate over the second coordinate to
+ find that 
 \begin_inset Formula $\mathbb{Y}^{\left(1\right)}\left(\cdot\mid\mathscr{B}\cap\mathscr{R}\right)$
 \end_inset
 
@@ -1220,8 +1233,8 @@ reference "eq:basic-sde"
 
 \end_inset
 
- with a particular initial distribution (we call the latter process the
- hitting diffusion).
+ with a particular initial distribution (we call the latter process a hitting
+ diffusion).
  This implies that the higher the probability of the bridge and a hitting
  diffusion intersecting, the closer 
 \begin_inset Formula $Z$
@@ -1720,8 +1733,8 @@ reference "chap:5"
 \end_inset
 
 , we will present some evidence that the approximate simulation scheme proposed
- above qualitatively appears to produce samples that are qualitatively similar
- to exact samples in a variety of situations.
+ above produces samples that are qualitatively similar to exact samples
+ in a variety of situations.
  However, an exact simulation scheme is still desirable.
  In this section, we outline the method by which 
 \begin_inset CommandInset citation
@@ -1840,7 +1853,7 @@ key "bladt-sorensen-2014"
 \end_inset
 
  show, an approximate diffusion bridge is a diffusion bridge conditioned
- on being hit by a hitting diffusion (this is the result that 
+ on intersecting with a hitting diffusion (this is the result that 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:approx-sim"
@@ -1859,11 +1872,11 @@ reference "eq:acceptance"
 
 \end_inset
 
- accepts, with high probability, proposals that are not likely to be hit
- by a hitting diffusion.
+ accepts, with high probability, proposals that are not likely to intersect
+ with a hitting diffusion.
  As such, the M-H acceptance step effectively counteracts the proliferation
- of diffusion bridges that are likely to be hit by hitting diffusions when
- using an approximate sampler.
+ of diffusion bridges that are likely to intersect with hitting diffusions
+ when using an approximate sampler.
 \end_layout
 
 \begin_layout Standard
@@ -2380,10 +2393,16 @@ reference "algo:exact-sim"
 \end_inset
 
 -conditioning of 
-\begin_inset Formula $\mathbb{P}$
+\begin_inset Formula $\mathbb{Q}$
 \end_inset
 
-, and precisely the method we need to implement the MCEM algorithm proposed
+.
+ This algorithm, after some trivial generalizations (for instance, simulating
+ a path over intervals other than 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+), is precisely the method we need to implement the MCEM algorithm proposed
  in 
 \begin_inset CommandInset ref
 LatexCommand formatted

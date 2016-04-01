@@ -787,14 +787,14 @@ reference "tab:KS-stats"
 
 \end_inset
 
- confirms that for an Itô diffusion, we cannot reject the null hypothesis
+ confirms that for the OU diffusion, we cannot reject the null hypothesis
  that the exact sampler draws from the true distribution at the 
 \begin_inset Formula $95\%$
 \end_inset
 
  confidence level for a variety of initial distributions.
  On the other hand, we can reject the null hypothesis for the approximate
- sampler; this is expected, since 
+ sampler at the same confidence level; this is expected, since 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "thm:approx-sim"
@@ -861,9 +861,9 @@ reference "chap:2"
 \end_layout
 
 \begin_layout Standard
-Unexpectedly, the approximate sampler appears to sample from the true bridge
- distribution when the underlying process is a Wiener process, which does
- not have finite speed measure.
+Unexpectedly, both the approximate and exact samplers appear to sample from
+ the true bridge distribution when the underlying process is a Wiener process,
+ which does not have finite speed measure.
  We do not have a theoretically grounded explanation for this phenomenon;
  however, we see this result as further evidence that the assumptions made
  in 
@@ -1037,8 +1037,8 @@ reference "tab:KS-stats"
 
  by definition).
  The K-S statistics presented here are therefore an overly stringent view
- of the usability of the approximate sample paths in the MCEM algorithm
- proposed in 
+ of the utility of the approximate sample paths in the MCEM algorithm proposed
+ in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "chap:EM"
@@ -1055,7 +1055,7 @@ reference "chap:EM"
 .
  In the next section, we will demonstrate that an MCEM algorithm using the
  approximate bridge sampler produces comparable results to one using the
- exact bridge sampler, and demonstrate the consistency of the proposed MCEM
+ exact bridge sampler, and demonstrate the correctness of the proposed MCEM
  algorithm more generally.
 \end_layout
 
@@ -1096,7 +1096,7 @@ reference "tab:KS-stats"
 
 \begin_layout Standard
 The theoretical setting for this section is as follows: Suppose we have
- an unknown true probability model 
+ an true but unknown probability model 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -1117,12 +1117,12 @@ The theoretical setting for this section is as follows: Suppose we have
 \begin_inset Formula $\mathcal{Q}=\{\mathbb{Q}_{\theta}\mid\theta\in\Theta\}$
 \end_inset
 
-, to which 
+, where 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- is absolutely continuous for any 
-\begin_inset Formula $\theta\in\Theta$
+ is absolutely continuous to any element of 
+\begin_inset Formula $\mathcal{Q}$
 \end_inset
 
 .
@@ -1294,7 +1294,7 @@ key "deoptim"
  on default settings and optimization strategy 6.
  Ten expectation-maximization iterations in every replication of the MCEM
  algorithm are performed.
- We will refer to MCEM scheme using exactly sampled bridges and approximately
+ We will refer to MCEM schemes using exactly sampled bridges and approximately
  sampled bridges as exact MCEM and approximate MCEM respectively.
 \end_layout
 
@@ -1579,7 +1579,7 @@ name "tab:mcem-stationary"
 
 \end_inset
 
-One illustrative replication of an exact and approximate MCEM (using 
+One illustrative replication of exact and approximate MCEM (using 
 \begin_inset Formula $100\times\left\lfloor i^{1.2}\right\rfloor $
 \end_inset
 
@@ -1688,7 +1688,7 @@ key "wei-tanner-1990"
  Though we expected the slightly thinner tails of the sample paths drawn
  in approximate MCEM to result in some deterioration of the quality of the
  Monte Carlo estimates, the Monte Carlo variation in this experiment renders
- any bias undetectable to the naked eye.
+ any bias undetectable to the eye.
 \end_layout
 
 \begin_layout Standard
@@ -1751,6 +1751,10 @@ status open
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
 centering 
@@ -1776,7 +1780,7 @@ multicolumn{3}{l}{Exact}
 \backslash
 cmidrule(lr){2-4} 
 \backslash
-cmidrule(lr){5-8}                          & $
+cmidrule(lr){6-8}                          & $
 \backslash
 hat{
 \backslash
@@ -2442,12 +2446,12 @@ In addition to varying
 \end_inset
 
 , we also test the performance of the proposed MCEM scheme when we only
- have access to a fixed and finite set of samples from 
+ have access to a finite set of samples from 
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
 .
- In particular, we consider the case where we sample 
+ In particular, we draw 
 \begin_inset Formula $100$
 \end_inset
 
@@ -2455,7 +2459,8 @@ In addition to varying
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
-, and take the resulting empirical distribution 
+ in each relevant experiment, and take the resulting empirical distribution
+ 
 \begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
@@ -2491,7 +2496,7 @@ reference "chap:EM"
 \begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
- is consistent to the MKLDE given 
+ is consistent for the MKLDE given 
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
@@ -2547,8 +2552,8 @@ reference "tab:diff-diffusions"
 \end_inset
 
  reveals that both the approximate and exact MCEM schemes appear to be remarkabl
-y accurate for the true MKLD parameter across all experiments, up to a margin
- of error equal to the standard deviation of the MKLDEs.
+y accurate for the true minimum K-L divergence parameter across all experiments,
+ up to a margin of error equal to the standard deviation of the MKLDEs.
  We note that the standard deviation of 
 \begin_inset Formula $\hat{\mu}$
 \end_inset
@@ -2563,7 +2568,7 @@ y accurate for the true MKLD parameter across all experiments, up to a margin
 \end_inset
 
 .
- The Wiener process is also the only process for which a mean estimate is
+ The Wiener process is also the only process for which the mean MKLDE is
  greater than a standard deviation away from the true parameter value; this
  is because the parameter space of an OU process is restricted to 
 \begin_inset Formula $\lambda>0$
@@ -2597,7 +2602,7 @@ y accurate for the true MKLD parameter across all experiments, up to a margin
 \begin_inset Formula $\sigma$
 \end_inset
 
- , while only containing finite information about the drift parameters 
+, while only containing finite information about the drift parameters 
 \begin_inset Formula $\mu$
 \end_inset
 
@@ -2620,7 +2625,15 @@ key "nielsen-shephard-2002"
 \end_layout
 
 \begin_layout Standard
-As hypothesized, the finite sample experiments using 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:diff-diffusions"
+
+\end_inset
+
+ also demonstrates the robustness of the proposed MCEM scheme to various
+ assumptions.
+ We note that the finite sample experiments using 
 \begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
@@ -2638,21 +2651,39 @@ As hypothesized, the finite sample experiments using
 \end_inset
 
 .
- The biased estimates we expected under approximate MCEM do not appear up
- to Monte Carlo variation; we hypothesize that this is due to the approximate
- sample paths being of high quality over a sufficiently high proportion
- of the interval 
+ Furthermore, the biased estimates we expected under approximate MCEM do
+ not appear up to Monte Carlo variation; we hypothesize that this is due
+ to the approximate sample paths being of high quality over a sufficiently
+ high proportion of the interval 
 \begin_inset Formula $[0,1]$
 \end_inset
 
 .
- The exact MCEM scheme also does not appear to have obviously less variability
- than the scheme with approximate bridges.
- Furthermore, the computational time taken by an exact MCEM scheme is at
- least an order of a magnitude greater than the time needed for approximate
- MCEM, which itself is already non-trivial (on the order of five hours for
- the experiments shown here, mostly due to the numerous evaluations of the
- objective function needed for stochastic optimization).
+ 
+\end_layout
+
+\begin_layout Standard
+With the unbiased estimates of approximate MCEM in mind, 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:diff-diffusions"
+
+\end_inset
+
+ also shows that the exact MCEM scheme also does not appear to have obviously
+ less variability than the approximate scheme.
+ Furthermore, as seen in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:KS-stats"
+
+\end_inset
+
+, the computational time taken by an exact MCEM scheme is at least an order
+ of a magnitude greater than the time needed for approximate MCEM, which
+ itself is already non-trivial (on the order of five hours for the experiments
+ shown here, mostly due to the numerous evaluations of the objective function
+ needed for stochastic optimization).
  
 \end_layout
 
@@ -2666,9 +2697,12 @@ ns centered far from the mean), approximate MCEM will provide parameter
  computational gains vis-à-vis exact paths, and results in bias which is
  most likely small relative to the variance resulting from Monte Carlo estimates
  and stochastic optimization methods.
- With this in mind, we move now to the penultimate chapter of this thesis,
- in which we apply the methods examined here to distributional data from
- the real world.
+ 
+\end_layout
+
+\begin_layout Standard
+We move now to the penultimate chapter of this thesis, in which we apply
+ the methods examined here to distributional data from the real world.
 \end_layout
 
 \end_body

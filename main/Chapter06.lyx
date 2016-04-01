@@ -812,13 +812,13 @@ reference "tab:mle-vs-mcem"
 \begin_inset Formula $\mu$
 \end_inset
 
- aligns closely with intuition: Forecasters appear to, on average, expect
- the reversion of inflation to the medium-term inflation target of the ECB:
- just under 
+ aligns closely with intuition: On average, forecasters seem to expect the
+ reversion of inflation to the medium-term inflation target of the ECB (below,
+ but close to, 
 \begin_inset Formula $2\%$
 \end_inset
 
-.
+).
 \end_layout
 
 \begin_layout Standard
@@ -828,10 +828,10 @@ On the other hand, the bias is non-trivially positive for the MKLDE of
 
 , suggesting that the thin-tailedness of the approximate bridges can in
  fact affect the quality of approximate MCEM estimates in empirical situations.
- The computational cost of running MCEM with exact bridges, however, can
- still be high enough that the practitioner will need to weigh the utility
- of slightly more accurate estimates against significantly longer running
- times on a case-by-case basis.
+ The computational cost of exact MCEM, however, can still be high enough
+ that the practitioner will need to weigh the utility of slightly more accurate
+ estimates against significantly longer running times on a case-by-case
+ basis.
 \end_layout
 
 \begin_layout Section
@@ -840,8 +840,8 @@ Putting It All Together
 
 \begin_layout Standard
 In the final original section of this thesis, we synthesize the methods
- developed in this thesis by answering the following question: What can
- we say, given a finite number of sample paths of 
+ developed here by answering the following question: What can we say, given
+ a finite number of sample paths of 
 \begin_inset Formula $X$
 \end_inset
 
@@ -854,7 +854,7 @@ In the final original section of this thesis, we synthesize the methods
 \end_inset
 
  are unknown? In particular, we propose a generalized bridge-based imputation
- scheme for distributional data and a stochastic model known only up to
+ scheme given distributional data and a stochastic model known only up to
  its parameters.
  We show such a scheme reduces mean out-of-sample estimated K-L divergence
  of interpolations from the truth vis-à-vis a baseline linear interpolation
@@ -1298,7 +1298,7 @@ reference "fig:cv"
 
 \end_inset
 
- intuitively visualizes the cross-validation process; the left side depicts
+ intuitively visualizes the cross-validation process: The left side depicts
  the original SPF dataset, while the right side depicts the removal of the
  marginal distribution at 
 \begin_inset Formula $t_{2}=8$
@@ -1350,8 +1350,8 @@ Our prior belief is that our scheme should in fact improve substantially
  on linear interpolation.
  For instance, inflation expectations are likely state-dependent: Central
  banks are wary of overshooting their inflation targets, and thus can be
- expected to deploy monetary policy to ease the velocity of inflation movements
- as inflation approaches the target.
+ expected to deploy monetary policy to slow the velocity of inflation movements
+ as inflation approaches their target.
  A linear interpolation will not capture this expected deceleration in inflation
  expectations while various Itô diffusions, including the OU diffusion,
  may be able to.
@@ -1455,8 +1455,8 @@ reference "tab:wilcoxon"
 
 \end_inset
 
- presents the estimated K-L divergences of the imputed distributions at
- 
+ presents the mean and median estimated K-L divergences of the imputed distribut
+ions at 
 \begin_inset Formula $t_{1}$
 \end_inset
 
@@ -1464,8 +1464,8 @@ reference "tab:wilcoxon"
 \begin_inset Formula $t_{2}$
 \end_inset
 
- from the true distributions for each SPF in the data set, for the generalized
- bridge-based imputation scheme and the linear interpolation method outlined
+ from the true distributions over each SPF in the data set, using the generalize
+d bridge-based imputation scheme and the linear interpolation method outlined
  in 
 \begin_inset CommandInset ref
 LatexCommand eqref
@@ -1825,7 +1825,9 @@ reference "tab:wilcoxon"
 \end_inset
 
 -values from tests on the paired differences of the K-L divergences between
- the various imputation schemes.
+ the various imputation schemes; these can be used to evaluate the statistical
+ significance of the reductions in K-L divergence offered by a particular
+ imputation scheme over another.
  Exploratory data analysis suggests that the paired differences of K-L divergenc
 es deviate substantially from normality; 
 \begin_inset CommandInset ref
@@ -1845,9 +1847,9 @@ reference "tab:wilcoxon"
 \begin_inset Formula $52$
 \end_inset
 
- paired differences), it is not clear whether this skewness materially violates
- the symmetry assumption underlying the Wilcoxon signed-rank test; as such,
- we also present 
+ paired differences), it is not clear whether this skewness suggests a material
+ violation of the symmetry assumption underlying the Wilcoxon signed-rank
+ test; as such, we also present 
 \begin_inset Formula $p$
 \end_inset
 
@@ -1874,7 +1876,7 @@ We see that the generalized bridge-based methods offer qualitatively large
 \end_inset
 
 , level.
- The sign test, on the other hand, reveals significant differences only
+ The sign test, on the other hand, only begins to reveal significant differences
  at the 
 \begin_inset Formula $90\%$
 \end_inset
@@ -1882,12 +1884,27 @@ We see that the generalized bridge-based methods offer qualitatively large
  level; however, we ought to keep in mind that the sign test is an extremely
  conservative test that discards any information about the magnitude of
  the K-L divergence reductions.
- As a result of
+ We believe that the truth is somewhere between the Wilcoxon signed-rank
+ 
+\begin_inset Formula $p$
+\end_inset
+
+-values and the sign test 
+\begin_inset Formula $p$
+\end_inset
+
+-values: While there is some evidence that the true paired difference distributi
+on may be skewed, the sign test seems to discard too much information to
+ convincingly capture a statistically significant difference in the quality
+ of our imputation schemes.
+ Having examined the evidence, we update to a fairly strong belief that
+ bridge-based imputation does in fact offer better imputations of inflation
+ expectations than linear interpolation, taking into account
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
 the qualitatively large reduction in K-L divergence under a generalized
- bridge-based imputation scheme vis-à-vis linear interpolation,
+ bridge-based imputation scheme,
 \end_layout
 
 \begin_layout aEnumerate (ClassicThesis)
@@ -1900,13 +1917,7 @@ the array of relatively small
 
 \begin_layout aEnumerate (ClassicThesis)
 our prior that linear evolution should not fully capture the complex dynamics
- of inflation expectations,
-\end_layout
-
-\begin_layout Standard
-we update to a fairly strong belief that bridge-based imputation does in
- fact offer better imputations of inflation expectations than linear interpolati
-on.
+ of inflation expectations.
 \end_layout
 
 \begin_layout Standard
@@ -1921,7 +1932,7 @@ We do not qualitatively or formally detect any meaningful difference between
 \end_inset
 
  substantially, and so the differences in mean reversion dynamics between
- the two processes when they are far from their mean should be small.
+ the two processes when they are far from their mean should emerge infrequently.
 \end_layout
 
 \begin_layout Standard
@@ -1946,8 +1957,8 @@ Though the reduction in K-L divergence is non-trivial and statistically
  from the truth in our experiments.
  The estimated K-L divergences here therefore appear to suggest that conditional
  expectations of inflation are not particularly well-modeled by the selected
- Itô diffusions, and even less so by a piecewise linear function; this is
- not entirely surprisingly, since for instance, there is no reason to think
+ Itô diffusions, and even less so by a piecewise linear function.
+ This is not entirely surprising; for instance, there is no reason to think
  that conditional inflation expectations should follow time-homogenous dynamics.
  Nevertheless, the methodology proposed here can provide a useful first
  step modeling the evolution of stochastic processes, conditional on their
@@ -2036,7 +2047,7 @@ reference "fig:cont_path"
 \end_inset
 
 .
- Using the proposed MCEM scheme to infer the MKLDE of 
+ Using an approximate MCEM scheme to infer the MKLDE of 
 \begin_inset Formula $\mathbb{Q}_{\theta}^{OU}$
 \end_inset
 
@@ -2070,10 +2081,10 @@ reference "fig:cont_path"
  In particular, the shortcomings of the time-homogenous OU model's linear
  mean reversion are laid bare: the imputed paths revert to the inflation
  target far too quickly initially before being forced down to the relatively
- low inflation expectations at the end of the 2016Q1.
- Time-inhomogeneity appears to be an important feature of inflation expectations
- as of 2015Q4, with expected inflation remaining low in the short-term,
- and rapidly accelerating in the medium-term.
+ low inflation expectations at the end of the 2015.
+ Time-inhomogeneity therefore appears to be an important feature of inflation
+ expectations as of 2015Q4, with expected inflation remaining low in the
+ short-term, and rapidly accelerating in the medium-term.
  However, this is a problem of model selection and not of methodology; as
  such, 
 \begin_inset CommandInset ref
