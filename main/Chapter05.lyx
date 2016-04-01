@@ -1294,6 +1294,8 @@ key "deoptim"
  on default settings and optimization strategy 6.
  Ten expectation-maximization iterations in every replication of the MCEM
  algorithm are performed.
+ We will refer to MCEM scheme using exactly sampled bridges and approximately
+ sampled bridges as exact MCEM and approximate MCEM respectively.
 \end_layout
 
 \begin_layout Standard
@@ -1577,7 +1579,7 @@ name "tab:mcem-stationary"
 
 \end_inset
 
-One illustrative replication of an MCEM scheme (using 
+One illustrative replication of an exact and approximate MCEM (using 
 \begin_inset Formula $100\times\left\lfloor i^{1.2}\right\rfloor $
 \end_inset
 
@@ -1671,12 +1673,10 @@ reference "tab:mcem-stationary"
 
 \end_inset
 
- that the MCEM scheme using either the exact or approximate bridge sampler
- converges quite quickly, with no obvious difference between using one sampler
- over the other, up to Monte Carlo variation.
- As is usual for MCEM schemes, the algorithm produces parameter estimates
- sampled from some neighborhood of the true parameter value as described
- in 
+ that the exact and approximate MCEM schemes converge quite quickly, with
+ no obvious difference between the schemes up to Monte Carlo variation.
+ As is usual for MCEM, the algorithm produces parameter estimates sampled
+ from some neighborhood of the true parameter value as described in 
 \begin_inset CommandInset citation
 LatexCommand citet
 before "Section 3.1 in"
@@ -1685,14 +1685,10 @@ key "wei-tanner-1990"
 \end_inset
 
 , instead of converging deterministically to such a value.
- Though we expect the slightly thinner tails of the sample paths drawn from
- the approximate sampler near 
-\begin_inset Formula $t=1/2$
-\end_inset
-
- to result in potentially low-quality Monte Carlo estimates, the Monte Carlo
- variation in this experiment renders any bias undetectable to the naked
- eye.
+ Though we expected the slightly thinner tails of the sample paths drawn
+ in approximate MCEM to result in some deterioration of the quality of the
+ Monte Carlo estimates, the Monte Carlo variation in this experiment renders
+ any bias undetectable to the naked eye.
 \end_layout
 
 \begin_layout Standard
@@ -1752,10 +1748,6 @@ status open
 \begin_layout Plain Layout
 \begin_inset ERT
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 
@@ -1977,7 +1969,7 @@ emph{1.00}}
 \backslash
 nu_
 \backslash
-mathbb{P}$               & -0.01
+mathbb{P}$               & -0.13
 \backslash
 :                       & 0.08                 & 1.00           &      & 0.00
                      & 0.06                     &  0.99                  
@@ -2023,8 +2015,8 @@ hat{
 \backslash
 nu}_
 \backslash
-mathbb{P}$            & 0.02                        & 0.15               
-  & 1.00            &     &    0.01                  &      0.18          
+mathbb{P}$            & 0.13                        & 0.15               
+  & 1.00            &     &    0.05                  &      0.18          
       &     1.01                 
 \backslash
 
@@ -2280,7 +2272,8 @@ Mean and standard deviation of the MKLDEs obtained from
 \begin_inset Formula $50$
 \end_inset
 
- replications of MCEM for an OU diffusion, given either 
+ replications of approximate and exact MCEM for an OU diffusion, given either
+ 
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
@@ -2300,9 +2293,13 @@ Mean and standard deviation of the MKLDEs obtained from
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
-, using approximate and exact generalized bridge samplers.
+.
  The true K-L divergence minimizing parameters are indicated in italics
- for each true model.
+ for each 
+\begin_inset Formula $\mathbb{P}$
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -2450,8 +2447,7 @@ In addition to varying
 \end_inset
 
 .
- In particular, we consider the case where we bootstrap from a fixed set
- of 
+ In particular, we consider the case where we sample 
 \begin_inset Formula $100$
 \end_inset
 
@@ -2459,7 +2455,7 @@ In addition to varying
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
-, taking the empirical distribution 
+, and take the resulting empirical distribution 
 \begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
@@ -2495,7 +2491,7 @@ reference "chap:EM"
 \begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
- asymptotically converges to the MKLDE given 
+ is consistent to the MKLDE given 
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
@@ -2503,7 +2499,7 @@ reference "chap:EM"
 \begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
- to still produce consistent (though perhaps less efficient) estimates for
+ to still produce accurate (though perhaps less efficient) estimates for
  the MKLDE given 
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
@@ -2538,27 +2534,27 @@ the variance of the stochastic optimization procedure.
 \end_layout
 
 \begin_layout Standard
-As such, the reported standard deviations are far larger than they asymptoticall
-y ought to be with a sufficiently large number of MC samples and a sufficiently
+As such, the reported standard deviations are larger than they asymptotically
+ ought to be with a sufficiently large number of MC samples and a sufficiently
  precise optimization procedure.
 \end_layout
 
 \begin_layout Standard
-In any case, 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "tab:diff-diffusions"
 
 \end_inset
 
- reveals that an MCEM scheme using either the approximate and exact samplers
- appears to be consistent for the true MKLD parameter across all experiments,
- up to a margin of error equal to the standard deviation of the MKLDEs.
+ reveals that both the approximate and exact MCEM schemes appear to be remarkabl
+y accurate for the true MKLD parameter across all experiments, up to a margin
+ of error equal to the standard deviation of the MKLDEs.
  We note that the standard deviation of 
 \begin_inset Formula $\hat{\mu}$
 \end_inset
 
- for the Wiener process is quite large; this is a result of 
+ for the Wiener process is in some cases quite large; this is a result of
+ 
 \begin_inset Formula $\mu$
 \end_inset
 
@@ -2567,7 +2563,60 @@ reference "tab:diff-diffusions"
 \end_inset
 
 .
- 
+ The Wiener process is also the only process for which a mean estimate is
+ greater than a standard deviation away from the true parameter value; this
+ is because the parameter space of an OU process is restricted to 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+, so estimates for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ when 
+\begin_inset Formula $\lambda=0$
+\end_inset
+
+ will inevitably be biased positively.
+ It is not clear to us why the estimates for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ across all experiments seem to be much more variable than the estimates
+ for 
+\begin_inset Formula $\mu$
+\end_inset
+
+ or 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ We conjecture that this is a result of continuous diffusion paths over
+ a compact interval containing infinite information about 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ , while only containing finite information about the drift parameters 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ (see 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "nielsen-shephard-2002"
+
+\end_inset
+
+); perhaps in the case of an OU process, it is 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ in particular for which information is sparse.
 \end_layout
 
 \begin_layout Standard
@@ -2579,8 +2628,8 @@ As hypothesized, the finite sample experiments using
 \begin_inset Formula $\nu_{\mathbb{P}}$
 \end_inset
 
- display lower efficiency but remain consistent despite the violation of
- technical conditions on the absolute continuity of 
+ display lower efficiency but remain accurate despite the violation of technical
+ conditions on the absolute continuity of 
 \begin_inset Formula $\hat{\nu}_{\mathbb{P}}$
 \end_inset
 
@@ -2589,21 +2638,21 @@ As hypothesized, the finite sample experiments using
 \end_inset
 
 .
- The biased MCEM estimates we expected when using an approximate sampling
- scheme appear in the estimation of 
-\begin_inset Formula $\lambda$
+ The biased estimates we expected under approximate MCEM do not appear up
+ to Monte Carlo variation; we hypothesize that this is due to the approximate
+ sample paths being of high quality over a sufficiently high proportion
+ of the interval 
+\begin_inset Formula $[0,1]$
 \end_inset
 
-; we conjecture that this is due to the thinner-tailed marginal distributions
- that the approximate sampler produces relative to those of the exact sampler.
- However, given the variability of the MKLDEs, this bias does not appear
- to be significant.
- On the other hand, the computational time taken by an MCEM scheme relying
- on exact generalized bridge samples is at least an order of a magnitude
- longer than the time needed for MCEM using approximate sampling, which
- itself is already non-trivial (on the order of five hours for the experiments
- shown here, mostly due to the numerous evaluations of the objective function
- needed for stochastic optimization).
+.
+ The exact MCEM scheme also does not appear to have obviously less variability
+ than the scheme with approximate bridges.
+ Furthermore, the computational time taken by an exact MCEM scheme is at
+ least an order of a magnitude greater than the time needed for approximate
+ MCEM, which itself is already non-trivial (on the order of five hours for
+ the experiments shown here, mostly due to the numerous evaluations of the
+ objective function needed for stochastic optimization).
  
 \end_layout
 
@@ -2611,13 +2660,12 @@ As hypothesized, the finite sample experiments using
 We hypothesize that for all but the most extreme of distributional data
  (i.e.
  conditioning a process displaying strong mean reversion on marginal distributio
-ns centered far from the mean), an MCEM scheme relying on approximate generalize
-d bridge sampling will provide parameter estimates of sufficiently high
- quality for practical purposes.
+ns centered far from the mean), approximate MCEM will provide parameter
+ estimates of sufficiently high quality for practical purposes.
  In particular, we hold that using approximate sample paths offers vast
- computational gains vis-à-vis exact paths, and results in bias which can
- be small relative to the variance resulting from Monte Carlo estimates
- and stochastic optimization methods in the first place.
+ computational gains vis-à-vis exact paths, and results in bias which is
+ most likely small relative to the variance resulting from Monte Carlo estimates
+ and stochastic optimization methods.
  With this in mind, we move now to the penultimate chapter of this thesis,
  in which we apply the methods examined here to distributional data from
  the real world.

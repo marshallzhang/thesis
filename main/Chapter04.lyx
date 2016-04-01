@@ -288,199 +288,13 @@ key "baudoin-2002"
 
 \end_inset
 
- for a theoretical treatment of 
+ for a theoretical treatment of their properties.
+ In this chapter, we instead focus on simulating 
 \begin_inset Formula $\nu$
 \end_inset
 
--bridges.
- However, since we are interested in imputing the distribution of a 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridge over the interval 
-\begin_inset Formula $(0,1)$
-\end_inset
-
-, the marginal density of 
-\begin_inset Formula $\mathbb{Q}^{\nu}$
-\end_inset
-
- at some 
-\begin_inset Formula $t\in(0,1)$
-\end_inset
-
- merits brief presentation.
-\end_layout
-
-\begin_layout Proposition
-\begin_inset CommandInset label
-LatexCommand label
-name "prop:v-bridge-density"
-
-\end_inset
-
-The marginal density of 
-\begin_inset Formula $\mathbb{Q}^{\nu}$
-\end_inset
-
- with respect to 
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
- at some 
-\begin_inset Formula $t\in(0,1)$
-\end_inset
-
- is given by 
-\begin_inset Formula 
-\[
-\frac{d\mathbb{Q}_{t}^{\nu}}{d\mathbb{Q}_{t}}=\int_{\mathcal{R}^{2}}\frac{q_{t}^{*}(x_{0},\cdot)q_{1-t}(\cdot,x_{1})}{c(x_{0},x_{1})}\nu(dx_{0}dx_{1}),
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $q$
-\end_inset
-
- and 
-\begin_inset Formula $q^{*}$
-\end_inset
-
- are the forward and backward transition densities associated with 
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
- and 
-\begin_inset Formula $c$
-\end_inset
-
- is the density of 
-\begin_inset Formula $\mathbb{Q}_{0,1}$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Proof
-Consider any 
-\begin_inset Formula $t\in(0,1)$
-\end_inset
-
-.
- By 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "thm:density-of-bridge"
-
-\end_inset
-
-, we know that 
-\begin_inset Formula 
-\[
-\mathbb{E}_{\mathbb{Q}}\left[X_{t}\mid X_{0}=x,X_{1}=y\right]=\mathbb{E}_{\mathbb{Q}}\left[X_{t}\frac{q_{t}^{*}\left(x,X_{t}\right)q_{1-t}\left(X_{t},y\right)}{c\left(x,y\right)}\right].
-\]
-
-\end_inset
-
-Therefore, 
-\begin_inset Formula 
-\[
-\eta_{t}^{x,y}=\frac{q_{t}^{*}(x,\cdot)q_{1-t}(\cdot,y)}{c(x,y)}
-\]
-
-\end_inset
-
-is the Radon-Nikodym derivative associated with the Baudoin 
-\begin_inset Formula $\left(X_{0,1},\nu\right)$
-\end_inset
-
--conditioning on 
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
-.
- Then, 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "prop:pv-density-1"
-
-\end_inset
-
- gives the desired result.
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "prop:v-bridge-density"
-
-\end_inset
-
- reveals that if 
-\begin_inset Formula $\nu$
-\end_inset
-
- is chosen to be the law of 
-\begin_inset Formula $X_{0,1}$
-\end_inset
-
- under 
-\begin_inset Formula $\mathbb{Q}$
-\end_inset
-
-, 
-\begin_inset Formula $d\mathbb{Q}_{t}^{\nu}/d\mathbb{Q}_{t}=1$
-\end_inset
-
-, as expected.
- 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "prop:v-bridge-density"
-
-\end_inset
-
- answers from a theoretical standpoint the question of imputation: given
- a solution to 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:basic-sde"
-
-\end_inset
-
- whose endpoints are conditioned to follow 
-\begin_inset Formula $\nu$
-\end_inset
-
-, we can precisely find its density at any time 
-\begin_inset Formula $t\in(0,1)$
-\end_inset
-
-.
- However, as previously noted, transition densities are typically unavailable
- for all but the simplest diffusions, preventing 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "prop:v-bridge-density"
-
-\end_inset
-
- from being useful in practice.
- Motivated by our MCEM scheme's need to sample 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridges, and by the intractability of the marginal density of 
-\begin_inset Formula $\mathbb{Q}^{\nu}$
-\end_inset
-
-, we develop methods for the simulation of 
-\begin_inset Formula $\nu$
-\end_inset
-
--bridges in the remainder of this chapter.
+-bridges, motivated by our MCEM scheme's need for repeated samples from
+ Baudoin bridge measures.
 \end_layout
 
 \begin_layout Section
@@ -2579,17 +2393,10 @@ reference "algo:mcem"
 
 .
  It thereby completes our answer to the question of inference on distributional
- data.
- Moreover, it provides a simulation-based answer to the intractability of
- the result stated in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "prop:v-bridge-density"
-
-\end_inset
-
-, allowing us to impute the distribution of a diffusion process given the
- distribution of its endpoints.
+ data, allowing us to sample from an arbitrary Baudoin bridge measure.
+ Furthermore, it answers in full the question of imputation when given distribut
+ional data and a fully specified stochastic process: we may simply simulate
+ the process between the distributional data on which it is conditioned.
  In the next two chapters, we put theory to practice as we evaluate and
  apply the methods developed thus far in a variety of simulation and empirical
  settings.

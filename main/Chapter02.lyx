@@ -186,7 +186,7 @@ where
 \end_inset
 
  to 
-\begin_inset Formula $\Omega_{\mathcal{T}}\coloneqq\left\{ \omega(t)\mid\omega\in\Omega,t\in\mathcal{T}\right\} $
+\begin_inset Formula $\Omega_{\mathcal{T}}\coloneqq X_{\mathcal{T}}(\Omega)$
 \end_inset
 
 .
@@ -214,7 +214,7 @@ key "oksendal"
  of the form 
 \begin_inset Formula 
 \[
-X_{t}-X_{0}=\int_{0}^{t}\mu(X_{s})ds+\int_{0}^{t}\sigma(X_{s})dW_{s},
+X_{t}=X_{0}+\int_{0}^{t}\mu(X_{s})ds+\int_{0}^{t}\sigma(X_{s})dW_{s},
 \]
 
 \end_inset
@@ -281,7 +281,7 @@ key "bladt-sorensen-2014"
 \end_layout
 
 \begin_layout Standard
-We denote probability measures by capital letters 
+We will denote probability measures by capital letters 
 \begin_inset Formula $\mathbb{P},\mathbb{Q},\dots$
 \end_inset
 
@@ -361,7 +361,7 @@ key "baudoin-2002"
 \end_layout
 
 \begin_layout Standard
-First, we briefly study the well-known properties of Markov bridges.
+First, we briefly review the well-known properties of Markov bridges.
  Fix 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
@@ -411,7 +411,7 @@ key "rogers"
 \begin_inset Formula $h$
 \end_inset
 
--transform in the case of diffusion processes).
+-transform in the case of continuous-time processes).
  We refer to such a measure as the bridge measure 
 \begin_inset Formula $\mathbb{P}^{x,y}$
 \end_inset
@@ -442,7 +442,7 @@ key "rogers"
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
- can be understood as the mixture of 
+ can be seen as a mixture of 
 \begin_inset Formula $\mathbb{P}^{x,y}$
 \end_inset
 
@@ -457,119 +457,10 @@ key "rogers"
 \begin_inset Formula $\mathbb{P}^{x,y}$
 \end_inset
 
- is also a Markov measure; furthermore, if certain densities of 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- exist, then the density of 
-\begin_inset Formula $\mathbb{P}^{x,y}$
-\end_inset
-
- with respect to 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- at some time 
-\begin_inset Formula $t\in(0,1)$
-\end_inset
-
- also exists, as detailed in the below theorem.
-\end_layout
-
-\begin_layout Theorem
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset citation
-LatexCommand citet
-before "Theorem 1.9 in"
-key "leonard-2014"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "thm:density-of-bridge"
-
-\end_inset
-
-For all 
-\begin_inset Formula $0<t<1$
-\end_inset
-
- and all 
-\begin_inset Formula $x,y$
-\end_inset
-
- in the state space, the bridge measure of 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- restricted to 
-\begin_inset Formula $t$
-\end_inset
-
-, 
-\begin_inset Formula $\mathbb{P}_{t}^{x,y}$
-\end_inset
-
-, is absolutely continuous to 
-\begin_inset Formula $\mathbb{P}_{t}$
-\end_inset
-
-.
- The density of the marginal bridge measure 
-\begin_inset Formula $\mathbb{P}^{x,y}$
-\end_inset
-
- of 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- with respect to 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- at 
-\begin_inset Formula $t$
-\end_inset
-
- is given by 
-\begin_inset Formula 
-\[
-\frac{d\mathbb{P}_{t}^{x,y}}{d\mathbb{P}_{t}}=\frac{p_{t}^{*}(x,\cdot)p_{1-t}(\cdot,y)}{c(x,y)},
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $p_{t}(x,y)$
-\end_inset
-
- and 
-\begin_inset Formula $p_{t}^{*}(x,y)$
-\end_inset
-
- are the forward and backward transition densities of 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
-, and 
-\begin_inset Formula $c(x,y)$
-\end_inset
-
- is the density of 
-\begin_inset Formula $\mathbb{P}_{0,1}$
-\end_inset
-
-.
+ is also a Markov measure.
+ In this thesis, we will focus on measures induced by Itô diffusions, which
+ are a special case of Markov measures; a diffusion bridge, then, is a diffusion
+ process with its endpoints fixed at certain values.
 \end_layout
 
 \begin_layout Standard
@@ -1024,81 +915,6 @@ since the regular conditional probability
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-From the existence of 
-\begin_inset Formula $\mathbb{P}^{\nu}$
-\end_inset
-
-, the density of 
-\begin_inset Formula $\mathbb{P}^{\nu}$
-\end_inset
-
- with respect to 
-\begin_inset Formula $\mathbb{P}$
-\end_inset
-
- restricted to some time 
-\begin_inset Formula $t\in(0,1)$
-\end_inset
-
- follows easily.
-\end_layout
-
-\begin_layout Proposition
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset citation
-LatexCommand citet
-before "Proposition 9 in"
-key "baudoin-2002"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "prop:pv-density-1"
-
-\end_inset
-
-For any 
-\begin_inset Formula $t\in(0,1)$
-\end_inset
-
-, 
-\begin_inset Formula $\mathbb{P}_{t}^{\nu}$
-\end_inset
-
- is absolutely continuous with respect to 
-\begin_inset Formula $\mathbb{P}_{t}$
-\end_inset
-
-, and the density of 
-\begin_inset Formula $\mathbb{P}_{t}^{\nu}$
-\end_inset
-
- with respect to 
-\begin_inset Formula $\mathbb{P}_{t}$
-\end_inset
-
- is given by 
-\begin_inset Formula 
-\[
-\frac{d\mathbb{P}_{t}^{\nu}}{d\mathbb{P}_{t}}=\int_{\mathcal{R}^{k}}\eta_{t}^{y}\nu(dy).
-\]
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard

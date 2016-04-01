@@ -301,6 +301,10 @@ An intuitive depiction of a distributional datum.
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
 This thesis rather focuses on answering two specific questions that can
  be asked of a stochastic process when it is conditioned, in some sense
  to be made precise in the next chapter, to follow a given distribution
@@ -329,9 +333,8 @@ We will soon see that these questions of inference and imputation are deeply
  The answers to these specific questions allow us to formulate a well-defined
  response to the broad questions about inflation, weather, and stock prices
  posed above.
- These sorts of intuitive questions abound; by extension, the potential
- applications of the methods proposed here are both wide in scope and great
- in utility.
+ These sorts of broad questions abound; by extension, the potential applications
+ of the methods proposed here are both widely applicable and acutely important.
  For instance, one might imagine that knowing the market-implied distribution
  of future stock prices could be immensely valuable.
  Moreover, references to inference and imputation on distributional data
@@ -406,8 +409,8 @@ key "baudoin-2002"
  class of generalized bridges.
  This answers in full the question of inference.
  Simultaneously, we answer the question of imputation, having gained the
- ability to draw sample paths of diffusion processes whose endpoints are
- conditioned to follow a given distribution.
+ ability to draw sample paths of fully specified diffusion processes whose
+ endpoints are conditioned to follow a given distribution.
 \end_layout
 
 \begin_layout Standard
@@ -417,8 +420,8 @@ In the empirical portion of this thesis, we confirm the correctness of the
  are qualitatively similar to those of the exact sampler at a fraction of
  the computation cost.
  Then, we confirm empirically that the proposed simulation-based inference
- technique on distributional data is consistent for the K-L divergence minimizin
-g parameter.
+ technique on distributional data is accurate for the K-L divergence minimizing
+ parameter.
  Moreover, we show that both the generalized bridge samplers and the inference
  technique are robust to various theoretical assumptions made in their derivatio
 ns.
@@ -426,14 +429,15 @@ ns.
 \end_layout
 
 \begin_layout Standard
-Then, taking theory to practice, we use the proposed inference scheme to
- estimate the parameters governing the evolution of inflation expectations
- for diffusions with and without analytically tractable transition densities.
- Finally, we propose an imputation scheme for distributional data based
- on the simulation of generalized bridges.
- We show that such a scheme, when applied to probabilistic forecasts of
- inflation expectations, reduces the out-of-sample K-L divergence of the
- imputed distributions from the true distributions in a practically meaningful
+Finally, taking theory to practice, we use the proposed inference scheme
+ to estimate the parameters governing the evolution of inflation expectations
+ under diffusion models with and without analytically tractable transition
+ densities.
+ We also propose an imputation scheme for distributional data under a diffusion
+ model specified only up to its parameters.
+ To conclude, we show that such a scheme, when applied to probabilistic
+ forecasts of inflation expectations, reduces the out-of-sample K-L divergence
+ of imputed distributions from true distributions in a practically meaningful
  and statistically significant way relative to linear interpolation.
 \end_layout
 

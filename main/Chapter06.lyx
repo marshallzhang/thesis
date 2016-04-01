@@ -736,8 +736,8 @@ Mean of the
 \begin_inset Formula $\theta^{*}=\arg\max\bar{\ell}(\theta)$
 \end_inset
 
-, as well as the bias of MKLDE estimates, obtained by MCEM using approximate
- bridges, relative to 
+, as well as the bias of MKLDE estimates, obtained by approximate MCEM,
+ relative to 
 \begin_inset Formula $\theta^{*}$
 \end_inset
 
@@ -806,8 +806,8 @@ reference "tab:mle-vs-mcem"
 \begin_inset Formula $\sigma$
 \end_inset
 
- obtained by MCEM using approximate bridges are effectively indistinguishable
- from those obtained via direct maximization of the analytic likelihood.
+ obtained by approximate MCEM are effectively indistinguishable from those
+ obtained via direct maximization of the analytic likelihood.
  Moreover, the MKLDE for 
 \begin_inset Formula $\mu$
 \end_inset
@@ -827,7 +827,7 @@ On the other hand, the bias is non-trivially positive for the MKLDE of
 \end_inset
 
 , suggesting that the thin-tailedness of the approximate bridges can in
- fact affect the quality of MCEM estimates in empirical situations.
+ fact affect the quality of approximate MCEM estimates in empirical situations.
  The computational cost of running MCEM with exact bridges, however, can
  still be high enough that the practitioner will need to weigh the utility
  of slightly more accurate estimates against significantly longer running
@@ -849,13 +849,18 @@ In the final original section of this thesis, we synthesize the methods
 \begin_inset Formula $X$
 \end_inset
 
- at arbitrary horizons? In particular, we propose a generalized bridge-based
- imputation scheme for distributional data and a stochastic model known
- up to its parameters.
+ at arbitrary horizons, when the parameters governing 
+\begin_inset Formula $X$
+\end_inset
+
+ are unknown? In particular, we propose a generalized bridge-based imputation
+ scheme for distributional data and a stochastic model known only up to
+ its parameters.
  We show such a scheme reduces mean out-of-sample estimated K-L divergence
  of interpolations from the truth vis-à-vis a baseline linear interpolation
  for the ECB SPF dataset, using models with tractable and intractable log-likeli
 hood.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1207,7 +1212,7 @@ First, we estimate the MKLDE
 \begin_inset Formula $\hat{\nu}_{-t_{i}}$
 \end_inset
 
-.
+ using approximate MCEM.
  Then, we draw samples of 
 \begin_inset Formula $X_{t_{i}}$
 \end_inset
@@ -1334,17 +1339,18 @@ for
 .
  This scheme is not simply a straw man; its non-parametric nature makes
  it an extremely robust imputation method, and it is simple to implement.
+ Therefore, in order for a complex scheme like the one proposed in this
+ chapter to be seen as a viable alternative for imputation, it must offer
+ meaningful improvements over linear interpolation.
  
 \end_layout
 
 \begin_layout Standard
-In order for a complex scheme like the one proposed in this chapter to be
- seen as a viable alternative for imputation, it must offer meaningful improveme
-nts over linear interpolation.
- Our prior belief is that our scheme can in fact do this.
+Our prior belief is that our scheme should in fact improve substantially
+ on linear interpolation.
  For instance, inflation expectations are likely state-dependent: Central
  banks are wary of overshooting their inflation targets, and thus can be
- expected to deploy monetaery policy to ease the velocity of inflation movements
+ expected to deploy monetary policy to ease the velocity of inflation movements
  as inflation approaches the target.
  A linear interpolation will not capture this expected deceleration in inflation
  expectations while various Itô diffusions, including the OU diffusion,
@@ -1754,7 +1760,7 @@ Mean and median out-of-sample estimated K-L divergences of imputed inflation
 \begin_inset Formula $52$
 \end_inset
 
- SPFs (any SPFs for which MCEM did not converge were dropped).
+ SPFs (any SPFs for which approximate MCEM did not converge were dropped).
  K-L divergences were estimated using the 
 \begin_inset CommandInset citation
 LatexCommand citet
