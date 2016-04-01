@@ -1826,7 +1826,7 @@ key "bladt-sorensen-2014"
 \end_inset
 
 .
- As such, the acceptance ratio in an Metropolis-Hastings (M-H) scheme to
+ As such, the acceptance ratio in a Metropolis-Hastings (M-H) scheme to
  sample exact diffusion bridges using approximate diffusion bridge proposals
  should be 
 \begin_inset Formula 

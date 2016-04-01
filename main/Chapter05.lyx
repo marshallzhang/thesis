@@ -1096,7 +1096,7 @@ reference "tab:KS-stats"
 
 \begin_layout Standard
 The theoretical setting for this section is as follows: Suppose we have
- an true but unknown probability model 
+ a true but unknown probability model 
 \begin_inset Formula $\mathbb{P}$
 \end_inset
 
@@ -2672,7 +2672,7 @@ reference "tab:diff-diffusions"
 
  also shows that the exact MCEM scheme also does not appear to have obviously
  less variability than the approximate scheme.
- Furthermore, as seen in 
+ In addition, as seen in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "tab:KS-stats"

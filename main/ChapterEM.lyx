@@ -1194,7 +1194,7 @@ reference "eq:sde-with-theta"
 \begin_inset Formula $\Lambda_{\theta}(\nu)$
 \end_inset
 
- in a manner analagous to the EM algorithm of 
+ in a manner analogous to the EM algorithm of 
 \begin_inset CommandInset citation
 LatexCommand citet
 before "Section 8 in"
@@ -2491,7 +2491,7 @@ reference "eq:final-q-1"
 \end_inset
 
 .
- Note that we exploit the Markovian nature of the measuresin question to
+ Note that we exploit the Markovian nature of the measures in question to
  split the evaluation of the last term in 
 \begin_inset CommandInset ref
 LatexCommand eqref
@@ -2499,7 +2499,7 @@ reference "eq:final-q-1"
 
 \end_inset
 
- into bridges on 
+ over bridges on 
 \begin_inset Formula $[t_{i-1},t_{i}]$
 \end_inset
 

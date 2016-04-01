@@ -1181,8 +1181,8 @@ A visualization of the cross-validation method for assessing imputation
  strategy performance.
  The left graphic depicts data from a particular SPF.
  The right graphic depicts an imputed distribution, in black, superimposed
- on the original true distribution, to be used to validate the imputated
- distribution, in gray.
+ on the original true distribution, to be used to validate the imputed distribut
+ion, in gray.
 \end_layout
 
 \end_inset
